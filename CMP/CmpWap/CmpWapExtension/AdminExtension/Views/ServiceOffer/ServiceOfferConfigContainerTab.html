@@ -1,0 +1,7 @@
+﻿<div class="plan-details">
+    <div class="planIframeLoadProgress">
+        {{res "LoadingConfigurationForService" 0=displayName/}}
+    </div>
+    <iframe name="{{attr:configUri}}" onload="(function () { var mainPage = document.URL; var pathSplit = mainPage.split('/'); var index = pathSplit.indexOf('plan'); var planId = pathSplit[index + 1]; this.onload = ' '; this.src = this.name + '&planId=' + planId;}).call(this);" id="plansIframeWind" class="serviceOfferFrame" src="" scrolling="no" style="height: 2054px;"></iframe>
+</div>
+

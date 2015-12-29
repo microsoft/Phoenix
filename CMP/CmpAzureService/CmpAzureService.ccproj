@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\..\Environment.props" />
+  <PropertyGroup>
+    <ProductVersion>2.5</ProductVersion>
+    <ProjectGuid>59d19c9d-43b1-45c9-97bc-96ba7bfd0484</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CmpAzureService</RootNamespace>
+    <AssemblyName>CmpAzureService</AssemblyName>
+    <StartDevelopmentStorage>True</StartDevelopmentStorage>
+    <Name>CmpAzureService</Name>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <UseEmulatorExpressByDefault>False</UseEmulatorExpressByDefault>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <!-- Items for the project -->
+  <ItemGroup>
+    <ServiceConfiguration Include="ServiceConfiguration.Sample.cscfg" />
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CmpAzureServiceWebRole\CmpAzureServiceWebRole.csproj">
+      <Name>CmpAzureServiceWebRole</Name>
+      <Project>{c6baa5a2-f199-4f08-a0aa-99f146f0b693}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>CmpAzureServiceWebRole</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CmpAzureServiceWebRoleContent" />
+    <Folder Include="CmpAzureServiceWebRoleTestContent\" />
+    <Folder Include="CmpAzureServiceWebServiceContent\" />
+    <Folder Include="CmpAzureServiceWebServiceContent\Profiles\" />
+    <Folder Include="Profiles" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CmpAzureServiceWebRoleContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="CmpAzureServiceWebRoleTestContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="CmpAzureServiceWebServiceContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="CmpAzureServiceWebServiceContent\Profiles\CmpServiceDevPub.azurePubxml" />
+    <PublishProfile Include="CmpAzureServiceWebServiceContent\Profiles\CmpServiceDevWapPub.azurePubxml" />
+    <PublishProfile Include="CmpAzureServiceWebServiceContent\Profiles\CmpServiceProdPub.azurePubxml" />
+    <PublishProfile Include="CmpAzureServiceWebServiceContent\Profiles\CmpServiceUatPub.azurePubxml" />
+    <PublishProfile Include="Profiles\CmpServiceDevPub.azurePubxml" />
+    <PublishProfile Include="Profiles\CmpServiceProdPub.azurePubxml" />
+    <PublishProfile Include="Profiles\CmpServiceUatPub.azurePubxml" />
+    <PublishProfile Include="Profiles\CmpServiceTestPub.azurePubxml" />
+    <PublishProfile Include="Profiles\CmpServiceWapDevPub.azurePubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <DiagnosticsConfiguration Include="CmpAzureServiceWebRoleContent\diagnostics.wadcfgx" />
+  </ItemGroup>
+  <!-- Import the target files for this project template -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(Registry:HKEY_USERS\.DEFAULT\Software\Microsoft\VisualStudio\12.0_Config\MSBuild\SafeImports@CCT.VS12.0.2.5)" />
+</Project>

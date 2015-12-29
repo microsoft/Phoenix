@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- Source Locations -->
+  <?ifndef TenantExtensionRoot ?>
+  <?define TenantExtensionRoot="..\TenantExtension" ?>
+  <?endif?>
+  
+  <?ifndef TenantExtensionTargetDir ?>
+  <?define TenantExtensionTargetDir="$(var.Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.TargetDir)" ?>
+  <?endif?>
+  
+  <DirectoryRef Id="TenantSiteBinDir">
+    <Component Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.dll"
+               Guid="{8FD4BAD4-6722-4A9D-861E-1A961F69D532}">
+      <File Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.dll"
+            KeyPath="yes"
+            Source="$(var.TenantExtensionTargetDir)\Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.dll" />
+    </Component>
+    <Component Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll"
+               Guid="{712AF917-6897-4C63-860E-FE4563AFEE20}">
+      <File Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll"
+            KeyPath="yes"
+            Source="$(var.TenantExtensionTargetDir)\Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll" />
+    </Component>
+
+    <!-- Dependencies -->    
+    
+    <Component Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll"
+               Guid="{2928B4AA-53F4-4540-861A-C6452F7B1096}">
+      <File Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll"
+            KeyPath="yes"
+            Source="$(var.TenantExtensionTargetDir)\Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll" />
+    </Component>
+  </DirectoryRef>
+  <DirectoryRef Id="TenantSiteContentExtDir">
+    <Component Id="T_extensions.data.js"
+               Guid="{F2965DFB-01F3-4460-B98C-57675AB833E8}">
+      <File Id="T_extensions.data.js"
+            KeyPath="yes"
+            Source="$(var.TenantExtensionRoot)\Content\extensions.data.js" />
+    </Component>
+    <Component Id="T_CmpWapExtensionTenant.png"
+               Guid="{3546ACE2-6FE7-4CE2-84AE-9B2A96B2F047}">
+      <File Id="T_CmpWapExtensionTenant.png"
+            KeyPath="yes"
+            Source="$(var.TenantExtensionRoot)\Content\CmpWapExtensionTenant.png" />
+    </Component>
+
+   
+    <Component Id="T_CmpWapExtensionTenantExtension.js"
+               Guid="{A41EF276-DB42-42C0-AB44-495A8EF4FAED}">
+      <File Id="T_CmpWapExtensionTenantExtension.js"
+            KeyPath="yes"
+            Source="$(var.TenantExtensionRoot)\Content\CmpWapExtensionTenantExtension.js" />
+    </Component>
+    <Directory Id="T_Images" Name="Images">
+      <Component Id="T_ajaxloader.gif"
+              Guid="{2CF47BC6-E913-4E0F-950E-DD770A352296}">
+        <File Id="T_ajaxloader.gif"
+              KeyPath="yes"
+              Source="$(var.TenantExtensionRoot)\Content\Images\ajaxloader.gif" />
+      </Component>
+    </Directory>
+    <Directory Id="T_Scripts"
+               Name="Scripts">
+      <Component Id="T_CmpWapExtensionTenant.Controller.js"
+                 Guid="{7E2BC4BE-1C06-4B5E-803C-79B1CA8BDEB7}">
+        <File Id="T_CmpWapExtensionTenant.Controller.js"
+              KeyPath="yes"
+              Source="$(var.TenantExtensionRoot)\Content\Scripts\CmpWapExtensionTenant.Controller.js" />
+      </Component>
+      <!-- yet to be Implemented-->
+      <Component Id="T_CmpWapExtensionTenant.VMDashboardTab.js"
+                      Guid="{9D1371F1-A712-4C9A-B2D8-CACD52ED6994}">
+        <File Id="T_CmpWapExtensionTenant.VMDashboardTab.js"
+              KeyPath="yes"
+              Source="$(var.TenantExtensionRoot)\Content\Scripts\CmpWapExtensionTenant.VMDashboardTab.js" />
+      </Component>
+      <Component Id="T_CmpWapExtensionTenant.VMConfigureTab.js"
+                      Guid="{2E15EFEF-1603-4A8A-AD7E-33D3CF16DB58}">
+        <File Id="T_CmpWapExtensionTenant.VMConfigureTab.js"
+              KeyPath="yes"
+              Source="$(var.TenantExtensionRoot)\Content\Scripts\CmpWapExtensionTenant.VMConfigureTab.js" />
+      </Component>
+      <Component Id="T_CmpWapExtensionTenant.FileSharesTab.js"
+                 Guid="{003E169B-1867-4A14-82F6-576156A3B604}">
+        <File Id="T_CmpWapExtensionTenant.FileSharesTab.js"
+              KeyPath="yes"
+              Source="$(var.TenantExtensionRoot)\Content\Scripts\CmpWapExtensionTenant.FileSharesTab.js" />
+      </Component>
+      <Component Id="T_CmpWapExtensionTenant.SettingsTab.js"
+                 Guid="{B1CB5B7A-F20E-43B5-BB73-432106E15322}">
+        <File Id="T_CmpWapExtensionTenant.SettingsTab.js"
+              KeyPath="yes"
+              Source="$(var.TenantExtensionRoot)\Content\Scripts\CmpWapExtensionTenant.SettingsTab.js" />
+      </Component>
+      <Directory Id="T_ViewModel"
+                 Name="ViewModel">
+        <Component Id="T_HW.ViewModels.QuickCreate.js"
+                   Guid="{7E513B97-A2B6-425C-A9F7-3374A4E7A2BC}">
+          <File Id="T_HW.ViewModels.QuickCreate.js"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Scripts\ViewModel\HW.ViewModels.QuickCreate.js" />
+        </Component>
+      </Directory>
+    </Directory>
+    <Directory Id="T_Styles"
+               Name="Styles">
+      <Component Id="T_CmpWapExtensionTenant.css"
+                 Guid="{1FDD8D1C-9F2D-495B-836D-92CB233B1E3F}">
+        <File Id="T_CmpWapExtensionTenant.css"
+              KeyPath="yes"
+              Source="$(var.TenantExtensionRoot)\Content\Styles\CmpWapExtensionTenant.css" />
+      </Component>
+      <Component Id="T_CmpWapExtensionControls.css"
+                 Guid="{1C322891-4782-45B1-A1D2-72F127812D23}">
+        <File Id="CmpWapExtensionControls.css"
+              KeyPath="yes"
+              Source="$(var.TenantExtensionRoot)\Content\Styles\CmpWapExtensionControls.css" />
+      </Component>
+    </Directory>
+    <Directory Id="T_Templates"
+               Name="Templates">
+      <Directory Id="T_Dialogs"
+                 Name="Dialogs">
+        <Component Id="T_CreateFileShare.html"
+                   Guid="{23990529-9E15-4EA5-9FB0-DBDDC70709A4}">
+          <File Id="T_CreateFileShare.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\CreateFileShare.html" />
+        </Component>
+        <Component Id="T_AttachDisk.html"
+                 Guid="{78E9A6B3-E445-4F24-92C9-3B1E29593161}">
+          <File Id="T_AttachDisk.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\AttachDisk.html" />
+        </Component>
+        <Component Id="T_DetachDisk.html"
+                   Guid="{B54D8A49-87C4-427B-9127-917B4C8F94C8}">
+          <File Id="T_DetachDisk.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\DetachDisk.html" />
+        </Component>
+        <Component Id="T_ShutDownVMDialogBox.html"
+                         Guid="{2565166C-419C-476A-B9D2-8B105829594B}">
+          <File Id="T_ShutDownVMDialogBox.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\ShutDownVMDialogBox.html" />
+        </Component>
+
+        <Component Id="T_DeleteVMDialogBox.html"
+                         Guid="{12DEFED2-4192-4E63-B62A-B6DB867A880D}">
+          <File Id="T_DeleteVMDialogBox.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\DeleteVMDialogBox.html" />
+        </Component>        
+       
+        <Component Id="T_CreateVM1.html"
+                   Guid="{1579B51D-3211-469B-A460-561F175160FF}">
+          <File Id="T_CreateVM1.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\CreateVM1.html" />
+        </Component>
+        <Component Id="T_CreateVM2.html"
+                   Guid="{BD03A9DC-ACF3-4621-B3EC-7785DF9F58FE}">
+          <File Id="T_CreateVM2.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\CreateVM2.html" />
+        </Component>
+        <Component Id="T_CreateVM3.html"
+                   Guid="{E174B98C-55BD-465C-BCA2-309168C42B56}">
+          <File Id="T_CreateVM3.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\CreateVM3.html" />
+        </Component>
+        <Component Id="T_CreateVM4.html"
+                   Guid="{7848608B-BFD3-4549-952E-770B002D395C}">
+          <File Id="T_CreateVM4.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\CreateVM4.html" />
+        </Component>
+        <Component Id="T_CustomCreatePreview.html"
+                   Guid="{4BCA96AE-9CA5-4DA7-8546-2198EB21105F}">
+          <File Id="T_CustomCreatePreview.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\CustomCreatePreview.html" />
+        </Component>
+      </Directory>
+      <Directory Id="T_Tabs"
+                 Name="Tabs">
+        <Component Id="T_FileSharesTab.html"
+                   Guid="{7D5182AB-F023-45EB-968F-4AD26A862120}">
+          <File Id="T_FileSharesTab.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Tabs\FileSharesTab.html" />
+        </Component>
+        <Component Id="T_FileSharesTabEmpty.html"
+                   Guid="{16379994-9799-4885-9699-B043E2CDF2C6}">
+          <File Id="T_FileSharesTabEmpty.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Tabs\FileSharesTabEmpty.html" />
+        </Component>
+        <Component Id="T_SettingsTab.html"
+                   Guid="{C2ED945D-2867-487D-B712-1EBF6D919906}">
+          <File Id="T_SettingsTab.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Tabs\SettingsTab.html" />
+        </Component>
+        <!-- yet to be Implemented for second level navigation for Vms -->
+        <Component Id="T_VMDashboardTab.html"
+               Guid="{72F2CF2D-FE2C-4DD0-B1F2-F317D2403BD4}">
+          <File Id="T_VMDashboardTab.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Tabs\VMDashboardTab.html" />
+        </Component>
+        <Component Id="T_VMConfigureTab.html"
+              Guid="{DC449444-D75D-4891-86ED-F9C1E8D47A5C}">
+          <File Id="T_VMConfigureTab.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Tabs\VMConfigureTab.html" />
+        </Component>
+      </Directory>
+      <Directory Id="T_Menu"
+                Name="Menu">
+        <Component Id="T_FileShareQuickCreate.html"
+                   Guid="{1fe63807-89b2-4eb0-ab0c-1e4067fa2d72}">
+          <File Id="T_FileShareQuickCreate.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Menu\FileShareQuickCreate.html" />
+        </Component>        
+      </Directory>
+    </Directory>
+  </DirectoryRef>
+  <DirectoryRef Id="TenantSiteManifestsDir">
+    <Component Id="T_CmpWapExtensionTenantUiManifest.xml"
+               Guid="{645122D5-3A5B-4947-A963-1CEF6A27D3BD}">
+      <File Id="T_CmpWapExtensionTenantUiManifest.xml"
+            KeyPath="yes"
+            Source="$(var.TenantExtensionRoot)\Manifests\CmpWapExtensionTenantUiManifest.xml" />
+    </Component>
+  </DirectoryRef>
+  <ComponentGroup Id="TenantSiteContent">
+    <ComponentRef Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.dll" />
+    <ComponentRef Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll" />
+    <ComponentRef Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll" />
+    <!-- Dependencies -->
+    <!--<ComponentRef Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient.dll" />
+    <ComponentRef Id="T_CmpInterfaceModel.dll" />
+    <ComponentRef Id="T_Microsoft.Data.Edm.dll" />
+    <ComponentRef Id="T_Microsoft.Data.OData.dll" />
+    <ComponentRef Id="T_Microsoft.Data.Services.Client.dll" />-->
+    <!-- Dependencies -->
+    <ComponentRef Id="T_extensions.data.js" />
+    <ComponentRef Id="T_CmpWapExtensionTenant.png" />
+    <ComponentRef Id="T_ajaxloader.gif" />
+    <ComponentRef Id="T_CmpWapExtensionTenantExtension.js" />
+    <ComponentRef Id="T_CmpWapExtensionTenant.Controller.js" />
+    <ComponentRef Id="T_CmpWapExtensionTenant.FileSharesTab.js" />
+    <ComponentRef Id="T_CmpWapExtensionTenant.SettingsTab.js" />
+    <ComponentRef Id="T_HW.ViewModels.QuickCreate.js" />
+    <ComponentRef Id="T_CmpWapExtensionTenant.css" />
+    <ComponentRef Id="T_CmpWapExtensionControls.css" />
+    <ComponentRef Id="T_CreateFileShare.html" />
+    <ComponentRef Id="T_AttachDisk.html" />
+    <ComponentRef Id="T_DetachDisk.html" />
+    <ComponentRef Id="T_ShutDownVMDialogBox.html" />
+    <ComponentRef Id="T_DeleteVMDialogBox.html"/>
+    <ComponentRef Id="T_CreateVM1.html" />
+    <ComponentRef Id="T_CreateVM2.html" />
+    <ComponentRef Id="T_CreateVM3.html" />
+    <ComponentRef Id="T_CreateVM4.html" />
+    <ComponentRef Id="T_CustomCreatePreview.html" />
+    <ComponentRef Id="T_FileSharesTab.html" />
+    <ComponentRef Id="T_FileSharesTabEmpty.html" />
+    <ComponentRef Id="T_SettingsTab.html" />
+    <ComponentRef Id="T_CmpWapExtensionTenantUiManifest.xml" />
+    <ComponentRef Id="T_FileShareQuickCreate.html" />    
+    <!-- yet to be Implemented fro second level navigation for Vms -->
+    <ComponentRef Id="T_VMDashboardTab.html" />
+    <ComponentRef Id="T_CmpWapExtensionTenant.VMDashboardTab.js"/>
+    <ComponentRef Id="T_CmpWapExtensionTenant.VMConfigureTab.js"/>
+    <ComponentRef Id="T_VMConfigureTab.html" />
+  </ComponentGroup>
+</Include>

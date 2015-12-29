@@ -1,0 +1,6 @@
+﻿namespace CmpServiceLib
+{
+    class ProcessorCert
+    {
+    }
+}

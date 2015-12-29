@@ -1,0 +1,56 @@
+﻿<script src="../../jquery-ui.js"></script>
+
+        <div class="drawer-form-wapitem">
+            <label for="SubscriptionName">Plan Name</label>
+            <select id="SubscriptionName" name="SubscriptionName" data-fxcontroltype="fxDropdown"></select>
+        </div>
+
+<div id="hw-create-fileshare-container" style="overflow-y:auto">
+
+    <div class="drawer-form-wapitem">
+        <!--<h2 style="font:bold">Application Information</h2>-->
+    </div>
+
+    <div id="selectApp-Existing-div" class="drawer-form-wapitem">
+        <label for="VmAppNameSelect">Resource Group Name</label>
+        <!--<input id="VmAppNameSelecttxt" type="text" maxlength="9" class="fx-textbox fx-validation fx-editablecontrol" data-val="true" data-val-required="Cloud Service is required" style="position: absolute; width: 265px"/>
+        <select id="VmAppNameSelect" name="VmAppNameSelect" data-fxcontroltype="fxDropdown"></select> -->
+        <input id="VmAppNameSelect" type="text" maxlength="14" list="VmAppNameSelectTxt" pattern="^[a-zA-Z0-9]{4,14}$" title="Please provide a valid cloud service name" />
+        <label id="lblmessage"></label>
+        <datalist id="VmAppNameSelectTxt"></datalist>
+    </div>
+
+    <!--
+        <div id="selectService-div" class="drawer-form-wapitem">
+        <label for="VmAppName">Service Category</label>
+       <select id="vm-config-service">
+           <option value="1">Basic</option>
+
+       </select>
+    </div> -->
+
+    <div class="drawer-form-wapitem">
+        <!--<label style="font:bold">Server Details</label>-->
+    </div>
+    <!-- <div class="drawer-form-wapitem">
+        <label for="VmServerName">Environment Class</label>
+        <select id="VmEnvironment" name="VmEnvironment" data-val="true"></select>
+    </div>-->
+
+    <div class="drawer-form-wapitem">
+        <label for="VmRegion">Region</label>
+        <select id="VmRegion" name="VmRegion" data-fxcontroltype="fxDropdown"></select>
+    </div>
+
+    <!-- <div class="drawer-form-wapitem">
+          <label style="font:bold">Server Role</label>
+          <select id="VmServerRole"  class="VmDomain" data-fxcontroltype="fxDropdown">
+              <option>DataBase(SQL)</option>
+              <option>IIS</option>
+          </select>
+      </div>-->
+
+
+
+
+</div>

@@ -1,0 +1,4587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="1.0.0.0"
+  Id="8689a160-402e-4038-90af-0c8b64ee7274"
+  name="CmpWapModel" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="a76a8be6-5918-4d6a-9f0c-1b01d97b91fd">
+      <body>Create VM
+Delete VM
+Stop VM
+Start VM
+Connect VM
+View VM Status List
+Resize VM</body>
+      <annotatedElements>
+        <actorMoniker
+          Id="ac724ffb-1804-4ee1-84d4-0720725888e4"
+          LastKnownName="Tenant"
+          LastKnownLocation="CmpWapModel.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="5a0e2d41-45f6-48b4-b6bf-a78de921ed1f">
+      <body>Manage Azure Subscriptions
+Manage VM Apps
+Manage Azure Regions
+Manage Azure SKUs
+Manage VM Sizes
+View VM Status List
+
+</body>
+      <annotatedElements>
+        <actorMoniker
+          Id="174c20df-b8eb-4502-8007-72d4bf96ee14"
+          LastKnownName="Admin"
+          LastKnownLocation="CmpWapModel.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="2c22e911-6712-4763-aeff-7656fde88c24">
+      <body>Express Deployment</body>
+      <annotatedElements>
+        <subsystemMoniker
+          Id="179ca616-5e40-4f00-b659-40ead6a05e68"
+          LastKnownName="CMP Database"
+          LastKnownLocation="CmpWapModel.uml" />
+        <subsystemMoniker
+          Id="8b5f44d1-238d-4276-89dc-a18ac3371b37"
+          LastKnownName="Azure admin interface"
+          LastKnownLocation="CmpWapModel.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="9132c122-b7ba-4b39-a604-f3b8467c3f1b">
+      <body>Enterprise Deployment</body>
+      <annotatedElements>
+        <subsystemMoniker
+          Id="d7cbd851-ba11-4b79-8dbc-cd4eaf2e72a3"
+          LastKnownName="CMP Web Service"
+          LastKnownLocation="CmpWapModel.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="46c5e8a1-68fa-4025-a297-e19c1a717b94">
+      <body>New use case: Resize VM</body>
+      <annotatedElements>
+        <commentMoniker
+          Id="a76a8be6-5918-4d6a-9f0c-1b01d97b91fd"
+          LastKnownLocation="CmpWapModel.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="17a46d67-8170-48d3-9337-d84f9601a90b">
+      <body>New use case</body>
+      <annotatedElements>
+        <useCaseMoniker
+          Id="8926d229-5ef1-4d2f-b46d-0630e2815f4f"
+          LastKnownName="View VM List1"
+          LastKnownLocation="CmpWapModel.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="03a65f75-1895-4fef-af22-78e95eff10e2">
+      <body>ResizeVmProcess.activitydiagram</body>
+      <annotatedElements>
+        <opaqueActionMoniker
+          Id="f5f7803b-3c0e-4753-a7af-4697ec271620"
+          LastKnownName="System processes resize request"
+          LastKnownLocation="CmpWapModel.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <actor
+        Id="ac724ffb-1804-4ee1-84d4-0720725888e4"
+        name="Tenant"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="e4a6c145-abd5-4837-a8ce-b83a20f63eb7"
+            isDerived="false"
+            sourceEndRoleName="Tenant"
+            targetEndRoleName="Tenant Portal UI"
+            isLeaf="false"
+            isAbstract="false">
+            <subsystemMoniker
+              Id="b2a83898-5172-40bc-b26d-89b71e654ee0"
+              LastKnownName="Tenant Portal UI"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f1252e35-1072-4b7e-aa35-e8a13c3bef3e"
+                  name="Tenant"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="978be68c-63f0-4234-8c93-07ef1f08d5f8"
+                  name="Tenant Portal UI"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="174c20df-b8eb-4502-8007-72d4bf96ee14"
+        name="Admin"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="e5acef34-aa49-4905-bc99-abd2f554339d"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="Admin Portal UI"
+            isLeaf="false"
+            isAbstract="false">
+            <subsystemMoniker
+              Id="237e93b9-520d-4252-9776-b72e091ba685"
+              LastKnownName="Admin Portal UI"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="edf3ae39-54b1-45f3-8e38-872a010fe2a5"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="327aa4e9-0af2-418f-88b9-da90344f9b83"
+                  name="Admin Portal UI"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="b2a83898-5172-40bc-b26d-89b71e654ee0"
+        name="Tenant Portal UI"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="ca109b93-5a6d-461b-8163-7b2571577824"
+            isDerived="false"
+            sourceEndRoleName="Tenant Portal UI"
+            targetEndRoleName="RDFE"
+            isLeaf="false"
+            isAbstract="false">
+            <subsystemMoniker
+              Id="8c298156-2854-497e-b251-1d81d6106334"
+              LastKnownName="RDFE"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="21edf415-7ae0-4860-bdcf-298a214cd0b0"
+                  name="Tenant Portal UI"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c71d1116-27a8-4b64-9fb9-837a2225e2c4"
+                  name="RDFE"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </subsystem>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="237e93b9-520d-4252-9776-b72e091ba685"
+        name="Admin Portal UI"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="1873069d-6f72-40fd-8ec2-fcbe3679b518"
+            isDerived="false"
+            sourceEndRoleName="Admin Portal UI"
+            targetEndRoleName="RDFE"
+            isLeaf="false"
+            isAbstract="false">
+            <subsystemMoniker
+              Id="8c298156-2854-497e-b251-1d81d6106334"
+              LastKnownName="RDFE"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2581d6e7-3b62-4190-944c-8e95faf077c4"
+                  name="Admin Portal UI"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="244221a7-36f6-4f4e-aebb-6da34a9a4082"
+                  name="RDFE"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </subsystem>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="8c298156-2854-497e-b251-1d81d6106334"
+        name="RDFE"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="3c906e94-4d4b-4cfc-87ce-6f60768c3d1b"
+            isDerived="false"
+            sourceEndRoleName="RDFE"
+            targetEndRoleName="CmpWap Resource Provider"
+            isLeaf="false"
+            isAbstract="false">
+            <subsystemMoniker
+              Id="66947e21-4577-430e-ba0a-5f577b9b12c8"
+              LastKnownName="CmpWap Resource Provider"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="36dec432-38e5-42d8-9380-b20e13c6d64c"
+                  name="RDFE"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b3a36543-a5cd-4dc6-9b79-f14172889e91"
+                  name="CmpWap Resource Provider"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </subsystem>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="66947e21-4577-430e-ba0a-5f577b9b12c8"
+        name="CmpWap Resource Provider"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="b1ccefdb-e826-48ec-bfc2-4cc8a44ab009"
+            isDerived="false"
+            sourceEndRoleName="CmpWap Resource Provider"
+            targetEndRoleName="CMP Web Service"
+            isLeaf="false"
+            isAbstract="false">
+            <subsystemMoniker
+              Id="d7cbd851-ba11-4b79-8dbc-cd4eaf2e72a3"
+              LastKnownName="CMP Web Service"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c3e893a8-e02b-4a30-8247-e28579e70193"
+                  name="CmpWap Resource Provider"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4d556b3a-3ce3-4420-9465-2cace745c2b0"
+                  name="CMP Web Service"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="dd2f491c-8914-46b9-8e12-3920debf367f"
+            isDerived="false"
+            sourceEndRoleName="CmpWap Resource Provider"
+            targetEndRoleName="Azure admin interface"
+            isLeaf="false"
+            isAbstract="false">
+            <subsystemMoniker
+              Id="8b5f44d1-238d-4276-89dc-a18ac3371b37"
+              LastKnownName="Azure admin interface"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9c6aa220-3349-4b2f-9b84-27181a9bdd6e"
+                  name="CmpWap Resource Provider"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a38de87b-6651-4555-ab11-93b429274ef4"
+                  name="Azure admin interface"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="905ff2e4-760b-48c6-8821-07e758e191f4"
+            isDerived="false"
+            sourceEndRoleName="CmpWap Resource Provider"
+            targetEndRoleName="CMP Database"
+            isLeaf="false"
+            isAbstract="false">
+            <subsystemMoniker
+              Id="179ca616-5e40-4f00-b659-40ead6a05e68"
+              LastKnownName="CMP Database"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cfa052d2-5a01-47b5-b3d8-1ca1de64cf34"
+                  name="CmpWap Resource Provider"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="48b77c9d-2a0c-43eb-983b-fe74b85e394a"
+                  name="CMP Database"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </subsystem>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="8b5f44d1-238d-4276-89dc-a18ac3371b37"
+        name="Azure admin interface"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="d7cbd851-ba11-4b79-8dbc-cd4eaf2e72a3"
+        name="CMP Web Service"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="179ca616-5e40-4f00-b659-40ead6a05e68"
+        name="CMP Database"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="8b8165bc-9208-454e-bdcf-5ff629ce0710"
+        name="Tenant"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="6adcab9a-ac1b-420c-b543-6b01d62f98f6"
+            isDerived="false"
+            sourceEndRoleName="Actor1"
+            targetEndRoleName="Create VM"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="48066392-a099-4b63-a576-3e7114fa2d01"
+              LastKnownName="Create VM"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c26aae1d-5460-4742-b509-382ad0c051c7"
+                  name="Actor1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2e97948a-2115-465f-adfb-bcbb3c87a9b6"
+                  name="Create VM"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="94ba23a3-f1d8-4994-adaa-1c20cab7b16c"
+            isDerived="false"
+            sourceEndRoleName="Actor1"
+            targetEndRoleName="Delete VM"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="ae79d0a0-44aa-4974-9eee-a9a707ba5c27"
+              LastKnownName="Delete VM"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f1d42632-1983-45e8-91d2-04fb370eeedc"
+                  name="Actor1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b7e94c30-0fb1-4fcf-960f-f1092b200a0b"
+                  name="Delete VM"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="844ff043-174e-4498-82e0-0698863c6651"
+            isDerived="false"
+            sourceEndRoleName="Actor1"
+            targetEndRoleName="Start VM"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a77ea8a2-05f6-4918-82c5-bd12cf995db4"
+              LastKnownName="Start VM"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="82fb7635-503e-4346-88ef-686c57eadb76"
+                  name="Actor1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e2e9ec18-8be9-48ed-9a44-42f2b9f049ee"
+                  name="Start VM"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="10263d2c-2644-4e8b-9e76-7d1993ccb4a3"
+            isDerived="false"
+            sourceEndRoleName="Actor1"
+            targetEndRoleName="Stop VM"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="8c766181-8eba-46e0-b406-f6035470c170"
+              LastKnownName="Stop VM"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d30e297c-d94f-4ab9-940d-64ca3cab1c29"
+                  name="Actor1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="13563e50-6422-41f2-8bd4-53afc61bd5c1"
+                  name="Stop VM"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="9ad58231-2210-4184-b9fe-5eccb587f757"
+            isDerived="false"
+            sourceEndRoleName="Actor1"
+            targetEndRoleName="Connect VM"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="0031539f-07cf-40e3-9f26-3199dfc11de5"
+              LastKnownName="Connect VM"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="944e801e-e161-4e4f-ae43-63873f58ccae"
+                  name="Actor1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="73fed804-fbb4-4b80-9e99-fa67259b73de"
+                  name="Connect VM"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="f7b718ee-a09c-4197-8891-b23f35e69143"
+            isDerived="false"
+            sourceEndRoleName="Actor1"
+            targetEndRoleName="View VM List"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="60b9d91e-6bf0-462d-8bdc-3fc4e3c86f2e"
+              LastKnownName="View VM List"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7f9b9e0f-792c-43ce-ad0b-cacc8dc112e2"
+                  name="Actor1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1b78b51b-e95f-48ae-ba14-fa86ce5616ab"
+                  name="View VM List"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="659c9c1b-17c1-4d09-a129-d9f5cfa3fd78"
+        name="Tenant Portal"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="48066392-a099-4b63-a576-3e7114fa2d01"
+        name="Create VM"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="659c9c1b-17c1-4d09-a129-d9f5cfa3fd78"
+            LastKnownName="Tenant Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="60b9d91e-6bf0-462d-8bdc-3fc4e3c86f2e"
+        name="View VM List"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="659c9c1b-17c1-4d09-a129-d9f5cfa3fd78"
+            LastKnownName="Tenant Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ae79d0a0-44aa-4974-9eee-a9a707ba5c27"
+        name="Delete VM"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="659c9c1b-17c1-4d09-a129-d9f5cfa3fd78"
+            LastKnownName="Tenant Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a77ea8a2-05f6-4918-82c5-bd12cf995db4"
+        name="Start VM"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="659c9c1b-17c1-4d09-a129-d9f5cfa3fd78"
+            LastKnownName="Tenant Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8c766181-8eba-46e0-b406-f6035470c170"
+        name="Stop VM"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="659c9c1b-17c1-4d09-a129-d9f5cfa3fd78"
+            LastKnownName="Tenant Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0031539f-07cf-40e3-9f26-3199dfc11de5"
+        name="Connect VM"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="659c9c1b-17c1-4d09-a129-d9f5cfa3fd78"
+            LastKnownName="Tenant Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="c411811f-af1f-426e-ab69-e5584107ebbf"
+        name="Admin Portal"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="543d879a-525d-4a9b-a405-667d3ea0b877"
+        name="Manage Subscriptions"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="c411811f-af1f-426e-ab69-e5584107ebbf"
+            LastKnownName="Admin Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="020e9ef1-31c6-47ae-915a-f9935bda4ee1"
+        name="Manage VM Apps"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="c411811f-af1f-426e-ab69-e5584107ebbf"
+            LastKnownName="Admin Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c509fbb2-6016-4e47-9668-9dc55dc7e98a"
+        name="Manage Regions"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="c411811f-af1f-426e-ab69-e5584107ebbf"
+            LastKnownName="Admin Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8dc329e8-e0cb-47b3-b8f3-1ae33d8c6e21"
+        name="Manage SKUs"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="c411811f-af1f-426e-ab69-e5584107ebbf"
+            LastKnownName="Admin Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="777ca945-96aa-4313-be70-954a7e2c476b"
+        name="Manage VM Sizes"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="c411811f-af1f-426e-ab69-e5584107ebbf"
+            LastKnownName="Admin Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="32f4672a-57ba-4ec8-8435-3180a6fbb89e"
+        name="View VM List"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="c411811f-af1f-426e-ab69-e5584107ebbf"
+            LastKnownName="Admin Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f2a53117-726c-4d12-a1d2-b079e3dc9714"
+        name="UseCase16"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="aeacf17e-ba85-4512-9aff-19f5d7e48d62"
+        name="Admin"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="c0ea6905-9abc-4918-afa9-1b7b718687ad"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="Manage Subscriptions"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="543d879a-525d-4a9b-a405-667d3ea0b877"
+              LastKnownName="Manage Subscriptions"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d9e2c4f9-2c95-40d0-a178-aea33e1da3cc"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4d257ed3-2ad7-45e6-acc6-bf32b978dc38"
+                  name="Manage Subscriptions"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="26c1e886-19d8-40a7-b5a9-6cb74020e8ba"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="Manage VM Apps"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="020e9ef1-31c6-47ae-915a-f9935bda4ee1"
+              LastKnownName="Manage VM Apps"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="306085cd-461d-4b1c-a62a-864e910b2212"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="809cd754-527c-4283-a58e-090c13894e6a"
+                  name="Manage VM Apps"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ed5ac0a3-8c98-45ac-8341-f8bfa5541481"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="Manage Regions"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="c509fbb2-6016-4e47-9668-9dc55dc7e98a"
+              LastKnownName="Manage Regions"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="446127e9-e682-45d5-b608-85af82e1f0b8"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9bdff9e9-8502-48e5-9b8a-ad095db9f6e1"
+                  name="Manage Regions"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ca0a7645-0388-4b83-bee3-cccfd2dd30f7"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="Manage SKUs"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="8dc329e8-e0cb-47b3-b8f3-1ae33d8c6e21"
+              LastKnownName="Manage SKUs"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6b8dfeb4-8445-45e3-a8a4-14b022e40021"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b6632a9d-0882-4cd1-96d3-37c2d310eb14"
+                  name="Manage SKUs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="47ad816d-ce3d-4fba-acc7-3b516ce9c6b8"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="Manage VM Sizes"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="777ca945-96aa-4313-be70-954a7e2c476b"
+              LastKnownName="Manage VM Sizes"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0d5b886e-f968-4e16-85d9-26f4891db373"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8a283c1a-89ec-4804-a885-ca89907a3e87"
+                  name="Manage VM Sizes"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ff8fd07a-dd99-44eb-9166-5ab74362759b"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="View VM List"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="32f4672a-57ba-4ec8-8435-3180a6fbb89e"
+              LastKnownName="View VM List"
+              LastKnownLocation="CmpWapModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3fb4a892-ee1c-46ee-a29b-d007c0a9c5c4"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f4852e41-532e-4b97-b26a-19e1b40fa737"
+                  name="View VM List"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8926d229-5ef1-4d2f-b46d-0630e2815f4f"
+        name="View VM List1"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="659c9c1b-17c1-4d09-a129-d9f5cfa3fd78"
+            LastKnownName="Tenant Portal"
+            LastKnownLocation="CmpWapModel.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="d5e98f6d-6070-4a47-9924-55b339078d94"
+        name="ResizeVmUi"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="77ee2578-3150-4fb3-8021-138adaf07202"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="f4dadb27-7de4-4ce4-91a7-1d81881adfd4"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c0a1ffad-c66d-4520-b6e1-e4b83b461eda"
+                  LastKnownName="User Selects VM in WAP UI"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="c0a1ffad-c66d-4520-b6e1-e4b83b461eda"
+            name="User Selects VM in WAP UI"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ff03ae8d-5d32-4417-adb9-9a74ea6caf8c"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a434cd44-1d05-4d1e-a385-bef6520784c8"
+                  LastKnownName="User selects Resize Button"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="a434cd44-1d05-4d1e-a385-bef6520784c8"
+            name="User selects Resize Button"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="13f4f708-bbef-45a6-8a88-728e630539e1"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="b6fb0b66-fe3e-47fe-9225-c0e238d521c2"
+                  LastKnownName="System showes resize dialog"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="b6fb0b66-fe3e-47fe-9225-c0e238d521c2"
+            name="System showes resize dialog"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="8702b097-d979-4b29-8087-59a602235b03"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="ce25982f-8fa8-485e-b69b-5ae0a0a5cf0e"
+                  LastKnownName="User selects new size"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="ce25982f-8fa8-485e-b69b-5ae0a0a5cf0e"
+            name="User selects new size"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="dd896d4e-c095-490a-a68f-e103a5c29f9a"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="47c9f2fd-099d-4733-84ac-e6fd8a49d616"
+                  LastKnownName="System shows progress bar"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="f5f7803b-3c0e-4753-a7af-4697ec271620"
+            name="System processes resize request"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="16f6d4fd-9757-46f3-a2e8-59a2a5cb8216"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="251b486d-1e47-4923-b8fa-b8ac1cea24e3"
+                  LastKnownName="System displays result to UI"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="47c9f2fd-099d-4733-84ac-e6fd8a49d616"
+            name="System shows progress bar"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="27e21a38-1160-4092-8478-0973c42d0a5b"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="f5f7803b-3c0e-4753-a7af-4697ec271620"
+                  LastKnownName="System processes resize request"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="251b486d-1e47-4923-b8fa-b8ac1cea24e3"
+            name="System displays result to UI"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c8287808-ce62-48ef-a4c6-6ca94aab1ba6"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="ccf6309d-e076-4eb1-b6e2-7de50c067a88"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="ccf6309d-e076-4eb1-b6e2-7de50c067a88"
+            name="ActivityFinal1"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="d509354b-9762-4a9a-8d68-672022bf8590"
+        name="ResizeVmProcess"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="4aa2599e-a5be-448e-bdcf-644e94689ba8"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="48b97261-3041-4b07-8d38-51dd85fd59bb"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="74ffe29d-aad3-43de-8a12-6c5d6da84b61"
+                  LastKnownName="Fetch VM host service info from Azure"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="74ffe29d-aad3-43de-8a12-6c5d6da84b61"
+            name="Fetch VM host service info from Azure"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="8ccac422-ed75-4cf5-8ee5-4bfbe0d2500a"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="60fb72b8-3d79-4530-bbf3-0aeea2663811"
+                  LastKnownName="Check if requested size is available in service"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="60fb72b8-3d79-4530-bbf3-0aeea2663811"
+            name="Check if requested size is available in service"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="3297c047-ccda-42bd-a053-ce4e47305c50"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="c1311fbf-4821-4f3d-bc24-2b6f8a73f21c"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="c1311fbf-4821-4f3d-bc24-2b6f8a73f21c"
+            name="Decision1"
+            isLeaf="false">
+            <description>hhh</description>
+            <flowNodeTargets>
+              <controlFlow
+                Id="b31ba709-a854-4504-b175-e9d43b8670c2"
+                guard="Y"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="9a2b7b7b-7487-4c10-8fe9-926c16bda72c"
+                  LastKnownName="Siubmit update request to Azure"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="6f88b683-a41d-4407-904c-62eebfc9b7fe"
+                guard="N"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a2556764-fcad-4c12-b081-d8534dcc912a"
+                  LastKnownName="Construct response"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="a2556764-fcad-4c12-b081-d8534dcc912a"
+            name="Construct response"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="23dc07ae-7d8a-4a55-bf9c-a5bf8728415c"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="c6d94811-faa3-4f0f-8662-6cd3ed83bb41"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="9a2b7b7b-7487-4c10-8fe9-926c16bda72c"
+            name="Siubmit update request to Azure"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="1557bd4b-682e-4a92-b322-3150cdca2bcd"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="cd483a34-43c1-4b87-a58f-2f960fc22518"
+                  LastKnownName="Analyze response from Azure"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="cd483a34-43c1-4b87-a58f-2f960fc22518"
+            name="Analyze response from Azure"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="90540551-c24c-4f07-a81f-d941cfea91b7"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a2556764-fcad-4c12-b081-d8534dcc912a"
+                  LastKnownName="Construct response"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="c6d94811-faa3-4f0f-8662-6cd3ed83bb41"
+            name="ActivityFinal1"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <interaction
+        Id="24f69974-fd36-4150-ad5b-0aec3e41e5fd"
+        name="ResizeVmApi"
+        collapseFragmentsFlag="false"
+        isActiveClass="false"
+        isAbstract="false"
+        isLeaf="false"
+        isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification
+            Id="7ee59828-38a0-4b43-9e7e-9bb7b60ccd89"
+            name="BehaviorExecutionSpecification2">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="3b612dff-6597-429a-b63e-ffaeb4a96ecc"
+                LastKnownName="API (HTTP Entry)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="be07b755-a402-4cf5-998c-18bfd738d3f5"
+                LastKnownName="ExecutionOccurrenceSpecification4"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="3bfa03e7-cfa6-49c1-893b-7878e41afe33"
+                LastKnownName="ExecutionOccurrenceSpecification3"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="7b5959c7-abe7-4566-bf47-c1eec639aa42"
+                LastKnownName="MessageOccurrenceSpecification4"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="e3841097-ed99-4d70-9c87-e30fade704a1"
+                LastKnownName="MessageOccurrenceSpecification7"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="fd7b1102-bea3-40a3-acde-856a4a0c821c"
+                LastKnownName="MessageOccurrenceSpecification10"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="ee1d3a1b-538d-4f4b-ab56-1633928d7b70"
+                LastKnownName="MessageOccurrenceSpecification5"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="3bfa03e7-cfa6-49c1-893b-7878e41afe33"
+            name="ExecutionOccurrenceSpecification3">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="def90611-cd35-4840-81f8-b2523add9914"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="3b612dff-6597-429a-b63e-ffaeb4a96ecc"
+                LastKnownName="API (HTTP Entry)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="2bd5807e-774d-4716-b47b-6e8589ca935c"
+            name="MessageOccurrenceSpecification3">
+            <covered>
+              <lifelineMoniker
+                Id="0ede0087-7d31-4363-b914-e0c9da0f353f"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="7b5959c7-abe7-4566-bf47-c1eec639aa42"
+            name="MessageOccurrenceSpecification4">
+            <covered>
+              <lifelineMoniker
+                Id="3b612dff-6597-429a-b63e-ffaeb4a96ecc"
+                LastKnownName="API (HTTP Entry)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="72576f94-9dab-4518-be40-b398d1513bc9"
+            name="BehaviorExecutionSpecification3">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="c2f296bd-c6f7-4a9f-a935-3b7aa623e7eb"
+                LastKnownName="ExecutionOccurrenceSpecification6"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="da64f328-fd62-48ba-a8a1-0226e9565315"
+                LastKnownName="ExecutionOccurrenceSpecification5"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="bab55653-03e4-4297-96d4-89b6136994df"
+                LastKnownName="MessageOccurrenceSpecification8"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="4435824d-d9bb-47f3-8e22-736940c5449f"
+                LastKnownName="MessageOccurrenceSpecification11"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="f852d5e8-9aa8-4f33-8aaf-d1af81d297fd"
+                LastKnownName="MessageOccurrenceSpecification14"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="7d48f7a4-771a-4cd3-a196-a72e1b670ca0"
+                LastKnownName="MessageOccurrenceSpecification15"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="3996e6a3-3701-4242-bc33-759bc9b1a2fb"
+                LastKnownName="MessageOccurrenceSpecification18"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="ec886407-6beb-4585-b36e-3cea38f6a2a0"
+                LastKnownName="MessageOccurrenceSpecification21"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="c0d3dd12-4c5e-462d-a12c-452eec1872e0"
+                LastKnownName="MessageOccurrenceSpecification24"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="d2d3df0e-eed3-4722-b006-de4994259c77"
+                LastKnownName="MessageOccurrenceSpecification9"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="da64f328-fd62-48ba-a8a1-0226e9565315"
+            name="ExecutionOccurrenceSpecification5">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="0c2b81e0-5f1d-4d6f-a807-e34040e0560e"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="e3841097-ed99-4d70-9c87-e30fade704a1"
+            name="MessageOccurrenceSpecification7">
+            <covered>
+              <lifelineMoniker
+                Id="3b612dff-6597-429a-b63e-ffaeb4a96ecc"
+                LastKnownName="API (HTTP Entry)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="bab55653-03e4-4297-96d4-89b6136994df"
+            name="MessageOccurrenceSpecification8">
+            <covered>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="67780b0a-42f5-45e3-8912-31d13ea5fa0b"
+            name="BehaviorExecutionSpecification4">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="4d95e061-3f99-48be-85fa-84b8eb8764f4"
+                LastKnownName="ExecutionOccurrenceSpecification8"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="433a0856-0d55-49ca-b312-6972e4f1a18d"
+                LastKnownName="ExecutionOccurrenceSpecification7"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="5fd9e4eb-4c1f-4d8a-847f-1e84258b2897"
+                LastKnownName="MessageOccurrenceSpecification12"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="9177dffd-73f8-42f9-b876-15588932d03f"
+                LastKnownName="MessageOccurrenceSpecification13"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="433a0856-0d55-49ca-b312-6972e4f1a18d"
+            name="ExecutionOccurrenceSpecification7">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="0cc07c44-0610-4fd6-b10d-9475d35d83fe"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="5fd9e4eb-4c1f-4d8a-847f-1e84258b2897"
+            name="MessageOccurrenceSpecification12">
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="4435824d-d9bb-47f3-8e22-736940c5449f"
+            name="MessageOccurrenceSpecification11">
+            <covered>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="9177dffd-73f8-42f9-b876-15588932d03f"
+            name="MessageOccurrenceSpecification13">
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="f852d5e8-9aa8-4f33-8aaf-d1af81d297fd"
+            name="MessageOccurrenceSpecification14">
+            <covered>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="4d95e061-3f99-48be-85fa-84b8eb8764f4"
+            name="ExecutionOccurrenceSpecification8">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="adb47e8b-d781-4008-bff3-1df52cc3a57f"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="9a2558bd-dc13-4bd1-9846-506fb4d33e2c"
+            name="BehaviorExecutionSpecification5">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="d2a11515-ccad-45cc-9b0d-9a95a77440c1"
+                LastKnownName="ExecutionOccurrenceSpecification10"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="7307887a-3c4b-4229-a686-88907963b7d2"
+                LastKnownName="ExecutionOccurrenceSpecification9"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="530699de-a326-4a5a-8500-c3303a4cb895"
+                LastKnownName="MessageOccurrenceSpecification16"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="f63b28c6-10e6-46c4-9c8f-483651e5bc80"
+                LastKnownName="MessageOccurrenceSpecification17"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="7307887a-3c4b-4229-a686-88907963b7d2"
+            name="ExecutionOccurrenceSpecification9">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="cbe5f5e2-d558-4e29-ab2c-ed205f63d460"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="7d48f7a4-771a-4cd3-a196-a72e1b670ca0"
+            name="MessageOccurrenceSpecification15">
+            <covered>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="530699de-a326-4a5a-8500-c3303a4cb895"
+            name="MessageOccurrenceSpecification16">
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="f63b28c6-10e6-46c4-9c8f-483651e5bc80"
+            name="MessageOccurrenceSpecification17">
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="3996e6a3-3701-4242-bc33-759bc9b1a2fb"
+            name="MessageOccurrenceSpecification18">
+            <covered>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="d2a11515-ccad-45cc-9b0d-9a95a77440c1"
+            name="ExecutionOccurrenceSpecification10">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="5b3b3a4f-e691-4adc-9637-913c3cf3809d"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="b91654ce-f303-418d-ad92-405c59e0fae6"
+            name="BehaviorExecutionSpecification7">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="692bf65e-13ef-41e6-867e-58c88b68fa4a"
+                LastKnownName="ExecutionOccurrenceSpecification14"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="5e2344f9-d7f8-4eaf-a13e-60b1f5aada92"
+                LastKnownName="ExecutionOccurrenceSpecification13"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="96d6e71c-4730-4618-a647-ec41c86fbddf"
+                LastKnownName="MessageOccurrenceSpecification22"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="cfcba3ac-2d18-41af-821a-16d3149d3ffa"
+                LastKnownName="MessageOccurrenceSpecification23"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="5e2344f9-d7f8-4eaf-a13e-60b1f5aada92"
+            name="ExecutionOccurrenceSpecification13">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="4ec1c1c8-5ac2-4501-9f5d-ce5535b0b4fc"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="ec886407-6beb-4585-b36e-3cea38f6a2a0"
+            name="MessageOccurrenceSpecification21">
+            <covered>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="96d6e71c-4730-4618-a647-ec41c86fbddf"
+            name="MessageOccurrenceSpecification22">
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="cfcba3ac-2d18-41af-821a-16d3149d3ffa"
+            name="MessageOccurrenceSpecification23">
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="c0d3dd12-4c5e-462d-a12c-452eec1872e0"
+            name="MessageOccurrenceSpecification24">
+            <covered>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="692bf65e-13ef-41e6-867e-58c88b68fa4a"
+            name="ExecutionOccurrenceSpecification14">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="0e1ccc19-1396-4d92-849d-62178c5766f7"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+                LastKnownName="Azure Admin Service (Public Azure)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="fd7b1102-bea3-40a3-acde-856a4a0c821c"
+            name="MessageOccurrenceSpecification10">
+            <covered>
+              <lifelineMoniker
+                Id="3b612dff-6597-429a-b63e-ffaeb4a96ecc"
+                LastKnownName="API (HTTP Entry)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="d2d3df0e-eed3-4722-b006-de4994259c77"
+            name="MessageOccurrenceSpecification9">
+            <covered>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="c2f296bd-c6f7-4a9f-a935-3b7aa623e7eb"
+            name="ExecutionOccurrenceSpecification6">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="1448f5f7-a609-49a3-8149-53f3cc44cf62"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+                LastKnownName="Azure Admin Clent Lib"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="ee1d3a1b-538d-4f4b-ab56-1633928d7b70"
+            name="MessageOccurrenceSpecification5">
+            <covered>
+              <lifelineMoniker
+                Id="3b612dff-6597-429a-b63e-ffaeb4a96ecc"
+                LastKnownName="API (HTTP Entry)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="4624c4ab-a9fb-4a07-883a-fe0fb8df26a8"
+            name="MessageOccurrenceSpecification6">
+            <covered>
+              <lifelineMoniker
+                Id="0ede0087-7d31-4363-b914-e0c9da0f353f"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="be07b755-a402-4cf5-998c-18bfd738d3f5"
+            name="ExecutionOccurrenceSpecification4">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="ac66e543-1f33-4930-92af-bb2587ca84d1"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="3b612dff-6597-429a-b63e-ffaeb4a96ecc"
+                LastKnownName="API (HTTP Entry)"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline
+            Id="0ede0087-7d31-4363-b914-e0c9da0f353f"
+            name="Ops Queue"
+            isActor="false"
+            lifelineDisplayName="Ops Queue">
+            <topLevelOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="2bd5807e-774d-4716-b47b-6e8589ca935c"
+                LastKnownName="MessageOccurrenceSpecification3"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="4624c4ab-a9fb-4a07-883a-fe0fb8df26a8"
+                LastKnownName="MessageOccurrenceSpecification6"
+                LastKnownLocation="CmpWapModel.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="3b612dff-6597-429a-b63e-ffaeb4a96ecc"
+            name="API (HTTP Entry)"
+            isActor="false"
+            lifelineDisplayName="API (HTTP Entry)">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="3bfa03e7-cfa6-49c1-893b-7878e41afe33"
+                LastKnownName="ExecutionOccurrenceSpecification3"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="be07b755-a402-4cf5-998c-18bfd738d3f5"
+                LastKnownName="ExecutionOccurrenceSpecification4"
+                LastKnownLocation="CmpWapModel.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="158f54dc-14a4-4412-b2b7-4c32222c909f"
+            name="Azure Admin Clent Lib"
+            isActor="false"
+            lifelineDisplayName="Azure Admin Clent Lib">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="da64f328-fd62-48ba-a8a1-0226e9565315"
+                LastKnownName="ExecutionOccurrenceSpecification5"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="c2f296bd-c6f7-4a9f-a935-3b7aa623e7eb"
+                LastKnownName="ExecutionOccurrenceSpecification6"
+                LastKnownLocation="CmpWapModel.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e"
+            name="Azure Admin Service (Public Azure)"
+            isActor="false"
+            lifelineDisplayName="Azure Admin Service (Public Azure)">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="433a0856-0d55-49ca-b312-6972e4f1a18d"
+                LastKnownName="ExecutionOccurrenceSpecification7"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="4d95e061-3f99-48be-85fa-84b8eb8764f4"
+                LastKnownName="ExecutionOccurrenceSpecification8"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="7307887a-3c4b-4229-a686-88907963b7d2"
+                LastKnownName="ExecutionOccurrenceSpecification9"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="d2a11515-ccad-45cc-9b0d-9a95a77440c1"
+                LastKnownName="ExecutionOccurrenceSpecification10"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="5e2344f9-d7f8-4eaf-a13e-60b1f5aada92"
+                LastKnownName="ExecutionOccurrenceSpecification13"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="692bf65e-13ef-41e6-867e-58c88b68fa4a"
+                LastKnownName="ExecutionOccurrenceSpecification14"
+                LastKnownLocation="CmpWapModel.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message
+            Id="ec04e85d-164f-4723-977b-b34d58e9cdc6"
+            name="Resize"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="2bd5807e-774d-4716-b47b-6e8589ca935c"
+                LastKnownName="MessageOccurrenceSpecification3"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="7b5959c7-abe7-4566-bf47-c1eec639aa42"
+                LastKnownName="MessageOccurrenceSpecification4"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="f3f29df5-5426-49f2-b9e0-e25ab9368b23"
+            name="Resize"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="e3841097-ed99-4d70-9c87-e30fade704a1"
+                LastKnownName="MessageOccurrenceSpecification7"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="bab55653-03e4-4297-96d4-89b6136994df"
+                LastKnownName="MessageOccurrenceSpecification8"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="c7ad73fd-0bf0-4602-86b7-fa26f11ec2ff"
+            name="Ftech VM info"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="4435824d-d9bb-47f3-8e22-736940c5449f"
+                LastKnownName="MessageOccurrenceSpecification11"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="5fd9e4eb-4c1f-4d8a-847f-1e84258b2897"
+                LastKnownName="MessageOccurrenceSpecification12"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="98123a82-38bd-4b31-a39f-ddc3b962fec6"
+            name="&lt;&lt;VM Info&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="9177dffd-73f8-42f9-b876-15588932d03f"
+                LastKnownName="MessageOccurrenceSpecification13"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="f852d5e8-9aa8-4f33-8aaf-d1af81d297fd"
+                LastKnownName="MessageOccurrenceSpecification14"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="3f21b36c-dc8c-4e17-9c02-2708755f82dd"
+            name="Fetch host service info"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="7d48f7a4-771a-4cd3-a196-a72e1b670ca0"
+                LastKnownName="MessageOccurrenceSpecification15"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="530699de-a326-4a5a-8500-c3303a4cb895"
+                LastKnownName="MessageOccurrenceSpecification16"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="8b78e7d9-f288-466d-80fd-5bdcca269a12"
+            name="&lt;&lt;Host service info&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="f63b28c6-10e6-46c4-9c8f-483651e5bc80"
+                LastKnownName="MessageOccurrenceSpecification17"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="3996e6a3-3701-4242-bc33-759bc9b1a2fb"
+                LastKnownName="MessageOccurrenceSpecification18"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="a0f94569-3fc9-424d-b502-aa859c7fc362"
+            name="Submit update request"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="ec886407-6beb-4585-b36e-3cea38f6a2a0"
+                LastKnownName="MessageOccurrenceSpecification21"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="96d6e71c-4730-4618-a647-ec41c86fbddf"
+                LastKnownName="MessageOccurrenceSpecification22"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="b18a8258-e615-4092-bf89-161437734c4c"
+            name="&lt;&lt;Azure request status&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="cfcba3ac-2d18-41af-821a-16d3149d3ffa"
+                LastKnownName="MessageOccurrenceSpecification23"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="c0d3dd12-4c5e-462d-a12c-452eec1872e0"
+                LastKnownName="MessageOccurrenceSpecification24"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="2f748e94-c579-46f1-8736-81fc6d86a9dc"
+            name="&lt;&lt;Request status&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="d2d3df0e-eed3-4722-b006-de4994259c77"
+                LastKnownName="MessageOccurrenceSpecification9"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="fd7b1102-bea3-40a3-acde-856a4a0c821c"
+                LastKnownName="MessageOccurrenceSpecification10"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="c5da5d6a-ab41-412e-ad65-612ef929e565"
+            name="&lt;&lt;Request status HTTP&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="ee1d3a1b-538d-4f4b-ab56-1633928d7b70"
+                LastKnownName="MessageOccurrenceSpecification5"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="4624c4ab-a9fb-4a07-883a-fe0fb8df26a8"
+                LastKnownName="MessageOccurrenceSpecification6"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="def90611-cd35-4840-81f8-b2523add9914"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="ac66e543-1f33-4930-92af-bb2587ca84d1"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="0c2b81e0-5f1d-4d6f-a807-e34040e0560e"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="1448f5f7-a609-49a3-8149-53f3cc44cf62"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="0cc07c44-0610-4fd6-b10d-9475d35d83fe"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="adb47e8b-d781-4008-bff3-1df52cc3a57f"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="cbe5f5e2-d558-4e29-ab2c-ed205f63d460"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="5b3b3a4f-e691-4adc-9637-913c3cf3809d"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="4ec1c1c8-5ac2-4501-9f5d-ce5535b0b4fc"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="0e1ccc19-1396-4d92-849d-62178c5766f7"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <interaction
+        Id="ddef578f-3973-4a0f-ba00-09077f2bfeb9"
+        name="ResizeVmUi"
+        collapseFragmentsFlag="false"
+        isActiveClass="false"
+        isAbstract="false"
+        isLeaf="false"
+        isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification
+            Id="129bc7cd-04e4-4751-953e-3fb0164ae7b9"
+            name="BehaviorExecutionSpecification2">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="90d2c314-a385-4597-9ed6-4149d20eb8b8"
+                LastKnownName="ExecutionOccurrenceSpecification4"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="72b23b82-b88e-434a-834f-f78c5aa3fee9"
+                LastKnownName="ExecutionOccurrenceSpecification3"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="99ee6597-b4f1-4a3f-b8cb-80b7af866b87"
+                LastKnownName="MessageOccurrenceSpecification6"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="49a00f93-1a5d-4f24-b6b3-368e624795b1"
+                LastKnownName="MessageOccurrenceSpecification7"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="97b139c0-95f7-4a95-bc55-5de8c43b544f"
+                LastKnownName="ExecutionOccurrenceSpecification5"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="53324077-a4fb-47fd-81a1-af2cd679ae19"
+                LastKnownName="ExecutionOccurrenceSpecification6"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="baff1e30-9f80-4d69-8599-1c162de93478"
+                LastKnownName="MessageOccurrenceSpecification9"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="993226d3-6547-41ff-a2b3-c7165ec19612"
+                LastKnownName="MessageOccurrenceSpecification12"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="72b23b82-b88e-434a-834f-f78c5aa3fee9"
+            name="ExecutionOccurrenceSpecification3">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="6c0b635e-1d78-4fb4-b0e3-e0fa6cfa3a39"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="c55c0889-a89d-4d12-a754-298ef1d49a33"
+            name="MessageOccurrenceSpecification5">
+            <covered>
+              <lifelineMoniker
+                Id="2268f23a-9197-47a6-a4c0-29c3b2619e62"
+                LastKnownName="User"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="99ee6597-b4f1-4a3f-b8cb-80b7af866b87"
+            name="MessageOccurrenceSpecification6">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="49a00f93-1a5d-4f24-b6b3-368e624795b1"
+            name="MessageOccurrenceSpecification7">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="a98992d0-1006-4074-8889-e2445be55e23"
+            name="BehaviorExecutionSpecification3">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="53324077-a4fb-47fd-81a1-af2cd679ae19"
+                LastKnownName="ExecutionOccurrenceSpecification6"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="97b139c0-95f7-4a95-bc55-5de8c43b544f"
+                LastKnownName="ExecutionOccurrenceSpecification5"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="a8d6e3b1-48ac-41cd-b6bf-8d9a0ce580fd"
+                LastKnownName="MessageOccurrenceSpecification8"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="97b139c0-95f7-4a95-bc55-5de8c43b544f"
+            name="ExecutionOccurrenceSpecification5">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="4128c22b-144b-4b6f-b5aa-ac4675e87415"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="a8d6e3b1-48ac-41cd-b6bf-8d9a0ce580fd"
+            name="MessageOccurrenceSpecification8">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="53324077-a4fb-47fd-81a1-af2cd679ae19"
+            name="ExecutionOccurrenceSpecification6">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="941caae3-459a-4fa6-a265-fe4be9e0c3a6"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="f1565c1c-e4b9-4aa8-9b79-cddbcd13f6e5"
+            name="BehaviorExecutionSpecification4">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="9c01728a-8dad-455e-ae8a-261bca65e73c"
+                LastKnownName="ExecutionOccurrenceSpecification8"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="a772dd59-4a60-423f-812f-ecd75f60c7a8"
+                LastKnownName="ExecutionOccurrenceSpecification7"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="d41231e3-9b1e-4410-bd6d-565a6564ff60"
+                LastKnownName="MessageOccurrenceSpecification10"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="98ea3912-bc97-4ded-a65f-2b051a3b38b2"
+                LastKnownName="MessageOccurrenceSpecification13"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="3595fc53-b02d-410a-ac57-a7e7bab9025b"
+                LastKnownName="MessageOccurrenceSpecification16"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="96ea4443-bca4-4d05-9d94-284ce6c2defc"
+                LastKnownName="MessageOccurrenceSpecification11"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="a772dd59-4a60-423f-812f-ecd75f60c7a8"
+            name="ExecutionOccurrenceSpecification7">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="7387d5c4-2de5-4104-aa91-2ebe43aef508"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="baff1e30-9f80-4d69-8599-1c162de93478"
+            name="MessageOccurrenceSpecification9">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="d41231e3-9b1e-4410-bd6d-565a6564ff60"
+            name="MessageOccurrenceSpecification10">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="5637d4f2-52a2-4275-9e15-6fb0fcc30543"
+            name="BehaviorExecutionSpecification5">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="3fbe5a43-6c2a-4e48-b462-7f63cdc82245"
+                LastKnownName="ExecutionOccurrenceSpecification10"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="1da37ce0-0759-441e-a95f-044bddb8b35b"
+                LastKnownName="ExecutionOccurrenceSpecification9"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="839967b6-9805-4370-b880-081fa9f340b6"
+                LastKnownName="MessageOccurrenceSpecification14"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="a22ef4d0-83b0-4a80-9059-eb48dc6bbedd"
+                LastKnownName="MessageOccurrenceSpecification15"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="1da37ce0-0759-441e-a95f-044bddb8b35b"
+            name="ExecutionOccurrenceSpecification9">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="49158db1-8575-47db-bd9d-e8b06a74139a"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="839967b6-9805-4370-b880-081fa9f340b6"
+            name="MessageOccurrenceSpecification14">
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="98ea3912-bc97-4ded-a65f-2b051a3b38b2"
+            name="MessageOccurrenceSpecification13">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="3595fc53-b02d-410a-ac57-a7e7bab9025b"
+            name="MessageOccurrenceSpecification16">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="a22ef4d0-83b0-4a80-9059-eb48dc6bbedd"
+            name="MessageOccurrenceSpecification15">
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="3fbe5a43-6c2a-4e48-b462-7f63cdc82245"
+            name="ExecutionOccurrenceSpecification10">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="9932fb9b-bcbf-485d-af69-48d286d48f7d"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="993226d3-6547-41ff-a2b3-c7165ec19612"
+            name="MessageOccurrenceSpecification12">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="96ea4443-bca4-4d05-9d94-284ce6c2defc"
+            name="MessageOccurrenceSpecification11">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="9c01728a-8dad-455e-ae8a-261bca65e73c"
+            name="ExecutionOccurrenceSpecification8">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="4ccff6ed-6859-4af9-b153-ff3e91590d97"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="90d2c314-a385-4597-9ed6-4149d20eb8b8"
+            name="ExecutionOccurrenceSpecification4">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="e9f9d785-00aa-4b8b-b07f-9f1342c7b4dd"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="3627ec5d-6e8c-4172-b434-3ec7c14bae36"
+            name="BehaviorExecutionSpecification6">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="ee8eb095-3188-4625-aeee-63d6cefdd353"
+                LastKnownName="ExecutionOccurrenceSpecification12"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="1af9018f-15fd-4eab-80ea-43c4213134d0"
+                LastKnownName="ExecutionOccurrenceSpecification11"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="66138a5b-4c01-42b5-a739-67f04ac0fecb"
+                LastKnownName="MessageOccurrenceSpecification18"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="b17d0313-498c-4153-9e26-1b5668f23ade"
+                LastKnownName="MessageOccurrenceSpecification29"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="ed950e55-47de-4409-850c-443983fd9911"
+                LastKnownName="ExecutionOccurrenceSpecification19"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="3c21224d-8b35-4b0d-ae19-f61f5218a0a8"
+                LastKnownName="ExecutionOccurrenceSpecification20"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="e482e9d3-0f0c-4f81-94be-72821f8fe50f"
+                LastKnownName="MessageOccurrenceSpecification19"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="2572bf85-0878-4442-8051-593190a2b11c"
+                LastKnownName="MessageOccurrenceSpecification22"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="952a8cb2-0947-4d4b-aecc-14f2f8bec346"
+                LastKnownName="MessageOccurrenceSpecification27"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="1c9cf0db-8e10-46ee-bcfc-33fb2fc0f49d"
+                LastKnownName="ExecutionOccurrenceSpecification17"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="0f1e8adf-a826-4e08-95ac-fde4761b4e7b"
+                LastKnownName="ExecutionOccurrenceSpecification18"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="474890b1-6d4c-47a8-b384-19f78de431ee"
+                LastKnownName="MessageOccurrenceSpecification43"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="82e5782c-0be9-44b0-b2d0-00b96234c895"
+                LastKnownName="ExecutionOccurrenceSpecification27"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="8bafa504-779e-4c74-9b15-32048d739e35"
+                LastKnownName="ExecutionOccurrenceSpecification28"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="1af9018f-15fd-4eab-80ea-43c4213134d0"
+            name="ExecutionOccurrenceSpecification11">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="399491b1-7881-40d7-81b0-7fea277b8269"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="3beeb5ac-dca1-4256-8451-958e639a6426"
+            name="MessageOccurrenceSpecification17">
+            <covered>
+              <lifelineMoniker
+                Id="2268f23a-9197-47a6-a4c0-29c3b2619e62"
+                LastKnownName="User"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="66138a5b-4c01-42b5-a739-67f04ac0fecb"
+            name="MessageOccurrenceSpecification18">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="b17d0313-498c-4153-9e26-1b5668f23ade"
+            name="MessageOccurrenceSpecification29">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="0da0f158-256b-4fd5-8e12-dd032f9ce49b"
+            name="BehaviorExecutionSpecification10">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="3c21224d-8b35-4b0d-ae19-f61f5218a0a8"
+                LastKnownName="ExecutionOccurrenceSpecification20"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="ed950e55-47de-4409-850c-443983fd9911"
+                LastKnownName="ExecutionOccurrenceSpecification19"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="80b021a7-f5d4-4a06-bb79-762c3c95ded5"
+                LastKnownName="MessageOccurrenceSpecification30"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="ed950e55-47de-4409-850c-443983fd9911"
+            name="ExecutionOccurrenceSpecification19">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="a0dd3620-e772-4849-a173-bda570d14230"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="80b021a7-f5d4-4a06-bb79-762c3c95ded5"
+            name="MessageOccurrenceSpecification30">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="3c21224d-8b35-4b0d-ae19-f61f5218a0a8"
+            name="ExecutionOccurrenceSpecification20">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="a7fd68a5-dc1b-456e-97a5-8cf3a1ee9e65"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="60ed4771-f878-461d-af64-6364382560b4"
+            name="BehaviorExecutionSpecification7">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="7ff0ce78-e13a-4760-94cd-f4cc140fa5b4"
+                LastKnownName="ExecutionOccurrenceSpecification14"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="df43559a-8b08-4b15-9962-273c1d75cd5c"
+                LastKnownName="ExecutionOccurrenceSpecification13"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="2ffa275c-e591-46b3-8e51-19ad3feda3fe"
+                LastKnownName="MessageOccurrenceSpecification20"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="9028f4d2-b6ba-4017-b8e5-d30fd22b2b0f"
+                LastKnownName="MessageOccurrenceSpecification23"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="6b7c96c0-f384-4dc5-823d-7295a3226d54"
+                LastKnownName="MessageOccurrenceSpecification26"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="5a72d117-c9eb-4931-8ab6-06c2d73cc70e"
+                LastKnownName="MessageOccurrenceSpecification21"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="df43559a-8b08-4b15-9962-273c1d75cd5c"
+            name="ExecutionOccurrenceSpecification13">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="5b8956cd-5638-4394-aba4-a30a697428d5"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="2ffa275c-e591-46b3-8e51-19ad3feda3fe"
+            name="MessageOccurrenceSpecification20">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="e482e9d3-0f0c-4f81-94be-72821f8fe50f"
+            name="MessageOccurrenceSpecification19">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="3ab0dfc1-60e8-44b5-962f-03662f82694f"
+            name="BehaviorExecutionSpecification8">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="1dddb285-2572-4eb7-ab19-58389bd76eb4"
+                LastKnownName="ExecutionOccurrenceSpecification16"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="40836119-69af-4358-851e-ba1002258285"
+                LastKnownName="ExecutionOccurrenceSpecification15"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="7306674d-75ab-4ad5-915d-8f796febb54d"
+                LastKnownName="MessageOccurrenceSpecification24"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="41a386ce-6707-453a-bb6d-34e14b7fc382"
+                LastKnownName="MessageOccurrenceSpecification35"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="23624a98-4d7c-4aac-beb4-78eb75530edb"
+                LastKnownName="MessageOccurrenceSpecification38"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="2b8b07f5-f90e-4a81-a82d-feb26dff3a63"
+                LastKnownName="MessageOccurrenceSpecification25"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="40836119-69af-4358-851e-ba1002258285"
+            name="ExecutionOccurrenceSpecification15">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="4d254c16-ab2b-43bc-8dba-b243392f6e58"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="7306674d-75ab-4ad5-915d-8f796febb54d"
+            name="MessageOccurrenceSpecification24">
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="9028f4d2-b6ba-4017-b8e5-d30fd22b2b0f"
+            name="MessageOccurrenceSpecification23">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="9d90dfb2-4583-4e35-bb3a-88cf8a002e44"
+            name="BehaviorExecutionSpecification12">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="419817b1-8d11-4f4e-938a-b345251e9414"
+                LastKnownName="ExecutionOccurrenceSpecification24"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="e5912b3b-94a1-4b77-83c8-982c7acbfa46"
+                LastKnownName="ExecutionOccurrenceSpecification23"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="42e65d79-b00e-4bf2-8826-ca4ba1afa9bc"
+                LastKnownName="MessageOccurrenceSpecification36"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="2f27fe6a-d31e-410b-9c32-cd408b4e3b61"
+                LastKnownName="MessageOccurrenceSpecification37"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="e5912b3b-94a1-4b77-83c8-982c7acbfa46"
+            name="ExecutionOccurrenceSpecification23">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="1f157a76-67e4-4a53-a35b-a22ddd358dab"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="42e65d79-b00e-4bf2-8826-ca4ba1afa9bc"
+            name="MessageOccurrenceSpecification36">
+            <covered>
+              <lifelineMoniker
+                Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="41a386ce-6707-453a-bb6d-34e14b7fc382"
+            name="MessageOccurrenceSpecification35">
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="2f27fe6a-d31e-410b-9c32-cd408b4e3b61"
+            name="MessageOccurrenceSpecification37">
+            <covered>
+              <lifelineMoniker
+                Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="23624a98-4d7c-4aac-beb4-78eb75530edb"
+            name="MessageOccurrenceSpecification38">
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="419817b1-8d11-4f4e-938a-b345251e9414"
+            name="ExecutionOccurrenceSpecification24">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="09e1348b-723b-4070-b66e-e9cff70c3a83"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="2b8b07f5-f90e-4a81-a82d-feb26dff3a63"
+            name="MessageOccurrenceSpecification25">
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="6b7c96c0-f384-4dc5-823d-7295a3226d54"
+            name="MessageOccurrenceSpecification26">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="1dddb285-2572-4eb7-ab19-58389bd76eb4"
+            name="ExecutionOccurrenceSpecification16">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="21b9b0c9-7d66-428a-8e67-646bafd7c363"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="5a72d117-c9eb-4931-8ab6-06c2d73cc70e"
+            name="MessageOccurrenceSpecification21">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="2572bf85-0878-4442-8051-593190a2b11c"
+            name="MessageOccurrenceSpecification22">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="7ff0ce78-e13a-4760-94cd-f4cc140fa5b4"
+            name="ExecutionOccurrenceSpecification14">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="ad6f2823-61a8-4878-842a-0373f3bedcb2"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="952a8cb2-0947-4d4b-aecc-14f2f8bec346"
+            name="MessageOccurrenceSpecification27">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="f6775d18-9cc8-460c-b9e5-45060336262b"
+            name="BehaviorExecutionSpecification9">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="0f1e8adf-a826-4e08-95ac-fde4761b4e7b"
+                LastKnownName="ExecutionOccurrenceSpecification18"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="1c9cf0db-8e10-46ee-bcfc-33fb2fc0f49d"
+                LastKnownName="ExecutionOccurrenceSpecification17"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="df05122f-b7f6-4107-af0d-87603a6d8057"
+                LastKnownName="MessageOccurrenceSpecification28"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="1c9cf0db-8e10-46ee-bcfc-33fb2fc0f49d"
+            name="ExecutionOccurrenceSpecification17">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="bee72113-395a-43b7-b77e-dbdd695daaf4"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="df05122f-b7f6-4107-af0d-87603a6d8057"
+            name="MessageOccurrenceSpecification28">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="0f1e8adf-a826-4e08-95ac-fde4761b4e7b"
+            name="ExecutionOccurrenceSpecification18">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="636ab936-f1a8-4874-bfc2-3d3285c54804"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="474890b1-6d4c-47a8-b384-19f78de431ee"
+            name="MessageOccurrenceSpecification43">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="183b2ca5-3e38-4592-901f-56b31c3ad05f"
+            name="BehaviorExecutionSpecification14">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="8bafa504-779e-4c74-9b15-32048d739e35"
+                LastKnownName="ExecutionOccurrenceSpecification28"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="82e5782c-0be9-44b0-b2d0-00b96234c895"
+                LastKnownName="ExecutionOccurrenceSpecification27"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="b2d72cfb-25b3-49fe-9b60-358f6505ca8b"
+                LastKnownName="MessageOccurrenceSpecification44"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="0e485d82-74fc-4473-ac4b-c5d3b8d3e135"
+                LastKnownName="MessageOccurrenceSpecification45"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="b3aa51d9-e2c2-4475-a8b6-fee3a547bf3b"
+                LastKnownName="MessageOccurrenceSpecification48"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="82e5782c-0be9-44b0-b2d0-00b96234c895"
+            name="ExecutionOccurrenceSpecification27">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="4f11650f-cc92-430f-a736-35b0d2081952"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="b2d72cfb-25b3-49fe-9b60-358f6505ca8b"
+            name="MessageOccurrenceSpecification44">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="6ff3320f-d722-43b0-9223-7f0f976f3527"
+            name="BehaviorExecutionSpecification15">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="47972bed-db66-49dd-8561-55c5d73e1171"
+                LastKnownName="ExecutionOccurrenceSpecification30"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="9b59ba8d-2714-4154-b1c2-3b8534e0de91"
+                LastKnownName="ExecutionOccurrenceSpecification29"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="beeeda50-19e2-4499-9d87-598e02dac271"
+                LastKnownName="MessageOccurrenceSpecification46"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="f6551c00-a562-4c65-9529-0b7e564d2378"
+                LastKnownName="MessageOccurrenceSpecification49"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="43097e6a-c309-4cf9-ae78-f098097b9c61"
+                LastKnownName="MessageOccurrenceSpecification52"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="895f0e0d-5fac-4989-b5f6-b74743a32e6a"
+                LastKnownName="MessageOccurrenceSpecification47"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="9b59ba8d-2714-4154-b1c2-3b8534e0de91"
+            name="ExecutionOccurrenceSpecification29">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="10329f6c-ec5e-460e-9880-12ada219b8de"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="0e485d82-74fc-4473-ac4b-c5d3b8d3e135"
+            name="MessageOccurrenceSpecification45">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="beeeda50-19e2-4499-9d87-598e02dac271"
+            name="MessageOccurrenceSpecification46">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="83874143-b9a5-4b53-8338-7d76a6bdbfe3"
+            name="BehaviorExecutionSpecification16">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="7e56aa7f-0bc9-4262-a5bc-595dffc2496f"
+                LastKnownName="ExecutionOccurrenceSpecification32"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="aed99800-05f5-41d5-a99d-19cdfd0aee95"
+                LastKnownName="ExecutionOccurrenceSpecification31"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="39b517e4-afe4-424b-b4bc-e68617d2ace6"
+                LastKnownName="MessageOccurrenceSpecification50"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="c4009b52-60c9-452e-8225-1d1827d6ae97"
+                LastKnownName="MessageOccurrenceSpecification53"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="4d31eab6-23d2-4167-95c5-977b32e5c215"
+                LastKnownName="MessageOccurrenceSpecification56"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="4f61972e-8b3f-4b71-a4eb-2b069f525191"
+                LastKnownName="MessageOccurrenceSpecification51"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="aed99800-05f5-41d5-a99d-19cdfd0aee95"
+            name="ExecutionOccurrenceSpecification31">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="7acac127-25b2-44e6-8ea5-a76d8513df3d"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="39b517e4-afe4-424b-b4bc-e68617d2ace6"
+            name="MessageOccurrenceSpecification50">
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="f6551c00-a562-4c65-9529-0b7e564d2378"
+            name="MessageOccurrenceSpecification49">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="297d0dbc-5900-4d80-8d9e-f26baa20c0fb"
+            name="BehaviorExecutionSpecification17">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="f2ea3169-7995-49dd-8d94-d6560f3c82d7"
+                LastKnownName="ExecutionOccurrenceSpecification34"
+                LastKnownLocation="CmpWapModel.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="5cd6c2f1-ac15-47bb-90cd-1215a45ec8d1"
+                LastKnownName="ExecutionOccurrenceSpecification33"
+                LastKnownLocation="CmpWapModel.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="0562f3d5-5a2f-4ac9-b345-abdf5328a0d6"
+                LastKnownName="MessageOccurrenceSpecification54"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="25c2d54f-8993-44e6-8230-ec8c1bb7bd97"
+                LastKnownName="MessageOccurrenceSpecification55"
+                LastKnownLocation="CmpWapModel.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="5cd6c2f1-ac15-47bb-90cd-1215a45ec8d1"
+            name="ExecutionOccurrenceSpecification33">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="e2d0ee69-b982-4373-b45f-29e9c4c6fded"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="0562f3d5-5a2f-4ac9-b345-abdf5328a0d6"
+            name="MessageOccurrenceSpecification54">
+            <covered>
+              <lifelineMoniker
+                Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="c4009b52-60c9-452e-8225-1d1827d6ae97"
+            name="MessageOccurrenceSpecification53">
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="4d31eab6-23d2-4167-95c5-977b32e5c215"
+            name="MessageOccurrenceSpecification56">
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="25c2d54f-8993-44e6-8230-ec8c1bb7bd97"
+            name="MessageOccurrenceSpecification55">
+            <covered>
+              <lifelineMoniker
+                Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="f2ea3169-7995-49dd-8d94-d6560f3c82d7"
+            name="ExecutionOccurrenceSpecification34">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="dd05421f-db8c-4eec-8255-4cb89274b872"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+                LastKnownName="Ops Queue"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="4f61972e-8b3f-4b71-a4eb-2b069f525191"
+            name="MessageOccurrenceSpecification51">
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="43097e6a-c309-4cf9-ae78-f098097b9c61"
+            name="MessageOccurrenceSpecification52">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="7e56aa7f-0bc9-4262-a5bc-595dffc2496f"
+            name="ExecutionOccurrenceSpecification32">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="000fadf6-812d-4cae-bdfb-b54e4ddd647e"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="39136331-67b8-4983-a47f-82a932c7bb15"
+                LastKnownName="API"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="895f0e0d-5fac-4989-b5f6-b74743a32e6a"
+            name="MessageOccurrenceSpecification47">
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="b3aa51d9-e2c2-4475-a8b6-fee3a547bf3b"
+            name="MessageOccurrenceSpecification48">
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="47972bed-db66-49dd-8561-55c5d73e1171"
+            name="ExecutionOccurrenceSpecification30">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="9f185e46-7f96-4eb5-ab88-756110ff2e7f"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+                LastKnownName="API Client"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="8bafa504-779e-4c74-9b15-32048d739e35"
+            name="ExecutionOccurrenceSpecification28">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="a117a78a-6903-472a-bdfd-920843fd9131"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="ee8eb095-3188-4625-aeee-63d6cefdd353"
+            name="ExecutionOccurrenceSpecification12">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="6d5175ae-6554-49a4-ae8a-7e74dc5dcb7e"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="CmpWapModel.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+                LastKnownName="UI"
+                LastKnownLocation="CmpWapModel.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline
+            Id="2268f23a-9197-47a6-a4c0-29c3b2619e62"
+            name="User"
+            isActor="false"
+            lifelineDisplayName="User">
+            <topLevelOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="c55c0889-a89d-4d12-a754-298ef1d49a33"
+                LastKnownName="MessageOccurrenceSpecification5"
+                LastKnownLocation="CmpWapModel.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="3beeb5ac-dca1-4256-8451-958e639a6426"
+                LastKnownName="MessageOccurrenceSpecification17"
+                LastKnownLocation="CmpWapModel.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="e22bc08c-5675-41c0-a609-67a9ba7c14d8"
+            name="UI"
+            isActor="false"
+            lifelineDisplayName="UI">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="72b23b82-b88e-434a-834f-f78c5aa3fee9"
+                LastKnownName="ExecutionOccurrenceSpecification3"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="90d2c314-a385-4597-9ed6-4149d20eb8b8"
+                LastKnownName="ExecutionOccurrenceSpecification4"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="1af9018f-15fd-4eab-80ea-43c4213134d0"
+                LastKnownName="ExecutionOccurrenceSpecification11"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="ee8eb095-3188-4625-aeee-63d6cefdd353"
+                LastKnownName="ExecutionOccurrenceSpecification12"
+                LastKnownLocation="CmpWapModel.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="e30d965a-db00-430f-8f67-c410755a4b4c"
+            name="API Client"
+            isActor="false"
+            lifelineDisplayName="API Client">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="a772dd59-4a60-423f-812f-ecd75f60c7a8"
+                LastKnownName="ExecutionOccurrenceSpecification7"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="9c01728a-8dad-455e-ae8a-261bca65e73c"
+                LastKnownName="ExecutionOccurrenceSpecification8"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="df43559a-8b08-4b15-9962-273c1d75cd5c"
+                LastKnownName="ExecutionOccurrenceSpecification13"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="7ff0ce78-e13a-4760-94cd-f4cc140fa5b4"
+                LastKnownName="ExecutionOccurrenceSpecification14"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="9b59ba8d-2714-4154-b1c2-3b8534e0de91"
+                LastKnownName="ExecutionOccurrenceSpecification29"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="47972bed-db66-49dd-8561-55c5d73e1171"
+                LastKnownName="ExecutionOccurrenceSpecification30"
+                LastKnownLocation="CmpWapModel.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="39136331-67b8-4983-a47f-82a932c7bb15"
+            name="API"
+            isActor="false"
+            lifelineDisplayName="API">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="1da37ce0-0759-441e-a95f-044bddb8b35b"
+                LastKnownName="ExecutionOccurrenceSpecification9"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="3fbe5a43-6c2a-4e48-b462-7f63cdc82245"
+                LastKnownName="ExecutionOccurrenceSpecification10"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="40836119-69af-4358-851e-ba1002258285"
+                LastKnownName="ExecutionOccurrenceSpecification15"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="1dddb285-2572-4eb7-ab19-58389bd76eb4"
+                LastKnownName="ExecutionOccurrenceSpecification16"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="aed99800-05f5-41d5-a99d-19cdfd0aee95"
+                LastKnownName="ExecutionOccurrenceSpecification31"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="7e56aa7f-0bc9-4262-a5bc-595dffc2496f"
+                LastKnownName="ExecutionOccurrenceSpecification32"
+                LastKnownLocation="CmpWapModel.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="945c15c0-cae5-490d-9452-47bf09f4eba0"
+            name="Ops Queue"
+            isActor="false"
+            lifelineDisplayName="Ops Queue">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="e5912b3b-94a1-4b77-83c8-982c7acbfa46"
+                LastKnownName="ExecutionOccurrenceSpecification23"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="419817b1-8d11-4f4e-938a-b345251e9414"
+                LastKnownName="ExecutionOccurrenceSpecification24"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="5cd6c2f1-ac15-47bb-90cd-1215a45ec8d1"
+                LastKnownName="ExecutionOccurrenceSpecification33"
+                LastKnownLocation="CmpWapModel.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="f2ea3169-7995-49dd-8d94-d6560f3c82d7"
+                LastKnownName="ExecutionOccurrenceSpecification34"
+                LastKnownLocation="CmpWapModel.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message
+            Id="2f58a8bb-5b09-469e-b981-7cdfe632934b"
+            name="Hit resize button"
+            messageKind="Complete"
+            messageSort="AsynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="c55c0889-a89d-4d12-a754-298ef1d49a33"
+                LastKnownName="MessageOccurrenceSpecification5"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="99ee6597-b4f1-4a3f-b8cb-80b7af866b87"
+                LastKnownName="MessageOccurrenceSpecification6"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="d3f611be-6652-45ec-9e97-6b906d4493d7"
+            name="Show resize dialog"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="true">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="49a00f93-1a5d-4f24-b6b3-368e624795b1"
+                LastKnownName="MessageOccurrenceSpecification7"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="a8d6e3b1-48ac-41cd-b6bf-8d9a0ce580fd"
+                LastKnownName="MessageOccurrenceSpecification8"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="cab74dcf-df4a-4f59-a295-e22b568bf7e0"
+            name="Fetch VM sizes"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="baff1e30-9f80-4d69-8599-1c162de93478"
+                LastKnownName="MessageOccurrenceSpecification9"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="d41231e3-9b1e-4410-bd6d-565a6564ff60"
+                LastKnownName="MessageOccurrenceSpecification10"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="ec157302-590d-496f-8668-be782eae86d0"
+            name="Fetch VM sizes"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="98ea3912-bc97-4ded-a65f-2b051a3b38b2"
+                LastKnownName="MessageOccurrenceSpecification13"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="839967b6-9805-4370-b880-081fa9f340b6"
+                LastKnownName="MessageOccurrenceSpecification14"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="7ac6f7b3-5ab5-402a-bb34-1e020027dae0"
+            name="&lt;&lt;VM Sizes&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="a22ef4d0-83b0-4a80-9059-eb48dc6bbedd"
+                LastKnownName="MessageOccurrenceSpecification15"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="3595fc53-b02d-410a-ac57-a7e7bab9025b"
+                LastKnownName="MessageOccurrenceSpecification16"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="b36d7265-bc8a-4bbd-8899-f992a45a8460"
+            name="&lt;&lt;VM sizes&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="96ea4443-bca4-4d05-9d94-284ce6c2defc"
+                LastKnownName="MessageOccurrenceSpecification11"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="993226d3-6547-41ff-a2b3-c7165ec19612"
+                LastKnownName="MessageOccurrenceSpecification12"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="1b1ede6c-e6ca-4061-8419-31c7b5ba3741"
+            name="Select new size"
+            messageKind="Complete"
+            messageSort="AsynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="3beeb5ac-dca1-4256-8451-958e639a6426"
+                LastKnownName="MessageOccurrenceSpecification17"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="66138a5b-4c01-42b5-a739-67f04ac0fecb"
+                LastKnownName="MessageOccurrenceSpecification18"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="a9215f60-94f8-47bc-88fb-7cf90e2bad93"
+            name="Show request status"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="true">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="b17d0313-498c-4153-9e26-1b5668f23ade"
+                LastKnownName="MessageOccurrenceSpecification29"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="80b021a7-f5d4-4a06-bb79-762c3c95ded5"
+                LastKnownName="MessageOccurrenceSpecification30"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="ff99b04c-4b68-4999-8048-43eb35b888ea"
+            name="Submit resize request"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="e482e9d3-0f0c-4f81-94be-72821f8fe50f"
+                LastKnownName="MessageOccurrenceSpecification19"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="2ffa275c-e591-46b3-8e51-19ad3feda3fe"
+                LastKnownName="MessageOccurrenceSpecification20"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="efa6bfbf-704b-4b55-af23-f94f1238be4d"
+            name="Submit resize request"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="9028f4d2-b6ba-4017-b8e5-d30fd22b2b0f"
+                LastKnownName="MessageOccurrenceSpecification23"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="7306674d-75ab-4ad5-915d-8f796febb54d"
+                LastKnownName="MessageOccurrenceSpecification24"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="2fe6ea98-329c-46bc-b578-e6e01928e1d7"
+            name="Submit Resize Request"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="41a386ce-6707-453a-bb6d-34e14b7fc382"
+                LastKnownName="MessageOccurrenceSpecification35"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="42e65d79-b00e-4bf2-8826-ca4ba1afa9bc"
+                LastKnownName="MessageOccurrenceSpecification36"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="a8af76fe-f33d-4a12-b31b-e65835a868eb"
+            name="&lt;&lt;Request Status&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="2f27fe6a-d31e-410b-9c32-cd408b4e3b61"
+                LastKnownName="MessageOccurrenceSpecification37"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="23624a98-4d7c-4aac-beb4-78eb75530edb"
+                LastKnownName="MessageOccurrenceSpecification38"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="d5227601-ae8b-4b91-9459-1be8a3821b93"
+            name="&lt;&lt;Request status&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="2b8b07f5-f90e-4a81-a82d-feb26dff3a63"
+                LastKnownName="MessageOccurrenceSpecification25"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="6b7c96c0-f384-4dc5-823d-7295a3226d54"
+                LastKnownName="MessageOccurrenceSpecification26"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="d0eb56fa-4aef-460d-b219-cdf1506480f9"
+            name="&lt;&lt;Request status&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="5a72d117-c9eb-4931-8ab6-06c2d73cc70e"
+                LastKnownName="MessageOccurrenceSpecification21"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="2572bf85-0878-4442-8051-593190a2b11c"
+                LastKnownName="MessageOccurrenceSpecification22"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="4f6e8106-7f14-47fa-ac73-5dbcdf73541f"
+            name="Update request status"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="true">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="952a8cb2-0947-4d4b-aecc-14f2f8bec346"
+                LastKnownName="MessageOccurrenceSpecification27"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="df05122f-b7f6-4107-af0d-87603a6d8057"
+                LastKnownName="MessageOccurrenceSpecification28"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="ae5cd957-1934-47e7-a3ef-07fa19662121"
+            name="Update job status [repeat until done]"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="true">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="474890b1-6d4c-47a8-b384-19f78de431ee"
+                LastKnownName="MessageOccurrenceSpecification43"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="b2d72cfb-25b3-49fe-9b60-358f6505ca8b"
+                LastKnownName="MessageOccurrenceSpecification44"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="0a15f157-69fe-49ef-a33b-59b6d9328100"
+            name="Check op status"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="0e485d82-74fc-4473-ac4b-c5d3b8d3e135"
+                LastKnownName="MessageOccurrenceSpecification45"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="beeeda50-19e2-4499-9d87-598e02dac271"
+                LastKnownName="MessageOccurrenceSpecification46"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="8b2167c6-fcb7-4b0c-8a62-d96332978a20"
+            name="Check op Status"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="f6551c00-a562-4c65-9529-0b7e564d2378"
+                LastKnownName="MessageOccurrenceSpecification49"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="39b517e4-afe4-424b-b4bc-e68617d2ace6"
+                LastKnownName="MessageOccurrenceSpecification50"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="8fb15799-0d61-4472-9066-5de8ebc3c7b2"
+            name="Check op status"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="c4009b52-60c9-452e-8225-1d1827d6ae97"
+                LastKnownName="MessageOccurrenceSpecification53"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="0562f3d5-5a2f-4ac9-b345-abdf5328a0d6"
+                LastKnownName="MessageOccurrenceSpecification54"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="58af9cf7-5b5f-4f81-b8c4-b5597b89f303"
+            name="&lt;&lt;Op status&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="25c2d54f-8993-44e6-8230-ec8c1bb7bd97"
+                LastKnownName="MessageOccurrenceSpecification55"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="4d31eab6-23d2-4167-95c5-977b32e5c215"
+                LastKnownName="MessageOccurrenceSpecification56"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="a37094b2-e5ac-4e9a-ba9f-340150183b01"
+            name="&lt;&lt;Op status&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="4f61972e-8b3f-4b71-a4eb-2b069f525191"
+                LastKnownName="MessageOccurrenceSpecification51"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="43097e6a-c309-4cf9-ae78-f098097b9c61"
+                LastKnownName="MessageOccurrenceSpecification52"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="30d6a7cb-851e-4ef7-83cb-97eca846afb9"
+            name="&lt;&lt;Ops Status&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="895f0e0d-5fac-4989-b5f6-b74743a32e6a"
+                LastKnownName="MessageOccurrenceSpecification47"
+                LastKnownLocation="CmpWapModel.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="b3aa51d9-e2c2-4475-a8b6-fee3a547bf3b"
+                LastKnownName="MessageOccurrenceSpecification48"
+                LastKnownLocation="CmpWapModel.uml" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="6c0b635e-1d78-4fb4-b0e3-e0fa6cfa3a39"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="e9f9d785-00aa-4b8b-b07f-9f1342c7b4dd"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="4128c22b-144b-4b6f-b5aa-ac4675e87415"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="941caae3-459a-4fa6-a265-fe4be9e0c3a6"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="399491b1-7881-40d7-81b0-7fea277b8269"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="6d5175ae-6554-49a4-ae8a-7e74dc5dcb7e"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="5b8956cd-5638-4394-aba4-a30a697428d5"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="ad6f2823-61a8-4878-842a-0373f3bedcb2"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="4d254c16-ab2b-43bc-8dba-b243392f6e58"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="21b9b0c9-7d66-428a-8e67-646bafd7c363"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="bee72113-395a-43b7-b77e-dbdd695daaf4"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="636ab936-f1a8-4874-bfc2-3d3285c54804"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="7387d5c4-2de5-4104-aa91-2ebe43aef508"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="4ccff6ed-6859-4af9-b153-ff3e91590d97"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="49158db1-8575-47db-bd9d-e8b06a74139a"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="9932fb9b-bcbf-485d-af69-48d286d48f7d"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="a0dd3620-e772-4849-a173-bda570d14230"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="a7fd68a5-dc1b-456e-97a5-8cf3a1ee9e65"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="1f157a76-67e4-4a53-a35b-a22ddd358dab"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="09e1348b-723b-4070-b66e-e9cff70c3a83"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="4f11650f-cc92-430f-a736-35b0d2081952"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="a117a78a-6903-472a-bdfd-920843fd9131"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="10329f6c-ec5e-460e-9880-12ada219b8de"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="9f185e46-7f96-4eb5-ab88-756110ff2e7f"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="7acac127-25b2-44e6-8ea5-a76d8513df3d"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="000fadf6-812d-4cae-bdfb-b54e4ddd647e"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="e2d0ee69-b982-4373-b45f-29e9c4c6fded"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="dd05421f-db8c-4eec-8255-4cb89274b872"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- Source Locations -->
+  <?ifndef AdminExtensionRoot ?>
+  <?define AdminExtensionRoot="..\AdminExtension" ?>  
+  <?endif?>
+  
+  <?ifndef AdminExtensionTargetDir ?>
+  <?define AdminExtensionTargetDir="$(var.Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.TargetDir)" ?>
+  <?endif?>
+  
+  <DirectoryRef Id="AdminSiteBinDir">
+    <Component Id="A_Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.dll"
+               Guid="{430E9349-1142-4F2F-9EB1-B4D9B087BE5E}">
+      <File Id="A_Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.dll"
+            KeyPath="yes"
+            Source="$(var.AdminExtensionTargetDir)\Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.dll" />
+    </Component>
+    <Component Id="A_Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll"
+               Guid="{AEC31E4F-1D64-4B37-B611-18BA9D16D4A8}">
+      <File Id="A_Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll"
+            KeyPath="yes"
+            Source="$(var.AdminExtensionTargetDir)\Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll" />
+    </Component>
+    <Component Id="A_Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll"
+               Guid="{90F44EEE-9C9A-465A-8F48-CF57F9EC3F56}">
+      <File Id="A_Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll"
+            KeyPath="yes"
+            Source="$(var.AdminExtensionTargetDir)\Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll" />
+    </Component>
+    <Component Id="A_Microsoft.WindowsAzurePack.Samples.dll"
+               Guid="{691F8E74-A5F0-442A-92BE-B648D1A2B96D}">
+      <File Id="A_Microsoft.WindowsAzurePack.Samples.dll"
+            KeyPath="yes"
+            Source="$(var.AdminExtensionTargetDir)\Microsoft.WindowsAzurePack.Samples.dll" />
+    </Component>
+  </DirectoryRef>
+  <DirectoryRef Id="AdminSiteContentExtDir">
+    <Component Id="A_extensions.data.js"
+               Guid="{1422B3FA-6140-4D08-81ED-14055A7AACBB}">
+      <File Id="A_extensions.data.js"
+            KeyPath="yes"
+            Source="$(var.AdminExtensionRoot)\Content\extensions.data.js" />
+    </Component>
+    <Component Id="A_CmpWapExtensionAdminExtension.js"
+               Guid="{821EF1B7-E509-40C0-97DE-E1AA58E01085}">
+      <File Id="A_CmpWapExtensionAdminExtension.js"
+            KeyPath="yes"
+            Source="$(var.AdminExtensionRoot)\Content\CmpWapExtensionAdminExtension.js" />
+    </Component>
+    <Component Id="A_VirtualMachines.png"
+               Guid="{085379A1-DD17-4D0D-B9B3-C43F75BC78E2}">
+      <File Id="A_VirtualMachines.png"
+            KeyPath="yes"
+            Source="$(var.AdminExtensionRoot)\Content\VirtualMachines.png" />
+    </Component>
+    <Directory Id="A_Images"
+               Name="Images">
+      <Component Id="A_quickstart.png"
+                 Guid="{BE3E67F1-DAF6-48BD-82F6-02C49E32F2D1}">
+        <File Id="A_quickstart.png"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Images\quickstart.png" />
+      </Component>
+      <Component Id="A_quickstart_connectto.png"
+                 Guid="{8E98C071-A934-413A-B80C-0C9B341301C6}">
+        <File Id="A_quickstart_connectto.png"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Images\quickstart_connectto.png" />
+      </Component>
+    </Directory>
+    <Directory Id="A_Scripts"
+               Name="Scripts">
+      <Component Id="A_CmpWapExtension.Controller.js"
+                 Guid="{EB5C7555-8B23-4649-A7CC-B0F8E4FA1F52}">
+        <File Id="A_CmpWapExtension.Controller.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.Controller.js" />
+      </Component>
+
+      <Component Id="A_CmpWapExtension.VmsTab.js"
+                 Guid="{575E3B2A-3C69-43A9-AC08-008C43C28EB2}">
+        <File Id="A_CmpWapExtension.VmsTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.VmsTab.js" />
+      </Component>
+
+      <Component Id="A_CmpWapExtension.DomainsTab.js"
+                 Guid="{2A5BD41C-B7B1-42F5-AF33-93B98310AB1B}">
+        <File Id="A_CmpWapExtension.DomainsTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.DomainsTab.js" />
+      </Component>
+
+      <Component Id="A_CmpWapExtension.OssTab.js"
+                 Guid="{156DE653-2D7A-4B20-ADBE-4F82FF680291}">
+        <File Id="A_CmpWapExtension.OssTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.OssTab.js" />
+      </Component>
+
+      <Component Id="A_CmpWapExtension.VmsizesTab.js"
+                 Guid="{5A360930-F4BB-4541-B3E5-464DEA23127D}">
+        <File Id="A_CmpWapExtension.VmsizesTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.VmsizesTab.js" />
+      </Component>
+
+      <Component Id="A_CmpWapExtension.ServiceProviderAccountsTab.js"
+                 Guid="{DA1FA9FB-7258-47E7-9819-2D2D5205078E}">
+        <File Id="A_CmpWapExtension.ServiceProviderAccountsTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.ServiceProviderAccountsTab.js" />
+      </Component>
+
+      <Component Id="A_CmpWapExtension.RegionsTab.js"
+                 Guid="{5318F1D5-6E55-42BC-8C10-20F227C2061F}">
+        <File Id="A_CmpWapExtension.RegionsTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.RegionsTab.js" />
+      </Component>
+
+      <Component Id="A_CmpWapExtension.AppsTab.js"
+                 Guid="{7E9BEF45-BE13-42CD-A766-98181B8BE5FD}">
+        <File Id="A_CmpWapExtension.AppsTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.AppsTab.js" />
+      </Component>
+
+      <Component Id="A_CmpWapExtension.ProductsTab.js"
+                 Guid="{A24BDDA9-F21D-476D-BE71-F622F3C9BA03}">
+        <File Id="A_CmpWapExtension.ProductsTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.ProductsTab.js" />
+      </Component>
+      <Component Id="A_CmpWapExtension.QuickStartTab.js"
+                 Guid="{82867C63-52CE-4A42-B61E-8A0F8646C7AC}">
+        <File Id="A_CmpWapExtension.QuickStartTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.QuickStartTab.js" />
+      </Component>
+      <Component Id="A_CmpWapExtension.SettingsTab.js"
+                 Guid="{CC2E7B2E-3CBA-40E7-8F4E-2AECC0D23C74}">
+        <File Id="A_CmpWapExtension.SettingsTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.SettingsTab.js" />
+      </Component>
+      <Component Id="A_CmpWapExtension.ControlsTab.js"
+                 Guid="{841E6FF4-28A4-43C1-85B2-74E237239E38}">
+        <File Id="A_CmpWapExtension.ControlsTab.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.ControlsTab.js" />
+      </Component>
+    </Directory>
+    <Directory Id="A_Styles"
+               Name="Styles">
+      <Component Id="A_CmpWapExtensionAdmin.css"
+                 Guid="{A7D89E16-A565-435B-9B46-E28BF9EBE1F5}">
+        <File Id="A_CmpWapExtensionAdmin.css"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Styles\CmpWapExtensionAdmin.css" />
+      </Component>
+      <Component Id="A_CmpWapExtensionControls.css"
+                 Guid="{6C310CD2-D5BE-4CF3-97BB-C07615D24A14}">
+        <File Id="A_CmpWapExtensionControls.css"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Styles\CmpWapExtensionControls.css" />
+      </Component>
+    </Directory>
+    <Directory Id="A_Templates"
+               Name="Templates">
+      <Directory Id="A_Dialogs"
+                 Name="Dialogs">
+        <Component Id="A_RegisterEndpoint.html"
+                   Guid="{A19EEDDB-F3AA-4730-BC6F-BEC02112058A}">
+          <File Id="A_RegisterEndpoint.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Dialogs\RegisterEndpoint.html" />
+        </Component>
+      </Directory>
+      <Directory Id="A_Tabs"
+                 Name="Tabs">
+
+        <Component Id="A_VmsTab.html"
+                   Guid="{E4C423FA-85C1-41E3-9F2D-B53FAAEB890B}">
+          <File Id="A_VmsTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\VmsTab.html" />
+        </Component>
+        
+        <Component Id="A_DomainsTab.html"
+                   Guid="{6ED38B41-52DA-4C5B-9B55-EDAB0980C854}">
+          <File Id="A_DomainsTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\DomainsTab.html" />
+        </Component>
+
+        <Component Id="A_OssTab.html"
+                   Guid="{B994F128-0FDB-4F40-9668-45AF69197F94}">
+          <File Id="A_OssTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\OssTab.html" />
+        </Component>
+
+        <Component Id="A_VmsizesTab.html"
+                   Guid="{AF01C60C-6EB8-4C7B-ADC9-0A0B1A350732}">
+          <File Id="A_VmsizesTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\VmsizesTab.html" />
+        </Component>
+
+        <Component Id="A_ServiceProviderAccountsTab.html"
+                   Guid="{FCCFCAC7-6526-4042-A5C3-DF4E82362A83}">
+          <File Id="A_ServiceProviderAccountsTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\ServiceProviderAccountsTab.html" />
+        </Component>
+
+        <Component Id="A_RegionsTab.html"
+                   Guid="{A5C0CB02-B2D3-40D1-96E7-83A57A2E9E03}">
+          <File Id="A_RegionsTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\RegionsTab.html" />
+        </Component>
+
+        <Component Id="A_AppsTab.html"
+                   Guid="{B6A24928-A38E-4900-AD15-D23D436D0B5F}">
+          <File Id="A_AppsTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\AppsTab.html" />
+        </Component>
+
+        <Component Id="A_FileServersTabEmpty.html"
+                   Guid="{FCBA83D2-0111-4451-B182-CB0D1E483CD5}">
+          <File Id="A_FileServersTabEmpty.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\FileServersTabEmpty.html" />
+        </Component>
+        <Component Id="A_ProductsTab.html"
+                   Guid="{8BBBF42C-D3C6-451E-9CA6-4D44A10DB67F}">
+          <File Id="A_ProductsTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\ProductsTab.html" />
+        </Component>
+        <Component Id="A_ProductsTabEmpty.html"
+                   Guid="{34795456-4126-445E-A8A6-ABF7A493652F}">
+          <File Id="A_ProductsTabEmpty.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\ProductsTabEmpty.html" />
+        </Component>
+        <Component Id="A_QuickStartTab.html"
+                   Guid="{5B00D137-9325-4B88-9EE9-93EF13D4C2B4}">
+          <File Id="A_QuickStartTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\QuickStartTab.html" />
+        </Component>
+        <Component Id="A_QuickStartTabContent.html"
+                   Guid="{D3CB5A20-4BF9-486A-A3F2-69F78F42BFCB}">
+          <File Id="A_QuickStartTabContent.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\QuickStartTabContent.html" />
+        </Component>
+        <Component Id="A_SettingsTab.html"
+                   Guid="{F3069569-D695-4755-BC95-669EF21323DC}">
+          <File Id="A_SettingsTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\SettingsTab.html" />
+        </Component>
+        <Component Id="A_ContorlsTab.html"
+                   Guid="{83BC26ED-7A00-4CD1-A7B9-C4D9D181907C}">
+          <File Id="A_ContorlsTab.html"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Content\Templates\Tabs\ControlsTab.html" />
+        </Component>
+      </Directory>
+    </Directory>    
+  </DirectoryRef>
+  <DirectoryRef Id="PlansTabViewDir">
+    <Component Id="A_ServiceOfferConfigContainerTab.html" Guid="{9DB3B1CF-A184-45B4-8E09-522041CBC706}">
+      <File Id="A_ServiceOfferConfigContainerTab.html"
+            KeyPath="yes"
+            Source="$(var.AdminExtensionRoot)\Views\ServiceOffer\ServiceOfferConfigContainerTab.html"/>
+    </Component>
+  </DirectoryRef>  
+  <DirectoryRef Id="AdminSiteManifestsDir">
+    <Component Id="A_CmpWapExtensionAdminUiManifest.xml"
+               Guid="{FE2E5FBF-C3A0-4402-B08C-357847FE3B4C}">
+      <File Id="A_CmpWapExtensionAdminUiManifest.xml"
+            KeyPath="yes"
+            Source="$(var.AdminExtensionRoot)\Manifests\CmpWapExtensionAdminUiManifest.xml" />
+    </Component>
+  </DirectoryRef>
+  <DirectoryRef Id="AdminSiteViewsDir">   
+      <Directory Id="A_ServiceOffer" Name="ServiceOffer">
+        <Component Id="A_CmpWapExtensionOffer.cshtml" Guid="{068988f1-0b2a-443b-a599-fd37bf88cb33}">
+          <File Id="A_CmpWapExtensionOffer.cshtml"
+                KeyPath="yes"
+                Source="$(var.AdminExtensionRoot)\Views\ServiceOffer\CmpWapExtensionOffer.cshtml" />
+        </Component>
+      </Directory>
+   </DirectoryRef>
+  <ComponentGroup Id="AdminSiteContent">
+    <ComponentRef Id="A_Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.dll" />
+    <ComponentRef Id="A_Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll" />
+    <ComponentRef Id="A_Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll" />
+    <ComponentRef Id="A_Microsoft.WindowsAzurePack.Samples.dll" />
+    <ComponentRef Id="A_extensions.data.js" />
+    <ComponentRef Id="A_CmpWapExtensionAdminExtension.js" />
+    <ComponentRef Id="A_VirtualMachines.png" />
+    <ComponentRef Id="A_quickstart.png" />
+    <ComponentRef Id="A_quickstart_connectto.png" />
+    <ComponentRef Id="A_CmpWapExtension.Controller.js" />
+    <ComponentRef Id="A_CmpWapExtension.VmsTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.DomainsTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.OssTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.VmsizesTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.ServiceProviderAccountsTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.RegionsTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.AppsTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.ProductsTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.QuickStartTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.SettingsTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.ControlsTab.js" />
+    <ComponentRef Id="A_CmpWapExtensionAdmin.css" />
+    <ComponentRef Id="A_CmpWapExtensionControls.css" />
+    <ComponentRef Id="A_RegisterEndpoint.html" />
+    <ComponentRef Id="A_VmsTab.html" />
+    <ComponentRef Id="A_DomainsTab.html" />
+    <ComponentRef Id="A_OssTab.html" />
+    <ComponentRef Id="A_VmsizesTab.html" />
+    <ComponentRef Id="A_ServiceProviderAccountsTab.html" />
+    <ComponentRef Id="A_RegionsTab.html" />
+    <ComponentRef Id="A_AppsTab.html" />
+    <ComponentRef Id="A_FileServersTabEmpty.html" />
+    <ComponentRef Id="A_ProductsTab.html" />
+    <ComponentRef Id="A_ProductsTabEmpty.html" />
+    <ComponentRef Id="A_QuickStartTab.html" />
+    <ComponentRef Id="A_QuickStartTabContent.html" />
+    <ComponentRef Id="A_SettingsTab.html" />
+    <ComponentRef Id="A_ContorlsTab.html" />
+    <ComponentRef Id="A_CmpWapExtensionAdminUiManifest.xml" />
+    <ComponentRef Id="A_CmpWapExtensionOffer.cshtml" />
+    <ComponentRef Id="A_ServiceOfferConfigContainerTab.html"/>    
+  </ComponentGroup>
+</Include>

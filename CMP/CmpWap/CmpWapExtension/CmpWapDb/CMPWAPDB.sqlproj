@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CMPWAPDB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{99f4571c-d18b-4a73-b5b8-9aabc16faad1}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootNamespace>CMPWAPDB</RootNamespace>
+    <AssemblyName>CMPWAPDB</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <Import Project="..\..\..\..\Environment.props" />
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSBuild\ToolsVersions\12.0@MsBuildToolsRoot)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="Scripts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\SQLVersion.sql" />
+    <Build Include="dbo\Tables\SQLCollation.sql" />
+    <Build Include="dbo\Tables\ServiceCategory.sql" />
+    <Build Include="dbo\Tables\ServerRoleDriveMapping.sql" />
+    <Build Include="dbo\Tables\ServerRole.sql" />
+    <Build Include="dbo\Tables\NetworkNIC.sql" />
+    <Build Include="dbo\Tables\EnvironmentType.sql" />
+    <Build Include="dbo\Tables\CmpRequests.sql" />
+    <Build Include="dbo\Tables\AdDomainMap.sql" />
+    <Build Include="dbo\Tables\VmSize.sql" />
+    <Build Include="dbo\Tables\VmOs.sql" />
+    <Build Include="dbo\Tables\SQLAnalysisServicesMode.sql" />
+    <Build Include="dbo\Tables\ResourceProviderAcctGroup.sql" />
+    <Build Include="dbo\Tables\IISRoleService.sql" />
+    <Build Include="dbo\Tables\AzureRegion.sql" />
+    <Build Include="dbo\Tables\Application.sql" />
+    <Build Include="dbo\Tables\SequenceRequests.sql" />
+    <Build Include="dbo\Tables\WapSubscriptionGroupMembership.sql" />
+    <Build Include="dbo\Tables\WapSubscriptionData.sql" />
+    <Build Include="dbo\Tables\Groups.sql" />
+    <Build Include="dbo\Tables\AzureAdminSubscriptionVnet.sql" />
+    <Build Include="dbo\Tables\AzureAdminSubscriptionVnetMapping.sql" />
+    <Build Include="dbo\Tables\AzureAdminSubscriptionMapping.sql" />
+    <Build Include="dbo\Tables\AzureAdminSubscriptionVmOsMapping.sql" />
+    <Build Include="dbo\Tables\AzureAdminSubscriptionVmSizeMapping.sql" />
+    <Build Include="dbo\Tables\AzureAdminSubscriptionRegionMapping.sql" />
+    <Build Include="dbo\Tables\AzureMasterData.sql" />
+    <Build Include="dbo\Tables\AzureRegionVmSizeMapping.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+    <None Include="Scripts\Data.AzureAdminSubscriptionMapping.sql" />
+    <None Include="Scripts\Data.AzureAdminSubscriptionVmOsMapping.sql" />
+    <None Include="Scripts\Data.WapSubscriptionGroupMembership.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Data.AdDomainMap.sql" />
+    <None Include="Scripts\Data.Application.sql" />
+    <None Include="Scripts\Data.AzureRegion.sql" />
+    <None Include="Scripts\Data.EnvironmentType.sql" />
+    <None Include="Scripts\Data.IISRoleService.sql" />
+    <None Include="Scripts\Data.NetworkNIC.sql" />
+    <None Include="Scripts\Data.ResourceProviderAcctGroup.sql" />
+    <None Include="Scripts\Data.ServerRole.sql" />
+    <None Include="Scripts\Data.ServerRoleDriveMapping.sql" />
+    <None Include="Scripts\Data.ServiceCategory.sql" />
+    <None Include="Scripts\Data.SQLAnalysisServicesMode.sql" />
+    <None Include="Scripts\Data.SQLCollation.sql" />
+    <None Include="Scripts\Data.SQLVersion.sql" />
+    <None Include="Scripts\Data.VmOs.sql" />
+    <None Include="Scripts\Data.VmSize.sql" />
+    <Build Include="dbo\Tables\IpakVersionMap.sql" />
+    <None Include="Scripts\Data.IpakVersionMap.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CmpWapDb.refactorlog" />
+  </ItemGroup>
+</Project>

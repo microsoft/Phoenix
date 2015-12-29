@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="b5f98cd9-1a0f-4256-83b8-894f6b537113" name="AdInterface" linkedPackageId="89e6d440-52a9-43b9-ac35-74cf36c3cff0" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="5f1229f5-e144-4ae7-87dd-93417c392871" name="AdInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f9ff86c4-83c0-4e54-91c6-4fd036d0a78e" />
+        <ownedAttributesInternal>
+          <property Id="7286f7bd-69f7-48c6-a883-8683bbdac84a" name="ServiceAddress" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="32d24be9-24c7-4942-a74d-d8bd6802deee" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="4092d8f2-f60b-4bbd-9c8b-a061152c2758" LastKnownName="String" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="c63499fc-b934-4e7d-b29b-7583e27f649b" name="IsUserInGroup" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="af1e2090-92a0-4122-9494-36aff5767d47" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="101b9d79-cf10-42f7-9e9f-de46aa33f8fb" name="UserName" direction="In">
+                  <elementDefinition Id="6dfee63e-111c-4ddb-bc9c-98eede1cbd7d" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="4092d8f2-f60b-4bbd-9c8b-a061152c2758" LastKnownName="String" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e9073c1d-9404-455b-9c02-3bc3482093eb" name="GroupName" direction="In">
+                  <elementDefinition Id="4d6ab853-9f07-4d9a-baf0-31a80ef836da" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="4092d8f2-f60b-4bbd-9c8b-a061152c2758" LastKnownName="String" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8b0137ca-f5c0-4271-bd7c-be69a2a0edd2" direction="Return">
+                  <elementDefinition Id="ddb3bec3-b6cb-438e-89bd-89570e0411f2" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="2232a3bd-f7b3-4d76-a662-262203e9b7b9" LastKnownName="Boolean" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="4092d8f2-f60b-4bbd-9c8b-a061152c2758" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
+        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="2232a3bd-f7b3-4d76-a662-262203e9b7b9" name="Boolean" isAbstract="false" isLeaf="false" cachedFullName="Boolean">
+        <elementDefinition Id="8943dc84-709e-4f62-b15a-a3273aa6f165" />
+      </referencedType>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="89e6d440-52a9-43b9-ac35-74cf36c3cff0" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+    <profileInstances>
+      <packageHasProfileInstances Id="ef112559-dd33-4185-b63e-41ed6dc683dd">
+        <profileInstance Id="41198c00-0c97-42c1-8402-87877ebb9e94" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="729e2a64-2526-42fa-80a6-96df1198585f">
+        <profileInstance Id="c70eb5f4-b1fc-49c8-8215-bed5435bbb23" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

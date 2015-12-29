@@ -1,0 +1,483 @@
+<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<ns0:BasePageForWpfControls
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:ns0="clr-namespace:CMP.Setup"
+    x:Class="CMP.Setup.SelectWapDatabaseServerPage"
+    x:Uid="ns0:BasePageForWpfControls_1"
+    Height="415"
+    Width="735">
+    <ns0:BasePageForWpfControls.Resources>
+        <ResourceDictionary
+            x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    x:Uid="ResourceDictionary_2"
+                    Source="/SetupCMP;component/WPFResourceDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ns0:BasePageForWpfControls.Resources>
+    <Grid
+        x:Name="selectDatabaseGrid1"
+        x:Uid="Grid_1"
+        Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                x:Uid="RowDefinition_01"
+                Height="Auto" />
+            <!-- 0 - Header, Server -->
+            <RowDefinition
+                x:Uid="RowDefinition_02"
+                Height="15" />
+            <!-- 1 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_03"
+                Height="Auto" />
+            <!-- 2 - Choose credential -->
+            <RowDefinition
+                x:Uid="RowDefinition_04"
+                Height="15" />
+            <!-- 3 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_05"
+                Height="Auto" />
+            <!-- 4 - Instance database-->
+        </Grid.RowDefinitions>
+        <Grid
+            x:Name="stackPanelServerName"
+            x:Uid="stackPanelServerName"
+            Grid.Column="0"
+            Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    x:Uid="RowDefinition_1"
+                    Height="Auto" />
+                <!-- 0 - Header -->
+                <RowDefinition
+                    x:Uid="RowDefinition_2"
+                    Height="Auto" />
+                <!-- 1 - Description -->
+                <RowDefinition
+                    x:Uid="RowDefinition_3"
+                    Height="11" />
+                <!-- 2 - Space -->
+                <RowDefinition
+                    x:Uid="RowDefinition_4"
+                    Height="Auto" />
+                <!-- 3 - Server -->
+                <RowDefinition
+                    x:Uid="RowDefinition_5"
+                    Height="7" />
+                <!-- 4 - Space -->
+                <RowDefinition
+                    x:Uid="RowDefinition_6"
+                    Height="Auto" />
+                <!-- 5 - Port -->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_1"
+                    Width="27" />
+                <!-- 0 - Left margin -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_2"
+                    SharedSizeGroup="LabelColumns"
+                    Width="Auto" />
+                <!-- 1 - Label -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_3"
+                    Width="7" />
+                <!-- 2 - Space -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_4"
+                    Width="*" />
+                <!-- 3 - Input textbox-->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_5"
+                    Width="7" />
+                <!-- 4 - Space -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_6"
+                    Width="Auto" />
+                <!-- 5 - Button, if available-->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_7"
+                    Width="32" />
+                <!-- 6 - Right margin -->
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                x:Uid="TextBlock_1"
+                Grid.Row="0"
+                Style="{StaticResource StylePageHeader}"
+                Text="WAP Database configuration" />
+            <TextBlock
+                x:Uid="TextBlock_2"
+                Grid.Column="1"
+                Grid.ColumnSpan="5"
+                Grid.Row="1"
+                Style="{StaticResource StylePageHeaderDescription}"
+                Text="Provide information about the database that holds information about the current WAP deployment." />
+            <Label
+                x:Uid="Label_1"
+                Content="_Server name:"
+                Grid.Column="1"
+                Grid.Row="3"
+                Margin="0,1,0,0"
+                Style="{StaticResource StyleBasicLabel}"
+                Target="{Binding ElementName=textBoxServer}"
+                VerticalAlignment="Top" />
+            <TextBox
+                x:Name="textBoxServer"
+                x:Uid="textBoxServer"
+                Grid.Column="3"
+                Grid.Row="3"
+                HorizontalAlignment="Stretch"
+                LostFocus="textBoxServer_LostFocus"
+                Style="{StaticResource StyleBasicOneLineInput}"
+                TextChanged="textBoxServer_TextChanged" />
+            <Label
+                x:Uid="Label_2"
+                Content="P_ort:"
+                Grid.Column="1"
+                Grid.Row="5"
+                LostFocus="textBoxPort_LostFocus"
+                Margin="0,1,0,0"
+                Style="{StaticResource StyleBasicLabel}"
+                Target="{Binding ElementName=textBoxPort}"
+                VerticalAlignment="Top" />
+            <TextBox
+                x:Name="textBoxPort"
+                x:Uid="textBoxPort"
+                Grid.Column="3"
+                Grid.Row="5"
+                MaxLength="6"
+                Style="{StaticResource StyleBasicOneLineInput}"
+                TextChanged="textBoxPort_Changed"
+                Width="70" />
+        </Grid>
+        <Grid
+            x:Name="stackPanelCredential"
+            x:Uid="Grid_2"
+            Grid.Column="0"
+            Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    x:Uid="RowDefinition_8"
+                    Height="Auto" />
+                <!-- 0 - Choose credential -->
+                <RowDefinition
+                    x:Uid="RowDefinition_9"
+                    Height="7" />
+                <!-- 1 - Space -->
+                <RowDefinition
+                    x:Uid="RowDefinition_10"
+                    Height="Auto" />
+                <!-- 2 - User Name -->
+                <RowDefinition
+                    x:Uid="RowDefinition_11"
+                    Height="7" />
+                <!-- 3 - Space -->
+                <RowDefinition
+                    x:Uid="RowDefinition_12"
+                    Height="Auto" />
+                <!-- 4 - Format -->
+                <RowDefinition
+                    x:Uid="RowDefinition_13"
+                    Height="7" />
+                <!-- 5 - Space -->
+                <RowDefinition
+                    x:Uid="RowDefinition_14"
+                    Height="Auto" />
+                <!-- 6 - Password -->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_11"
+                    Width="27" />
+                <!-- 0 - Left margin -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_12"
+                    SharedSizeGroup="LabelColumns"
+                    Width="Auto" />
+                <!-- 1 - Label -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_13"
+                    Width="7" />
+                <!-- 2 - Space -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_14"
+                    Width="*" />
+                <!-- 3 - Input textbox-->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_15"
+                    Width="7" />
+                <!-- 4 - Space -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_16"
+                    Width="Auto" />
+                <!-- 5 - Button, if available-->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_17"
+                    Width="32" />
+                <!-- 6 - Right margin -->
+            </Grid.ColumnDefinitions>
+            <CheckBox
+                x:Name="checkBoxNewUserId"
+                x:Uid="checkBoxNewUserId"
+                Checked="checkBoxcheckBoxNewUserId_CheckedChanged"
+                Content="Use the _following credentials"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.Row="0"
+                HorizontalAlignment="Stretch"
+                Unchecked="checkBoxcheckBoxNewUserId_CheckedChanged" />
+            <Label
+                x:Name="labelUserName"
+                x:Uid="labelUserName"
+                Content="User na_me:"
+                Grid.Column="1"
+                Grid.Row="2"
+                Margin="20,1,0,0"
+                Style="{StaticResource StyleBasicLabel}"
+                Target="{Binding ElementName=textBoxUserName}"
+                VerticalAlignment="Top" />
+            <TextBox
+                x:Name="textBoxUserName"
+                x:Uid="textBoxUserName"
+                Grid.Column="3"
+                Grid.Row="2"
+                HorizontalAlignment="Stretch"
+                LostFocus="textBoxUserName_LostFocus"
+                Style="{StaticResource StyleBasicOneLineInput}" />
+            <Label
+                x:Name="labelUserNameFormat"
+                x:Uid="labelUserNameFormat"
+                Content="Format: Domain\UserName"
+                Grid.Column="3"
+                Grid.Row="4"
+                Style="{StaticResource StyleBasicLabel}" />
+            <Label
+                x:Name="labelPassword"
+                x:Uid="labelPassword"
+                Content="Pass_word:"
+                Grid.Column="1"
+                Grid.Row="6"
+                Margin="20,1,0,0"
+                Style="{StaticResource StyleBasicLabel}"
+                Target="{Binding ElementName=passwordBoxPassword}"
+                VerticalAlignment="Top" />
+            <PasswordBox
+                x:Name="passwordBoxPassword"
+                x:Uid="passwordBoxPassword"
+                Grid.Column="3"
+                Grid.Row="6"
+                LostFocus="passwordBox_LostFocus"
+                MaxLength="256"
+                PasswordChanged="passwordBox_PasswordChanged"
+                Style="{StaticResource StylePasswordBox}"
+                Width="200" />
+        </Grid>
+        <Grid
+            x:Name="stackPanelInstanceDatabase"
+            x:Uid="Grid_3"
+            Grid.Column="0"
+            Grid.Row="4">
+            <Grid.RowDefinitions>
+                <!-- 0 - Instance -->
+                <RowDefinition
+                    x:Uid="RowDefinition_16"
+                    Height="Auto" />
+                <!-- 1 - Space -->
+                <RowDefinition
+                    x:Uid="RowDefinition_17"
+                    Height="11" />
+                <!-- 2 - Label -->
+                <RowDefinition
+                    x:Uid="RowDefinition_18"
+                    Height="Auto" />
+                <!-- 3 - Space -->
+                <RowDefinition
+                    x:Uid="RowDefinition_19"
+                    Height="7" />
+                <!-- 4 - New database -->
+                <RowDefinition
+                    x:Uid="RowDefinition_20"
+                    Height="Auto" />
+                <!-- 5 - Space -->
+                <RowDefinition
+                    x:Uid="RowDefinition_21"
+                    Height="7" />
+                <!-- 6 - Existing database -->
+                <RowDefinition
+                    x:Uid="RowDefinition_22"
+                    Height="Auto" />
+                <!-- 7 - Space -->
+                <RowDefinition
+                    x:Uid="RowDefinition_23"
+                    Height="11" />
+                <!-- 8 - Communicating with the database -->
+                <RowDefinition
+                    x:Uid="RowDefinition_24"
+                    Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_18"
+                    Width="27" />
+                <!-- 0 - Left margin -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_19"
+                    SharedSizeGroup="LabelColumns"
+                    Width="Auto" />
+                <!-- 1 - Label -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_20"
+                    Width="7" />
+                <!-- 2 - Space -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_21"
+                    Width="*" />
+                <!-- 3 - Input textbox-->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_22"
+                    Width="7" />
+                <!-- 4 - Space -->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_23"
+                    Width="Auto" />
+                <!-- 5 - Button, if available-->
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_24"
+                    Width="32" />
+                <!-- 6 - Right margin -->
+            </Grid.ColumnDefinitions>
+            <Label
+                x:Uid="Label_3"
+                Content="_Instance name:"
+                Grid.Column="1"
+                Grid.Row="0"
+                Margin="0,3,0,0"
+                Style="{StaticResource StyleBasicLabel}"
+                Target="{Binding ElementName=comboBoxInstance}"
+                VerticalAlignment="Top" />
+            <ComboBox
+                x:Name="comboBoxInstance"
+                x:Uid="comboBoxInstance"
+                DropDownOpened="comboBoxInstance_DropDownOpened"
+                Grid.Column="3"
+                Grid.Row="0"
+                HorizontalAlignment="Stretch"
+                IsEditable="True"
+                LostFocus="comboBoxInstance_LostFocus" />
+            <TextBlock
+                x:Name="textBlockDatabaseChoice"
+                x:Uid="textBlockDatabaseChoice"
+                Foreground="Black"
+                Grid.Column="1"
+                Grid.ColumnSpan="5"
+                Grid.Row="2"
+                Style="{StaticResource StyleBasicTextBlock}"
+                Text="Select the existing WAP database." />
+            <RadioButton
+                x:Name="radioNewDatabase"
+                x:Uid="radioNewDatabase"
+                Checked="radioNewDatabase_Checked"
+                Content="New _database:"
+                Grid.Column="1"
+                Grid.Row="4"
+                GroupName="radioButtonDatabaseChoice"
+                Margin="0,2,0,0"
+                VerticalAlignment="Top" />
+            <TextBox
+                x:Name="textBoxNewDatabaseName"
+                x:Uid="textBoxNewDatabaseName"
+                Grid.Column="3"
+                Grid.Row="4"
+                HorizontalAlignment="Stretch"
+                Style="{StaticResource StyleBasicOneLineInput}"
+                TextChanged="textBoxNewDatabaseName_TextChanged" />
+            <RadioButton
+                x:Name="radioExistingDatabase"
+                x:Uid="radioExistingDatabase"
+                Content="_Existing WAP database:"
+                Checked="radioExistingDatabase_Checked"
+                GroupName="radioButtonDatabaseChoice"
+                Grid.Column="1"
+                Grid.Row="6"
+                Margin="0,4,0,0"
+                VerticalAlignment="Top" />
+            <ComboBox
+                x:Name="comboBoxExistingDatabaseName"
+                x:Uid="comboBoxExistingDatabaseName"
+                DropDownOpened="comboBoxExistingDatabaseName_DropDownOpened"
+                Grid.Column="3"
+                Grid.Row="6"
+                HorizontalAlignment="Stretch"
+                IsEditable="True"
+                LostFocus="comboBoxExistingDatabaseName_Changed"
+                SelectionChanged="comboBoxExistingDatabaseName_Changed" />
+            <StackPanel
+                x:Name="stackPanelCommunicatingSqlServer"
+                x:Uid="stackPanelCommunicatingSqlServer"
+                Grid.Column="1"
+                Grid.ColumnSpan="5"
+                Grid.Row="8"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                Visibility="Hidden">
+                <Grid
+                    x:Uid="Grid_5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            x:Uid="ColumnDefinition_8"
+                            Width="*" />
+                        <!-- 0 - Text block -->
+                        <ColumnDefinition
+                            x:Uid="ColumnDefinition_9"
+                            Width="7" />
+                        <!-- 1 - Space -->
+                        <ColumnDefinition
+                            x:Uid="ColumnDefinition_10"
+                            Width="Auto" />
+                        <!-- 2 - Progress Bar -->
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        x:Name="textBlockCommunicatingSqlServer"
+                        x:Uid="textBlockCommunicatingSqlServer"
+                        Foreground="Blue"
+                        Grid.Column="0"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource StyleBasicTextBlock}">
+                            Communicating with server, please wait…
+                    </TextBlock>
+                    <ProgressBar
+                        x:Name="progressBarCommunicatingSqlServer"
+                        x:Uid="progressBarCommunicatingSqlServer"
+                        Grid.Column="2"
+                        Height="15"
+                        HorizontalAlignment="Right"
+                        IsTabStop="False"
+                        MinWidth="75"
+                        VerticalAlignment="Top" />
+                </Grid>
+            </StackPanel>
+            <StackPanel
+                x:Name="stackPanelBackupDatabase"
+                x:Uid="stackPanelBackupDatabase"
+                Grid.Column="1"
+                Grid.ColumnSpan="5"
+                Grid.Row="8"
+                Orientation="Horizontal"
+                Visibility="Hidden">
+                <CheckBox
+                    x:Name="checkBoxBackupDatabase"
+                    x:Uid="checkBoxBackupDatabase"
+                    Checked="checkBoxBackupDatabase_CheckedUnchecked"
+                    Content="Backup this database during upgrade"
+                    IsChecked="True"
+                    Style="{StaticResource StyleCheckBox}"
+                    Unchecked="checkBoxBackupDatabase_CheckedUnchecked" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</ns0:BasePageForWpfControls>

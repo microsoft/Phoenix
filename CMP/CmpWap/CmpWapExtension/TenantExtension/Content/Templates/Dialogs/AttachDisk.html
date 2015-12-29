@@ -1,0 +1,40 @@
+﻿<div class="fxshell-tabcontainer">
+    <div class="drawer-form-wapitem">
+        <h2>Attach a new/existing disk to the virtual machine or to grow an existing disk.</h2>
+    </div>
+
+    <div class="drawer-form-wapitem">
+        <div id="vm-attachdisk-radio" class="radio pushbutton"></div>
+    </div>
+    <br />
+    <div id="vmdisk-option-desc" class="drawer-form-wapitem"></div>
+    <br />
+    <div id="vm-attachdisk-existing">
+        <label class="wap-subnavlabel"> Disk Name</label>
+        <div id="vm-attachdisk-existing" style="float:left;margin-top:15px">
+            <select id="attachexistingdisk" name="attachexistingdisk" class="wap-subnavselect" data-fxcontroltype="fxDropdown"></select>
+        </div>
+    </div>
+
+    <div id="vm-growdisk-existing">
+        <div style="float:left;margin-top:15px">
+            <label class="wap-subnavlabel">DISK NAME</label><br><br><br>
+            <label class="wap-subnavlabel">DISK SIZE (GB)</label>
+        </div>*
+        <div style="float:left;margin-top:15px">
+            <select id="growexistingdisk" name="growexistingdisk" class="wap-subnavselect" data-fxcontroltype="fxDropdown"></select><br><br><br>
+            <div id="slider-growdisk"></div>
+        </div>
+    </div>  
+
+    <div id="vm-attachdisk-new">
+    <div class="drawer-form-wapitem">
+        <label for="vmName">VIRTUAL MACHINE NAME</label>
+            <input id="VmServrName" type="text" maxlength="15" readonly />
+    </div>   
+    <div class="drawer-form-wapitem">
+        <label for="sizeoftheDisk">DISK SIZE (GB)</label>
+            <div id="slider-newdisk"></div>
+        </div>
+    </div>
+</div>

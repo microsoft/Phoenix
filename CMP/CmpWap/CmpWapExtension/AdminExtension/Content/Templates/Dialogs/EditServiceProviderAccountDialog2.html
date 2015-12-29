@@ -1,0 +1,95 @@
+﻿<script language="javascript" type="text/javascript">
+
+    var i = 0;
+
+    function addValue()
+    {
+        var v = document.form1.txtValue.value;
+        // get the TextBox Value and assign it into the variable
+        var AddOpt = new Option(v, v);
+        document.form1.lstValue.options[i++] = AddOpt;
+        return true;
+    }
+
+    function deleteValue()
+    {
+        var s = 1;
+        var Index;
+
+        if (document.form1.lstValue.selectedIndex == -1)
+        {
+            alert("Please select any item from the ListBox");
+            return true;
+        }
+
+        while (s > 0)
+        {
+            Index = document.form1.lstValue.selectedIndex;
+
+            if (Index >= 0)
+            {
+                document.form1.lstValue.options[Index] = null;
+                --i;
+            }
+            else
+                s = 0;
+        }
+        return true;
+    }
+
+</script>
+
+<p class="aux-dialogSubHeader">Manage Service Provider Account Access</p>
+
+<div class="hw-AddServiceProviderAccount">
+    <form name="form1" class="aux-dialog-form">
+
+        <script language="javascript" type="text/javascript">
+
+    var i = 0;
+
+    function addValue() {
+        var v = document.form1.txtValue.value;
+        // get the TextBox Value and assign it into the variable
+        var AddOpt = new Option(v, v);
+        document.form1.lstValue.options[i++] = AddOpt;
+        return true;
+    }
+
+    function deleteValue() {
+        var s = 1;
+        var Index;
+
+        if (document.form1.lstValue.selectedIndex == -1) {
+            alert("Please select any item from the ListBox");
+            return true;
+        }
+
+        while (s > 0) {
+            Index = document.form1.lstValue.selectedIndex;
+
+            if (Index >= 0) {
+                document.form1.lstValue.options[Index] = null;
+                --i;
+            }
+            else
+                s = 0;
+        }
+        return true;
+    }
+
+        </script>
+
+
+
+        <input name="txtValue" type="text" />
+        <input type="button" name="addTenantToSPG" onclick="var i = document.form1.lstValue.options.count;var v = document.form1.txtValue.value; var AddOpt = new Option(v, v); document.form1.lstValue.options[i] = AddOpt; return true;" />
+
+        <select name="lstValue" multiple>
+            <option value="empty">
+        </select>
+
+        <input type="button" name="delete" value="Delete" onclick="deleteValue();" />
+
+    </form>
+</div>

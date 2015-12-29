@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
+xmlns:uti="http://schemas.microsoft.com/wix/UtilExtension">
+  
+  <!-- Source Locations -->
+  <?ifndef WebSiteRoot ?>
+  <?define WebSiteRoot="..\Api" ?>
+  <?endif?>
+
+  <?ifndef WebSiteRootTargetDir ?>
+  <?define WebSiteRootTargetDir="$(var.Microsoft.WindowsAzurePack.CmpWapExtension.Api.TargetDir)" ?>
+  <?endif?>
+
+  <DirectoryRef Id="WEBSITEDIR">
+    <Component Id="Global.asax"
+               Guid="{A7E0587B-F7DC-46F8-ADD8-EE54EA0CE91B}">
+      <File Id="Global.asax"
+            CompanionFile="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll"
+            Source="$(var.WebSiteRoot)\Global.asax" />
+    </Component>
+    <Component Id="Web.config"
+               Guid="{356DE5E5-BFFA-4B15-9CE5-C96434CA0AB3}">
+      <File Id="Web.config"
+            CompanionFile="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll"
+            Source="$(var.WebSiteRoot)\Web.config" />
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AConfig' File='[#Web.config]' Action='setValue' ElementPath="//connectionStrings/add[\[]@name='CMPContext'[\]]/@connectionString" Value="[REGCONNECTIONSTR]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AtConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CMPContextPassword'[\]]/@value" Value="[CMPCONTEXTPASSWORDSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA482AuConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='AdminserviceEndpoint'[\]]/@value" Value="[ADMINSERVICEENDPOINTSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AuConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='WindowsAuthEndpoint'[\]]/@value" Value="[WINDOWSAUTHENDPOINTSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A332A382dAConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='ItsmBaseurl'[\]]/@value" Value="[ITSMBASEURLSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382dBConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CmpServiceCredentials'[\]]/@value" Value="[CMPSERVICECREDENTIALSSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382yAConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='ApproverAlias'[\]]/@value" Value="[APPROVERALIASSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382ymConfig' File='[#Web.config]' Action='setValue' ElementPath="//connectionStrings/add[\[]@name='MicrosoftMgmtSvcCmpContext'[\]]/@connectionString" Value="[MICROSOFTMEMTSVCCMPCONTEXTSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4A2ymConfig' File='[#Web.config]' Action='setValue' ElementPath="//connectionStrings/add[\[]@name='ECSPortalDBContext'[\]]/@connectionString" Value="[ECSPORTALDBCONTEXTSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A38' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CmpServiceUrl'[\]]/@value" Value="[CMPSERVICEURLSTRING]" SelectionLanguage="XPath"/>
+
+      
+    </Component>
+    <Component Id="Default.html"
+               Guid="{5901D4CC-33BE-4F10-AE96-E5931512DE6D}">
+      <File Id="Default.html"
+            CompanionFile="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll"
+            Source="$(var.WebSiteRoot)\Default.html" />
+    </Component>
+    <Directory Id="bin"
+               Name="bin">
+      <Component Id="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll"
+                 Guid="{4F87204C-1488-4427-B2E8-7DC072CBFFA8}">
+        <File Id="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll" />
+      </Component>
+      <Component Id="Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll"
+                 Guid="{7FA6A671-1554-46C6-B7A2-8788502CF649}">
+        <File Id="Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll" />
+      </Component>
+
+      <Component Id="Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll"
+                 Guid="{8B7D7531-01F7-4657-B990-F2CBD8E80C0A}">
+        <File Id="Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll"/>
+      </Component>
+
+      <Component Id="Newtonsoft.Json.dll"
+                 Guid="{A24DB728-8940-41A3-8D2A-443BAA4B5EBC}">
+        <File Id="Newtonsoft.Json.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="System.Net.Http.Formatting.dll"
+                 Guid="{E89D6456-0086-4644-AB74-0B0F41E8EE76}">
+        <File Id="System.Net.Http.Formatting.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Net.Http.Formatting.dll" />
+      </Component>
+      <Component Id="System.Web.Http.dll"
+                 Guid="{B6C109D9-1669-4C90-8AC0-192774529A48}">
+        <File Id="System.Web.Http.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Web.Http.dll" />
+      </Component>
+      <Component Id="System.Web.Http.WebHost.dll"
+                 Guid="{120E6305-4FAF-4611-A3D3-69AF48FF7AE5}">
+        <File Id="System.Web.Http.WebHost.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Web.Http.WebHost.dll" />
+      </Component>
+
+      <!-- Dependencies -->
+
+      <Component Id="T_Microsoft.WindowsAzurePack.Samples.dll"
+            Guid="{F521F5A4-7341-4A6A-8C29-81D67F56A48C}">
+        <File Id="T_Microsoft.WindowsAzurePack.Samples.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzurePack.Samples.dll" />
+      </Component>
+
+<!--Odata-->
+      <Component Id="T_System.Web.Http.OData.dll"
+       Guid="{E52256C7-D8D2-4DBE-96D7-BDF0B1A0F254}">
+        <File Id="T_System.Web.Http.OData.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Web.Http.OData.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient.dll"
+           Guid="{7518C872-F51A-4D61-ADD3-35177187920B}">
+      <File Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient.dll"
+            KeyPath="yes"
+            Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.Data.Edm.dll"
+             Guid="{33D90C8B-E56C-4AB7-912A-A6D81C7E58F3}">
+        <File Id="T_Microsoft.Data.Edm.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.Data.Edm.dll" />
+      </Component>
+    
+      <Component Id="T_Microsoft.Data.OData.dll"
+             Guid="{1BA4BA30-7F47-4707-9C3D-227A77A52494}">
+        <File Id="T_Microsoft.Data.OData.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.Data.OData.dll" />
+      </Component>
+    
+      <Component Id="T_Microsoft.Data.Services.Client.dll"
+             Guid="{7095CA9F-5A1E-4903-ABB9-B019B9C66271}">
+        <File Id="T_Microsoft.Data.Services.Client.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.Data.Services.Client.dll" />
+      </Component>
+
+      <Component Id="T_CmpInterfaceModel.dll"
+             Guid="{48977932-A2FF-4EB5-9BF4-4F22E0F67185}">
+        <File Id="T_CmpInterfaceModel.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\CmpInterfaceModel.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.Web.Infrastructure.dll"
+             Guid="{4C3A59F4-324D-442B-937C-EA2F7BF572E2}">
+        <File Id="T_Microsoft.Web.Infrastructure.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.Web.Infrastructure.dll" />
+      </Component>
+
+      <Component Id="T_System.Spatial.dll"
+             Guid="{D68EA0C3-AE55-4261-9F3E-F06DCE6CB748}">
+        <File Id="T_System.Spatial.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Spatial.dll" />
+      </Component>
+
+      <Component Id="T_System.Web.Helpers.dll"
+             Guid="{9435B0EB-A4A5-489C-9BEB-AFBE098B88B3}">
+        <File Id="T_System.Web.Helpers.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Web.Helpers.dll" />
+      </Component>
+
+      <Component Id="T_System.Web.Mvc.dll"
+             Guid="{B331778A-0604-49D4-A6F5-F4CFD089F6AD}">
+        <File Id="T_System.Web.Mvc.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Web.Mvc.dll" />
+      </Component>
+
+      <Component Id="T_System.Web.Razor.dll"
+             Guid="{4E12BB93-3741-471D-B926-07EB6F466C46}">
+        <File Id="T_System.Web.Razor.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Web.Razor.dll" />
+      </Component>
+
+      <Component Id="T_System.Web.WebPages.Deployment.dll"
+             Guid="{C2B71C32-6CE5-4168-B9B4-01188CF4F53F}">
+        <File Id="T_System.Web.WebPages.Deployment.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Web.WebPages.Deployment.dll" />
+      </Component>
+
+      <Component Id="T_System.Web.WebPages.dll"
+             Guid="{ED9CACA8-71A2-4835-9E66-259DB547B3B0}">
+        <File Id="T_System.Web.WebPages.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Web.WebPages.dll" />
+      </Component>
+
+      <Component Id="T_System.Web.WebPages.Razor.dll"
+             Guid="{07F55B84-A798-4677-9EB0-2E7A6C6BE6A4}">
+        <File Id="T_System.Web.WebPages.Razor.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\System.Web.WebPages.Razor.dll" />
+      </Component>
+
+      <Component Id="T_EntityFramework.dll"
+             Guid="{EFEDF603-EEF8-4DB4-84F0-74B4A52C6431}">
+        <File Id="T_EntityFramework.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\EntityFramework.dll" />
+      </Component>
+
+      <Component Id="T_EntityFramework.SqlServer.dll"
+             Guid="{F4AE283E-BEF7-497B-852B-A436D717E45F}">
+        <File Id="T_EntityFramework.SqlServer.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\EntityFramework.SqlServer.dll" />
+      </Component>
+
+      <!-- Dependencies -->
+      <!-- Dependencies 2 -->
+
+      <Component Id="T_AzureAdminClientLib.dll"
+            Guid="{4C3D7F72-1A33-47C5-8DF1-1A264A8A1852}">
+        <File Id="T_AzureAdminClientLib.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\AzureAdminClientLib.dll" />
+      </Component>
+
+      <Component Id="T_CmpCommon.dll"
+            Guid="{DEAC18C0-1F65-4D90-B7E8-8FB676F20C37}">
+        <File Id="T_CmpCommon.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\CmpCommon.dll" />
+      </Component>
+      
+      <Component Id="T_CmpServiceLib.dll"
+            Guid="{D75E80B2-754B-4754-A123-E7FD0E63E7F8}">
+        <File Id="T_CmpServiceLib.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\CmpServiceLib.dll" />
+      </Component>
+
+      <Component Id="T_KryptoLib.dll"
+            Guid="{320A8862-2EAF-4FF2-86F5-3A030D770867}">
+        <File Id="T_KryptoLib.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\KryptoLib.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.ServiceBus.dll"
+            Guid="{B7F0995A-22F0-4D94-AB7B-DC4FF75EDA11}">
+        <File Id="T_Microsoft.ServiceBus.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.ServiceBus.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.Threading.Tasks.dll"
+            Guid="{99564BF1-5FD5-44D5-B543-AE7E12FFDF61}">
+        <File Id="T_Microsoft.Threading.Tasks.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.Threading.Tasks.dll" />
+      </Component>
+
+      <Component Id="T_Hyak.Common.dll"
+            Guid="{4474C54B-C918-438F-B61D-557FB7D06333}">
+        <File Id="T_Hyak.Common.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Hyak.Common.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.Azure.Common.dll"
+            Guid="{BDF7BC01-2B33-44C7-9EC0-F0BEEB229742}">
+        <File Id="T_Microsoft.Azure.Common.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.Azure.Common.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.Azure.Common.NetFramework.dll"
+            Guid="{5B7DBAC1-B0C5-4A3F-AD4E-90E5E01C97AF}">
+        <File Id="T_Microsoft.Azure.Common.NetFramework.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.Azure.Common.NetFramework.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.WindowsAzure.Configuration.dll"
+            Guid="{841AD744-4A5D-412B-9D13-4B7AFD429EEB}">
+        <File Id="T_Microsoft.WindowsAzure.Configuration.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzure.Configuration.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.WindowsAzure.Management.Compute.dll"
+            Guid="{BD1A51DA-51E7-4BD8-894C-2F4964AD3116}">
+        <File Id="T_Microsoft.WindowsAzure.Management.Compute.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzure.Management.Compute.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.WindowsAzure.Storage.DataMovement.dll"
+            Guid="{E6C58745-5CFA-49AA-8401-1188DFE94748}">
+        <File Id="T_Microsoft.WindowsAzure.Storage.DataMovement.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzure.Storage.DataMovement.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.WindowsAzure.Storage.dll"
+            Guid="{21248C08-057B-439E-ADC6-8A08B7837733}">
+        <File Id="T_Microsoft.WindowsAzure.Storage.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzure.Storage.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.WindowsAzure.StorageClient.dll"
+            Guid="{FDA93B58-EFBE-4D00-8D40-6C292FE4D729}">
+        <File Id="T_Microsoft.WindowsAzure.StorageClient.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzure.StorageClient.dll" />
+      </Component>
+
+      <Component Id="T_PowershellLib.dll"
+            Guid="{A33348AD-D6E3-4A7D-81B3-16A252520801}">
+        <File Id="T_PowershellLib.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\PowershellLib.dll" />
+      </Component>
+
+      <Component Id="T_Microsoft.WindowsAzure.Management.dll"
+            Guid="{095C9B3D-9151-4BEF-9E37-94497D09C21E}">
+        <File Id="T_Microsoft.WindowsAzure.Management.dll"
+              KeyPath="yes"
+              Source="$(var.WebSiteRootTargetDir)\Microsoft.WindowsAzure.Management.dll" />
+      </Component>
+
+      <!-- Dependencies 2 -->
+
+    </Directory>
+  </DirectoryRef>
+  <ComponentGroup Id="WebSiteContent">
+    <ComponentRef Id="Global.asax" />
+    <ComponentRef Id="Web.config" />
+    <ComponentRef Id="Default.html" />
+    <ComponentRef Id="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll" />
+    <ComponentRef Id="Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.dll" />
+    <ComponentRef Id="Microsoft.WindowsAzurePack.CmpWapExtension.Common.dll"/>
+    <ComponentRef Id="Newtonsoft.Json.dll" />
+    <ComponentRef Id="System.Net.Http.Formatting.dll" />
+    <ComponentRef Id="System.Web.Http.dll" />
+    <ComponentRef Id="System.Web.Http.WebHost.dll" />
+    <!-- Dependencies -->
+    <ComponentRef Id="T_Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient.dll" />
+    <ComponentRef Id="T_Microsoft.WindowsAzurePack.Samples.dll" />
+   
+    <!--Odata-->
+    <ComponentRef Id="T_System.Web.Http.OData.dll" />
+    <ComponentRef Id="T_CmpInterfaceModel.dll" />
+    <ComponentRef Id="T_Microsoft.Data.Edm.dll" />
+    <ComponentRef Id="T_Microsoft.Data.OData.dll" />
+    <ComponentRef Id="T_Microsoft.Data.Services.Client.dll" />
+    <ComponentRef Id="T_Microsoft.Web.Infrastructure.dll" />
+    <ComponentRef Id="T_System.Spatial.dll" />
+    <ComponentRef Id="T_System.Web.Helpers.dll" />
+    <ComponentRef Id="T_System.Web.Mvc.dll" />
+    <ComponentRef Id="T_System.Web.Razor.dll" />
+    <ComponentRef Id="T_System.Web.WebPages.Deployment.dll" />
+    <ComponentRef Id="T_System.Web.WebPages.dll" />
+    <ComponentRef Id="T_System.Web.WebPages.Razor.dll" />
+    <ComponentRef Id="T_EntityFramework.dll" />
+    <ComponentRef Id="T_EntityFramework.SqlServer.dll" />
+    <!-- Dependencies -->
+    <!-- Dependencies 2 -->
+    <ComponentRef Id="T_AzureAdminClientLib.dll" />
+    <ComponentRef Id="T_CmpCommon.dll" />
+    <ComponentRef Id="T_CmpServiceLib.dll" />
+    <ComponentRef Id="T_KryptoLib.dll" />
+    <ComponentRef Id="T_Microsoft.ServiceBus.dll" />
+    <ComponentRef Id="T_Microsoft.Threading.Tasks.dll" />
+    <ComponentRef Id="T_Microsoft.WindowsAzure.Management.dll" />
+    <ComponentRef Id="T_Hyak.Common.dll" />
+    <ComponentRef Id="T_Microsoft.Azure.Common.dll" />
+    <ComponentRef Id="T_Microsoft.Azure.Common.NetFramework.dll" />
+    <ComponentRef Id="T_Microsoft.WindowsAzure.Configuration.dll" />
+    <ComponentRef Id="T_Microsoft.WindowsAzure.Management.Compute.dll" />
+    <ComponentRef Id="T_Microsoft.WindowsAzure.Storage.DataMovement.dll" />
+    <ComponentRef Id="T_Microsoft.WindowsAzure.Storage.dll" />
+    <ComponentRef Id="T_Microsoft.WindowsAzure.StorageClient.dll" />
+    <ComponentRef Id="T_PowershellLib.dll" />
+    <!-- Dependencies 2 -->
+  </ComponentGroup>
+</Include>

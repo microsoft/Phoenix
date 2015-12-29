@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" dslVersion="1.0.0.0" Id="221dfbd8-47ca-40de-8abe-a3dee4cd1f86" name="VmProvisionActivity" linkedPackageId="da01f31a-b052-45cf-a171-c75fd4ff170c" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="7dab2a49-5ad9-4dc7-ba13-c6f510fa79d8">
+      <elementDefinition Id="65204218-afc0-4f2f-b05d-237ba830dba0" />
+      <body>Status update:
+Suceess or Exception.
+Exception is picked up by ProcessException Activity
+Success is picked up by VmPostProvision Acticity</body>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="b46317d6-752a-481b-a3c8-548abc1c3c37" name="VmProvisionActivity" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="0407b0d7-bc93-480f-8ae4-ec667f25f579" />
+        <nodes>
+          <initialNode Id="7721085e-cba5-46a4-96d7-75ec82f30f67" name="Initial1" isLeaf="false">
+            <elementDefinition Id="59dba5ca-add6-4654-8894-bb4348680ebe" />
+            <flowNodeTargets>
+              <controlFlow Id="d12323b4-b763-45ee-ae1d-fd5442292bfc" isLeaf="false">
+                <opaqueActionMoniker Id="dcdd4b2a-1319-40e5-8220-50e751ea1521" LastKnownName="Read Queue" />
+                <elementDefinition Id="73bff984-16bf-422d-9af4-d62481f84b4e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="63cf26c6-390f-422e-8d1c-44eec54edec4" name="Determine Placement" isLeaf="false">
+            <elementDefinition Id="65860aef-29af-41a4-b631-e8b9374a9543" />
+            <flowNodeTargets>
+              <controlFlow Id="d059bd83-103f-4c80-82c3-888a4165e386" isLeaf="false">
+                <opaqueActionMoniker Id="c9e3cb30-85a0-4b35-80ad-e3a3b8d55c22" LastKnownName="Find or Create Service" />
+                <elementDefinition Id="20f523fa-6b12-4c7d-b3b1-ab7815eae0a1" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="10fdfee0-aaaa-4970-922e-b8d58e438a69" name="Query Azure Resources" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="1744a813-702d-43b2-84a8-0cc0b14960e0" />
+                  <objectFlowTargets>
+                    <objectFlow Id="4de57a4a-dbdb-4b94-ac7a-c3ec2b821949" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="c38ecca0-2627-490e-a3eb-533691b5ceab" LastKnownName="Azure Admin Interface" />
+                      <elementDefinition Id="69599ca2-09f6-4573-8692-b9f6599f0b55" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="6fc18e29-9f24-4e19-b57f-93d34c6a3621" name="2147483647" value="2147483647">
+                      <elementDefinition Id="6e2004f9-169f-4dd9-973f-cdbd73a866ad" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="f89b06ee-6990-4908-9242-c06f50bb0166" name="Validate" isLeaf="false">
+            <elementDefinition Id="9a9ec4be-d40b-4c3f-80c6-709484294250" />
+            <flowNodeTargets>
+              <controlFlow Id="f301c077-5796-49f6-8b22-51de987b3188" isLeaf="false">
+                <opaqueActionMoniker Id="63cf26c6-390f-422e-8d1c-44eec54edec4" LastKnownName="Determine Placement" />
+                <elementDefinition Id="d1cdcf40-7754-4457-b4d7-89dc4e874c2b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="eb1a204c-cceb-4893-8e98-e89c95487893" name="Updsate Status" isLeaf="false">
+            <elementDefinition Id="75ac3960-9b2d-4c87-8c6a-e90b08e6b93c" />
+            <flowNodeTargets>
+              <controlFlow Id="a2fcac67-034e-467c-bbf4-93d3de504e01" isLeaf="false">
+                <activityFinalNodeMoniker Id="87adfe85-da61-4dd1-89f9-7bdd93e45736" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="8e790e67-bd28-48c1-a8ca-4aaca61cc277" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="e1284046-e63b-4d9d-bbcc-f7140ba99877" name="Status" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="450b28ba-a378-4691-ac3e-fdc2a331341e" />
+                  <objectFlowTargets>
+                    <objectFlow Id="3b16e9c3-2935-4fa6-9dad-342bb411f474" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="6b6eb54d-60e4-45c3-b8dc-e8baeede5371" LastKnownName="Store" />
+                      <elementDefinition Id="c19a3482-a596-48d1-8feb-2fe9033732b0" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="ff2bc69d-6ced-4b09-967e-2509b8c14c6b" name="2147483647" value="2147483647">
+                      <elementDefinition Id="80a6ede1-3ce3-4312-b4ed-db653aec4450" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <activityFinalNode Id="87adfe85-da61-4dd1-89f9-7bdd93e45736" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="8ae0fed1-a7ee-4af8-805b-847b3c1ae73a" />
+          </activityFinalNode>
+          <objectNode Id="6b6eb54d-60e4-45c3-b8dc-e8baeede5371" name="Store" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="93b1bba2-3d40-42b6-a194-f2cdcba4084f" />
+            <upperBound>
+              <literalInteger Id="7921ea0f-6124-42c4-acfe-b160e51630a2" name="2147483647" value="2147483647">
+                <elementDefinition Id="bb860dfa-cfef-4222-83b6-9715af7ed7d3" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="5732f1a1-ff94-4eeb-8efc-9c8d012c7dff" name="Validate" isLeaf="false">
+            <elementDefinition Id="32d8dda8-2ee4-46ae-80a3-e3e44ffcd2fe" />
+            <flowNodeTargets>
+              <controlFlow Id="3c30fb46-05bd-43ab-8655-f0443deca281" isLeaf="false">
+                <opaqueActionMoniker Id="104dff61-46f2-473d-8432-23e0394f5927" LastKnownName="Update CMDB" />
+                <elementDefinition Id="07ac25ed-914e-421f-a04d-8e456e6fdc91" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <objectNode Id="c38ecca0-2627-490e-a3eb-533691b5ceab" name="Azure Admin Interface" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="a489745c-f74e-4d64-a3f0-8a707ea02d02" />
+            <upperBound>
+              <literalInteger Id="f036ba5b-9029-4cc8-944a-a124245355fe" name="2147483647" value="2147483647">
+                <elementDefinition Id="2ef1901e-0497-46d7-9fb3-bad52c3f9172" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="c9e3cb30-85a0-4b35-80ad-e3a3b8d55c22" name="Find or Create Service" isLeaf="false">
+            <elementDefinition Id="2efc71a3-8d2d-4c3f-979d-c82fdf6416c0" />
+            <flowNodeTargets>
+              <controlFlow Id="d4cb781e-3ec2-4f9d-90e7-d59cc26a55a1" isLeaf="false">
+                <opaqueActionMoniker Id="cef14e30-de85-439c-ac97-ea96d7701250" LastKnownName="Create VM" />
+                <elementDefinition Id="5aa5b5d8-fffa-4182-aaef-5c43529279bc" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="04e4d610-cd8c-45be-aabe-0ff85051ad21" name="Find or Create Service Request" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="e5cf8aba-e845-4348-8339-a945ee9700e8" />
+                  <objectFlowTargets>
+                    <objectFlow Id="c17f71b4-2175-4f34-97a7-7635f4f52429" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="c38ecca0-2627-490e-a3eb-533691b5ceab" LastKnownName="Azure Admin Interface" />
+                      <elementDefinition Id="c08df482-0637-4785-b03b-3437a4503f8c" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="3835a020-3496-4bd5-85d8-ebf988b752c0" name="2147483647" value="2147483647">
+                      <elementDefinition Id="9907f075-50b6-41e2-979f-d8ffa80b91a0" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="cef14e30-de85-439c-ac97-ea96d7701250" name="Create VM" isLeaf="false">
+            <elementDefinition Id="05118aa8-98c0-46e7-9038-b58825deef9a" />
+            <flowNodeTargets>
+              <controlFlow Id="72c85550-ab8f-4a91-9506-1b5a8ebabeda" isLeaf="false">
+                <opaqueActionMoniker Id="62f013e9-115b-4b0d-90c5-0ab960115351" LastKnownName="Check Creation" />
+                <elementDefinition Id="430aad1e-f5b9-4833-852c-6b23a759d13d" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="a42a3e38-c1a8-40f5-acac-59b79246b9a7" name="Create VM Request" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="6aeba1f8-2561-4b9e-b456-ab7279504560" />
+                  <objectFlowTargets>
+                    <objectFlow Id="580ff73c-a319-41b5-bbaf-3a12f20c82ed" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="c38ecca0-2627-490e-a3eb-533691b5ceab" LastKnownName="Azure Admin Interface" />
+                      <elementDefinition Id="533d4183-20cd-44c7-ac1d-59e1ec026603" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="36de5b76-aaa0-4864-b5af-7e78e4928aad" name="2147483647" value="2147483647">
+                      <elementDefinition Id="703cbae3-8052-4cec-87a6-3bb0bf885865" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="62f013e9-115b-4b0d-90c5-0ab960115351" name="Check Creation" isLeaf="false">
+            <elementDefinition Id="87a8a2d1-8fcd-49b1-ac98-1e13f3f53fac" />
+            <flowNodeTargets>
+              <controlFlow Id="2de25cb2-320a-465a-b1b1-86e0425a834f" isLeaf="false">
+                <opaqueActionMoniker Id="7d04fb8c-d278-4837-bf62-4bbde5916309" LastKnownName="Contact VM" />
+                <elementDefinition Id="65c4bd0a-b942-46c8-b1eb-680bdafb6bdb" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="69b02b7c-b7a0-4e66-9a3b-866f59d41012" name="Check VM Creation" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="073f8a2d-58b3-4617-b071-2a861698d1a0" />
+                  <objectFlowTargets>
+                    <objectFlow Id="06300fb6-8ac1-4018-a2e0-a3281c314be6" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="c38ecca0-2627-490e-a3eb-533691b5ceab" LastKnownName="Azure Admin Interface" />
+                      <elementDefinition Id="6b3da418-d37e-4620-9225-5c23e3b915e3" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="59bf16d4-b658-4f52-896b-e5eff5493377" name="2147483647" value="2147483647">
+                      <elementDefinition Id="52ac1cc6-55cb-4377-a7b8-6c6099fbb35d" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="7d04fb8c-d278-4837-bf62-4bbde5916309" name="Contact VM" isLeaf="false">
+            <elementDefinition Id="b3d28d16-2215-482c-9890-3acf920f911f" />
+            <flowNodeTargets>
+              <controlFlow Id="85eac789-6200-4aba-a082-bf720347e18c" isLeaf="false">
+                <opaqueActionMoniker Id="8836029e-197a-4f05-b876-0405ae0b58c2" LastKnownName="Move Page File, other config, set static IP, update VM" />
+                <elementDefinition Id="3d1c3a7f-1153-4cb8-bb6f-a0033a5cf36d" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="a0a634a2-e694-4c45-903e-db0d8f0fd81f" name="RemPOSH" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="e9fc59ea-5581-49bf-a16b-3735929088d0" />
+                  <objectFlowTargets>
+                    <objectFlow Id="0e1b19c7-3cde-40b6-a82d-7d048b2040b0" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="38422d98-e6b3-47ae-941e-f20bb1b21b7a" LastKnownName="VM" />
+                      <elementDefinition Id="e1772fe0-03a3-473e-8d81-003fa19d7846" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="0529e9be-dfa2-454a-8b20-ee2e1863f215" name="2147483647" value="2147483647">
+                      <elementDefinition Id="77163d83-ff61-4cc2-90a6-1c7845933faf" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="8836029e-197a-4f05-b876-0405ae0b58c2" name="Move Page File, other config, set static IP, update VM" isLeaf="false">
+            <elementDefinition Id="feaa3c7f-3f4e-4543-aed7-6fdc6011876c" />
+            <flowNodeTargets>
+              <controlFlow Id="4071d202-7ded-4906-9155-478044293468" isLeaf="false">
+                <opaqueActionMoniker Id="a48b8c41-ffd0-4c98-964d-eff8a1592691" LastKnownName="Contact VM" />
+                <elementDefinition Id="8828f2e5-1d31-440e-a11a-fedb20dca9fd" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="a3400e05-7ec1-4b21-b67f-1f500d1f6fe0" name="Update VM Request" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="bd3af32f-8225-4a26-a4b9-caa703baefcc" />
+                  <objectFlowTargets>
+                    <objectFlow Id="52adf9d9-193c-4696-bbde-4678225bbee1" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="c38ecca0-2627-490e-a3eb-533691b5ceab" LastKnownName="Azure Admin Interface" />
+                      <elementDefinition Id="781408a5-7baa-4554-80b6-189d6832ef42" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="2ded8e0c-96b7-4d65-be4b-ab48bf9058a8" name="2147483647" value="2147483647">
+                      <elementDefinition Id="abfd9c3c-36aa-4105-9aa1-6f7393fd5cf4" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="a3fed6a0-d5ca-4b4a-8520-246209b26b6d" name="RemPOSH" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="febf72ac-6e00-4166-a70c-3b0ec91b7158" />
+                  <objectFlowTargets>
+                    <objectFlow Id="8caa11ed-51f6-4390-86c2-3a9c0e604b6b" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="38422d98-e6b3-47ae-941e-f20bb1b21b7a" LastKnownName="VM" />
+                      <elementDefinition Id="0216df7b-e9e7-4fa8-ae7d-5a2b18f9bbc5" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="c9e91e0d-1bcc-4894-83f6-773ca23626f2" name="2147483647" value="2147483647">
+                      <elementDefinition Id="5ea5339c-fbc1-46c1-89ad-649920bfdd03" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <objectNode Id="38422d98-e6b3-47ae-941e-f20bb1b21b7a" name="VM" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="691ca2f2-0c39-496d-9a9f-5645d50a2d46" />
+            <upperBound>
+              <literalInteger Id="4ed25aaa-ba14-4aa2-8075-0168dd13a0e4" name="2147483647" value="2147483647">
+                <elementDefinition Id="027ac40d-347c-47a2-9584-80faa096aac1" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="a48b8c41-ffd0-4c98-964d-eff8a1592691" name="Contact VM" isLeaf="false">
+            <elementDefinition Id="cc0f52a5-c537-4a6a-8aaa-cd798b6afd62" />
+            <flowNodeTargets>
+              <controlFlow Id="1609419e-c426-4f58-9e27-e0e06ceb56aa" isLeaf="false">
+                <opaqueActionMoniker Id="32f5ad19-99a2-4a1e-a039-0e41a50aed9d" LastKnownName="Create drives, move pagefile, other config, read VM values" />
+                <elementDefinition Id="c1fc05f6-fa15-4792-92b2-402a18067617" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="31d7a05e-880c-40d0-971f-016b78ea0567" name="RemPOSH" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="feaa7d09-24e3-48e1-a97e-1bd4b3441bb2" />
+                  <objectFlowTargets>
+                    <objectFlow Id="03257ee1-2f3d-46d0-b3ae-1786f52ab22f" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="38422d98-e6b3-47ae-941e-f20bb1b21b7a" LastKnownName="VM" />
+                      <elementDefinition Id="c64d0de2-7939-43b3-b502-b724e91e3a3f" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="f415e8dd-7e5b-4ce0-b3c4-768199e8a001" name="2147483647" value="2147483647">
+                      <elementDefinition Id="37d0dbf2-7c11-47d3-96d2-f41aa3eba6c3" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="32f5ad19-99a2-4a1e-a039-0e41a50aed9d" name="Create drives, move pagefile, other config, read VM values" isLeaf="false">
+            <elementDefinition Id="3c32096a-5074-453e-b28e-a8d4179fc989" />
+            <flowNodeTargets>
+              <controlFlow Id="ba50d3b7-2c6f-4738-a05c-976acf2af01f" isLeaf="false">
+                <opaqueActionMoniker Id="5732f1a1-ff94-4eeb-8efc-9c8d012c7dff" LastKnownName="Validate" />
+                <elementDefinition Id="ebe971c8-4a5a-4ee7-84b8-bc7e3fc1655d" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="9acebce2-5db9-4965-958c-bbabe3d7d01c" name="RemPOSH" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="328c5bbc-8e04-42a1-b16e-4e1c9b6d8f17" />
+                  <objectFlowTargets>
+                    <objectFlow Id="5964c03f-d4d6-43e5-bee3-aa8f3cf02dfd" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="38422d98-e6b3-47ae-941e-f20bb1b21b7a" LastKnownName="VM" />
+                      <elementDefinition Id="23a3288c-46b3-4dd9-8ebb-8525e61b3c5b" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="1920a85e-c4b6-4d2d-b8b0-a5410d17181e" name="2147483647" value="2147483647">
+                      <elementDefinition Id="7ea64bea-7e06-4c7d-8182-0a8232a1a88e" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="104dff61-46f2-473d-8432-23e0394f5927" name="Update CMDB" isLeaf="false">
+            <elementDefinition Id="a3125d45-6643-49fc-bedc-f55d19855b23" />
+            <flowNodeTargets>
+              <controlFlow Id="6af985ea-6c36-4aa5-9a18-703143b5df9d" isLeaf="false">
+                <opaqueActionMoniker Id="eb1a204c-cceb-4893-8e98-e89c95487893" LastKnownName="Updsate Status" />
+                <elementDefinition Id="b8257ab3-039b-40c4-8ebe-9f7b65e6c33e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="dcdd4b2a-1319-40e5-8220-50e751ea1521" name="Read Queue" isLeaf="false">
+            <elementDefinition Id="9d816fc2-1099-49f5-bc64-c977bd2e50a9" />
+            <flowNodeTargets>
+              <controlFlow Id="8bdfc40e-5e5a-414c-9be9-bdaa86b3bfc0" isLeaf="false">
+                <opaqueActionMoniker Id="f89b06ee-6990-4908-9242-c06f50bb0166" LastKnownName="Validate" />
+                <elementDefinition Id="e9deee78-cdc5-40c3-98df-00bf55f45c41" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="0018c460-35f9-4328-be03-26c9d548454e" name="Store" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="e72eaa78-2a78-4344-9e89-d78f7303906d" />
+                  <objectFlowTargets>
+                    <objectFlow Id="c044a601-96e5-43b4-a8f7-5c6ab40d7363" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="6b6eb54d-60e4-45c3-b8dc-e8baeede5371" LastKnownName="Store" />
+                      <elementDefinition Id="2202af68-8cfd-45d4-ab5e-a27dee5f408c" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="90b5b1c4-645f-4721-bc93-ba5f460b024b" name="2147483647" value="2147483647">
+                      <elementDefinition Id="175de0f4-e055-4639-9d36-19464796f613" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="da01f31a-b052-45cf-a171-c75fd4ff170c" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+    <profileInstances>
+      <packageHasProfileInstances Id="f8cba6cd-e2b0-4020-aedb-75e5c5801c51">
+        <profileInstance Id="c3eecc3c-a1b7-4033-ad6a-b5b7849de1fb" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="e1b07daa-4a01-45f1-b3e7-e6ea3bd7a2de">
+        <profileInstance Id="8d2480bf-4e7e-4249-95bf-a134cbf82f4a" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</activityRootModel>

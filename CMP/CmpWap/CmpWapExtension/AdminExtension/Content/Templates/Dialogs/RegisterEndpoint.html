@@ -1,0 +1,29 @@
+﻿<p class="aux-dialogSubHeader">{{>htmlResources.registerEndpointTitle/}}</p>
+<p class="stepDescription">{{>htmlResources.registerEndpointSubTitle/}}</p>
+
+<div class="hw-registerEndpoint">
+    <form class="aux-dialog-form">
+        <div class="aux-dialog-item">
+            <label for="hw-endpointUrl" class="aux-dialog-item">{{>htmlResources.endpointName/}}</label>
+            <input id="hw-endpointUrl" type="text" maxlength="1024" class="fx-textbox fx-validation fx-editablecontrol"
+                data-val="true" data-val-required="Required" data-val-length="The endpoint URL length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="1024" data-val-regex="Not URL" data-val-regex-pattern="^(http|https):\/\/(.*)$" />
+        </div>
+        <div class="aux-dialog-item">
+            <label for="hw-username" class="aux-dialog-item">User Name</label>
+            <input id="hw-username" maxlength="128" type="text" class="fx-textbox fx-validation fx-editablecontrol"
+                data-val="true" data-val-required="Required" data-val-length="The username length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="128" />
+        </div>
+        <div class="aux-dialog-item">
+            <label for="hw-password" class="aux-dialog-item">Password</label>
+            <input id="hw-password" maxlength="255" type="password" class="fx-textbox fx-validation fx-editablecontrol"
+                data-val="true" data-val-required="Required" data-val-length="The password length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="255" />
+        </div>
+        {{if data.registerReseller == true}}
+            <div class="aux-dialog-item">
+                <label for="hw-portalUrl" class="aux-dialog-item">Customers' Account Management Portal URL</label>
+                <input id="hw-portalUrl" maxlength="256" type="text" class="fx-textbox fx-validation fx-editablecontrol"
+                    data-val="true" data-val-required="Required" data-val-length="The endpoint URL length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="256" data-val-regex="Not URL" data-val-regex-pattern="^(http|https):\/\/(.*)$" />
+            </div>
+        {{/if}}
+    </form>
+</div>

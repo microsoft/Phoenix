@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- These properties appear in Add or Remove Programs in Control Panel. -->
+  <!-- Property Reference: http://msdn.microsoft.com/en-us/library/windows/desktop/aa370905(v=vs.85).aspx -->
+  <!-- TODO: Populate with correct values. -->
+
+  <!-- Icon -->
+  <Icon Id="Product.ico"
+        SourceFile=".\Icons\Windows-Azure-Light-Blue.ico" />
+  <Property Id="ARPPRODUCTICON"
+            Value="Product.ico" />
+  <!-- Location -->
+  <SetProperty Id="ARPINSTALLLOCATION"
+               Value="[INSTALLDIR]"
+               After="CostFinalize" />
+  <!-- Comments -->
+  <Property Id="ARPCOMMENTS"
+            Value="Windows Azure Pack - CmpWapExtension" />
+  <!-- Contact -->
+  <Property Id="ARPCONTACT"
+            Value="Microsoft Corporation" />
+  <!-- Help Link -->
+  <Property Id="ARPHELPLINK"
+            Value="http://www.microsoft.com/" />
+  <!-- Help Telephone -->
+  <Property Id="ARPHELPTELEPHONE"
+            Value="(555) 555-5555" />
+  <!-- Support Link -->
+  <Property Id="ARPURLINFOABOUT"
+            Value="http://support.microsoft.com/" />
+  <!-- Update Info Link -->
+  <Property Id="ARPURLUPDATEINFO"
+            Value="http://update.microsoft.com/" />
+  <!-- Readme -->
+  <SetProperty Id="ARPREADME"
+               Value="[INSTALLDIR]Readme.txt"
+               After="CostFinalize" />
+</Include>

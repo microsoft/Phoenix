@@ -1,0 +1,19 @@
+<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<Application
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+    x:Class="CMP.Setup.App"
+    x:Uid="Application_1"
+    StartupUri="WpfFormsHostPage.xaml">
+    <Application.Resources>
+        <ResourceDictionary
+            x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    x:Uid="ResourceDictionary_2"
+                    Source="WPFResourceDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

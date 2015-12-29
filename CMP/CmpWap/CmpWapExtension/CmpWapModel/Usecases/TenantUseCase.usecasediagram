@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="93692c0d-1bab-4c1a-ba16-d219e9052c7a" name="TenantUseCase" linkedPackageId="98f592b1-e459-44bb-8a85-6ca7db73450f" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <ownedCommentsInternal>
+    <comment Id="07bc710e-f1c0-4307-890a-9854c2f12d38">
+      <elementDefinition Id="17a46d67-8170-48d3-9337-d84f9601a90b" />
+      <body>New use case</body>
+      <annotatedElements>
+        <useCaseMoniker Id="1ece1774-4d8c-47e1-b0d1-8bf40f0a05ce" LastKnownName="View VM List1" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="64392c2d-a8d4-4942-949a-711639256bbf" name="Tenant" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8b8165bc-9208-454e-bdcf-5ff629ce0710" />
+        <targetEnds>
+          <association Id="df46752c-0b86-4470-bb6e-5c4f16df073b" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Create VM" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="551504b0-0962-4874-b05f-45c19d9c1249" LastKnownName="Create VM" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a84d3b8e-f4fd-4830-a731-a6b7ba2c1659" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="c26aae1d-5460-4742-b509-382ad0c051c7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="149f5bf6-73d0-429e-9974-988fceb7a1c7" name="Create VM" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="2e97948a-2115-465f-adfb-bcbb3c87a9b6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6adcab9a-ac1b-420c-b543-6b01d62f98f6" />
+          </association>
+          <association Id="4496bfe1-19e8-4672-af9a-9df96c8e8793" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Delete VM" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="6d4e2bc4-0aca-42c7-806f-67ff63553c19" LastKnownName="Delete VM" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6f5a4433-1a42-4272-b4dd-64c1005b388e" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f1d42632-1983-45e8-91d2-04fb370eeedc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a7adab9a-4e0c-45dc-87f0-dbbec6bd55d6" name="Delete VM" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b7e94c30-0fb1-4fcf-960f-f1092b200a0b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="94ba23a3-f1d8-4994-adaa-1c20cab7b16c" />
+          </association>
+          <association Id="84b9b8bd-7c62-4947-8815-20c5d68221d7" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Start VM" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="7b2e9c5c-6b39-4828-b09a-243ff6741db4" LastKnownName="Start VM" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e9a18ee0-1c0f-4c18-b633-4466b52c855f" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="82fb7635-503e-4346-88ef-686c57eadb76" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d2864425-496d-478b-943e-4623359d3f4b" name="Start VM" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e2e9ec18-8be9-48ed-9a44-42f2b9f049ee" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="844ff043-174e-4498-82e0-0698863c6651" />
+          </association>
+          <association Id="8659ff4e-fa99-4ce3-8385-c5afad2470f4" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Stop VM" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="8e648e5a-4997-4ad5-ba84-9ce86c69ce87" LastKnownName="Stop VM" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="697669f0-2f20-44fd-bef2-8a011c8b785b" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d30e297c-d94f-4ab9-940d-64ca3cab1c29" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1a298044-e050-4707-93dd-9cb550ff1ab5" name="Stop VM" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="13563e50-6422-41f2-8bd4-53afc61bd5c1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="10263d2c-2644-4e8b-9e76-7d1993ccb4a3" />
+          </association>
+          <association Id="26c94904-ac4a-46b1-819c-27312691783d" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Connect VM" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="62b8874e-8555-4368-ba02-a971a90bbedc" LastKnownName="Connect VM" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="168f1594-110a-4fd4-9880-89f5514bb2f9" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="944e801e-e161-4e4f-ae43-63873f58ccae" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="16a02a03-982a-444b-ad98-19f0ddf52985" name="Connect VM" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="73fed804-fbb4-4b80-9e99-fa67259b73de" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9ad58231-2210-4184-b9fe-5eccb587f757" />
+          </association>
+          <association Id="9c7a4d9a-c4c1-4e97-b924-ecff7da64b77" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="View VM List" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="9a7de6c6-79f9-4761-b006-d926cc369a86" LastKnownName="View VM List" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fc49255d-37be-4418-a330-18ab2698b457" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7f9b9e0f-792c-43ce-ad0b-cacc8dc112e2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1cb01b79-018e-44b2-b2c5-2ae0885242b1" name="View VM List" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1b78b51b-e95f-48ae-ba14-fa86ce5616ab" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f7b718ee-a09c-4197-8891-b23f35e69143" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="8f140955-db04-4ff3-88cb-a606124cc1af" name="Tenant Portal" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="659c9c1b-17c1-4d09-a129-d9f5cfa3fd78" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="551504b0-0962-4874-b05f-45c19d9c1249" name="Create VM" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="48066392-a099-4b63-a576-3e7114fa2d01" />
+        <subjects>
+          <subsystemMoniker Id="8f140955-db04-4ff3-88cb-a606124cc1af" LastKnownName="Tenant Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="9a7de6c6-79f9-4761-b006-d926cc369a86" name="View VM List" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="60b9d91e-6bf0-462d-8bdc-3fc4e3c86f2e" />
+        <subjects>
+          <subsystemMoniker Id="8f140955-db04-4ff3-88cb-a606124cc1af" LastKnownName="Tenant Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="6d4e2bc4-0aca-42c7-806f-67ff63553c19" name="Delete VM" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ae79d0a0-44aa-4974-9eee-a9a707ba5c27" />
+        <subjects>
+          <subsystemMoniker Id="8f140955-db04-4ff3-88cb-a606124cc1af" LastKnownName="Tenant Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="7b2e9c5c-6b39-4828-b09a-243ff6741db4" name="Start VM" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a77ea8a2-05f6-4918-82c5-bd12cf995db4" />
+        <subjects>
+          <subsystemMoniker Id="8f140955-db04-4ff3-88cb-a606124cc1af" LastKnownName="Tenant Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="8e648e5a-4997-4ad5-ba84-9ce86c69ce87" name="Stop VM" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8c766181-8eba-46e0-b406-f6035470c170" />
+        <subjects>
+          <subsystemMoniker Id="8f140955-db04-4ff3-88cb-a606124cc1af" LastKnownName="Tenant Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="62b8874e-8555-4368-ba02-a971a90bbedc" name="Connect VM" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="0031539f-07cf-40e3-9f26-3199dfc11de5" />
+        <subjects>
+          <subsystemMoniker Id="8f140955-db04-4ff3-88cb-a606124cc1af" LastKnownName="Tenant Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="1ece1774-4d8c-47e1-b0d1-8bf40f0a05ce" name="View VM List1" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8926d229-5ef1-4d2f-b46d-0630e2815f4f" />
+        <subjects>
+          <subsystemMoniker Id="8f140955-db04-4ff3-88cb-a606124cc1af" LastKnownName="Tenant Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="98f592b1-e459-44bb-8a85-6ca7db73450f" name="CmpWapModel">
+    <elementDefinition Id="8689a160-402e-4038-90af-0c8b64ee7274" />
+    <profileInstances>
+      <packageHasProfileInstances Id="d360438a-3c42-4370-a688-ea30eca85121">
+        <profileInstance Id="3b4392bd-a8a7-4d0e-85cf-5b6726085376" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="a8d777d6-e549-43e5-9da4-250b7c112157">
+        <profileInstance Id="03d8a1d6-91bd-4482-b858-f72bc0fcaa65" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>

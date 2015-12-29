@@ -1,0 +1,257 @@
+<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<ns0:BasePageForWpfControls
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:ns0="clr-namespace:CMP.Setup"
+    x:Class="CMP.Setup.AccountConfigurationPage"
+    x:Uid="ns0:BasePageForWpfControls_1"
+    Height="415"
+    Width="735">
+    <ns0:BasePageForWpfControls.Resources>
+        <ResourceDictionary
+            x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    x:Uid="ResourceDictionary_2"
+                    Source="/SetupCMP;component/WPFResourceDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ns0:BasePageForWpfControls.Resources>
+    <Grid
+        x:Uid="Grid_1">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                x:Uid="RowDefinition_1"
+                Height="Auto" />
+            <!-- 0 - Title -->
+            <RowDefinition
+                x:Uid="RowDefinition_2"
+                Height="Auto" />
+            <!-- 1 - Separator -->
+            <RowDefinition
+                x:Uid="RowDefinition_3"
+                Height="7" />
+            <!-- 2 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_4"
+                Height="Auto" />
+            <!-- 3 - Stack Panel for Service Account -->
+            <RowDefinition
+                x:Uid="RowDefinition_5"
+                Height="11" />
+            <!-- 4 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_6"
+                Height="Auto" />
+            <!-- 5 - Separator -->
+            <RowDefinition
+                x:Uid="RowDefinition_7"
+                Height="Auto" />
+            <!-- 6 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_8"
+                Height="Auto" />
+            <!-- 7 - Stack Panel for DKM -->
+            <RowDefinition
+                x:Uid="RowDefinition_9"
+                Height="Auto" />
+            <!-- 8 - Stack Panel for DKM -->
+            <RowDefinition
+                x:Uid="RowDefinition_10"
+                Height="*" />
+            <!-- 9 - The last row -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_1"
+                Width="27" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_2"
+                Width="*" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_3"
+                Width="32" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            x:Uid="accountConfigurationHeader"
+            Grid.Row="0"
+            Style="{StaticResource StylePageHeader}"
+            Text="Configure service accounts"></TextBlock>
+        <StackPanel
+            x:Name="accountSelectionStackPanel"
+            x:Uid="accountSelectionStackPanel"
+            Grid.Column="1"
+            Grid.Row="3"
+            Orientation="Vertical">
+            <Grid
+                x:Name="serviceAccountGrid"
+                x:Uid="Grid_2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="108*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        x:Uid="RowDefinition_10"
+                        Height="Auto" />
+                    <!-- 0 - Service Account subtitle -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_11"
+                        Height="7" />
+                    <!-- 1 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_12"
+                        Height="Auto" />
+                    <!-- 2 - Service Account description text -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_13"
+                        Height="Auto" />
+                    <!-- 3 - link to type of account -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_14"
+                        Height="7" />
+                    <!-- 4 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_15"
+                        Height="Auto" />
+                    <!-- 5 - Local System account radio label-->
+                    <RowDefinition
+                        x:Uid="RowDefinition_16"
+                        Height="5" />
+                    <!-- 6 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_17"
+                        Height="Auto" />
+                    <!-- 7 - Domain account radio label -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_18"
+                        Height="7" />
+                    <!-- 8 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_180"
+                        Height="Auto" />
+                    <!-- 9 - Stack Panel for account controls -->
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="___No_Name_"
+                    x:Uid="serviceAccountTitle"
+                    Grid.Row="0"
+                    Style="{StaticResource StyleSecondaryHeader}"
+                    Text="CMP Services Service Account" Grid.RowSpan="2"></TextBlock>
+                <TextBlock
+                    x:Uid="serviceAccountDescription"
+                    Grid.Row="2"
+                    Style="{StaticResource StylePageHeaderDescription}" Grid.ColumnSpan="2" Margin="0,0.493,0,0">
+                    Select the account to be used by the CMP services.
+                </TextBlock>
+                <RadioButton
+                    x:Name="radioLocalSystemAccount"
+                    x:Uid="radioLocalSystemAccount"
+                    Checked="radioLocalSystemAccount_Checked"
+                    Content="L_ocal System account"
+                    Grid.Row="2"
+                    GroupName="radioButtonAccountChoice"
+                    VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,22.493,0,1.427" Grid.RowSpan="3" />
+                <RadioButton
+                    x:Name="radioDomainAccount"
+                    x:Uid="radioDomainAccount"
+                    Checked="radioDomainAccount_Checked"
+                    Content="Do_main account"
+                    Grid.Row="5"
+                    GroupName="radioButtonAccountChoice"
+                    VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,3.573,0,1.427" Grid.RowSpan="2" />
+                <StackPanel
+                    x:Name="domainAccountStackPanel"
+                    x:Uid="domainAccountStackPanel"
+                    Grid.Row="7"
+                    HorizontalAlignment="Stretch"
+                    Orientation="Vertical" Grid.ColumnSpan="2" Margin="0,5.573,0,16.427" Grid.RowSpan="3">
+                    <Grid
+                        x:Uid="Grid_3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                x:Uid="RowDefinition_19"
+                                Height="Auto" />
+                            <!-- 0 - Labels -->
+                            <RowDefinition
+                                x:Uid="RowDefinition_20"
+                                Height="5" />
+                            <!-- 1 - Space -->
+                            <RowDefinition
+                                x:Uid="RowDefinition_21"
+                                Height="Auto" />
+                            <!-- 2 - Controls -->
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                x:Uid="ColumnDefinition_4"
+                                Width="19" />
+                            <!-- 0 - Adjustment space for radio button -->
+                            <ColumnDefinition
+                                x:Uid="ColumnDefinition_5"
+                                Width="59*" />
+                            <ColumnDefinition Width="388*"/>
+                            <!-- 1 - Name and Domain -->
+                            <ColumnDefinition
+                                x:Uid="ColumnDefinition_6"
+                                Width="5" />
+                            <!-- 2 - Space -->
+                            <ColumnDefinition
+                                x:Uid="ColumnDefinition_7"
+                                Width="Auto" />
+                            <!-- 3 - Password -->
+                            <ColumnDefinition
+                                x:Uid="ColumnDefinition_8"
+                                Width="5" />
+                            <!-- 4 - Space -->
+                            <ColumnDefinition
+                                x:Uid="ColumnDefinition_9"
+                                Width="Auto" />
+                            <!-- 5 - Control button -->
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            x:Uid="Label_1"
+                            Content="_User name and domain:"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Style="{StaticResource StyleBasicLabel}"
+                            Target="{Binding ElementName=textBoxUserName}" Grid.ColumnSpan="2" />
+                        <TextBox
+                            x:Name="textBoxUserName"
+                            x:Uid="textBoxUserName"
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            HorizontalAlignment="Stretch"
+                            MaxLength="256"
+                            Style="{StaticResource StyleBasicOneLineInput}"
+                            TextChanged="TextBox_UserNameChanged" Grid.ColumnSpan="2" />
+                        <Label
+                            x:Uid="Label_2"
+                            Content="Pass_word:"
+                            Grid.Column="4"
+                            Grid.Row="0"
+                            Style="{StaticResource StyleBasicLabel}"
+                            Target="{Binding ElementName=passwordBoxPassword}" />
+                        <PasswordBox
+                            x:Name="passwordBoxPassword"
+                            x:Uid="passwordBoxPassword"
+                            Grid.Column="4"
+                            Grid.Row="2"
+                            MaxLength="256"
+                            PasswordChanged="PasswordBoxChanged"
+                            Style="{StaticResource StylePasswordBox}"
+                            Width="200" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <TextBlock
+        	x:Uid="serviceAccountTitle"
+        	Grid.Row="8"
+        	Style="{StaticResource StyleSecondaryHeader}"
+        	Text="Encryption Certificate" Grid.Column="1"/>
+        <TextBlock
+        	x:Uid="serviceAccountDescription"
+        	Style="{StaticResource StylePageHeaderDescription}" Margin="0,25,0,0" Grid.Column="1" Grid.Row="8" Text="Specify the signature of the certificate used for encryption.  This certificate must be installed in the local certificate store." Width="333"/>
+        <ComboBox x:Name="certificateSelectionCombobox" HorizontalAlignment="Left" Grid.Row="9" VerticalAlignment="Top" Width="656" SelectionChanged="certificateSelectionCombobox_SelectionChanged" DropDownOpened="certificateSelectionCombobox_DropDownOpened" Grid.Column="1" Margin="10,10,0,0"/>
+    </Grid>
+</ns0:BasePageForWpfControls>

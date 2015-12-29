@@ -1,0 +1,440 @@
+﻿.hw-controlsTab .pushbutton.fx-tablist ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist li {
+    float: left;
+    border: 2px solid #ccc;
+    margin-right: -2px;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist li:hover {
+    background-color: #ddd;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist li {
+    min-width: 46px;
+    line-height: 20px;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: default;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist li input {
+    display: none;
+}
+
+/* Disabled State */
+.hw-controlsTab .pushbutton.fx-tablist.ui-state-disabled li:hover {
+    background-color: inherit;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist.ui-state-disabled li {
+    color: #999;
+}
+
+/* disabled button */
+.hw-controlsTab .pushbutton.fx-tablist li[aria-disabled="true"] {
+    color: #999;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist li[aria-disabled="true"]:hover {
+    background-color: inherit;
+} 
+   
+.hw-controlsTab .pushbutton.fx-tablist li[aria-selected="true"] {
+    position: relative; /* For the border to be above */
+    background-color: #4f9dd7;
+    border-color: #434343;
+    color: #fff;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist.fx-editablecontrol-edited li[aria-selected="true"] {
+    background-color: #c84fd7;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist.ui-state-disabled li[aria-selected="true"] {
+    position: inherit;
+    background-color: #ddd;
+    border-color: #ccc; /* inherit doesn't work */
+}
+
+/* Resets */
+.fx-tablist.ui-state-disabled, .fx-tablist .ui-state-disabled, .fx-tablist .ui-widget-content .ui-state-disabled, .fx-tablist .ui-widget-header .ui-state-disabled {
+    opacity: inherit;
+    filter: none;
+}
+
+/* Clearfix */
+.hw-controlsTab .fx-tablist:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.hw-controlsTab .fx-tablist {
+    display: inline-block;
+}
+
+.hw-controlsTab [aria-hidden=true] {
+    display: none;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist [aria-selected=true] {
+    background-color: #4f9dd7;
+    border-color: #434343;
+    color: #fff;
+}
+
+
+/* VM Extension css newly added*/
+/**/
+/**/
+/**/
+/**/
+/**/
+
+.vm-dashboard-overview h2 {
+    margin: 40px 0 30px 0;
+    font-size: 20px;
+    color: #444;
+    letter-spacing: -0.5px;
+    text-transform: lowercase;
+}
+
+.vm-dashboard-usageAndLinked {
+    float: left;
+    width:70%;
+    display:none;
+}
+
+.vm-dashboard-quickglance-info {
+    float: right;
+    padding-bottom: 80px;
+    width:27%;
+    display:none;
+}
+
+.vm-dashboard .waz-dashboardPropertySheet-outerDiv {
+    width: 235px;
+}
+
+.vm-dashboard-attached-devices {
+    padding-bottom: 80px;
+     display:none;
+}
+
+#errordashboard
+{
+    display:none;
+    font-size:15px;
+    
+}
+
+#errorconfigure
+{
+    display:none;
+    font-size:15px;
+    
+}
+
+#configurevmsection
+{
+     display:none;
+}
+
+.section
+{
+    margin-bottom:20px;
+}
+
+.quickglance
+{
+    font-size:20px;
+color:#444;
+
+text-transform:lowercase;
+letter-spacing:-0.5px;
+font-family:Segoe UI Light;
+font-weight:normal;
+margin:10px 0 30px 0;
+}
+
+#sqlanalysissection
+{
+
+    display:none;
+    margin-left:30px;
+}
+
+#sqlanalysismode
+{
+    width:150px;
+    margin-left:10px
+}
+
+
+.usageheader{
+    margin-bottom:20px;
+    font-size:20px;
+    letter-spacing:-0.5px;
+    text-transform:lowercase;
+    color:#444;
+    font-family:Segoe UI Light;
+font-weight:normal;
+}
+
+.quickglanceproperty
+{
+
+color:#525252;
+font-size:11px;
+text-transform:uppercase;
+margin-bottom:3px;
+font-family:Segoe UI Semibold
+
+}
+
+.quickglancepropvalue {
+    color:#333;
+font-size:12px;
+display:block;
+word-break:break-all;
+
+}
+
+.vm-config-dropdown {
+    display: inline;
+    width: 300px;
+}
+
+.vm-role-scale .vm-role-scale-quota .waz-config-setting-value > div.slider {
+    float: left;
+    width: 500px;
+}
+
+.vm-config-default .fx-dropdown {
+    display: inline-block;
+    width: 180px;
+    height: 27px;
+    padding: 2px;
+    float: left;
+}
+
+.vm-config-default .fx-dropdown-anchor ul {
+    width: 184px;
+}
+
+.vm-password-container, .vm-network-container, .vm-image-container {
+    float: left;
+    width: 154px;
+}
+
+.vm-confirmpassword-container, .vm-instancecount-container, .vm-size-container {
+    float: right;
+    width: 154px;
+}
+
+.vm-columns {
+    width: 26.25em;
+}
+
+    .vm-columns select {
+        width: 100%;
+        padding-left: 1px;
+    }
+
+    .vm-columns input {
+        width: 141px;
+    }
+
+#vm-form .drawer-form-wapitem input, #vm-form .drawer-form-wapitem select {
+    font-size: 12px;
+    padding-left: 3px;
+}
+
+#vm-form .drawer-form-wapitem {
+    margin-top: 10px;
+}
+
+.drawer-form-wapitem{
+    margin-top:14px;
+}
+drawer-form-wapitem-sql
+{
+    margin-top:13px;
+}
+#vm-form #vm-name {
+    width: 302px;
+}
+
+#gallery-container .waz-gallery-item-details {
+    width: 280px;
+    padding-right: 5px;
+}
+
+#gallery-container .waz-gallery-item-details-header-property-name {
+    width: 110px;
+}
+
+#gallery-container .waz-gallery-item-details-header-property-value {
+    width: 130px;
+}
+
+.gallery-step-busy-indicator {
+    width: 760px;
+    height: 510px;
+    position: absolute;
+    z-index: 100;
+    background: url(/Content/Images/spinner-md.gif) no-repeat center center;
+}
+
+.gallery-step-hidden {
+    display: none;
+}
+
+.vm-gallery-item-details,
+.vmrole-gallery-item-details {
+    width: 255px;
+    height: 465px;
+    float: right;
+}
+
+.vmrole-dynamicux {
+    width: 469px;
+    height: 465px;
+}
+
+.vm-settings-step, .vm-hardware-step,
+.vmrole-settings-step, .vmrole-dynamicux-step {
+    width: 740px;
+    height: 465px;
+    overflow: hidden;
+}
+
+.vm-settings-form, .vm-hardware-form,
+.vmrole-settings-form, .vmrole-dynamicux-form {
+    width: 469px;
+    height: 465px;
+    float: left;
+    border-right: 1px solid #CDCDCD;
+}
+
+    .vmrole-settings-form .fx-readonlyitem {
+        color: rgb(105, 105, 105);
+    }
+
+.vm-role-info {
+    width: 420px;
+    padding-top: 20px;
+}
+
+    .vm-role-info .listHeader {
+        padding-top: 20px;
+        padding-bottom: 2px;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .vm-role-info .scrollable-container {
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 255px;
+    }
+
+        .vm-role-info .scrollable-container .resourceExtension {
+            padding-top: 10px;
+        }
+
+        .vm-role-info .scrollable-container ul {
+            list-style-type: none;
+            list-style-position: outside;
+            list-style-image: none;
+        }
+
+            .vm-role-info .scrollable-container ul li {
+                height: 18px;
+                padding-top: 6px;
+                padding-left: 10px;
+                font-size: 12px;
+                background-color: rgb(230, 230, 230);
+                border-bottom-width: 1px;
+                border-bottom-color: white;
+                border-bottom-style: solid;
+            }
+
+                .vm-role-info .scrollable-container ul li .rowHeader {
+                    display: inline-block;
+                    width: 40%;
+                }
+
+#vm-expand-disk input {
+    width: 450px;
+}
+
+#vm-expand-disk-slider-div {
+    width: 500px;
+}
+
+    #vm-expand-disk-slider-div .fx-slider-slider {
+        margin-right: 70px;
+    }
+
+    #vm-expand-disk-slider-div input {
+        width: 50px;
+    }
+
+.vmrole-config-section {
+    padding-bottom: 50px;
+}
+
+    .vmrole-config-section H1 {
+        text-transform: uppercase;
+        font-size: 13px;
+        font-family: "Segoe UI Semibold";
+        color: rgb(83, 184, 225);
+    }
+
+    .vmrole-config-section .waz-config-setting > label {
+	    width: 280px;
+    }
+
+.vm-consoleconnect-warning {
+    margin-top: 20px;
+}
+
+.vm-consoleconnect-warning-checkbox {
+    margin-top: 40px;
+}
+
+.vm-consoleconnect-warning-bullets {
+    margin-left: 50px;
+}
+
+#vm-instance-username-container label {
+    display: inline;
+}
+
+.vmrole-gallery-description {
+    width: 200px;
+}
+.vm-invalid-disksize {
+    color: #333;
+    background-color: #E2E3E5;
+    margin-top: 15px;
+    padding: 10px;
+    border-left: 5px solid #E49937;
+}
+.vm-invalid-disksize-message {
+    margin-bottom: 5px;
+}
+
+.vm-gallery-hidden {
+    display: none !important;
+}

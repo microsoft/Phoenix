@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="7fe1fd94-b47c-4df6-8530-035d0ab2e5cd" name="AzureFileTransferService" linkedPackageId="7d473138-995e-4d50-a8f9-308bc91c8d77" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="724ff12d-187a-4a4c-9a85-5a5bbe4ae690">
+      <profileInstance Id="0064b7c6-28bf-498d-848c-b895a626c17c" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="4a0a237b-faab-4249-8061-89de0adfce77">
+      <profileInstance Id="a24a6665-8faa-41fe-a218-78b4c5ad01cb" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="4d82421f-f62d-44db-9ada-fae0ab77fa37" name="AzureFileTransferService" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="9a2bcc24-2d08-4462-97d1-e117247c5a9e" />
+        <nodes>
+          <initialNode Id="a2b09116-5583-4473-acff-b7ab0cfe80c5" name="Initial1" isLeaf="false">
+            <elementDefinition Id="a9b3efb4-21e6-4607-9aeb-2efd7bbc354e" />
+            <flowNodeTargets>
+              <controlFlow Id="ac0aefd8-1625-461d-9d4a-57570208100f" isLeaf="false">
+                <opaqueActionMoniker Id="17efef0b-35df-49e0-b4ae-17622597f821" LastKnownName="Read AFTS Config" />
+                <elementDefinition Id="aa549103-048b-4719-a954-91021e84f9b1" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="17efef0b-35df-49e0-b4ae-17622597f821" name="Read AFTS Config" isLeaf="false">
+            <elementDefinition Id="cbcaa567-b60f-48f5-9a59-6e04d4ef8ee8" />
+            <flowNodeTargets>
+              <controlFlow Id="d4649fc8-bf75-49f7-b3df-ff25d9b1d8c7" isLeaf="false">
+                <opaqueActionMoniker Id="b12ec76e-2354-42cc-b0be-a657e85d154f" LastKnownName="Fetch Pending Transfer Request List" />
+                <elementDefinition Id="92cf14b0-c955-4b08-be63-79c99448d3d7" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasInputValues>
+                <inputPin Id="3e649037-4dd7-4e48-95d3-c48fc45cdf38" name="Config" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="863c04b5-2a78-4684-afb7-46aa87a5ae7b" />
+                  <upperBound>
+                    <literalInteger Id="5fb6639d-d6ac-4b25-b325-03fa2b0c2220" name="2147483647" value="2147483647">
+                      <elementDefinition Id="36c4e58c-3a20-4aa8-8ecb-f9b1705305f5" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </opaqueActionHasInputValues>
+            </pins>
+          </opaqueAction>
+          <objectNode Id="73ea483e-3916-4229-83ac-05ea8ae2e312" name="ATFS Config" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="bbed010b-fa04-41a9-a848-ab25231e879d" />
+            <objectFlowTargets>
+              <objectFlow Id="051b1183-c5e7-4097-a092-5185d27388e4" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="3e649037-4dd7-4e48-95d3-c48fc45cdf38" LastKnownName="Config" />
+                <elementDefinition Id="b116bcdc-57bb-4563-bf34-8511b3ca32fd" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="6e81552d-7f8f-4c40-af14-4ea9a430d8c2" name="2147483647" value="2147483647">
+                <elementDefinition Id="6b5a20c5-00a6-4144-8b1d-e7cce9a49627" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="b12ec76e-2354-42cc-b0be-a657e85d154f" name="Fetch Pending Transfer Request List" isLeaf="false">
+            <elementDefinition Id="e421a87d-7d0c-4fd2-839f-dc2f8387f762" />
+            <objectFlowTargets>
+              <objectFlow Id="5e91c5d4-2d1a-4286-9fda-eb32e169cfe9" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="2612c5de-3b18-437b-a1a2-b6231ba7160a" LastKnownName="File Transfer Request" />
+                <elementDefinition Id="dfb5538a-24ba-40cf-bee1-94c40d7f5ca3" />
+              </objectFlow>
+            </objectFlowTargets>
+            <pins>
+              <opaqueActionHasInputValues>
+                <inputPin Id="59527079-249c-42af-8889-9986514845c3" name="Pending Transfer Request List" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="ed3a5d9f-ec38-4d3a-9981-3bb86e9cc960" />
+                  <upperBound>
+                    <literalInteger Id="6f813f2c-8864-491c-b67f-7ba7a5b8e22b" name="2147483647" value="2147483647">
+                      <elementDefinition Id="643697a2-3601-4ed6-bd87-6d5ef0d26d28" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </opaqueActionHasInputValues>
+            </pins>
+          </opaqueAction>
+          <objectNode Id="f3ad5583-424b-4aa0-afd8-ab25b88537df" name="ATFS Transfer Request Store" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="8424687e-4224-48ac-aca5-4f3939a26c99" />
+            <objectFlowTargets>
+              <objectFlow Id="07aa4f51-98a1-4c6e-8629-8f9ddd00fe0e" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="59527079-249c-42af-8889-9986514845c3" LastKnownName="Pending Transfer Request List" />
+                <elementDefinition Id="611180a2-6e7a-4f46-a490-ae958f10a427" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="21dfc9e3-6890-4b78-aa04-7a1da0330fec" name="2147483647" value="2147483647">
+                <elementDefinition Id="06432969-5090-4bf4-8dbc-404f3a78ab41" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <sendSignalAction Id="ed023a11-c5c6-43a4-be70-c18c4fe981fe" name="TransferSignalSend" isLeaf="false">
+            <elementDefinition Id="653ca0a7-1b23-4858-a034-5a2458c60481" />
+            <flowNodeTargets>
+              <controlFlow Id="a9065a5f-8e6e-4c70-a09c-42baf9b32b3a" isLeaf="false">
+                <acceptEventActionMoniker Id="f5567ff8-033a-4314-bbd8-a8acde3797e2" LastKnownName="TransferSignalReceived" />
+                <elementDefinition Id="a9291c05-cb15-414b-bbd3-fb51c4209065" />
+              </controlFlow>
+              <controlFlow Id="dc5779a3-7e94-4642-a84f-13abbf692cf7" isLeaf="false">
+                <decisionNodeMoniker Id="9381d86f-5a4d-461f-9f68-85ea9087a2df" LastKnownName="Decision1" />
+                <elementDefinition Id="6f6b474c-7040-4b0f-99bb-6182380e01e8" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <sendSignalActionHasTarget>
+                <inputPin Id="2612c5de-3b18-437b-a1a2-b6231ba7160a" name="File Transfer Request" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="34a54729-a99d-491e-a310-fff93db57b10" />
+                  <upperBound>
+                    <literalInteger Id="fef4536d-5d8e-42fe-a69d-b61e71c8ae46" name="2147483647" value="2147483647">
+                      <elementDefinition Id="4ded4183-ffc7-48bf-8049-8aab0e0d7e44" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </sendSignalActionHasTarget>
+            </pins>
+          </sendSignalAction>
+          <acceptEventAction Id="f5567ff8-033a-4314-bbd8-a8acde3797e2" name="TransferSignalReceived" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="afdaaf6b-987b-4a49-b5c5-91005b40df31" />
+            <objectFlowTargets>
+              <objectFlow Id="05b247ca-0834-4380-ba68-12cdadcf3bf4" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="065298f9-7a34-407c-8828-05a79e46d241" LastKnownName="File Transfer Request" />
+                <elementDefinition Id="5255b2b9-0676-4c8e-b37c-5c03b66e80ed" />
+              </objectFlow>
+            </objectFlowTargets>
+          </acceptEventAction>
+          <opaqueAction Id="efc79349-fe9d-4d4b-8992-868b04b3a7a6" name="TransferFileToBlob" isLeaf="false">
+            <elementDefinition Id="1a44e597-fc51-42e7-96a1-7018a0801f85" />
+            <pins>
+              <opaqueActionHasInputValues>
+                <inputPin Id="065298f9-7a34-407c-8828-05a79e46d241" name="File Transfer Request" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="8695747c-e5b1-4fab-a23e-b70c7dce223f" />
+                  <upperBound>
+                    <literalInteger Id="1853f682-1d5e-40ce-a7e9-6dbea02958ff" name="2147483647" value="2147483647">
+                      <elementDefinition Id="8f961961-bf8b-4633-b47d-bd6699843f8f" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </opaqueActionHasInputValues>
+            </pins>
+          </opaqueAction>
+          <decisionNode Id="9381d86f-5a4d-461f-9f68-85ea9087a2df" name="Decision1" isLeaf="false">
+            <elementDefinition Id="4bd56815-c2e7-453b-aff6-493fb3047fae" />
+            <flowNodeTargets>
+              <controlFlow Id="df43af45-5ec5-4beb-a027-4407c8b69ee7" guard="More Requests" isLeaf="false">
+                <opaqueActionMoniker Id="b12ec76e-2354-42cc-b0be-a657e85d154f" LastKnownName="Fetch Pending Transfer Request List" />
+                <elementDefinition Id="34b89de9-98ab-46c3-90cb-05f8e7e7fd9d" />
+              </controlFlow>
+              <controlFlow Id="d9a23a4e-f4ac-4c91-9be2-9a6ad5415e97" guard="No More Responses" isLeaf="false">
+                <opaqueActionMoniker Id="19832465-ba28-4ead-a09a-442d0cdb8d38" LastKnownName="Wait" />
+                <elementDefinition Id="761bf075-04e2-4c41-b7ad-16e9012f4e9a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="19832465-ba28-4ead-a09a-442d0cdb8d38" name="Wait" isLeaf="false">
+            <elementDefinition Id="f3e12b55-4231-4218-9854-2248f70aa9c1" />
+            <flowNodeTargets>
+              <controlFlow Id="c69e6415-c32e-44d0-ae35-dc0af5786c96" isLeaf="false">
+                <opaqueActionMoniker Id="17efef0b-35df-49e0-b4ae-17622597f821" LastKnownName="Read AFTS Config" />
+                <elementDefinition Id="ee521db0-70e5-4803-b449-d9e47534d935" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="7d473138-995e-4d50-a8f9-308bc91c8d77" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+  </package>
+</activityRootModel>

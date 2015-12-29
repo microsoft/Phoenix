@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="CmpAzureService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-06.2.4">
+  <WebRole name="CmpAzureServiceWebRole" vmsize="Large">
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Endpoint1" endpointName="Secure" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <Endpoints>
+      <InputEndpoint name="Secure" protocol="https" port="443" />
+    </Endpoints>
+    <Startup>
+      <Task commandLine="Startup.cmd" executionContext="elevated" taskType="simple">
+      </Task>
+    </Startup>
+    <Imports>
+      <Import moduleName="RemoteAccess" />
+      <Import moduleName="RemoteForwarder" />
+    </Imports>
+    <Certificates>
+      <Certificate name="CmpMaster-LMM" storeLocation="LocalMachine" storeName="My" />
+      <Certificate name="CmpMaster-CUR" storeLocation="CurrentUser" storeName="Root" />
+      <Certificate name="msitmanops-LMM" storeLocation="LocalMachine" storeName="My" />
+      <Certificate name="msitmanops-CUR" storeLocation="CurrentUser" storeName="Root" />
+    </Certificates>
+    <ConfigurationSettings>
+    </ConfigurationSettings>
+  </WebRole>
+</ServiceDefinition>

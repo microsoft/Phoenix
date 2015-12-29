@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\..\..\..\Environment.props"  />
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{d81be312-a8b1-43e4-8053-0277faa0a924}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>CmpWapModel</Name>
+    <RootNamespace>CmpWapModel</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <Content Include="Activities\ResizeVmProcess.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Activities\ResizeVmProcess.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Activities\ResizeVmProcess.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Activities\ResizeVmUi.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Activities\ResizeVmUi.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Activities\ResizeVmUi.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\ResizeVmApi.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\ResizeVmApi.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\ResizeVmApi.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\ResizeVmUi.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\ResizeVmUi.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\ResizeVmUi.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="TopmostBrainstorm.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="TopmostBrainstorm.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>TopmostBrainstorm.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="Usecases\AdminUseCase.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Usecases\AdminUseCase.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Usecases\AdminUseCase.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="Usecases\TenantUseCase.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Usecases\TenantUseCase.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Usecases\TenantUseCase.usecasediagram</DependentUpon>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ModelDefinition\CmpWapModel.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="Activities" />
+    <Folder Include="Sequences" />
+    <Folder Include="Usecases" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="AtfsInterface">
+  <logicalClassDesignerModelMoniker Id="587d5e94-4ade-4c88-9d59-8270047afa85" />
+  <nestedChildShapes>
+    <classShape Id="2e1190e3-10c3-47c9-81f8-91249c816284" absoluteBounds="1.875, 1.25, 1.5, 1.2226562251647315" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
+      <classMoniker Id="05e0bc9d-7001-4ac5-b3db-09b933ea3c15" LastKnownName="AtfsInterface" />
+      <nestedChildShapes>
+        <AttributeElementListCompartment Id="4fd6e3dc-7a3a-4106-bce2-238f2fcdae28" absoluteBounds="1.89, 1.6400000000000001, 1.4700000000000002, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="7d27d9e7-c0f7-4c2c-801c-9e575b326425" absoluteBounds="1.89, 1.8511718675494193, 1.4700000000000002, 0.52148435761531187" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</logicalClassDesignerDiagram>

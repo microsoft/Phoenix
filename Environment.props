@@ -1,0 +1,212 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <MsBuildAllProjects>$(MsBuildAllProjects);$(MsBuildThisFileFullPath)</MsBuildAllProjects>
+    <OutputPath>$(MSBuildThisFileDirectory)..\out\$(Configuration)</OutputPath>
+    <OutputPathHint>$(MSBuildThisFileDirectory)..\out\$(Configuration)</OutputPathHint>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PkgMicrosoft_SqlServer_DACFx_12_0_2603_2>$(MSBuildThisFileDirectory)Packages\Microsoft.SqlServer.DACFx.12.0.2603.2</PkgMicrosoft_SqlServer_DACFx_12_0_2603_2>
+    <PkgMicrosoft_SqlServer_DACFx_12_0_2603>$(MSBuildThisFileDirectory)Packages\Microsoft.SqlServer.DACFx.12.0.2603.2</PkgMicrosoft_SqlServer_DACFx_12_0_2603>
+    <PkgMicrosoft_SqlServer_DACFx_12_0>$(MSBuildThisFileDirectory)Packages\Microsoft.SqlServer.DACFx.12.0.2603.2</PkgMicrosoft_SqlServer_DACFx_12_0>
+    <PkgMicrosoft_SqlServer_DACFx_12>$(MSBuildThisFileDirectory)Packages\Microsoft.SqlServer.DACFx.12.0.2603.2</PkgMicrosoft_SqlServer_DACFx_12>
+    <PkgMicrosoft_SqlServer_DACFx>$(MSBuildThisFileDirectory)Packages\Microsoft.SqlServer.DACFx.12.0.2603.2</PkgMicrosoft_SqlServer_DACFx>
+
+    <PkgMicrosoft_Bcl_Build_1_0_21>$(MSBuildThisFileDirectory)Packages\Microsoft.Bcl.Build.1.0.21</PkgMicrosoft_Bcl_Build_1_0_21>
+    <PkgMicrosoft_Bcl_Build_1_0>$(MSBuildThisFileDirectory)Packages\Microsoft.Bcl.Build.1.0.21</PkgMicrosoft_Bcl_Build_1_0>
+    <PkgMicrosoft_Bcl_Build_1>$(MSBuildThisFileDirectory)Packages\Microsoft.Bcl.Build.1.0.21</PkgMicrosoft_Bcl_Build_1>
+    <PkgMicrosoft_Bcl_Build>$(MSBuildThisFileDirectory)Packages\Microsoft.Bcl.Build.1.0.21</PkgMicrosoft_Bcl_Build>
+
+    <PkgAntlr>$(MSBuildThisFileDirectory)Packages\Antlr.3.5.0.2</PkgAntlr>
+
+    <PkgEntityFramework_6_1_3>$(MSBuildThisFileDirectory)Packages\EntityFramework.6.1.3</PkgEntityFramework_6_1_3>
+    <PkgEntityFramework_6_1>$(MSBuildThisFileDirectory)Packages\EntityFramework.6.1.3</PkgEntityFramework_6_1>
+    <PkgEntityFramework>$(MSBuildThisFileDirectory)Packages\EntityFramework.6.1.3</PkgEntityFramework>
+
+    <PkgMicrosoft_Data_Edm_5_6_4>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.Edm.5.6.4</PkgMicrosoft_Data_Edm_5_6_4>
+    <PkgMicrosoft_Data_Edm_5_6>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.Edm.5.6.4</PkgMicrosoft_Data_Edm_5_6>
+    <PkgMicrosoft_Data_Edm_5>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.Edm.5.6.4</PkgMicrosoft_Data_Edm_5>
+    <PkgMicrosoft_Data_Edm>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.Edm.5.6.4</PkgMicrosoft_Data_Edm>
+
+    <PkgMicrosoft_Data_OData_5_6_4>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.OData.5.6.4</PkgMicrosoft_Data_OData_5_6_4>
+    <PkgMicrosoft_Data_OData_5_6>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.OData.5.6.4</PkgMicrosoft_Data_OData_5_6>
+    <PkgMicrosoft_Data_OData_5>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.OData.5.6.4</PkgMicrosoft_Data_OData_5>
+    <PkgMicrosoft_Data_OData>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.OData.5.6.4</PkgMicrosoft_Data_OData>
+
+    <PkgMicrosoft_Data_Services_Client_5_6_4>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.Services.Client.5.6.4</PkgMicrosoft_Data_Services_Client_5_6_4>
+    <PkgMicrosoft_Data_Services_Client_5_6>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.Services.Client.5.6.4</PkgMicrosoft_Data_Services_Client_5_6>
+    <PkgMicrosoft_Data_Services_Client_5>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.Services.Client.5.6.4</PkgMicrosoft_Data_Services_Client_5>
+    <PkgMicrosoft_Data_Services_Client>$(MSBuildThisFileDirectory)Packages\Microsoft.Data.Services.Client.5.6.4</PkgMicrosoft_Data_Services_Client>
+
+    <PkgMicrosoft_Web_Administration_7_0_0>$(MSBuildThisFileDirectory)Packages\Microsoft.Web.Administration.7.0.0.0</PkgMicrosoft_Web_Administration_7_0_0>
+    <PkgMicrosoft_Web_Administration_7_0>$(MSBuildThisFileDirectory)Packages\Microsoft.Web.Administration.7.0.0.0</PkgMicrosoft_Web_Administration_7_0>
+    <PkgMicrosoft_Web_Administration_7>$(MSBuildThisFileDirectory)Packages\Microsoft.Web.Administration.7.0.0.0</PkgMicrosoft_Web_Administration_7>
+    <PkgMicrosoft_Web_Administration>$(MSBuildThisFileDirectory)Packages\Microsoft.Web.Administration.7.0.0.0</PkgMicrosoft_Web_Administration>
+
+    <PkgMicrosoft_WindowsAzure_ConfigurationManager_3_1_0>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0</PkgMicrosoft_WindowsAzure_ConfigurationManager_3_1_0>
+    <PkgMicrosoft_WindowsAzure_ConfigurationManager_3_1>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0</PkgMicrosoft_WindowsAzure_ConfigurationManager_3_1>
+    <PkgMicrosoft_WindowsAzure_ConfigurationManager_3>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0</PkgMicrosoft_WindowsAzure_ConfigurationManager_3>
+    <PkgMicrosoft_WindowsAzure_ConfigurationManager>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0</PkgMicrosoft_WindowsAzure_ConfigurationManager>
+
+    <PkgAzureSDK2_2DLLs_1_0_0>$(MSBuildThisFileDirectory)Packages\AzureSDK2.2DLLs.1.0.0</PkgAzureSDK2_2DLLs_1_0_0>
+    <PkgAzureSDK2_2DLLs_1_0>$(MSBuildThisFileDirectory)Packages\AzureSDK2.2DLLs.1.0.0</PkgAzureSDK2_2DLLs_1_0>
+    <PkgAzureSDK2_2DLLs_1>$(MSBuildThisFileDirectory)Packages\AzureSDK2.2DLLs.1.0.0</PkgAzureSDK2_2DLLs_1>
+    <PkgAzureSDK2_2DLLs>$(MSBuildThisFileDirectory)Packages\AzureSDK2.2DLLs.1.0.0</PkgAzureSDK2_2DLLs>
+
+    <PkgWindowsAzure_Storage_4_3_0>$(MSBuildThisFileDirectory)Packages\WindowsAzure.Storage.4.3.0</PkgWindowsAzure_Storage_4_3_0>
+    <PkgWindowsAzure_Storage_4_3>$(MSBuildThisFileDirectory)Packages\WindowsAzure.Storage.4.3.0</PkgWindowsAzure_Storage_4_3>
+    <PkgWindowsAzure_Storage_4>$(MSBuildThisFileDirectory)Packages\WindowsAzure.Storage.4.3.0</PkgWindowsAzure_Storage_4>
+    <PkgWindowsAzure_Storage>$(MSBuildThisFileDirectory)Packages\WindowsAzure.Storage.4.3.0</PkgWindowsAzure_Storage>
+
+    <PkgNewtonsoft_Json_6_0_8>$(MSBuildThisFileDirectory)Packages\Newtonsoft.Json.6.0.8</PkgNewtonsoft_Json_6_0_8>
+    <PkgNewtonsoft_Json_6_0>$(MSBuildThisFileDirectory)Packages\Newtonsoft.Json.6.0.8</PkgNewtonsoft_Json_6_0>
+    <PkgNewtonsoft_Json_6>$(MSBuildThisFileDirectory)Packages\Newtonsoft.Json.6.0.8</PkgNewtonsoft_Json_6>
+    <PkgNewtonsoft_Json>$(MSBuildThisFileDirectory)Packages\Newtonsoft.Json.6.0.8</PkgNewtonsoft_Json>
+
+    <PkgMicrosoft_AspNet_WebApi_Client_5_2_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.Client.5.2.3</PkgMicrosoft_AspNet_WebApi_Client_5_2_3>
+    <PkgMicrosoft_AspNet_WebApi_Client_5_2>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.Client.5.2.3</PkgMicrosoft_AspNet_WebApi_Client_5_2>
+    <PkgMicrosoft_AspNet_WebApi_Client_5>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.Client.5.2.3</PkgMicrosoft_AspNet_WebApi_Client_5>
+    <PkgMicrosoft_AspNet_WebApi_Client>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.Client.5.2.3</PkgMicrosoft_AspNet_WebApi_Client>
+
+    <PkgSystem_Spatial_5_6_4>$(MSBuildThisFileDirectory)Packages\System.Spatial.5.6.4</PkgSystem_Spatial_5_6_4>
+    <PkgSystem_Spatial_5_6>$(MSBuildThisFileDirectory)Packages\System.Spatial.5.6.4</PkgSystem_Spatial_5_6>
+    <PkgSystem_Spatial_5>$(MSBuildThisFileDirectory)Packages\System.Spatial.5.6.4</PkgSystem_Spatial_5>
+    <PkgSystem_Spatial>$(MSBuildThisFileDirectory)Packages\System.Spatial.5.6.4</PkgSystem_Spatial>
+
+    <PkgMicrosoft_AspNet_WebPages_3_2_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebPages.3.2.3</PkgMicrosoft_AspNet_WebPages_3_2_3>
+    <PkgMicrosoft_AspNet_WebPages_3_2>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebPages.3.2.3</PkgMicrosoft_AspNet_WebPages_3_2>
+    <PkgMicrosoft_AspNet_WebPages_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebPages.3.2.3</PkgMicrosoft_AspNet_WebPages_3>
+    <PkgMicrosoft_AspNet_WebPages>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebPages.3.2.3</PkgMicrosoft_AspNet_WebPages>
+
+    <PkgMicrosoft_AspNet_WebApi_Core_5_2_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.Core.5.2.3</PkgMicrosoft_AspNet_WebApi_Core_5_2_3>
+    <PkgMicrosoft_AspNet_WebApi_Core_5_2>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.Core.5.2.3</PkgMicrosoft_AspNet_WebApi_Core_5_2>
+    <PkgMicrosoft_AspNet_WebApi_Core_5>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.Core.5.2.3</PkgMicrosoft_AspNet_WebApi_Core_5>
+    <PkgMicrosoft_AspNet_WebApi_Core>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.Core.5.2.3</PkgMicrosoft_AspNet_WebApi_Core>
+
+    <PkgMicrosoft_AspNet_WebApi_OData_5_5_1>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.OData.5.5.1</PkgMicrosoft_AspNet_WebApi_OData_5_5_1>
+    <PkgMicrosoft_AspNet_WebApi_OData_5_5>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.OData.5.5.1</PkgMicrosoft_AspNet_WebApi_OData_5_5>
+    <PkgMicrosoft_AspNet_WebApi_OData_5>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.OData.5.5.1</PkgMicrosoft_AspNet_WebApi_OData_5>
+    <PkgMicrosoft_AspNet_WebApi_OData>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.OData.5.5.1</PkgMicrosoft_AspNet_WebApi_OData>
+
+    <PkgMicrosoft_AspNet_WebApi_WebHost_5_2_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.WebHost.5.2.3</PkgMicrosoft_AspNet_WebApi_WebHost_5_2_3>
+    <PkgMicrosoft_AspNet_WebApi_WebHost_5_2>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.WebHost.5.2.3</PkgMicrosoft_AspNet_WebApi_WebHost_5_2>
+    <PkgMicrosoft_AspNet_WebApi_WebHost_5>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.WebHost.5.2.3</PkgMicrosoft_AspNet_WebApi_WebHost_5>
+    <PkgMicrosoft_AspNet_WebApi_WebHost>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebApi.WebHost.5.2.3</PkgMicrosoft_AspNet_WebApi_WebHost>
+
+    <PkgMicrosoft_AspNet_Mvc_5_2_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Mvc.5.2.3</PkgMicrosoft_AspNet_Mvc_5_2_3>
+    <PkgMicrosoft_AspNet_Mvc_5_2>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Mvc.5.2.3</PkgMicrosoft_AspNet_Mvc_5_2>
+    <PkgMicrosoft_AspNet_Mvc_5>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Mvc.5.2.3</PkgMicrosoft_AspNet_Mvc_5>
+    <PkgMicrosoft_AspNet_Mvc>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Mvc.5.2.3</PkgMicrosoft_AspNet_Mvc>
+
+    <PkgMicrosoft_AspNet_Web_Optimization_1_1_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Web.Optimization.1.1.3</PkgMicrosoft_AspNet_Web_Optimization_1_1_3>
+    <PkgMicrosoft_AspNet_Web_Optimization_1_1>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Web.Optimization.1.1.3</PkgMicrosoft_AspNet_Web_Optimization_1_1>
+    <PkgMicrosoft_AspNet_Web_Optimization_1>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Web.Optimization.1.1.3</PkgMicrosoft_AspNet_Web_Optimization_1>
+    <PkgMicrosoft_AspNet_Web_Optimization>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Web.Optimization.1.1.3</PkgMicrosoft_AspNet_Web_Optimization>
+
+    <PkgMicrosoft_AspNet_Razor_3_2_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Razor.3.2.3</PkgMicrosoft_AspNet_Razor_3_2_3>
+    <PkgMicrosoft_AspNet_Razor_3_2>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Razor.3.2.3</PkgMicrosoft_AspNet_Razor_3_2>
+    <PkgMicrosoft_AspNet_Razor_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Razor.3.2.3</PkgMicrosoft_AspNet_Razor_3>
+    <PkgMicrosoft_AspNet_Razor>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Razor.3.2.3</PkgMicrosoft_AspNet_Razor>
+
+    <PkgMicrosoft_Web_Infrastructure_1_0_0>$(MSBuildThisFileDirectory)Packages\Microsoft.Web.Infrastructure.1.0.0.0</PkgMicrosoft_Web_Infrastructure_1_0_0>
+    <PkgMicrosoft_Web_Infrastructure_1_0>$(MSBuildThisFileDirectory)Packages\Microsoft.Web.Infrastructure.1.0.0.0</PkgMicrosoft_Web_Infrastructure_1_0>
+    <PkgMicrosoft_Web_Infrastructure_1>$(MSBuildThisFileDirectory)Packages\Microsoft.Web.Infrastructure.1.0.0.0</PkgMicrosoft_Web_Infrastructure_1>
+    <PkgMicrosoft_Web_Infrastructure>$(MSBuildThisFileDirectory)Packages\Microsoft.Web.Infrastructure.1.0.0.0</PkgMicrosoft_Web_Infrastructure>
+
+    <PkgWebGrease_1_6_0>$(MSBuildThisFileDirectory)Packages\WebGrease.1.6.0</PkgWebGrease_1_6_0>
+    <PkgWebGrease_1_6>$(MSBuildThisFileDirectory)Packages\WebGrease.1.6.0</PkgWebGrease_1_6>
+    <PkgWebGrease_1>$(MSBuildThisFileDirectory)Packages\WebGrease.1.6.0</PkgWebGrease_1>
+    <PkgWebGrease>$(MSBuildThisFileDirectory)Packages\WebGrease.1.6.0</PkgWebGrease>
+
+    <PkgWindowsAzure_ServiceBus_2_6_1>$(MSBuildThisFileDirectory)Packages\WindowsAzure.ServiceBus.2.6.1</PkgWindowsAzure_ServiceBus_2_6_1>
+    <PkgWindowsAzure_ServiceBus_2_6>$(MSBuildThisFileDirectory)Packages\WindowsAzure.ServiceBus.2.6.1</PkgWindowsAzure_ServiceBus_2_6>
+    <PkgWindowsAzure_ServiceBus_2>$(MSBuildThisFileDirectory)Packages\WindowsAzure.ServiceBus.2.6.1</PkgWindowsAzure_ServiceBus_2>
+    <PkgWindowsAzure_ServiceBus>$(MSBuildThisFileDirectory)Packages\WindowsAzure.ServiceBus.2.6.1</PkgWindowsAzure_ServiceBus>
+
+    <PkgMicrosoft_WindowsAzure_ConfigurationManager_3_1_0>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0</PkgMicrosoft_WindowsAzure_ConfigurationManager_3_1_0>
+    <PkgMicrosoft_WindowsAzure_ConfigurationManager_3_1>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0</PkgMicrosoft_WindowsAzure_ConfigurationManager_3_1>
+    <PkgMicrosoft_WindowsAzure_ConfigurationManager_3>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0</PkgMicrosoft_WindowsAzure_ConfigurationManager_3>
+    <PkgMicrosoft_WindowsAzure_ConfigurationManager>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0</PkgMicrosoft_WindowsAzure_ConfigurationManager>
+
+    <PkgHyak_Common_1_0_2>$(MSBuildThisFileDirectory)Packages\Hyak.Common.1.0.2</PkgHyak_Common_1_0_2>
+    <PkgHyak_Common_1_0>$(MSBuildThisFileDirectory)Packages\Hyak.Common.1.0.2</PkgHyak_Common_1_0>
+    <PkgHyak_Common_1>$(MSBuildThisFileDirectory)Packages\Hyak.Common.1.0.2</PkgHyak_Common_1>
+    <PkgHyak_Common>$(MSBuildThisFileDirectory)Packages\Hyak.Common.1.0.2</PkgHyak_Common>
+
+    <PkgMicrosoft_Azure_Common_2_1_0>$(MSBuildThisFileDirectory)Packages\Microsoft.Azure.Common.2.1.0</PkgMicrosoft_Azure_Common_2_1_0>
+    <PkgMicrosoft_Azure_Common_2_1>$(MSBuildThisFileDirectory)Packages\Microsoft.Azure.Common.2.1.0</PkgMicrosoft_Azure_Common_2_1>
+    <PkgMicrosoft_Azure_Common_2>$(MSBuildThisFileDirectory)Packages\Microsoft.Azure.Common.2.1.0</PkgMicrosoft_Azure_Common_2>
+    <PkgMicrosoft_Azure_Common>$(MSBuildThisFileDirectory)Packages\Microsoft.Azure.Common.2.1.0</PkgMicrosoft_Azure_Common>
+
+    <PkgMicrosoft_Bcl_Async_1_0_168>$(MSBuildThisFileDirectory)Packages\Microsoft.Bcl.Async.1.0.168</PkgMicrosoft_Bcl_Async_1_0_168>
+    <PkgMicrosoft_Bcl_Async_1_0>$(MSBuildThisFileDirectory)Packages\Microsoft.Bcl.Async.1.0.168</PkgMicrosoft_Bcl_Async_1_0>
+    <PkgMicrosoft_Bcl_Async_1>$(MSBuildThisFileDirectory)Packages\Microsoft.Bcl.Async.1.0.168</PkgMicrosoft_Bcl_Async_1>
+    <PkgMicrosoft_Bcl_Async>$(MSBuildThisFileDirectory)Packages\Microsoft.Bcl.Async.1.0.168</PkgMicrosoft_Bcl_Async>
+
+    <PkgMicrosoft_WindowsAzure_Management_Compute_11_2_1>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Compute.11.2.1</PkgMicrosoft_WindowsAzure_Management_Compute_11_2_1>
+    <PkgMicrosoft_WindowsAzure_Management_Compute_11_2>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Compute.11.2.1</PkgMicrosoft_WindowsAzure_Management_Compute_11_2>
+    <PkgMicrosoft_WindowsAzure_Management_Compute_11>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Compute.11.2.1</PkgMicrosoft_WindowsAzure_Management_Compute_11>
+    <PkgMicrosoft_WindowsAzure_Management_Compute>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Compute.11.2.1</PkgMicrosoft_WindowsAzure_Management_Compute>
+
+    <PkgMicrosoft_Net_Http_2_2_29>$(MSBuildThisFileDirectory)Packages\Microsoft.Net.Http.2.2.29</PkgMicrosoft_Net_Http_2_2_29>
+    <PkgMicrosoft_Net_Http_2_2>$(MSBuildThisFileDirectory)Packages\Microsoft.Net.Http.2.2.29</PkgMicrosoft_Net_Http_2_2>
+    <PkgMicrosoft_Net_Http_2>$(MSBuildThisFileDirectory)Packages\Microsoft.Net.Http.2.2.29</PkgMicrosoft_Net_Http_2>
+    <PkgMicrosoft_Net_Http>$(MSBuildThisFileDirectory)Packages\Microsoft.Net.Http.2.2.29</PkgMicrosoft_Net_Http>
+
+    <PkgMicrosoft_AspNet_WebPages_3_2_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebPages.3.2.3</PkgMicrosoft_AspNet_WebPages_3_2_3>
+    <PkgMicrosoft_AspNet_WebPages_3_2>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebPages.3.2.3</PkgMicrosoft_AspNet_WebPages_3_2>
+    <PkgMicrosoft_AspNet_WebPages_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebPages.3.2.3</PkgMicrosoft_AspNet_WebPages_3>
+    <PkgMicrosoft_AspNet_WebPages>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.WebPages.3.2.3</PkgMicrosoft_AspNet_WebPages>
+
+    <PkgMicrosoft_AspNet_Mvc_5_2_3>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Mvc.5.2.3</PkgMicrosoft_AspNet_Mvc_5_2_3>
+    <PkgMicrosoft_AspNet_Mvc_5_2>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Mvc.5.2.3</PkgMicrosoft_AspNet_Mvc_5_2>
+    <PkgMicrosoft_AspNet_Mvc_5>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Mvc.5.2.3</PkgMicrosoft_AspNet_Mvc_5>
+    <PkgMicrosoft_AspNet_Mvc>$(MSBuildThisFileDirectory)Packages\Microsoft.AspNet.Mvc.5.2.3</PkgMicrosoft_AspNet_Mvc>
+
+    <PkgMicrosoft_VisualStudio_QualityTools_UnitTestFramework_11_0_50727_1>$(MSBuildThisFileDirectory)Packages\Microsoft.VisualStudio.QualityTools.UnitTestFramework.11.0.50727.1</PkgMicrosoft_VisualStudio_QualityTools_UnitTestFramework_11_0_50727_1>
+    <PkgMicrosoft_VisualStudio_QualityTools_UnitTestFramework_11_0>$(MSBuildThisFileDirectory)Packages\Microsoft.VisualStudio.QualityTools.UnitTestFramework.11.0.50727.1</PkgMicrosoft_VisualStudio_QualityTools_UnitTestFramework_11_0>
+    <PkgMicrosoft_VisualStudio_QualityTools_UnitTestFramework_11>$(MSBuildThisFileDirectory)Packages\Microsoft.VisualStudio.QualityTools.UnitTestFramework.11.0.50727.1</PkgMicrosoft_VisualStudio_QualityTools_UnitTestFramework_11>
+    <PkgMicrosoft_VisualStudio_QualityTools_UnitTestFramework>$(MSBuildThisFileDirectory)Packages\Microsoft.VisualStudio.QualityTools.UnitTestFramework.11.0.50727.1</PkgMicrosoft_VisualStudio_QualityTools_UnitTestFramework>
+
+    <PkgMoq_4_2_1506_2016>$(MSBuildThisFileDirectory)Packages\Moq.4.2.1506.2016</PkgMoq_4_2_1506_2016>
+    <PkgMoq>$(MSBuildThisFileDirectory)Packages\Moq.4.2.1506.2016</PkgMoq>
+
+    <PkgMicrosoft_IdentityModel_Clients_ActiveDirectory_3_0_110281957_alpha>$(MSBuildThisFileDirectory)Packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.0.110281957-alpha</PkgMicrosoft_IdentityModel_Clients_ActiveDirectory_3_0_110281957_alpha>
+    <PkgMicrosoft_IdentityModel_Clients_ActiveDirectory_3_0>$(MSBuildThisFileDirectory)Packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.0.110281957-alpha</PkgMicrosoft_IdentityModel_Clients_ActiveDirectory_3_0>
+    <PkgMicrosoft_IdentityModel_Clients_ActiveDirectory_3>$(MSBuildThisFileDirectory)Packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.0.110281957-alpha</PkgMicrosoft_IdentityModel_Clients_ActiveDirectory_3>
+    <PkgMicrosoft_IdentityModel_Clients_ActiveDirectory>$(MSBuildThisFileDirectory)Packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.0.110281957-alpha</PkgMicrosoft_IdentityModel_Clients_ActiveDirectory>
+
+    <PkgMicrosoft_WindowsAzure_Management_4_1_1>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.4.1.1</PkgMicrosoft_WindowsAzure_Management_4_1_1>
+    <PkgMicrosoft_WindowsAzure_Management_4_1>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.4.1.1</PkgMicrosoft_WindowsAzure_Management_4_1>
+    <PkgMicrosoft_WindowsAzure_Management_4>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.4.1.1</PkgMicrosoft_WindowsAzure_Management_4>
+    <PkgMicrosoft_WindowsAzure_Management>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.4.1.1</PkgMicrosoft_WindowsAzure_Management>
+
+    <PkgMicrosoft_WindowsAzure_Management_WebSites_4_0_0>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.WebSites.4.0.0</PkgMicrosoft_WindowsAzure_Management_WebSites_4_0_0>
+    <PkgMicrosoft_WindowsAzure_Management_WebSites_4_0>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.WebSites.4.0.0</PkgMicrosoft_WindowsAzure_Management_WebSites_4_0>
+    <PkgMicrosoft_WindowsAzure_Management_WebSites_4>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.WebSites.4.0.0</PkgMicrosoft_WindowsAzure_Management_WebSites_4>
+    <PkgMicrosoft_WindowsAzure_Management_WebSites>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.WebSites.4.0.0</PkgMicrosoft_WindowsAzure_Management_WebSites>
+
+    <PkgMicrosoft_WindowsAzure_Management_Monitoring_4_1_0>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Monitoring.4.1.0</PkgMicrosoft_WindowsAzure_Management_Monitoring_4_1_0>
+    <PkgMicrosoft_WindowsAzure_Management_Monitoring_4_1>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Monitoring.4.1.0</PkgMicrosoft_WindowsAzure_Management_Monitoring_4_1>
+    <PkgMicrosoft_WindowsAzure_Management_Monitoring_4>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Monitoring.4.1.0</PkgMicrosoft_WindowsAzure_Management_Monitoring_4>
+    <PkgMicrosoft_WindowsAzure_Management_Monitoring>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Monitoring.4.1.0</PkgMicrosoft_WindowsAzure_Management_Monitoring>
+
+    <PkgMicrosoft_WindowsAzure_Management_Scheduler_6_1_0>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Scheduler.6.1.0</PkgMicrosoft_WindowsAzure_Management_Scheduler_6_1_0>
+    <PkgMicrosoft_WindowsAzure_Management_Scheduler_6_1>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Scheduler.6.1.0</PkgMicrosoft_WindowsAzure_Management_Scheduler_6_1>
+    <PkgMicrosoft_WindowsAzure_Management_Scheduler_6>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Scheduler.6.1.0</PkgMicrosoft_WindowsAzure_Management_Scheduler_6>
+    <PkgMicrosoft_WindowsAzure_Management_Scheduler>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Scheduler.6.1.0</PkgMicrosoft_WindowsAzure_Management_Scheduler>
+
+    <PkgMicrosoft_WindowsAzure_Management_Sql_5_2_0>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Sql.5.2.0</PkgMicrosoft_WindowsAzure_Management_Sql_5_2_0>
+    <PkgMicrosoft_WindowsAzure_Management_Sql_5_2>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Sql.5.2.0</PkgMicrosoft_WindowsAzure_Management_Sql_5_2>
+    <PkgMicrosoft_WindowsAzure_Management_Sql_5>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Sql.5.2.0</PkgMicrosoft_WindowsAzure_Management_Sql_5>
+    <PkgMicrosoft_WindowsAzure_Management_Sql>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Sql.5.2.0</PkgMicrosoft_WindowsAzure_Management_Sql>
+
+    <PkgMicrosoft_WindowsAzure_Management_Storage_5_1_1>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Storage.5.1.1</PkgMicrosoft_WindowsAzure_Management_Storage_5_1_1>
+    <PkgMicrosoft_WindowsAzure_Management_Storage_5_1>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Storage.5.1.1</PkgMicrosoft_WindowsAzure_Management_Storage_5_1>
+    <PkgMicrosoft_WindowsAzure_Management_Storage_5>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Storage.5.1.1</PkgMicrosoft_WindowsAzure_Management_Storage_5>
+    <PkgMicrosoft_WindowsAzure_Management_Storage>$(MSBuildThisFileDirectory)Packages\Microsoft.WindowsAzure.Management.Storage.5.1.1</PkgMicrosoft_WindowsAzure_Management_Storage>
+
+  </PropertyGroup>
+
+</Project>

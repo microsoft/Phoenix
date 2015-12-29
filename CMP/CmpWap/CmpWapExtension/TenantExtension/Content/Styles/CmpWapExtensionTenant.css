@@ -1,0 +1,150 @@
+.fxshell-drawer-menu li div.icon.DomainTenant {
+    background-position: 0 -97px;
+}
+
+.hw-search-container {
+    width: 350px;
+}
+
+.hw-radio-container {
+    margin-bottom: 10px;
+}
+
+    .hw-radio-container label {
+        display: inline;
+        font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+        font-size: 12px;
+        margin-left: 5px;
+        text-transform: none;
+        vertical-align: middle;
+    }
+
+    .hw-radio-container input {
+        vertical-align: middle;
+    }
+
+   #loading,#loadingSql{
+         background-color:transparent; 
+    background-repeat: no-repeat;
+    background-image: url(/Content/CmpWapExtensionTenant/Images/ajaxloader.gif);
+    background-size:20px 20px;
+    min-height:20px;
+    min-width:20px;
+    display:none;
+    }
+
+    #lblmessage,#lblmessageSql
+    {
+        font-size:10px;
+        color:red;
+        display:none;
+    }
+
+    #nameresolve,#nameresolveSql{
+       background-color:lightgray;display:inline-block;
+       width:20px;
+       /*//background-image: url(/Content/CmpWapExtensionTenant/Images/ajaxloader.gif);*/
+    }
+
+    #extradrives
+    {
+        overflow-y:auto;
+        max-height:240px;
+    }
+    .drivesize
+    {
+        width:50px;
+
+
+    }
+
+
+ .scrollable{
+   overflow-y: auto;
+   width: 70px; /* adjust this width depending to amount of text to display */
+   height: 30px; /* adjust height depending on number of options to display */
+   border: 1px silver solid;
+ }
+ .scrollable select{
+   border: none;
+ }
+
+/*styles for subtabs after first level navigation*/
+    .wap-subnavcontainer{
+        padding-bottom:22px;margin-top:22px;position:relative;min-height:37px;
+    }
+
+    .wap-subnavlabel{
+        width:198px;text-transform:uppercase;font-family:Segoe UI Semibold;font-size:11px;float:left;display:block;word-wrap:break-word;padding-top:20px;
+    }
+
+    .wap-subnavselect{
+        font-family:'Segoe UI';font-size:13px;margin-top:-3px;
+    }
+
+#hw-settings input[type="text"], #dm-settings input[type="password"] {
+    padding: 4px;
+    width: 200px;
+}
+
+.aux-readonlyvalue > .hw-contact-line {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+    .aux-readonlyvalue > .hw-contact-line.first-line {
+        margin-top: 10px;
+    }
+
+    .aux-readonlyvalue > .hw-contact-line.last-line {
+        margin-bottom: 20px;
+    }
+
+.hw-info-value {
+    width: 550px;
+}
+
+.hw-create-grid-container .fx-grid-container {
+    width: 550px;
+    height: 215px;
+}
+
+.hw-create-grid-container.large .fx-grid-container {
+    /* Use a larger grid when we hide the subscription selector */
+    width: 550px;
+    height: 400px;
+}
+
+.hw-grid-scroller {
+    margin: 0px;
+    overflow: auto;
+    padding: 0px;
+}
+
+#grid-add{
+    margin-top:5px;
+}
+
+.hw-contactinfo-scroller {
+    height: 380px;
+    margin-bottom: 29px;
+    overflow: auto;
+    width: 450px;
+}
+
+.hw-settingsTab {
+    width: 95%;
+}
+
+.gridcolumnwidth
+{
+    width:80px;
+}
+
+.gridclosecolumn
+{
+    width:50px;
+    border-style:none;
+}

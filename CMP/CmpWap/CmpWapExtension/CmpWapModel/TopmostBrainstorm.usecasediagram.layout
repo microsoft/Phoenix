@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="TopmostBrainstorm">
+  <useCaseModelRootMoniker Id="9795f2cb-c8eb-4edd-99d6-de5cdd92a9b4" />
+  <nestedChildShapes>
+    <actorShape Id="c8c932d6-e2f0-4de6-8f19-e2df81dc80b1" absoluteBounds="1, 1.875, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="a0f55138-65c5-4447-9ea6-fe5b4049bb09" LastKnownName="Tenant" />
+      <relativeChildShapes />
+    </actorShape>
+    <actorShape Id="a3d16132-0536-47ed-9035-4b973c37d9c5" absoluteBounds="1, 5.625, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="80596fad-5526-40a3-b9b3-4d9dce69ad85" LastKnownName="Admin" />
+      <relativeChildShapes />
+    </actorShape>
+    <commentShape Id="25d01a56-e86d-4370-98d2-07899dc194c5" absoluteBounds="0.5, 2.75, 1.25, 1.125" customColor="251, 247, 200">
+      <commentMoniker Id="a246f616-5c70-4a2f-8a52-3ee8166d0b98" />
+      <relativeChildShapes />
+    </commentShape>
+    <commentConnector edgePoints="[(1.25 : 2.75); (1.25 : 2.375)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+      <relativeChildShapes />
+      <nodes>
+        <commentShapeMoniker Id="25d01a56-e86d-4370-98d2-07899dc194c5" />
+        <actorShapeMoniker Id="c8c932d6-e2f0-4de6-8f19-e2df81dc80b1" />
+      </nodes>
+    </commentConnector>
+    <commentShape Id="5f29ffd6-4ddc-462f-9bc4-0208b622768f" absoluteBounds="0.5, 4, 1.625, 1.25" customColor="251, 247, 200">
+      <commentMoniker Id="dc762ad1-6089-4462-8e64-f51c0d4fc14f" />
+      <relativeChildShapes />
+    </commentShape>
+    <commentConnector edgePoints="[(1.25 : 5.25); (1.25 : 5.625)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+      <relativeChildShapes />
+      <nodes>
+        <commentShapeMoniker Id="5f29ffd6-4ddc-462f-9bc4-0208b622768f" />
+        <actorShapeMoniker Id="a3d16132-0536-47ed-9035-4b973c37d9c5" />
+      </nodes>
+    </commentConnector>
+    <commentShape Id="e83bbcf8-bb99-4ede-994a-e500afd219db" absoluteBounds="7.125, 5.625, 1.5, 0.375" customColor="251, 247, 200">
+      <commentMoniker Id="d110d0dc-8f32-4ff9-bf5c-2396dcef7f00" />
+      <relativeChildShapes />
+    </commentShape>
+    <commentShape Id="b501827e-336c-4807-b29d-b0c071bbc539" absoluteBounds="7.125, 2.25, 1.5, 0.375" customColor="251, 247, 200">
+      <commentMoniker Id="cae0f990-39bb-4ae4-97f7-35381d9b5518" />
+      <relativeChildShapes />
+    </commentShape>
+    <commentShape Id="975d17da-a0c8-4f2f-9f09-71d46d7d4108" absoluteBounds="0.5, 1, 1.625, 0.375" customColor="255, 128, 128">
+      <commentMoniker Id="8084ec90-ac1e-4744-be10-9fbbf4e66284" />
+      <relativeChildShapes />
+    </commentShape>
+    <commentConnector edgePoints="[(0.71875 : 1.375); (0.71875 : 2.75)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+      <relativeChildShapes />
+      <nodes>
+        <commentShapeMoniker Id="975d17da-a0c8-4f2f-9f09-71d46d7d4108" />
+        <commentShapeMoniker Id="25d01a56-e86d-4370-98d2-07899dc194c5" />
+      </nodes>
+    </commentConnector>
+    <SubsystemShape Id="fe150cd1-dea3-456b-8495-8dbb45075b87" absoluteBounds="2.625, 1.625, 1.5, 1" customColor="White">
+      <subsystemMoniker Id="92ab586f-ced0-4d78-a614-cb27c40c83e3" LastKnownName="Tenant Portal UI" />
+    </SubsystemShape>
+    <useCaseAssociationConnector edgePoints="[(1.5 : 2.125); (2.625 : 2.125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="6ffc722a-10ce-4b42-a312-b7585b0f31b0" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="c8c932d6-e2f0-4de6-8f19-e2df81dc80b1" />
+        <SubsystemShapeMoniker Id="fe150cd1-dea3-456b-8495-8dbb45075b87" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <SubsystemShape Id="9983e88c-0dc8-49a9-9693-8e29418de3c7" absoluteBounds="2.625, 5.375, 1.5, 1" customColor="White">
+      <subsystemMoniker Id="7814485e-26c1-4245-998f-6a5ede7c6aec" LastKnownName="Admin Portal UI" />
+    </SubsystemShape>
+    <useCaseAssociationConnector edgePoints="[(1.5 : 5.875); (2.625 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="5d16b8d6-1041-40bb-89ef-96be719b7367" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="a3d16132-0536-47ed-9035-4b973c37d9c5" />
+        <SubsystemShapeMoniker Id="9983e88c-0dc8-49a9-9693-8e29418de3c7" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <SubsystemShape Id="da491705-70ad-4b47-a5d6-7ad149de3826" absoluteBounds="2.625, 3.5, 1.5, 1" customColor="LightGray">
+      <subsystemMoniker Id="94b7bb58-8921-4353-8712-00b191909b9c" LastKnownName="RDFE" />
+    </SubsystemShape>
+    <useCaseAssociationConnector edgePoints="[(3.375 : 2.625); (3.375 : 3.5)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="fac67576-c2e8-4aa5-a6d6-1075e25aaccd" />
+      <relativeChildShapes />
+      <nodes>
+        <SubsystemShapeMoniker Id="fe150cd1-dea3-456b-8495-8dbb45075b87" />
+        <SubsystemShapeMoniker Id="da491705-70ad-4b47-a5d6-7ad149de3826" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseAssociationConnector edgePoints="[(3.375 : 5.375); (3.375 : 4.5)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="80dee4bb-dcdd-4ac1-b332-c300b432ba86" />
+      <relativeChildShapes />
+      <nodes>
+        <SubsystemShapeMoniker Id="9983e88c-0dc8-49a9-9693-8e29418de3c7" />
+        <SubsystemShapeMoniker Id="da491705-70ad-4b47-a5d6-7ad149de3826" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <SubsystemShape Id="9b594573-13cd-4076-bc4c-950a7e7551a5" absoluteBounds="4.75, 3.5, 1.5, 1" customColor="White">
+      <subsystemMoniker Id="2c2a9b57-e9be-41f8-bdda-414331eed4e9" LastKnownName="CmpWap Resource Provider" />
+    </SubsystemShape>
+    <useCaseAssociationConnector edgePoints="[(4.125 : 4); (4.75 : 4)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="0f26edac-6f85-42b8-8d2e-e8e5e8a1082a" />
+      <relativeChildShapes />
+      <nodes>
+        <SubsystemShapeMoniker Id="da491705-70ad-4b47-a5d6-7ad149de3826" />
+        <SubsystemShapeMoniker Id="9b594573-13cd-4076-bc4c-950a7e7551a5" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <SubsystemShape Id="f1be5bc5-68b4-4fba-afe3-ea33e471cf6a" absoluteBounds="4.75, 5.375, 1.5, 1" customColor="LightGray">
+      <subsystemMoniker Id="5e6328db-454d-4a60-859d-183a9722ea73" LastKnownName="Azure admin interface" />
+    </SubsystemShape>
+    <useCaseAssociationConnector edgePoints="[(5.5 : 4.5); (5.5 : 5.375)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="bc498e63-689c-469f-a3a6-aee4568bb64d" />
+      <relativeChildShapes />
+      <nodes>
+        <SubsystemShapeMoniker Id="9b594573-13cd-4076-bc4c-950a7e7551a5" />
+        <SubsystemShapeMoniker Id="f1be5bc5-68b4-4fba-afe3-ea33e471cf6a" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <commentConnector edgePoints="[(7.125 : 5.8125); (6.25 : 5.8125)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+      <relativeChildShapes />
+      <nodes>
+        <commentShapeMoniker Id="e83bbcf8-bb99-4ede-994a-e500afd219db" />
+        <SubsystemShapeMoniker Id="f1be5bc5-68b4-4fba-afe3-ea33e471cf6a" />
+      </nodes>
+    </commentConnector>
+    <SubsystemShape Id="e9463312-a05a-4975-b635-fbde0a7bbba0" absoluteBounds="4.75, 1.625, 1.5, 1" customColor="LightGray">
+      <subsystemMoniker Id="85463221-d5bf-4be1-bba2-c6052238836a" LastKnownName="CMP Web Service" />
+    </SubsystemShape>
+    <useCaseAssociationConnector edgePoints="[(5.5 : 3.5); (5.5 : 2.625)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="0bbd1cac-2fc8-43a4-91e1-540edb5df440" />
+      <relativeChildShapes />
+      <nodes>
+        <SubsystemShapeMoniker Id="9b594573-13cd-4076-bc4c-950a7e7551a5" />
+        <SubsystemShapeMoniker Id="e9463312-a05a-4975-b635-fbde0a7bbba0" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <commentConnector edgePoints="[(7.125 : 2.4375); (6.25 : 2.4375)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+      <relativeChildShapes />
+      <nodes>
+        <commentShapeMoniker Id="b501827e-336c-4807-b29d-b0c071bbc539" />
+        <SubsystemShapeMoniker Id="e9463312-a05a-4975-b635-fbde0a7bbba0" />
+      </nodes>
+    </commentConnector>
+    <SubsystemShape Id="a2863ddc-9f81-40dd-b0d8-b40923db5d00" absoluteBounds="7.125, 3.5, 1.5, 1" customColor="LightGray">
+      <subsystemMoniker Id="d154895f-ce7e-4d83-b45b-c5b6d53ae6db" LastKnownName="CMP Database" />
+    </SubsystemShape>
+    <useCaseAssociationConnector edgePoints="[(6.25 : 4); (7.125 : 4)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="126cd6fc-466a-4828-8125-587398cab39d" />
+      <relativeChildShapes />
+      <nodes>
+        <SubsystemShapeMoniker Id="9b594573-13cd-4076-bc4c-950a7e7551a5" />
+        <SubsystemShapeMoniker Id="a2863ddc-9f81-40dd-b0d8-b40923db5d00" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <commentConnector edgePoints="[(7.875 : 5.625); (7.875 : 4.5)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+      <relativeChildShapes />
+      <nodes>
+        <commentShapeMoniker Id="e83bbcf8-bb99-4ede-994a-e500afd219db" />
+        <SubsystemShapeMoniker Id="a2863ddc-9f81-40dd-b0d8-b40923db5d00" />
+      </nodes>
+    </commentConnector>
+  </nestedChildShapes>
+</useCaseDiagram>

@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="CmpWorkerServiceFolder">
+            <Component Id="cmp9E29198AD425866EE8233CBC72F6BE20" Guid="{2387C819-C372-489D-BA3A-58C69589DB89}">
+                <File Id="fil7059922DCEF1E41454B20AE74891FBB3" KeyPath="yes" Source="$(var.OutputFilesDir)\AzureAdminClientLib.dll" />
+            </Component>
+            <Component Id="cmpAE0225B3EA6025C94EBAAF6D439B78AA" Guid="{FF586AF4-7AEB-415D-94A2-F836504E179C}">
+                <File Id="filF2008D3119DA14ED838E0A54A3134671" KeyPath="yes" Source="$(var.OutputFilesDir)\AzureAdminClientLib.pdb" />
+            </Component>
+            <Component Id="cmp7AD018F149A806A070A787CF7BE9E2D8" Guid="{3EB107AF-9CF1-434D-9D2C-091DCBF8CA3F}">
+                <File Id="fil0DC0336A7471EDA014E84931828D76B6" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpCommon.dll" />
+            </Component>
+            <Component Id="cmp72E3DAB30E4C7937440904D9DE725D87" Guid="{ED439BB2-1462-45D8-B9D8-48A35F26F8F3}">
+                <File Id="fil352857DE7343F5DEBFC1928CC6D5EF5C" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpCommon.pdb" />
+            </Component>
+            <Component Id="cmpCBE3F15788B55C4C2EBB0F0130677162" Guid="{FF8752D1-6F56-4489-B8AE-29DAF4655901}">
+                <File Id="fil0E3BE05244AC605B28A1310ABF20CE80" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpInterfaceModel.dll" />
+            </Component>
+            <Component Id="cmp2E3AB694C82DFE10A1BED5D6FB465989" Guid="{24139B58-3288-4AE3-BBED-D04488AD84CC}">
+                <File Id="fil46CE2847CE87F7AADEF81527802A3478" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpInterfaceModel.pdb" />
+            </Component>
+            <Component Id="cmp356D68A5ECAF5FFE003B44AF1473602C" Guid="{4B3271C9-80D2-4693-9C8B-837C236E39C2}">
+                <File Id="filA80812BFC453FA1DEF9468453BD1EAE3" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpQueueLib.dll" />
+            </Component>
+            <Component Id="cmp506AB06E16C3446F81C048B86A7007F4" Guid="{07740F42-DD08-40BF-85EE-E5295B90DB2B}">
+                <File Id="fil690D292B0CF41F1A2A635A761903692C" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpQueueLib.pdb" />
+            </Component>
+            <Component Id="cmp32406F6A8A39145A013F31632485536F" Guid="{6D6374D4-B8BC-48D4-B15B-2BE7ABC9E435}">
+                <File Id="fil6B88C89EA0F9B2E40E14C0D7C06F37C0" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpServiceLib.dll" />
+            </Component>
+            <Component Id="cmp3577A82AC85F16B992F8BCE51B114D13" Guid="{AF35E6E1-108B-425F-A4B0-391C80FCB5AC}">
+                <File Id="filC176B770FE68B9413F29E8B662B14605" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpServiceLib.pdb" />
+            </Component>
+            <Component Id="cmp15F7CE700D798B7448B814BE801313F2" Guid="{A2363B8C-8580-4AE3-ACB5-DBCCEC510DD5}">
+                <File Id="filEEC87EB3C133C62C55BD8EE7573113E8" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpWorkerService.exe" />
+            </Component>
+            <Component Id="cmpD21211531D427F5DD8BE47202943CC00" Guid="{69247745-C3F8-4A25-9B0E-D4DBBF707AEE}">
+                <File Id="fil86A6327D93C6D0A33D746EA4AA2A382A" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpWorkerService.exe.config" />
+            </Component>
+            <Component Id="cmp2914CF29AC6F8C0B98A9F137A8A46079" Guid="{BF0D9A9A-6816-42F1-AE70-7B72F6A4F8CC}">
+                <File Id="fil9EED2E3F576F30C2439BB45D94A97FC9" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpWorkerService.pdb" />
+            </Component>
+            <Component Id="cmp0533E68A1C869B2C106C789B83F5F8ED" Guid="{BAE298B0-4A68-4D31-A9E2-10BE6132747E}">
+                <File Id="fil944071F99DCFEB1A6C28836588C75869" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpWorkerService.vshost.exe" />
+            </Component>
+            <Component Id="cmp2D7EDD47C3C943BF09C632471200C240" Guid="{39FC7D03-833B-4AE9-AFB4-A30097DFC0DD}">
+                <File Id="filFE1E7240790193FAAF5FAE2137D95742" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpWorkerService.vshost.exe.config" />
+            </Component>
+            <Component Id="cmp83427F65D35AD85A608F0AE2AEB1BF15" Guid="{994898C9-8FE2-4971-8EF6-752C0C694554}">
+                <File Id="filFEBB07AE981F8C1383CC77DFCBD8E2BE" KeyPath="yes" Source="$(var.OutputFilesDir)\CmpWorkerService.vshost.exe.manifest" />
+            </Component>
+            <Component Id="cmpF8F3C00FA123014AA13E6C006AEA9607" Guid="{E92AA4E7-BF84-44C7-B9A5-F2FCF7389DE2}">
+                <File Id="fil671A12AE939C98A6008691797E6781E7" KeyPath="yes" Source="$(var.OutputFilesDir)\EntityFramework.dll" />
+            </Component>
+            <Component Id="cmp79D11A1F7D6B0F42157CAAFD8579D28F" Guid="{97474407-5712-44CC-9A8C-ACAABCE58B96}">
+                <File Id="filA4C193E8E4BFBE15E893742E52A2503B" KeyPath="yes" Source="$(var.OutputFilesDir)\EntityFramework.SqlServer.dll" />
+            </Component>
+            <Component Id="cmpFEAD2E86BE192E02614C73B3211FCEC6" Guid="{BFEF6617-B5DF-452E-9C81-8A1829A48C4F}">
+                <File Id="fil78C0586F7D141A60344E5E22994E98BB" KeyPath="yes" Source="$(var.OutputFilesDir)\EntityFramework.SqlServer.xml" />
+            </Component>
+            <Component Id="cmp651CAAE471F45E02471DA6C930339224" Guid="{CE9424E0-8321-4DDC-9A8C-E04CAAF664FF}">
+                <File Id="filE217FA3DAD54C0E58CEFB754A6FACEA0" KeyPath="yes" Source="$(var.OutputFilesDir)\EntityFramework.xml" />
+            </Component>
+            <Component Id="cmp02B89B4EA3805518DF045A5109CC6948" Guid="{889B0964-FC8E-4EBE-8FE7-BE63408867F1}">
+                <File Id="filEBAC6AE02643FF0F78AA157AA6BE02D2" KeyPath="yes" Source="$(var.OutputFilesDir)\ITSMLib.dll" />
+            </Component>
+            <Component Id="cmpC2ABD7A0B4B8F2801251B9DB4850088F" Guid="{B3802AB0-55EC-4D6E-911C-D554D39ABC76}">
+                <File Id="fil25ECBA0D01627F7E9E0E9C512000277F" KeyPath="yes" Source="$(var.OutputFilesDir)\ITSMLib.pdb" />
+            </Component>
+            <Component Id="cmp977734D88A8650CA36FE70F9F5814B14" Guid="{5017D2B0-7E53-43F6-8193-066E299D609D}">
+                <File Id="fil12913DCD52AA5080C21730871EBC7D5B" KeyPath="yes" Source="$(var.OutputFilesDir)\KryptoLib.dll" />
+            </Component>
+            <Component Id="cmp42A40B453ED8D7B418A7A2CDFD85D061" Guid="{4FB7A362-E57E-4AEC-9259-8F95AFC4E142}">
+                <File Id="filB3D528E916495D8507BE06EA1E14645F" KeyPath="yes" Source="$(var.OutputFilesDir)\KryptoLib.pdb" />
+            </Component>
+            <Component Id="cmpC21A3E9DE13BC5A0A846943FD89B6601" Guid="{621BADD5-EA35-49FD-A3F8-76B0DE2138B1}">
+                <File Id="filA42FCBDB735504A916F7385ED0C63CD9" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.ServiceBus.dll" />
+            </Component>
+            <Component Id="cmp79277996FD51D31FE828C51A9EAA6C01" Guid="{4A563010-220C-4351-BDE0-982C1893099E}">
+                <File Id="fil5B3C27CC66F578166A9A3763CBAEF963" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.ServiceBus.xml" />
+            </Component>
+            <Component Id="cmp339C306EB1639150E0BAADECB68CF0DA" Guid="{6D86AE12-3F20-4B70-BEA5-A20F8F5E12E3}">
+                <File Id="fil61E218F8703CDC45C7DF9FDA63582472" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.Threading.Tasks.dll" />
+            </Component>
+            <Component Id="cmp33F2A17655841C0D469F2D3BE14363EB" Guid="{0BD1D7EA-0F6D-49DE-84D4-44AEFB4DB82B}">
+                <File Id="filE712BB54C1D4597C057FB143C230743E" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.Threading.Tasks.xml" />
+            </Component>
+            <Component Id="cmpA4EDD1576BDB100E04213C92F88FC5C4" Guid="{0E057725-4973-4CB1-9A05-7C1471E89B20}">
+                <File Id="fil6010A94A87527DD07CAF27D32E506CF5" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Common.dll" />
+            </Component>
+            <Component Id="cmp81CF2905C3321A03227582E7BFD03287" Guid="{7C3A7E54-2718-43BF-9FE2-5A2F285CC0E2}">
+                <File Id="filD27AC8E71CEAF7A973CDD56E4DE002EE" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Common.NetFramework.dll" />
+            </Component>
+            <Component Id="cmpA77F7B804F11A771D211CDF86A62AB90" Guid="{5F5E8AFC-FBEB-49F7-A9B9-87EBADBADB8F}">
+                <File Id="filAE4F4693091E98BBDDE528E6DFB253E9" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Common.NetFramework.xml" />
+            </Component>
+            <Component Id="cmp73542D057FD3ED81ACA0B095073E7B11" Guid="{D8528824-C54B-4A41-B45B-116EBD84590C}">
+                <File Id="filE1FFE38931A66699A77876A097F3BB35" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Common.xml" />
+            </Component>
+            <Component Id="cmp59FB34A250984455C1119197C6704877" Guid="{281209B1-1B1F-4424-9591-A1BCDB27BA56}">
+                <File Id="fil958DF876BD10A66B50F56E21B4C8CD31" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Configuration.dll" />
+            </Component>
+            <Component Id="cmp022DFA8380B21B02971C6913F9FD8F04" Guid="{0105D310-FDEB-4E20-A075-89963287E69C}">
+                <File Id="filC3526C7486F8BF5929DD1FD2DBDB0F4C" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Management.Compute.dll" />
+            </Component>
+            <Component Id="cmp114D3A2EC1649FBB028E2C50F66BC18D" Guid="{7CFD1111-5671-4C79-A6EB-EAA8BC5DDC28}">
+                <File Id="fil429C5A74AD956683235C1AAEC67F3D0C" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Management.Compute.xml" />
+            </Component>
+            <Component Id="cmpB010B91A275146A1E663028121EE3F7B" Guid="{DED0CFC2-EE9F-4AE0-934B-6B6C1ADC8DF4}">
+                <File Id="filE72CE89E29C2A88C5953600C76DD8660" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Management.Storage.dll" />
+            </Component>
+            <Component Id="cmpCC1FC5CA975B02350D9D73F2D4DA652D" Guid="{67445894-BFCD-4B6D-9A86-D6DD58B15279}">
+                <File Id="filDB582B4672D8B8205568B49DD988F8B6" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Management.Storage.xml" />
+            </Component>
+            <Component Id="cmp4CC4C6B08145DEDF053314BE0487B421" Guid="{EEBBABE6-4820-4876-A575-D848ABA4819B}">
+                <File Id="fil94832AF0CAC87B79D046C685B3805DB4" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Storage.DataMovement.dll" />
+            </Component>
+            <Component Id="cmp247C71EFE3579D82F84F32772C8006B4" Guid="{2BF74E19-0A81-438A-9C98-A3981A07A21F}">
+                <File Id="fil87A6E64095396F91771482404ECDE962" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Storage.dll" />
+            </Component>
+            <Component Id="cmp17340BDFB49B3425906E8F2BC4F935D1" Guid="{76B51794-FFD4-4B72-8B5A-D2DC2A360F7B}">
+                <File Id="fil84384F21248888BD707D5ED359C7E9B1" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.Storage.xml" />
+            </Component>
+            <Component Id="cmpB515D9C33A2A68A6AD59D58EE8245D56" Guid="{C9EFF79A-B261-417A-8396-C575BCDFF0CD}">
+                <File Id="fil97FE5827C46FB7010CEF73024EDE0730" KeyPath="yes" Source="$(var.OutputFilesDir)\Microsoft.WindowsAzure.StorageClient.dll" />
+            </Component>
+            <Component Id="cmpFB8F30DDFC4E6558CE0328E559AA7199" Guid="{38D8C8CF-A6F0-49CE-B930-AE4347EC763E}">
+                <File Id="fil80E83EE4CB0E791DD0EF5F90DA1BB4C8" KeyPath="yes" Source="$(var.OutputFilesDir)\PowershellLib.dll" />
+            </Component>
+            <Component Id="cmp71C79DE364CFB491B22A281345DFBEC3" Guid="{C98267A0-FC61-4CBB-947F-CF4C94EE134E}">
+                <File Id="filDA2BADDE9E8CF44E4117F51449FE00A6" KeyPath="yes" Source="$(var.OutputFilesDir)\PowershellLib.pdb" />
+            </Component>
+            <Component Id="cmp78CEE833648BB0A2486EC91714634BD0" Guid="{EE1440EB-4C4F-4034-BE77-D91A987D528B}">
+                <File Id="fil124951A2EDA335E546A8F74DCAF2E95D" KeyPath="yes" Source="$(var.OutputFilesDir)\ValidatorLib.dll" />
+            </Component>
+            <Component Id="cmp40D965FA13B5550C5A073DDA3FF44DB4" Guid="{2E761D21-DEC0-4B40-B858-C3BCFC6935CB}">
+                <File Id="fil6EEAA3C33433311070DC002EE1DAEB52" KeyPath="yes" Source="$(var.OutputFilesDir)\ValidatorLib.pdb" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="CmpWorkerServiceFolder">
+            <ComponentRef Id="cmp9E29198AD425866EE8233CBC72F6BE20" />
+            <ComponentRef Id="cmpAE0225B3EA6025C94EBAAF6D439B78AA" />
+            <ComponentRef Id="cmp7AD018F149A806A070A787CF7BE9E2D8" />
+            <ComponentRef Id="cmp72E3DAB30E4C7937440904D9DE725D87" />
+            <ComponentRef Id="cmpCBE3F15788B55C4C2EBB0F0130677162" />
+            <ComponentRef Id="cmp2E3AB694C82DFE10A1BED5D6FB465989" />
+            <ComponentRef Id="cmp356D68A5ECAF5FFE003B44AF1473602C" />
+            <ComponentRef Id="cmp506AB06E16C3446F81C048B86A7007F4" />
+            <ComponentRef Id="cmp32406F6A8A39145A013F31632485536F" />
+            <ComponentRef Id="cmp3577A82AC85F16B992F8BCE51B114D13" />
+            <ComponentRef Id="cmp15F7CE700D798B7448B814BE801313F2" />
+            <ComponentRef Id="cmpD21211531D427F5DD8BE47202943CC00" />
+            <ComponentRef Id="cmp2914CF29AC6F8C0B98A9F137A8A46079" />
+            <ComponentRef Id="cmp0533E68A1C869B2C106C789B83F5F8ED" />
+            <ComponentRef Id="cmp2D7EDD47C3C943BF09C632471200C240" />
+            <ComponentRef Id="cmp83427F65D35AD85A608F0AE2AEB1BF15" />
+            <ComponentRef Id="cmpF8F3C00FA123014AA13E6C006AEA9607" />
+            <ComponentRef Id="cmp79D11A1F7D6B0F42157CAAFD8579D28F" />
+            <ComponentRef Id="cmpFEAD2E86BE192E02614C73B3211FCEC6" />
+            <ComponentRef Id="cmp651CAAE471F45E02471DA6C930339224" />
+            <ComponentRef Id="cmp02B89B4EA3805518DF045A5109CC6948" />
+            <ComponentRef Id="cmpC2ABD7A0B4B8F2801251B9DB4850088F" />
+            <ComponentRef Id="cmp977734D88A8650CA36FE70F9F5814B14" />
+            <ComponentRef Id="cmp42A40B453ED8D7B418A7A2CDFD85D061" />
+            <ComponentRef Id="cmpC21A3E9DE13BC5A0A846943FD89B6601" />
+            <ComponentRef Id="cmp79277996FD51D31FE828C51A9EAA6C01" />
+            <ComponentRef Id="cmp339C306EB1639150E0BAADECB68CF0DA" />
+            <ComponentRef Id="cmp33F2A17655841C0D469F2D3BE14363EB" />
+            <ComponentRef Id="cmpA4EDD1576BDB100E04213C92F88FC5C4" />
+            <ComponentRef Id="cmp81CF2905C3321A03227582E7BFD03287" />
+            <ComponentRef Id="cmpA77F7B804F11A771D211CDF86A62AB90" />
+            <ComponentRef Id="cmp73542D057FD3ED81ACA0B095073E7B11" />
+            <ComponentRef Id="cmp59FB34A250984455C1119197C6704877" />
+            <ComponentRef Id="cmp022DFA8380B21B02971C6913F9FD8F04" />
+            <ComponentRef Id="cmp114D3A2EC1649FBB028E2C50F66BC18D" />
+            <ComponentRef Id="cmpB010B91A275146A1E663028121EE3F7B" />
+            <ComponentRef Id="cmpCC1FC5CA975B02350D9D73F2D4DA652D" />
+            <ComponentRef Id="cmp4CC4C6B08145DEDF053314BE0487B421" />
+            <ComponentRef Id="cmp247C71EFE3579D82F84F32772C8006B4" />
+            <ComponentRef Id="cmp17340BDFB49B3425906E8F2BC4F935D1" />
+            <ComponentRef Id="cmpB515D9C33A2A68A6AD59D58EE8245D56" />
+            <ComponentRef Id="cmpFB8F30DDFC4E6558CE0328E559AA7199" />
+            <ComponentRef Id="cmp71C79DE364CFB491B22A281345DFBEC3" />
+            <ComponentRef Id="cmp78CEE833648BB0A2486EC91714634BD0" />
+            <ComponentRef Id="cmp40D965FA13B5550C5A073DDA3FF44DB4" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

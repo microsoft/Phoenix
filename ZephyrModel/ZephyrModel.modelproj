@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\Environment.props"  />
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1cf25e76-d9ce-4e3a-b7b2-377ab9f85bc3}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>ZephyrModel</Name>
+    <RootNamespace>ZephyrModel</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <Content Include="Activities\AzureFileTransferService.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Activities\AzureFileTransferService.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Activities\AzureFileTransferService.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Activities\WorkerActivity.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Activities\WorkerActivity.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Activities\WorkerActivity.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Activities\VmPostProvisionActivity.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Activities\VmPostProvisionActivity.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Activities\VmPostProvisionActivity.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Activities\VmPrepActivity.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Activities\VmPrepActivity.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Activities\VmPrepActivity.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Activities\ProcessWorkOrder.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Activities\ProcessWorkOrder.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Activities\ProcessWorkOrder.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Activities\TransferFileToBlob.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Activities\TransferFileToBlob.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Activities\TransferFileToBlob.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Activities\VmProvisionActivity.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Activities\VmProvisionActivity.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Activities\VmProvisionActivity.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Activities\VmTransferActivity.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Activities\VmTransferActivity.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Activities\VmTransferActivity.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Classes\AtfsInterface.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Classes\AtfsInterface.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Classes\AtfsInterface.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Classes\AzureInterface.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Classes\AzureInterface.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Classes\AzureInterface.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Classes\Dispatcher.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Classes\Dispatcher.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Classes\Dispatcher.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Classes\AdInterface.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Classes\AdInterface.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Classes\AdInterface.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Classes\InventoryInterface.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Classes\InventoryInterface.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Classes\InventoryInterface.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Classes\ItsmInterface.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Classes\ItsmInterface.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Classes\ItsmInterface.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Classes\MycapInterface.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Classes\MycapInterface.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Classes\MycapInterface.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="BusinessObjects\AzureObjects.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="BusinessObjects\AzureObjects.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>BusinessObjects\AzureObjects.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="BusinessObjects\ItsmObjects.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="BusinessObjects\ItsmObjects.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>BusinessObjects\ItsmObjects.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="BusinessObjects\CmpClientObjects.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="BusinessObjects\CmpClientObjects.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>BusinessObjects\CmpClientObjects.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="BusinessObjects\TopmostObjects.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="BusinessObjects\TopmostObjects.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>BusinessObjects\TopmostObjects.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Classes\ScratchClassDiagram.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Classes\ScratchClassDiagram.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Classes\ScratchClassDiagram.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Classes\VhdPrepInterface.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Classes\VhdPrepInterface.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Classes\VhdPrepInterface.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Components\TopmostComponents.componentdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Components\TopmostComponents.componentdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Components\TopmostComponents.componentdiagram</DependentUpon>
+    </Content>
+    <Content Include="ModelDefinition\Package1_1443.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package1_1500.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package2_1443.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package2_1500.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package3_1443.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package3_1500.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package4_1443.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1443.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1500.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\WorkerSequence.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\WorkerSequence.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\WorkerSequence.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\WebServiceSequence.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\WebServiceSequence.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\WebServiceSequence.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="UseCases\AmpService.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCases\AmpService.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>UseCases\AmpService.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="UseCases\AzureFileTransferService.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCases\AzureFileTransferService.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>UseCases\AzureFileTransferService.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="UseCases\ClientUseCases.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCases\ClientUseCases.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>UseCases\ClientUseCases.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="UseCases\TopmostBrainstorm.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCases\TopmostBrainstorm.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>UseCases\TopmostBrainstorm.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="UseCases\AzureUseCases.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCases\AzureUseCases.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>UseCases\AzureUseCases.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="UseCases\CmpUseCases.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCases\CmpUseCases.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>UseCases\CmpUseCases.usecasediagram</DependentUpon>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ModelDefinition\ZephyrModel.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="Layers" />
+    <Folder Include="Classes" />
+    <Folder Include="Activities" />
+    <Folder Include="Components" />
+    <Folder Include="Sequences" />
+    <Folder Include="UseCases" />
+    <Folder Include="BusinessObjects" />
+  </ItemGroup>
+  <ItemGroup>
+    <Validate Include="Layers\CmpWebService.layerdiagram">
+      <SubType>Content</SubType>
+    </Validate>
+    <Validate Include="Layers\CmpWebService.layerdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers\CmpWebService.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="Layers\CmpWebService.layerdiagram.suppressions">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers\CmpWebService.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="Layers\CmpDispatcher.layerdiagram">
+      <SubType>Content</SubType>
+    </Validate>
+    <Validate Include="Layers\CmpDispatcher.layerdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers\CmpDispatcher.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="Layers\CmpDispatcher.layerdiagram.suppressions">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers\CmpDispatcher.layerdiagram</DependentUpon>
+    </Validate>
+  </ItemGroup>
+</Project>

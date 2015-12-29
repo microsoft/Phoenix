@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ResizeVmProcess">
+  <activityRootModelMoniker Id="596e503b-7a61-4a41-86d7-b44089fa0e8d" />
+  <nestedChildShapes>
+    <initialNodeShape Id="a6fe207e-226d-449f-860f-ac3e5dba1fa8" absoluteBounds="1.25, 1.5, 0.125, 0.125" customColor="89, 89, 89">
+      <initialNodeMoniker Id="3b3ae8a4-7f32-4f1b-bcd3-38ac8003e0ea" LastKnownName="Initial1" />
+    </initialNodeShape>
+    <actionShape Id="abc84b22-f30e-4a3a-b458-0952f77f3b03" absoluteBounds="2.25, 1.375, 2.375, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="4ccf3d34-155a-4a7d-b120-e654c78d0976" LastKnownName="Fetch VM host service info from Azure" />
+    </actionShape>
+    <actionShape Id="837de48f-7d33-4d85-aa18-acd19d1c275e" absoluteBounds="5.125, 1.375, 2.375, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="2b656436-1af3-41d2-b51c-a04fd805b816" LastKnownName="Check if requested size is available in service" />
+    </actionShape>
+    <decisionNodeShape Id="e98b024a-4cf2-47a3-9545-9c564bc849f2" absoluteBounds="6, 2.25, 0.375, 0.375" customColor="185, 212, 238">
+      <decisionNodeMoniker Id="a73ec033-38e8-469e-b365-3c4a4ecb7e06" LastKnownName="Decision1" />
+      <relativeChildShapes />
+    </decisionNodeShape>
+    <actionShape Id="c60b8b77-0790-4dce-b427-57629a5639ff" absoluteBounds="5.125, 3.125, 2.375, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="0df46c5d-7928-46b4-bb10-4d4c9494e9ec" LastKnownName="Construct response" />
+    </actionShape>
+    <actionShape Id="f59fbbf5-62c6-4964-be59-b865df7b03aa" absoluteBounds="2.25, 2.25, 2.375, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="31310610-9d4b-48d7-8b2b-767ecd7600c2" LastKnownName="Siubmit update request to Azure" />
+    </actionShape>
+    <actionShape Id="0f91639a-259c-4997-ae4d-b07228071f99" absoluteBounds="2.25, 3.125, 2.375, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="ec63f725-c529-4820-b812-023be569cc8b" LastKnownName="Analyze response from Azure" />
+    </actionShape>
+    <activityFinalNodeShape Id="352b160d-ba9d-4a46-ba09-d7e711c879d7" absoluteBounds="8.25, 3.25, 0.125, 0.125" customColor="89, 89, 89">
+      <activityFinalNodeMoniker Id="4806cbe6-5367-4ae0-b337-127f0ec2cd4f" LastKnownName="ActivityFinal1" />
+    </activityFinalNodeShape>
+    <controlFlowConnector edgePoints="[(1.375 : 1.5625); (2.25 : 1.5625)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="3c0c8c0c-bd73-455c-b09d-2b913ebf02cb" />
+      <relativeChildShapes />
+      <nodes>
+        <initialNodeShapeMoniker Id="a6fe207e-226d-449f-860f-ac3e5dba1fa8" />
+        <actionShapeMoniker Id="abc84b22-f30e-4a3a-b458-0952f77f3b03" />
+      </nodes>
+    </controlFlowConnector>
+    <controlFlowConnector edgePoints="[(4.625 : 1.5625); (5.125 : 1.5625)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="eb3be1b0-cc94-45e8-bd99-b401cee74a33" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="abc84b22-f30e-4a3a-b458-0952f77f3b03" />
+        <actionShapeMoniker Id="837de48f-7d33-4d85-aa18-acd19d1c275e" />
+      </nodes>
+    </controlFlowConnector>
+    <controlFlowConnector edgePoints="[(6.1875 : 1.75); (6.1875 : 2.25)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="dfa4ea56-54ba-4d91-84f3-aa576f2a12f9" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="837de48f-7d33-4d85-aa18-acd19d1c275e" />
+        <decisionNodeShapeMoniker Id="e98b024a-4cf2-47a3-9545-9c564bc849f2" />
+      </nodes>
+    </controlFlowConnector>
+    <controlFlowConnector edgePoints="[(6 : 2.4375); (4.625 : 2.4375)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="cbb35764-6cc9-40c6-b694-9e27d174b38c" />
+      <relativeChildShapes />
+      <nodes>
+        <decisionNodeShapeMoniker Id="e98b024a-4cf2-47a3-9545-9c564bc849f2" />
+        <actionShapeMoniker Id="f59fbbf5-62c6-4964-be59-b865df7b03aa" />
+      </nodes>
+    </controlFlowConnector>
+    <controlFlowConnector edgePoints="[(3.4375 : 2.625); (3.4375 : 3.125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="ebd9e7df-68fd-4716-accb-2f767f48aad7" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="f59fbbf5-62c6-4964-be59-b865df7b03aa" />
+        <actionShapeMoniker Id="0f91639a-259c-4997-ae4d-b07228071f99" />
+      </nodes>
+    </controlFlowConnector>
+    <controlFlowConnector edgePoints="[(4.625 : 3.3125); (5.125 : 3.3125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="23b760ae-34fd-42e8-ad7e-bdd890d190e0" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="0f91639a-259c-4997-ae4d-b07228071f99" />
+        <actionShapeMoniker Id="c60b8b77-0790-4dce-b427-57629a5639ff" />
+      </nodes>
+    </controlFlowConnector>
+    <controlFlowConnector edgePoints="[(7.5 : 3.3125); (8.25 : 3.3125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="70b76172-fa83-47f8-bd4d-4c40bce84733" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="c60b8b77-0790-4dce-b427-57629a5639ff" />
+        <activityFinalNodeShapeMoniker Id="352b160d-ba9d-4a46-ba09-d7e711c879d7" />
+      </nodes>
+    </controlFlowConnector>
+    <controlFlowConnector edgePoints="[(6.1875 : 2.625); (6.1875 : 3.125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="0da446cc-8188-408b-82b4-5d92402130ea" />
+      <relativeChildShapes />
+      <nodes>
+        <decisionNodeShapeMoniker Id="e98b024a-4cf2-47a3-9545-9c564bc849f2" />
+        <actionShapeMoniker Id="c60b8b77-0790-4dce-b427-57629a5639ff" />
+      </nodes>
+    </controlFlowConnector>
+  </nestedChildShapes>
+</activityDiagram>

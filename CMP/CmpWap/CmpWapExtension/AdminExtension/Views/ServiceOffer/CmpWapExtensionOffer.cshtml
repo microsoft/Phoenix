@@ -1,0 +1,215 @@
+﻿@using Microsoft.Portal.Framework;
+@*@using Microsoft.WindowsAzure.Server.SqlAdmin.AdminExtension.Bundles;*@
+@using Microsoft.WindowsAzure.Server.ServiceBus.AdminExtension;
+
+@{
+    ViewBag.Title = "Cmp Wap Extension";
+}
+
+@{
+    Layout = "~/Views/Shared/_LayoutMinimal.cshtml";
+}
+
+<div id="CmpWapExtensionAdminQuotasContainer" class="sqlAdminQuotas" style="height: 100%; overflow: auto">
+    <div id="plan-config-body" class="hs-empty">
+        <div class="hs-empty-header">
+            <p id="msg-nothing">CmpWapExtension extension does not have any quota configuration. So this page is left BLANK intentionally</p>
+        </div>
+        <div id="azuresub-obn-scn" class="waz-config fxshell-pivotlist-panel">
+            <h1 style="font-weight: bold;">Azure Subscription Onboarding</h1>
+            <br />
+            <form class="aux-dialog-form pln-form">
+                <div class="aux-dialog-item pln-div">
+                    <label for="name" class="aux-dialog-item pln-label">Name   </label>
+                    <input id="name" type="text" maxlength="1024" class="fx-textbox fx-validation fx-editablecontrol pln-input"
+                           data-val="true" data-val-required="Required" data-val-length="Azure subscription friendly name is required" data-val-length-min="1" data-val-length-max="128" />
+                </div>
+                <br />
+                <div class="aux-dialog-item pln-div">
+                    <label for="description" class="aux-dialog-item pln-label">Description   </label>
+                    <input id="description" maxlength="128" type="text" class="fx-textbox fx-validation fx-editablecontrol pln-input"
+                           data-val="true" data-val-required="Required" data-val-length="Description is required" data-val-length-min="1" data-val-length-max="128" />
+                </div>
+                <br />
+                <div class="aux-dialog-item pln-div" hidden>
+                    <label for="resourceGroup" class="aux-dialog-item pln-label" hidden>Service Provider Group   </label>
+                    <input id="resourceGroup" name="resourceGroup" class="fx-textbox pln-input" type="text" disabled hidden />
+                    <datalist id="resourceGroupTxt" hidden></datalist>
+                </div>
+                <br />
+                <div class="aux-dialog-item pln-div">
+                    <label for="accountId" class="aux-dialog-item pln-label">Azure Subscription ID   </label>
+                    <input id="accountId" maxlength="255" type="text" class="fx-textbox fx-validation fx-editablecontrol pln-input"
+                           data-val="true" data-val-required="Required" data-val-length="Account ID is required" data-val-length-min="1" data-val-length-max="255" />
+                </div>
+                <br />
+                <div class="aux-dialog-item pln-div">
+                    <label for="accountType" class="aux-dialog-item pln-label">Account Type </label>
+                    <select id="accountType" class="pln-input" name="accountType" style="width: 100%" data-fxcontroltype="fxDropdown">
+                        <option data-id='AzureSubscription' value='AzureSubscription'>Azure Subscription</option>
+                    </select>
+                </div>
+                <br />
+                <div class="aux-dialog-item pln-div">
+                    <label for="subscriptionType" class="aux-dialog-item pln-label">Subscription Type   </label>
+                    <select id="subscriptionType" class="pln-input" name="subscriptionType" style="width: 100%" data-fxcontroltype="fxDropdown">
+                        <option data-id="ARM" value="ARM">ARM</option>
+                        <option data-id="ASM" value="ASM">ASM</option>
+                    </select>
+                </div>
+                <br />
+                <div class="aux-dialog-item pln-div">
+                    <label for="certificateThumbprint" class="aux-dialog-item pln-label">Certificate Thumbprint   </label>
+                    <input id="certificateThumbprint" maxlength="255" type="text" class="fx-textbox fx-validation fx-editablecontrol pln-input"
+                           data-val="true" data-val-required="Required" data-val-length="Certificate thumbprint is required" data-val-length-min="1" data-val-length-max="255" disabled="disabled"/>
+                </div>
+                <br />
+                <div class="aux-dialog-item pln-div">
+                    <label for="tenantID" class="aux-dialog-item pln-label">Tenant ID   </label>
+                    <input id="tenantID" maxlength="255" type="text" class="fx-textbox fx-validation fx-editablecontrol pln-input"
+                           data-val="true" data-val-required="Required" data-val-length="AAD Tenant ID is required" data-val-length-min="1" data-val-length-max="255" />
+                </div>
+                <br />
+                <div class="aux-dialog-item pln-div">
+                    <label for="clientID" class="aux-dialog-item pln-label">Client ID   </label>
+                    <input id="clientID" maxlength="255" type="text" class="fx-textbox fx-validation fx-editablecontrol pln-input"
+                           data-val="true" data-val-required="Required" data-val-length="AAD Client ID is required" data-val-length-min="1" data-val-length-max="255" />
+                </div>
+                <br />
+                <div class="aux-dialog-item pln-div">
+                    <label for="clientKey" class="aux-dialog-item pln-label">Client Key   </label>
+                    <input id="clientKey" maxlength="255" type="text" class="fx-textbox fx-validation fx-editablecontrol pln-input"
+                           data-val="true" data-val-required="Required" data-val-length="AAD Client key is required" data-val-length-min="1" data-val-length-max="255" />
+                </div>
+                <br />
+            </form>
+            <a id="azuresub-btn-add" class="submit-button">Add Subscription</a><br />
+            <br />
+            <div id="subscription-message" style="width: 100%"></div>
+            <br />
+        </div>
+        <h2>Available Azure Subscriptions</h2>
+        <div id="azuresub-pc-scn" class="fxshell-pivotlist-panel">
+            <div id="azuresub-grid-container" class="grid-container" style="height: 25%; overflow: auto"></div>
+        </div>
+        <br />
+        <a class="submit-button" id="azuresub-btn-add-to-plan">Add Selected Subscription To Plan</a>
+        <hr class="section-line" style="width: 100%">
+        <div id="plan-config-message" style="width: 100%"></div>
+        <br />
+        <h1 style="font-weight: bold;">Plan Configuration</h1>
+        <br />
+        <h2>Azure Subscriptions linked to Plan</h2>
+        <div id="plansub-grid-container" class="grid-container" style="height: 25%; overflow: auto"></div>
+        <br />
+        <a class="submit-button" id="azuresub-btn-remove-from-plan">Remove Selected Subscription From Plan</a>
+        <hr class="section-line-light" />
+        <div id="osType" class="osType-options-container">
+            <h2> OS Version </h2>
+            <div id="osType-options-row1" class="plan-config-setting-row">
+
+            </div>
+            <div id="osType-options-row2" class="plan-config-setting-row">
+
+            </div>
+            <div id="osType-options-row3" class="plan-config-setting-row">
+
+            </div>
+        </div>
+        <hr class="section-line-light" />
+        <div id="skuType" class="osType-options-container">
+            <h2> VM Size </h2>
+            <div id="vmSizes-options-row1" class="plan-config-setting-row">
+
+            </div>
+            <div id="vmSizes-options-row2" class="plan-config-setting-row">
+
+            </div>
+            <div id="vmSizes-options-row3" class="plan-config-setting-row">
+
+            </div>
+        </div>
+        <br />
+        <a id="save-plan-config" class="submit-button">SAVE</a>
+    </div>
+</div>
+
+@section ServiceOfferScripts {
+    <script src="~/content/cmpwapextensionadmin/scripts/cmpwapextension.azuresubops.js"></script>
+    <script src="~/content/cmpwapextensionadmin/scripts/cmpwapextension.utility.js"></script>
+    <script src="~/content/cmpwapextensionadmin/scripts/cmpwapextension.planuiextensions.js"></script>
+    <script src="~/content/cmpwapextensionadmin/scripts/cmpwapextension.planserviceoffer.js"></script>
+    <script src="~/content/cmpwapextensionadmin/scripts/configuration.js"></script>
+    <script src="~/content/cmpwapextensionadmin/scripts/setting.js"></script>
+}
+
+<style type="text/css">
+    .pln-form {
+        display: table;
+    }
+
+    .pln-label {
+        display: table-cell;
+        padding-right: 10px;
+    }
+
+    .pln-input {
+        display: table-cell;
+    }
+
+    .pln-div {
+        display: table-row;
+    }
+
+    .section-line {
+        width: 100%;
+        color: #519BBD;
+        background-color: #519BBD;
+        height: 2.5px;
+    }
+
+    .section-line-light {
+        height: 1px;
+        color: #d8d8d8;
+        background-color: #d8d8d8;
+        border: none;
+        width: 100%;
+    }
+
+    .submit-button {
+        background-color: rgb(58, 160, 204);
+        display: inline-block;
+        color: rgb(255, 255, 255);
+        font-size: 11px;
+        font-weight: bold;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+    .submit-button:hover {
+        background-color: rgb(113, 177, 209);
+        text-decoration: none !important;
+    }
+
+    .osType-options-container{
+        
+    }
+
+    .plan-config-setting-row {
+        width: 290px;
+        font-size: 1.2em;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .notif-message {
+        color: #FFF;
+        background-color: #33CC33;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .notif-message-error {
+        background-color: #FF5050 !important;
+    }
+</style>

@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="9795f2cb-c8eb-4edd-99d6-de5cdd92a9b4" name="TopmostBrainstorm" linkedPackageId="07eee0ec-dbb2-45ad-a6dc-e0036a722ded" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <ownedCommentsInternal>
+    <comment Id="a246f616-5c70-4a2f-8a52-3ee8166d0b98">
+      <elementDefinition Id="a76a8be6-5918-4d6a-9f0c-1b01d97b91fd" />
+      <body>Create VM
+Delete VM
+Stop VM
+Start VM
+Connect VM
+View VM Status List
+Resize VM</body>
+      <annotatedElements>
+        <actorMoniker Id="a0f55138-65c5-4447-9ea6-fe5b4049bb09" LastKnownName="Tenant" />
+      </annotatedElements>
+    </comment>
+    <comment Id="dc762ad1-6089-4462-8e64-f51c0d4fc14f">
+      <elementDefinition Id="5a0e2d41-45f6-48b4-b6bf-a78de921ed1f" />
+      <body>Manage Azure Subscriptions
+Manage VM Apps
+Manage Azure Regions
+Manage Azure SKUs
+Manage VM Sizes
+View VM Status List
+
+</body>
+      <annotatedElements>
+        <actorMoniker Id="80596fad-5526-40a3-b9b3-4d9dce69ad85" LastKnownName="Admin" />
+      </annotatedElements>
+    </comment>
+    <comment Id="d110d0dc-8f32-4ff9-bf5c-2396dcef7f00">
+      <elementDefinition Id="2c22e911-6712-4763-aeff-7656fde88c24" />
+      <body>Express Deployment</body>
+      <annotatedElements>
+        <subsystemMoniker Id="d154895f-ce7e-4d83-b45b-c5b6d53ae6db" LastKnownName="CMP Database" />
+        <subsystemMoniker Id="5e6328db-454d-4a60-859d-183a9722ea73" LastKnownName="Azure admin interface" />
+      </annotatedElements>
+    </comment>
+    <comment Id="cae0f990-39bb-4ae4-97f7-35381d9b5518">
+      <elementDefinition Id="9132c122-b7ba-4b39-a604-f3b8467c3f1b" />
+      <body>Enterprise Deployment</body>
+      <annotatedElements>
+        <subsystemMoniker Id="85463221-d5bf-4be1-bba2-c6052238836a" LastKnownName="CMP Web Service" />
+      </annotatedElements>
+    </comment>
+    <comment Id="8084ec90-ac1e-4744-be10-9fbbf4e66284">
+      <elementDefinition Id="46c5e8a1-68fa-4025-a297-e19c1a717b94" />
+      <body>New use case: Resize VM</body>
+      <annotatedElements>
+        <commentMoniker Id="a246f616-5c70-4a2f-8a52-3ee8166d0b98" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="a0f55138-65c5-4447-9ea6-fe5b4049bb09" name="Tenant" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ac724ffb-1804-4ee1-84d4-0720725888e4" />
+        <targetEnds>
+          <association Id="6ffc722a-10ce-4b42-a312-b7585b0f31b0" isDerived="false" sourceEndRoleName="Tenant" targetEndRoleName="Tenant Portal UI" isLeaf="false" isAbstract="false">
+            <subsystemMoniker Id="92ab586f-ced0-4d78-a614-cb27c40c83e3" LastKnownName="Tenant Portal UI" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="793da570-2e31-44a3-9954-bc83de3594c0" name="Tenant" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f1252e35-1072-4b7e-aa35-e8a13c3bef3e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c1eb8f46-c22d-4b26-a97f-7714df353065" name="Tenant Portal UI" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="978be68c-63f0-4234-8c93-07ef1f08d5f8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e4a6c145-abd5-4837-a8ce-b83a20f63eb7" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="80596fad-5526-40a3-b9b3-4d9dce69ad85" name="Admin" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="174c20df-b8eb-4502-8007-72d4bf96ee14" />
+        <targetEnds>
+          <association Id="5d16b8d6-1041-40bb-89ef-96be719b7367" isDerived="false" sourceEndRoleName="Admin" targetEndRoleName="Admin Portal UI" isLeaf="false" isAbstract="false">
+            <subsystemMoniker Id="7814485e-26c1-4245-998f-6a5ede7c6aec" LastKnownName="Admin Portal UI" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="87bdf3e2-68e1-4d92-bb3c-4ae490ffc028" name="Admin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="edf3ae39-54b1-45f3-8e38-872a010fe2a5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3bd9992a-cb30-4460-a014-b61a7b25e505" name="Admin Portal UI" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="327aa4e9-0af2-418f-88b9-da90344f9b83" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e5acef34-aa49-4905-bc99-abd2f554339d" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="92ab586f-ced0-4d78-a614-cb27c40c83e3" name="Tenant Portal UI" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b2a83898-5172-40bc-b26d-89b71e654ee0" />
+        <targetEnds>
+          <association Id="fac67576-c2e8-4aa5-a6d6-1075e25aaccd" isDerived="false" sourceEndRoleName="Tenant Portal UI" targetEndRoleName="RDFE" isLeaf="false" isAbstract="false">
+            <subsystemMoniker Id="94b7bb58-8921-4353-8712-00b191909b9c" LastKnownName="RDFE" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="08da5a6c-2872-4195-90e4-30a0c587f654" name="Tenant Portal UI" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="21edf415-7ae0-4860-bdcf-298a214cd0b0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="94b5acc6-5b10-44af-a47e-1b7430680b9c" name="RDFE" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c71d1116-27a8-4b64-9fb9-837a2225e2c4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ca109b93-5a6d-461b-8163-7b2571577824" />
+          </association>
+        </targetEnds>
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="7814485e-26c1-4245-998f-6a5ede7c6aec" name="Admin Portal UI" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="237e93b9-520d-4252-9776-b72e091ba685" />
+        <targetEnds>
+          <association Id="80dee4bb-dcdd-4ac1-b332-c300b432ba86" isDerived="false" sourceEndRoleName="Admin Portal UI" targetEndRoleName="RDFE" isLeaf="false" isAbstract="false">
+            <subsystemMoniker Id="94b7bb58-8921-4353-8712-00b191909b9c" LastKnownName="RDFE" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ac2c15a4-dd8f-46d4-ae59-19997ff07a8e" name="Admin Portal UI" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="2581d6e7-3b62-4190-944c-8e95faf077c4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="471e0ddc-8004-4822-9df6-4d2f152a16ac" name="RDFE" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="244221a7-36f6-4f4e-aebb-6da34a9a4082" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1873069d-6f72-40fd-8ec2-fcbe3679b518" />
+          </association>
+        </targetEnds>
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="94b7bb58-8921-4353-8712-00b191909b9c" name="RDFE" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8c298156-2854-497e-b251-1d81d6106334" />
+        <targetEnds>
+          <association Id="0f26edac-6f85-42b8-8d2e-e8e5e8a1082a" isDerived="false" sourceEndRoleName="RDFE" targetEndRoleName="CmpWap Resource Provider" isLeaf="false" isAbstract="false">
+            <subsystemMoniker Id="2c2a9b57-e9be-41f8-bdda-414331eed4e9" LastKnownName="CmpWap Resource Provider" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="edabd9fe-40ee-45c7-8177-b4bb1caea640" name="RDFE" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="36dec432-38e5-42d8-9380-b20e13c6d64c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f869a150-a77b-47b6-8a24-be6dd5bd2e94" name="CmpWap Resource Provider" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b3a36543-a5cd-4dc6-9b79-f14172889e91" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="3c906e94-4d4b-4cfc-87ce-6f60768c3d1b" />
+          </association>
+        </targetEnds>
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="2c2a9b57-e9be-41f8-bdda-414331eed4e9" name="CmpWap Resource Provider" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="66947e21-4577-430e-ba0a-5f577b9b12c8" />
+        <targetEnds>
+          <association Id="0bbd1cac-2fc8-43a4-91e1-540edb5df440" isDerived="false" sourceEndRoleName="CmpWap Resource Provider" targetEndRoleName="CMP Web Service" isLeaf="false" isAbstract="false">
+            <subsystemMoniker Id="85463221-d5bf-4be1-bba2-c6052238836a" LastKnownName="CMP Web Service" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="abb10309-ea67-456a-a1ca-2ae6cd257b40" name="CmpWap Resource Provider" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="c3e893a8-e02b-4a30-8247-e28579e70193" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5928f6e9-784a-4d50-a188-8653ecf98d1b" name="CMP Web Service" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4d556b3a-3ce3-4420-9465-2cace745c2b0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b1ccefdb-e826-48ec-bfc2-4cc8a44ab009" />
+          </association>
+          <association Id="bc498e63-689c-469f-a3a6-aee4568bb64d" isDerived="false" sourceEndRoleName="CmpWap Resource Provider" targetEndRoleName="Azure admin interface" isLeaf="false" isAbstract="false">
+            <subsystemMoniker Id="5e6328db-454d-4a60-859d-183a9722ea73" LastKnownName="Azure admin interface" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fb75ec61-2aac-4ef5-9812-3ad443ca4b09" name="CmpWap Resource Provider" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9c6aa220-3349-4b2f-9b84-27181a9bdd6e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="69d8f0c7-c2f0-48b7-b034-58a4b1b94d31" name="Azure admin interface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a38de87b-6651-4555-ab11-93b429274ef4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="dd2f491c-8914-46b9-8e12-3920debf367f" />
+          </association>
+          <association Id="126cd6fc-466a-4828-8125-587398cab39d" isDerived="false" sourceEndRoleName="CmpWap Resource Provider" targetEndRoleName="CMP Database" isLeaf="false" isAbstract="false">
+            <subsystemMoniker Id="d154895f-ce7e-4d83-b45b-c5b6d53ae6db" LastKnownName="CMP Database" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="475f31c8-ce49-459e-bc52-46f963a216d8" name="CmpWap Resource Provider" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="cfa052d2-5a01-47b5-b3d8-1ca1de64cf34" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6b6ce5ff-f794-48f6-99ae-d1d73ae51a94" name="CMP Database" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="48b77c9d-2a0c-43eb-983b-fe74b85e394a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="905ff2e4-760b-48c6-8821-07e758e191f4" />
+          </association>
+        </targetEnds>
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="5e6328db-454d-4a60-859d-183a9722ea73" name="Azure admin interface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8b5f44d1-238d-4276-89dc-a18ac3371b37" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="85463221-d5bf-4be1-bba2-c6052238836a" name="CMP Web Service" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d7cbd851-ba11-4b79-8dbc-cd4eaf2e72a3" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="d154895f-ce7e-4d83-b45b-c5b6d53ae6db" name="CMP Database" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="179ca616-5e40-4f00-b659-40ead6a05e68" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="07eee0ec-dbb2-45ad-a6dc-e0036a722ded" name="CmpWapModel">
+    <elementDefinition Id="8689a160-402e-4038-90af-0c8b64ee7274" />
+    <profileInstances>
+      <packageHasProfileInstances Id="06291699-934f-4c05-bdff-21870ce2bc29">
+        <profileInstance Id="d5d9239d-a571-4844-b96b-e6522e7c0e2f" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="8648678d-57f0-4507-8728-fe5006450ea0">
+        <profileInstance Id="b5d94258-353f-4b21-9188-e9215a1e5124" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>

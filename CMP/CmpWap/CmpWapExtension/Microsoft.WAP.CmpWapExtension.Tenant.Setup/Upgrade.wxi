@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:uti="http://schemas.microsoft.com/wix/UtilExtension">
+  <Upgrade Id="$(var.UpgradeCode)">
+    <UpgradeVersion Minimum="$(var.ProductVersion)"
+                    IncludeMinimum="no"
+                    OnlyDetect="yes"
+                    Language="$(var.ProductLanguage)"
+                    Property="NEWPRODUCTFOUND" />
+    <UpgradeVersion Minimum="$(var.UpgradeMinimumVersion)"
+                    IncludeMinimum="yes"
+                    Maximum="$(var.ProductVersion)"
+                    IncludeMaximum="no"
+                    Language="$(var.ProductLanguage)"
+                    Property="UPGRADEFOUND" />
+  </Upgrade>
+  <!-- Prevent downgrading -->
+  <CustomAction Id="PreventDowngrading"
+                Error="A newer version is installed. Uninstall (ProductCode=[NEWPRODUCTFOUND]) to downgrade." />
+  <InstallExecuteSequence>
+    <Custom Action="PreventDowngrading"
+            After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
+    <RemoveExistingProducts After="InstallInitialize" />
+  </InstallExecuteSequence>
+  <InstallUISequence>
+    <Custom Action="PreventDowngrading"
+            After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
+  </InstallUISequence>
+  <!-- Resequence WiX custom actions. -->
+  <!--<InstallExecuteSequence>
+    <Custom Action="SchedXmlConfig"
+            After="ConfigureIIs"/>
+    <Custom Action="SchedXmlFile"
+            After="SchedXmlConfig"/>
+  </InstallExecuteSequence>-->
+</Include>

@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm12="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm13="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" dslVersion="1.0.0.0" Id="bdc547f5-b844-435a-b2ea-a6f3790db12f" name="VmPrepActivity" linkedPackageId="174adf70-1de1-40d4-8414-09810c1f0244" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="f4f29218-0877-449d-a6e9-fd178a88bdaa">
+      <elementDefinition Id="2a7f7723-9410-42ee-9628-ff13c5242f99" />
+      <body>Initiated by dispatcher work order</body>
+    </comment>
+    <comment Id="76baf711-0412-4d87-9454-3c68bd2acaa9">
+      <elementDefinition Id="fbf128c2-302d-4b84-886f-654f89770529" />
+      <body>Status update:
+Suceess or Exception.
+Exception is picked up by ProcessException Activity
+Success is picked up by VmTransfer Acticity</body>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="aa479711-ab23-40f8-8e27-b7c7c1afeaea" name="VmPrepActivity" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="d7dec364-bd90-46fe-a68f-8e1619e72b02" />
+        <nodes>
+          <initialNode Id="e9fcd6da-c694-4600-a1ce-f1a827ea6e78" name="Initial1" isLeaf="false">
+            <elementDefinition Id="20c428e8-d98b-45e7-80f9-1ca896836f21" />
+            <flowNodeTargets>
+              <controlFlow Id="7de3f6d2-70eb-4b05-b642-d0cd93fb8639" isLeaf="false">
+                <opaqueActionMoniker Id="8ba47129-1571-4c2e-abcd-5cd214f00f95" LastKnownName="Validate Request" />
+                <elementDefinition Id="f2d46738-b269-4627-b07d-6f558e26af9e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="8ba47129-1571-4c2e-abcd-5cd214f00f95" name="Validate Request" isLeaf="false">
+            <elementDefinition Id="bd9706c5-7ff1-473a-bfb6-ea1f0e4ff73d" />
+            <flowNodeTargets>
+              <controlFlow Id="beccb34a-1e93-40ac-9551-1bec1d54dc11" isLeaf="false">
+                <sendSignalActionMoniker Id="5b23d131-50d2-4e42-abed-25cf5b695783" LastKnownName="Invoke VhdPrep" />
+                <elementDefinition Id="6c770b73-287e-463b-a997-ce5a873e957a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <sendSignalAction Id="5b23d131-50d2-4e42-abed-25cf5b695783" name="Invoke VhdPrep" isLeaf="false">
+            <elementDefinition Id="09515995-8a91-4f72-866a-72c9683e6cdd" />
+            <flowNodeTargets>
+              <controlFlow Id="915d9d74-bd4c-4f8f-859f-b5ac45d4e59e" isLeaf="false">
+                <acceptEventActionMoniker Id="41501a11-1b24-4c90-8ac8-a9e69888c01f" LastKnownName="VhdPrep Invoked" />
+                <elementDefinition Id="e5834964-707e-4468-8701-634be3ea856c" />
+              </controlFlow>
+              <controlFlow Id="ba4e2b7c-f16c-4353-a600-1832263d38be" isLeaf="false">
+                <opaqueActionMoniker Id="6394ab99-c382-43b7-964f-3891675c9bd2" LastKnownName="Update Status" />
+                <elementDefinition Id="125ff6e8-5287-4ffe-80d2-6850926f479b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <acceptEventAction Id="41501a11-1b24-4c90-8ac8-a9e69888c01f" name="VhdPrep Invoked" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="fa3bc440-cabd-473c-8619-f6cd209ebc6f" />
+            <flowNodeTargets>
+              <controlFlow Id="9a699fc8-097f-4074-883b-230bc8793a4b" isLeaf="false">
+                <opaqueActionMoniker Id="f990910b-b2bf-4c8f-82f2-f3c3ceffd44b" LastKnownName="Prep VHD" />
+                <elementDefinition Id="85bda399-4c7c-455c-97a1-d24661a7424c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <opaqueAction Id="f990910b-b2bf-4c8f-82f2-f3c3ceffd44b" name="Prep VHD" isLeaf="false">
+            <elementDefinition Id="feec19e0-02fe-4b74-b63a-75a8d35bbad6" />
+            <flowNodeTargets>
+              <controlFlow Id="825fbc03-6137-4149-9df3-ad216110ddf3" isLeaf="false">
+                <sendSignalActionMoniker Id="0a8a76e9-3ad2-4e19-9e46-114b523d26ed" LastKnownName="NotifyStatus" />
+                <elementDefinition Id="5c9f99b0-0cd2-4b83-afc3-9377f8911e86" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <sendSignalAction Id="0a8a76e9-3ad2-4e19-9e46-114b523d26ed" name="NotifyStatus" isLeaf="false">
+            <elementDefinition Id="3002d380-e195-4104-98e2-e7ebfa40338f" />
+            <flowNodeTargets>
+              <controlFlow Id="062f8219-0bf6-4df5-98c5-5122efff271e" isLeaf="false">
+                <activityFinalNodeMoniker Id="229705f0-a710-4868-a89e-12fcbf5782d1" LastKnownName="ActivityFinal2" />
+                <elementDefinition Id="920bf255-76d4-4d60-b07f-63715e610072" />
+              </controlFlow>
+              <controlFlow Id="7ca4e3bc-7079-48a0-a955-593642e7ac81" isLeaf="false">
+                <acceptEventActionMoniker Id="f9256ca0-71cc-4f3b-8e9c-94f59a914f78" LastKnownName="Status Notified" />
+                <elementDefinition Id="0360c375-b2e8-4453-8563-5104695be477" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <activityFinalNode Id="229705f0-a710-4868-a89e-12fcbf5782d1" name="ActivityFinal2" isLeaf="false">
+            <elementDefinition Id="1471ba04-ff63-499f-9477-1061d8fa6a9f" />
+          </activityFinalNode>
+          <acceptEventAction Id="f9256ca0-71cc-4f3b-8e9c-94f59a914f78" name="Status Notified" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="bf8db4a5-0ca1-473d-abd3-faa4ea8baf1c" />
+            <flowNodeTargets>
+              <controlFlow Id="04f7f5f6-453c-4d47-93e3-54544b3342dc" isLeaf="false">
+                <opaqueActionMoniker Id="5fbce070-06af-4635-8792-7eefdc1bfd5d" LastKnownName="Update Status" />
+                <elementDefinition Id="db2a060c-78dd-470e-a2b2-913069822a2f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <opaqueAction Id="5fbce070-06af-4635-8792-7eefdc1bfd5d" name="Update Status" isLeaf="false">
+            <elementDefinition Id="b4272cf9-0308-4833-999f-712f5eb76040" />
+            <flowNodeTargets>
+              <controlFlow Id="d6103693-195a-4c5f-95a7-71b8cd1da5f1" isLeaf="false">
+                <activityFinalNodeMoniker Id="d3e892bc-45ea-4b2b-807d-d5387de79ade" LastKnownName="ActivityFinal3" />
+                <elementDefinition Id="2dd95097-aeaf-4560-a9e7-4d1f3547ef2f" />
+              </controlFlow>
+            </flowNodeTargets>
+            <objectFlowTargets>
+              <objectFlow Id="6be0e87c-4c7a-40b3-8723-3f3f90048ad2" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="5e13d5c1-4f51-48aa-9837-3b45a665603b" LastKnownName="Work Order" />
+                <elementDefinition Id="38fdc9f8-1ee3-4c3f-aae8-ab2f34b5a57d" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <objectNode Id="5e13d5c1-4f51-48aa-9837-3b45a665603b" name="Work Order" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="2f54774b-ffbe-4876-840c-3eb29423d9e0" />
+            <objectFlowTargets>
+              <objectFlow Id="2b77a8b9-c85b-433f-b925-0b882eddfbda" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="8ba47129-1571-4c2e-abcd-5cd214f00f95" LastKnownName="Validate Request" />
+                <elementDefinition Id="0e4c0fe4-fa1a-4c5f-9f10-2d4ae65cbb22" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="5afe06c3-9bb3-462f-8548-94320a3d625a" name="2147483647" value="2147483647">
+                <elementDefinition Id="921d2304-d611-4bb6-9043-b43f705a0f0f" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <activityFinalNode Id="d3e892bc-45ea-4b2b-807d-d5387de79ade" name="ActivityFinal3" isLeaf="false">
+            <elementDefinition Id="02b046aa-eacd-42c8-b9a9-243d0d414872" />
+          </activityFinalNode>
+          <opaqueAction Id="6394ab99-c382-43b7-964f-3891675c9bd2" name="Update Status" isLeaf="false">
+            <elementDefinition Id="12c5c4cb-6898-480c-9d29-567ef32bd340" />
+            <flowNodeTargets>
+              <controlFlow Id="c05dbd20-a8ee-4df1-882d-ae8cda64454c" isLeaf="false">
+                <activityFinalNodeMoniker Id="ac6b94dd-7d6c-4c7e-be2c-55318582086d" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="55b6be8c-f973-4568-92e3-f02c21d3944f" />
+              </controlFlow>
+            </flowNodeTargets>
+            <objectFlowTargets>
+              <objectFlow Id="f09c1a9e-18b1-4e6d-9d0a-ab65c3c7b44b" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="5e13d5c1-4f51-48aa-9837-3b45a665603b" LastKnownName="Work Order" />
+                <elementDefinition Id="6207431c-9a05-48b2-9555-91191724df15" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <activityFinalNode Id="ac6b94dd-7d6c-4c7e-be2c-55318582086d" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="6c00a0eb-f187-4915-8142-83f2b896629e" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="174adf70-1de1-40d4-8414-09810c1f0244" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+    <profileInstances>
+      <packageHasProfileInstances Id="2d70a59f-61af-47d7-981a-2fd820f0b5ae">
+        <profileInstance Id="54d0c770-0bef-4b44-a14b-6637b8a331db" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="965d864f-c400-4d16-a8d4-530228249e72">
+        <profileInstance Id="8b745552-4d3b-4b2a-bf52-1557b4d8b810" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</activityRootModel>

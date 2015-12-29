@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<InstallItems>
+<!--
+<InstallDataItem ControlTitle="" 
+                                //This is a unique ID used to identify this DataItem
+                 DisplayTitle="" 
+                                //This is the title for the data item.
+                 InstallType="" 
+                                //This is the type of the install.
+                                //Valid types are:
+                                //  ExecutableInstall
+                                //  MicrosoftInstaller
+                                //  CustomAction
+                 ItemWeAreInstalling=""
+                                //This is a flags entry that describes the item.  You can
+                                //use one or more flags but they must be seperated by commas.
+                                //Valid flags are:
+                                //  ItemNotFatal
+                                //  ExecutableInstall
+                                //  MicrosoftInstaller
+                                //  CustomAction
+                 FullPathToLaunch=""
+                                //This is the full path (from the setup.exe location) of
+                                //the file or msi to launch.
+                 Arguments=""
+                                //This contains any arguments that are ALWAYS passed to 
+                                //this install item.  This entry can be blank
+                 LogFile=""
+                                //This contains the path and name for this install item's log
+                 ProductCode=""
+                                //If this is an MicrosoftInstaller item then this field 
+                                //contains the product code.
+                                //If this is not a MicrosoftInstaller item then this is blank.
+                 Time=""
+                                //If this is a ExecutableInstall item this contains the time in
+                                //seconds that the installer should put onto the progress bar
+                 SuccessValue=""
+                                //This is the value the setup will use to determine success for
+                                //this install item.
+                 >
+    <PreProcessing DelegateId=""></PreProcessing>
+    //This is the delegate that will be launched before the item is processed
+    //The DelegateId is the name of the class, the value is the name of the function to call
+    <PostProcessing DelegateId=""></PostProcessing>
+    //This is the delegate that will be launched after the item is run (if it does not error)
+    //The DelegateId is the name of the class, the value is the name of the function to call
+    <Prereq DelegateId=""></Prereq>
+    //This is the delegate that will handel prereq checks for this item.
+    //The DelegateId is the name of the class, the value is the name of the function to call
+</InstallDataItem>
+-->
+
+  <InstallDataItem
+    ControlTitle="CMPServer"
+    DisplayTitle="CMPServer"
+    InstallType="MicrosoftInstaller"
+    ItemWeAreInstalling="MicrosoftInstaller"
+    FullPathToLaunch="CmpWorkerServiceInstaller.msi"
+    Arguments="INSTALLINGLANGUAGE = 1033 REBOOT=ReallySuppress "
+    LogFile="cmpServer.log"
+    ProductCode="FAC2B832-6869-4F2B-9625-0EDE1644CB09"
+    Time="0"
+    SuccessValue="0"
+    ParentItem="Server"
+    ParentItemDisplayText="CMP server">
+    <PreProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">CMPServerPreinstallProcessor</PreProcessing>
+    <CustomAction DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP"></CustomAction>
+    <PostProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">CMPServerPostinstallProcessor</PostProcessing>
+    <Prereq DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">DummyPrerequsiteProcessor</Prereq>
+    <Dependency />
+  </InstallDataItem>
+
+  <InstallDataItem 
+    ControlTitle="WAPExtensionCommon"
+    DisplayTitle="WAPExtensionCommon"
+    InstallType="MicrosoftInstaller"
+    ItemWeAreInstalling="MicrosoftInstaller"
+    FullPathToLaunch="Microsoft.WindowsAzurePack.CmpWapExtension.Setup.msi"
+    Arguments="INSTALLINGLANGUAGE = 1033 REBOOT=ReallySuppress "
+    LogFile="wapExtensionCommon.log"
+    ProductCode="5141FF3B-EAAC-42C9-95C8-152831C78783"
+    Time="0"
+    SuccessValue="0"
+    ParentItem="Client"
+    ParentItemDisplayText="WAP extension common prerequisites">
+    <PreProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">WAPExtensionCommonPreinstallProcessor</PreProcessing>
+    <CustomAction DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP"></CustomAction>
+    <PostProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">WAPExtensionCommonPostIstallProcessor</PostProcessing>
+    <Prereq DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">DummyPrerequsiteProcessor</Prereq>
+  </InstallDataItem>
+
+    
+  <InstallDataItem 
+    ControlTitle="TenantWAPExtension"
+    DisplayTitle="TenantWAPExtension"
+    InstallType="MicrosoftInstaller"
+    ItemWeAreInstalling="MicrosoftInstaller"
+    FullPathToLaunch="Microsoft.WAP.CmpWapExtension.Tenant.Setup.msi"
+    Arguments="INSTALLINGLANGUAGE = 1033 REBOOT=ReallySuppress "
+    LogFile="tenantWapExtension.log"
+    ProductCode="5141FF3B-EAAC-42C9-95C8-152831C78782"
+    Time="0"
+    SuccessValue="0"
+    ParentItem="Client"
+    ParentItemDisplayText="Tenant WAP extension">
+    <PreProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">TenantWAPExtensionPreinstallProcessor</PreProcessing>
+    <CustomAction DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP"></CustomAction>
+    <PostProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">TenantWAPExtensionPostIstallProcessor</PostProcessing>
+    <Prereq DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">DummyPrerequsiteProcessor</Prereq>
+  </InstallDataItem>
+  
+  <InstallDataItem 
+    ControlTitle="AdminWAPExtension"
+    DisplayTitle="AdminWAPExtension"
+    InstallType="MicrosoftInstaller"
+    ItemWeAreInstalling="MicrosoftInstaller"
+    FullPathToLaunch="Microsoft.WAP.CmpWapExtension.Admin.Setup.msi"
+    Arguments="INSTALLINGLANGUAGE = 1033 REBOOT=ReallySuppress "
+    LogFile="adminWapExtension.log"
+    ProductCode="5141FF3B-EAAC-42C9-95C8-152831C78781"
+    Time="0"
+    SuccessValue="0"
+    ParentItem="Client"
+    ParentItemDisplayText="Administrator WAP extension">
+    <PreProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">AdminWAPExtensionPreinstallProcessor</PreProcessing>
+    <CustomAction DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP"></CustomAction>
+    <PostProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">AdminWAPExtensionPostIstallProcessor</PostProcessing>
+    <Prereq DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">DummyPrerequsiteProcessor</Prereq>
+  </InstallDataItem>
+  
+  <InstallDataItem 
+    ControlTitle="POSTINSTALL"
+    DisplayTitle="FinalConfiguration"
+    InstallType="PostInstallItem"
+    ItemWeAreInstalling="PostInstallItem"
+    FullPathToLaunch=""
+    Arguments=""
+    LogFile="Not Used"
+    ProductCode=""
+    Time="0"
+    SuccessValue="0"
+    ParentItem="FinalConfiguration"
+    ParentItemDisplayText="Final Configuration">
+    <PreProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP"></PreProcessing>
+    <CustomAction DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP"></CustomAction>
+    <PostProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP"></PostProcessing>
+    <Prereq DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP"></Prereq>
+  </InstallDataItem>
+</InstallItems>

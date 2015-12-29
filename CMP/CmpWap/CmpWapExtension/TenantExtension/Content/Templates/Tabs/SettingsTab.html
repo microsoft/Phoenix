@@ -1,0 +1,37 @@
+﻿<div class="hw-settingsTab">
+    <div id="hw-settings" class="waz-config">
+        <h2>File Share account settings</h2>
+
+        <div class="waz-config-section">
+            <div class="waz-config-setting">
+                <label for="hw-username">
+                    User Name
+                </label>
+
+                <div class="waz-config-setting-value">
+                    <input
+                        type="text"
+                        id="hw-username"
+                        value="{{attr:GoDaddyShopperId}}"
+                        class="fx-textbox"
+                        disabled="disabled" />
+                </div>
+            </div>
+            <div class="waz-config-setting last-child">
+                <label for="dm-password">
+                    Password
+                </label>
+                <div class="waz-config-setting-value">
+                    <input
+                        type="password"
+                        id="hw-password"
+                        data-val="true"
+                        data-val-length-max="128"
+                        data-val-required="Required"
+                        value="{{attr:GoDaddyShopperPassword}}"
+                        class="fx-textbox fx-validation fx-editablecontrol" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="c84c793c-401b-4ee8-8d4c-2b9a7e74f6ab" name="TransferFileToBlob" linkedPackageId="8e564552-7410-4676-85e2-76f3db4ede8e" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="4d10028f-8ba4-4661-a7fc-a44e585c0f73">
+      <profileInstance Id="e07d815f-dce5-449d-985e-695eaf19c800" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="0e5ceea4-4454-4f1a-b6b1-cb6ada045b7f">
+      <profileInstance Id="b3161a23-07f6-4985-9efb-4516488e5985" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="5bf75f9b-d1fa-40a1-a2d3-06a0978d0d62" name="TransferFileToBlob" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="de27c510-66e4-4776-b831-c1b4031c12df" />
+        <nodes>
+          <initialNode Id="70c78eee-98fc-4640-a5af-035f491aef68" name="Initial1" isLeaf="false">
+            <elementDefinition Id="92eada95-88e5-469d-b5de-42a9db7a93ca" />
+            <flowNodeTargets>
+              <controlFlow Id="5c4a99ab-2300-469e-a3d8-ca924a1d0002" isLeaf="false">
+                <opaqueActionMoniker Id="d717f257-3ffe-416c-8b99-0d55da084e01" LastKnownName="Validate" />
+                <elementDefinition Id="5dfe1670-8411-4d4a-a4f4-80b76b945e14" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="d717f257-3ffe-416c-8b99-0d55da084e01" name="Validate" isLeaf="false">
+            <elementDefinition Id="3c0f057b-491f-427a-9d9e-ac90a406d43a" />
+            <flowNodeTargets>
+              <controlFlow Id="66763f8e-9df0-4ce4-8b1c-45c99f8365bc" isLeaf="false">
+                <opaqueActionMoniker Id="2fd4f8d2-12e8-418b-94c5-1bd5d0286049" LastKnownName="TransferPages" />
+                <elementDefinition Id="719fa3f0-4c28-4194-a163-5fb346d5c0e6" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasInputValues>
+                <inputPin Id="50be9ab1-798d-4259-81c5-0cc03cfb2444" name="ATFS File Transfer Request" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="753c3fdc-f411-4892-b8d7-c70928a59930" />
+                  <upperBound>
+                    <literalInteger Id="e773012d-daeb-4c65-81cf-18e2d00c53d6" name="2147483647" value="2147483647">
+                      <elementDefinition Id="55dc2c0d-aa35-494e-a5f9-65b778d2beb7" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </opaqueActionHasInputValues>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="8e3e9059-94f8-4293-88d1-d1e542fdf2da" name="Status Update" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="1dd621d3-740a-40a9-88e3-0ff6ab969082" />
+                  <objectFlowTargets>
+                    <objectFlow Id="f2f80330-01b3-40f6-b173-487e42baed4e" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="5cab9137-fa83-47ea-bac4-4dfe99815514" LastKnownName="ATFS Transfer Request Store" />
+                      <elementDefinition Id="031e1abc-a39e-4576-8c66-73a94e68c495" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="6d0f8110-42f5-4d94-a294-018acf164bde" name="2147483647" value="2147483647">
+                      <elementDefinition Id="362fe1ad-6ad8-426b-b6af-7b49e0e8c9b4" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+              <opaqueActionHasInputValues>
+                <inputPin Id="4c060a4c-1d9b-4f72-9e28-a5924c69a53f" name="File Info" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="ece5189d-92cc-4411-a4da-b2ffe0a0452f" />
+                  <upperBound>
+                    <literalInteger Id="267fefde-3400-4fee-af0a-59922506fc67" name="2147483647" value="2147483647">
+                      <elementDefinition Id="b2bec70b-3247-4566-8b5b-c8611e37885e" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </opaqueActionHasInputValues>
+              <opaqueActionHasInputValues>
+                <inputPin Id="2687d85b-f58c-4389-801c-91028c4c9c93" name="Azure Storage Info" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="b2576391-4ad2-46cb-98ab-1692f6a26356" />
+                  <upperBound>
+                    <literalInteger Id="8730981f-689b-442d-a3c2-19854f7c062f" name="2147483647" value="2147483647">
+                      <elementDefinition Id="d0c6717a-e17d-4f89-964f-5983388d254e" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </opaqueActionHasInputValues>
+            </pins>
+          </opaqueAction>
+          <objectNode Id="5cab9137-fa83-47ea-bac4-4dfe99815514" name="ATFS Transfer Request Store" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="214005b3-6561-40a7-b6d0-eb468101c19e" />
+            <upperBound>
+              <literalInteger Id="16cb22b9-f138-43e9-92f6-34584590a48a" name="2147483647" value="2147483647">
+                <elementDefinition Id="1269a79b-004c-4b5c-8fbe-38e30c067e2a" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="e316a652-dd3a-46c8-8cca-eed98d42cb46" name="ATFS File Transfer Request" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="25133c48-01e5-48d8-bae6-e3399994e3d2" />
+            <objectFlowTargets>
+              <objectFlow Id="e51c69f7-cdda-4297-b68e-19dcbcf0251f" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="50be9ab1-798d-4259-81c5-0cc03cfb2444" LastKnownName="ATFS File Transfer Request" />
+                <elementDefinition Id="92390c91-1b64-45c0-a436-e8757ecf3adc" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="458f4872-3fef-42bd-b97a-db2ef9e5c540" name="2147483647" value="2147483647">
+                <elementDefinition Id="c2532a5d-2657-4053-99bd-4c238680bb71" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="c2f7f7e2-3019-4188-ae69-0eb313f95448" name="File Store" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="85c91665-a0bb-415d-ba06-260135d4fc9f" />
+            <objectFlowTargets>
+              <objectFlow Id="48930d19-353b-4a44-a88b-0d7d498545cb" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="4c060a4c-1d9b-4f72-9e28-a5924c69a53f" LastKnownName="File Info" />
+                <elementDefinition Id="c24a0bea-2569-4d9c-bce8-103f228f5193" />
+              </objectFlow>
+              <objectFlow Id="bc686779-392b-4f9c-a474-ad6528560365" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="0eb6997d-e5c8-4ba4-90f2-37e0d17bcc59" LastKnownName="File Contents" />
+                <elementDefinition Id="9c1e00ea-dda4-43ac-9342-ca5bd6cd1c3e" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="713e8307-4fd3-4cd2-9861-62f8aa149475" name="2147483647" value="2147483647">
+                <elementDefinition Id="b564152c-35b2-4734-86bf-f2d464b54b69" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="2fd4f8d2-12e8-418b-94c5-1bd5d0286049" name="TransferPages" isLeaf="false">
+            <elementDefinition Id="6f486c01-bce5-44f1-b1a1-f12a5093c43d" />
+            <flowNodeTargets>
+              <controlFlow Id="5833d1f4-863b-4bd3-9a8e-c71cad701056" isLeaf="false">
+                <activityFinalNodeMoniker Id="d11ba850-2ad8-4535-b0be-bb7507b2863e" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="d1c6b57d-1911-463f-8639-622b3a0593d6" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="75cd820a-46a4-41e3-9590-52111ca06a9c" name="Status Update" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="417c14fa-5ab0-4050-9ebc-b7ee20f6de4b" />
+                  <objectFlowTargets>
+                    <objectFlow Id="23465dbb-c410-4ae9-93f7-ef2f017480f3" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="5cab9137-fa83-47ea-bac4-4dfe99815514" LastKnownName="ATFS Transfer Request Store" />
+                      <elementDefinition Id="9d938ae0-5c20-4cd3-bf3a-4e2e3fd55559" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="2db58ba2-cbe9-4100-8196-6f0af99a518e" name="2147483647" value="2147483647">
+                      <elementDefinition Id="15977caf-9453-43f6-bf55-4ddeb34aa2f9" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="a294014b-9363-4f2b-9467-dcf0b86bd86c" name="Page Blobs" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="66574b25-f100-47a5-8cae-b2b31294c5e2" />
+                  <objectFlowTargets>
+                    <objectFlow Id="2137a4c8-c341-42da-aa0e-141724c63b06" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="b0121f89-4d08-4e2c-8650-736a662cdf3a" LastKnownName="Azure Storage Account" />
+                      <elementDefinition Id="b336281b-3b2f-459d-bfb2-82bfce26ff60" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="f4f7a7c0-674b-4561-8791-bc9e9b6074e8" name="2147483647" value="2147483647">
+                      <elementDefinition Id="03207e97-ead9-416a-8fd4-4c84f77cfaa9" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+              <opaqueActionHasInputValues>
+                <inputPin Id="0eb6997d-e5c8-4ba4-90f2-37e0d17bcc59" name="File Contents" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="c90fbf05-2459-4559-8673-133e9f8d7f36" />
+                  <upperBound>
+                    <literalInteger Id="900b9fe6-c5d4-4561-b35b-4a61333b908e" name="2147483647" value="2147483647">
+                      <elementDefinition Id="29ee0356-c696-4c58-8b6a-f4f8f07136b3" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </opaqueActionHasInputValues>
+            </pins>
+          </opaqueAction>
+          <objectNode Id="b0121f89-4d08-4e2c-8650-736a662cdf3a" name="Azure Storage Account" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="fc323094-7efb-448d-aac8-bddf756dd69a" />
+            <objectFlowTargets>
+              <objectFlow Id="8e8028a8-74a2-4f80-89dd-5521dcd87703" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="2687d85b-f58c-4389-801c-91028c4c9c93" LastKnownName="Azure Storage Info" />
+                <elementDefinition Id="d9cd22aa-2047-4d62-9ba4-1c10d36ecca7" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="5ff2d73f-e686-40eb-ba6b-1204a1c2c816" name="2147483647" value="2147483647">
+                <elementDefinition Id="fe04231e-2467-4ed9-a5cf-287265bf1a94" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <activityFinalNode Id="d11ba850-2ad8-4535-b0be-bb7507b2863e" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="a3fe912a-4595-4e24-b337-bd8f0d5a892b" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="8e564552-7410-4676-85e2-76f3db4ede8e" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+  </package>
+</activityRootModel>

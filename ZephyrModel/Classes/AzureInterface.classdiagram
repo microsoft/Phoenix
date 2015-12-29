@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="a560d645-4c15-4dbc-a8b7-bc9391bac9fe" name="AzureInterface" linkedPackageId="e3a9ba43-582e-4f93-9f86-d8b23d9c7d08" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="c60c2a03-e22d-48f1-bc3f-d592269f2fe8" name="VmOps" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c62c65ee-af4a-4e4f-a2ae-ae95da7d56e4" />
+        <ownedOperationsInternal>
+          <operation Id="340ed703-9d22-46d5-85f7-055a3e892298" name="AddRole" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="4abb1625-1cb9-42b5-a45a-42b6f186596a" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="99b7e7b5-96df-4762-97b2-a7296e0428bc" name="Role" direction="In">
+                  <elementDefinition Id="fe32b6cf-cc51-42da-a668-c0daceffe011" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="01161376-f81a-4d1e-ab4e-77b17e1fc10d" LastKnownName="RoleInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="14c4fa1b-8535-43c8-aa92-10a949492ca2" name="DeleteRole" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="078bdf72-6c85-4bb2-8ade-40dc32b7d6fa" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="ac6d75fb-c9cc-40c8-861e-9ae519dc691c" name="Role" direction="In" isUnique="false">
+                  <elementDefinition Id="450426cd-f459-45f7-bc6f-ae4b5659d69b" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="01161376-f81a-4d1e-ab4e-77b17e1fc10d" LastKnownName="RoleInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="3bb158ee-93e8-475d-9748-8c61729f1785" name="UpdateRole" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="e6aa6519-7a76-4adb-bf92-4f9dac7edcd2" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="742c6ab5-19e9-40f0-aa4a-68e500916803" name="Role" direction="In" isUnique="false">
+                  <elementDefinition Id="6009c2e5-065e-42cb-b47c-04a44f684435" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="01161376-f81a-4d1e-ab4e-77b17e1fc10d" LastKnownName="RoleInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="624a1800-d626-4c16-8bb0-914a45c2d31b" name="StartRole" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b982ea42-e2ae-464b-8fb8-40f1657fe627" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="00793066-b53f-448a-b374-ccbcb61f44a9" name="Role" direction="In" isUnique="false">
+                  <elementDefinition Id="8b06e537-626b-4c55-8dc8-e3db9bdc6315" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="01161376-f81a-4d1e-ab4e-77b17e1fc10d" LastKnownName="RoleInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="88c3f7d1-a0e3-438f-a12d-76010a5379de" name="StopRole" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="bfced8fd-96c5-4e40-a366-e0c2d235b4a1" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="11cbbe93-d10d-48da-a4dd-91017d7efad7" name="Role" direction="In" isUnique="false">
+                  <elementDefinition Id="aa71ac85-1134-49e2-a5a3-816664477afa" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="01161376-f81a-4d1e-ab4e-77b17e1fc10d" LastKnownName="RoleInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="b8507a97-2b9b-47fe-985b-b49e9eebf149" name="RestartRole" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="80a5fe80-6b9f-4c1b-af14-9a8f0d7782a2" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="5bbc53fe-a073-4ea8-8f25-e5547150c5f7" name="Role" direction="In" isUnique="false">
+                  <elementDefinition Id="59235299-7ce7-4f86-bb7b-8655a0f17783" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="01161376-f81a-4d1e-ab4e-77b17e1fc10d" LastKnownName="RoleInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="bbc03614-4a68-4606-b0d0-02bf05bd87a7" name="CaptureRole" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6422e86e-3dc9-4555-9f89-31ddd601b695" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="438005f5-c54c-4877-bd4a-9ef46df94934" name="Role" direction="In" isUnique="false">
+                  <elementDefinition Id="93c0a8eb-c681-453f-8eed-92a452be72c8" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="01161376-f81a-4d1e-ab4e-77b17e1fc10d" LastKnownName="RoleInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="91366ede-b4a9-49c5-abae-271d215a850f" name="GetRoleInfo" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="52b9d2eb-2e01-44db-b027-f20b4cb3f6c5" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="80b04430-7977-44ff-8773-6aafbbc204fc" direction="Return">
+                  <elementDefinition Id="39bd6353-66f9-4c19-a30b-8a0708ed156a" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="01161376-f81a-4d1e-ab4e-77b17e1fc10d" LastKnownName="RoleInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="949d1692-f66d-48fb-a01e-321e6b5b8909" name="CreateVmDeployment" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="249cbe80-e24a-4686-812b-ea5a3a019033" />
+          </operation>
+          <operation Id="dda99c8d-a83a-4558-a126-3fc1050435c6" name="GetRdpFile" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="e49239c0-278d-4fb8-8f35-7cc4729b9873" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="96f2a099-3f80-4580-893b-f5b1e65fc1da" direction="Return">
+                  <elementDefinition Id="7b98a18a-614c-43b5-894a-1717f99d90a6" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="4ff67f9c-b9a1-42bc-9aef-9bf4f0250c46" LastKnownName="RdpFileInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1ba3cab3-2d6b-4e99-a7eb-51c6ba51a574" name="VmDiskOps" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="09cafbf4-52db-4e54-a284-1981122a1bdd" />
+        <ownedOperationsInternal>
+          <operation Id="6384f799-754e-4800-9625-1b048aafd87c" name="AddDisk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="136de80f-2b7a-4c9f-8641-9f2257d412f8" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="05ad8ea7-903e-4e78-8425-059201d2203e" name="Disk" direction="In" isUnique="false">
+                  <elementDefinition Id="756fe68c-b109-4a54-94b5-af8939846077" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="08bef292-8511-4b86-842a-fcfbf16a5122" LastKnownName="VmDiskInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="82288270-e3d6-48cd-9730-7073c67c49b6" name="UpdateDisk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="86902881-298b-4a1e-99c1-beb264a14da1" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="a8abae32-b018-47ff-87ea-9c0064706b61" name="Disk" direction="In" isUnique="false">
+                  <elementDefinition Id="917bf3fe-1efc-4ea0-9ade-acdfe383286d" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="08bef292-8511-4b86-842a-fcfbf16a5122" LastKnownName="VmDiskInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="13e62e7d-931e-4b52-bb63-25237afd814d" name="DeleteDisk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="c3bf3ab1-fe63-48e0-896c-2829b6fd8e60" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9b1a663c-c5c5-43e0-b506-846c1cb09566" name="Disk" direction="In" isUnique="false">
+                  <elementDefinition Id="c5b4296d-42f6-4f68-8f9f-862d75cce411" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="08bef292-8511-4b86-842a-fcfbf16a5122" LastKnownName="VmDiskInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="1972877a-5d89-48e0-9152-3f39e7709431" name="ListDisks" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f0a84893-50af-4222-a377-65918281bb75" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="16e3ed91-a6fb-4c91-b80f-d30c804554a0" direction="Return">
+                  <lowerValueInternal>
+                    <literalString Id="0fa14796-041e-4fc8-96d3-cbd3e009148f" name="Lower" value="*">
+                      <elementDefinition Id="22e68ab9-f15a-4c64-9e17-f521cb59899a" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="f0482116-da30-473a-9f1e-e2547d1a37db" name="Upper" value="*">
+                      <elementDefinition Id="43d63811-551c-46bd-8cd6-beabc5130623" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="767f9c03-1181-45af-bf8b-66a44259d221" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a9251b56-c3d0-466e-a64d-b00ee0e96964" LastKnownName="VmDiskInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="bb8eb616-eac6-437f-a659-6cfea0281640" name="AddDataDisk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="103106da-df70-4744-96a1-887f13ff951a" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="46feb3d7-de4b-46aa-8c1d-c1be519dfdc8" name="Disk" direction="In">
+                  <elementDefinition Id="6eedcd07-9c87-4bff-8e6f-babe01c5e045" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="08bef292-8511-4b86-842a-fcfbf16a5122" LastKnownName="VmDiskInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="bfdd2c0e-2f80-48cb-aee5-e157940df074" name="UpdateDataDisk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="27b72b02-1214-4fc7-abc0-509d1a96e7b2" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="89258a41-8e9e-4645-b89f-21b4c3c6373f" name="Disk" direction="In" isUnique="false">
+                  <elementDefinition Id="b2f8f828-24e7-4915-9bfa-984851b0abbb" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="08bef292-8511-4b86-842a-fcfbf16a5122" LastKnownName="VmDiskInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="1dff7dfb-8ce9-4118-8c1a-5b764a6b97f0" name="DeleteDataDisk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="5e6b387a-aa75-4bd5-baa6-470b1bfb87b9" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="77dda5d9-4e86-42bc-84a9-977c260cbb77" name="Disk" direction="In" isUnique="false">
+                  <elementDefinition Id="0da57112-80ba-478c-b5f4-82fc2827a251" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="08bef292-8511-4b86-842a-fcfbf16a5122" LastKnownName="VmDiskInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="89deb652-eab7-4644-b75b-bb0a525b2189" name="GetDataDisk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b71ccd11-d38f-4f51-919e-8b46aabaa3d6" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="7513ab5f-2ce7-4667-b860-42430d86711a" direction="Return">
+                  <elementDefinition Id="bd36083c-7f23-40e2-ad99-50bb399850c9" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="08bef292-8511-4b86-842a-fcfbf16a5122" LastKnownName="VmDiskInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8662e06e-1ee6-4761-b5f1-d24b1e4c2123" name="VmImageOps" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7a994c0e-d0ba-47d8-aea5-8946cb71a715" />
+        <ownedOperationsInternal>
+          <operation Id="9f244bd9-e4ba-4540-bc52-04e893359d22" name="AddOsDisk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="704a0d87-9d35-4380-a1fa-3d8c245297b1" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="2a968b99-e442-4da7-8ca0-f3d126233b72" name="VM" direction="In">
+                  <elementDefinition Id="a5838334-cc75-480c-bdf7-23c6179ef923" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="e0eb5afe-d6b6-4510-8c6a-fbfbe04a376d" LastKnownName="VmImageInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="f92996a2-5371-4049-acb1-ba5f0d7fb700" name="DeleteOsDisk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="efabd19c-64b9-4bbb-8d28-d29d817b37b0" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e387efb2-119b-4b6e-9315-b1bf4e9e8770" name="VM" direction="In" isUnique="false">
+                  <elementDefinition Id="5728c28c-36fa-4f10-834d-c312109f2d71" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="e0eb5afe-d6b6-4510-8c6a-fbfbe04a376d" LastKnownName="VmImageInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="6fbf18a5-1317-4bcd-98e6-b77c73a167f2" name="UpdateOsDisk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d03d6117-b30f-4497-b550-9c78b64feb04" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="c0829cb2-4e92-40cd-9ef2-707f7a4bfb05" name="VM" direction="In" isUnique="false">
+                  <elementDefinition Id="46e931f8-7bf6-4378-a017-11897517a1ac" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="e0eb5afe-d6b6-4510-8c6a-fbfbe04a376d" LastKnownName="VmImageInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="2bf9b801-88f4-45e9-bee5-ba910e14f406" name="ListOsImages" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="2c929bb2-a657-4d0b-8893-b1d1bc0563b9" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="2ff992a6-3e03-4c13-9372-bdab776631f9" direction="Return">
+                  <lowerValueInternal>
+                    <literalString Id="9d6a9499-33e7-46ea-b162-408d1f487267" name="Lower" value="*">
+                      <elementDefinition Id="e93a6202-6bf2-4590-b009-dfbdb75cef74" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="eb1211fe-f7b0-4bbf-bc17-12a8f4bebf3d" name="Upper" value="*">
+                      <elementDefinition Id="529ad186-0527-47e4-9778-5225aed23374" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="9845340d-2e8b-421e-a0ec-c133aad88850" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="e0eb5afe-d6b6-4510-8c6a-fbfbe04a376d" LastKnownName="VmImageInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="4ce4550d-ab0f-48b1-9a8f-e86d5efbda33" name="VNetOps" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="01d6e02d-1115-42ba-b820-ff32219b7917" />
+        <ownedOperationsInternal>
+          <operation Id="0cf67ced-cdeb-4f15-9c0f-db8a92fdea92" name="SetVNetConfig" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="aee2b51a-3730-45bb-932d-4364f515f3c9" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8b3c376e-d89d-44d2-95e6-a74ef05c8f12" name="VNet" direction="In" isUnique="false">
+                  <elementDefinition Id="04207780-7d6c-446d-b916-fc9d8bbca721" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="75b0eee4-9f1f-4e49-87d0-24fcc20a20bc" LastKnownName="VNetInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="2f564270-32b9-42e8-89fc-0c92f489b493" name="GetVNetConfig" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="480308c5-8627-41e0-9943-7ef82cc692cb" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="188e0c5a-4f39-47fe-8760-e656620dc4c0" direction="Return">
+                  <elementDefinition Id="ecd2de39-4820-4a1b-a323-c37252aec476" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="75b0eee4-9f1f-4e49-87d0-24fcc20a20bc" LastKnownName="VNetInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="3633e9ee-8e5d-430d-8c91-51a0f2c3717c" name="ListVNets" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="157b2e19-a373-4432-b7c8-77fa3f921b67" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="0c2f2ce9-ec44-4f77-b089-15fd6d971e87" direction="Return">
+                  <lowerValueInternal>
+                    <literalString Id="74d1d927-0b30-4995-a91c-35bba82964b1" name="Lower" value="*">
+                      <elementDefinition Id="06f3db77-dc74-4224-a63f-46b071c39525" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="dda330ec-a581-40cb-be30-373be0483551" name="Upper" value="*">
+                      <elementDefinition Id="c1f38f5f-f2b8-4847-b093-28a82757a2a5" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="c73b7822-e9ca-4564-97a4-cac6922a1a88" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="f83f084f-de30-4101-a12f-13dfc9e4a7b0" LastKnownName="VNetInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8f8802f4-7ca4-4964-bc49-1d164cbe7694" name="RoleInfo" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6262d04d-1f1b-41e6-a07d-38ae8e069dd5" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e2a99e69-9235-4a8b-80ad-a15dd1ebb2fb" name="VNetInfo" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2f7b9972-dfaf-482a-9783-164380e9ee2e" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8e912459-1cb9-4668-b7fe-e8e63fab6515" name="VmDiskInfo" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d2261c46-ad52-471e-8cd0-d69850b3e766" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="5b584171-b073-4f3e-a469-1b458f0dee00" name="VmImageInfo" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f542d75e-53cd-4bf4-a9b3-5cb34c73841a" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="01161376-f81a-4d1e-ab4e-77b17e1fc10d" name="RoleInfo" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::RoleInfo">
+        <elementDefinition Id="6262d04d-1f1b-41e6-a07d-38ae8e069dd5" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="08bef292-8511-4b86-842a-fcfbf16a5122" name="VmDiskInfo" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::VmDiskInfo">
+        <elementDefinition Id="d2261c46-ad52-471e-8cd0-d69850b3e766" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="a9251b56-c3d0-466e-a64d-b00ee0e96964" name="VmDiskInfo" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::VmDiskInfo">
+        <elementDefinition Id="d2261c46-ad52-471e-8cd0-d69850b3e766" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="75b0eee4-9f1f-4e49-87d0-24fcc20a20bc" name="VNetInfo" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::VNetInfo">
+        <elementDefinition Id="2f7b9972-dfaf-482a-9783-164380e9ee2e" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="f83f084f-de30-4101-a12f-13dfc9e4a7b0" name="VNetInfo" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::VNetInfo">
+        <elementDefinition Id="2f7b9972-dfaf-482a-9783-164380e9ee2e" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="e0eb5afe-d6b6-4510-8c6a-fbfbe04a376d" name="VmImageInfo" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::VmImageInfo">
+        <elementDefinition Id="f542d75e-53cd-4bf4-a9b3-5cb34c73841a" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="48a22cd0-12c0-4672-ba91-3ad9cf9b65b3" name="RdpFileInfo" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a9cab98b-6675-4bc8-b2a8-57db625c676e" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="4ff67f9c-b9a1-42bc-9aef-9bf4f0250c46" name="RdpFileInfo" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::RdpFileInfo">
+        <elementDefinition Id="a9cab98b-6675-4bc8-b2a8-57db625c676e" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ca8d8eff-4cdc-4e79-8128-c2a0cf8fe5d9" name="AzureInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="dc7b29be-1290-4d3b-b08e-fead1e7151bd" />
+        <ownedAttributesInternal>
+          <property Id="e451775c-221d-475f-814f-eb0b5a7cdf41" name="vmOps" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1c85af99-22cf-4bda-aaa4-2a308154499e" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="77818dfc-245c-400e-aab2-8f6f6c8100f2" LastKnownName="VmOps" />
+            </type_NamedElement>
+          </property>
+          <property Id="392f857f-6c83-43dc-aa05-ad82415330fe" name="vmDiskOps" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="d5eed86b-2679-48fb-9b0d-c0c4870ccdad" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="b02587e1-6317-4e89-95b9-494cb0cad7a2" LastKnownName="VmDiskOps" />
+            </type_NamedElement>
+          </property>
+          <property Id="075eb622-cb7a-456c-b87f-472648102aca" name="vmImageOps" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1df66e87-6dde-4360-8a3a-7a161194ac97" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="8e0dc5e2-8e38-4ff8-8127-5f94d2f75852" LastKnownName="VmImageOps" />
+            </type_NamedElement>
+          </property>
+          <property Id="fc6d43d6-024b-462c-ba09-d86e20d4a074" name="vnetOps" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="3f528a28-4056-494d-82b6-1af86404cd44" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="8fd961ec-2f3d-45df-a879-13933aa6171a" LastKnownName="VNetOps" />
+            </type_NamedElement>
+          </property>
+          <property Id="15be4426-cc96-46bb-8c9a-640322108475" name="AccessCert" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="fa1b406d-5fa7-413a-9e32-721016500949" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="05818e9f-303a-44a5-8d94-21dd0961137a" LastKnownName="UnlimitedNatural" />
+            </type_NamedElement>
+          </property>
+          <property Id="452b347c-9ce0-401e-9d99-e7f963577bd0" name="AcccessUrl" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="31d9f41f-e697-44e7-9346-82b659a3c972" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="c12351fc-1c3f-493f-a50d-6bddd6de7db2" LastKnownName="String" />
+            </type_NamedElement>
+          </property>
+          <property Id="f453cc12-c891-47cc-bb3e-65d3d518cb2f" name="accountOps" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="0132aae1-45fb-4983-a67c-8ee42a37b08e" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="72221665-2c79-4de4-ab23-f8c110dc0d66" LastKnownName="AccountOps" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="7b3869b6-aabd-4dd6-8657-9a11de494c5e" name="Connect" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="c625866a-626b-4bbe-aaa1-3f1416ddf136" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="77818dfc-245c-400e-aab2-8f6f6c8100f2" name="VmOps" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::VmOps">
+        <elementDefinition Id="3a38e274-44a8-4ae9-a69a-2368c32dceb3" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="b02587e1-6317-4e89-95b9-494cb0cad7a2" name="VmDiskOps" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::VmDiskOps">
+        <elementDefinition Id="09cafbf4-52db-4e54-a284-1981122a1bdd" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="8e0dc5e2-8e38-4ff8-8127-5f94d2f75852" name="VmImageOps" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::VmImageOps">
+        <elementDefinition Id="7a994c0e-d0ba-47d8-aea5-8946cb71a715" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="8fd961ec-2f3d-45df-a879-13933aa6171a" name="VNetOps" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::VNetOps">
+        <elementDefinition Id="01d6e02d-1115-42ba-b820-ff32219b7917" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="c12351fc-1c3f-493f-a50d-6bddd6de7db2" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
+        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="05818e9f-303a-44a5-8d94-21dd0961137a" name="UnlimitedNatural" isAbstract="false" isLeaf="false" cachedFullName="UnlimitedNatural">
+        <elementDefinition Id="3ab42e7d-4969-445a-b209-471f5cb8209c" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="bce4df60-ea44-47dc-917a-6eb8bf69e68c" name="AccountOps" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ca0e588b-7e3a-45c8-821c-edf3fabf09a5" />
+        <ownedOperationsInternal>
+          <operation Id="b03714f7-009a-447e-8866-364006783bdf" name="AddCertificate" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d58bd80f-8fdb-4c8b-8339-9ff668f749cb" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="626a4d33-e928-417b-ab4c-e98527ba1dcc" name="certificate" direction="In">
+                  <elementDefinition Id="5134182d-7ae7-432b-a234-86c9608b6e60" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="c352c6c2-0b7a-4dbb-aa65-cbfe63abef6d" LastKnownName="CertificateInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="90541004-90a8-4ffd-9142-0fbd56a04222" name="DeleteCertificate" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1ae972eb-7c6f-4897-a78f-73d4353d8966" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="33c9b003-f1f5-4edb-99dd-491d6d00eef8" name="certificate" direction="In">
+                  <elementDefinition Id="9003e71e-add7-44f1-ac2d-bc65df326d53" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="c352c6c2-0b7a-4dbb-aa65-cbfe63abef6d" LastKnownName="CertificateInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="ff2062a5-7a71-4584-9ac9-f1aa7abfc046" name="GetAccountInfo" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="83f75534-f79a-4aef-b803-c32d7704f37e" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="5b2cf99c-1f23-4439-a2eb-c5f57c8bdb0d" direction="Return">
+                  <elementDefinition Id="2a722ab8-d8e6-4225-a5db-880a3be7476d" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="ef3a7a91-e718-4972-b862-8a11d8fbe58f" LastKnownName="AccountInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="ae64dc82-08f4-4108-ae40-807894f1a94c" name="GetAccountList" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="519e297c-4bc8-4711-96b5-78b7c280e097" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="950cf75b-343a-44e4-b500-1994f40ae7ec" direction="Return">
+                  <lowerValueInternal>
+                    <literalString Id="cde9874d-28ee-43a1-ab44-0251873b48fa" name="Lower" value="*">
+                      <elementDefinition Id="cd39ed4d-8e47-4e3e-ac5a-d28b9ead45f0" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="6e350d2b-fbfd-4b69-acf9-b6b3ef424a22" name="Upper" value="*">
+                      <elementDefinition Id="34622396-65f4-4fb1-93c2-ed163336ee5b" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="908cdae2-7ae2-4f4d-b16f-f4c8332bc8c8" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="38648c57-06a3-44ee-8489-0751ff70aedd" LastKnownName="AccountInfo" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="57242feb-0619-4f81-a1d3-71bf3a91d875" name="AccountInfo" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="023bc682-caed-4468-aa68-fc1429013413" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2afdc87d-fb1d-4094-a478-fabc2f409dec" name="CertificateInfo" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f4f13e31-1aaf-4a84-affa-435e9fcdd770" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="72221665-2c79-4de4-ab23-f8c110dc0d66" name="AccountOps" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::AccountOps">
+        <elementDefinition Id="ca0e588b-7e3a-45c8-821c-edf3fabf09a5" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="c352c6c2-0b7a-4dbb-aa65-cbfe63abef6d" name="CertificateInfo" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::CertificateInfo">
+        <elementDefinition Id="f4f13e31-1aaf-4a84-affa-435e9fcdd770" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="ef3a7a91-e718-4972-b862-8a11d8fbe58f" name="AccountInfo" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::AccountInfo">
+        <elementDefinition Id="023bc682-caed-4468-aa68-fc1429013413" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="38648c57-06a3-44ee-8489-0751ff70aedd" name="AccountInfo" isAbstract="false" isLeaf="false" cachedFullName="ZephyrModel::AccountInfo">
+        <elementDefinition Id="023bc682-caed-4468-aa68-fc1429013413" />
+      </referencedType>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="e3a9ba43-582e-4f93-9f86-d8b23d9c7d08" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+    <profileInstances>
+      <packageHasProfileInstances Id="e5cb1e46-9ef5-4e45-b8de-3e31eb6ca163">
+        <profileInstance Id="ca18adda-67e3-471b-921b-9c366aa09e2f" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="25c3e619-9fd1-4f38-9e88-db8ef7f6d385">
+        <profileInstance Id="94f628b0-6364-43e3-b8fe-0ceb49cb20af" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

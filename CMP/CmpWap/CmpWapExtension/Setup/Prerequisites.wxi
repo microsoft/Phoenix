@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <!-- Check for Prerequisites -->
+  <?if $(var.Win64) = "yes" ?>
+  <Condition Message="To install this software, you must be running a 64-bit edition of Windows Server 2008 or a 64-bit edition of Windows Vista with Service Pack 1.">
+    Installed OR (VersionNT64 = 600 AND ServicePackLevel >= 1) OR (VersionNT64 > 600)
+  </Condition>
+  <?else?>
+  <Condition Message="To install this software, you must be running a 32-bit edition of Windows. This software is not supported on the Microsoft Windows-32-on-Windows-64 (WOW64) subsystem.">
+    Installed OR (NOT VersionNT64)
+  </Condition>
+  <Condition Message="To install this software, you must be running a 32-bit edition of Windows Server 2008 or a 32-bit edition of Windows Vista with Service Pack 1.">
+    Installed OR ((VersionNT = 600 AND ServicePackLevel >= 1) OR (VersionNT > 600))
+  </Condition>
+  <?endif?>
+
+  <PropertyRef Id="NETFRAMEWORK40FULL" />
+
+  <Condition Message="This application requires .NET Framework 4 Full. Please install the .NET Framework then run this installer again.">
+    Installed OR NETFRAMEWORK40FULL
+  </Condition>
+
+  <Condition Message="This application requires IIS (W3SVC). Please install IIS (W3SVC) then run this installer again.">
+    Installed OR W3SVC
+  </Condition>
+
+  <Condition Message="This application requires IIS (W3SVC). HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\InetStp PathWWWRoot not set; verify IIS is installed properly.">
+    Installed OR PATHWWWROOT
+  </Condition>
+
+  <!-- Is W3SVC installed? -->
+  <Property Id="W3SVC">
+    <RegistrySearch Id="W3SVCSearch"
+                    Root="HKLM"
+                    Key="SOFTWARE\Microsoft\InetStp\Components"
+                    Type="raw"
+                    Name="W3SVC" />
+  </Property>
+
+  <!-- Find IIS root directory. -->
+  <Property Id="PATHWWWROOT">
+    <RegistrySearch Id="PathWWWRoot"
+                    Root="HKLM"
+                    Key="SOFTWARE\Microsoft\InetStp"
+                    Name="PathWWWRoot"
+                    Type="directory" />
+  </Property>
+
+  <!-- Parent directory of PATHWWWROOT -->
+  <SetProperty Id="INETPUBDIR"
+               Value="[WindowsVolume]inetpub\"
+               After="AppSearch" />
+
+  <!-- Find MgmtSvc-AdminSite web site root directory. -->
+  <Property Id="PATHADMINSITE">
+    <RegistrySearch Id="PathAdminSite"
+                    Root="HKLM"
+                    Key="SOFTWARE\Microsoft\MgmtSvc\AdminSite"
+                    Name="WebSitePath"
+                    Type="directory" />
+  </Property>
+
+  <!-- Find MgmtSvc-TenantSite web site root directory. -->
+  <Property Id="PATHTENANTSITE">
+    <RegistrySearch Id="PathTenantSite"
+                    Root="HKLM"
+                    Key="SOFTWARE\Microsoft\MgmtSvc\TenantSite"
+                    Name="WebSitePath"
+                    Type="directory" />
+  </Property>
+
+</Include>

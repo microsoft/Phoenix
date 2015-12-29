@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="b9cb5d3c-b649-474e-92bf-9b24222049b4" name="AdminUseCase" linkedPackageId="fb1d401d-47da-427e-943a-6f1829e8e144" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="4bbdc526-b48c-4c0b-8c81-1b513f3b3183">
+      <profileInstance Id="8b527e63-c232-4611-83b9-358ff599f378" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="7efefe44-4aea-4e7a-84c3-fa44f104a8e1">
+      <profileInstance Id="633687f1-8929-4d87-86d1-2c9b0344d64f" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="56606881-bb4e-4b2d-b7e9-63259c708eb8" name="Admin Portal" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c411811f-af1f-426e-ab69-e5584107ebbf" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="78286ae0-693e-41a8-8c3b-4f4f18dae9eb" name="Manage Subscriptions" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="543d879a-525d-4a9b-a405-667d3ea0b877" />
+        <subjects>
+          <subsystemMoniker Id="56606881-bb4e-4b2d-b7e9-63259c708eb8" LastKnownName="Admin Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="62a4dc65-393e-4dc9-a7dc-218dc081827f" name="Manage VM Apps" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="020e9ef1-31c6-47ae-915a-f9935bda4ee1" />
+        <subjects>
+          <subsystemMoniker Id="56606881-bb4e-4b2d-b7e9-63259c708eb8" LastKnownName="Admin Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="8387ef74-91c5-4357-a3b4-c48537d6b5e8" name="Manage Regions" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c509fbb2-6016-4e47-9668-9dc55dc7e98a" />
+        <subjects>
+          <subsystemMoniker Id="56606881-bb4e-4b2d-b7e9-63259c708eb8" LastKnownName="Admin Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="26eba776-0c92-432e-8828-73ed65f569b3" name="Manage SKUs" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8dc329e8-e0cb-47b3-b8f3-1ae33d8c6e21" />
+        <subjects>
+          <subsystemMoniker Id="56606881-bb4e-4b2d-b7e9-63259c708eb8" LastKnownName="Admin Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="6fbdfe4f-09d9-455a-989f-185dc9bd98f2" name="Manage VM Sizes" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="777ca945-96aa-4313-be70-954a7e2c476b" />
+        <subjects>
+          <subsystemMoniker Id="56606881-bb4e-4b2d-b7e9-63259c708eb8" LastKnownName="Admin Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="486838c4-d1bb-48cd-bd6b-9e6379d1d006" name="View VM List" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="32f4672a-57ba-4ec8-8435-3180a6fbb89e" />
+        <subjects>
+          <subsystemMoniker Id="56606881-bb4e-4b2d-b7e9-63259c708eb8" LastKnownName="Admin Portal" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <useCaseModelRootHasTypes>
+      <actor Id="313d4474-8de9-4432-813c-d7db8706aff6" name="Admin" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="aeacf17e-ba85-4512-9aff-19f5d7e48d62" />
+        <targetEnds>
+          <association Id="bce1aa00-c504-4f5c-8f22-670b3d35ea91" isDerived="false" sourceEndRoleName="Admin" targetEndRoleName="Manage Subscriptions" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="78286ae0-693e-41a8-8c3b-4f4f18dae9eb" LastKnownName="Manage Subscriptions" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9a772d17-226c-4bd6-8d13-41b114ba31d9" name="Admin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d9e2c4f9-2c95-40d0-a178-aea33e1da3cc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2e50e7f0-4de6-4936-ac4c-a53172dc380f" name="Manage Subscriptions" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4d257ed3-2ad7-45e6-acc6-bf32b978dc38" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c0ea6905-9abc-4918-afa9-1b7b718687ad" />
+          </association>
+          <association Id="956ad581-c060-4cc6-8cd4-7202376f8ccb" isDerived="false" sourceEndRoleName="Admin" targetEndRoleName="Manage VM Apps" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="62a4dc65-393e-4dc9-a7dc-218dc081827f" LastKnownName="Manage VM Apps" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fc6ba9b5-686f-49d1-b88b-cc775bdd7207" name="Admin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="306085cd-461d-4b1c-a62a-864e910b2212" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="579d7cbb-0b44-4bc1-a594-c7f489309b9b" name="Manage VM Apps" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="809cd754-527c-4283-a58e-090c13894e6a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="26c1e886-19d8-40a7-b5a9-6cb74020e8ba" />
+          </association>
+          <association Id="319868fc-d2e6-4588-bb26-b4ac16deaa18" isDerived="false" sourceEndRoleName="Admin" targetEndRoleName="Manage Regions" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="8387ef74-91c5-4357-a3b4-c48537d6b5e8" LastKnownName="Manage Regions" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5962d18d-9dc9-410b-b09f-dfcdc4c6cc1d" name="Admin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="446127e9-e682-45d5-b608-85af82e1f0b8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7a82ff45-ef6e-434a-a580-41138bb3b58b" name="Manage Regions" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9bdff9e9-8502-48e5-9b8a-ad095db9f6e1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ed5ac0a3-8c98-45ac-8341-f8bfa5541481" />
+          </association>
+          <association Id="98340e36-8c08-4a8b-89ac-a15bbc99a3dd" isDerived="false" sourceEndRoleName="Admin" targetEndRoleName="Manage SKUs" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="26eba776-0c92-432e-8828-73ed65f569b3" LastKnownName="Manage SKUs" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="003c47bb-94fc-4c05-b7fb-8ef37905d9fd" name="Admin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6b8dfeb4-8445-45e3-a8a4-14b022e40021" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cb6df414-e2e8-4368-b18f-f73303965c61" name="Manage SKUs" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b6632a9d-0882-4cd1-96d3-37c2d310eb14" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ca0a7645-0388-4b83-bee3-cccfd2dd30f7" />
+          </association>
+          <association Id="2fdb3694-9ac5-41e0-9d5f-227831ed485f" isDerived="false" sourceEndRoleName="Admin" targetEndRoleName="Manage VM Sizes" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="6fbdfe4f-09d9-455a-989f-185dc9bd98f2" LastKnownName="Manage VM Sizes" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7b03508d-3924-48f9-bc96-d0a1f63cfa86" name="Admin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0d5b886e-f968-4e16-85d9-26f4891db373" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="065bca8b-c3eb-4b93-9a1b-14755b7abb4b" name="Manage VM Sizes" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8a283c1a-89ec-4804-a885-ca89907a3e87" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="47ad816d-ce3d-4fba-acc7-3b516ce9c6b8" />
+          </association>
+          <association Id="5251adbc-0193-45fa-8b50-6cd29d7e71ba" isDerived="false" sourceEndRoleName="Admin" targetEndRoleName="View VM List" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="486838c4-d1bb-48cd-bd6b-9e6379d1d006" LastKnownName="View VM List" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="60622afd-5e8c-4c92-b21e-3dcedfcb0bf8" name="Admin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="3fb4a892-ee1c-46ee-a29b-d007c0a9c5c4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ad3e9d73-96f4-482f-842e-6258908594bf" name="View VM List" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f4852e41-532e-4b97-b26a-19e1b40fa737" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ff8fd07a-dd99-44eb-9166-5ab74362759b" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="fb1d401d-47da-427e-943a-6f1829e8e144" name="CmpWapModel">
+    <elementDefinition Id="8689a160-402e-4038-90af-0c8b64ee7274" />
+  </package>
+</useCaseModelRoot>

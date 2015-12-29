@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\Environment.props" />
+  <PropertyGroup>
+    <ProductVersion>3.8</ProductVersion>
+    <ProjectGuid>5a127e0c-15b7-4e1b-aac2-ec569633d95b</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>CmpWorkerServiceInstaller</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <Name>CmpWorkerServiceInstaller</Name>
+    <EnableProjectHarvesting>True</EnableProjectHarvesting>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(BuildingInsideVisualStudio)' != 'true' ">
+    <OutputFilesDir>$(OutDir)\</OutputFilesDir>
+    <OutputFilesSLDir>$(solutiondir)external</OutputFilesSLDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(BuildingInsideVisualStudio)' == 'true' ">
+    <OutputFilesDir>$(solutiondir)\cmpworkerservice\bin\debug</OutputFilesDir>
+    <OutputFilesSLDir>$(solutiondir)\CmpServiceLib\bin\debug</OutputFilesSLDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DefineConstants>OutputFilesDir=$(OutputPath);OutputFilesSLDir=$(OutputFilesSLDir);OutputPath=$(OutputPath)</DefineConstants>
+  </PropertyGroup>
+  <!--<PropertyGroup Condition="'$(TF_BUILD)'=='True'">
+    <OutputFilesDir>$(OutDir)\</OutputFilesDir>
+  </PropertyGroup>-->
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CmpServiceLib\CmpServiceLib.csproj">
+      <Name>CmpServiceLib</Name>
+      <Project>{fe5ef66f-8aba-4cbf-9998-0bbc98b76e53}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\CmpWorkerService\CmpWorkerService.csproj">
+      <Name>CmpWorkerService</Name>
+      <Project>{438d4b8c-1df3-4c20-857f-a92c86d8b464}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <PropertyGroup>
+    <PreBuildEvent />
+  </PropertyGroup>
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+  <Target Name="AfterBuild">
+    <Message Text="Test" />
+  </Target>
+</Project>

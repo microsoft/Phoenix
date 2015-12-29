@@ -1,0 +1,92 @@
+﻿.hw-controlsTab .pushbutton.fx-tablist ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist li {
+    float: left;
+    border: 2px solid #ccc;
+    margin-right: -2px;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist li:hover {
+    background-color: #ddd;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist li {
+    min-width: 46px;
+    line-height: 20px;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: default;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist li input {
+    display: none;
+}
+
+/* Disabled State */
+.hw-controlsTab .pushbutton.fx-tablist.ui-state-disabled li:hover {
+    background-color: inherit;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist.ui-state-disabled li {
+    color: #999;
+}
+
+/* disabled button */
+.hw-controlsTab .pushbutton.fx-tablist li[aria-disabled="true"] {
+    color: #999;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist li[aria-disabled="true"]:hover {
+    background-color: inherit;
+} 
+   
+.hw-controlsTab .pushbutton.fx-tablist li[aria-selected="true"] {
+    position: relative; /* For the border to be above */
+    background-color: #4f9dd7;
+    border-color: #434343;
+    color: #fff;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist.fx-editablecontrol-edited li[aria-selected="true"] {
+    background-color: #c84fd7;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist.ui-state-disabled li[aria-selected="true"] {
+    position: inherit;
+    background-color: #ddd;
+    border-color: #ccc; /* inherit doesn't work */
+}
+
+/* Resets */
+.hw-controlsTab .fx-tablist.ui-state-disabled, .fx-tablist .ui-state-disabled, .fx-tablist .ui-widget-content .ui-state-disabled, .fx-tablist .ui-widget-header .ui-state-disabled {
+    opacity: inherit;
+    filter: none;
+}
+
+/* Clearfix */
+.hw-controlsTab .fx-tablist:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.hw-controlsTab .fx-tablist {
+    display: inline-block;
+}
+
+.hw-controlsTab [aria-hidden=true] {
+    display: none;
+}
+
+.hw-controlsTab .pushbutton.fx-tablist [aria-selected=true] {
+    background-color: #4f9dd7;
+    border-color: #434343;
+    color: #fff;
+}

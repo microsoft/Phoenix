@@ -1,0 +1,218 @@
+﻿//-----------------------------------------------------------------------
+// <copyright file="RemoveDatabasePage.xaml.cs" company="Microsoft">
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
+// </copyright>
+// <summary> Next Manager Setup PrerequisitesProgress Page
+//           This is the page that handles prequisites checks progress.
+// </summary>
+//-----------------------------------------------------------------------
+namespace CMP.Setup
+{
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Diagnostics;
+    using System.Threading;
+    using System.Windows.Threading;
+    using System.Xml;
+    using CMP.Setup.SetupFramework;
+    using WpfResources;
+    using CMP.Setup.Helpers;
+
+    /// <summary>
+    /// Interaction logic for RemoveWAPDatabasePage.xaml
+    /// </summary>
+    public partial class RemoveWAPDatabasePage : BasePageForWpfControls
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrerequisitesProgressPage"/> class.
+        /// </summary>
+        /// <param name="page">The page.</param>
+        public RemoveWAPDatabasePage(Page page)
+            : base(page, WPFResourceDictionary.ConfigurationStepTitle, 1)
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrerequisitesProgressPage"/> class.
+        /// </summary>
+        public RemoveWAPDatabasePage()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// Enters the page.
+        /// </summary>
+        public override void EnterPage()
+        {
+            base.EnterPage();
+
+            this.Page.Host.SetNextButtonState(true, true);
+        }
+
+        /// <summary>
+        /// Exits the page.
+        /// </summary>
+        public override void ExitPage()
+        {
+            SetupInputs.Instance.EditItem(
+                SetupInputTags.WapRetainSqlDatabaseTag, 
+                this.radioRetainDatabase.IsChecked.GetValueOrDefault(false));
+
+            SetupInputs.Instance.EditItem(SetupInputTags.WapSqlMachineNameTag, SetupConstants.WapSqlMachineName);
+
+            String sqlInstanceInRegistry = SetupConstants.WapSqlInstanceName;
+            // Sql Instance can be in the form of server\instance,port
+            // Parse it accordingly
+            String[] instanceList = sqlInstanceInRegistry.Split('\\');
+            String sqlInstance = String.Empty;
+            if (!String.IsNullOrEmpty(sqlInstanceInRegistry))
+            {
+                sqlInstance = (instanceList.Length == 2) ? instanceList[1] : instanceList[0];
+            }
+
+            // Now we can have a port attached to instance
+            String[] sqlInfoList = sqlInstance.Split(',');
+            int port = 0;
+            if (sqlInfoList.Length == 2)
+            {
+                sqlInstance = sqlInfoList[0];
+                try
+                {
+                    int.TryParse(sqlInfoList[1], out port);
+                }
+                catch (FormatException)
+                {
+                }
+            }
+
+            SetupInputs.Instance.EditItem(SetupInputTags.WapSqlInstanceNameTag, sqlInstance);
+            SetupInputs.Instance.EditItem(SetupInputTags.WapSqlServerPortTag, port);
+
+            base.ExitPage();
+        }
+
+        public override void OnApplyTemplate()
+        {
+            this.radioRetainDatabase.IsChecked = true;
+            this.SetCredentialBlock();
+
+            base.OnApplyTemplate();
+        }
+
+        /// <summary>
+        /// Validates the inputs on this page
+        /// </summary>
+        /// <returns></returns>
+        public override bool ValidatePage()
+        {
+            bool isPageValid = true;
+            try
+            {
+                if (this.checkBoxNewUserId.IsChecked.GetValueOrDefault(false))
+                {
+                    String userName = SetupInputs.Instance.FindItem(SetupInputTags.WapSqlDBAdminNameTag);
+                    String domainName = SetupInputs.Instance.FindItem(SetupInputTags.WapSqlDBAdminDomainTag);
+                    if (!UserAccountHelper.ValidateCredentials(userName, domainName, this.passwordBoxPassword.SecurePassword))
+                    {
+                        throw new Exception("Either the domain account or the password you entered are not valid.");
+                    }
+                }
+            }
+            catch (Exception backEndErrorException)
+            {
+                SetupLogger.LogException(backEndErrorException);
+                SetupHelpers.ShowError(backEndErrorException.Message);
+
+                isPageValid = false;
+            }
+            return isPageValid;
+        }
+
+
+        #region Private Methods
+
+        private void SetCredentialBlock()
+        {
+            bool doUseNewCredential = this.checkBoxNewUserId.IsChecked.GetValueOrDefault(false);
+            SetupInputs.Instance.EditItem(SetupInputTags.WapRemoteDatabaseImpersonationTag, doUseNewCredential);
+            this.labelUserName.IsEnabled = doUseNewCredential;
+            this.textBoxUserName.IsEnabled = doUseNewCredential;
+            this.labelUserNameFormat.IsEnabled = doUseNewCredential;
+            this.labelPassword.IsEnabled = doUseNewCredential;
+            this.passwordBoxPassword.IsEnabled = doUseNewCredential;
+        }
+
+        private void SetNextButtonState()
+        {
+            bool isNextButtonEnabled = true;
+
+            if (this.checkBoxNewUserId.IsChecked.GetValueOrDefault(false))
+            {
+                isNextButtonEnabled = !String.IsNullOrEmpty(this.textBoxUserName.Text) &&
+                    (this.passwordBoxPassword.SecurePassword.Length != 0);
+            }
+
+            this.Page.Host.SetNextButtonState(true, isNextButtonEnabled, null);
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void checkBoxcheckBoxNewUserId_CheckedChanged(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.SetCredentialBlock();
+            this.SetNextButtonState();
+        }
+
+        private void textBoxUserName_LostFocus(object sender, EventArgs e)
+        {
+            try
+            {
+                String fullUserName = this.textBoxUserName.Text;
+
+                string[] nameSplits = fullUserName.Split(SetupConstants.AccountDomainUserSeparator);
+                if (nameSplits.Length == 1)
+                {
+                    SetupInputs.Instance.EditItem(SetupInputTags.WapSqlDBAdminDomainTag, String.Empty);
+                    SetupInputs.Instance.EditItem(SetupInputTags.WapSqlDBAdminNameTag, nameSplits[0]);
+                }
+                else if (nameSplits.Length == 2)
+                {
+                    SetupInputs.Instance.EditItem(SetupInputTags.WapSqlDBAdminDomainTag, nameSplits[0]);
+                    SetupInputs.Instance.EditItem(SetupInputTags.WapSqlDBAdminNameTag, nameSplits[1]);
+                }
+                else
+                {
+                    SetupInputs.Instance.EditItem(SetupInputTags.WapSqlDBAdminDomainTag, String.Empty);
+                    SetupInputs.Instance.EditItem(SetupInputTags.WapSqlDBAdminNameTag, String.Empty);
+                }
+            }
+            catch (Exception backEndErrorException)
+            {
+                SetupLogger.LogException(backEndErrorException);
+                SetupHelpers.ShowError(backEndErrorException.Message);
+            }
+
+            this.SetNextButtonState();
+        }
+
+        private void passwordBox_PasswordChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SetupInputs.Instance.EditItem(SetupInputTags.WapSqlDBAdminPasswordTag, this.passwordBoxPassword.SecurePassword);
+            }
+            catch (Exception backEndErrorException)
+            {
+                SetupLogger.LogException(backEndErrorException);
+                SetupHelpers.ShowError(backEndErrorException.Message);
+            }
+            
+            this.SetNextButtonState();
+        }
+        #endregion
+    }
+}

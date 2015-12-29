@@ -1,0 +1,31 @@
+﻿CREATE TABLE [dbo].[CmpRequests] (
+    [Id]                INT            IDENTITY (1, 1) NOT NULL,
+    [WapSubscriptionID] VARCHAR (100)  NULL,
+    [CmpRequestID]      INT            NULL,
+    [ParentAppName]     VARCHAR (100)  NULL,
+    [TargetVmName]      VARCHAR (256)  NULL,
+    [Domain]            VARCHAR (100)  NULL,
+    [VmSize]            VARCHAR (50)   NULL,
+    [TargetLocation]    VARCHAR (50)   NULL,
+    [StatusCode]        VARCHAR (50)   NULL,
+    [SourceImageName]   VARCHAR (256)  NULL,
+    [SourceServerName]  VARCHAR (256)  NULL,
+    [UserSpec]          VARCHAR (1024) NULL,
+    [StorageSpec]       VARCHAR (1024) NULL,
+    [FeatureSpec]       VARCHAR (1024) NULL,
+    [Config]            VARCHAR (MAX)  NULL,
+    [RequestType]       VARCHAR (50)   NULL,
+    [WhoRequested]      VARCHAR (50)   NULL,
+    [WhenRequested]     DATETIME       NULL,
+    [StatusMessage]     VARCHAR (4096) NULL,
+    [ExceptionMessage]  VARCHAR (MAX)  NULL,
+    [Warnings]          VARCHAR (MAX)  NULL,
+    [LastStatusUpdate]  DATETIME       NULL,
+    [Active]            BIT            NULL,
+    [TagData]           VARCHAR (MAX)  NULL,
+    [TagID]             INT            NULL,
+    [AddressFromVm]     VARCHAR (100)  NULL,
+	[AccessGroupId]		Int NULL
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

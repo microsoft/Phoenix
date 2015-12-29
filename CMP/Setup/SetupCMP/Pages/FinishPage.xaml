@@ -1,0 +1,295 @@
+<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<ns0:BasePageForWpfControls
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ns0="clr-namespace:CMP.Setup"
+    x:Class="CMP.Setup.FinishPage"
+    x:Uid="ns0:BasePageForWpfControls_1"
+    mc:Ignorable="d"
+    Height="415"
+    Width="735">
+    <ns0:BasePageForWpfControls.Resources>
+        <ResourceDictionary
+            x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    x:Uid="ResourceDictionary_2"
+                    Source="/SetupCMP;component/WPFResourceDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ns0:RunConverter
+                x:Key="xamlFromXmlNodeConverter"
+                x:Uid="ns0:RunConverter_1" />
+            <XmlDataProvider
+                x:Key="finishInstallItemData"
+                x:Uid="XmlDataProvider_1"
+                d:IsDataSource="True"
+                Source="/SetupCMP;component/template.xml" />
+            <Style
+                x:Key="FinishDisplayContainerStyle"
+                x:Uid="Style_1"
+                TargetType="{x:Type ListBoxItem}">
+                <Setter
+                    x:Uid="Setter_1"
+                    Property="Template"
+                    Value="{DynamicResource FinishDisplayListBoxItemControlTemplate}" />
+                <Setter
+                    x:Uid="Setter_2"
+                    Property="Height"
+                    Value="Auto" />
+            </Style>
+            <ControlTemplate
+                x:Key="FinishDisplayListBoxItemControlTemplate"
+                x:Uid="ControlTemplate_1"
+                TargetType="{x:Type ListBoxItem}">
+                <StackPanel
+                    x:Uid="StackPanel_1"
+                    Height="Auto"
+                    Width="{TemplateBinding Width}">
+                    <Grid
+                        x:Uid="Grid_1"
+                        Height="25">
+                        <Image
+                            x:Uid="Image_1"
+                            Height="15"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,0"
+                            Source="{Binding XPath=@image}"
+                            VerticalAlignment="Stretch"
+                            Width="15" />
+                        <Label
+                            x:Uid="Label_1"
+                            d:LayoutOverrides="Width"
+                            Content="{Binding XPath=@displayText}"
+                            FontSize="14"
+                            HorizontalAlignment="Left"
+                            Margin="15,0,0,0"
+                            Padding="2,2,2,2"
+                            VerticalAlignment="Center"
+                            Width="Auto" />
+                    </Grid>
+                    <StackPanel
+                        x:Uid="StackPanel_2"
+                        Height="Auto"
+                        Margin="0,0,0,0"
+                        VerticalAlignment="Bottom"
+                        Width="{TemplateBinding Width}">
+                        <Label
+                            x:Uid="Label_2"
+                            Content="{Binding XPath=@ErrorInformationText, Converter={StaticResource xamlFromXmlNodeConverter}}"
+                            HorizontalAlignment="Stretch"
+                            Margin="18,0,0,0"
+                            MaxWidth="500"
+                            Padding="2,2,2,2"
+                            VerticalAlignment="Bottom"
+                            Width="{TemplateBinding Width}" />
+                    </StackPanel>
+                </StackPanel>
+                <ControlTemplate.Triggers>
+                    <Trigger
+                        x:Uid="Trigger_1"
+                        Property="IsSelected"
+                        Value="True">
+                        <Setter
+                            x:Uid="Setter_3"
+                            Property="Foreground"
+                            Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                    </Trigger>
+                    <MultiTrigger
+                        x:Uid="MultiTrigger_1">
+                        <MultiTrigger.Conditions>
+                            <Condition
+                                x:Uid="Condition_1"
+                                Property="IsSelected"
+                                Value="True" />
+                            <Condition
+                                x:Uid="Condition_2"
+                                Property="Selector.IsSelectionActive"
+                                Value="False" />
+                        </MultiTrigger.Conditions>
+                        <Setter
+                            x:Uid="Setter_4"
+                            Property="Foreground"
+                            Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+                    </MultiTrigger>
+                    <Trigger
+                        x:Uid="Trigger_2"
+                        Property="IsEnabled"
+                        Value="False">
+                        <Setter
+                            x:Uid="Setter_5"
+                            Property="Foreground"
+                            Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </ns0:BasePageForWpfControls.Resources>
+    <Grid
+        x:Uid="Grid_2">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                x:Uid="RowDefinition_1"
+                Height="Auto" />
+            <!-- 0 - Page header -->
+            <RowDefinition
+                x:Uid="RowDefinition_2"
+                Height="Auto" />
+            <!-- 1 - Description -->
+            <RowDefinition
+                x:Uid="RowDefinition_3"
+                Height="11" />
+            <!-- 2 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_4"
+                Height="Auto" />
+            <!-- 3 - Stack panel for actual data -->
+            <RowDefinition
+                x:Uid="RowDefinition_5"
+                Height="7" />
+            <!-- 4 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_6"
+                Height="Auto" />
+            <!-- 5 - Checkbox for updates -->
+            <RowDefinition
+                x:Uid="RowDefinition_7"
+                Height="7" />
+            <!-- 4 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_8"
+                Height="Auto" />
+            <!-- 5 - Checkbox for opening the admin console -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_1"
+                Width="27" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_2"
+                Width="*" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_3"
+                Width="32" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            x:Name="finishPageHeader"
+            x:Uid="finishPageHeader"
+            Style="{StaticResource StylePageHeader}">
+            Setup completed successfully
+        </TextBlock>
+        <TextBlock
+            x:Name="finishPageDescription"
+            x:Uid="finishPageDescription"
+            Grid.Column="1"
+            Grid.Row="1"
+            Style="{StaticResource StyleBasicTextBlock}">
+            For detailed information, review the Setup log files that are located in the %SYSTEMDRIVE%\ProgramData\CMPLogs folder. Note that the ProgramData folder is a hidden folder.
+        </TextBlock>
+        <StackPanel
+            x:Name="stackPanelFeatureInformation"
+            x:Uid="stackPanelFeatureInformation"
+            Grid.Column="1"
+            Grid.Row="3"
+            HorizontalAlignment="Stretch">
+            <Grid
+                x:Uid="Grid_3">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        x:Uid="RowDefinition_15"
+                        Height="Auto" />
+                    <RowDefinition
+                        x:Uid="RowDefinition_16"
+                        Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        x:Uid="ColumnDefinition_4"
+                        Width="*" />
+                    <ColumnDefinition
+                        x:Uid="ColumnDefinition_5"
+                        Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ListBox
+                    x:Uid="ListBox_1"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Height="130"
+                    HorizontalAlignment="Stretch"
+                    IsSynchronizedWithCurrentItem="True"
+                    ItemContainerStyle="{DynamicResource FinishDisplayContainerStyle}"
+                    ItemsSource="{Binding Mode=Default, Source={StaticResource finishInstallItemData}, XPath=/Root/DisplayItem}"
+                    VerticalAlignment="Top" />
+                <RichTextBox
+                    x:Name="richTextBoxMessage"
+                    x:Uid="richTextBoxMessage"
+                    Background="White"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Height="120"
+                    IsReadOnly="True"
+                    Margin="20,0,20,5"
+                    VerticalScrollBarVisibility="Auto" />
+                <Border
+                    x:Uid="Border_1"
+                    BorderBrush="#FF5085BC"
+                    BorderThickness="2,0,0,0"
+                    Grid.Column="1"
+                    Grid.RowSpan="2"
+                    Padding="5,2,0,0"
+                    VerticalAlignment="Stretch">
+                    <Grid
+                        x:Uid="Grid_4"
+                        DockPanel.Dock="Right"
+                        Margin="10,10,0,0"
+                        MinWidth="200"
+                        VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                x:Uid="RowDefinition_9"
+                                Height="Auto" />
+                            <RowDefinition
+                                x:Uid="RowDefinition_10"
+                                Height="Auto" />
+                            <RowDefinition
+                                x:Uid="RowDefinition_11"
+                                Height="Auto" />
+                            <RowDefinition
+                                x:Uid="RowDefinition_12"
+                                Height="Auto" />
+                            <RowDefinition
+                                x:Uid="RowDefinition_13"
+                                Height="Auto" />
+                            <RowDefinition
+                                x:Uid="RowDefinition_14"
+                                Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            x:Name="statusImage"
+                            x:Uid="statusImage"
+                            Grid.Row="0"
+                            Height="16"
+                            HorizontalAlignment="Left"
+                            Source="/SetupCMP;component/Images/infoSmallIcon.png"
+                            Width="16" />
+                        <Button
+                            x:Name="buttonReleaseNotes"
+                            x:Uid="buttonReleaseNotes"
+                            Click="ButtonReleaseNotesClick"
+                            Grid.Row="1"
+                            HorizontalAlignment="Left"
+                            Padding="2,15,2,2"
+                            Style="{DynamicResource HyperLinkButton}">
+                            <AccessText
+                                x:Uid="AccessText_1">R_elease Notes</AccessText>
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</ns0:BasePageForWpfControls>

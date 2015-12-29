@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="3cbd9e14-d4cb-44a7-a86a-3c1254864451" name="AzureObjects" linkedPackageId="5299eded-56a4-4ec8-a417-b3688b42bcb2" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="4d6148e8-d91c-4392-92bc-fd7f444b43d8" name="Azure" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8048bf60-6855-411f-a58f-6b4f675bc797" />
+        <targetEnds>
+          <association Id="eb09939d-257d-46bd-80c7-3b507d9bf8da" isDerived="false" sourceEndRoleName="Azure" targetEndRoleName="AzureInterface" isLeaf="false" isAbstract="false">
+            <classMoniker Id="cb2e9055-086e-4f0f-a584-4ee331d77745" LastKnownName="AzureInterface" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="de3a7dd5-02da-45bf-a55e-9e42eb66cef0" name="Azure" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="984ab7ec-518d-45dc-8050-e8f0db352e5f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="61c9a5f7-5f34-44d3-b34e-2aa2db8055bb" name="AzureInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4fbd1414-7eb0-4088-865d-af68170b5b1d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="63382bce-ac6b-441e-a0a8-1c4bb88f54e6" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="cb2e9055-086e-4f0f-a584-4ee331d77745" name="AzureInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d67915bb-38fb-4d8d-a515-b405c2ecfda0" />
+        <targetEnds>
+          <association Id="b8726455-711a-4ddd-9477-ce75749809c8" isDerived="false" sourceEndRoleName="AzureInterface" targetEndRoleName="AzureInterfaceOperation" isLeaf="false" isAbstract="false">
+            <classMoniker Id="26ade337-5417-440a-b1f0-a0f92f309bd5" LastKnownName="AzureInterfaceOperation" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6273ea29-91ea-4f6c-aa52-3eaeaec402b5" name="AzureInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="c635e138-3b06-41c5-8771-d8b72fff4c05" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="433c6ec4-5f4a-4655-b4ce-7b0edb629c8d" name="AzureInterfaceOperation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="4aaeafde-083c-4347-bb69-a65d494d6840" name="Lower" value="1">
+                      <elementDefinition Id="7e1f58df-cfd1-4863-a8dd-0cb431fc03af" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="b2502160-9b34-44a7-8d3f-cca1c6e1acc9" name="Upper" value="*">
+                      <elementDefinition Id="eaabd386-1214-434e-940e-9380991dfb90" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="cf60313b-c46a-44ab-87d0-7c9e66add536" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1c3ed9d8-9ca3-4176-9bd9-18be55909fb7" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="26ade337-5417-440a-b1f0-a0f92f309bd5" name="AzureInterfaceOperation" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="599a7a74-d7cf-41c2-8d3e-c7244fc8d0c4" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="456c9776-7b1a-4515-8b96-45da4ef27f7b" name="AzureClientInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="cc3e7a7e-c320-4c7c-844b-2c827ca280df" />
+        <targetEnds>
+          <association Id="bc53a4bb-5bd7-43ef-8627-4db4a7691f10" isDerived="false" sourceEndRoleName="AzureClientInterface" targetEndRoleName="AzureInterfaceOperation" isLeaf="false" isAbstract="false">
+            <classMoniker Id="26ade337-5417-440a-b1f0-a0f92f309bd5" LastKnownName="AzureInterfaceOperation" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e6720dfd-ccc8-4658-a9cb-319f80f89e32" name="AzureClientInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="46002482-1311-4367-9151-b71fe25b5fa7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4c604301-9f62-48ae-9379-61ee19d4d361" name="AzureInterfaceOperation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="446640de-d8a2-494b-a485-4ce59cda7d6f" name="Lower" value="*">
+                      <elementDefinition Id="62483d2c-bb7d-49ed-b720-d19aa475839d" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="db152ae6-6e61-4d5f-90e1-1673dd86effd" name="Upper" value="*">
+                      <elementDefinition Id="e191d48d-c21d-4747-b31f-ac88f32bbed9" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="5bcbffbb-78b5-4db7-a276-7fce604b2ed0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="27d46380-63c1-4ed3-9548-2269a3bb7828" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="5299eded-56a4-4ec8-a417-b3688b42bcb2" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+    <profileInstances>
+      <packageHasProfileInstances Id="3a3ecfb8-2938-4c47-8435-a795366bd391">
+        <profileInstance Id="b4977e76-04ba-4537-aa68-d5c7dd828961" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="8bfd3207-953d-4076-a546-b4b9549b5c2e">
+        <profileInstance Id="dcfcbbe8-6064-46fe-a7db-b6cebe743687" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

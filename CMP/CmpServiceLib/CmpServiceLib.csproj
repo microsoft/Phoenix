@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\..\Environment.props" />
+  <PropertyGroup>
+    <ProjectGuid>{FE5EF66F-8ABA-4CBF-9998-0BBC98B76E53}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CmpServiceLib</RootNamespace>
+    <AssemblyName>CmpServiceLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>6914b3f2</NuGetPackageImportStamp>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>$(PkgEntityFramework)\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>$(PkgEntityFramework)\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hyak.Common">
+      <HintPath>$(PkgHyak_Common)\lib\net45\Hyak.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Common">
+      <HintPath>$(PkgMicrosoft_Azure_Common)\lib\net45\Microsoft.Azure.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Common.NetFramework">
+      <HintPath>$(PkgMicrosoft_Azure_Common)\lib\net45\Microsoft.Azure.Common.NetFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm">
+      <HintPath>$(PkgMicrosoft_Data_Edm)\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData">
+      <HintPath>$(PkgMicrosoft_Data_OData)\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client">
+      <HintPath>$(PkgMicrosoft_Data_Services_Client)\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.5.208051316-alpha\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.Platform, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.5.208051316-alpha\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ServiceBus, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(PkgWindowsAzure_ServiceBus)\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>$(PkgMicrosoft_Bcl_Async)\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>$(PkgMicrosoft_Bcl_Async)\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>$(PkgMicrosoft_Bcl_Async)\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(PkgMicrosoft_WindowsAzure_ConfigurationManager)\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics">
+      <HintPath>$(PkgAzureSDK2_2DLLs)\lib\Microsoft.WindowsAzure.Diagnostics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.Compute, Version=11.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(PkgMicrosoft_WindowsAzure_Management_Compute)\lib\net40\Microsoft.WindowsAzure.Management.Compute.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime">
+      <HintPath>$(PkgAzureSDK2_2DLLs)\lib\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient">
+      <HintPath>$(PkgAzureSDK2_2DLLs)\lib\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsFabric.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>$(PkgMicrosoft_Net_Http_2_2_22)\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>$(PkgMicrosoft_Net_Http_2_2_22)\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial">
+      <HintPath>$(PkgSystem_Spatial)\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Build\AssemblyVersionInfo.cs" />
+    <Compile Include="..\..\Build\SharedAssemblyInfo.cs" />
+    <Compile Include="AftsDb.cs" />
+    <Compile Include="AzureRefreshService.cs" />
+    <Compile Include="CmpDb.cs" />
+    <Compile Include="CmpService.cs" />
+    <Compile Include="Impersonator.cs" />
+    <Compile Include="MicrosoftIT\ProcessorVm.cs" />
+    <Compile Include="MicrosoftIT\Stages\CreateDrivesStage.cs" />
+    <Compile Include="Models\Agent.cs" />
+    <Compile Include="Models\AzureFileTransferContext.cs" />
+    <Compile Include="Models\AzureRoleSize.cs" />
+    <Compile Include="Models\BadAsset.cs" />
+    <Compile Include="Models\ChangeLog.cs" />
+    <Compile Include="Models\CMPContext.cs" />
+    <Compile Include="Models\CmpServiceUserAccount.cs" />
+    <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\DirectoryMonitor.cs" />
+    <Compile Include="Models\FluRequest.cs" />
+    <Compile Include="Models\Mapping\AgentMap.cs" />
+    <Compile Include="Models\Mapping\AzureRoleSizeMap.cs" />
+    <Compile Include="Models\Mapping\BadAssetMap.cs" />
+    <Compile Include="Models\Mapping\ChangeLogMap.cs" />
+    <Compile Include="Models\Mapping\CmpServiceUserAccountMap.cs" />
+    <Compile Include="Models\Mapping\ConfigMap.cs" />
+    <Compile Include="Models\Mapping\DirectoryMonitorMap.cs" />
+    <Compile Include="Models\Mapping\FluRequestMap.cs" />
+    <Compile Include="Models\Mapping\MonitoredFileInfoMap.cs" />
+    <Compile Include="Models\Mapping\OpRequestMap.cs" />
+    <Compile Include="Models\Mapping\RequestMap.cs" />
+    <Compile Include="Models\Mapping\SequenceMap.cs" />
+    <Compile Include="Models\Mapping\ServiceProviderAccountMap.cs" />
+    <Compile Include="Models\Mapping\ServiceProviderSlotMap.cs" />
+    <Compile Include="Models\Mapping\sysdiagramMap.cs" />
+    <Compile Include="Models\Mapping\Table1Map.cs" />
+    <Compile Include="Models\Mapping\TodoItemMap.cs" />
+    <Compile Include="Models\Mapping\VmDeploymentRequestMap.cs" />
+    <Compile Include="Models\Mapping\VmDeploymentRequests_BackUPMap.cs" />
+    <Compile Include="Models\Mapping\VmMigrationRequestMap.cs" />
+    <Compile Include="Models\Mapping\vw_ActiveMigrateVMRequestsMap.cs" />
+    <Compile Include="Models\Mapping\vw_ActiveMigrationRequestsMap.cs" />
+    <Compile Include="Models\Mapping\vw_ActiveNewVMRequestsMap.cs" />
+    <Compile Include="Models\Mapping\vw_AzureLocalComputerDetailsMap.cs" />
+    <Compile Include="Models\Mapping\vw_BuildStatsByMonthYearMap.cs" />
+    <Compile Include="Models\Mapping\vw_CMPDailyMailCompletedBuildsMap.cs" />
+    <Compile Include="Models\Mapping\vw_DeploymentRequestExecutionTimesMap.cs" />
+    <Compile Include="Models\Mapping\vw_MigrationFailedJobStatusDetailsMap.cs" />
+    <Compile Include="Models\Mapping\vw_MigrationJobStatusDetailsMap.cs" />
+    <Compile Include="Models\Mapping\vw_MigrationRequestExecutionTimesMap.cs" />
+    <Compile Include="Models\Mapping\vw_MigrationStatusByDayMap.cs" />
+    <Compile Include="Models\Mapping\WAPMAPPINGDATAMap.cs" />
+    <Compile Include="Models\MonitoredFileInfo.cs" />
+    <Compile Include="Models\OpRequest.cs" />
+    <Compile Include="Models\Request.cs" />
+    <Compile Include="Models\VmDeploymentRequests_BackUP.cs" />
+    <Compile Include="Models\VmInfo.cs" />
+    <Compile Include="Models\Sequence.cs" />
+    <Compile Include="Models\ServiceProviderAccount.cs" />
+    <Compile Include="Models\ServiceProviderSlot.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\Table1.cs" />
+    <Compile Include="Models\TodoItem.cs" />
+    <Compile Include="Models\VmDeploymentRequest.cs" />
+    <Compile Include="Models\VmMigrationRequest.cs" />
+    <Compile Include="Models\vw_ActiveMigrateVMRequests.cs" />
+    <Compile Include="Models\vw_ActiveMigrationRequests.cs" />
+    <Compile Include="Models\vw_ActiveNewVMRequests.cs" />
+    <Compile Include="Models\vw_AzureLocalComputerDetails.cs" />
+    <Compile Include="Models\vw_BuildStatsByMonthYear.cs" />
+    <Compile Include="Models\vw_CMPDailyMailCompletedBuilds.cs" />
+    <Compile Include="Models\vw_DeploymentRequestExecutionTimes.cs" />
+    <Compile Include="Models\vw_MigrationFailedJobStatusDetails.cs" />
+    <Compile Include="Models\vw_MigrationJobStatusDetails.cs" />
+    <Compile Include="Models\vw_MigrationRequestExecutionTimes.cs" />
+    <Compile Include="Models\vw_MigrationStatusByDay.cs" />
+    <Compile Include="Models\WAPMAPPINGDATA.cs" />
+    <Compile Include="PostProvDisk.cs" />
+    <Compile Include="Processor.cs" />
+    <Compile Include="ProcessorCert.cs" />
+    <Compile Include="ProcessorOps.cs" />
+    <Compile Include="ProcessorSyncAzureInfo.cs" />
+    <Compile Include="ProcessorSyncSubs.cs" />
+    <Compile Include="ProcessorVm.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceProviderAccount.cs" />
+    <Compile Include="ServProvAccount.cs" />
+    <Compile Include="Stages\CheckVmCreationStage.cs" />
+    <Compile Include="Stages\ContactVmStage.cs" />
+    <Compile Include="Stages\ConvertedSubmissionsStage.cs" />
+    <Compile Include="Stages\CreateDrivesStage.cs" />
+    <Compile Include="Stages\CreateVmStage.cs" />
+    <Compile Include="MicrosoftIT\Stages\InstallIpakStage.cs" />
+    <Compile Include="Stages\MovePagefileStage.cs" />
+    <Compile Include="Stages\PostProcessingStage.cs" />
+    <Compile Include="Stages\QcVmRequestPassedStage.cs" />
+    <Compile Include="Stages\QcVmRequestsStage.cs" />
+    <Compile Include="Stages\QcVmRequestSubmissionsStage.cs" />
+    <Compile Include="Stages\ReadyForTransferSubmissionsStage.cs" />
+    <Compile Include="Stages\RunningSequencesStage.cs" />
+    <Compile Include="Stages\Stage.cs" />
+    <Compile Include="Stages\StartSequencesStage.cs" />
+    <Compile Include="Stages\TransferredSubmissionsStage.cs" />
+    <Compile Include="Stages\TransferringSubmissionsStage.cs" />
+    <Compile Include="Stages\UploadServiceCertificateStage.cs" />
+    <Compile Include="Stages\VmSubmissionsStage.cs" />
+    <Compile Include="Stages\WaitForRebootStage.cs" />
+    <Compile Include="Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\AzureAdminClient\AzureAdminClientLib\AzureAdminClientLib.csproj">
+      <Project>{8bb5f247-8b1a-4713-8ba0-464a507fbb97}</Project>
+      <Name>AzureAdminClientLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Krypto\KryptoLib\KryptoLib.csproj">
+      <Project>{91237aa9-6c92-4b47-8d80-117ccbf92445}</Project>
+      <Name>KryptoLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\PowershellLib\PowershellLib\PowershellLib.csproj">
+      <Project>{8aaf2051-b43f-4bec-a1fd-1b03035910df}</Project>
+      <Name>PowershellLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\SmaClientLib\SMAApi\SMAApi.csproj">
+      <Project>{E8D927EE-7090-46DF-BBA9-B8EBEF0401E2}</Project>
+      <Name>SMAApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CmpCommon\CmpCommon.csproj">
+      <Project>{b1bed686-72f1-4a29-b81b-8b7ef9bb5739}</Project>
+      <Name>CmpCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CmpInterfaceModel\CmpInterfaceModel.csproj">
+      <Project>{b3eb01ee-64c2-495a-9fd9-610974c4fe3e}</Project>
+      <Name>CmpInterfaceModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(PkgMicrosoft_Bcl_Build)\build\Microsoft.Bcl.Build.targets" Condition="Exists('$(PkgMicrosoft_Bcl_Build)\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

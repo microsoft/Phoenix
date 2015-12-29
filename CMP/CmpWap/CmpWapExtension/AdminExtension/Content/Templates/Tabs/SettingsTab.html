@@ -1,0 +1,89 @@
+﻿<div class="hw-settingsTab">
+    <div id="hw-settings" class="waz-config">
+        <h2>CmpWapExtension Resource Provider Settings Information</h2>
+
+        <div class="waz-config-section">
+        <div class="waz-config-setting">
+            <label for="endpointUrl">
+                Endpoint URL
+            </label>
+
+            <div class="waz-config-setting-value">
+                <input
+                        type="text"
+                        id="hw-endpointUrl"
+                        value=""
+                        maxlength="512" 
+                        class="fx-textbox fx-validation fx-editablecontrol"
+                        data-val="true" data-val-required="Required" 
+                        data-val-length-max="512" 
+                        data-val-regex="Not URL" data-val-regex-pattern="^(http|https):\/\/(.*)$" />
+            </div>
+        </div>
+        <div class="waz-config-setting">
+            <label for="username">
+                Username
+            </label>
+            <div class="waz-config-setting-value">
+                <input
+                    type="text"
+                    id="hw-username"
+                    data-val="true"
+                    data-val-length-max="128"
+                    data-val-required="Required"
+                    value="" />
+            </div>
+        </div>
+        <div class="waz-config-setting">
+            <label for="password">
+                Password
+            </label>
+            <div class="waz-config-setting-value">
+                <input
+                    type="password"
+                    id="hw-password"
+                    data-val="true"
+                    data-val-length-max="128"
+                    data-val-required="Required"
+                    value="" />
+            </div>
+        </div>        
+        </div>
+
+        <h2>Settings Group 2</h2>
+        <div class="waz-config-section">
+        <div class="waz-config-setting">
+            <label for="loadBalancerIP">
+                Settings 1
+            </label>
+            <div class="waz-config-setting-value">
+                <input
+                        type="text"
+                        id="hw-setting1"
+                        value=""
+                        maxlength="512" 
+                        class="fx-textbox fx-validation fx-editablecontrol"
+                        data-val="true" data-val-required="Required" 
+                        data-val-length-max="512"  />
+            </div>
+        </div>
+
+            <div class="waz-config-setting">
+            <label for="Setting2">
+                Settings 2
+            </label>
+            <div class="waz-config-setting-value">
+                <input
+                        type="text"
+                        id="hw-setting2"
+                        value=""
+                        maxlength="512" 
+                        class="fx-textbox fx-validation fx-editablecontrol"
+                        data-val="true" data-val-required="Required" 
+                        data-val-length-max="512"  />
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>

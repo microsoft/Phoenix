@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="9e6cb3e2-ad49-4aac-af07-18a6696561ea" name="ResizeVmApi" linkedPackageId="26df2fde-b1ec-499a-ba8c-e8cf56fcb347" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="4246d272-f088-4c49-adf1-4d657009d886" name="ResizeVmApi" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <elementDefinition Id="24f69974-fd36-4150-ad5b-0aec3e41e5fd" />
+        <fragments>
+          <behaviorExecutionSpecification Id="c6d93980-cc8c-44f7-a4be-6be772d8c0f1" name="BehaviorExecutionSpecification2">
+            <elementDefinition Id="7ee59828-38a0-4b43-9e7e-9bb7b60ccd89" />
+            <coveredLifelines>
+              <lifelineMoniker Id="f3edba1a-4cf5-48d6-9ec4-7422ebbb0b95" LastKnownName="API (HTTP Entry)" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="9613c318-7dd8-4853-98c9-ffe60848d456" LastKnownName="ExecutionOccurrenceSpecification4" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="260ef382-f611-4a8d-9354-e496fd2ad93b" LastKnownName="ExecutionOccurrenceSpecification3" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="6a900934-00e5-4043-a4c5-bf8370981fae" LastKnownName="MessageOccurrenceSpecification4" />
+              <messageOccurrenceSpecificationMoniker Id="28857b39-195a-4ed2-b4de-b4018747d3df" LastKnownName="MessageOccurrenceSpecification7" />
+              <messageOccurrenceSpecificationMoniker Id="5d871cd9-ba1c-41fa-b41f-9315fe69d0fd" LastKnownName="MessageOccurrenceSpecification10" />
+              <messageOccurrenceSpecificationMoniker Id="e8212bac-04cb-4bcf-b75f-47028634a979" LastKnownName="MessageOccurrenceSpecification5" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="260ef382-f611-4a8d-9354-e496fd2ad93b" name="ExecutionOccurrenceSpecification3">
+            <elementDefinition Id="3bfa03e7-cfa6-49c1-893b-7878e41afe33" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="c3efdaff-8582-4c62-81ab-ee9a4b69c2dc" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="f3edba1a-4cf5-48d6-9ec4-7422ebbb0b95" LastKnownName="API (HTTP Entry)" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="f3384ffe-e04f-4a6a-882f-83bd5b864097" name="MessageOccurrenceSpecification3">
+            <elementDefinition Id="2bd5807e-774d-4716-b47b-6e8589ca935c" />
+            <covered>
+              <lifelineMoniker Id="1fb51f4e-ba65-4cb5-b879-39d565fdd598" LastKnownName="Ops Queue" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6a900934-00e5-4043-a4c5-bf8370981fae" name="MessageOccurrenceSpecification4">
+            <elementDefinition Id="7b5959c7-abe7-4566-bf47-c1eec639aa42" />
+            <covered>
+              <lifelineMoniker Id="f3edba1a-4cf5-48d6-9ec4-7422ebbb0b95" LastKnownName="API (HTTP Entry)" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="efedc8db-82d3-416c-9664-9d21b171cda2" name="BehaviorExecutionSpecification3">
+            <elementDefinition Id="72576f94-9dab-4518-be40-b398d1513bc9" />
+            <coveredLifelines>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="cc965b35-9130-4a25-8268-1695a013d8ff" LastKnownName="ExecutionOccurrenceSpecification6" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="c40b2de8-c4da-4222-945e-c1a6e4ec8d93" LastKnownName="ExecutionOccurrenceSpecification5" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="f1407ebc-3552-4b92-9dfc-129ff25531e0" LastKnownName="MessageOccurrenceSpecification8" />
+              <messageOccurrenceSpecificationMoniker Id="4a4f5574-d052-4172-9fb9-deadb105cc66" LastKnownName="MessageOccurrenceSpecification11" />
+              <messageOccurrenceSpecificationMoniker Id="b399f70b-bd64-4214-b16e-4ff0e75fc897" LastKnownName="MessageOccurrenceSpecification14" />
+              <messageOccurrenceSpecificationMoniker Id="a0b42887-8273-43c9-9f7a-d12c8c21666a" LastKnownName="MessageOccurrenceSpecification15" />
+              <messageOccurrenceSpecificationMoniker Id="d42d7aa0-5796-4374-bae5-cd7cc59e4364" LastKnownName="MessageOccurrenceSpecification18" />
+              <messageOccurrenceSpecificationMoniker Id="c2a104f4-5848-4914-88a6-fa611a3742b4" LastKnownName="MessageOccurrenceSpecification21" />
+              <messageOccurrenceSpecificationMoniker Id="bd9e1979-6942-48e9-9e59-f5962cf60645" LastKnownName="MessageOccurrenceSpecification24" />
+              <messageOccurrenceSpecificationMoniker Id="b53912c3-5e8e-4821-87ce-64eb77313e47" LastKnownName="MessageOccurrenceSpecification9" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="c40b2de8-c4da-4222-945e-c1a6e4ec8d93" name="ExecutionOccurrenceSpecification5">
+            <elementDefinition Id="da64f328-fd62-48ba-a8a1-0226e9565315" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="2643d4ba-21cb-4f6e-a0cd-f8610c2eeafe" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="28857b39-195a-4ed2-b4de-b4018747d3df" name="MessageOccurrenceSpecification7">
+            <elementDefinition Id="e3841097-ed99-4d70-9c87-e30fade704a1" />
+            <covered>
+              <lifelineMoniker Id="f3edba1a-4cf5-48d6-9ec4-7422ebbb0b95" LastKnownName="API (HTTP Entry)" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="f1407ebc-3552-4b92-9dfc-129ff25531e0" name="MessageOccurrenceSpecification8">
+            <elementDefinition Id="bab55653-03e4-4297-96d4-89b6136994df" />
+            <covered>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="7b4aedd9-4ad8-4c0f-a705-9617a06e3d97" name="BehaviorExecutionSpecification4">
+            <elementDefinition Id="67780b0a-42f5-45e3-8912-31d13ea5fa0b" />
+            <coveredLifelines>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="b9fb3f88-76d1-44ca-9e2f-b4a8d2427501" LastKnownName="ExecutionOccurrenceSpecification8" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="b9a1e0df-1f34-43db-a7a4-abe86d894d6e" LastKnownName="ExecutionOccurrenceSpecification7" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="cb0abb69-390c-454b-8318-19631b9759e6" LastKnownName="MessageOccurrenceSpecification12" />
+              <messageOccurrenceSpecificationMoniker Id="464d60f1-1ede-4a88-ae0b-e00ffc47e8a9" LastKnownName="MessageOccurrenceSpecification13" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="b9a1e0df-1f34-43db-a7a4-abe86d894d6e" name="ExecutionOccurrenceSpecification7">
+            <elementDefinition Id="433a0856-0d55-49ca-b312-6972e4f1a18d" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="fc3231aa-604f-4a3a-a45c-74a1fc4bc027" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="cb0abb69-390c-454b-8318-19631b9759e6" name="MessageOccurrenceSpecification12">
+            <elementDefinition Id="5fd9e4eb-4c1f-4d8a-847f-1e84258b2897" />
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4a4f5574-d052-4172-9fb9-deadb105cc66" name="MessageOccurrenceSpecification11">
+            <elementDefinition Id="4435824d-d9bb-47f3-8e22-736940c5449f" />
+            <covered>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="464d60f1-1ede-4a88-ae0b-e00ffc47e8a9" name="MessageOccurrenceSpecification13">
+            <elementDefinition Id="9177dffd-73f8-42f9-b876-15588932d03f" />
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b399f70b-bd64-4214-b16e-4ff0e75fc897" name="MessageOccurrenceSpecification14">
+            <elementDefinition Id="f852d5e8-9aa8-4f33-8aaf-d1af81d297fd" />
+            <covered>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="b9fb3f88-76d1-44ca-9e2f-b4a8d2427501" name="ExecutionOccurrenceSpecification8">
+            <elementDefinition Id="4d95e061-3f99-48be-85fa-84b8eb8764f4" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="90623f73-6553-4dfb-af4b-2030bd417f20" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="61180a68-5e75-409d-b48e-b702b1889c11" name="BehaviorExecutionSpecification5">
+            <elementDefinition Id="9a2558bd-dc13-4bd1-9846-506fb4d33e2c" />
+            <coveredLifelines>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="6b3d730e-4ec7-453b-a22a-0ed4dce35af0" LastKnownName="ExecutionOccurrenceSpecification10" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="a9785aed-9517-42b2-8583-d046c10c3d28" LastKnownName="ExecutionOccurrenceSpecification9" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="176e4528-80f5-421b-b8aa-10323ff7cb78" LastKnownName="MessageOccurrenceSpecification16" />
+              <messageOccurrenceSpecificationMoniker Id="7b81549c-a5af-4020-bcda-25d642bbdeb4" LastKnownName="MessageOccurrenceSpecification17" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="a9785aed-9517-42b2-8583-d046c10c3d28" name="ExecutionOccurrenceSpecification9">
+            <elementDefinition Id="7307887a-3c4b-4229-a686-88907963b7d2" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="edf423c4-0104-432b-a860-c42b347b284b" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a0b42887-8273-43c9-9f7a-d12c8c21666a" name="MessageOccurrenceSpecification15">
+            <elementDefinition Id="7d48f7a4-771a-4cd3-a196-a72e1b670ca0" />
+            <covered>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="176e4528-80f5-421b-b8aa-10323ff7cb78" name="MessageOccurrenceSpecification16">
+            <elementDefinition Id="530699de-a326-4a5a-8500-c3303a4cb895" />
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="7b81549c-a5af-4020-bcda-25d642bbdeb4" name="MessageOccurrenceSpecification17">
+            <elementDefinition Id="f63b28c6-10e6-46c4-9c8f-483651e5bc80" />
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="d42d7aa0-5796-4374-bae5-cd7cc59e4364" name="MessageOccurrenceSpecification18">
+            <elementDefinition Id="3996e6a3-3701-4242-bc33-759bc9b1a2fb" />
+            <covered>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="6b3d730e-4ec7-453b-a22a-0ed4dce35af0" name="ExecutionOccurrenceSpecification10">
+            <elementDefinition Id="d2a11515-ccad-45cc-9b0d-9a95a77440c1" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="94d6854e-a970-49a9-978b-45cb1e67d45d" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="c846a09c-603f-4ebc-890c-dd69b29a28af" name="BehaviorExecutionSpecification7">
+            <elementDefinition Id="b91654ce-f303-418d-ad92-405c59e0fae6" />
+            <coveredLifelines>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="34fc58d3-3f25-471b-b55f-07a0a2b8c463" LastKnownName="ExecutionOccurrenceSpecification14" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="e449ca32-b201-4fa5-a51a-6eef8bf7eb9a" LastKnownName="ExecutionOccurrenceSpecification13" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="a12f06d6-adbd-4e06-bc2f-6f0743ad5fdb" LastKnownName="MessageOccurrenceSpecification22" />
+              <messageOccurrenceSpecificationMoniker Id="dda10206-2516-4306-ba9c-5e6a201b2209" LastKnownName="MessageOccurrenceSpecification23" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="e449ca32-b201-4fa5-a51a-6eef8bf7eb9a" name="ExecutionOccurrenceSpecification13">
+            <elementDefinition Id="5e2344f9-d7f8-4eaf-a13e-60b1f5aada92" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="fbbebdb9-4006-49bc-a657-972aa329c283" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="c2a104f4-5848-4914-88a6-fa611a3742b4" name="MessageOccurrenceSpecification21">
+            <elementDefinition Id="ec886407-6beb-4585-b36e-3cea38f6a2a0" />
+            <covered>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a12f06d6-adbd-4e06-bc2f-6f0743ad5fdb" name="MessageOccurrenceSpecification22">
+            <elementDefinition Id="96d6e71c-4730-4618-a647-ec41c86fbddf" />
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="dda10206-2516-4306-ba9c-5e6a201b2209" name="MessageOccurrenceSpecification23">
+            <elementDefinition Id="cfcba3ac-2d18-41af-821a-16d3149d3ffa" />
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="bd9e1979-6942-48e9-9e59-f5962cf60645" name="MessageOccurrenceSpecification24">
+            <elementDefinition Id="c0d3dd12-4c5e-462d-a12c-452eec1872e0" />
+            <covered>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="34fc58d3-3f25-471b-b55f-07a0a2b8c463" name="ExecutionOccurrenceSpecification14">
+            <elementDefinition Id="692bf65e-13ef-41e6-867e-58c88b68fa4a" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="2d6131f2-cb98-49ed-bed9-11149022cdf0" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" LastKnownName="Azure Admin Service (Public Azure)" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="5d871cd9-ba1c-41fa-b41f-9315fe69d0fd" name="MessageOccurrenceSpecification10">
+            <elementDefinition Id="fd7b1102-bea3-40a3-acde-856a4a0c821c" />
+            <covered>
+              <lifelineMoniker Id="f3edba1a-4cf5-48d6-9ec4-7422ebbb0b95" LastKnownName="API (HTTP Entry)" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b53912c3-5e8e-4821-87ce-64eb77313e47" name="MessageOccurrenceSpecification9">
+            <elementDefinition Id="d2d3df0e-eed3-4722-b006-de4994259c77" />
+            <covered>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="cc965b35-9130-4a25-8268-1695a013d8ff" name="ExecutionOccurrenceSpecification6">
+            <elementDefinition Id="c2f296bd-c6f7-4a9f-a935-3b7aa623e7eb" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e2918505-1be0-42f5-917d-7e368d7c29d7" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="3438e0d0-fdc3-4dde-918a-b666b229f524" LastKnownName="Azure Admin Clent Lib" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="e8212bac-04cb-4bcf-b75f-47028634a979" name="MessageOccurrenceSpecification5">
+            <elementDefinition Id="ee1d3a1b-538d-4f4b-ab56-1633928d7b70" />
+            <covered>
+              <lifelineMoniker Id="f3edba1a-4cf5-48d6-9ec4-7422ebbb0b95" LastKnownName="API (HTTP Entry)" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="505b96f5-8d55-4984-b003-01184ae9439b" name="MessageOccurrenceSpecification6">
+            <elementDefinition Id="4624c4ab-a9fb-4a07-883a-fe0fb8df26a8" />
+            <covered>
+              <lifelineMoniker Id="1fb51f4e-ba65-4cb5-b879-39d565fdd598" LastKnownName="Ops Queue" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="9613c318-7dd8-4853-98c9-ffe60848d456" name="ExecutionOccurrenceSpecification4">
+            <elementDefinition Id="be07b755-a402-4cf5-998c-18bfd738d3f5" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="44261a4b-8f3f-48b8-84be-a2ee49217cd3" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="f3edba1a-4cf5-48d6-9ec4-7422ebbb0b95" LastKnownName="API (HTTP Entry)" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="1fb51f4e-ba65-4cb5-b879-39d565fdd598" name="Ops Queue" isActor="false" lifelineDisplayName="Ops Queue">
+            <elementDefinition Id="0ede0087-7d31-4363-b914-e0c9da0f353f" />
+            <topLevelOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="f3384ffe-e04f-4a6a-882f-83bd5b864097" LastKnownName="MessageOccurrenceSpecification3" />
+              <messageOccurrenceSpecificationMoniker Id="505b96f5-8d55-4984-b003-01184ae9439b" LastKnownName="MessageOccurrenceSpecification6" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="f3edba1a-4cf5-48d6-9ec4-7422ebbb0b95" name="API (HTTP Entry)" isActor="false" lifelineDisplayName="API (HTTP Entry)">
+            <elementDefinition Id="3b612dff-6597-429a-b63e-ffaeb4a96ecc" />
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="260ef382-f611-4a8d-9354-e496fd2ad93b" LastKnownName="ExecutionOccurrenceSpecification3" />
+              <executionOccurrenceSpecificationMoniker Id="9613c318-7dd8-4853-98c9-ffe60848d456" LastKnownName="ExecutionOccurrenceSpecification4" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="3438e0d0-fdc3-4dde-918a-b666b229f524" name="Azure Admin Clent Lib" isActor="false" lifelineDisplayName="Azure Admin Clent Lib">
+            <elementDefinition Id="158f54dc-14a4-4412-b2b7-4c32222c909f" />
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="c40b2de8-c4da-4222-945e-c1a6e4ec8d93" LastKnownName="ExecutionOccurrenceSpecification5" />
+              <executionOccurrenceSpecificationMoniker Id="cc965b35-9130-4a25-8268-1695a013d8ff" LastKnownName="ExecutionOccurrenceSpecification6" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="85d5829e-81f1-4085-b0a8-52134e1c98a4" name="Azure Admin Service (Public Azure)" isActor="false" lifelineDisplayName="Azure Admin Service (Public Azure)">
+            <elementDefinition Id="dfd4d597-edc1-4365-9dad-44e1109cfd9e" />
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="b9a1e0df-1f34-43db-a7a4-abe86d894d6e" LastKnownName="ExecutionOccurrenceSpecification7" />
+              <executionOccurrenceSpecificationMoniker Id="b9fb3f88-76d1-44ca-9e2f-b4a8d2427501" LastKnownName="ExecutionOccurrenceSpecification8" />
+              <executionOccurrenceSpecificationMoniker Id="a9785aed-9517-42b2-8583-d046c10c3d28" LastKnownName="ExecutionOccurrenceSpecification9" />
+              <executionOccurrenceSpecificationMoniker Id="6b3d730e-4ec7-453b-a22a-0ed4dce35af0" LastKnownName="ExecutionOccurrenceSpecification10" />
+              <executionOccurrenceSpecificationMoniker Id="e449ca32-b201-4fa5-a51a-6eef8bf7eb9a" LastKnownName="ExecutionOccurrenceSpecification13" />
+              <executionOccurrenceSpecificationMoniker Id="34fc58d3-3f25-471b-b55f-07a0a2b8c463" LastKnownName="ExecutionOccurrenceSpecification14" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="17d56002-ab85-44a9-b4a6-7a972fed4ee7" name="Resize" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+            <elementDefinition Id="ec04e85d-164f-4723-977b-b34d58e9cdc6" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="f3384ffe-e04f-4a6a-882f-83bd5b864097" LastKnownName="MessageOccurrenceSpecification3" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="6a900934-00e5-4043-a4c5-bf8370981fae" LastKnownName="MessageOccurrenceSpecification4" />
+            </receiveEvent>
+          </message>
+          <message Id="7ecccc8f-326c-4886-a51a-3ae8d284fb95" name="Resize" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+            <elementDefinition Id="f3f29df5-5426-49f2-b9e0-e25ab9368b23" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="28857b39-195a-4ed2-b4de-b4018747d3df" LastKnownName="MessageOccurrenceSpecification7" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="f1407ebc-3552-4b92-9dfc-129ff25531e0" LastKnownName="MessageOccurrenceSpecification8" />
+            </receiveEvent>
+          </message>
+          <message Id="11ffc107-9b26-42f3-a6a5-78fc0009a9d3" name="Ftech VM info" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+            <elementDefinition Id="c7ad73fd-0bf0-4602-86b7-fa26f11ec2ff" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="4a4f5574-d052-4172-9fb9-deadb105cc66" LastKnownName="MessageOccurrenceSpecification11" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="cb0abb69-390c-454b-8318-19631b9759e6" LastKnownName="MessageOccurrenceSpecification12" />
+            </receiveEvent>
+          </message>
+          <message Id="062a2c71-11f8-4aa3-8a4f-6ae86e004ad3" name="&lt;&lt;VM Info&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <elementDefinition Id="98123a82-38bd-4b31-a39f-ddc3b962fec6" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="464d60f1-1ede-4a88-ae0b-e00ffc47e8a9" LastKnownName="MessageOccurrenceSpecification13" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="b399f70b-bd64-4214-b16e-4ff0e75fc897" LastKnownName="MessageOccurrenceSpecification14" />
+            </receiveEvent>
+          </message>
+          <message Id="c4565c21-2530-4dbc-975c-240b7840a1ff" name="Fetch host service info" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+            <elementDefinition Id="3f21b36c-dc8c-4e17-9c02-2708755f82dd" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="a0b42887-8273-43c9-9f7a-d12c8c21666a" LastKnownName="MessageOccurrenceSpecification15" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="176e4528-80f5-421b-b8aa-10323ff7cb78" LastKnownName="MessageOccurrenceSpecification16" />
+            </receiveEvent>
+          </message>
+          <message Id="321e7eca-f7d6-40d8-8341-306d19e8d91b" name="&lt;&lt;Host service info&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <elementDefinition Id="8b78e7d9-f288-466d-80fd-5bdcca269a12" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="7b81549c-a5af-4020-bcda-25d642bbdeb4" LastKnownName="MessageOccurrenceSpecification17" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="d42d7aa0-5796-4374-bae5-cd7cc59e4364" LastKnownName="MessageOccurrenceSpecification18" />
+            </receiveEvent>
+          </message>
+          <message Id="d5e8df21-a849-4ad2-8c60-e58ec1d1678b" name="Submit update request" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+            <elementDefinition Id="a0f94569-3fc9-424d-b502-aa859c7fc362" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="c2a104f4-5848-4914-88a6-fa611a3742b4" LastKnownName="MessageOccurrenceSpecification21" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="a12f06d6-adbd-4e06-bc2f-6f0743ad5fdb" LastKnownName="MessageOccurrenceSpecification22" />
+            </receiveEvent>
+          </message>
+          <message Id="81cc66fb-919b-4b4b-b892-789eefed608c" name="&lt;&lt;Azure request status&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <elementDefinition Id="b18a8258-e615-4092-bf89-161437734c4c" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="dda10206-2516-4306-ba9c-5e6a201b2209" LastKnownName="MessageOccurrenceSpecification23" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="bd9e1979-6942-48e9-9e59-f5962cf60645" LastKnownName="MessageOccurrenceSpecification24" />
+            </receiveEvent>
+          </message>
+          <message Id="997f2790-be56-4713-9ef6-08ea4a2f2d70" name="&lt;&lt;Request status&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <elementDefinition Id="2f748e94-c579-46f1-8736-81fc6d86a9dc" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="b53912c3-5e8e-4821-87ce-64eb77313e47" LastKnownName="MessageOccurrenceSpecification9" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="5d871cd9-ba1c-41fa-b41f-9315fe69d0fd" LastKnownName="MessageOccurrenceSpecification10" />
+            </receiveEvent>
+          </message>
+          <message Id="74680749-572f-48f7-a33e-b53a74ea705b" name="&lt;&lt;Request status HTTP&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <elementDefinition Id="c5da5d6a-ab41-412e-ad65-612ef929e565" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="e8212bac-04cb-4bcf-b75f-47028634a979" LastKnownName="MessageOccurrenceSpecification5" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="505b96f5-8d55-4984-b003-01184ae9439b" LastKnownName="MessageOccurrenceSpecification6" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="c3efdaff-8582-4c62-81ab-ee9a4b69c2dc" name="ExecutionEvent">
+        <elementDefinition Id="def90611-cd35-4840-81f8-b2523add9914" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="44261a4b-8f3f-48b8-84be-a2ee49217cd3" name="ExecutionEvent">
+        <elementDefinition Id="ac66e543-1f33-4930-92af-bb2587ca84d1" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="2643d4ba-21cb-4f6e-a0cd-f8610c2eeafe" name="ExecutionEvent">
+        <elementDefinition Id="0c2b81e0-5f1d-4d6f-a807-e34040e0560e" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e2918505-1be0-42f5-917d-7e368d7c29d7" name="ExecutionEvent">
+        <elementDefinition Id="1448f5f7-a609-49a3-8149-53f3cc44cf62" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="fc3231aa-604f-4a3a-a45c-74a1fc4bc027" name="ExecutionEvent">
+        <elementDefinition Id="0cc07c44-0610-4fd6-b10d-9475d35d83fe" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="90623f73-6553-4dfb-af4b-2030bd417f20" name="ExecutionEvent">
+        <elementDefinition Id="adb47e8b-d781-4008-bff3-1df52cc3a57f" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="edf423c4-0104-432b-a860-c42b347b284b" name="ExecutionEvent">
+        <elementDefinition Id="cbe5f5e2-d558-4e29-ab2c-ed205f63d460" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="94d6854e-a970-49a9-978b-45cb1e67d45d" name="ExecutionEvent">
+        <elementDefinition Id="5b3b3a4f-e691-4adc-9637-913c3cf3809d" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="fbbebdb9-4006-49bc-a657-972aa329c283" name="ExecutionEvent">
+        <elementDefinition Id="4ec1c1c8-5ac2-4501-9f5d-ce5535b0b4fc" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="2d6131f2-cb98-49ed-bed9-11149022cdf0" name="ExecutionEvent">
+        <elementDefinition Id="0e1ccc19-1396-4d92-849d-62178c5766f7" />
+      </executionEvent>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="26df2fde-b1ec-499a-ba8c-e8cf56fcb347" name="CmpWapModel">
+    <elementDefinition Id="8689a160-402e-4038-90af-0c8b64ee7274" />
+    <profileInstances>
+      <packageHasProfileInstances Id="5b0c1663-7d4f-42e8-9d79-94e8ea03a5b2">
+        <profileInstance Id="6a9ab839-55ce-4ea4-a089-b2caa2ea5c90" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="ee862d60-326b-4d6d-8951-379d273a605c">
+        <profileInstance Id="897af3d6-c2d1-4742-aaf1-e8ea69f32fd4" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</SequenceDesignerModel>

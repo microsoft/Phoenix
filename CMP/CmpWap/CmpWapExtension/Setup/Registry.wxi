@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:uti="http://schemas.microsoft.com/wix/UtilExtension">
+  <!-- Product registry entries (for use by WebPI to detect installation) -->
+  <Component Id="ProductRegistry"
+             Guid="{06CC2F39-C8A7-40BA-8557-2D773880E498}">
+    <RegistryKey Root="HKLM"
+                 Key="SOFTWARE\Microsoft\MgmtSvc\CmpWapExtension">
+      <!-- ProductCode can be used to locate ARP information:
+           HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{ProductCode} -->
+      <RegistryValue Type="string"
+                     Name="ProductCode"
+                     Value="[ProductCode]"
+                     KeyPath="yes" />
+      <RegistryValue Type="string"
+                     Name="ProductVersion"
+                     Value="[ProductVersion]" />
+      <RegistryValue Type="string"
+                     Name="InstallPath"
+                     Value="[INSTALLDIR]" />
+      <RegistryValue Type="string"
+                     Name="WebSitePath"
+                     Value="[WEBSITEDIR]" />
+      <RegistryValue Type="string"
+                     Name="AdminSitePath"
+                     Value="[PATHADMINSITE]" />
+      <RegistryValue Type="string"
+                     Name="TenantSitePath"
+                     Value="[PATHTENANTSITE]" />
+      <RegistryValue Id="InstanceNameRegKey"
+                  Name="InstanceName" Type="string" Value="[WAPINSTANCENAME]"  />
+      <RegistryValue Id="DatabaseNameRegKey"
+                        Name="DatabaseName" Type="string" Value="[WAPDATABASENAME]" />
+      <RegistryValue Id="ConnectionStringRegKey"
+                        Name="MicrosoftMgmtSvcCmpContext" Type="string" Value="[WAPCONNECTIONSTR]" />
+      <RegistryValue Id="CmpConnectionStringRegKey"
+                        Name="CMPContext" Type="string" Value="[CMPCONNECTIONSTR]" />
+      <RegistryValue Id="OnRemoteServerRegKey"
+                        Name="OnRemoteServer" Type="string" Value="[WAPONREMOTESERVER]" />
+      <RegistryValue Id="SqlMachineNameRegKey"
+                        Name="MachineName" Type="string" Value="[WAPSQLMACHINENAME]" />
+      <RegistryValue Id="SqlMachineFQDNRegKey"
+                        Name="MachineFQDN" Type="string" Value="[WAPSQLMACHINEFQDN]" />
+      <RegistryValue Id="SqlServerPort"
+                        Name="Port" Type="string" Value="[WAPSQLPORT]" />
+      <RegistryValue Id="KryptoCertRegKey"
+                        Name="KryptoCert" Type="string" Value="[CERTIFICATETHUMPRINT]" />
+      <RegistryValue Id="CmpDatabaseUserNameRegKey"
+                        Name="CmpDatabaseUserName" Type="string" Value="[CMPDATABASEUSERNAME]" />
+      <RegistryValue Id="CMPContextPasswordRegKey"
+                        Name="CMPContextPassword" Type="string" Value="[CMPCONTEXTPASSWORDSTRING]" />
+    </RegistryKey>
+  </Component>
+</Include>

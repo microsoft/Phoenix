@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\..\Environment.props" />
+  <PropertyGroup>
+    <!-- This component only builds in x64 -->
+    <Platform>x64</Platform>
+    <ProductVersion>3.9</ProductVersion>
+    <ProjectGuid>c7b43080-c6be-43d3-a41a-952a00546af9</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>Microsoft.WAP.CmpWapExtension.Admin.Setup</OutputName>
+    <OutputType>Package</OutputType>
+    <SuppressIces>ICE80</SuppressIces>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ARP.wxi" />
+    <Content Include="Bitmaps\bannrbmp.bmp" />
+    <Content Include="Bitmaps\dlgbmp.bmp" />
+    <Content Include="Documents\EULA.rtf" />
+    <Content Include="Feature\AdminSite.wxi" />
+    <Content Include="Icons\Windows-Azure-Dark-Blue.ico" />
+    <Content Include="Icons\Windows-Azure-Light-Blue.ico" />
+    <Content Include="PowerShell\Register-ResourceProvider.ps1" />
+    <Content Include="Prerequisites.wxi" />
+    <Content Include="ReadMe.txt" />
+    <Content Include="Registry.wxi" />
+    <Content Include="Service\WebSite.wxi" />
+    <Content Include="Service\WebSiteContent.wxi" />
+    <Content Include="Upgrade.wxi" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Bitmaps\" />
+    <Folder Include="Documents\" />
+    <Folder Include="Feature\" />
+    <Folder Include="Icons\" />
+    <Folder Include="PowerShell\" />
+    <Folder Include="Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Libraries\AzureAdminClient\AzureAdminClientLib\AzureAdminClientLib.csproj">
+      <Name>AzureAdminClientLib</Name>
+      <Project>{8bb5f247-8b1a-4713-8ba0-464a507fbb97}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Libraries\Krypto\KryptoLib\KryptoLib.csproj">
+      <Name>KryptoLib</Name>
+      <Project>{91237aa9-6c92-4b47-8d80-117ccbf92445}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Libraries\PowershellLib\PowershellLib\PowershellLib.csproj">
+      <Name>PowershellLib</Name>
+      <Project>{8aaf2051-b43f-4bec-a1fd-1b03035910df}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CmpCommon\CmpCommon.csproj">
+      <Name>CmpCommon</Name>
+      <Project>{b1bed686-72f1-4a29-b81b-8b7ef9bb5739}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CmpInterfaceModel\CmpInterfaceModel.csproj">
+      <Name>CmpInterfaceModel</Name>
+      <Project>{b3eb01ee-64c2-495a-9fd9-610974c4fe3e}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CmpServiceLib\CmpServiceLib.csproj">
+      <Name>CmpServiceLib</Name>
+      <Project>{fe5ef66f-8aba-4cbf-9998-0bbc98b76e53}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\AdminExtension\Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.csproj">
+      <Name>Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension</Name>
+      <Project>{adb067c9-c4fe-483c-ba6c-6c06fad70116}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Api\Microsoft.WindowsAzurePack.CmpWapExtension.Api.csproj">
+      <Name>Microsoft.WindowsAzurePack.CmpWapExtension.Api</Name>
+      <Project>{f66d9400-fb56-48d4-8da3-c9ae59ad9e0d}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient\Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient.csproj">
+      <Name>Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient</Name>
+      <Project>{4ead6a36-0951-464d-89d5-1072994d7e86}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\TenantExtension\Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.csproj">
+      <Name>Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension</Name>
+      <Project>{fd2b705e-7262-4bb6-871b-b9c7845c6c06}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixIIsExtension">
+      <HintPath>$(WixExtDir)\WixIIsExtension.dll</HintPath>
+      <Name>WixIIsExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixFirewallExtension">
+      <HintPath>$(WixExtDir)\WixFirewallExtension.dll</HintPath>
+      <Name>WixFirewallExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

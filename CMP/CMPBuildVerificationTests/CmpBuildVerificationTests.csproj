@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\Environment.props" />
+  <PropertyGroup>
+    <ProjectGuid>{588FF33F-504A-412D-BB62-952003F65C63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CmpBuildVerificationTest</RootNamespace>
+    <AssemblyName>CmpBuildVerificationTest</AssemblyName>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <IsCodedUITest>True</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Web.Http">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(PkgMicrosoft_AspNet_WebApi_Core)\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CmpBuildVerificationTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CmpCommon\CmpCommon.csproj">
+      <Project>{b1bed686-72f1-4a29-b81b-8b7ef9bb5739}</Project>
+      <Name>CmpCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CmpInterfaceModel\CmpInterfaceModel.csproj">
+      <Project>{b3eb01ee-64c2-495a-9fd9-610974c4fe3e}</Project>
+      <Name>CmpInterfaceModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CmpServiceLib\CmpServiceLib.csproj">
+      <Project>{fe5ef66f-8aba-4cbf-9998-0bbc98b76e53}</Project>
+      <Name>CmpServiceLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CmpWap\ApiClients\Microsoft.WindowsAzurePack.Samples.csproj">
+      <Project>{8d180247-add6-4fb4-bb98-9f2b9f3ebd6e}</Project>
+      <Name>Microsoft.WindowsAzurePack.Samples</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CmpWap\CmpWapExtension\ApiClient\Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.csproj">
+      <Project>{cc16eeda-663b-4e41-8047-0aaed4a03680}</Project>
+      <Name>Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CmpWap\CmpWapExtension\Api\Microsoft.WindowsAzurePack.CmpWapExtension.Api.csproj">
+      <Project>{f66d9400-fb56-48d4-8da3-c9ae59ad9e0d}</Project>
+      <Name>Microsoft.WindowsAzurePack.CmpWapExtension.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CmpWap\CmpWapExtension\Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient\Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient.csproj">
+      <Project>{4EAD6A36-0951-464D-89D5-1072994D7E86}</Project>
+      <Name>Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(PkgMicrosoft_VisualStudio_QualityTools_UnitTestFramework)\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll" DestinationFolder="$(OutputPath)">
+    </Copy>
+    <Copy SourceFiles="..\..\tools\run-test.ps1" DestinationFolder="$(OutputPath)">
+    </Copy>
+    <Copy SourceFiles="..\..\test\TestCollector.exe" DestinationFolder="$(OutputPath)">
+    </Copy>
+    <Copy SourceFiles="..\..\test\CodeCoverage.runsettings" DestinationFolder="$(OutputPath)">
+    </Copy>
+  </Target>
+</Project>

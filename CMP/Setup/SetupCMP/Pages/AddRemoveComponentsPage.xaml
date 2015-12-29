@@ -1,0 +1,262 @@
+<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<ns0:BasePageForWpfControls
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:ns0="clr-namespace:CMP.Setup"
+    x:Class="CMP.Setup.AddRemoveComponentsPage"
+    x:Uid="ns0:BasePageForWpfControls_1"
+    mc:Ignorable="d"
+    Height="415"
+    Width="735">
+    <ns0:BasePageForWpfControls.Resources>
+        <ResourceDictionary
+            x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    x:Uid="ResourceDictionary_2"
+                    Source="/SetupCMP;component/WPFResourceDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ns0:BasePageForWpfControls.Resources>
+    <Grid
+        x:Uid="Grid_1">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                x:Uid="RowDefinition_1"
+                Height="Auto" />
+            <!-- 0 - Header -->
+            <RowDefinition
+                x:Uid="RowDefinition_2"
+                Height="Auto" />
+            <!-- 1 - Description -->
+            <RowDefinition
+                x:Uid="RowDefinition_3"
+                Height="11" />
+            <!-- 2 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_4"
+                Height="Auto" />
+            <!-- 3 - Separator -->
+            <RowDefinition
+                x:Uid="RowDefinition_5"
+                Height="Auto" />
+            <!-- 4 - Stack panel for the server -->
+            <RowDefinition
+                x:Uid="RowDefinition_6"
+                Height="Auto" />
+            <!-- 5 - Stack panel for the tenant extension -->
+            <RowDefinition
+                x:Uid="RowDefinition_7"
+                Height="Auto" />
+            <!-- 6 - Stack panel for the admin extension -->
+            <RowDefinition
+                x:Uid="RowDefinition_8"
+                Height="Auto" />
+            <!-- 6 - Stack panel for the extension common components-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_1"
+                Width="27" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_2"
+                Width="*" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_3"
+                Width="32" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            x:Name="addComponents"
+            x:Uid="addComponents"
+            Grid.Row="0"
+            Style="{StaticResource StylePageHeader}">
+            Select features to add
+        </TextBlock>
+        <TextBlock
+            x:Name="removeComponents"
+            x:Uid="removeComponents"
+            Grid.Row="0"
+            Style="{StaticResource StylePageHeader}">
+            Select features to remove
+        </TextBlock>
+        <TextBlock
+            x:Uid="TextBlock_1"
+            Grid.Column="1"
+            Grid.Row="1"
+            Style="{StaticResource StylePageHeaderDescription}"
+            Text="" />
+        <Separator
+            x:Uid="Separator_1"
+            Grid.Column="1"
+            Grid.Row="3"
+            HorizontalAlignment="Stretch" />
+        <StackPanel
+            x:Name="stackPanelServer"
+            x:Uid="stackPanelServer"
+            Grid.Column="1"
+            Grid.Row="4">
+            <Grid
+                x:Uid="Grid_2">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        x:Uid="RowDefinition_8"
+                        Height="11" />
+                    <!-- 0 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_9"
+                        Height="Auto" />
+                    <!-- 1 - CheckBox for the server -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_12Add"
+                        Height="Auto" />
+                    <!-- 2 - Info for the server -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_10"
+                        Height="11" />
+                    <!-- 2 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_11"
+                        Height="Auto" />
+                    <!-- 3 - Separator -->
+                </Grid.RowDefinitions>
+                <CheckBox
+                    x:Name="checkBoxServer"
+                    x:Uid="ServerCheckBox"
+                    Checked="CheckBoxServerChanged"
+                    Content="CMP _Server"
+                    Grid.Row="1"
+                    Style="{StaticResource StyleFeatureCheckBox}"
+                    Unchecked="CheckBoxServerChanged" />
+                <TextBlock
+                    x:Name="serverDisableInfo"
+                    x:Uid="serverDisableInfo"
+                    Grid.Row="2"
+                    Style="{StaticResource StyleBasicTextBlock}"
+                    Visibility="Collapsed"></TextBlock>
+                <Separator
+                    x:Uid="Separator_2"
+                    Grid.Row="3"
+                    HorizontalAlignment="Stretch" />
+            </Grid>
+        </StackPanel>
+        <StackPanel
+            x:Name="stackPanelTenantExtension"
+            x:Uid="stackPanelTenantExtension"
+            Grid.Column="1"
+            Grid.Row="5">
+            <Grid
+                x:Uid="Grid_3">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        x:Uid="RowDefinition_12"
+                        Height="11" />
+                    <!-- 0 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_13"
+                        Height="Auto" />
+                    <!-- 1 - CheckBox for the client -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_14"
+                        Height="11" />
+                    <!-- 2 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_15"
+                        Height="Auto" />
+                    <!-- 3 - Separator -->
+                </Grid.RowDefinitions>
+                <CheckBox
+                    x:Name="checkboxTenantExtension"
+                    x:Uid="checkboxTenantExtension"
+                    Checked="checkboxTenantExtensionChanged"
+                    Content="WAP _Tenant Extension"
+                    Grid.Row="1"
+                    Style="{StaticResource StyleFeatureCheckBox}"
+                    Unchecked="checkboxTenantExtensionChanged" />
+                <Separator
+                    x:Uid="Separator_3"
+                    Grid.Row="3"
+                    HorizontalAlignment="Stretch" />
+            </Grid>
+        </StackPanel>
+        <StackPanel
+            x:Name="stackPanelAdminExtension"
+            x:Uid="stackPanelAdminExtension"
+            Grid.Column="1"
+            Grid.Row="6">
+            <Grid
+                x:Uid="Grid_3">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        x:Uid="RowDefinition_12"
+                        Height="11" />
+                    <!-- 0 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_13"
+                        Height="Auto" />
+                    <!-- 1 - CheckBox for the client -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_14"
+                        Height="11" />
+                    <!-- 2 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_15"
+                        Height="Auto" />
+                    <!-- 3 - Separator -->
+                </Grid.RowDefinitions>
+                <CheckBox
+                    x:Name="checkboxAdminExtension"
+                    x:Uid="checkboxAdminExtension"
+                    Checked="checkboxAdminExtensionChanged"
+                    Content="WAP _Admin Extension"
+                    Grid.Row="1"
+                    Style="{StaticResource StyleFeatureCheckBox}"
+                    Unchecked="checkboxAdminExtensionChanged" />
+                <Separator
+                    x:Uid="Separator_3"
+                    Grid.Row="3"
+                    HorizontalAlignment="Stretch" />
+            </Grid>
+        </StackPanel>
+        <StackPanel
+            x:Name="stackPanelExtensionCommon"
+            x:Uid="stackPanelExtensionCommon"
+            Grid.Column="1"
+            Grid.Row="7">
+            <Grid
+                x:Uid="Grid_3">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        x:Uid="RowDefinition_12"
+                        Height="11" />
+                    <!-- 0 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_13"
+                        Height="Auto" />
+                    <!-- 1 - CheckBox for the client -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_14"
+                        Height="11" />
+                    <!-- 2 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_15"
+                        Height="Auto" />
+                    <!-- 3 - Separator -->
+                </Grid.RowDefinitions>
+                <CheckBox
+                    x:Name="checkboxExtensionCommon"
+                    x:Uid="checkboxExtensionCommon"
+                    IsEnabled="False"
+                    Content="WAP Extension _Common Components"
+                    Grid.Row="1"
+                    Style="{StaticResource StyleFeatureCheckBox}"
+                    />
+                <Separator
+                    x:Uid="Separator_3"
+                    Grid.Row="3"
+                    HorizontalAlignment="Stretch" />
+            </Grid>
+        </StackPanel>
+    </Grid>
+</ns0:BasePageForWpfControls>

@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" dslVersion="1.0.0.0" Id="c8a6a2a3-f9aa-43a0-aba5-6e5ad967f04c" name="ProcessWorkOrder" linkedPackageId="7fcdc51f-40f0-406b-8ba4-6d80f36cb4d7" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="eb0b3654-166d-42ab-bf95-819f2ee133e0" name="ProcessWorkOrder" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="70d69d08-7488-4c19-8f85-fb1743f5ffc5" />
+        <nodes>
+          <initialNode Id="9bbd4f41-80a9-4d6c-a0da-de64892b2ca5" name="Initial1" isLeaf="false">
+            <elementDefinition Id="87de71df-1f68-4894-912e-dcff740d91ef" />
+            <flowNodeTargets>
+              <controlFlow Id="c818061e-89f4-406c-bc71-39612d9cd833" isLeaf="false">
+                <opaqueActionMoniker Id="0718edd5-96bd-43dc-8f02-2e3cfbeb9100" LastKnownName="Validate" />
+                <elementDefinition Id="351a5240-391d-4851-a9bc-e725d67afdf8" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="0718edd5-96bd-43dc-8f02-2e3cfbeb9100" name="Validate" isLeaf="false">
+            <elementDefinition Id="7ea29f69-74c4-4c8f-9040-c6187acfe8dd" />
+            <flowNodeTargets>
+              <controlFlow Id="fa257e7f-d26c-4926-92c6-b22f112fa93c" isLeaf="false">
+                <decisionNodeMoniker Id="4b45e7f0-805e-46d7-ace0-c6c2cc375224" LastKnownName="Decision1" />
+                <elementDefinition Id="1d8cde85-45d7-44f8-9066-f829cb503efb" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasInputValues>
+                <inputPin Id="d4d395a6-3602-4b27-a4b3-bd0045f8adbc" name="WO" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="ad2c9f8d-547b-47ca-b8bf-68550f4cecea" />
+                  <upperBound>
+                    <literalInteger Id="d523f2fd-c701-4a25-89ee-84eadd575388" name="2147483647" value="2147483647">
+                      <elementDefinition Id="e3942414-a867-46d0-a5d5-39dcc886435b" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </opaqueActionHasInputValues>
+            </pins>
+          </opaqueAction>
+          <decisionNode Id="4b45e7f0-805e-46d7-ace0-c6c2cc375224" name="Decision1" isLeaf="false">
+            <elementDefinition Id="f31fd095-22cb-45af-a7a1-730f39098912" />
+            <objectFlowTargets>
+              <objectFlow Id="8fa928a7-24cf-421d-9d43-f2002e1a9dd8" guard="Fail" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="54f7a751-d43c-4fb3-9cbb-4add1511dfac" LastKnownName="Result" />
+                <elementDefinition Id="46027ac4-fbd9-49c6-925d-bea89ed40ebd" />
+              </objectFlow>
+              <objectFlow Id="d1216836-45c2-499e-aca2-42dc8a2968a0" guard="Pass" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="15c6487e-1cc0-429d-9387-c32f6fd73564" LastKnownName="WO" />
+                <elementDefinition Id="7b51ee6c-697c-4457-a80b-eec2109b45a5" />
+              </objectFlow>
+            </objectFlowTargets>
+          </decisionNode>
+          <activityFinalNode Id="87721af1-da94-444c-b4d3-77b61d6b5d6e" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="d68c60ee-fe14-4762-8c48-086a3f7f90b9" />
+          </activityFinalNode>
+          <objectNode Id="3daf0d97-ae43-414b-b0d3-2dbaaf102ae9" name="WO" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="f6da268f-4e84-40a1-82dc-2dcde960f65e" />
+            <objectFlowTargets>
+              <objectFlow Id="52295153-2648-4e78-9567-7b6a115dc2cd" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="d4d395a6-3602-4b27-a4b3-bd0045f8adbc" LastKnownName="WO" />
+                <elementDefinition Id="56f34fd1-2bfc-417b-9c91-a9efad890c89" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="317e5997-0717-4ee6-a70b-b7eac8f4d3e0" name="2147483647" value="2147483647">
+                <elementDefinition Id="70556045-5a01-4e47-a9d2-cff09676d3be" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <callBehaviorAction Id="e00051bc-b965-4135-a378-a951b6f39b1b" name="LogWoResult" isLeaf="false">
+            <elementDefinition Id="22781fbc-b485-4546-8e69-d62eb7325b49" />
+            <flowNodeTargets>
+              <controlFlow Id="f62ff62a-9507-4ef5-a421-fa26ef6dce32" isLeaf="false">
+                <activityFinalNodeMoniker Id="87721af1-da94-444c-b4d3-77b61d6b5d6e" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="6dec0b2c-492f-41ce-9f93-5b52ebb68519" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <invocationActionHasArguments>
+                <inputPin Id="54f7a751-d43c-4fb3-9cbb-4add1511dfac" name="Result" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="17f8c75f-b011-4e41-842c-f9e72dbe4863" />
+                  <upperBound>
+                    <literalInteger Id="5c42bc7d-dac7-42ac-afa4-42106a47bccb" name="2147483647" value="2147483647">
+                      <elementDefinition Id="2cbd3188-7106-4e83-af10-1fe6147cb36d" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </invocationActionHasArguments>
+              <invocationActionHasArguments>
+                <inputPin Id="5a440223-00a7-41b7-bf73-bbf41d42bef9" name="Result" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="a2e09ee0-662e-4ee0-8c53-c97775caa1a1" />
+                  <upperBound>
+                    <literalInteger Id="7c15a8f4-53a3-4d19-8453-09bb750698f1" name="2147483647" value="2147483647">
+                      <elementDefinition Id="cd905037-d437-4e8f-af83-4867c8313501" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </invocationActionHasArguments>
+              <invocationActionHasArguments>
+                <inputPin Id="df1c1059-8328-423b-9e7f-e44fedaae2c7" name="Result" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="16c8b110-ed77-4ec0-9635-95cbdaa40c41" />
+                  <upperBound>
+                    <literalInteger Id="c940b759-db32-4fef-be70-b9a3899f9b20" name="2147483647" value="2147483647">
+                      <elementDefinition Id="ab5a4802-df2d-46b4-bba0-cc1c3577a544" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </invocationActionHasArguments>
+            </pins>
+          </callBehaviorAction>
+          <sendSignalAction Id="e2470ea1-f003-45b3-8ea7-78f6d902390a" name="ProvisionSignalSend" isLeaf="false">
+            <elementDefinition Id="f8e3dc33-973c-4562-90ec-9f60cf16ab63" />
+            <pins>
+              <sendSignalActionHasTarget>
+                <inputPin Id="15c6487e-1cc0-429d-9387-c32f6fd73564" name="WO" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="63914804-2400-429b-86a0-200e4cbd4fb4" />
+                  <upperBound>
+                    <literalInteger Id="9a5f46c6-8c28-463d-b975-9c141812ff60" name="2147483647" value="2147483647">
+                      <elementDefinition Id="3c051b61-fa95-4e5b-9f8e-b573b787b226" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </sendSignalActionHasTarget>
+              <actionHasOutputsInternal>
+                <outputPin Id="e09c4b2d-a1f4-42c1-8fd6-68e4ddf04123" name="Result" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="fe521cca-0ba2-40e2-9af3-30480c61377d" />
+                  <objectFlowTargets>
+                    <objectFlow Id="4e08c2e3-9f32-4d9d-a704-5f81c4392a57" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <inputPinMoniker Id="5a440223-00a7-41b7-bf73-bbf41d42bef9" LastKnownName="Result" />
+                      <elementDefinition Id="8995aa37-d10a-4e47-bfe4-81d048535179" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="17274589-ab1a-4550-8d81-9875da78434b" name="2147483647" value="2147483647">
+                      <elementDefinition Id="22da96a1-7e83-4467-aa48-141cd78b950f" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </actionHasOutputsInternal>
+            </pins>
+          </sendSignalAction>
+          <acceptEventAction Id="ae5e3ccf-0e18-4fb6-85dd-4181f20b6631" name="ProvisionSignalReceived" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="d3d03d4f-d177-47db-bd7f-1d2fbbf77c31" />
+            <flowNodeTargets>
+              <controlFlow Id="366f4f73-c533-4140-8f42-1c32fae3a0c2" isLeaf="false">
+                <callBehaviorActionMoniker Id="ffa78bf8-1da7-4988-9af4-ffaf99367d9e" LastKnownName="ProvisionAzure" />
+                <elementDefinition Id="d2489891-5106-4bce-8317-38dbb2c7500a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <callBehaviorAction Id="ffa78bf8-1da7-4988-9af4-ffaf99367d9e" name="ProvisionAzure" isLeaf="false">
+            <elementDefinition Id="f6764b7e-c43f-49c7-b4ac-fc6a6e85ba06" />
+            <pins>
+              <callActionHasResults>
+                <outputPin Id="771a87c2-b72b-4a3d-bd10-b6936bcdf1c8" name="Result" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="10287756-046d-40c8-850a-9aac92e3f90d" />
+                  <objectFlowTargets>
+                    <objectFlow Id="c63109ba-7c1e-478d-a423-635ea32ded04" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <sendSignalActionMoniker Id="2c6c6277-0f01-45f6-b7be-a87eb10c3944" LastKnownName="ProvisionCompltedSend" />
+                      <elementDefinition Id="b40802dd-f8e9-4f68-90f3-c9ad2e6fd534" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="07f1cecc-db73-4bb0-b1be-63e2194a9f2f" name="2147483647" value="2147483647">
+                      <elementDefinition Id="c8934fb3-59c9-49a7-9b4d-1cbf943f39de" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </callActionHasResults>
+            </pins>
+          </callBehaviorAction>
+          <acceptEventAction Id="12452b00-fd71-48b1-a40a-4d96761984c8" name="ProvisionCompletedReceived" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="8f89e048-51ac-4e53-8aaa-fa6fd0002f33" />
+            <objectFlowTargets>
+              <objectFlow Id="b3e45575-07f4-46bc-98b4-5f028dfeae6f" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="df1c1059-8328-423b-9e7f-e44fedaae2c7" LastKnownName="Result" />
+                <elementDefinition Id="dac0e023-4acf-473f-8cd0-c8de826d08be" />
+              </objectFlow>
+            </objectFlowTargets>
+          </acceptEventAction>
+          <sendSignalAction Id="2c6c6277-0f01-45f6-b7be-a87eb10c3944" name="ProvisionCompltedSend" isLeaf="false">
+            <elementDefinition Id="88fa49b5-4b6d-4800-adbf-9abbfb7a282d" />
+          </sendSignalAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="7fcdc51f-40f0-406b-8ba4-6d80f36cb4d7" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+    <profileInstances>
+      <packageHasProfileInstances Id="c69533b1-b666-4282-9d08-5c14e2424306">
+        <profileInstance Id="c672529d-d309-4a33-94e9-89203eb1f149" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="079d12f8-fde7-4b36-81a9-9966e16124e8">
+        <profileInstance Id="dcb59e73-85ab-4281-a1c8-c23566996c3c" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</activityRootModel>

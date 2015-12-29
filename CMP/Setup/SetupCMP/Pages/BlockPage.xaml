@@ -1,0 +1,63 @@
+<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<ns0:BasePageForWpfControls
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:ns0="clr-namespace:CMP.Setup"
+    x:Class="CMP.Setup.BlockPage"
+    x:Uid="ns0:BasePageForWpfControls_1"
+    mc:Ignorable="d"
+    FontSize="18"
+    Height="525"
+    Width="750">
+    <Grid
+        x:Uid="Grid_1">
+        <TextBlock
+            x:Uid="TextBlock_1"
+            Background="{x:Null}"
+            Foreground="#FF003399"
+            Height="37"
+            Margin="21,29,47,0"
+            TextWrapping="Wrap"
+            VerticalAlignment="Top">
+            <Run
+                x:Uid="Run_1"
+                FontSize="20"
+                Foreground="#FF076ACD">Unable to setup CMP</Run>
+        </TextBlock>
+        <Path
+            x:Uid="Path_1"
+            Data="M34,181L722.5,181"
+            Fill="#009D9D9D"
+            Height="1"
+            Margin="21,69,74,0"
+            Stretch="Fill"
+            Stroke="#FF9B9B9B"
+            VerticalAlignment="Top" />
+        <Image
+            x:Uid="statusImage"
+            Height="16"
+            HorizontalAlignment="Left"
+            Margin="21,82,0,0"
+            Name="statusImage"
+            Source="/SetupCMP;component/Images/yieldIcon.png"
+            Stretch="Fill"
+            VerticalAlignment="Top"
+            Width="16" />
+        <TextBlock
+            x:Uid="statusTextBlock"
+            FontSize="12"
+            Margin="41,82,74,237"
+            Name="statusTextBlock"
+            TextWrapping="Wrap">
+            <Span
+                x:Uid="Span_1"
+                Foreground="Black">
+                <Run
+                    x:Uid="blockReason"
+                    Name="blockReason">Setup has detected incompatible components installed on this system.</Run>
+            </Span>
+        </TextBlock>
+    </Grid>
+</ns0:BasePageForWpfControls>

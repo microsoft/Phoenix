@@ -1,0 +1,691 @@
+﻿<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="CMP.Setup.WpfFormsHostPage"
+    x:Uid="Window_1"
+    mc:Ignorable="d"
+    Height="558"
+    ResizeMode="NoResize"
+    Title="{DynamicResource wizardTitle}"
+    Width="741"
+    WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary
+            x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    x:Uid="ResourceDictionary_3"
+                    Source="WPFResourceDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <LinearGradientBrush
+                x:Key="ProgressBarBackground"
+                x:Uid="LinearGradientBrush_1"
+                EndPoint="1,0"
+                StartPoint="0,0">
+                <GradientStop
+                    x:Uid="GradientStop_1"
+                    Color="#BABABA"
+                    Offset="0" />
+                <GradientStop
+                    x:Uid="GradientStop_2"
+                    Color="#C7C7C7"
+                    Offset="0.5" />
+                <GradientStop
+                    x:Uid="GradientStop_3"
+                    Color="#BABABA"
+                    Offset="1" />
+            </LinearGradientBrush>
+            <LinearGradientBrush
+                x:Key="ProgressBarBorderBrush"
+                x:Uid="LinearGradientBrush_2"
+                EndPoint="0,1"
+                StartPoint="0,0">
+                <GradientStop
+                    x:Uid="GradientStop_4"
+                    Color="#B2B2B2"
+                    Offset="0" />
+                <GradientStop
+                    x:Uid="GradientStop_5"
+                    Color="#8C8C8C"
+                    Offset="1" />
+            </LinearGradientBrush>
+            <LinearGradientBrush
+                x:Key="ProgressBarGlassyHighlight"
+                x:Uid="LinearGradientBrush_3"
+                EndPoint="0,1"
+                StartPoint="0,0">
+                <GradientStop
+                    x:Uid="GradientStop_6"
+                    Color="#50FFFFFF"
+                    Offset="0.5385" />
+                <GradientStop
+                    x:Uid="GradientStop_7"
+                    Color="#00FFFFFF"
+                    Offset="0.5385" />
+            </LinearGradientBrush>
+            <LinearGradientBrush
+                x:Key="ProgressBarTopHighlight"
+                x:Uid="LinearGradientBrush_4"
+                EndPoint="0,1"
+                StartPoint="0,0">
+                <GradientStop
+                    x:Uid="GradientStop_8"
+                    Color="#80FFFFFF"
+                    Offset="0.05" />
+                <GradientStop
+                    x:Uid="GradientStop_9"
+                    Color="#00FFFFFF"
+                    Offset="0.25" />
+            </LinearGradientBrush>
+            <LinearGradientBrush
+                x:Key="ProgressBarIndicatorAnimatedFill"
+                x:Uid="LinearGradientBrush_5"
+                EndPoint="0,0"
+                MappingMode="Absolute"
+                StartPoint="-100,0">
+                <GradientStop
+                    x:Uid="GradientStop_10"
+                    Color="#00000000"
+                    Offset="0" />
+                <GradientStop
+                    x:Uid="GradientStop_11"
+                    Color="#FF000000"
+                    Offset="0.4" />
+                <GradientStop
+                    x:Uid="GradientStop_12"
+                    Color="#FF000000"
+                    Offset="0.6" />
+                <GradientStop
+                    x:Uid="GradientStop_13"
+                    Color="#00000000"
+                    Offset="1" />
+            </LinearGradientBrush>
+            <LinearGradientBrush
+                x:Key="ProgressBarIndicatorDarkEdgeLeft"
+                x:Uid="LinearGradientBrush_6"
+                EndPoint="1,0"
+                StartPoint="0,0">
+                <GradientStop
+                    x:Uid="GradientStop_14"
+                    Color="#0C000000"
+                    Offset="0" />
+                <GradientStop
+                    x:Uid="GradientStop_15"
+                    Color="#20000000"
+                    Offset="0.3" />
+                <GradientStop
+                    x:Uid="GradientStop_16"
+                    Color="#00000000"
+                    Offset="1" />
+            </LinearGradientBrush>
+            <LinearGradientBrush
+                x:Key="ProgressBarIndicatorDarkEdgeRight"
+                x:Uid="LinearGradientBrush_7"
+                EndPoint="1,0"
+                StartPoint="0,0">
+                <GradientStop
+                    x:Uid="GradientStop_17"
+                    Color="#00000000"
+                    Offset="0" />
+                <GradientStop
+                    x:Uid="GradientStop_18"
+                    Color="#20000000"
+                    Offset="0.7" />
+                <GradientStop
+                    x:Uid="GradientStop_19"
+                    Color="#0C000000"
+                    Offset="1" />
+            </LinearGradientBrush>
+            <RadialGradientBrush
+                x:Key="ProgressBarIndicatorLightingEffectLeft"
+                x:Uid="RadialGradientBrush_1"
+                RadiusX="1"
+                RadiusY="1"
+                RelativeTransform="1,0,0,1,0.5,0.5">
+                <GradientStop
+                    x:Uid="GradientStop_20"
+                    Color="#60FFFFC4"
+                    Offset="0" />
+                <GradientStop
+                    x:Uid="GradientStop_21"
+                    Color="#00FFFFC4"
+                    Offset="1" />
+            </RadialGradientBrush>
+            <LinearGradientBrush
+                x:Key="ProgressBarIndicatorLightingEffect"
+                x:Uid="LinearGradientBrush_8"
+                EndPoint="0,0"
+                StartPoint="0,1">
+                <GradientStop
+                    x:Uid="GradientStop_22"
+                    Color="#60FFFFC4"
+                    Offset="0" />
+                <GradientStop
+                    x:Uid="GradientStop_23"
+                    Color="#00FFFFC4"
+                    Offset="1" />
+            </LinearGradientBrush>
+            <RadialGradientBrush
+                x:Key="ProgressBarIndicatorLightingEffectRight"
+                x:Uid="RadialGradientBrush_2"
+                RadiusX="1"
+                RadiusY="1"
+                RelativeTransform="1,0,0,1,-0.5,0.5">
+                <GradientStop
+                    x:Uid="GradientStop_24"
+                    Color="#60FFFFC4"
+                    Offset="0" />
+                <GradientStop
+                    x:Uid="GradientStop_25"
+                    Color="#00FFFFC4"
+                    Offset="1" />
+            </RadialGradientBrush>
+            <LinearGradientBrush
+                x:Key="ProgressBarIndicatorGlassyHighlight"
+                x:Uid="LinearGradientBrush_9"
+                EndPoint="0,1"
+                StartPoint="0,0">
+                <GradientStop
+                    x:Uid="GradientStop_26"
+                    Color="#90FFFFFF"
+                    Offset="0.5385" />
+                <GradientStop
+                    x:Uid="GradientStop_27"
+                    Color="#00FFFFFF"
+                    Offset="0.5385" />
+            </LinearGradientBrush>
+            <Style
+                x:Key="ChunkyProgressBarStyle"
+                x:Uid="Style_1"
+                TargetType="{x:Type ProgressBar}">
+                <Setter
+                    x:Uid="Setter_1"
+                    Property="Foreground"
+                    Value="#01D328" />
+                <Setter
+                    x:Uid="Setter_2"
+                    Property="Background"
+                    Value="{StaticResource ProgressBarBackground}" />
+                <Setter
+                    x:Uid="Setter_3"
+                    Property="BorderBrush"
+                    Value="{StaticResource ProgressBarBorderBrush}" />
+                <Setter
+                    x:Uid="Setter_4"
+                    Property="BorderThickness"
+                    Value="1" />
+                <Setter
+                    x:Uid="Setter_5"
+                    Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate
+                            x:Uid="ControlTemplate_1"
+                            TargetType="{x:Type ProgressBar}">
+                            <Grid
+                                x:Name="Background"
+                                x:Uid="Background"
+                                SnapsToDevicePixels="true">
+                                <Rectangle
+                                    x:Uid="Rectangle_1"
+                                    Fill="{TemplateBinding Background}"
+                                    Grid.ColumnSpan="5"
+                                    RadiusX="2"
+                                    RadiusY="2" />
+                                <Border
+                                    x:Uid="Border_1"
+                                    Background="{StaticResource ProgressBarGlassyHighlight}"
+                                    CornerRadius="2"
+                                    Grid.ColumnSpan="5"
+                                    Margin="1" />
+                                <Border
+                                    x:Uid="Border_2"
+                                    Background="{StaticResource ProgressBarTopHighlight}"
+                                    BorderBrush="#80FFFFFF"
+                                    BorderThickness="1,0,1,1"
+                                    Grid.ColumnSpan="5"
+                                    Margin="1" />
+                                <Rectangle
+                                    x:Name="PART_Track"
+                                    x:Uid="PART_Track"
+                                    Grid.ColumnSpan="5"
+                                    Margin="1" />
+                                <Decorator
+                                    x:Name="PART_Indicator"
+                                    x:Uid="PART_Indicator"
+                                    HorizontalAlignment="Left"
+                                    Margin="1,1,0,1">
+                                    <Grid
+                                        x:Name="Foreground"
+                                        x:Uid="Foreground">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition
+                                                x:Uid="RowDefinition_1" />
+                                            <RowDefinition
+                                                x:Uid="RowDefinition_2" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition
+                                                x:Uid="ColumnDefinition_1"
+                                                MaxWidth="15" />
+                                            <ColumnDefinition
+                                                x:Uid="ColumnDefinition_2"
+                                                Width="0.1*" />
+                                            <ColumnDefinition
+                                                x:Uid="ColumnDefinition_3"
+                                                MaxWidth="15" />
+                                        </Grid.ColumnDefinitions>
+                                        <Rectangle
+                                            x:Name="Indicator"
+                                            x:Uid="Indicator"
+                                            Fill="{TemplateBinding Foreground}"
+                                            Grid.ColumnSpan="3"
+                                            Grid.RowSpan="2" />
+                                        <Rectangle
+                                            x:Name="LeftDark"
+                                            x:Uid="LeftDark"
+                                            Fill="{StaticResource ProgressBarIndicatorDarkEdgeLeft}"
+                                            Grid.RowSpan="2"
+                                            Margin="1,1,0,1"
+                                            RadiusX="1"
+                                            RadiusY="1" />
+                                        <Rectangle
+                                            x:Name="RightDark"
+                                            x:Uid="RightDark"
+                                            Fill="{StaticResource ProgressBarIndicatorDarkEdgeRight}"
+                                            Grid.Column="2"
+                                            Grid.RowSpan="2"
+                                            Margin="0,1,1,1"
+                                            RadiusX="1"
+                                            RadiusY="1" />
+                                        <Rectangle
+                                            x:Name="LeftLight"
+                                            x:Uid="LeftLight"
+                                            Fill="{StaticResource ProgressBarIndicatorLightingEffectLeft}"
+                                            Grid.Column="0"
+                                            Grid.Row="2" />
+                                        <Rectangle
+                                            x:Name="CenterLight"
+                                            x:Uid="CenterLight"
+                                            Fill="{StaticResource ProgressBarIndicatorLightingEffect}"
+                                            Grid.Column="1"
+                                            Grid.Row="2" />
+                                        <Rectangle
+                                            x:Name="RightLight"
+                                            x:Uid="RightLight"
+                                            Fill="{StaticResource ProgressBarIndicatorLightingEffectRight}"
+                                            Grid.Column="2"
+                                            Grid.Row="2" />
+                                        <Border
+                                            x:Name="Highlight1"
+                                            x:Uid="Highlight1"
+                                            Background="{StaticResource ProgressBarIndicatorGlassyHighlight}"
+                                            Grid.ColumnSpan="3"
+                                            Grid.RowSpan="2" />
+                                        <Border
+                                            x:Name="Highlight2"
+                                            x:Uid="Highlight2"
+                                            Background="{StaticResource ProgressBarTopHighlight}"
+                                            Grid.ColumnSpan="3"
+                                            Grid.RowSpan="2" />
+                                    </Grid>
+                                </Decorator>
+                                <Grid
+                                    x:Uid="Grid_1"
+                                    Grid.ColumnSpan="5"
+                                    Margin="0,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition
+                                            x:Uid="ColumnDefinition_4"
+                                            Width="0.2*" />
+                                        <ColumnDefinition
+                                            x:Uid="ColumnDefinition_5"
+                                            Width="0.2*" />
+                                        <ColumnDefinition
+                                            x:Uid="ColumnDefinition_6"
+                                            Width="0.2*" />
+                                        <ColumnDefinition
+                                            x:Uid="ColumnDefinition_7"
+                                            Width="0.2*" />
+                                        <ColumnDefinition
+                                            x:Uid="ColumnDefinition_8"
+                                            Width="0.2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle
+                                        x:Uid="Rectangle_2"
+                                        Fill="{x:Null}"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="1"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="0,0,0,0"
+                                        Stroke="{TemplateBinding BorderBrush}"
+                                        StrokeThickness="1" />
+                                    <Rectangle
+                                        x:Uid="Rectangle_3"
+                                        Fill="{x:Null}"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="1"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="0,0,0,0"
+                                        Stroke="{TemplateBinding BorderBrush}"
+                                        StrokeThickness="1" />
+                                    <Rectangle
+                                        x:Uid="Rectangle_4"
+                                        Fill="{x:Null}"
+                                        Grid.Column="2"
+                                        Grid.ColumnSpan="1"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="0,0,0,0"
+                                        Stroke="{TemplateBinding BorderBrush}"
+                                        StrokeThickness="1" />
+                                    <Rectangle
+                                        x:Uid="Rectangle_5"
+                                        Fill="{x:Null}"
+                                        Grid.Column="3"
+                                        Grid.ColumnSpan="1"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="0,0,0,0"
+                                        Stroke="{TemplateBinding BorderBrush}"
+                                        StrokeThickness="1" />
+                                    <Rectangle
+                                        x:Uid="Rectangle_6"
+                                        Fill="{x:Null}"
+                                        Grid.Column="4"
+                                        Grid.ColumnSpan="1"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="0,0,0,0"
+                                        Stroke="{TemplateBinding BorderBrush}"
+                                        StrokeThickness="1" />
+                                </Grid>
+                                <Border
+                                    x:Uid="Border_3"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="2"
+                                    Grid.ColumnSpan="5" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger
+                                    x:Uid="Trigger_1"
+                                    Property="Orientation"
+                                    Value="Vertical">
+                                    <Setter
+                                        x:Uid="Setter_6"
+                                        Property="LayoutTransform"
+                                        TargetName="Background">
+                                        <Setter.Value>
+                                            <RotateTransform
+                                                x:Uid="RotateTransform_1"
+                                                Angle="-90" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter
+                                        x:Uid="Setter_7"
+                                        Property="LayoutTransform"
+                                        TargetName="PART_Track">
+                                        <Setter.Value>
+                                            <RotateTransform
+                                                x:Uid="RotateTransform_2"
+                                                Angle="90" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter
+                                        x:Uid="Setter_8"
+                                        Property="LayoutTransform"
+                                        TargetName="PART_Indicator">
+                                        <Setter.Value>
+                                            <RotateTransform
+                                                x:Uid="RotateTransform_3"
+                                                Angle="90" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter
+                                        x:Uid="Setter_9"
+                                        Property="LayoutTransform"
+                                        TargetName="Foreground">
+                                        <Setter.Value>
+                                            <RotateTransform
+                                                x:Uid="RotateTransform_4"
+                                                Angle="-90" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger
+                                    x:Uid="Trigger_2"
+                                    Property="IsIndeterminate"
+                                    Value="true">
+                                    <Setter
+                                        x:Uid="Setter_10"
+                                        Property="Visibility"
+                                        TargetName="LeftDark"
+                                        Value="Collapsed" />
+                                    <Setter
+                                        x:Uid="Setter_11"
+                                        Property="Visibility"
+                                        TargetName="RightDark"
+                                        Value="Collapsed" />
+                                    <Setter
+                                        x:Uid="Setter_12"
+                                        Property="Visibility"
+                                        TargetName="LeftLight"
+                                        Value="Collapsed" />
+                                    <Setter
+                                        x:Uid="Setter_13"
+                                        Property="Visibility"
+                                        TargetName="CenterLight"
+                                        Value="Collapsed" />
+                                    <Setter
+                                        x:Uid="Setter_14"
+                                        Property="Visibility"
+                                        TargetName="RightLight"
+                                        Value="Collapsed" />
+                                    <Setter
+                                        x:Uid="Setter_15"
+                                        Property="Visibility"
+                                        TargetName="Indicator"
+                                        Value="Collapsed" />
+                                </Trigger>
+                                <Trigger
+                                    x:Uid="Trigger_3"
+                                    Property="IsIndeterminate"
+                                    Value="false" />
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid
+        x:Uid="Grid_2"
+        Height="530"
+        Width="735">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                x:Uid="RowDefinition_3"
+                Height="16" />
+            <RowDefinition
+                x:Uid="RowDefinition_4"
+                Height="Auto" />
+            <RowDefinition
+                x:Uid="RowDefinition_5"
+                Height="4" />
+            <RowDefinition
+                x:Uid="RowDefinition_6"
+                Height="Auto" />
+            <RowDefinition
+                x:Uid="RowDefinition_7"
+                Height="11" />
+            <RowDefinition
+                x:Uid="RowDefinition_8"
+                Height="Auto"
+                MinHeight="3" />
+            <RowDefinition
+                x:Uid="RowDefinition_9"
+                Height="*" />
+            <RowDefinition
+                x:Uid="RowDefinition_10"
+                Height="Auto"
+                MinHeight="3" />
+            <RowDefinition
+                x:Uid="RowDefinition_11"
+                Height="16" />
+            <RowDefinition
+                x:Uid="RowDefinition_12"
+                Height="Auto"
+                MinHeight="37" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_9"
+                MaxWidth="11"
+                Width="11" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_10"
+                Width="*" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_11"
+                SharedSizeGroup="Buttons"
+                Width="Auto" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_12"
+                Width="7" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_13"
+                SharedSizeGroup="Buttons"
+                Width="Auto" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_14"
+                Width="7" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_15"
+                SharedSizeGroup="Buttons"
+                Width="Auto" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_16"
+                Width="16" />
+        </Grid.ColumnDefinitions>
+        <Image
+            x:Uid="Image_1"
+            Grid.ColumnSpan="16"
+            Grid.RowSpan="16"
+            Source="/SetupCMP;component/Images/Background.png"
+            Stretch="Fill" />
+        <TextBlock
+            x:Name="pageLabel"
+            x:Uid="pageLabel"
+            Grid.Column="1"
+            Grid.Row="1"
+            Height="Auto"
+            HorizontalAlignment="Left"
+            Margin="0,0,0,4"
+            TextWrapping="Wrap"
+            VerticalAlignment="Center"
+            Width="Auto">
+            <Run
+                x:Uid="Run_1"
+                FontFamily="Segoe UI"
+                FontSize="16pt"
+                Foreground="Black"
+                Text="PageLabel" />
+        </TextBlock>
+        <Button
+            x:Name="buttonReportProblem"
+            x:Uid="buttonReportProblem"
+            Click="ButtonReportProblemClick"
+            Grid.Column="4"
+            Grid.ColumnSpan="3"
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            HorizontalContentAlignment="Center"
+            Style="{StaticResource StyleHyperLinkButton}"
+            TabIndex="103"
+            VerticalAlignment="Center"
+            VerticalContentAlignment="Bottom">_Report a problem</Button>
+        <ProgressBar
+            x:Name="setupPhaseProgressBar"
+            x:Uid="setupPhaseProgressBar"
+            Foreground="#FF0015B6"
+            Grid.Column="1"
+            Grid.ColumnSpan="1"
+            Grid.Row="3"
+            Height="14"
+            HorizontalAlignment="Left"
+            IsHitTestVisible="False"
+            IsTabStop="False"
+            Style="{DynamicResource ChunkyProgressBarStyle}"
+            VerticalAlignment="Center"
+            Width="177" />
+        <GridSplitter
+            x:Uid="GridSplitter_1"
+            Background="#FFE0E0E0"
+            BorderBrush="#FFB1B1B1"
+            BorderThickness="0,1,0,1"
+            Grid.ColumnSpan="16"
+            Grid.Row="5"
+            Height="2.566"
+            HorizontalAlignment="Stretch"
+            IsTabStop="False"
+            VerticalAlignment="Top" />
+        <Border
+            x:Name="border"
+            x:Uid="border"
+            Grid.ColumnSpan="16"
+            Grid.Row="6"
+            Margin="0,0,0,0" />
+        <GridSplitter
+            x:Uid="GridSplitter_2"
+            Background="#FFE0E0E0"
+            BorderBrush="#FFB1B1B1"
+            BorderThickness="0,1,0,1"
+            Grid.ColumnSpan="16"
+            Grid.Row="7"
+            Height="2.566"
+            HorizontalAlignment="Stretch"
+            IsTabStop="False"
+            VerticalAlignment="Bottom" />
+        <!--
+        <TextBlock 
+            x:Uid="copyrightTextBlock" 
+            Height="Auto" 
+            Name="copyrightTextBlock" 
+            Text="© 2015 Microsoft Corporation. All rights reserved." 
+            Width="Auto" 
+            Grid.Row="9" 
+            Grid.Column="1"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" />
+        -->
+        <Button
+            x:Name="buttonPrevious"
+            x:Uid="buttonPrevious"
+            Click="ButtonPreviousClick"
+            Content="_Previous"
+            Grid.Column="2"
+            Grid.Row="9"
+            Style="{StaticResource StyleButton}"
+            TabIndex="100"></Button>
+        <Button
+            x:Name="buttonNext"
+            x:Uid="buttonNext"
+            Click="ButtonNextClick"
+            Content="_Next"
+            Grid.Column="4"
+            Grid.Row="9"
+            IsDefault="True"
+            Style="{StaticResource StyleButton}"
+            TabIndex="101"></Button>
+        <Button
+            x:Name="buttonCancel"
+            x:Uid="buttonCancel"
+            Click="ButtonCancelClick"
+            Content="Cancel"
+            Grid.Column="6"
+            Grid.Row="10"
+            IsCancel="True"
+            Style="{StaticResource StyleButton}"
+            TabIndex="102" />
+    </Grid>
+</Window>

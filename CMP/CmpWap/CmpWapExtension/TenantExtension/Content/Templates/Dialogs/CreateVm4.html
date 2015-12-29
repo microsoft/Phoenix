@@ -1,0 +1,52 @@
+﻿<!--<div id="hw-create-fileshare-container">
+
+    <div class="drawer-form-wapitem">
+        <h2>Drives</h2>
+    </div>
+</div>
+    <table id="VmDriveList" width="20" cellspacing="0" class="TableFormat">
+        <tbody>
+            <tr>
+                <th style="background-color: #628DB5; color: #FFF; font-weight: bold; width: 20%; text-align: left;">ID</th>
+                <th style="background-color: #628DB5; color: #FFF; font-weight: bold; width: 20%; text-align: left;">Size GB</th>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>60</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><select id="VmDriveLetter"><option value="-">-</option>A<option value="D">D</option><option value="E">E</option><option value="F">F</option></select></td>
+                <td><input id="VmDriveSize" name="VmDiskSize" type="text" data-val="true" width="2" value="" /></td>
+            </tr>
+        </tbody>
+    </table>-->
+
+
+
+<div class="hw-create-storage-container">
+
+    <div class="drawer-form-wapitem">
+        <h2>Storage Configuration</h2>
+    </div>
+
+    <div id="predefineddrives">
+        
+    </div>
+
+    <div style="margin-top:5px;">
+        <label>Please note,the D:may change based on a physical SKU selected.</label>
+        <span>Need additional drives?(<label id="lbladditionaldisks" style="display:inline-block"></label> max) </span>
+        <span id="extradirvescheckbox"></span>
+    </div>
+
+    <div id="extradrivessection" style="display:none">
+        <div id="extradrives"></div>
+
+        <div class="options">
+            <a id="grid-add" href="#" onclick="javascript:return false">[+] Add one more</a>
+        </div>
+        
+    </div>
+
+</div>

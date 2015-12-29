@@ -1,0 +1,172 @@
+﻿<div class="hw-controlsTab waz-config">
+    <h2>Controls Examples</h2>
+    <div class="fxshell-tabcontainer">
+        <div id="controls-tablist" class="fxshell-pivotlist" style=""></div>
+        <div id="tab1">
+            <h2>Testbox Control Example</h2>
+            <h3>Numbers only &lt;= 360.</h3>
+            <form action="javascript:;" method="post">
+                <input id="sample-textbox" type="text" data-val="true" data-val-required="There was an error" data-val-range="Range under 360" data-val-range-max="360" data-fxcontrol-auto-revert="true"  />
+                <input type="submit" />
+            </form>
+
+            <div>
+                <button id="sample-textbox-enable">Enable</button>
+                <button id="sample-textbox-disable">Disable</button>
+            </div>
+
+            <h2>textbox Validation Examples</h2>
+            <section>
+            <h3>[Required Field Validator] This Textbox is required:</h3>
+                <form action="javascript:;">
+                    <input id="required-textbox" type="text" data-val="true" data-val-required="This is a required field" data-fxcontrol-auto-revert="true"  />
+                    <input type="submit" value="Submit" />
+                </form>
+            </section>
+            <section>
+            <h3>[Max length Validator] Value must be under 10 characters</h3>
+                <form action="javascript:;">
+                   <input id="data-range-min-only" type="text"
+                    data-val="true"
+                    data-val-length="The field must be a string with less than {:max:} characters" data-val-length-max="10" 
+                    data-fxcontrol-auto-revert="true" />
+                    <input type="submit" value="Submit" />
+                </form>
+            </section>
+            <section>
+            <h3>[Range Validator] Value must be between 10 and 20</h3>
+               <form action="javascript:;">
+                   <input id="data-range-textbox" type="text"
+                    data-val="true"
+                    data-val-range="The field must be a string with more than {:min:} and less than {:max:} characters" data-val-range-min="10" data-val-range-max="20" 
+                    data-fxcontrol-auto-revert="false" />
+                    <input type="submit" value="Submit" />
+                </form>
+            </section>
+            <section>
+            <h3>[Number Validator] Value must be a number</h3>
+               <form action="javascript:;">
+                   <input id="data-number-textbox" type="text" data-val="true" data-val-number="The value must be a number" data-fxcontrol-auto-revert="true" />
+                    <input type="submit" value="Submit" />
+                </form>
+            </section>
+            <section>
+            <h3>[Digit Validator] Value must be a digit</h3>
+               <form action="javascript:;">
+                   <input id="data-digit-textbox" type="text" data-val="true" data-val-digits="The value must be only digits" data-fxcontrol-auto-revert="true" />
+                    <input type="submit" value="Submit" />
+                </form>
+            </section>
+        </div>
+        <div id="tab2">
+            <h2>Tablist Control Example</h2>
+
+            <div class="commands" style="margin-bottom: 10px;">
+                <button id="tablist-enable">Enable</button>
+                <button id="tablist-disable">Disable</button>
+            </div>
+            <div id="sample-tablist" class="radio pushbutton"></div>
+            <div id="tablist-tab1">I am Production</div>
+            <div id="tablist-tab2">I am Staging</div>
+        </div>
+        <div id="tab3">
+            <h2>Slider Control Example</h2>
+            <div>
+                <button id="sliderEnableButton">Enable</button>
+                <button id="sliderDisableButton">Disable</button><br />
+                Current value on changed: <span id="sliderCurrentValueOnChangedSpan" ></span><br />
+                Current value on demand: <span id="sliderCurrentValueOnDemandSpan" ></span><button id="sliderCurrentValueButton">Get</button><br />
+                Select this value: <input id="sliderSelectValueTextBox" type="text" style="width:55px" /><button id="sliderSelectValueButton">Select</button><br />
+                <button id="sliderRevertButton">Revert to Original Value</button><br />
+                <button id="sliderUpdateInitialValueButton">Update Initial Value</button><br />
+                <input id="sliderTrackEditCheckbox" type="checkbox" checked="checked" /> Track Edit<br />
+                Set max value to <input id="sliderMaxValueTextBox" type="text" style="width:55px" /><button id="sliderMaxValueButton">Set</button><br/>
+                Set min value to <input id="sliderMinValueTextBox" type="text" style="width:55px" /><button id="sliderMinValueButton">Set</button><br/>
+                Set max slidable value to <input id="sliderMaxSlidableValueTextBox" type="text" style="width:55px" /><button id="sliderMaxSlidableValueButton">Set</button><br/>
+                Set min slidable value to <input id="sliderMinSlidableValueTextBox" type="text" style="width:55px" /><button id="sliderMinSlidableValueButton">Set</button><br/>
+                Set step to <input id="sliderStepTextBox" type="text" style="width:55px" /><button id="sliderStepButton">Set</button><br />
+            </div>
+            <br />
+
+            <div id="slider"></div>
+            <span id="sliderMessageSpan" style="color:Green">Not Edited</span>
+        </div>
+        <div id="tab4">
+            <h2>Scrollbar Control Example</h2>
+                <div style="margin-bottom: 20px;">
+                    Turn Scrollbar On/Off:
+                    <button id="scrollTurnOnButton">On</button>
+                    <button id="scrollTurnOffButton">Off</button>
+                    <button id="scrollTopButton">Top</button><br />
+                </div>
+                <div id="scrollVerticalDiv" class="scroll" style="overflow-x: hidden; overflow-y: hidden; width: 400px; height: 150px;">
+                    <ul>
+                        <li>Sample Entry for example 1</li>
+                        <li>Sample Entry for example 2</li>
+                        <li>Sample Entry for example 3</li>
+                        <li>Sample Entry for example 4</li>
+                        <li>Sample Entry for example 5</li>
+                        <li>Sample Entry for example 6</li>
+                        <li>Sample Entry for example 7</li>
+                        <li>Sample Entry for example 8</li>
+                        <li>Sample Entry for example 9</li>
+                        <li>Sample Entry for example 10</li>
+                        <li>Sample Entry for example 11</li>
+                        <li>Sample Entry for example 12</li>
+                        <li>Sample Entry for example 13</li>
+                        <li>Sample Entry for example 14</li>
+                        <li>Sample Entry for example 15</li>
+                        <li>Sample Entry for example 16</li>
+                        <li>Sample Entry for example 17</li>
+                        <li>Sample Entry for example 18</li>
+                        <li>Sample Entry for example 19</li>
+                        <li>Sample Entry for example 20</li>
+                        <li>Sample Entry for example 21</li>
+                        <li>Sample Entry for example 22</li>
+                        <li>Sample Entry for example 23</li>
+                        <li>Sample Entry for example 24</li>
+                        <li>Sample Entry for example 25</li>
+                        <li>Sample Entry for example 26</li>
+                        <li>Sample Entry for example 27</li>
+                        <li>Sample Entry for example 28</li>
+                        <li>Sample Entry for example 29</li>
+                        <li>Sample Entry for example 30</li>                        
+                    </ul>
+                </div>
+        </div>
+        <div id="tab5">
+            <h2>Radio Control Example</h2>
+             <div>
+                <button id="EnableButton">Enable</button>
+                <button id="DisableButton">Disable</button><br />
+                Current value on changed: <span id="CurrentValueOnChangedSpan" ></span><br />
+                Current value on demand: <span id="CurrentValueOnDemandSpan" ></span><button id="CurrentValueButton">Get</button><br />
+                Select this value: <input id="SelectValueTextBox" type="text" style="width:55px" /><button id="SelectValueButton">Select</button><br />
+                <button id="RevertButton">Revert to Original Value</button><br />
+                <button id="UpdateInitialValueButton">Update Initial Value</button><br />
+                <input id="TrackEditCheckbox" type="checkbox" checked="checked" /> Track Edit
+            </div>
+            <br />
+            <div id="sample-radio" class="radio pushbutton"></div>
+            <span id="MessageSpan" style="color:Green">Not Edited</span>
+        </div>
+        <div id="tab6" style="width: 600px;">
+            <h2>Simple Grid Example</h2>
+
+            <div class="options">
+                <button id="grid-add">Add row</button>
+                <button id="grid-remove">Remove row</button>
+            </div>
+            <div class="options">
+                <label><input type="checkbox" id="grid-multiselect"/> Multiselect</label>
+                <label><input type="checkbox" id="grid-selectable"/> Selectable</label>
+            </div>
+
+            <div id="grid"></div>
+
+            <h2>SImple Grid Example</h2>
+            <div id="formated-grid"></div>
+
+        </div>
+    </div>
+</div>

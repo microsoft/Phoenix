@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="596e503b-7a61-4a41-86d7-b44089fa0e8d" name="ResizeVmProcess" linkedPackageId="687cd539-4756-46fa-b71b-fa575ca31f59" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="0995f5f1-1ffd-434a-8810-8eb280833cd5">
+      <profileInstance Id="ad20d539-8dad-472b-aa84-4d026c7a1037" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="08e14a81-aae0-47f3-95bf-0ad93a56dc98">
+      <profileInstance Id="04216e20-4e7f-47ae-bd42-21c45e10913c" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="30da5071-bd11-4d26-8fd7-af13fbbafb9e" name="ResizeVmProcess" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="d509354b-9762-4a9a-8d68-672022bf8590" />
+        <nodes>
+          <initialNode Id="3b3ae8a4-7f32-4f1b-bcd3-38ac8003e0ea" name="Initial1" isLeaf="false">
+            <elementDefinition Id="4aa2599e-a5be-448e-bdcf-644e94689ba8" />
+            <flowNodeTargets>
+              <controlFlow Id="3c0c8c0c-bd73-455c-b09d-2b913ebf02cb" isLeaf="false">
+                <opaqueActionMoniker Id="4ccf3d34-155a-4a7d-b120-e654c78d0976" LastKnownName="Fetch VM host service info from Azure" />
+                <elementDefinition Id="48b97261-3041-4b07-8d38-51dd85fd59bb" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="4ccf3d34-155a-4a7d-b120-e654c78d0976" name="Fetch VM host service info from Azure" isLeaf="false">
+            <elementDefinition Id="74ffe29d-aad3-43de-8a12-6c5d6da84b61" />
+            <flowNodeTargets>
+              <controlFlow Id="eb3be1b0-cc94-45e8-bd99-b401cee74a33" isLeaf="false">
+                <opaqueActionMoniker Id="2b656436-1af3-41d2-b51c-a04fd805b816" LastKnownName="Check if requested size is available in service" />
+                <elementDefinition Id="8ccac422-ed75-4cf5-8ee5-4bfbe0d2500a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="2b656436-1af3-41d2-b51c-a04fd805b816" name="Check if requested size is available in service" isLeaf="false">
+            <elementDefinition Id="60fb72b8-3d79-4530-bbf3-0aeea2663811" />
+            <flowNodeTargets>
+              <controlFlow Id="dfa4ea56-54ba-4d91-84f3-aa576f2a12f9" isLeaf="false">
+                <decisionNodeMoniker Id="a73ec033-38e8-469e-b365-3c4a4ecb7e06" LastKnownName="Decision1" />
+                <elementDefinition Id="3297c047-ccda-42bd-a053-ce4e47305c50" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="a73ec033-38e8-469e-b365-3c4a4ecb7e06" name="Decision1" isLeaf="false">
+            <description>hhh</description>
+            <elementDefinition Id="c1311fbf-4821-4f3d-bc24-2b6f8a73f21c" />
+            <flowNodeTargets>
+              <controlFlow Id="cbb35764-6cc9-40c6-b694-9e27d174b38c" guard="Y" isLeaf="false">
+                <opaqueActionMoniker Id="31310610-9d4b-48d7-8b2b-767ecd7600c2" LastKnownName="Siubmit update request to Azure" />
+                <elementDefinition Id="b31ba709-a854-4504-b175-e9d43b8670c2" />
+              </controlFlow>
+              <controlFlow Id="0da446cc-8188-408b-82b4-5d92402130ea" guard="N" isLeaf="false">
+                <opaqueActionMoniker Id="0df46c5d-7928-46b4-bb10-4d4c9494e9ec" LastKnownName="Construct response" />
+                <elementDefinition Id="6f88b683-a41d-4407-904c-62eebfc9b7fe" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="0df46c5d-7928-46b4-bb10-4d4c9494e9ec" name="Construct response" isLeaf="false">
+            <elementDefinition Id="a2556764-fcad-4c12-b081-d8534dcc912a" />
+            <flowNodeTargets>
+              <controlFlow Id="70b76172-fa83-47f8-bd4d-4c40bce84733" isLeaf="false">
+                <activityFinalNodeMoniker Id="4806cbe6-5367-4ae0-b337-127f0ec2cd4f" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="23dc07ae-7d8a-4a55-bf9c-a5bf8728415c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="31310610-9d4b-48d7-8b2b-767ecd7600c2" name="Siubmit update request to Azure" isLeaf="false">
+            <elementDefinition Id="9a2b7b7b-7487-4c10-8fe9-926c16bda72c" />
+            <flowNodeTargets>
+              <controlFlow Id="ebd9e7df-68fd-4716-accb-2f767f48aad7" isLeaf="false">
+                <opaqueActionMoniker Id="ec63f725-c529-4820-b812-023be569cc8b" LastKnownName="Analyze response from Azure" />
+                <elementDefinition Id="1557bd4b-682e-4a92-b322-3150cdca2bcd" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="ec63f725-c529-4820-b812-023be569cc8b" name="Analyze response from Azure" isLeaf="false">
+            <elementDefinition Id="cd483a34-43c1-4b87-a58f-2f960fc22518" />
+            <flowNodeTargets>
+              <controlFlow Id="23b760ae-34fd-42e8-ad7e-bdd890d190e0" isLeaf="false">
+                <opaqueActionMoniker Id="0df46c5d-7928-46b4-bb10-4d4c9494e9ec" LastKnownName="Construct response" />
+                <elementDefinition Id="90540551-c24c-4f07-a81f-d941cfea91b7" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="4806cbe6-5367-4ae0-b337-127f0ec2cd4f" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="c6d94811-faa3-4f0f-8662-6cd3ed83bb41" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="687cd539-4756-46fa-b71b-fa575ca31f59" name="CmpWapModel">
+    <elementDefinition Id="8689a160-402e-4038-90af-0c8b64ee7274" />
+  </package>
+</activityRootModel>

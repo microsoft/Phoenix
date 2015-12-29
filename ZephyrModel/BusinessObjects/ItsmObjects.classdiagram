@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="a925d335-ce50-44c1-b8f5-107fdaa67e67" name="AftsObjects" linkedPackageId="74edfeb9-9981-4726-aa33-cb13358c3fee" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f53b0891-316f-4521-bba6-0cf411a08f73" name="ITSM" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7793dfd0-c2c0-455d-97f8-e74566b6ff40" />
+        <targetEnds>
+          <association Id="0482a1a9-6ce1-44ac-90c9-1c7e085d4c1f" isDerived="false" sourceEndRoleName="ITSM" targetEndRoleName="ItsmInterface" isLeaf="false" isAbstract="false">
+            <classMoniker Id="c29c2a09-2e85-4c49-a212-8088ae0862c9" LastKnownName="ItsmInterface" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c2f54c23-497a-400a-969f-17d1a7eac206" name="ITSM" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="33fe6700-0d55-41e4-956a-6a76f5d27adc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="687df4db-ba9e-470f-8d2b-260946a9e7e3" name="ItsmInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="353d0c59-4482-491c-98d5-308c0383109d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="20f97035-ee15-41e5-b255-2aff58161e78" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="c29c2a09-2e85-4c49-a212-8088ae0862c9" name="ItsmInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ffe0ca22-1edc-4187-bc7e-db375e357571" />
+        <targetEnds>
+          <association Id="a53e269e-90a7-4605-9968-d8c6b8f3be0c" isDerived="false" sourceEndRoleName="ItsmInterface" targetEndRoleName="ItsmOperation" isLeaf="false" isAbstract="false">
+            <classMoniker Id="8f77b47d-d429-43a8-a632-1490bbae28bf" LastKnownName="ItsmOperation" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="30a22048-9373-4e1f-9010-e9e73fdb8bea" name="ItsmInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="eccf7900-b88f-4b18-9ed9-2a009c406eab" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="133926b7-0271-46dc-ae04-22adf8710fe2" name="ItsmOperation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="8d04066b-2031-4985-8337-10f269bf0d75" name="Lower" value="1">
+                      <elementDefinition Id="2f07c5a1-3be2-4265-8667-b045704b358e" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="2d124c66-bf59-4c7b-847b-e3fdfd4db2cc" name="Upper" value="*">
+                      <elementDefinition Id="781d5683-70d1-4d31-9526-68da38000234" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="870def01-9cd6-4f97-b50f-c38576c48e65" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="17ca5858-3e12-4b7c-bcf8-12ef8b8817e9" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8f77b47d-d429-43a8-a632-1490bbae28bf" name="ItsmOperation" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0d1b697d-c44d-4a04-80b4-9fd3f8aab091" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="daed298f-7945-4d25-b9f1-fcc05a9d8015" name="ItsmClientInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5a61f372-c48b-4000-92d8-d531a0e72fd3" />
+        <targetEnds>
+          <association Id="985b7f7f-b57d-4f64-8cbf-48624c3be203" isDerived="false" sourceEndRoleName="ItsmClientInterface" targetEndRoleName="ItsmOperation" isLeaf="false" isAbstract="false">
+            <classMoniker Id="8f77b47d-d429-43a8-a632-1490bbae28bf" LastKnownName="ItsmOperation" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="50593b90-00e7-4874-a914-16eb602f89ad" name="ItsmClientInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="be43a928-c86b-425d-a720-e0b45731133b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ecfa423a-1408-409f-ace7-908483cd8b7f" name="ItsmOperation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="203fde3e-5857-40c7-892c-7b712fb22b45" name="Lower" value="*">
+                      <elementDefinition Id="99fb6470-e0b1-490d-af03-19c59435ed4d" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="c438728e-3d66-49a6-8151-460dd265bb94" name="Upper" value="*">
+                      <elementDefinition Id="e24b9830-a996-43c0-bdbc-518dda7ccca5" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="d0c71e50-ca30-4972-9b3b-caadae8c5564" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="eb3e833a-eb75-4ba6-a2b4-afd6307961b7" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="74edfeb9-9981-4726-aa33-cb13358c3fee" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+    <profileInstances>
+      <packageHasProfileInstances Id="552df6ce-e69a-4180-80b0-8227f3cc009f">
+        <profileInstance Id="3b699cb7-0247-4413-8e99-c5c444e98c43" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="8950eeba-d3b7-472f-813e-8655a5be48f1">
+        <profileInstance Id="456367f2-2a1e-48c1-8af4-4684686c0214" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

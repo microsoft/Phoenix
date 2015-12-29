@@ -1,0 +1,122 @@
+<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<ns0:BasePageForWpfControls
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:ns0="clr-namespace:CMP.Setup"
+    x:Class="CMP.Setup.InstallationLocationPage"
+    x:Uid="ns0:BasePageForWpfControls_1"
+    FontSize="9pt"
+    Height="415"
+    Width="735">
+    <ns0:BasePageForWpfControls.Resources>
+        <ResourceDictionary
+            x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    x:Uid="ResourceDictionary_2"
+                    Source="/SetupCMP;component/WPFResourceDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ns0:BasePageForWpfControls.Resources>
+    <Grid
+        x:Uid="Grid_1"
+        Margin="10">
+        <Grid.RowDefinitions>
+            <!-- 0 - Header -->
+            <RowDefinition
+                x:Uid="RowDefinition_1"
+                Height="Auto" />
+            <!-- 1 - Description -->
+            <RowDefinition
+                x:Uid="RowDefinition_2"
+                Height="Auto" />
+            <!-- 2 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_3"
+                Height="11" />
+            <!-- 3 - Installation location controls-->
+            <RowDefinition
+                x:Uid="RowDefinition_5"
+                Height="Auto" />
+            <!-- 4 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_6"
+                Height="7" />
+            <!-- 5 - Space label -->
+            <RowDefinition
+                x:Uid="RowDefinition_4"
+                Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_1"
+                MaxWidth="27"
+                Width="27" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_2"
+                Width="Auto" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_3"
+                MaxWidth="7"
+                Width="7" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_4"
+                Width="*" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_5"
+                MaxWidth="7"
+                Width="7" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_6"
+                Width="Auto" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_7"
+                MaxWidth="32"
+                Width="32" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            x:Uid="installationLocationHeader"
+            Style="{StaticResource StylePageHeader}"
+            Text="Installation location" />
+        <TextBlock
+            x:Uid="TextBlock_2"
+            Grid.Column="1"
+            Grid.ColumnSpan="5"
+            Grid.Row="1"
+            Style="{StaticResource StylePageHeaderDescription}"
+            Text="The recommended location for program files is displayed." />
+        <Label
+            x:Uid="Label_1"
+            Content="_Location:"
+            Grid.Column="1"
+            Grid.Row="3"
+            Style="{StaticResource StyleBasicLabel}"
+            Target="{Binding ElementName=textBoxInstallationLocation}" />
+        <TextBox
+            x:Name="textBoxInstallationLocation"
+            x:Uid="textBoxInstallationLocation"
+            Grid.Column="3"
+            Grid.Row="3"
+            HorizontalAlignment="Stretch"
+            LostFocus="textBoxInstallationLocation_LostFocus"
+            Margin="0,2,0,0"
+            MaxLength="4096"
+            Style="{StaticResource StyleBasicOneLineInput}"
+            TextChanged="textBoxInstallationLocation_TextChanged" />
+        <Button
+            x:Name="buttonBrowse"
+            x:Uid="buttonBrowse"
+            Click="buttonBrowse_Click"
+            Content="_Browse..."
+            Grid.Column="5"
+            Grid.Row="3"
+            Style="{StaticResource StyleButton}"
+            VerticalAlignment="Stretch" />
+        <TextBlock
+            x:Name="textBlockFreeSpace"
+            x:Uid="textBlockFreeSpace"
+            Grid.Column="3"
+            Grid.Row="5"
+            Style="{StaticResource StyleBasicTextBlock}" />
+    </Grid>
+</ns0:BasePageForWpfControls>

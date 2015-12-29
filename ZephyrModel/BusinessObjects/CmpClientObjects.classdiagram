@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="0b4c23f1-7a51-4be2-a071-76563f78eaad" name="MycapObjects" linkedPackageId="49c81579-8ea5-43f8-ad07-12317e8fb684" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e8634762-be49-426c-98dd-ffb8b1c7a7b2" name="CMP Client" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c61681e5-c692-4f6c-89c6-674c6605b8a8" />
+        <targetEnds>
+          <association Id="3d3dec7b-b5f3-4c3e-98d2-b3f0d8dc8ecf" isDerived="false" sourceEndRoleName="Mycap" targetEndRoleName="MycapDB" isLeaf="false" isAbstract="false">
+            <classMoniker Id="b1471fb0-1510-4f85-8e93-e9dd02ef22b4" LastKnownName="MycapDB" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4a82f009-eae9-42af-9f53-c8e241503386" name="Mycap" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="8ff84684-4703-454f-b450-cfdb58c4364a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="59222e13-accd-4221-b206-3556d6bc6200" name="MycapDB" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="ea2cd8db-ec29-4536-bd72-b35ec88e764a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="abb659ad-fc22-4b1a-abac-7fd5160cc1a7" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b1471fb0-1510-4f85-8e93-e9dd02ef22b4" name="MycapDB" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="36b52521-a58a-48b0-a0eb-fb930d8cfdda" />
+        <targetEnds>
+          <association Id="1df594c4-9feb-4044-88ea-e3fc24057066" isDerived="false" sourceEndRoleName="MycapDB" targetEndRoleName="MycapWorkOrders" isLeaf="false" isAbstract="false">
+            <classMoniker Id="1833923a-9c06-4ac5-a974-adb2bebd73a1" LastKnownName="RequestList" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="66f13854-734b-4912-a5a2-6a6c0585c311" name="MycapDB" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9ba51d61-db6c-4a8b-9ac9-e5f100d200aa" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ac23a895-6c34-46fd-a693-763841bc4f13" name="MycapWorkOrders" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f6e2893c-7d75-4342-9d77-ca1aac8ef8ff" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="58c47ba2-4582-4660-823d-037102223828" />
+          </association>
+          <association Id="ae1bc35d-bc01-4452-ab14-2128c35f1f11" isDerived="false" sourceEndRoleName="MycapDB" targetEndRoleName="MycapStatus" isLeaf="false" isAbstract="false">
+            <classMoniker Id="b2a82490-b855-415a-80ee-82c789133ec4" LastKnownName="RequestStatusList" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f400ae08-e5e7-4ed1-acce-a33c1201fa4b" name="MycapDB" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="730d1392-2c6f-4d17-9b8f-8805305dbb51" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7941edb3-9b5a-4eff-a2c3-75bec3309618" name="MycapStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="683909b7-68be-4383-b210-ef5c742498b8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="630cc500-9a01-4edb-8ad0-1beae2f8af30" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1833923a-9c06-4ac5-a974-adb2bebd73a1" name="RequestList" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0410a41d-2153-4ffc-aeaa-9d5b663523ac" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b2a82490-b855-415a-80ee-82c789133ec4" name="RequestStatusList" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a57d4da3-23ba-4e47-88bd-ddc638b85f17" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="edbde46e-4715-4b4f-82c3-844963e82505" name="MyCapClientInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="653bc423-5ccb-49a7-9346-66bc28035ead" />
+        <targetEnds>
+          <association Id="426c7b4c-f29e-4726-b495-efe258315da3" isDerived="false" sourceEndRoleName="MyCapClientInterface" targetEndRoleName="MycapStatusList" isLeaf="false" isAbstract="false">
+            <classMoniker Id="b2a82490-b855-415a-80ee-82c789133ec4" LastKnownName="RequestStatusList" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0f06d1f7-9e9b-4ed2-9060-e9252f6081b6" name="MyCapClientInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d3c1dec9-f6b2-43d3-893e-36f9ae32fbdd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="01184bae-5eed-4289-bdaf-3e2471611254" name="MycapStatusList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="3f0e2bc2-3af1-46d6-bf6a-b593d3e3fe93" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="df009952-43ea-4e6f-87a3-a5d3a4d104cc" />
+          </association>
+          <association Id="8bf7f8ee-1b72-464a-ad2c-af07662f61df" isDerived="false" sourceEndRoleName="MyCapClientInterface" targetEndRoleName="MycapWorkOrderList" isLeaf="false" isAbstract="false">
+            <classMoniker Id="1833923a-9c06-4ac5-a974-adb2bebd73a1" LastKnownName="RequestList" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0a95025a-fea2-4b96-8f31-d82825203cf9" name="MyCapClientInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="fbcd89f5-5e75-433b-ae7d-e48016777fa5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1a37ad9e-ce3c-4b4b-9080-99d1fd559340" name="MycapWorkOrderList" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="cef46f0a-8781-4d85-8322-7d66e15d0640" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1a6e8d92-13af-492e-ba3c-be501bd68399" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="49c81579-8ea5-43f8-ad07-12317e8fb684" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+    <profileInstances>
+      <packageHasProfileInstances Id="4ce33ba1-6810-489b-a02a-1c10896e8105">
+        <profileInstance Id="8d4c5d4f-1dfc-48d2-afb0-37700f9ce2a4" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="25411964-d8ac-495c-8792-0b52dd5f8ccb">
+        <profileInstance Id="e9c3c0f0-10dc-43dc-8fcb-3ea69e533ac3" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

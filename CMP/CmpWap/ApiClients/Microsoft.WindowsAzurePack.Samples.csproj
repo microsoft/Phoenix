@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\..\..\Environment.props" />
+  <PropertyGroup>
+    <AssemblyName>Microsoft.WindowsAzurePack.Samples</AssemblyName>
+    <RootNamespace>Microsoft.WindowsAzurePack.Samples</RootNamespace>
+    <ProjectGuid>{8D180247-ADD6-4FB4-BB98-9F2B9F3EBD6E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\..\Packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.identitymodel.services" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <!--<Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>-->
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(PkgMicrosoft_AspNet_WebApi_Client)\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <!--<Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>-->
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>$(PkgMicrosoft_AspNet_Mvc)\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminManagementClient.cs" />
+    <Compile Include="DataContracts\ActivationSyncState.cs" />
+    <Compile Include="DataContracts\AuthenticationMode.cs" />
+    <Compile Include="DataContracts\AzureOfferType.cs" />
+    <Compile Include="DataContracts\AzureProvisioningInfo.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DataContracts\EntityId.cs" />
+    <Compile Include="DataContracts\EntityState.cs" />
+    <Compile Include="DataContracts\ErrorDetail.cs" />
+    <Compile Include="DataContracts\FanoutError.cs" />
+    <Compile Include="DataContracts\FanoutErrorList.cs" />
+    <Compile Include="DataContracts\FanoutState.cs" />
+    <Compile Include="DataContracts\UsageEventType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\IAddOnContainer.cs" />
+    <Compile Include="Utilities\IPlanEntity.cs" />
+    <Compile Include="Utilities\IQuotaConfigurable.cs" />
+    <Compile Include="Utilities\IQuotaSyncable.cs" />
+    <Compile Include="DataContracts\ManagementClientType.cs" />
+    <Compile Include="DataContracts\ManagementServiceError.cs" />
+    <Compile Include="DataContracts\NotificationConfirmation.cs" />
+    <Compile Include="DataContracts\NotificationEvent.cs" />
+    <Compile Include="DataContracts\NotificationState.cs" />
+    <Compile Include="DataContracts\Plan.cs" />
+    <Compile Include="DataContracts\PlanAddOn.cs" />
+    <Compile Include="DataContracts\PlanAddOnList.cs" />
+    <Compile Include="DataContracts\PlanAddOnReference.cs" />
+    <Compile Include="DataContracts\PlanAdvertisement.cs" />
+    <Compile Include="DataContracts\PlanConfigurationState.cs" />
+    <Compile Include="DataContracts\PlanList.cs" />
+    <Compile Include="DataContracts\PlanQuotaUpdate.cs" />
+    <Compile Include="DataContracts\PlanState.cs" />
+    <Compile Include="DataContracts\ProviderService.cs" />
+    <Compile Include="DataContracts\ProviderServiceList.cs" />
+    <Compile Include="DataContracts\Quota.cs" />
+    <Compile Include="DataContracts\QuotaList.cs" />
+    <Compile Include="DataContracts\QuotaSyncState.cs" />
+    <Compile Include="DataContracts\QuotaUpdateBatch.cs" />
+    <Compile Include="DataContracts\QuotaUpdateResultBatch.cs" />
+    <Compile Include="DataContracts\ResourceMetricSample.cs" />
+    <Compile Include="DataContracts\ResourceMetricSet.cs" />
+    <Compile Include="DataContracts\ResourceMetricSets.cs" />
+    <Compile Include="DataContracts\ResourceProvider.cs" />
+    <Compile Include="DataContracts\ResourceProviderEndpoint.cs" />
+    <Compile Include="DataContracts\ResourceProviderError.cs" />
+    <Compile Include="DataContracts\ResourceProviderList.cs" />
+    <Compile Include="DataContracts\ResourceProviderReference.cs" />
+    <Compile Include="DataContracts\ResourceProviderSubscription.cs" />
+    <Compile Include="DataContracts\ResourceProviderSubscriptionState.cs" />
+    <Compile Include="DataContracts\ResourceProviderType.cs" />
+    <Compile Include="DataContracts\ResourceProviderVerification.cs" />
+    <Compile Include="DataContracts\ResourceProviderVerificationResult.cs" />
+    <Compile Include="DataContracts\ResourceProviderVerificationTest.cs" />
+    <Compile Include="DataContracts\ResourceProviderVerificationTestList.cs" />
+    <Compile Include="DataContracts\ResourceProviderVerificationTestResult.cs" />
+    <Compile Include="DataContracts\ServiceAdvertisement.cs" />
+    <Compile Include="DataContracts\ServiceQuota.cs" />
+    <Compile Include="DataContracts\ServiceQuotaList.cs" />
+    <Compile Include="DataContracts\ServiceQuotaSetting.cs" />
+    <Compile Include="DataContracts\ServiceQuotaSettingList.cs" />
+    <Compile Include="DataContracts\ServiceSetting.cs" />
+    <Compile Include="DataContracts\ServiceUsageSummary.cs" />
+    <Compile Include="DataContracts\Subscription.cs" />
+    <Compile Include="DataContracts\SubscriptionCertificate.cs" />
+    <Compile Include="DataContracts\SubscriptionCertificateList.cs" />
+    <Compile Include="DataContracts\SubscriptionLifecycleState.cs" />
+    <Compile Include="DataContracts\SubscriptionList.cs" />
+    <Compile Include="DataContracts\SubscriptionPlanSyncState.cs" />
+    <Compile Include="DataContracts\SubscriptionService.cs" />
+    <Compile Include="DataContracts\SubscriptionState.cs" />
+    <Compile Include="DataContracts\SubscriptionStatus.cs" />
+    <Compile Include="DataContracts\TenantEndpoint.cs" />
+    <Compile Include="Utilities\QueryExtensions.cs" />
+    <Compile Include="Utilities\StateUtilities.cs" />
+    <Compile Include="Utilities\TokenMessageProcessingHandler.cs" />
+    <Compile Include="DataContracts\Usage.cs" />
+    <Compile Include="DataContracts\UsageEvent.cs" />
+    <Compile Include="DataContracts\UsageEventList.cs" />
+    <Compile Include="DataContracts\UsageRecord.cs" />
+    <Compile Include="DataContracts\UsageRecordList.cs" />
+    <Compile Include="DataContracts\UsageSummaryList.cs" />
+    <Compile Include="DataContracts\User.cs" />
+    <Compile Include="DataContracts\UserList.cs" />
+    <Compile Include="DataContracts\UserState.cs" />
+    <Compile Include="DataContracts\UserToken.cs" />
+    <Compile Include="IAdminManagementClient.cs" />
+    <Compile Include="ITenantManagementClient.cs" />
+    <Compile Include="TenantManagementClient.cs" />
+    <Compile Include="ManagementClientBase.cs" />
+    <Compile Include="ManagementClientException.cs" />
+    <Compile Include="DataContracts\Query.cs" />
+    <Compile Include="DataContracts\QueryResult.cs" />
+    <Compile Include="DataContracts\Setting.cs" />
+    <Compile Include="DataContracts\SettingBatch.cs" />
+    <Compile Include="DataContracts\SettingCollection.cs" />
+    <Compile Include="DataContracts\SettingMethods.cs" />
+    <Compile Include="DataContracts\SettingStorePartitions.cs" />
+    <Compile Include="Utilities\TokenIssuer.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Impersonation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="..\..\..\Packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\Packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\..\Packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\..\Packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+</Project>

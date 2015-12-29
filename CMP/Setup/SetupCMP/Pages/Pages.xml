@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages>
+  <Page Id ="SwitchPage" Implementation="CMP.Setup.SwitchPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.NullPageHandler"></PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromSwitchPageHandler">ARPStartPageSwitch,InitialInstallStartPageSwitch</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+
+  <!--Start Pages in more than one flow-->
+  <Page Id ="BlockPage" Implementation="CMP.Setup.BlockPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.NullPageHandler"></PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.DefaultNextPage"></NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ProgressPage" Implementation="CMP.Setup.ProgressPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.DefaultPreviousPage"/>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromProgressPageHandler">FinishPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="FinishPage" Implementation="CMP.Setup.FinishPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.DefaultPreviousPage" />
+    <NextPage delegateId="CMP.Setup.CustomDelegates.NullPageHandler"></NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+
+  <!--Start Initial Install Flow-->
+  <Page Id ="InitialInstallStartPageSwitch" Implementation="CMP.Setup.StartPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.NullPageHandler"></PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromStartPageHandler">ComponentsPage,BlockPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ComponentsPage" Implementation="CMP.Setup.ComponentsPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.NullPageHandler"></PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromComponentsPageHandler">EulaPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="EulaPage" Implementation="CMP.Setup.EulaPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.BackwardFromEulaPageHandler">ComponentsPage,ARPAddRemoveComponentsPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromEulaPageHandler">InstallationLocationPage,SelectDatabaseServerPage,ReadyToInstallPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="InstallationLocationPage" Implementation="CMP.Setup.InstallationLocationPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.BackwardFromInstallationLocationPageHandler">EulaPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromInstallationLocationPage">SelectDatabaseServerPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <!--
+  <Page Id ="PrerequisitesProgressPage" Implementation="CMP.Setup.PrerequisitesProgressPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.DefaultPreviousPage">InstallationLocationPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromPrereqsPageHandler">SelectDatabaseServerPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  -->
+  <Page Id ="SelectDatabaseServerPage" Implementation="CMP.Setup.SelectDatabaseServerPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.BackwardFromSelectDatabaseServerPageHandler">InstallationLocationPage,EulaPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromSelectDatabaseServerPageHandler">SelectWapDatabaseServerPage,AccountConfigurationPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+    <Page Id ="SelectWapDatabaseServerPage" Implementation="CMP.Setup.SelectWapDatabaseServerPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.BackwardFromSelectWapDatabaseServerPageHandler">SelectDatabaseServerPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromSelectWapDatabaseServerPageHandler">AccountConfigurationPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="AccountConfigurationPage" Implementation="CMP.Setup.AccountConfigurationPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.BackwardFromAccountConfigurationPageHandler">SelectWapDatabaseServerPage,SelectDatabaseServerPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardAccountConfigurationPageHandler">ReadyToInstallPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ReadyToInstallPage" Implementation="CMP.Setup.ReadyToInstallPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.BackwardFromReadyToInstallPage">AccountConfigurationPage,ARPAddRemoveComponentsPage,ARPRemoveDatabasePage,ARPRemoveWAPDatabasePage,EulaPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.DefaultNextPage">ProgressPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <!--End Initial Install Flow-->
+
+  <!--Start ARP Flow-->
+  <Page Id ="ARPStartPageSwitch" Implementation="CMP.Setup.StartPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.NullPageHandler"></PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.DefaultNextPage">ARPAddRemovePage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ARPAddRemovePage" Implementation="CMP.Setup.AddRemovePage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.NullPageHandler"></PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardToPageBasedOnPropertyValueHandler">AddRemoveMode,ARPAddRemoveComponentsPage,ARPAddRemoveComponentsPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ARPAddRemoveComponentsPage" Implementation="CMP.Setup.AddRemoveComponentsPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.NullPageHandler"></PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromAddRemoveComponentsPageHandler">EulaPage,ARPRemoveDatabasePage,ARPRemoveWAPDatabasePage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ARPRemoveDatabasePage" Implementation="CMP.Setup.RemoveDatabasePage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.DefaultPreviousPage">ARPAddRemoveComponentsPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromRemoveDatabasePageHandler">ReadyToInstallPage,ARPRemoveWAPDatabasePage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ARPRemoveWAPDatabasePage" Implementation="CMP.Setup.RemoveWAPDatabasePage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.BackwardFromRemoveWAPDatabasePageHandler">ARPAddRemoveComponentsPage,ARPRemoveDatabasePage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.DefaultNextPage">ReadyToInstallPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <!--Finish ARP Flow-->
+  <!--Start Config Flow-->
+  <!--
+  <Page Id ="ConfigInitialInstallStartPageSwitch" Implementation="CMP.Setup.StartPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.NullPageHandler"></PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.ForwardFromStartPageHandler">ConfigEulaPage,BlockPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ConfigEulaPage" Implementation="CMP.Setup.EulaPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.DefaultPreviousPage">ConfigInitialInstallStartPageSwitch</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.DefaultNextPage">ConfigSelectDatabaseServerPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ConfigSelectDatabaseServerPage" Implementation="CMP.Setup.SelectDatabaseServerPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.DefaultPreviousPage">ConfigEulaPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.DefaultNextPage">ConfigAccountConfigurationPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ConfigAccountConfigurationPage" Implementation="CMP.Setup.AccountConfigurationPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.DefaultPreviousPage">ConfigSelectDatabaseServerPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.DefaultNextPage">ConfigReadyToInstallPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  <Page Id ="ConfigReadyToInstallPage" Implementation="CMP.Setup.ReadyToInstallPage">
+    <PreviousPage delegateId="CMP.Setup.CustomDelegates.DefaultPreviousPage">ConfigAccountConfigurationPage</PreviousPage>
+    <NextPage delegateId="CMP.Setup.CustomDelegates.DefaultNextPage">ProgressPage</NextPage>
+    <HelpPage>{D035D6FD-0E32-463B-8C45-34502ECBC611}</HelpPage>
+  </Page>
+  -->
+  <!--End Config Flow-->
+
+</Pages>

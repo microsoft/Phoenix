@@ -1,0 +1,20 @@
+.ts-quickStart .steps .quickstart-step1 {
+    background: url(/Content/CmpWapExtensionAdmin/Images/quickstart_connectto.png) no-repeat;
+}
+
+.ts-quickStart .steps .quickstart-step2 {
+    background: url(/Content/CmpWapExtensionAdmin/Images/quickstart_connectto.png) no-repeat;
+}
+
+.ts-quickStart .steps .quickstart-step3 {
+    background: url(/Content/CmpWapExtensionAdmin/Images/quickstart_connectto.png) no-repeat;
+}
+
+#ts-settings input[type="text"], #hw-settings input[type="password"] {
+    padding: 4px;
+    width: 300px;
+}
+
+.ts-settingsTab {
+    width: 95%;
+}

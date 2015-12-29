@@ -1,0 +1,653 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="3.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="Orchestrator.ResourceModel" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="Job" m:HasStream="true">
+        <Key>
+          <PropertyRef Name="JobID" />
+        </Key>
+        <Property Name="JobID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="JobContextID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="JobStatus" Type="Edm.String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        <Property Name="StartTime" Type="Edm.DateTime" />
+        <Property Name="EndTime" Type="Edm.DateTime" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="ErrorCount" Type="Edm.Int16" />
+        <Property Name="WarningCount" Type="Edm.Int16" />
+        <Property Name="JobException" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="JobContext" Relationship="Orchestrator.ResourceModel.FK_Job_JobContext" ToRole="JobContext" FromRole="Job" />
+      </EntityType>
+      <EntityType Name="Runbook">
+        <Key>
+          <PropertyRef Name="RunbookID" />
+        </Key>
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="RunbookID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="RunbookName" Type="Edm.String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedBy" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="Description" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="IsApiOnly" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsGlobal" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="PublishedRunbookVersionID" Type="Edm.Guid" />
+        <Property Name="DraftRunbookVersionID" Type="Edm.Guid" />
+        <Property Name="Tags" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="LogDebug" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="LogVerbose" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="LogProgress" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="Statistics" Relationship="Orchestrator.ResourceModel.FK_Runbook_Statistics" ToRole="Statistics" FromRole="Runbook" />
+        <NavigationProperty Name="DraftRunbookVersion" Relationship="Orchestrator.ResourceModel.FK_Runbook_DraftRunbookVersion" ToRole="RunbookVersion" FromRole="Runbook" />
+        <NavigationProperty Name="PublishedRunbookVersion" Relationship="Orchestrator.ResourceModel.FK_Runbook_PublishedRunbookVersion" ToRole="RunbookVersion" FromRole="Runbook" />
+        <NavigationProperty Name="Schedules" Relationship="Orchestrator.ResourceModel.FK_Schedule_Runbook" ToRole="Schedule" FromRole="Runbook" />
+      </EntityType>
+      <EntityType Name="RunbookVersion" m:HasStream="true">
+        <Key>
+          <PropertyRef Name="RunbookVersionID" />
+        </Key>
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="RunbookVersionID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="RunbookID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="VersionNumber" Type="Edm.Int32" Nullable="false" />
+        <Property Name="IsDraft" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="JobContexts" Relationship="Orchestrator.ResourceModel.FK_JobContext_RunbookVersion" ToRole="JobContext" FromRole="RunbookVersion" />
+        <NavigationProperty Name="Runbook" Relationship="Orchestrator.ResourceModel.FK_Runbook_RunbookVersion" ToRole="Runbook" FromRole="RunbookVersion" />
+        <NavigationProperty Name="RunbookParameters" Relationship="Orchestrator.ResourceModel.FK_RunbookParameters_Runbook" ToRole="RunbookParameter" FromRole="RunbookVersion" />
+      </EntityType>
+      <EntityType Name="JobContext">
+        <Key>
+          <PropertyRef Name="JobContextID" />
+        </Key>
+        <Property Name="JobContextID" Type="Edm.Guid" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="RunbookVersionID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ScheduleID" Type="Edm.Guid" />
+        <NavigationProperty Name="RunbookVersion" Relationship="Orchestrator.ResourceModel.FK_JobContext_RunbookVersion" ToRole="RunbookVersion" FromRole="JobContext" />
+        <NavigationProperty Name="JobParameters" Relationship="Orchestrator.ResourceModel.FK_JobParameters_JobContext" ToRole="JobParameter" FromRole="JobContext" />
+        <NavigationProperty Name="Schedule" Relationship="Orchestrator.ResourceModel.FK_Schedule_JobContext" ToRole="Schedule" FromRole="JobContext" />
+      </EntityType>
+      <EntityType Name="JobParameter">
+        <Key>
+          <PropertyRef Name="JobContextID" />
+          <PropertyRef Name="Name" />
+        </Key>
+        <Property Name="JobContextID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+        <Property Name="Value" Type="Edm.String" MaxLength="64" FixedLength="false" Unicode="true" />
+        <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="JobContext" Relationship="Orchestrator.ResourceModel.FK_JobParameters_JobContext" ToRole="JobContext" FromRole="JobParameter" />
+      </EntityType>
+      <EntityType Name="Schedule" Abstract="true">
+        <Key>
+          <PropertyRef Name="ScheduleID" />
+        </Key>
+        <Property Name="ScheduleID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="StartTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="ExpiryTime" Type="Edm.DateTime" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="IsEnabled" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="NextRun" Type="Edm.DateTime" />
+        <NavigationProperty Name="JobContexts" Relationship="Orchestrator.ResourceModel.FK_Schedule_JobContext" ToRole="JobContext" FromRole="Schedule" />
+        <NavigationProperty Name="Runbooks" Relationship="Orchestrator.ResourceModel.FK_Schedule_Runbook" ToRole="Runbook" FromRole="Schedule" />
+      </EntityType>
+      <EntityType Name="OneTimeSchedule" BaseType="Orchestrator.ResourceModel.Schedule" />
+      <EntityType Name="DailySchedule" BaseType="Orchestrator.ResourceModel.Schedule">
+        <Property Name="DayInterval" Type="Edm.Byte" Nullable="false" />
+      </EntityType>
+      <EntityType Name="Module" m:HasStream="true">
+        <Key>
+          <PropertyRef Name="ModuleID" />
+        </Key>
+        <Property Name="ModuleID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ModuleName" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Version" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Activities" Relationship="Orchestrator.ResourceModel.FK_Activity_Module" ToRole="Activity" FromRole="Module" />
+      </EntityType>
+      <EntityType Name="ConnectionField">
+        <Key>
+          <PropertyRef Name="ConnectionFieldID" />
+        </Key>
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ConnectionFieldID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ConnectionTypeID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="IsEncrypted" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsOptional" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="ConnectionType" Relationship="Orchestrator.ResourceModel.FK_ConnectionTypeConnectionField" ToRole="ConnectionType" FromRole="ConnectionField" />
+      </EntityType>
+      <EntityType Name="ConnectionFieldValue">
+        <Key>
+          <PropertyRef Name="ConnectionFieldValueID" />
+        </Key>
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ConnectionFieldValueID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ConnectionID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ConnectionName" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="ConnectionTypeID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ConnectionTypeName" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="Value" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="ConnectionFieldID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ConnectionFieldName" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="IsEncrypted" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsOptional" Type="Edm.Boolean" />
+        <Property Name="Type" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Connection" Relationship="Orchestrator.ResourceModel.FK_ConnectionConnectionFieldValue" ToRole="Connection" FromRole="ConnectionFieldValue" />
+      </EntityType>
+      <EntityType Name="Connection">
+        <Key>
+          <PropertyRef Name="ConnectionID" />
+        </Key>
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ConnectionID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ConnectionTypeID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="Description" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="ConnectionFieldValues" Relationship="Orchestrator.ResourceModel.FK_ConnectionConnectionFieldValue" ToRole="ConnectionFieldValue" FromRole="Connection" />
+        <NavigationProperty Name="ConnectionType" Relationship="Orchestrator.ResourceModel.FK_ConnectionConnectionType" ToRole="ConnectionType" FromRole="Connection" />
+      </EntityType>
+      <EntityType Name="ConnectionType">
+        <Key>
+          <PropertyRef Name="ConnectionTypeID" />
+        </Key>
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ConnectionTypeID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="IsBeingCreated" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="ConnectionFields" Relationship="Orchestrator.ResourceModel.FK_ConnectionTypeConnectionField" ToRole="ConnectionField" FromRole="ConnectionType" />
+        <NavigationProperty Name="Connections" Relationship="Orchestrator.ResourceModel.FK_ConnectionConnectionType" ToRole="Connection" FromRole="ConnectionType" />
+      </EntityType>
+      <EntityType Name="Variable">
+        <Key>
+          <PropertyRef Name="VariableID" />
+        </Key>
+        <Property Name="VariableID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="Value" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Description" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="IsEncrypted" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+      </EntityType>
+      <EntityType Name="Credential">
+        <Key>
+          <PropertyRef Name="CredentialID" />
+        </Key>
+        <Property Name="CredentialID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        <Property Name="UserName" Type="Edm.String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        <Property Name="RawValue" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Value" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Description" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+      </EntityType>
+      <EntityType Name="Certificate">
+        <Key>
+          <PropertyRef Name="CertificateID" />
+        </Key>
+        <Property Name="CertificateID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        <Property Name="RawValue" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Value" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Description" Type="Edm.String" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="Thumbprint" Type="Edm.String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="ExpiryTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+      </EntityType>
+      <EntityType Name="Activity">
+        <Key>
+          <PropertyRef Name="ActivityID" />
+        </Key>
+        <Property Name="ActivityID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="Definition" Type="Edm.String" Nullable="false" />
+        <Property Name="Tags" Type="Edm.String" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="ModuleID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="Type" Type="Edm.String" />
+        <Property Name="ModuleName" Type="Edm.String" Nullable="false" />
+        <NavigationProperty Name="Module" Relationship="Orchestrator.ResourceModel.FK_Activity_Module" ToRole="Module" FromRole="Activity" />
+        <NavigationProperty Name="ActivityParameterSets" Relationship="Orchestrator.ResourceModel.FK_ActivityParameterSet_Activity" ToRole="ActivityParameterSet" FromRole="Activity" />
+        <NavigationProperty Name="ActivityOutputTypes" Relationship="Orchestrator.ResourceModel.FK_ActivityOutputType_Activity" ToRole="ActivityOutputType" FromRole="Activity" />
+      </EntityType>
+      <EntityType Name="ActivityParameterSet">
+        <Key>
+          <PropertyRef Name="ActivityParameterSetID" />
+        </Key>
+        <Property Name="ActivityParameterSetID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="IsDefault" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="ActivityID" Type="Edm.Guid" Nullable="false" />
+        <NavigationProperty Name="Activity" Relationship="Orchestrator.ResourceModel.FK_ActivityParameterSet_Activity" ToRole="Activity" FromRole="ActivityParameterSet" />
+        <NavigationProperty Name="ActivityParameters" Relationship="Orchestrator.ResourceModel.FK_ActivityParameter_ActivityParameterSet" ToRole="ActivityParameter" FromRole="ActivityParameterSet" />
+      </EntityType>
+      <EntityType Name="ActivityParameter">
+        <Key>
+          <PropertyRef Name="ActivityParameterID" />
+        </Key>
+        <Property Name="ActivityParameterID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="Type" Type="Edm.String" Nullable="false" />
+        <Property Name="IsMandatory" Type="Edm.Boolean" />
+        <Property Name="IsDynamic" Type="Edm.Boolean" />
+        <Property Name="Position" Type="Edm.Int32" />
+        <Property Name="ValueFromPipeline" Type="Edm.Boolean" />
+        <Property Name="ValueFromPipelineByPropertyName" Type="Edm.Boolean" />
+        <Property Name="ValueFromRemainingArguments" Type="Edm.Boolean" />
+        <Property Name="ActivityParameterSetID" Type="Edm.Guid" Nullable="false" />
+        <NavigationProperty Name="ActivityParameterSet" Relationship="Orchestrator.ResourceModel.FK_ActivityParameter_ActivityParameterSet" ToRole="ActivityParameterSet" FromRole="ActivityParameter" />
+      </EntityType>
+      <EntityType Name="ActivityOutputType">
+        <Key>
+          <PropertyRef Name="ActivityOutputTypeID" />
+        </Key>
+        <Property Name="ActivityOutputTypeID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="Type" Type="Edm.String" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ActivityID" Type="Edm.Guid" Nullable="false" />
+        <NavigationProperty Name="Activity" Relationship="Orchestrator.ResourceModel.FK_ActivityOutputType_Activity" ToRole="Activity" FromRole="ActivityOutputType" />
+      </EntityType>
+      <EntityType Name="RunbookParameter">
+        <Key>
+          <PropertyRef Name="RunbookVersionID" />
+          <PropertyRef Name="Name" />
+        </Key>
+        <Property Name="RunbookVersionID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+        <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="IsMandatory" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Position" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="RunbookVersion" Relationship="Orchestrator.ResourceModel.FK_RunbookParameters_Runbook" ToRole="RunbookVersion" FromRole="RunbookParameter" />
+      </EntityType>
+      <EntityType Name="Statistics">
+        <Key>
+          <PropertyRef Name="RunbookID" />
+        </Key>
+        <Property Name="RunbookID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TenantID" Type="Edm.Guid" />
+        <Property Name="CompletedCount" Type="Edm.Int32" />
+        <Property Name="FailedCount" Type="Edm.Int32" />
+        <Property Name="RunningCount" Type="Edm.Int32" />
+        <Property Name="TotalJobCount" Type="Edm.Int32" />
+        <Property Name="SuspendedCount" Type="Edm.Int32" />
+        <Property Name="StoppedCount" Type="Edm.Int32" />
+        <Property Name="LastStart" Type="Edm.DateTime" />
+        <NavigationProperty Name="Runbook" Relationship="Orchestrator.ResourceModel.FK_Runbook_Statistics" ToRole="Runbook" FromRole="Statistics" />
+      </EntityType>
+      <EntityType Name="AdminConfiguration">
+        <Key>
+          <PropertyRef Name="Name" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+        <Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+      </EntityType>
+      <EntityType Name="Deployment">
+        <Key>
+          <PropertyRef Name="InstanceId" />
+        </Key>
+        <Property Name="InstanceId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ComputerName" Type="Edm.String" Nullable="false" />
+        <Property Name="LookupName" Type="Edm.String" />
+        <Property Name="LowKey" Type="Edm.Int32" Nullable="false" />
+        <Property Name="HighKey" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastModifiedTime" Type="Edm.DateTime" Nullable="false" />
+      </EntityType>
+      <ComplexType Name="NameValuePair">
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="Value" Type="Edm.String" Nullable="false" />
+      </ComplexType>
+      <Association Name="FK_Job_JobContext">
+        <End Type="Orchestrator.ResourceModel.JobContext" Role="JobContext" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.Job" Role="Job" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="JobContext">
+            <PropertyRef Name="JobContextID" />
+          </Principal>
+          <Dependent Role="Job">
+            <PropertyRef Name="JobContextID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Runbook_Statistics">
+        <End Type="Orchestrator.ResourceModel.Runbook" Role="Runbook" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.Statistics" Role="Statistics" Multiplicity="1" />
+        <ReferentialConstraint>
+          <Principal Role="Runbook">
+            <PropertyRef Name="RunbookID" />
+          </Principal>
+          <Dependent Role="Statistics">
+            <PropertyRef Name="RunbookID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Runbook_DraftRunbookVersion">
+        <End Type="Orchestrator.ResourceModel.RunbookVersion" Role="RunbookVersion" Multiplicity="0..1" />
+        <End Type="Orchestrator.ResourceModel.Runbook" Role="Runbook" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="RunbookVersion">
+            <PropertyRef Name="RunbookVersionID" />
+          </Principal>
+          <Dependent Role="Runbook">
+            <PropertyRef Name="DraftRunbookVersionID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Runbook_PublishedRunbookVersion">
+        <End Type="Orchestrator.ResourceModel.RunbookVersion" Role="RunbookVersion" Multiplicity="0..1" />
+        <End Type="Orchestrator.ResourceModel.Runbook" Role="Runbook" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="RunbookVersion">
+            <PropertyRef Name="RunbookVersionID" />
+          </Principal>
+          <Dependent Role="Runbook">
+            <PropertyRef Name="PublishedRunbookVersionID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Schedule_Runbook">
+        <End Type="Orchestrator.ResourceModel.Schedule" Role="Schedule" Multiplicity="*" />
+        <End Type="Orchestrator.ResourceModel.Runbook" Role="Runbook" Multiplicity="*" />
+      </Association>
+      <Association Name="FK_JobContext_RunbookVersion">
+        <End Type="Orchestrator.ResourceModel.RunbookVersion" Role="RunbookVersion" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.JobContext" Role="JobContext" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="RunbookVersion">
+            <PropertyRef Name="RunbookVersionID" />
+          </Principal>
+          <Dependent Role="JobContext">
+            <PropertyRef Name="RunbookVersionID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Runbook_RunbookVersion">
+        <End Type="Orchestrator.ResourceModel.Runbook" Role="Runbook" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.RunbookVersion" Role="RunbookVersion" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Runbook">
+            <PropertyRef Name="RunbookID" />
+          </Principal>
+          <Dependent Role="RunbookVersion">
+            <PropertyRef Name="RunbookID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_RunbookParameters_Runbook">
+        <End Type="Orchestrator.ResourceModel.RunbookVersion" Role="RunbookVersion" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.RunbookParameter" Role="RunbookParameter" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="RunbookVersion">
+            <PropertyRef Name="RunbookVersionID" />
+          </Principal>
+          <Dependent Role="RunbookParameter">
+            <PropertyRef Name="RunbookVersionID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_JobParameters_JobContext">
+        <End Type="Orchestrator.ResourceModel.JobContext" Role="JobContext" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.JobParameter" Role="JobParameter" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="JobContext">
+            <PropertyRef Name="JobContextID" />
+          </Principal>
+          <Dependent Role="JobParameter">
+            <PropertyRef Name="JobContextID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Schedule_JobContext">
+        <End Type="Orchestrator.ResourceModel.Schedule" Role="Schedule" Multiplicity="0..1" />
+        <End Type="Orchestrator.ResourceModel.JobContext" Role="JobContext" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Schedule">
+            <PropertyRef Name="ScheduleID" />
+          </Principal>
+          <Dependent Role="JobContext">
+            <PropertyRef Name="ScheduleID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Activity_Module">
+        <End Type="Orchestrator.ResourceModel.Module" Role="Module" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.Activity" Role="Activity" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Module">
+            <PropertyRef Name="ModuleID" />
+          </Principal>
+          <Dependent Role="Activity">
+            <PropertyRef Name="ModuleID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ConnectionTypeConnectionField">
+        <End Type="Orchestrator.ResourceModel.ConnectionType" Role="ConnectionType" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.ConnectionField" Role="ConnectionField" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ConnectionType">
+            <PropertyRef Name="ConnectionTypeID" />
+          </Principal>
+          <Dependent Role="ConnectionField">
+            <PropertyRef Name="ConnectionTypeID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ConnectionConnectionFieldValue">
+        <End Type="Orchestrator.ResourceModel.Connection" Role="Connection" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.ConnectionFieldValue" Role="ConnectionFieldValue" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Connection">
+            <PropertyRef Name="ConnectionID" />
+          </Principal>
+          <Dependent Role="ConnectionFieldValue">
+            <PropertyRef Name="ConnectionID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ConnectionConnectionType">
+        <End Type="Orchestrator.ResourceModel.ConnectionType" Role="ConnectionType" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.Connection" Role="Connection" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ConnectionType">
+            <PropertyRef Name="ConnectionTypeID" />
+          </Principal>
+          <Dependent Role="Connection">
+            <PropertyRef Name="ConnectionTypeID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ActivityParameterSet_Activity">
+        <End Type="Orchestrator.ResourceModel.Activity" Role="Activity" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.ActivityParameterSet" Role="ActivityParameterSet" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Activity">
+            <PropertyRef Name="ActivityID" />
+          </Principal>
+          <Dependent Role="ActivityParameterSet">
+            <PropertyRef Name="ActivityID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ActivityOutputType_Activity">
+        <End Type="Orchestrator.ResourceModel.Activity" Role="Activity" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.ActivityOutputType" Role="ActivityOutputType" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Activity">
+            <PropertyRef Name="ActivityID" />
+          </Principal>
+          <Dependent Role="ActivityOutputType">
+            <PropertyRef Name="ActivityID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ActivityParameter_ActivityParameterSet">
+        <End Type="Orchestrator.ResourceModel.ActivityParameterSet" Role="ActivityParameterSet" Multiplicity="1" />
+        <End Type="Orchestrator.ResourceModel.ActivityParameter" Role="ActivityParameter" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ActivityParameterSet">
+            <PropertyRef Name="ActivityParameterSetID" />
+          </Principal>
+          <Dependent Role="ActivityParameter">
+            <PropertyRef Name="ActivityParameterSetID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <EntityContainer Name="OrchestratorApi" m:IsDefaultEntityContainer="true" p6:LazyLoadingEnabled="true" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntitySet Name="Jobs" EntityType="Orchestrator.ResourceModel.Job" />
+        <EntitySet Name="Runbooks" EntityType="Orchestrator.ResourceModel.Runbook" />
+        <EntitySet Name="RunbookVersions" EntityType="Orchestrator.ResourceModel.RunbookVersion" />
+        <EntitySet Name="JobContexts" EntityType="Orchestrator.ResourceModel.JobContext" />
+        <EntitySet Name="JobParameters" EntityType="Orchestrator.ResourceModel.JobParameter" />
+        <EntitySet Name="Schedules" EntityType="Orchestrator.ResourceModel.Schedule" />
+        <EntitySet Name="Modules" EntityType="Orchestrator.ResourceModel.Module" />
+        <EntitySet Name="ConnectionFields" EntityType="Orchestrator.ResourceModel.ConnectionField" />
+        <EntitySet Name="ConnectionFieldValues" EntityType="Orchestrator.ResourceModel.ConnectionFieldValue" />
+        <EntitySet Name="Connections" EntityType="Orchestrator.ResourceModel.Connection" />
+        <EntitySet Name="ConnectionTypes" EntityType="Orchestrator.ResourceModel.ConnectionType" />
+        <EntitySet Name="Variables" EntityType="Orchestrator.ResourceModel.Variable" />
+        <EntitySet Name="Credentials" EntityType="Orchestrator.ResourceModel.Credential" />
+        <EntitySet Name="Certificates" EntityType="Orchestrator.ResourceModel.Certificate" />
+        <EntitySet Name="Activities" EntityType="Orchestrator.ResourceModel.Activity" />
+        <EntitySet Name="ActivityParameterSets" EntityType="Orchestrator.ResourceModel.ActivityParameterSet" />
+        <EntitySet Name="ActivityParameters" EntityType="Orchestrator.ResourceModel.ActivityParameter" />
+        <EntitySet Name="ActivityOutputTypes" EntityType="Orchestrator.ResourceModel.ActivityOutputType" />
+        <EntitySet Name="RunbookParameters" EntityType="Orchestrator.ResourceModel.RunbookParameter" />
+        <EntitySet Name="Statistics" EntityType="Orchestrator.ResourceModel.Statistics" />
+        <EntitySet Name="AdminConfigurations" EntityType="Orchestrator.ResourceModel.AdminConfiguration" />
+        <EntitySet Name="Deployment" EntityType="Orchestrator.ResourceModel.Deployment" />
+        <FunctionImport Name="Resume" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="job" Type="Orchestrator.ResourceModel.Job" />
+          <Parameter Name="label" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="Start" ReturnType="Edm.Guid" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="runbook" Type="Orchestrator.ResourceModel.Runbook" />
+          <Parameter Name="parameters" Type="Collection(Orchestrator.ResourceModel.NameValuePair)" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="StartOnSchedule" ReturnType="Edm.Guid" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="runbook" Type="Orchestrator.ResourceModel.Runbook" />
+          <Parameter Name="parameters" Type="Collection(Orchestrator.ResourceModel.NameValuePair)" Nullable="false" />
+          <Parameter Name="scheduleId" Type="Edm.Guid" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="GetStatistics" ReturnType="Collection(Orchestrator.ResourceModel.Statistics)" IsBindable="true" EntitySet="Statistics" m:IsAlwaysBindable="true">
+          <Parameter Name="runbook" Type="Orchestrator.ResourceModel.Runbook" />
+          <Parameter Name="parameters" Type="Collection(Orchestrator.ResourceModel.NameValuePair)" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="Stop" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="job" Type="Orchestrator.ResourceModel.Job" />
+        </FunctionImport>
+        <FunctionImport Name="Suspend" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="job" Type="Orchestrator.ResourceModel.Job" />
+        </FunctionImport>
+        <FunctionImport Name="Publish" ReturnType="Edm.Guid" IsBindable="true">
+          <Parameter Name="runbook" Type="Orchestrator.ResourceModel.Runbook" />
+        </FunctionImport>
+        <FunctionImport Name="Edit" ReturnType="Edm.Guid" IsBindable="true">
+          <Parameter Name="runbook" Type="Orchestrator.ResourceModel.Runbook" />
+        </FunctionImport>
+        <FunctionImport Name="Test" ReturnType="Edm.Guid" IsBindable="true" m:IsAlwaysBindable="true">
+          <Parameter Name="runbook" Type="Orchestrator.ResourceModel.Runbook" />
+          <Parameter Name="parameters" Type="Collection(Orchestrator.ResourceModel.NameValuePair)" Nullable="false" />
+        </FunctionImport>
+        <AssociationSet Name="FK_Job_JobContext" Association="Orchestrator.ResourceModel.FK_Job_JobContext">
+          <End Role="Job" EntitySet="Jobs" />
+          <End Role="JobContext" EntitySet="JobContexts" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Runbook_Statistics" Association="Orchestrator.ResourceModel.FK_Runbook_Statistics">
+          <End Role="Runbook" EntitySet="Runbooks" />
+          <End Role="Statistics" EntitySet="Statistics" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Runbook_DraftRunbookVersion" Association="Orchestrator.ResourceModel.FK_Runbook_DraftRunbookVersion">
+          <End Role="Runbook" EntitySet="Runbooks" />
+          <End Role="RunbookVersion" EntitySet="RunbookVersions" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Runbook_PublishedRunbookVersion" Association="Orchestrator.ResourceModel.FK_Runbook_PublishedRunbookVersion">
+          <End Role="Runbook" EntitySet="Runbooks" />
+          <End Role="RunbookVersion" EntitySet="RunbookVersions" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Schedule_Runbook" Association="Orchestrator.ResourceModel.FK_Schedule_Runbook">
+          <End Role="Runbook" EntitySet="Runbooks" />
+          <End Role="Schedule" EntitySet="Schedules" />
+        </AssociationSet>
+        <AssociationSet Name="FK_JobContext_RunbookVersion" Association="Orchestrator.ResourceModel.FK_JobContext_RunbookVersion">
+          <End Role="RunbookVersion" EntitySet="RunbookVersions" />
+          <End Role="JobContext" EntitySet="JobContexts" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Runbook_RunbookVersion" Association="Orchestrator.ResourceModel.FK_Runbook_RunbookVersion">
+          <End Role="RunbookVersion" EntitySet="RunbookVersions" />
+          <End Role="Runbook" EntitySet="Runbooks" />
+        </AssociationSet>
+        <AssociationSet Name="FK_RunbookParameters_Runbook" Association="Orchestrator.ResourceModel.FK_RunbookParameters_Runbook">
+          <End Role="RunbookVersion" EntitySet="RunbookVersions" />
+          <End Role="RunbookParameter" EntitySet="RunbookParameters" />
+        </AssociationSet>
+        <AssociationSet Name="FK_JobParameters_JobContext" Association="Orchestrator.ResourceModel.FK_JobParameters_JobContext">
+          <End Role="JobContext" EntitySet="JobContexts" />
+          <End Role="JobParameter" EntitySet="JobParameters" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Schedule_JobContext" Association="Orchestrator.ResourceModel.FK_Schedule_JobContext">
+          <End Role="JobContext" EntitySet="JobContexts" />
+          <End Role="Schedule" EntitySet="Schedules" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Activity_Module" Association="Orchestrator.ResourceModel.FK_Activity_Module">
+          <End Role="Module" EntitySet="Modules" />
+          <End Role="Activity" EntitySet="Activities" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ConnectionTypeConnectionField" Association="Orchestrator.ResourceModel.FK_ConnectionTypeConnectionField">
+          <End Role="ConnectionField" EntitySet="ConnectionFields" />
+          <End Role="ConnectionType" EntitySet="ConnectionTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ConnectionConnectionFieldValue" Association="Orchestrator.ResourceModel.FK_ConnectionConnectionFieldValue">
+          <End Role="ConnectionFieldValue" EntitySet="ConnectionFieldValues" />
+          <End Role="Connection" EntitySet="Connections" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ConnectionConnectionType" Association="Orchestrator.ResourceModel.FK_ConnectionConnectionType">
+          <End Role="Connection" EntitySet="Connections" />
+          <End Role="ConnectionType" EntitySet="ConnectionTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ActivityParameterSet_Activity" Association="Orchestrator.ResourceModel.FK_ActivityParameterSet_Activity">
+          <End Role="Activity" EntitySet="Activities" />
+          <End Role="ActivityParameterSet" EntitySet="ActivityParameterSets" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ActivityOutputType_Activity" Association="Orchestrator.ResourceModel.FK_ActivityOutputType_Activity">
+          <End Role="Activity" EntitySet="Activities" />
+          <End Role="ActivityOutputType" EntitySet="ActivityOutputTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ActivityParameter_ActivityParameterSet" Association="Orchestrator.ResourceModel.FK_ActivityParameter_ActivityParameterSet">
+          <End Role="ActivityParameterSet" EntitySet="ActivityParameterSets" />
+          <End Role="ActivityParameter" EntitySet="ActivityParameters" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

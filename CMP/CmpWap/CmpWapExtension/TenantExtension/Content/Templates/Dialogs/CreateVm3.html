@@ -1,0 +1,97 @@
+﻿<div class="hw-create-roles-container">
+    <div id="iisconfig">
+        <div class="drawer-form-wapitem">
+            <h2>IIS Configuration</h2>
+        </div>
+
+        <div class="drawer-form-wapitem">
+            <label>Install IIS?</label>
+            <div id="iisradio" class="radio pushbutton">
+
+
+            </div>
+        </div>
+        <br />
+        <div id="iissubsection" class="drawer-form-wapitem">
+            <label for="VmRole">Role Services</label>
+            <select id="IIsRoleservices" data-fxcontroltype="fxDropdown">
+                <option> </option>
+
+            </select>
+        </div>
+    </div>
+
+    <div id="sqlconfig" style="display:none;">
+        <div class="drawer-form-wapitem">
+            <h2>SQL Configuration</h2>
+        </div>
+
+        <div class="drawer-form-wapitem">
+            <label for="VmSourceImage">Install SQL?</label>
+            <div id="sqlraido" class="radio pushbutton">
+
+
+            </div>
+        </div>
+        <div id="sqlconfigsection">
+            <div class="drawer-form-wapitem">
+                <label>SQL Instance Name</label>
+                <input id="VmSqlinstance" type="text" value="MSSQLSERVER" />
+
+            </div>
+            <div class="drawer-form-wapitem">
+                <label>Collation</label>
+                <select id="VmSqlcollation" data-fxcontroltype="fxDropdown"></select>
+            </div>
+
+            <div class="drawer-form-wapitem">
+                <label>Sql Version</label>
+                <select id="VmSqlversion" data-fxcontroltype="fxDropdown"></select>
+            </div>
+
+            <div class="drawer-form-wapitem">
+                <label>Sql Administration Groups</label>
+                <input id="VmSqladmin" type="text" class="fx-textbox fx-validation fx-editablecontrol" data-val="true" data-val-required="VM Sql admin is required" />
+                <div id="nameresolveSql">
+
+                </div>
+                <div id="loadingSql">
+
+                </div><br />
+                <label id="lblmessageSql"></label>
+            </div>
+
+            <div class="drawer-form-wapitem-sql">
+                <label>SQL Installation Options</label>
+
+                <div>
+                    <span id="sqlcheckboxanalysis"></span>
+                    <span>Analysis Services</span>
+                    <div id="sqlanalysissection">
+                        <span>Analysis Services Mode </span>
+                        <select id="sqlanalysismode" data-fxcontroltype="fxDropdown"></select>
+                    </div>
+                </div>
+                <div>
+                    <span id="sqlcheckboxIntegration"></span>
+                    <span>Integration Services</span>
+                </div>
+                <div>
+                    <span id="sqlcheckboxreplication"></span>
+                    <span>Replication Services</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <div id="noconfig" class="drawer-form-wapitem" style="display:none" >
+        <h2>No SQL\IIS Configuration</h2>
+    </div>
+    -->
+    <!-- information not required once IIS SQL is configured with CMP-->
+   <!--<div id="noconfig" class="drawer-form-wapitem" style="display:none">
+        <h2>No SQL\IIS Configuration available in this preview yet. Please proceed ahead...</h2>
+    </div> -->
+</div>
+

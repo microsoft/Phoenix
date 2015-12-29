@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm13="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" dslVersion="1.0.0.0" Id="39e041f7-e10b-4eb8-87dc-e25365705733" name="Dispatcher" linkedPackageId="c17a83d8-176f-467d-85b8-9369162d9898" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="76b913bf-fa13-48ba-b86b-adecbc083934" name="ItsmClientInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5a61f372-c48b-4000-92d8-d531a0e72fd3" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f821740d-3ec6-420f-bdf7-f6585169e225" name="AzureClientInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="cc3e7a7e-c320-4c7c-844b-2c827ca280df" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="5e0620f5-d3b3-4316-bef9-b6afa60baf7d" name="CloudInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="72ee674b-17d4-4f01-a18e-6c3ff48eef93" />
+        <targetEnds>
+          <association Id="e1644977-2e5c-4c6a-a2ad-bea9127a2f4d" isDerived="false" sourceEndRoleName="CloudInterface" targetEndRoleName="AzureClientInterface" isLeaf="false" isAbstract="false">
+            <classMoniker Id="f821740d-3ec6-420f-bdf7-f6585169e225" LastKnownName="AzureClientInterface" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="12b5c267-e5ae-49d6-8886-83d1cd2ab71a" name="CloudInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="23dfb3df-dbd2-407f-b498-bad5e423a1da" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9f816ee3-cdf8-4771-8f95-5a721ea5186b" name="AzureClientInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="501b3a08-1420-4977-a825-b633b9b0baf7" name="Lower" value="*">
+                      <elementDefinition Id="f7c54a74-4286-43e2-810b-c32a1d24bc93" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="88029581-5967-4bec-a3c4-0babfcee09af" name="Upper" value="*">
+                      <elementDefinition Id="c7672067-c70e-450f-a229-f8d36641cc4a" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="ef675ac5-e4e7-4653-8491-d878f13f2e5d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="2d99303c-793a-40e8-b264-7b414777c883" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="24b445b2-f963-4ac5-8b7e-3484aad546d8" name="Worker" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d160fe70-2582-4b93-adcf-8e65b97b90b7" />
+        <targetEnds>
+          <association Id="5ede3a54-a6f4-46df-aef2-448271520389" isDerived="false" sourceEndRoleName="Worker" targetEndRoleName="API" isLeaf="false" isAbstract="false">
+            <classMoniker Id="a854cd3a-e79a-4504-9108-00382b3c85f7" LastKnownName="API" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9080d8c8-8157-43b2-9120-97f22cc65fbd" name="Worker" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="58cf9c12-fa39-44cc-a0b0-9845e9e20662" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="aa08812f-576c-44d0-ae80-a3b5d2461cea" name="API" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="5351fe23-5154-424f-b2db-6c278a368dd6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0623c862-eaad-4b84-b273-99738cfdd885" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="eb5135ad-a426-49fc-a2b0-56390c68a46d" name="CMP Service Library" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="21a9cfe4-905e-4947-a065-816a93ede6f7" />
+        <targetEnds>
+          <association Id="78cd63ec-b303-45f6-8b74-6a52857c9eae" isDerived="false" sourceEndRoleName="Processor" targetEndRoleName="CloudInterface" isLeaf="false" isAbstract="false">
+            <classMoniker Id="5e0620f5-d3b3-4316-bef9-b6afa60baf7d" LastKnownName="CloudInterface" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="98997097-61e2-4682-98f8-c8420e3f8026" name="Processor" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ea040610-784c-4f66-b329-c4d087cf2ad8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6fa12f0f-d4e3-4bc3-97ce-e8eb9045314f" name="CloudInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="5cfd6948-fa02-4b7d-b7e5-6cf99b21e3dd" name="Lower" value="1">
+                      <elementDefinition Id="8677c59d-e7fa-4ff3-a93a-ead287dace55" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="1ffa9395-3ecd-47b2-9f8c-d8fb6e05a5d4" name="Upper" value="*">
+                      <elementDefinition Id="c16e77f7-68da-4e44-901b-56a366e1a07d" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="8642b577-af72-49bb-906c-5118f5670f9a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9dee5331-ef8a-4c88-9219-3acdce0adca3" />
+          </association>
+          <association Id="1f947f3f-3b43-44ee-aac7-ea654f284af7" isDerived="false" sourceEndRoleName="Processor" targetEndRoleName="ItsmClientInterface" isLeaf="false" isAbstract="false">
+            <classMoniker Id="76b913bf-fa13-48ba-b86b-adecbc083934" LastKnownName="ItsmClientInterface" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e0ec39a6-63aa-45b9-b2e2-f60cc287e32f" name="Processor" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9ce3876d-6203-4750-8c05-4422d1f0e8b8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7552237a-092c-492f-a0ae-0c04307bd71b" name="ItsmClientInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="2c1af9ae-f2cd-458a-895e-5fc08a520c7b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="61cbe4a5-5121-43b2-b906-037a1c2675c0" />
+          </association>
+          <association Id="d258dbd4-8d61-4906-b01f-628570bd1944" isDerived="false" sourceEndRoleName="Processor" targetEndRoleName="VhdPrepClientInterface" isLeaf="false" isAbstract="false">
+            <classMoniker Id="7c6ab4cb-b416-4558-9c05-3d00fe4d0a14" LastKnownName="VhdPrepClientInterface" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ed6c18e7-2b99-4401-b416-e44ab1cacac0" name="Processor" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="2c40b055-dc6a-457b-a775-9bedf2b6e2e4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0e08be5d-1b4e-4992-a7d1-7cbe579b1466" name="VhdPrepClientInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="33010fef-e6e0-4335-aa34-12f7df786cd1" name="Lower" value="*">
+                      <elementDefinition Id="ff097871-9a20-480f-a84c-b4b2c4c34178" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="dbce9207-0047-4999-baca-bd9db28de981" name="Upper" value="*">
+                      <elementDefinition Id="d6678225-6a81-42ef-bf85-7f0bcb30c275" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="cf58a1a8-444a-47b4-a276-0e431ebfeb44" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f933cbcd-7986-4f38-8138-3834bd3687f7" />
+          </association>
+          <association Id="239925a5-f334-42c9-b781-22991cf07920" isDerived="false" sourceEndRoleName="Processor" targetEndRoleName="InventoryClientInterface" isLeaf="false" isAbstract="false">
+            <classMoniker Id="cec38809-0905-4cf4-8e6e-367bbaf200cc" LastKnownName="InventoryClientInterFace" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fc87d93c-2771-413b-9d2d-a29caa2dc395" name="Processor" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="011e77af-cfdc-47c4-9a61-3d0d4ace9176" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4ef73907-ca78-4fd1-ab99-c391fe6e0766" name="InventoryClientInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="bd649396-eed9-434d-b552-8d2d9f0f1e1b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="7f256382-f49a-4db9-bd2b-07ced6146db0" />
+          </association>
+          <association Id="ef77a8b1-7471-4285-96aa-a5e414f905bb" isDerived="false" sourceEndRoleName="Processor" targetEndRoleName="AtfsClientInterface" isLeaf="false" isAbstract="false">
+            <classMoniker Id="ac4ed45c-9f4c-4d07-b9dc-d297cf47ce87" LastKnownName="AtfsClientInterface" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fbf0369b-4a04-44f5-8c55-b4ce3724df23" name="Processor" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0d5d0bbb-d530-45eb-aa32-74ca3aab8dd7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0379dcd3-c244-4f0f-9f87-451024b6029f" name="AtfsClientInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="f2cf96e4-0700-41c8-a0cb-88df09322896" name="Lower" value="*">
+                      <elementDefinition Id="6e343b67-644e-468d-bec8-74e3e5a6ea21" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="d2267be5-7d1e-45e1-96e3-8d070e3ce8da" name="Upper" value="*">
+                      <elementDefinition Id="1c08c58a-c1c4-4836-bd4a-eb15dde83144" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="f6a4c4b2-808c-46a0-8ebf-d8fed4ed3354" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c5dc859c-363d-4e71-8c65-832850e1edc5" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1117ca6a-58ac-4da1-928e-cead80d3f394" name="WebService" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="9d608a8f-0e60-4ac5-a073-e8140ce09ca4" />
+        <targetEnds>
+          <association Id="712a03f0-4c3a-4c4d-944a-8ba5f47ab2f6" isDerived="false" sourceEndRoleName="WebServiceInterface" targetEndRoleName="API" isLeaf="false" isAbstract="false">
+            <classMoniker Id="a854cd3a-e79a-4504-9108-00382b3c85f7" LastKnownName="API" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2ceb1d13-23c4-4641-8128-47c8e9800c48" name="WebServiceInterface" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="cb0dc2d6-5a38-4a73-88f0-2bdb9980647b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d60ea8b7-bb5e-4ce8-94b3-88f66b3033e6" name="API" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="bcc8c068-a761-4f12-be00-4334c5829d19" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ed7a2530-5e07-4bc2-8f82-e5f6212ba000" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a854cd3a-e79a-4504-9108-00382b3c85f7" name="API" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7bb5160b-6ce9-4866-be9f-45175402ef6c" />
+        <targetEnds>
+          <association Id="4673ea91-b8c3-4fe4-85fd-cd36e3bbd81e" isDerived="false" sourceEndRoleName="API" targetEndRoleName="Processor" isLeaf="false" isAbstract="false">
+            <classMoniker Id="eb5135ad-a426-49fc-a2b0-56390c68a46d" LastKnownName="CMP Service Library" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="03c459ed-6191-4df5-8e73-95806a1a6b35" name="API" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d834d88a-fd75-4d31-b1f6-12cd9baf036f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9846b689-6a2f-4fa6-a368-ff0203189cfe" name="Processor" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f4936f7f-3d51-4b6f-89af-613d78d1cc29" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e243b5ed-2438-4d23-87aa-c6a019585e0f" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="6a39c349-436a-4656-93cc-ae3c0dfc9a69" name="Other Software" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="95943c03-dd0d-4efb-8852-59a4ecb0289d" />
+        <targetEnds>
+          <association Id="50edaebf-a0c6-4236-a1f4-806bf990e16f" isDerived="false" sourceEndRoleName="External Actors" targetEndRoleName="API" isLeaf="false" isAbstract="false">
+            <classMoniker Id="a854cd3a-e79a-4504-9108-00382b3c85f7" LastKnownName="API" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0e08148d-66bd-4410-8c67-fb4f4c2c15d5" name="External Actors" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="c5a429c9-219e-40d6-9a11-456e2bd8a323" name="Lower" value="*">
+                      <elementDefinition Id="eb578e83-8404-43c3-a70e-78f88d63cd4b" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="5a3e887f-70be-4941-a735-7193330eceef" name="Upper" value="*">
+                      <elementDefinition Id="e88f2dbe-4898-4bc8-af7c-96077cb8b067" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="35373549-b3f6-4d22-b60b-652690958d08" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="73c61d0e-aef0-4eba-9325-4c9899bc5546" name="API" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="10e74a31-924e-414c-baab-3d772ae7b3da" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9c05bbed-c501-4ec4-b430-708de17404e3" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7c6ab4cb-b416-4558-9c05-3d00fe4d0a14" name="VhdPrepClientInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ae6c5a81-8134-4baf-8dd3-4f906e84e738" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ac4ed45c-9f4c-4d07-b9dc-d297cf47ce87" name="AtfsClientInterface" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="879f63ca-6447-4147-83ae-901cf14e7c9d" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="cec38809-0905-4cf4-8e6e-367bbaf200cc" name="InventoryClientInterFace" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8bc08241-5497-4902-92a7-284757dc4116" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="c17a83d8-176f-467d-85b8-9369162d9898" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+    <profileInstances>
+      <packageHasProfileInstances Id="e07846aa-f1f1-4927-9912-a2190ec6d340">
+        <profileInstance Id="fe412f82-e675-45a4-9203-f3307c35a2e3" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="a2460782-a678-4d14-9084-5ff7c3e5d573">
+        <profileInstance Id="f0ce5b89-188c-47e5-8db5-111a02e82b6b" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

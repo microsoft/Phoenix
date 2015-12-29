@@ -1,0 +1,1480 @@
+<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
+    x:Uid="ResourceDictionary_1">
+    <!--Custom Button Style-->
+    <Style
+        x:Key="HyperLinkButton"
+        x:Uid="Style_1"
+        TargetType="{x:Type Button}">
+        <Setter
+            x:Uid="Setter_1"
+            Property="Foreground"
+            Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <Setter
+            x:Uid="Setter_2"
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    x:Uid="ControlTemplate_1"
+                    TargetType="{x:Type Button}">
+                    <Grid
+                        x:Uid="Grid_1"
+                        Height="Auto"
+                        Width="Auto">
+                        <ContentPresenter
+                            x:Uid="ContentPresenter_1"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger
+                x:Uid="Trigger_1"
+                Property="IsMouseOver"
+                Value="True">
+                <Setter
+                    x:Uid="Setter_3"
+                    Property="BitmapEffect">
+                    <Setter.Value>
+                        <OuterGlowBitmapEffect
+                            x:Uid="OuterGlowBitmapEffect_1"
+                            GlowColor="LightBlue"
+                            GlowSize="3" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--Style for Page Headers-->
+    <Style
+        x:Key="StylePageHeader"
+        x:Uid="StylePageHeader"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            x:Uid="Setter_20"
+            Property="FontSize"
+            Value="16pt" />
+        <Setter
+            x:Uid="Setter_21"
+            Property="Foreground"
+            Value="#0066CC" />
+        <Setter
+            x:Uid="Setter_22"
+            Property="Margin"
+            Value="27,16,32,11" />
+        <Setter
+            x:Uid="Setter_23"
+            Property="VerticalAlignment"
+            Value="Center" />
+        <Setter
+            x:Uid="Setter_24"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_25"
+            Property="Height"
+            Value="Auto" />
+        <Setter
+            x:Uid="Setter_26"
+            Property="TextWrapping"
+            Value="NoWrap" />
+        <Setter
+            x:Uid="Setter_27"
+            Property="TextTrimming"
+            Value="CharacterEllipsis" />
+        <Setter
+            x:Uid="Setter_28"
+            Property="Grid.ColumnSpan"
+            Value="99" />
+        <Setter
+            x:Uid="Setter_29"
+            Property="Selector.IsSelected"
+            Value="{DynamicResource {x:Static SystemParameters.HighContrastKey}}" />
+        <Style.Triggers>
+            <Trigger
+                x:Uid="Trigger_6"
+                Property="Selector.IsSelected"
+                Value="True">
+                <Setter
+                    x:Uid="Setter_30"
+                    Property="Foreground"
+                    Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--Style for Page Headers-->
+    <!--Style for Page Header Description-->
+    <Style
+        x:Key="StylePageHeaderDescription"
+        x:Uid="StylePageHeaderDescription"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            x:Uid="Setter_31"
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            x:Uid="Setter_32"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_33"
+            Property="Height"
+            Value="Auto" />
+        <Setter
+            x:Uid="Setter_34"
+            Property="TextWrapping"
+            Value="Wrap" />
+    </Style>
+    <!--Style for Page Header Description-->
+    <!--Style for Secondary Header-->
+    <Style
+        x:Key="StyleSecondaryHeader"
+        x:Uid="StyleSecondaryHeader"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            x:Uid="Setter_35"
+            Property="FontSize"
+            Value="11pt" />
+        <Setter
+            x:Uid="Setter_36"
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            x:Uid="Setter_37"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_38"
+            Property="Height"
+            Value="Auto" />
+        <Setter
+            x:Uid="Setter_39"
+            Property="TextWrapping"
+            Value="NoWrap" />
+        <Setter
+            x:Uid="Setter_40"
+            Property="TextTrimming"
+            Value="CharacterEllipsis" />
+    </Style>
+    <!--Style for Page Header Description-->
+    <!--Start Large dashed buttons-->
+    <Style
+        x:Key="ButtonFocusVisual"
+        x:Uid="Style_3">
+        <Setter
+            x:Uid="Setter_8"
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    x:Uid="ControlTemplate_2">
+                    <Rectangle
+                        x:Uid="Rectangle_1"
+                        Margin="2"
+                        SnapsToDevicePixels="true"
+                        Stroke="Black"
+                        StrokeDashArray="1 2"
+                        StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <LinearGradientBrush
+        x:Key="ButtonNormalBackground"
+        x:Uid="LinearGradientBrush_1"
+        EndPoint="0,1"
+        StartPoint="0,0">
+        <GradientStop
+            x:Uid="GradientStop_1"
+            Color="#F3F3F3"
+            Offset="0" />
+        <GradientStop
+            x:Uid="GradientStop_2"
+            Color="#EBEBEB"
+            Offset="0.5" />
+        <GradientStop
+            x:Uid="GradientStop_3"
+            Color="#DDDDDD"
+            Offset="0.5" />
+        <GradientStop
+            x:Uid="GradientStop_4"
+            Color="#CDCDCD"
+            Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush
+        x:Key="ButtonNormalBorder"
+        x:Uid="SolidColorBrush_1"
+        Color="#FF707070" />
+    <Style
+        x:Key="componentButton"
+        x:Uid="Style_4"
+        TargetType="{x:Type Button}">
+        <Setter
+            x:Uid="Setter_5"
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            x:Uid="Setter_6"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_7"
+            Property="Height"
+            Value="53" />
+        <Setter
+            x:Uid="Setter_41"
+            Property="FontSize"
+            Value="20" />
+        <Setter
+            x:Uid="Setter_9"
+            Property="FocusVisualStyle"
+            Value="{StaticResource ButtonFocusVisual}" />
+        <Setter
+            x:Uid="Setter_10"
+            Property="Background"
+            Value="{StaticResource ButtonNormalBackground}" />
+        <Setter
+            x:Uid="Setter_11"
+            Property="BorderBrush"
+            Value="{StaticResource ButtonNormalBorder}" />
+        <Setter
+            x:Uid="Setter_12"
+            Property="BorderThickness"
+            Value="1" />
+        <Setter
+            x:Uid="Setter_13"
+            Property="Foreground"
+            Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <Setter
+            x:Uid="Setter_14"
+            Property="HorizontalContentAlignment"
+            Value="Center" />
+        <Setter
+            x:Uid="Setter_15"
+            Property="VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            x:Uid="Setter_16"
+            Property="Padding"
+            Value="1" />
+        <Setter
+            x:Uid="Setter_17"
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    x:Uid="ControlTemplate_3"
+                    TargetType="{x:Type Button}">
+                    <Grid
+                        x:Uid="Grid_2"
+                        Height="53"
+                        Width="514">
+                        <DockPanel
+                            x:Name="customButtonDockPanel"
+                            x:Uid="customButtonDockPanel">
+                            <Image
+                                x:Uid="Image_1"
+                                Height="16"
+                                HorizontalAlignment="Left"
+                                Margin="5,5,5,5"
+                                Source="Images\rightgreenarrow.png"
+                                VerticalAlignment="Center"
+                                Width="16" />
+                            <ContentPresenter
+                                x:Uid="ContentPresenter_2"
+                                RecognizesAccessKey="True"
+                                VerticalAlignment="Center" />
+                        </DockPanel>
+                        <Rectangle
+                            x:Uid="Rectangle_2"
+                            Fill="{x:Null}"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,0,0,0"
+                            Stroke="#FF000000"
+                            StrokeDashArray="3"
+                            VerticalAlignment="Stretch"
+                            Width="Auto" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger
+                            x:Uid="Trigger_2"
+                            Property="IsKeyboardFocused"
+                            Value="true" />
+                        <Trigger
+                            x:Uid="Trigger_3"
+                            Property="ToggleButton.IsChecked"
+                            Value="true" />
+                        <Trigger
+                            x:Uid="Trigger_4"
+                            Property="IsEnabled"
+                            Value="false">
+                            <Setter
+                                x:Uid="Setter_18"
+                                Property="Foreground"
+                                Value="#ADADAD" />
+                        </Trigger>
+                        <Trigger
+                            x:Uid="Trigger_5"
+                            Property="IsMouseOver"
+                            Value="True">
+                            <Setter
+                                x:Uid="Setter_19"
+                                Property="Background"
+                                TargetName="customButtonDockPanel"
+                                Value="Lightblue" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--End Large dashed buttons-->
+    <!--Style for Basic Label-->
+    <Style
+        x:Key="StyleBasicLabel"
+        x:Uid="StyleBasicLabel"
+        TargetType="{x:Type Label}">
+        <Setter
+            x:Uid="Setter_42"
+            Property="VerticalAlignment"
+            Value="Center" />
+        <Setter
+            x:Uid="Setter_43"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_44"
+            Property="Height"
+            Value="Auto" />
+        <Setter
+            x:Uid="Setter_45"
+            Property="IsTabStop"
+            Value="true" />
+        <Setter
+            x:Uid="Setter_46"
+            Property="Padding"
+            Value="0,0,0,0" />
+    </Style>
+    <!--Style for Basic Label-->
+    <!--Style for Basic One Line Input-->
+    <Style
+        x:Key="StyleBasicOneLineInput"
+        x:Uid="StyleBasicOneLineInput"
+        TargetType="{x:Type TextBox}">
+        <Setter
+            x:Uid="Setter_47"
+            Property="VerticalAlignment"
+            Value="Center" />
+        <Setter
+            x:Uid="Setter_48"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_49"
+            Property="VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            x:Uid="Setter_50"
+            Property="TextWrapping"
+            Value="NoWrap" />
+        <Setter
+            x:Uid="Setter_51"
+            Property="IsTabStop"
+            Value="true" />
+    </Style>
+    <!--Style for Basic One Line Input-->
+    <!--Style for One Line Input-->
+    <Style
+        x:Key="StyleOneLineInput"
+        x:Uid="StyleOneLineInput"
+        BasedOn="{StaticResource StyleBasicOneLineInput}"
+        TargetType="{x:Type TextBox}">
+        <Setter
+            x:Uid="Setter_52"
+            Property="VerticalAlignment"
+            Value="Center" />
+        <Setter
+            x:Uid="Setter_53"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_54"
+            Property="MinHeight"
+            Value="23" />
+        <Setter
+            x:Uid="Setter_55"
+            Property="Width"
+            Value="450" />
+        <Setter
+            x:Uid="Setter_56"
+            Property="MaxLength"
+            Value="450" />
+        <Setter
+            x:Uid="Setter_57"
+            Property="TextWrapping"
+            Value="NoWrap" />
+        <Setter
+            x:Uid="Setter_58"
+            Property="IsTabStop"
+            Value="true" />
+        <Setter
+            x:Uid="Setter_59"
+            Property="Grid.ColumnSpan"
+            Value="99" />
+    </Style>
+    <!--Style for One Line Input-->
+    <!--Style for Password Box-->
+    <Style
+        x:Key="StylePasswordBox"
+        x:Uid="StylePasswordBox"
+        TargetType="{x:Type PasswordBox}">
+        <Setter
+            x:Uid="Setter_60"
+            Property="VerticalAlignment"
+            Value="Center" />
+        <Setter
+            x:Uid="Setter_61"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <!--<Setter
+            x:Uid="Setter_62"
+            Property="MinHeight"
+            Value="23" />-->
+        <Setter
+            x:Uid="Setter_63"
+            Property="IsTabStop"
+            Value="true" />
+    </Style>
+    <!--Style for Password Box-->
+    <!--Style for Basic Text Block-->
+    <Style
+        x:Key="StyleBasicTextBlock"
+        x:Uid="Style_5"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            x:Uid="Setter_64"
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            x:Uid="Setter_65"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_66"
+            Property="Foreground"
+            Value="#CD000000" />
+        <Setter
+            x:Uid="Setter_67"
+            Property="TextWrapping"
+            Value="Wrap" />
+        <Setter
+            x:Uid="Setter_68"
+            Property="Selector.IsSelected"
+            Value="{DynamicResource {x:Static SystemParameters.HighContrastKey}}" />
+        <Style.Triggers>
+            <Trigger
+                x:Uid="Trigger_7"
+                Property="Selector.IsSelected"
+                Value="True">
+                <Setter
+                    x:Uid="Setter_69"
+                    Property="Foreground"
+                    Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--Style for Basic Text Block-->
+    <!--Style for Basic Bold Text Block-->
+    <Style
+        x:Key="StyleBasicBoldTextBlock"
+        x:Uid="Style_6"
+        BasedOn="{StaticResource StyleBasicTextBlock}"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            x:Uid="Setter_70"
+            Property="FontWeight"
+            Value="Bold" />
+    </Style>
+    <!--Style for Basic Bold Text Block-->
+    <!--Style for Basic Text Box -->
+    <Style
+        x:Key="StyleBasicTextBox"
+        x:Uid="StyleBasicTextBox"
+        TargetType="{x:Type TextBox}">
+        <Setter
+            x:Uid="Setter_71"
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            x:Uid="Setter_72"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_73"
+            Property="BorderThickness"
+            Value="0" />
+        <Setter
+            x:Uid="Setter_74"
+            Property="Foreground"
+            Value="#CD000000" />
+        <Setter
+            x:Uid="Setter_75"
+            Property="TextWrapping"
+            Value="Wrap" />
+        <Setter
+            x:Uid="Setter_76"
+            Property="IsReadOnly"
+            Value="true" />
+        <Setter
+            x:Uid="Setter_77"
+            Property="IsTabStop"
+            Value="true" />
+        <Setter
+            x:Uid="Setter_78"
+            Property="Selector.IsSelected"
+            Value="{DynamicResource {x:Static SystemParameters.HighContrastKey}}" />
+        <Style.Triggers>
+            <Trigger
+                x:Uid="Trigger_8"
+                Property="Selector.IsSelected"
+                Value="True">
+                <Setter
+                    x:Uid="Setter_79"
+                    Property="Foreground"
+                    Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--Style for Basic Text Box -->
+    <!-- Style for Rich Text Box Summary -->
+    <Style
+        x:Key="StyleRichTextBoxSummary"
+        x:Uid="StyleRichTextBoxSummary"
+        TargetType="{x:Type RichTextBox}">
+        <Setter
+            x:Uid="Setter_123"
+            Property="Background"
+            Value="Transparent" />
+        <Setter
+            x:Uid="Setter_80"
+            Property="BorderBrush"
+            Value="Transparent" />
+        <Setter
+            x:Uid="Setter_81"
+            Property="BorderThickness"
+            Value="0" />
+        <Setter
+            x:Uid="Setter_82"
+            Property="IsReadOnly"
+            Value="True" />
+    </Style>
+    <!-- Style for Rich Text Box Summary -->
+    <!--Style for CheckBox-->
+    <Style
+        x:Key="StyleCheckBox"
+        x:Uid="Style_7"
+        TargetType="{x:Type CheckBox}">
+        <Setter
+            x:Uid="Setter_83"
+            Property="Height"
+            Value="Auto" />
+        <Setter
+            x:Uid="Setter_84"
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            x:Uid="Setter_85"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_86"
+            Property="IsTabStop"
+            Value="True" />
+    </Style>
+    <!--Style for CheckBox-->
+    <!-- Style for CheckBox for Features -->
+    <Style
+        x:Key="StyleFeatureCheckBox"
+        x:Uid="Style_8"
+        BasedOn="{StaticResource StyleCheckBox}"
+        TargetType="{x:Type CheckBox}">
+        <Setter
+            x:Uid="Setter_91"
+            Property="FontSize"
+            Value="11pt" />
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Center" />
+    </Style>
+    <!-- Style for CheckBox for Features -->
+    <!--Style for Button-->
+    <Style
+        x:Key="StyleButton"
+        x:Uid="Style_9"
+        TargetType="{x:Type Button}">
+        <Setter
+            x:Uid="Setter_92"
+            Property="MinHeight"
+            Value="23" />
+        <Setter
+            x:Uid="Setter_93"
+            Property="MinWidth"
+            Value="75" />
+        <Setter
+            x:Uid="Setter_94"
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            x:Uid="Setter_95"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_96"
+            Property="IsTabStop"
+            Value="True" />
+        <Setter
+            x:Uid="Setter_97"
+            Property="Padding"
+            Value="3,0,3,0" />
+    </Style>
+    <!--Style for Button-->
+    <!--Style for HyperLinkButton-->
+    <Style
+        x:Key="StyleHyperLinkButton"
+        x:Uid="Style_10"
+        TargetType="{x:Type Button}">
+        <Setter
+            x:Uid="Setter_98"
+            Property="Foreground"
+            Value="#FF0066CC" />
+        <Setter
+            x:Uid="Setter_99"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_100"
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            x:Uid="Setter_101"
+            Property="IsTabStop"
+            Value="True" />
+        <Setter
+            x:Uid="Setter_102"
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    x:Uid="ControlTemplate_4"
+                    TargetType="{x:Type Button}">
+                    <Grid
+                        x:Uid="Grid_3"
+                        Height="Auto"
+                        Width="Auto">
+                        <ContentPresenter
+                            x:Uid="ContentPresenter_3"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter
+            x:Uid="Setter_103"
+            Property="Selector.IsSelected"
+            Value="{DynamicResource {x:Static SystemParameters.HighContrastKey}}" />
+        <Style.Triggers>
+            <Trigger
+                x:Uid="Trigger_9"
+                Property="IsMouseOver"
+                Value="True">
+                <Setter
+                    x:Uid="Setter_104"
+                    Property="Cursor"
+                    Value="Hand" />
+            </Trigger>
+            <Trigger
+                x:Uid="Trigger_10"
+                Property="Selector.IsSelected"
+                Value="True">
+                <Setter
+                    x:Uid="Setter_105"
+                    Property="Foreground"
+                    Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--Style for HyperLinkButton-->
+    <!--Style for Expander-->
+    <Style
+        x:Key="StyleExpander"
+        x:Uid="Style_11"
+        TargetType="{x:Type Expander}">
+        <Setter
+            x:Uid="Setter_106"
+            Property="Height"
+            Value="Auto" />
+        <Setter
+            x:Uid="Setter_107"
+            Property="HorizontalAlignment"
+            Value="Stretch" />
+        <Setter
+            x:Uid="Setter_108"
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            x:Uid="Setter_109"
+            Property="Width"
+            Value="Auto" />
+        <Setter
+            x:Uid="Setter_110"
+            Property="FlowDirection"
+            Value="RightToLeft" />
+    </Style>
+    <!--Style for Expander-->
+    <!--Style for Path-->
+    <Style
+        x:Key="StylePath"
+        x:Uid="Style_12"
+        TargetType="{x:Type Path}">
+        <Setter
+            x:Uid="Setter_111"
+            Property="Height"
+            Value="1" />
+        <Setter
+            x:Uid="Setter_112"
+            Property="Fill"
+            Value="#00515151" />
+        <Setter
+            x:Uid="Setter_113"
+            Property="Stretch"
+            Value="Fill" />
+        <Setter
+            x:Uid="Setter_114"
+            Property="Stroke"
+            Value="#58585858" />
+        <Setter
+            x:Uid="Setter_115"
+            Property="StrokeThickness"
+            Value="1" />
+        <Setter
+            x:Uid="Setter_116"
+            Property="VerticalAlignment"
+            Value="Center" />
+        <Setter
+            x:Uid="Setter_117"
+            Property="Data"
+            Value="M29,199 L723,199" />
+    </Style>
+    <!--Style for Path-->
+    <!--Style for 16x16 Image-->
+    <Style
+        x:Key="Style16x16Image"
+        x:Uid="Style_13"
+        TargetType="{x:Type Image}">
+        <Setter
+            x:Uid="Setter_118"
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            x:Uid="Setter_119"
+            Property="VerticalAlignment"
+            Value="Center" />
+        <Setter
+            x:Uid="Setter_120"
+            Property="Width"
+            Value="16" />
+        <Setter
+            x:Uid="Setter_121"
+            Property="Height"
+            Value="16" />
+        <Setter
+            x:Uid="Setter_122"
+            Property="Stretch"
+            Value="Fill" />
+    </Style>
+    <!--Style for 16x16 Image-->
+    <!-- Feature names -->
+    <s:String
+        x:Key="serverFeatureName"
+        x:Uid="serverFeatureName">CMP service</s:String>
+    <s:String
+        x:Key="extensionCommonFeatureName"
+        x:Uid="extensionCommonFeatureName">WAP extension common components</s:String>
+    <s:String
+        x:Key="tenantExtensionFeatureName"
+        x:Uid="tenantExtensionFeatureName">WAP tenant extension</s:String>
+    <s:String
+        x:Key="adminExtensionFeatureName"
+        x:Uid="adminExtensionFeatureName">WAP administrator extension</s:String>
+    <!-- Feature names -->
+    <s:String
+        x:Key="addRemoveProgramsHelpLink"
+        x:Uid="addRemoveProgramsHelpLink">http://go.microsoft.com/fwlink/?LinkId=258539</s:String>
+    <s:String
+        x:Key="addRemoveProgramsPublisher"
+        x:Uid="addRemoveProgramsPublisher">Microsoft Corporation</s:String>
+    <s:String
+        x:Key="missingFileFormatString"
+        x:Uid="missingFileFormatString"
+        xml:space="preserve">Setup is missing one or more critical files.
+Please verify that the following files exist and then rerun the setup.
+
+{0}</s:String>
+    <s:String
+        x:Key="agentManagementFolder"
+        x:Uid="agentManagementFolder">AgentManagement</s:String>
+    <s:String
+        x:Key="agentManagementPath"
+        x:Uid="agentManagementPath">AgentManagement</s:String>
+    <s:String
+        x:Key="archTypeFolder64"
+        x:Uid="archTypeFolder64">amd64</s:String>
+    <s:String
+        x:Key="archTypeFolderi386"
+        x:Uid="archTypeFolderi386">i386</s:String>
+    <s:String
+        x:Key="archTypeFolderx86"
+        x:Uid="archTypeFolderx86">x86</s:String>
+    <s:String
+        x:Key="cancelText"
+        x:Uid="cancelText">Are you sure you want to cancel?</s:String>
+    <s:String
+        x:Key="CancelDuringInstalProgressText"
+        x:Uid="CancelDuringInstalProgressText">Cancelling will become effective at the completion of the current task.
+Are you sure you want to cancel installation?
+    </s:String>
+    <s:String
+        x:Key="ProgressCancelling"
+        x:Uid="ProgressCancelling">Cancelling...</s:String>
+    <s:String
+        x:Key="ProgressCanceled"
+        x:Uid="ProgressCanceled">Installation canceled</s:String>
+    <s:String
+        x:Key="SetupSuccessful"
+        x:Uid="SetupSuccessful">Setup completed successfully</s:String>
+    <s:String
+        x:Key="SetupSucceededWithWarnings"
+        x:Uid="SetupSucceededWithWarnings">Setup completed successfully with warnings</s:String>
+    <s:String
+        x:Key="UninstallSuccessful"
+        x:Uid="UninstallSuccessful">The selected features were removed successfully</s:String>
+    <s:String
+        x:Key="UninstallSucceededWithWarnings"
+        x:Uid="UninstallSucceededWithWarnings">The selected features were removed with warnings</s:String>
+    <s:String
+        x:Key="UninstallFailed"
+        x:Uid="UninstallFailed">The selected features were not removed completely</s:String>
+    <s:String
+        x:Key="SetupFailed"
+        x:Uid="SetupFailed">Setup cannot be completed</s:String>
+    <s:String
+        x:Key="UninstallCanNotBeCanceled"
+        x:Uid="UninstallCanNotBeCanceled">This action cannot be canceled.</s:String>
+    <s:String
+        x:Key="SetupMessageBoxTitle"
+        x:Uid="SetupMessageBoxTitle">Microsoft System Center VMM Setup</s:String>
+    <s:String
+        x:Key="DescripOnANewCluster"
+        x:Uid="DescripOnANewCluster">Setup is running on a cluster node. 
+Would you like to install VMM management server on this cluster and make it highly available?</s:String>
+    <s:String
+        x:Key="DescripOnHASecondNode"
+        x:Uid="DescripOnHASecondNode">Highly available VMM is already installed. 
+Would you like to add this server as a node to this installation?</s:String>
+    <s:String
+        x:Key="DescripOnLastHANode"
+        x:Uid="DescripOnLastHANode">This is the last node of the highly available VMM.
+Are you sure you want to uninstall the highly available VMM?</s:String>
+    <s:String
+        x:Key="CannotDetectHANodeCount"
+        x:Uid="CannotDetectHANodeCount">VMM cannot determine if this is the last node of the highly available VMM management server installation because your account does not have access to the VMM database.
+If this is not the last node or if you do not know whether this is the last node, make sure that you retain the VMM database. If this is not the last node and you remove the VMM database, the other nodes of the highly available VMM management server installation will not be able to function.
+Do you want to continue uninstalling?
+    </s:String>
+    <s:String
+        x:Key="NotLastHANode"
+        x:Uid="NotLastHANode">This is the active node of the highly available VMM management server. We recommend that you make another node the active node before uninstalling this node.
+If you uninstall this node while it is still the active node, the highly available VMM management server will no longer work, and you will have to uninstall and reinstall all the nodes.
+Do you want to continue to uninstall?
+    </s:String>
+    <s:String
+        x:Key="UseExistingHAMMDB"
+        x:Uid="UseExistingHAMMDB">VMM cluster resources do not exist but the VMM database reports that VMM cluster nodes are already created. This database might be assoiated with an exiting VMM cluster server.
+Do you want to continue to install?
+    </s:String>
+    <s:String
+        x:Key="DescripOneHANode"
+        x:Uid="DescripOneHANode">This is a node of the highly available VMM.
+Are you sure to uninstall the highly available VMM?</s:String>
+    <s:String
+        x:Key="DescriptionRemoveServerWithClient"
+        x:Uid="DescriptionRemoveServerWithClient">Uninstalling VMM console will also uninstall VMM management server. Do you want to continue?</s:String>
+    <s:String
+        x:Key="finishButtonText"
+        x:Uid="finishButtonText">_Finish</s:String>
+    <s:String
+        x:Key="finishScreenNextButtonText"
+        x:Uid="finishScreenNextButtonText">Clo_se</s:String>
+    <s:String
+        x:Key="helperCachePath"
+        x:Uid="helperCachePath">HelperObjects</s:String>
+    <s:String
+        x:Key="helperObjectsLocation"
+        x:Uid="helperObjectsLocation">..\..\HelperObjects</s:String>
+    <s:String
+        x:Key="helpFile"
+        x:Uid="helpFile">SCE_Help.chm</s:String>
+    <s:String
+        x:Key="helpFormatString"
+        x:Uid="helpFormatString">html/{0}.htm</s:String>
+    <s:String
+        x:Key="helpTitle"
+        x:Uid="helpTitle">Usage</s:String>
+    <s:String
+        x:Key="helpUsage"
+        x:Uid="helpUsage">You should use help.</s:String>
+    <s:String
+        x:Key="installButton"
+        x:Uid="installButton">_Install</s:String>
+    <s:String
+        x:Key="uninstallButton"
+        x:Uid="uninstallButton">_Uninstall</s:String>
+    <s:String
+        x:Key="uninstall"
+        x:Uid="uninstall">This feature will be uninstalled.</s:String>
+    <s:String
+        x:Key="uninstallresults"
+        x:Uid="uninstallresults">Uninstall results</s:String>
+    <s:String
+        x:Key="InstallTitleText"
+        x:Uid="InstallTitleText">Installation summary</s:String>
+    <s:String
+        x:Key="AddRemoveComponentTitleText"
+        x:Uid="AddRemoveComponentTitleText">Summary</s:String>
+    <s:String
+        x:Key="InstallSummaryText"
+        x:Uid="InstallSummaryText">Review the selections for features you are installing. To continue, click Install. To change these selections, click Previous.</s:String>
+    <s:String
+        x:Key="RemoveFeatureSummaryText"
+        x:Uid="RemoveFeatureSummaryText">Review the selections for the features you are uninstalling. To continue, click uninstall. To change these selections, click Previous.</s:String>
+    <s:String
+        x:Key="DifferentVersionInstalled"
+        x:Uid="DifferentVersionInstalled">You cannot upgrade from the currently installed version of CMP services. You must first uninstall CMP services, and then install again.</s:String>
+    <s:String
+        x:Key="invalidArgument"
+        x:Uid="invalidArgument">InvalidArgument</s:String>
+    <s:String
+        x:Key="LibraryShareDescription"
+        x:Uid="LibraryShareDescription">VMM Library Share</s:String>
+    <s:String
+        x:Key="nextButtonText"
+        x:Uid="nextButtonText">_Next &gt;</s:String>
+    <s:String
+        x:Key="cancelButtonText"
+        x:Uid="cancelButtonText">Cancel</s:String>
+    <s:String
+        x:Key="PrerequisitesCheckFailed"
+        x:Uid="PrerequisitesCheckFailed">Failed</s:String>
+    <s:String
+        x:Key="PrerequisitesCheckPassed"
+        x:Uid="PrerequisitesCheckPassed">Passed</s:String>
+    <s:String
+        x:Key="PrerequisitesCheckWarning"
+        x:Uid="PrerequisitesCheckWarning">Warning</s:String>
+    <s:String
+        x:Key="productRegistrationPageTitle"
+        x:Uid="productRegistrationPageTitle">Enter product registration information</s:String>
+    <s:String
+        x:Key="productTitle"
+        x:Uid="productTitle">Microsoft CMP Services</s:String>
+    <s:String
+        x:Key="wizardTitle"
+        x:Uid="wizardTitle">Microsoft CMP Services</s:String>
+    <s:String
+        x:Key="reportingImagesFolder"
+        x:Uid="reportingImagesFolder">ReportingImages</s:String>
+    <s:String
+        x:Key="resultLabelError"
+        x:Uid="resultLabelError">Microsoft CMP Services install failed</s:String>
+    <s:String
+        x:Key="resultLabelSuccess"
+        x:Uid="resultLabelSuccess">Microsoft CMP Services installed successfully</s:String>
+    <s:String
+        x:Key="resultLabelWarning"
+        x:Uid="resultLabelWarning">Microsoft CMP Services installed with warnings</s:String>
+    <s:String
+        x:Key="AnotherSetupRunningOnThisMachineMessage"
+        x:Uid="AnotherSetupRunningOnThisMachineMessage">There is already another Microsoft CMP services setup running on this computer. Please wait until that program is finished.</s:String>
+    <s:String
+        x:Key="windowsUpdateContentFolderDefault"
+        x:Uid="windowsUpdateContentFolderDefault">WindowsUpdateContent</s:String>
+    <s:String
+        x:Key="virtualMachineManagerLibrarySharePathDefault"
+        x:Uid="virtualMachineManagerLibrarySharePathDefault">SCE\Virtual Machine Library</s:String>
+    <s:String
+        x:Key="sizeInGBFormatString"
+        x:Uid="sizeInGBFormatString">Free disk space: {0} GB</s:String>
+    <s:String
+        x:Key="credentialsInvalid"
+        x:Uid="credentialsInvalid">Invalid credentials.</s:String>
+    <!-- Resources for additional prerequisites page -->
+    <s:String
+        x:Key="InvalidSqlVersion"
+        x:Uid="InvalidSqlVersion">SQL version is {0}. A version of {1} or greater is required.</s:String>
+    <s:String
+        x:Key="InvalidSqlServiceState"
+        x:Uid="InvalidSqlServiceState">The SQL service {0} on {1} isn't running. Please make sure it is running.</s:String>
+    <s:String
+        x:Key="CannotCreateDatabaseOnSqlInstance"
+        x:Uid="CannotCreateDatabaseOnSqlInstance">Setup is unable to create the database on SQL instance {0}. Please make sure that the current user has permissions to create database on the SQL instance specified.</s:String>
+    <s:String
+        x:Key="DatabaseAlreadyExists"
+        x:Uid="DatabaseAlreadyExists">The database {0} already exists on this instance.</s:String>
+    <s:String
+        x:Key="UnsupportedOSForSQL"
+        x:Uid="UnsupportedOSForSQL">SQL is installed on an OS that is not supported by VMM.</s:String>
+    <s:String
+        x:Key="CouldNotReadData"
+        x:Uid="CouldNotReadData">Unable to read all data for this instance.</s:String>
+    <s:String
+        x:Key="InvalidSQLInstance"
+        x:Uid="InvalidSQLInstance">This instance of SQL is not valid to use for the VMM database.</s:String>
+    <s:String
+        x:Key="ValidSQLInstance"
+        x:Uid="ValidSQLInstance">This instance can be used for the VMM database.</s:String>
+    <s:String
+        x:Key="OutOfSpaceOnSqlDrive"
+        x:Uid="OutOfSpaceOnSqlDrive">Out of disk space on the default SQL drive.</s:String>
+    <s:String
+        x:Key="ExistingSqlFilesMessage"
+        x:Uid="ExistingSqlFilesMessage">Database files with the same name already exist. Please remove the conflicting files listed below or select another location.{1}{0}</s:String>
+    <s:String
+        x:Key="ExistingFilesErrorText"
+        x:Uid="ExistingFilesErrorText">The SQL data folder ({0}) contains database files that will conflict with VMM Reporting. Please remove any .mdf or .ldf files with the name ({1}) from the SQL data folder before continuing.</s:String>
+    <s:String
+        x:Key="ExistingDatabaseErrorText"
+        x:Uid="ExistingDatabaseErrorText">The SQL instance ({0}) already contains a database with the name ({1}). Please remove this database and the rerun setup.</s:String>
+    <s:String
+        x:Key="UnableToReadDataErrorText"
+        x:Uid="UnableToReadDataErrorText">VMM is unable to read all the necessary data for the SQL Server hosting your existing VMM databases. Please verify the SQL Server and try again.</s:String>
+    <s:String
+        x:Key="OutOfDiskSpaceError"
+        x:Uid="OutOfDiskSpaceError">There is not adequate available disk space at this location. Please select a different drive.</s:String>
+    <s:String
+        x:Key="ValidSQLReportingInstance"
+        x:Uid="ValidSQLReportingInstance">This instance can be used for VMM Reporting.</s:String>
+    <s:String
+        x:Key="InvalidSQLReportingInstance"
+        x:Uid="InvalidSQLReportingInstance">This instance cannot be used for VMM Reporting.</s:String>
+    <s:String
+        x:Key="CanNotReadVersion"
+        x:Uid="CanNotReadVersion">The version of this instance cannot be read.</s:String>
+    <s:String
+        x:Key="InvalidSqlType"
+        x:Uid="InvalidSqlType">Cannot find the version for {0}.</s:String>
+    <s:String
+        x:Key="InvalidSqlCombination"
+        x:Uid="InvalidSqlCombination">Reporting instance not compatible with existing database choice.</s:String>
+    <s:String
+        x:Key="InvalidSQLReportingInstanceBindings"
+        x:Uid="InvalidSQLReportingInstanceBindings">This instance has no bindings. It cannot be used for VMM Reporting.</s:String>
+    <s:String
+        x:Key="InvalidSQLReportingInstanceLoginName"
+        x:Uid="InvalidSQLReportingInstanceLoginName">Reporting Setup requires credentials with SQL Server administrator privileges.</s:String>
+    <s:String
+        x:Key="NoInstancesFound"
+        x:Uid="NoInstancesFound">No instances found.</s:String>
+    <s:String
+        x:Key="NoSQLInstancesFoundDescription"
+        x:Uid="NoInstancesFoundDescription">No SQL instances found on {0}.</s:String>
+    <s:String
+        x:Key="NoReportingInstancesFoundDescription"
+        x:Uid="s:String_1">No SQL Reporting instances found on this computer.</s:String>
+    <s:String
+        x:Key="PreviousVersionCannotBeUsed"
+        x:Uid="PreviousVersionCannotBeUsed">This instance is a previous version and cannot be used with VMM.</s:String>
+    <s:String
+        x:Key="SamePortNumberCannotBeUsed"
+        x:Uid="SamePortNumberCannotBeUsed">Duplicate port numbers were entered. You must enter a unique port number for each feature.</s:String>
+    <s:String
+        x:Key="CommandlineUsage"
+        x:Uid="CommandlineUsage">Usage: 
+
+SetupCMP.exe [Action] [/f ini file]
+
+Parameters =&gt;
+
+        Action : 
+
+        /i Runs Setup in unattended installation mode
+
+        /x Runs Setup in unattended uninstallation mode
+
+        /f
+                [ini file]Specifies the .ini file from which you want Setup to read input values</s:String>
+    <s:String
+        x:Key="BlankDisk1Name"
+        x:Uid="BlankDisk1Name">Blank Disk - Small</s:String>
+    <s:String
+        x:Key="BlankDisk1Description"
+        x:Uid="BlankDisk1Description">To be used as a base drive to create a new virtual machine or as an additional data drive.</s:String>
+    <s:String
+        x:Key="BlankDisk2Name"
+        x:Uid="BlankDisk2Name">Blank Disk - Large</s:String>
+    <s:String
+        x:Key="BlankDisk2Description"
+        x:Uid="BlankDisk2Description">To be used as a base drive to create a new virtual machine or as an additional data drive.</s:String>
+    <!--String for the Ready to install page control -->
+    <s:String
+        x:Key="Change"
+        x:Uid="Change">Change</s:String>
+    <s:String
+        x:Key="ManagementServer"
+        x:Uid="ManagementServer">Server</s:String>
+    <s:String
+        x:Key="ManagementConsole"
+        x:Uid="ManagementConsole">Management Console</s:String>
+    <s:String
+        x:Key="WebPortal"
+        x:Uid="WebPortal">Self-Service Portal</s:String>
+    <s:String
+        x:Key="VirtualizationManagement"
+        x:Uid="VirtualizationManagement">Virtualization Management</s:String>
+    <s:String
+        x:Key="ProgramFilesLocation"
+        x:Uid="ProgramFilesLocation">Program files location:</s:String>
+    <s:String
+        x:Key="UpdateFilesLocation"
+        x:Uid="UpdateFilesLocation">Update files location:</s:String>
+    <s:String
+        x:Key="SqlServerDatabaseInstance"
+        x:Uid="SqlServerDatabaseInstance">SQL Server database instance:</s:String>
+    <s:String
+        x:Key="AdministratorsAccount"
+        x:Uid="AdministratorsAccount">Administrator's account:</s:String>
+    <s:String
+        x:Key="SqlServerReportingServicesInstance"
+        x:Uid="SqlServerReportingServicesInstance">SQL Server Reporting Services instance:</s:String>
+    <s:String
+        x:Key="VmFilesLocation"
+        x:Uid="VmFilesLocation">VM files location:</s:String>
+    <s:String
+        x:Key="DownloadUpdatesIndividually"
+        x:Uid="DownloadUpdatesIndividually">Download updates individually from Microsoft Update</s:String>
+    <!--Strings for the Unsupported Block screen-->
+    <s:String
+        x:Key="RemoveData"
+        x:Uid="RemoveData">Data will be removed</s:String>
+    <s:String
+        x:Key="RetainData"
+        x:Uid="RetainData">Data will be retained</s:String>
+    <s:String
+        x:Key="DataDisposition"
+        x:Uid="DataDisposition">Data Disposition:</s:String>
+    <s:String
+        x:Key="InstallationProgressText"
+        x:Uid="InstallationProgressText">Installing features</s:String>
+    <s:String
+        x:Key="UninstallationProgressText"
+        x:Uid="UninstallationProgressText">Uninstalling features</s:String>
+    <s:String
+        x:Key="RollbackProgressText"
+        x:Uid="RollbackProgressText">Rolling back features</s:String>
+    <!--Start of Page Title Section-->
+    <s:String
+        x:Key="GettingStartedStepTitle"
+        x:Uid="GettingStartedStepTitle">Getting started</s:String>
+    <s:String
+        x:Key="PrerequisitesStepTitle"
+        x:Uid="PrerequisitesStepTitle">Prerequisites</s:String>
+    <s:String
+        x:Key="ConfigurationStepTitle"
+        x:Uid="ConfigurationStepTitle">Configuration</s:String>
+    <s:String
+        x:Key="InstallingStepTitle"
+        x:Uid="InstallingStepTitle">Processing</s:String>
+    <s:String
+        x:Key="CompleteStepTitle"
+        x:Uid="CompleteStepTitle">Complete</s:String>
+    <!--End of Page Title Section-->
+    <s:String
+        x:Key="FinishErrorFormat"
+        x:Uid="FinishErrorFormat"><![CDATA[<TextBlock xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'><Run Text="{0} failed:&#xA;&#xA;Please view the "/><Hyperlink Foreground="#FF0066CC" NavigateUri="{1}"><Run Text="setup log"/></Hyperlink><Run Text=" for more information, correct the problem, and reattempt."/></TextBlock>]]></s:String>
+    <s:String
+        x:Key="FinishWarningFormat"
+        x:Uid="FinishWarningFormat"><![CDATA[<TextBlock xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'><Run Text="{0} warning:&#xA;&#xA;{1}&#xA;Please view the "/><Hyperlink Foreground="#FF0066CC" NavigateUri="{2}"><Run Text="setup log"/></Hyperlink><Run Text=" for more information, and correct the problem before running."/></TextBlock>]]></s:String>
+    <s:String
+        x:Key="CanNotStartServiceMessage"
+        x:Uid="CanNotStartServiceMessage">Unable to start the {0} service.</s:String>
+    <s:String
+        x:Key="CanNotLoadManagementPacks"
+        x:Uid="CanNotLoadManagementPacks">Unable to load all management packs.</s:String>
+    <s:String
+        x:Key="PromptForSetupFiles"
+        x:Uid="PromptForSetupFiles">Unable to find install files. Please browse to the location of SetupCMP.exe and then try again</s:String>
+    <!-- String resources for SQL EXPRESS install -->
+    <s:String
+        x:Key="SqlExpressInstallFolder"
+        x:Uid="SqlExpressInstallFolder">SQLEXPRESS</s:String>
+    <s:String
+        x:Key="SqlExpressInstanceName"
+        x:Uid="SqlExpressInstanceName">DCM</s:String>
+    <s:String
+        x:Key="ThreeLetterLanguageCode"
+        x:Uid="ThreeLetterLanguageCode">ENU</s:String>
+    <s:String
+        x:Key="SqlExpressWarningType1"
+        x:Uid="SqlExpressWarningType1"
+        xml:space="preserve">Your current selection requires SQL Server to be installed locally.
+        
+Do you want to continue? To change your SQL Server selection, click No.</s:String>
+    <s:String
+        x:Key="SqlExpressWarningType2"
+        x:Uid="SqlExpressWarningType2"
+        xml:space="preserve">Your current selection does not allow the Reporting feature to be installed.
+                
+Do you want to continue? To change your SQL Server selection, click No.</s:String>
+    <s:String
+        x:Key="SqlExpressWarningType3"
+        x:Uid="SqlExpressWarningType3"
+        xml:space="preserve">Your current selection does not allow the Reporting feature to be installed.</s:String>
+    <s:String
+        x:Key="SqlExpressWarningType4"
+        x:Uid="SqlExpressWarningType4"
+        xml:space="preserve">Your current selection does not allow the Reporting feature to be installed.
+
+Do you want to continue with VMM only? To change your SQL Server selection, click No.</s:String>
+    <s:String
+        x:Key="SqlExpressWarningType5"
+        x:Uid="SqlExpressWarningType5"
+        xml:space="preserve">SQL named instance DCM is found on the system and does not allow the Reporting feature to be installed.</s:String>
+    <!-- IMPORTANT NOTE:  The two names below MUST match the prereq input xml EXACTLY
+                          We use code to find the radio button group based on a comparison
+                          of the names below with their counterparts in the prereq xml
+                          The guids for the checks in questions are
+                          <Id>68822C54-D5CE-4003-888E-FCDEE70DE552</Id>
+                          and
+                          <Id>68822C54-D5CE-4003-888E-FCDEE70DE551</Id>
+    -->
+    <s:String
+        x:Key="SqlServerCheck"
+        x:Uid="SqlServerCheck">SQL Server Database Services</s:String>
+    <s:String
+        x:Key="SqlReportingCheck"
+        x:Uid="SqlReportingCheck">SQL Server Reporting Services Check</s:String>
+    <!-- End IMPORTANT NOTE -->
+    <s:String
+        x:Key="Msi45Title"
+        x:Uid="Msi45Title">Windows Installer 4.5</s:String>
+    <s:String
+        x:Key="Msi45Name"
+        x:Uid="Msi45Name">Msi 4.5</s:String>
+    <s:String
+        x:Key="PowerShell10Title"
+        x:Uid="PowerShell10Title">PowerShell 1.0</s:String>
+    <s:String
+        x:Key="PowerShell10Name"
+        x:Uid="PowerShell10Name">PowerShell 1.0</s:String>
+    <!-- String resources for SQL EXPRESS install -->
+    <!-- String resources for IIS install -->
+    <s:String
+        x:Key="CantInstallIis"
+        x:Uid="CantInstallIis"
+        xml:space="preserve">Setup cannot automatically install IIS on Windows Server 2003. 
+        
+Please exit Setup and install IIS manually.</s:String>
+    <!-- String resources for IIS install -->
+    <!-- String resources for ComponentsPage -->
+    <s:String
+        x:Key="SelectToRemove"
+        x:Uid="SelectToRemove">Select features to remove</s:String>
+    <s:String
+        x:Key="SelectToAdd"
+        x:Uid="SelectToAdd">Select features to add</s:String>
+    <s:String
+        x:Key="UpgradeInfo"
+        x:Uid="UpgradeInfo">Features to be upgraded</s:String>
+    <s:String
+        x:Key="AgentBlockServer"
+        x:Uid="AgentBlockServer">You cannot install the VMM management server feature because a VMM agent is installed on this computer.</s:String>
+    <s:String
+        x:Key="OSBlockServer"
+        x:Uid="OSBlockServer">You cannot install the VMM management server feature because this computer is not running a supported operating system.</s:String>
+    <!-- String resources for ComponentsPage -->
+    <!-- String resources for ClusterConfigPage -->
+    <s:String
+        x:Key="StaticIPConfig"
+        x:Uid="StaticIPConfig">One or more IPv4 addresses could not be configured automatically. For each network to be used, make sure the network is selected, and then type an address.</s:String>
+    <s:String
+        x:Key="AutoIPConfig"
+        x:Uid="AutoIPConfig">One or more IPv6 addresses were configured automatically. One or more DHCP IPv4 addresses were configured automatically. All networks were configured automatically.</s:String>
+    <!-- String resources for ClusterConfigPage -->
+    <!-- String resources for InstallationLocationPage -->
+    <s:String
+        x:Key="FreeSpace"
+        x:Uid="FreeSpace">Free space {0}</s:String>
+    <!-- String resources for InstallationLocationPage -->
+    <!-- String resources for the Installable Prereq page -->
+    <s:String
+        x:Key="InstallPrereqCount"
+        x:Uid="InstallPrereqCount">Installing prerequisite {0} of {1}</s:String>
+    <s:String
+        x:Key="InstallPrereqDownloading"
+        x:Uid="InstallPrereqDownloading">Downloading and installing {0}</s:String>
+    <s:String
+        x:Key="InstallPrereqCancelling"
+        x:Uid="InstallPrereqCancelling">Cancelling...</s:String>
+    <s:String
+        x:Key="InstallPrereqSucceeded"
+        x:Uid="InstallPrereqSucceeded">Installation succeeded</s:String>
+    <s:String
+        x:Key="InstallPrereqFailed"
+        x:Uid="InstallPrereqFailed">Installation failed</s:String>
+    <s:String
+        x:Key="InstallPrereqCancelled"
+        x:Uid="InstallPrereqCancelled">Installation cancelled</s:String>
+    <s:String
+        x:Key="InstallPrereqCannotContinue"
+        x:Uid="InstallPrereqCannotContinue">Installation cannot continue.</s:String>
+    <s:String
+        x:Key="InstallPrereqTroubleshoot"
+        x:Uid="InstallPrereqTroubleshoot">Please see this application's log file for troubleshooting information, correct the issue, and reattempt setup</s:String>
+    <s:String
+        x:Key="InstallPrereqAllInstalled"
+        x:Uid="InstallPrereqAllInstalled">All prerequisites are installed</s:String>
+    <s:String
+        x:Key="InstallPrereqClickNext"
+        x:Uid="InstallPrereqClickNext">Click 'Next' to continue setup</s:String>
+    <s:String
+        x:Key="InstallPrereqInstalling"
+        x:Uid="InstallPrereqInstalling">Setup is installing missing prerequisites</s:String>
+    <s:String
+        x:Key="InstallPrereqInstallingDetails"
+        x:Uid="InstallPrereqInstallingDetails">Setup is now installing the following software prerequisites not present on this computer.</s:String>
+    <s:String
+        x:Key="InstallPrereqAbortText"
+        x:Uid="InstallPrereqAbortText">An installation is currently in progress and cannot be interrupted. Are you sure you want to exit setup?</s:String>
+    <!-- String resources for the Installable Prereq page -->
+    <!-- String resources for the WSUS Prerequisite Checks -->
+    <s:String
+        x:Key="CheckWasPassed"
+        x:Uid="CheckWasPassed">The system check was passed.</s:String>
+    <s:String
+        x:Key="CheckWasNotPassed"
+        x:Uid="CheckWasNotPassed">The system check was not passed.</s:String>
+    <!-- String resources for the WSUS Prerequisite Checks -->
+    <!-- String resources for the Eula Page -->
+    <s:String
+        x:Key="PlsReadLicense"
+        x:Uid="PlsReadLicense">Please read this license agreement</s:String>
+    <s:String
+        x:Key="PlsReadNotice"
+        x:Uid="PlsReadNotice">Please read this notice</s:String>
+    <s:String
+        x:Key="AgreeWithLicense"
+        x:Uid="AgreeWithLicense">I _have read, understood, and agree with the terms of the license agreement</s:String>
+    <s:String
+        x:Key="AgreeWithNotice"
+        x:Uid="AgreeWithNotice">I _agree with the terms of this notice</s:String>
+    <!-- String resources for the Eulas Page -->
+    <!-- String resources for the Components Page -->
+    <s:String
+        x:Key="AlreadyInstalled"
+        x:Uid="AlreadyInstalled">{0} (Already installed)</s:String>
+    <!-- String resources for the Components Page -->
+    <!-- String resources for AccountConfigurationPage -->
+    <s:String
+        x:Key="TopContainerNameAlreadyInDatabase"
+        x:Uid="TopContainerNameAlreadyInDatabase">The directory group is already in database.</s:String>
+    <!-- String resources for AccountConfigurationPage -->
+    <!-- String resources for the Virtualization Management Files Location -->
+    <s:String
+        x:Key="VirtualizationFreeSpaceErrorMessage"
+        x:Uid="VirtualizationFreeSpaceErrorMessage">An error occurred while checking the free disk space on the selected drive.</s:String>
+    <s:String
+        x:Key="VirtualizationRootVolumeErrorMessage"
+        x:Uid="VirtualizationRootVolumeErrorMessage">The selected location is a root volume. Select a different location.</s:String>
+    <!-- String resources for the Virtualization Management Files Location -->
+    <!-- String resources for the Upgrade Information Page -->
+    <s:String
+        x:Key="WindowsServer2008R2Detected"
+        x:Uid="WindowsServer2008R2Detected">Hosts that are running Microsoft Windows Server 2008 R2 have been found in the VMM database. These hosts are not supported in System Center Technical Preview 2. If you continue with the upgrade, these hosts will be removed from the VMM database.</s:String>
+    <!-- String resources for the Upgrade Information Page -->
+    <!-- String resources for the ReadyToInstall Page -->
+    <s:String
+        x:Key="InstallationLocation"
+        x:Uid="InstallationLocation">Installation Location</s:String>
+    <s:String
+        x:Key="DatabaseInformation"
+        x:Uid="DatabaseInformation">Database Information</s:String>
+    <s:String
+        x:Key="DatabaseInformationValue"
+        x:Uid="DatabaseInformationValue">{0} database will be created on {1}</s:String>
+    <s:String
+        x:Key="DatabaseUpgradeInformationValue"
+        x:Uid="DatabaseUpgradeInformationValue">{0} database will be upgraded on {1}</s:String>
+    <s:String
+        x:Key="DatabaseUpdateInformationValue"
+        x:Uid="DatabaseUpdateInformationValue">{0} database will be updated on {1}</s:String>
+    <s:String
+        x:Key="ServiceAccountInformation"
+        x:Uid="ServiceAccountInformation">Service Account</s:String>
+    <s:String
+        x:Key="LocalSystemAccount"
+        x:Uid="LocalSystemAccount">Local System account</s:String>
+    <s:String
+        x:Key="CommunicationPorts"
+        x:Uid="CommunicationPorts">Communication Ports</s:String>
+    <s:String
+        x:Key="WcfPortDescription"
+        x:Uid="WcfPortDescription">{0} - Communication with the VMM console</s:String>
+    <s:String
+        x:Key="WsmanPortDescription"
+        x:Uid="WsmanPortDescription">{0} - Communication to agents on hosts and library servers</s:String>
+    <s:String
+        x:Key="HttpPortDescription"
+        x:Uid="HttpPortDescription">{0} - Port to Self-Service Portal</s:String>
+    <s:String
+        x:Key="BitsPortDescription"
+        x:Uid="BitsPortDescription">{0} - File transfers to agents on hosts and library servers</s:String>
+    <s:String
+        x:Key="IndigoNETTCPPortDescription"
+        x:Uid="IndigoNETTCPPortDescription">{0} - Communication with Windows Deployment Services</s:String>
+    <s:String
+        x:Key="IndigoHTTPsPortDescription"
+        x:Uid="IndigoHTTPsPortDescription">{0} - Communication with Windows Preinstallation Environment (Windows PE) agents</s:String>
+    <s:String
+        x:Key="IndigoHTTPPortDescription"
+        x:Uid="IndigoHTTPPortDescription">{0} - Communication with Windows PE agent for time synchronization</s:String>
+    <s:String
+        x:Key="LibraryShareInformation"
+        x:Uid="LibraryShareInformation">Library Share Name and Location</s:String>
+    <s:String
+        x:Key="OptInMUDescription"
+        x:Uid="OptInMUDescription">Using Microsoft Update</s:String>
+    <s:String
+        x:Key="OptInMUYes"
+        x:Uid="OptInMUYes">Yes</s:String>
+    <s:String
+        x:Key="OptInMUNo"
+        x:Uid="OptInMUNo">No</s:String>
+    <s:String
+        x:Key="RemovedFeatures"
+        x:Uid="RemovedFeatures">Features selected to be removed</s:String>
+    <s:String
+        x:Key="AddedFeatures"
+        x:Uid="AddedFeatures">Features selected to be added</s:String>
+    <s:String
+        x:Key="DatabaseOptions"
+        x:Uid="DatabaseOptions">Database options</s:String>
+    <!-- String resources for the ReadyToInstall Page -->
+</ResourceDictionary>

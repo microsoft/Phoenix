@@ -1,0 +1,272 @@
+<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<ns0:BasePageForWpfControls
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:ns0="clr-namespace:CMP.Setup"
+    x:Class="CMP.Setup.RemoveWAPDatabasePage"
+    x:Uid="ns0:BasePageForWpfControls_1"
+    FontSize="9pt"
+    Height="415"
+    Width="735">
+    <ns0:BasePageForWpfControls.Resources>
+        <ResourceDictionary
+            x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    x:Uid="ResourceDictionary_2"
+                    Source="/SetupCMP;component/WPFResourceDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ns0:BasePageForWpfControls.Resources>
+    <Grid
+        x:Name="removeDatabaseGrid1"
+        x:Uid="Grid_1"
+        Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                x:Uid="RowDefinition_1"
+                Height="Auto" />
+            <!-- 0 - Page header -->
+            <RowDefinition
+                x:Uid="RowDefinition_2"
+                Height="Auto" />
+            <!-- 1 - Description -->
+            <RowDefinition
+                x:Uid="RowDefinition_3"
+                Height="11" />
+            <!-- 2 - Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_4"
+                Height="Auto" />
+            <!-- 3 - Stack panel for retain database -->
+            <RowDefinition
+                x:Uid="RowDefinition_5"
+                Height="11" />
+            <!-- 4- Space -->
+            <RowDefinition
+                x:Uid="RowDefinition_6"
+                Height="Auto" />
+            <!-- 5 - Stack panel for remove database -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_1"
+                Width="27" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_2"
+                Width="*" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_3"
+                Width="32" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            x:Uid="removeDatabaseHeader"
+            Style="{StaticResource StylePageHeader}">
+            WAP Database options
+        </TextBlock>
+        <TextBlock
+            x:Name="textBlockRemoveDatabaseDescription"
+            x:Uid="textBlockRemoveDatabaseDescription"
+            Grid.Column="1"
+            Grid.Row="1"
+            Style="{StaticResource StylePageHeaderDescription}">
+            Please select if you want to remove or retain the WAP extension database when you uninstall.
+        </TextBlock>
+        <StackPanel
+            x:Uid="StackPanel_1"
+            Grid.Column="1"
+            Grid.Row="3">
+            <Grid
+                x:Uid="Grid_2">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        x:Uid="RowDefinition_7"
+                        Height="Auto" />
+                    <!-- 0 - Radio button for retain database option -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_8"
+                        Height="7" />
+                    <!-- 1 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_9"
+                        Height="Auto" />
+                    <!-- 2 - Description for retain database option -->
+                </Grid.RowDefinitions>
+                <RadioButton
+                    x:Name="radioRetainDatabase"
+                    x:Uid="radioRetainDatabase"
+                    Content="Re_tain database"
+                    GroupName="radioButtonRemoveDatabaseChoice" />
+                <TextBlock
+                    x:Uid="TextBlock_1"
+                    Grid.Row="2"
+                    Style="{StaticResource StyleBasicTextBlock}">
+                    Choose this option if you plan to reinstall CMP and want to resume managing 
+                    resources in the same environment.
+                </TextBlock>
+            </Grid>
+        </StackPanel>
+        <StackPanel
+            x:Uid="StackPanel_2"
+            Grid.Column="1"
+            Grid.Row="5">
+            <Grid
+                x:Uid="Grid_3">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        x:Uid="RowDefinition_10"
+                        Height="Auto" />
+                    <!-- 0 - Radio button for remove database option -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_11"
+                        Height="7" />
+                    <!-- 1 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_12"
+                        Height="Auto" />
+                    <!-- 2 - Description for remove database option -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_13"
+                        Height="7" />
+                    <!-- 3 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_14"
+                        Height="Auto" />
+                    <!-- 4 - Description for using another credential for database removal -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_15"
+                        Height="7" />
+                    <!-- 5 - Space -->
+                    <RowDefinition
+                        x:Uid="RowDefinition_16"
+                        Height="Auto" />
+                    <!-- 6 - Credential -->
+                </Grid.RowDefinitions>
+                <RadioButton
+                    x:Name="radioRemoveDatabase"
+                    x:Uid="radioRemoveDatabase"
+                    Content="Re_move database"
+                    GroupName="radioButtonRemoveDatabaseChoice" />
+                <TextBlock
+                    x:Uid="TextBlock_2"
+                    Grid.Row="2"
+                    Style="{StaticResource StyleBasicTextBlock}">
+                    Choose this option to delete the WAP extension database and all associated
+                    configuration and status information.
+                </TextBlock>
+                <TextBlock
+                    x:Uid="TextBlock_3"
+                    Grid.Row="4"
+                    Style="{StaticResource StyleBasicTextBlock}">
+                    If access to the database requires credentials different than the current user's, enter the required credentials below. 
+                </TextBlock>
+                <StackPanel
+                    x:Uid="StackPanel_3"
+                    Grid.Column="1"
+                    Grid.Row="6">
+                    <Grid
+                        x:Uid="Grid_4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                x:Uid="RowDefinition_17"
+                                Height="Auto" />
+                            <!-- 0 - Choose credential -->
+                            <RowDefinition
+                                x:Uid="RowDefinition_18"
+                                Height="7" />
+                            <!-- 1 - Space -->
+                            <RowDefinition
+                                x:Uid="RowDefinition_19"
+                                Height="Auto" />
+                            <!-- 2 - User Name -->
+                            <RowDefinition
+                                x:Uid="RowDefinition_20"
+                                Height="7" />
+                            <!-- 3 - Space -->
+                            <RowDefinition
+                                x:Uid="RowDefinition_21"
+                                Height="Auto" />
+                            <!-- 4 - Format -->
+                            <RowDefinition
+                                x:Uid="RowDefinition_22"
+                                Height="7" />
+                            <!-- 5 - Space -->
+                            <RowDefinition
+                                x:Uid="RowDefinition_23"
+                                Height="Auto" />
+                            <!-- 6 - Password -->
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                x:Uid="ColumnDefinition_5"
+                                Width="27" />
+                            <!-- 0 - Left margin -->
+                            <ColumnDefinition
+                                x:Uid="ColumnDefinition_6"
+                                Width="Auto" />
+                            <!-- 1 - Label -->
+                            <ColumnDefinition
+                                x:Uid="ColumnDefinition_7"
+                                Width="7" />
+                            <!-- 2 - Space -->
+                            <ColumnDefinition
+                                x:Uid="ColumnDefinition_4"
+                                Width="*" />
+                            <!-- 3 - Input textbox-->
+                        </Grid.ColumnDefinitions>
+                        <CheckBox
+                            x:Name="checkBoxNewUserId"
+                            x:Uid="checkBoxNewUserId"
+                            Checked="checkBoxcheckBoxNewUserId_CheckedChanged"
+                            Content="Use the _following credentials"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="3"
+                            Grid.Row="0"
+                            HorizontalAlignment="Stretch"
+                            Unchecked="checkBoxcheckBoxNewUserId_CheckedChanged" />
+                        <Label
+                            x:Name="labelUserName"
+                            x:Uid="labelUserName"
+                            Content="_User name and domain:"
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            Style="{StaticResource StyleBasicLabel}"
+                            Target="{Binding ElementName=textBoxUserName}" />
+                        <TextBox
+                            x:Name="textBoxUserName"
+                            x:Uid="textBoxUserName"
+                            Grid.Column="3"
+                            Grid.Row="2"
+                            HorizontalAlignment="Stretch"
+                            LostFocus="textBoxUserName_LostFocus"
+                            Style="{StaticResource StyleBasicOneLineInput}" />
+                        <Label
+                            x:Name="labelUserNameFormat"
+                            x:Uid="labelUserNameFormat"
+                            Content="Format: Domain\UserName"
+                            Grid.Column="3"
+                            Grid.Row="4"
+                            Style="{StaticResource StyleBasicLabel}" />
+                        <Label
+                            x:Name="labelPassword"
+                            x:Uid="labelPassword"
+                            Content="Pass_word:"
+                            Grid.Column="1"
+                            Grid.Row="6"
+                            Style="{StaticResource StyleBasicLabel}"
+                            Target="{Binding ElementName=passwordBoxPassword}" />
+                        <PasswordBox
+                            x:Name="passwordBoxPassword"
+                            x:Uid="passwordBoxPassword"
+                            Grid.Column="3"
+                            Grid.Row="6"
+                            MaxLength="256"
+                            PasswordChanged="passwordBox_PasswordChanged"
+                            Style="{StaticResource StylePasswordBox}"
+                            Width="200" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</ns0:BasePageForWpfControls>

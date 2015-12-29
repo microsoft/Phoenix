@@ -1,0 +1,317 @@
+<!--Copyright (c) Microsoft Corporation.  All rights reserved.-->
+<ns0:BasePageForWpfControls
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:ns0="clr-namespace:CMP.Setup"
+    x:Class="CMP.Setup.ComponentsPage"
+    x:Uid="ns0:BasePageForWpfControls_1"
+    mc:Ignorable="d"
+    Height="415"
+    Width="735">
+    <ns0:BasePageForWpfControls.Resources>
+        <ResourceDictionary
+            x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    x:Uid="ResourceDictionary_2"
+                    Source="/SetupCMP;component/WPFResourceDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ns0:BasePageForWpfControls.Resources>
+    <Grid
+        x:Uid="Grid_1"
+        Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                x:Uid="RowDefinition_1"
+                Height="Auto" />
+            <RowDefinition
+                x:Uid="RowDefinition_2"
+                Height="Auto" />
+            <RowDefinition
+                x:Uid="RowDefinition_3"
+                Height="Auto"
+                MinHeight="1" />
+            <RowDefinition
+                x:Uid="RowDefinition_4"
+                Height="4" />
+            <RowDefinition
+                x:Uid="RowDefinition_5"
+                Height="Auto"
+                MinHeight="23" />
+            <RowDefinition
+                x:Uid="RowDefinition_6"
+                Height="Auto" />
+            <RowDefinition
+                x:Uid="RowDefinition_7"
+                Height="Auto"
+                MinHeight="4" />
+            <RowDefinition
+                x:Uid="RowDefinition_8"
+                Height="4" />
+            <RowDefinition
+                x:Uid="RowDefinition_9"
+                Height="Auto"
+                MinHeight="23" />
+            <RowDefinition
+                x:Uid="RowDefinition_10"
+                Height="Auto" />
+            <RowDefinition
+                x:Uid="RowDefinition_11"
+                Height="Auto"
+                MinHeight="4" />
+            <RowDefinition
+                x:Uid="RowDefinition_12"
+                Height="Auto"
+                MinHeight="23" />
+            <RowDefinition
+                x:Uid="RowDefinition_13"
+                Height="Auto" />
+            <RowDefinition
+                x:Uid="RowDefinition_14"
+                Height="Auto"
+                MinHeight="4" />
+            <RowDefinition
+                x:Uid="RowDefinition_15"
+                Height="Auto"
+                MinHeight="23" />
+            <RowDefinition
+                x:Uid="RowDefinition_16"
+                Height="Auto" />
+            <RowDefinition
+                x:Uid="RowDefinition_17"
+                Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_1"
+                Width="27" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_2"
+                Width="*" />
+            <ColumnDefinition
+                x:Uid="ColumnDefinition_3"
+                Width="32" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            x:Name="componentsPageHeader"
+            x:Uid="componentsPageHeader"
+            Style="{StaticResource StylePageHeader}">
+        Select features to install
+        </TextBlock>
+        <Path
+            x:Uid="Path_1"
+            Grid.Column="1"
+            Grid.Row="2"
+            Style="{StaticResource StylePath}" />
+        <Grid
+            x:Uid="Grid_2"
+            Grid.Column="1"
+            Grid.Row="5">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    x:Uid="RowDefinition_14"
+                    Height="Auto" />
+                <RowDefinition
+                    x:Uid="RowDefinition_16Add"
+                    Height="Auto" />
+                <RowDefinition
+                    x:Uid="RowDefinition_15"
+                    Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_4"
+                    Width="Auto" />
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_5"
+                    Width="7" />
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_6"
+                    Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                x:Uid="TextBlock_1"
+                Grid.Column="2"
+                Grid.Row="0"
+                Margin="12,0,0,0"
+                Style="{StaticResource StyleBasicTextBlock}"
+                Text="Installs the CMP service, which processes tasks posted against the CMP database and communicates with public cloud providers." />
+            <TextBlock
+                x:Uid="TextBlock_3"
+                Grid.Column="2"
+                Grid.Row="1"
+                Margin="12,0,0,0"
+                Style="{StaticResource StyleBasicTextBlock}">
+                <Run
+                    x:Uid="Run_1"
+                    Text="This feature requires a SQL Server database." />
+            </TextBlock>
+            <TextBlock
+                x:Name="serverDisableInfo"
+                x:Uid="serverDisableInfo"
+                Grid.Column="2"
+                Grid.Row="2"
+                Style="{StaticResource StyleBasicTextBlock}"
+                Visibility="Collapsed" />
+        </Grid>
+        <CheckBox
+            x:Name="checkBoxServer"
+            x:Uid="ServerCheckBox"
+            Checked="CheckBoxServerChanged"
+            Content="CMP _Server"
+            Grid.Column="1"
+            Grid.Row="4"
+            Style="{StaticResource StyleFeatureCheckBox}"
+            Unchecked="CheckBoxServerChanged" />
+        <Path
+            x:Uid="Path_2"
+            Grid.Column="1"
+            Grid.Row="6"
+            Style="{StaticResource StylePath}" />
+        <Grid
+            x:Uid="Grid_3"
+            FlowDirection="LeftToRight"
+            Grid.Column="1"
+            Grid.Row="9">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    x:Uid="RowDefinition_16"
+                    Height="Auto" />
+                <RowDefinition
+                    x:Uid="RowDefinition_17"
+                    Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_7"
+                    Width="Auto" />
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_8"
+                    Width="7" />
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_9"
+                    Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                x:Uid="TextBlock_5"
+                Grid.Column="2"
+                Grid.Row="0"
+                Margin="12,0,0,0"
+                Style="{StaticResource StyleBasicTextBlock}"
+                Text="Installs components needed to control tenant-specific operations to extend the WAP portal">
+            </TextBlock>
+        </Grid>
+        <CheckBox
+            x:Name="checkboxTenantExtension"
+            x:Uid="checkboxTenantExtension"
+            Checked="checkboxTenantExtensionChanged"
+            Content="WAP _Tenant Extension"
+            Grid.Column="1"
+            Grid.Row="8"
+            Style="{StaticResource StyleFeatureCheckBox}"
+            Unchecked="checkboxTenantExtensionChanged"></CheckBox>
+        <Path
+            x:Uid="Path_3"
+            Grid.Column="1"
+            Grid.Row="10"
+            Style="{StaticResource StylePath}" />
+        <Grid
+            x:Uid="Grid_4"
+            FlowDirection="LeftToRight"
+            Grid.Column="1"
+            Grid.Row="12">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    x:Uid="RowDefinition_16"
+                    Height="Auto" />
+                <RowDefinition
+                    x:Uid="RowDefinition_17"
+                    Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_7"
+                    Width="Auto" />
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_8"
+                    Width="7" />
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_9"
+                    Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                x:Uid="TextBlock_6"
+                Grid.Column="2"
+                Grid.Row="0"
+                Margin="12,0,0,0"
+                Style="{StaticResource StyleBasicTextBlock}"
+                Text="Installs components needed to control administrator-specific operations to extend the WAP portal">
+            </TextBlock>
+        </Grid>
+        <CheckBox
+            x:Name="checkboxAdminExtension"
+            x:Uid="checkboxAdminExtension"
+            Checked="checkboxAdminExtensionChanged"
+            Content="WAP _Admin Extension"
+            Grid.Column="1"
+            Grid.Row="11"
+            Style="{StaticResource StyleFeatureCheckBox}"
+            Unchecked="checkboxAdminExtensionChanged"></CheckBox>
+        <Path
+            x:Uid="Path_4"
+            Grid.Column="1"
+            Grid.Row="13"
+            Style="{StaticResource StylePath}" />
+
+        <Grid
+            x:Uid="Grid_4"
+            FlowDirection="LeftToRight"
+            Grid.Column="1"
+            Grid.Row="15">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    x:Uid="RowDefinition_16"
+                    Height="Auto" />
+                <RowDefinition
+                    x:Uid="RowDefinition_17"
+                    Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_7"
+                    Width="Auto" />
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_8"
+                    Width="7" />
+                <ColumnDefinition
+                    x:Uid="ColumnDefinition_9"
+                    Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                x:Uid="TextBlock_6"
+                Grid.Column="2"
+                Grid.Row="0"
+                Margin="12,0,0,0"
+                Style="{StaticResource StyleBasicTextBlock}"
+                Text="Installs common components needed to extend the WAP portal">
+            </TextBlock>
+        </Grid>
+        <CheckBox
+            x:Name="checkboxExtensionCommon"
+            x:Uid="checkboxExtensionCommon"
+            Content="WAP Extension _Common Components"
+            Grid.Column="1"
+            Grid.Row="14"
+            Style="{StaticResource StyleFeatureCheckBox}"
+            IsEnabled="False"
+            Unchecked="checkboxAdminExtensionChanged"></CheckBox>
+        <Path
+            x:Uid="Path_4"
+            Grid.Column="1"
+            Grid.Row="16"
+            Style="{StaticResource StylePath}" />
+    </Grid>
+</ns0:BasePageForWpfControls>

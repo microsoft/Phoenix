@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="CmpBuildVerificationTest" storage="$(MSBuildThisFileDirectory)CmpBuildVerificationTest.orderedtest" id="70797338-a5a2-4712-abef-3caacc7b0c2a" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="d0c76900-64db-34d9-b7cc-d63dd72cc7eb" name="StartCmpServiceTest" storage="..\..\..\out\debug\cmpbuildverificationtest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="c1863b54-f5a0-3dd6-30d3-dd1776e518f6" name="CreateVMTest" storage="..\..\..\out\debug\cmpbuildverificationtest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="ad1ce548-d55b-f729-48fe-856cf43ef0ef" name="DeleteVMTest" storage="..\..\..\out\debug\cmpbuildverificationtest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="1c9e37b3-da9c-dcd6-9c85-bf776b08ba84" name="StopCmpServiceTest" storage="..\..\..\out\debug\cmpbuildverificationtest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>

@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="3b3f8d45-fc06-464f-871d-2c73c38f4cff" name="TopmostObjects" linkedPackageId="1060ccbf-89ae-4754-80d2-413e698a0077" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f41c3d9e-5b66-4559-9a32-fc26efcae2c2" name="CMP" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d247cdc6-004a-4b3d-ac95-ed90e826f7d7" />
+        <targetEnds>
+          <association Id="2f8a99f0-21ea-4f74-9051-4b412f81cb0f" isDerived="false" sourceEndRoleName="CMP" targetEndRoleName="Cloud" isLeaf="false" isAbstract="false">
+            <classMoniker Id="ecde8062-bf23-4da4-8f34-2a1d81409ea4" LastKnownName="Cloud" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e8a0f970-cc61-410c-b3e9-80557521f155" name="CMP" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="890a3f7d-dee5-4d1f-85cc-b6b781c72fa6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5c461866-8c11-4aab-ab39-64654b10a843" name="Cloud" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="4998b591-669d-40d9-9ba9-a18751301571" name="Lower" value="1">
+                      <elementDefinition Id="b694980b-b6e7-47cf-b9a1-3fb6d654abca" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="8986ef02-a0e7-4ea3-83b1-36bd99985fec" name="Upper" value="*">
+                      <elementDefinition Id="b3f6ffff-cb2b-4d74-9e2a-d334c7167842" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="54990477-9369-4f03-a23b-fcb056db149e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="93253d1b-2a09-42b2-9891-465a4889f633" />
+          </association>
+          <association Id="dab5ab68-5c2a-492d-b93a-5d8fda41f3e1" isDerived="false" sourceEndRoleName="Zephyr" targetEndRoleName="CMDB" isLeaf="false" isAbstract="false">
+            <classMoniker Id="a4561977-1687-4ce1-91bd-256941890f3f" LastKnownName="CMDB" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b56b3acb-95ab-467c-ba01-385ed1d04981" name="Zephyr" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="fadd2d22-8e4c-4ba2-b43a-d8ea7bcbc395" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fa2f5f80-83b3-4994-ab83-b3a22ea53240" name="CMDB" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="79219ade-233f-4844-bfd8-cb077717ecd2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9912649f-0993-4849-9dbc-0b462aaff227" />
+          </association>
+          <association Id="719db229-bf81-45bf-9cda-810be27e68c0" isDerived="false" sourceEndRoleName="CMP" targetEndRoleName="AFTS" isLeaf="false" isAbstract="false">
+            <classMoniker Id="38eb65d5-1c18-4178-9f7b-275c6b439f03" LastKnownName="AFTS" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="27c16c6c-d762-472a-a5a4-6a16121994f5" name="CMP" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="2630fd8a-7c85-4021-b983-8545376ef156" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1c8c55d2-8820-4af2-b973-ab4a0db9a5c3" name="AFTS" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="db5578be-974b-4880-8a6d-8e30c4723dcc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b3ce9a6c-bfb9-40a5-b063-6339cab32943" />
+          </association>
+          <association Id="613c718d-d278-437d-8e33-6b22315d4ab1" isDerived="false" sourceEndRoleName="CMP" targetEndRoleName="AMP" isLeaf="false" isAbstract="false">
+            <classMoniker Id="f1dc7856-3006-4a20-b4ab-200a108f4830" LastKnownName="AMP" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d7e98daa-377c-430e-925e-d832eca2e341" name="CMP" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="33cb3823-613d-47e2-9a56-be69a67c7769" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ec4ef0d4-5104-4b19-bba3-6c6e9c1ea35c" name="AMP" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="17f127c7-a87e-42b6-9884-58fac8e2077c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4f321aa3-4d71-4bbe-baa1-23fafb458933" />
+          </association>
+          <association Id="54ca65e6-f019-4927-b3ae-3b7f3496a001" isDerived="false" sourceEndRoleName="CMP" targetEndRoleName="Client" isLeaf="false" isAbstract="false">
+            <classMoniker Id="523a6fd8-782e-4c9a-940e-f34a5e535514" LastKnownName="CMP Client" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4705aa49-ee95-4e42-9e92-68f371ffc074" name="CMP" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="db4b4d41-b1fd-4f5a-a12a-5940391120c9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5743f1c4-4b88-491e-91a3-58445a5be002" name="Client" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="883632b3-1318-4c6a-997f-df1b486f8cab" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="3fb5d238-21af-4228-a00f-f3f3449bf359" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="523a6fd8-782e-4c9a-940e-f34a5e535514" name="CMP Client" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c61681e5-c692-4f6c-89c6-674c6605b8a8" />
+        <targetEnds>
+          <association Id="6abc1f1e-4bb4-441f-9016-f5e15525c4e3" isDerived="false" sourceEndRoleName="Client" targetEndRoleName="CMP" isLeaf="false" isAbstract="false">
+            <classMoniker Id="f41c3d9e-5b66-4559-9a32-fc26efcae2c2" LastKnownName="CMP" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d03810d4-6e24-4767-8d97-a69b896bc604" name="Client" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e569513e-0c9a-456f-88f3-f107b0400594" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6ee2d098-af46-4ed8-a3cf-41172f560230" name="CMP" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="83f0bf63-8b69-4c65-a0dc-dfffef5b2128" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6289c544-1ae9-4914-bbbe-5bb6895e699f" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1017c3fe-4bc6-4766-b29a-6b4747bd2a59" name="Azure" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a11c34cc-b771-4d92-9855-6ce51f2e9ab3" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ecde8062-bf23-4da4-8f34-2a1d81409ea4" name="Cloud" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="55702fe3-89b7-4a58-9d0b-ef47ab81a053" />
+        <targetEnds>
+          <association Id="06c49850-39e8-499a-9113-9f3c2c24deab" isDerived="false" sourceEndRoleName="Cloud" targetEndRoleName="Azure" isLeaf="false" isAbstract="false">
+            <classMoniker Id="1017c3fe-4bc6-4766-b29a-6b4747bd2a59" LastKnownName="Azure" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cf9c50da-8db1-431e-8151-f563a3ca2f93" name="Cloud" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="21fe289c-de50-4cfb-bde1-a9a3cb1643b9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ccd7c596-0a9a-4e0f-a322-22ff89f2b50c" name="Azure" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="0cfea9eb-8e1b-42ba-b11b-52c80e6894eb" name="Lower" value="*">
+                      <elementDefinition Id="0ed28fea-1c20-4f2b-9d5e-a6e54d15c314" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="af009139-0a15-4874-8758-8e514612f7a6" name="Upper" value="*">
+                      <elementDefinition Id="bfdbfe9b-cc6b-4131-ac3b-fa3b19cd0b70" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="288dd9d0-d51c-4060-b2ef-bacc382d6296" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="da453d67-377e-4765-9c19-8ca30b90ff60" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a4561977-1687-4ce1-91bd-256941890f3f" name="CMDB" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3d56c547-c406-49c3-a69e-91a6084fd267" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="38eb65d5-1c18-4178-9f7b-275c6b439f03" name="AFTS" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="eca6f5b1-5da9-4148-b0dc-ed2b260fa0ce" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f1dc7856-3006-4a20-b4ab-200a108f4830" name="AMP" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="fc036a94-0c39-4e8d-aeef-4bb6aa376c77" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="1060ccbf-89ae-4754-80d2-413e698a0077" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+    <profileInstances>
+      <packageHasProfileInstances Id="926992ba-5256-4326-9703-51aaded06437">
+        <profileInstance Id="b2cc5ef8-b357-4f31-a402-1b379c5c36f4" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="48fa055e-8603-43b7-baa4-8418fb393e6e">
+        <profileInstance Id="09db9244-81fc-4dff-9aa6-882d6d525e58" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

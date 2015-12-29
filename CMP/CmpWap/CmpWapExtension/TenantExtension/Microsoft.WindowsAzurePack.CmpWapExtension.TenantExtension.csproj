@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project=".\..\..\..\..\Environment.props" />
+  <PropertyGroup>
+    <ProjectGuid>{FD2B705E-7262-4BB6-871B-B9C7845C6C06}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension</RootNamespace>
+    <AssemblyName>Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Azure.Portal.Configuration">
+      <HintPath>..\References\Microsoft.Azure.Portal.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.Common.HttpClient">
+      <HintPath>..\References\Microsoft.WindowsAzure.Management.Common.HttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(PkgMicrosoft_AspNet_WebApi_Client)\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <!--<Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>-->
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(PkgMicrosoft_AspNet_Mvc)\lib\net40\System.Web.Mvc.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BearerMessageProcessingHandler.cs" />
+    <Compile Include="ClientFactory.cs" />
+    <Compile Include="Controllers\CmpWapExtensionTenantController.cs" />
+    <Compile Include="Models\CreateAppModel.cs" />
+    <Compile Include="Models\CreateEnvironmentTypeModel.cs" />
+    <Compile Include="Models\CreateOsModel.cs" />
+    <Compile Include="Models\CreateRegionModel.cs" />
+    <Compile Include="Models\CreateServerRoleModel.cs" />
+    <Compile Include="Models\CreateServiceCategoryModel.cs" />
+    <Compile Include="Models\CreateSizeModel.cs" />
+    <Compile Include="Models\CreateDomainModel.cs" />
+    <Compile Include="Models\IISRoleServicesModel.cs" />
+    <Compile Include="Models\NetworkNICModel.cs" />
+    <Compile Include="Models\ResourceGroupModel.cs" />
+    <Compile Include="Models\ServerRoleDriveMappingModel.cs" />
+    <Compile Include="Models\ServiceProviderAccountModel.cs" />
+    <Compile Include="Models\SQLAnalysisServiceModesModel.cs" />
+    <Compile Include="Models\SQLCollationModel.cs" />
+    <Compile Include="Models\SQLVersionModel.cs" />
+    <Compile Include="Models\VmDashboardModel.cs" />
+    <Compile Include="Models\VmOpModel.cs" />
+    <Compile Include="Models\CreateVmModel.cs" />
+    <Compile Include="Models\FileShareModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\CmpWapExtensionTenant.png" />
+    <Content Include="Content\Images\ajaxloader.gif" />
+    <Content Include="Content\CmpWapExtensionTenantExtension.js">
+      <DependentUpon>CmpWapExtensionTenantExtension.ts</DependentUpon>
+    </Content>
+    <Content Include="Content\extensions.data.js">
+      <DependentUpon>extensions.data.ts</DependentUpon>
+    </Content>
+    <Content Include="Content\Scripts\CmpWapExtensionTenant.Controller.js">
+      <DependentUpon>CmpWapExtensionTenant.Controller.ts</DependentUpon>
+    </Content>
+    <Content Include="Content\Scripts\CmpWapExtensionTenant.FileSharesTab.js">
+      <DependentUpon>CmpWapExtensionTenant.FileSharesTab.ts</DependentUpon>
+    </Content>
+    <Content Include="Content\Scripts\CmpWapExtensionTenant.SettingsTab.js">
+      <DependentUpon>CmpWapExtensionTenant.SettingsTab.ts</DependentUpon>
+    </Content>
+    <Content Include="Content\Scripts\CmpWapExtensionTenant.VMConfigureTab.js">
+      <DependentUpon>CmpWapExtensionTenant.VMConfigureTab.ts</DependentUpon>
+    </Content>
+    <Content Include="Content\Scripts\CmpWapExtensionTenant.VMDashboardTab.js">
+      <DependentUpon>CmpWapExtensionTenant.VMDashboardTab.ts</DependentUpon>
+    </Content>
+    <Content Include="Content\Scripts\ViewModel\HW.ViewModels.QuickCreate.js">
+      <DependentUpon>HW.ViewModels.QuickCreate.ts</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\CmpWapExtensionControls.css" />
+    <Content Include="Content\Styles\CmpWapExtensionTenant.css" />
+    <Content Include="Content\Templates\Dialogs\AttachDisk.html" />
+    <Content Include="Content\Templates\Dialogs\CreateVm4.html" />
+    <Content Include="Content\Templates\Dialogs\CreateVm3.html" />
+    <Content Include="Content\Templates\Dialogs\CreateVm2.html" />
+    <Content Include="Content\Templates\Dialogs\CreateVm1.html" />
+    <Content Include="Content\Templates\Dialogs\CreateFileShare.html" />
+    <Content Include="Content\Templates\Dialogs\CustomCreatePreview.html" />
+    <Content Include="Content\Templates\Dialogs\DeleteVMDialogBox.html" />
+    <Content Include="Content\Templates\Dialogs\DetachDisk.html" />
+    <Content Include="Content\Templates\Dialogs\ShutDownVMDialogBox.html" />
+    <Content Include="Content\Templates\Menu\FileShareQuickCreate.html" />
+    <Content Include="Content\Templates\Tabs\FileSharesTab.html" />
+    <Content Include="Content\Templates\Tabs\FileSharesTabEmpty.html" />
+    <Content Include="Content\Templates\Tabs\SettingsTab.html" />
+    <Content Include="Content\Templates\Tabs\VMConfigureTab.html" />
+    <Content Include="Content\Templates\Tabs\VMDashboardTab.html" />
+    <Content Include="Manifests\CmpWapExtensionTenantUiManifest.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApiClient\Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.csproj">
+      <Project>{cc16eeda-663b-4e41-8047-0aaed4a03680}</Project>
+      <Name>Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\ScriptJobsController.csproj">
+      <Project>{8ee756c0-a570-4749-a25d-97d5320ca0a8}</Project>
+      <Name>ScriptJobsController</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\CmpWapExtensionTenantExtension.ts" />
+    <TypeScriptCompile Include="Content\extensions.data.ts" />
+    <TypeScriptCompile Include="Content\Scripts\ViewModel\HW.ViewModels.QuickCreate.ts" />
+    <TypeScriptCompile Include="Content\Scripts\CmpWapExtensionTenant.VMConfigureTab.ts" />
+    <TypeScriptCompile Include="Content\Scripts\CmpWapExtensionTenant.VMDashboardTab.ts" />
+    <TypeScriptCompile Include="Content\Scripts\CmpWapExtensionTenant.Controller.ts" />
+    <TypeScriptCompile Include="Content\Scripts\CmpWapExtensionTenant.FileSharesTab.ts" />
+    <TypeScriptCompile Include="Content\Scripts\CmpWapExtensionTenant.SettingsTab.ts" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(PkgMicrosoft_Bcl_Build)\build\Microsoft.Bcl.Build.targets" Condition="Exists('$(PkgMicrosoft_Bcl_Build)\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

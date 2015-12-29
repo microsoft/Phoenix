@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm13="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="ae8eaae1-cd47-4ff2-b51d-ce8dc69b3427" name="VmPostProvisionActivity" linkedPackageId="d6520c27-400d-4a8f-9250-2282fe95d793" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="96815f17-d374-4def-bc12-614a5f745791">
+      <elementDefinition Id="2780eace-51a7-4e8d-a1c5-6af306de17ba" />
+      <body>Initiated by dispatcher work order</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="89c74e91-809e-48be-afbe-de58e91948d3">
+      <profileInstance Id="0461bd96-59c9-49b7-ac1a-e60d8d064aa7" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="0b2b4d4f-5f44-4311-9e8a-19a2d343161b">
+      <profileInstance Id="2ca08662-5bb2-41e9-9c13-cca6e1da2b23" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="a99e462e-07f7-4672-a5f2-533f21d9bcdb" name="VmPostProvisionActivity" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="9636198d-9a7a-4a60-9b5f-2b76b82b4c44" />
+        <nodes>
+          <initialNode Id="f636d8bf-e2f1-4c93-b834-f7bfb01aab6d" name="Initial1" isLeaf="false">
+            <elementDefinition Id="dfdb717c-34ae-4499-8fe5-708ad0f6a826" />
+            <flowNodeTargets>
+              <controlFlow Id="92fd2d88-4418-4c8a-a55d-694886982e21" isLeaf="false">
+                <opaqueActionMoniker Id="d7bc2e46-a034-4f5e-a406-5fcf482326bf" LastKnownName="Validate Request" />
+                <elementDefinition Id="1693d48f-316c-4197-a7f0-a0083d85f5d9" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="d7bc2e46-a034-4f5e-a406-5fcf482326bf" name="Validate Request" isLeaf="false">
+            <elementDefinition Id="e66a6c21-1717-44be-9cd9-d6e2c261c89e" />
+            <flowNodeTargets>
+              <controlFlow Id="cc47295a-6a8a-4413-be5b-d95cd38b8a60" isLeaf="false">
+                <opaqueActionMoniker Id="1b8d53d0-3e74-4200-b0d5-7e3181271671" LastKnownName="Join Domain" />
+                <elementDefinition Id="122e08a7-147a-482a-bf48-09adf6ac7efd" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="f898c7f8-edea-466f-8659-90a2e4916f94" name="Reboot target + Wait for wake up" isLeaf="false">
+            <elementDefinition Id="d32f3810-dbd7-47d3-bf15-adf670c831dc" />
+            <flowNodeTargets>
+              <controlFlow Id="f4a7a042-bfa0-4764-968f-8333e890a97c" isLeaf="false">
+                <opaqueActionMoniker Id="d616ee73-9330-4cce-aa3d-443d401d8fe7" LastKnownName="Initialize + Create Drives" />
+                <elementDefinition Id="05f1ced0-11b0-4629-89d3-6a408977658e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="d616ee73-9330-4cce-aa3d-443d401d8fe7" name="Initialize + Create Drives" isLeaf="false">
+            <elementDefinition Id="0a19ea48-3c1c-40b7-b4fd-badeb0494918" />
+            <flowNodeTargets>
+              <controlFlow Id="5060d7b1-8c78-4674-a488-f00f5b8aef35" isLeaf="false">
+                <opaqueActionMoniker Id="0cedb689-a07f-4861-a631-637e0c2edf1c" LastKnownName="Azure IPAK" />
+                <elementDefinition Id="b63e1735-f5db-4a78-b6a6-d4e5089f60e9" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="1b8d53d0-3e74-4200-b0d5-7e3181271671" name="Join Domain" isLeaf="false">
+            <elementDefinition Id="7f8010f0-30a8-4d48-82dc-49d68cc3c807" />
+            <flowNodeTargets>
+              <controlFlow Id="f7d43d15-cac4-4a07-8a46-6426f1cf9cde" isLeaf="false">
+                <opaqueActionMoniker Id="f898c7f8-edea-466f-8659-90a2e4916f94" LastKnownName="Reboot target + Wait for wake up" />
+                <elementDefinition Id="bcf35dd6-423f-438d-bb21-5d8047736701" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="0cedb689-a07f-4861-a631-637e0c2edf1c" name="Azure IPAK" isLeaf="false">
+            <elementDefinition Id="acddcee6-9a2c-43e6-a37b-5057f3ffc8f8" />
+            <flowNodeTargets>
+              <controlFlow Id="555e7c4c-a973-4c0e-a6c4-58e915f2ef9d" isLeaf="false">
+                <opaqueActionMoniker Id="54816fb5-e898-46af-a126-a9524d35ff98" LastKnownName="IIS + SQL" />
+                <elementDefinition Id="6a13b0ba-1b22-4e50-94b7-56a82fb9570d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="54816fb5-e898-46af-a126-a9524d35ff98" name="IIS + SQL" isLeaf="false">
+            <elementDefinition Id="f4f2a343-88f0-419e-8299-8daf2fb179ee" />
+            <flowNodeTargets>
+              <controlFlow Id="6a14cd78-1743-432a-9712-566d7a04cc82" isLeaf="false">
+                <opaqueActionMoniker Id="ab868bf4-5e16-4ee4-8fb2-6adb37c3c02d" LastKnownName="Stanrad common scripted squences" />
+                <elementDefinition Id="4ba13ad3-ce8a-4f50-8935-14011bc2ba4e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="42187587-c53e-4ba8-a119-9b62e3352af8" name="Instance specific scripted squences" isLeaf="false">
+            <elementDefinition Id="0682512b-6743-4d7d-9290-35d937b56178" />
+            <flowNodeTargets>
+              <controlFlow Id="1a6949f1-841a-4cd6-a0b4-766e4698ce22" isLeaf="false">
+                <opaqueActionMoniker Id="a1f863bf-4266-494b-bb19-508368c9d66f" LastKnownName="Update Status" />
+                <elementDefinition Id="7289f33d-d03a-461f-9761-724325f5eda0" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="ab868bf4-5e16-4ee4-8fb2-6adb37c3c02d" name="Stanrad common scripted squences" isLeaf="false">
+            <elementDefinition Id="3f0cb6c9-7f82-4df5-a724-025abb3e242b" />
+            <flowNodeTargets>
+              <controlFlow Id="0de9b54b-298a-4c4a-aeeb-a23c66af950b" isLeaf="false">
+                <opaqueActionMoniker Id="42187587-c53e-4ba8-a119-9b62e3352af8" LastKnownName="Instance specific scripted squences" />
+                <elementDefinition Id="0caafba1-fe3c-43c4-8e6e-00b2ead91fb1" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="81401ba3-f267-443b-801d-68abe6edbfe0" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="9868360a-91ad-403d-a853-0829aada77ff" />
+          </activityFinalNode>
+          <opaqueAction Id="a1f863bf-4266-494b-bb19-508368c9d66f" name="Update Status" isLeaf="false">
+            <elementDefinition Id="05cb50d1-f99d-4798-b7f9-9c7e2a95d59e" />
+            <flowNodeTargets>
+              <controlFlow Id="212bf89e-917c-4747-8e4c-f0c189c3cafa" isLeaf="false">
+                <activityFinalNodeMoniker Id="81401ba3-f267-443b-801d-68abe6edbfe0" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="9f1ec2ba-fd61-4028-b7fd-15301191181e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="d6520c27-400d-4a8f-9250-2282fe95d793" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+  </package>
+</activityRootModel>

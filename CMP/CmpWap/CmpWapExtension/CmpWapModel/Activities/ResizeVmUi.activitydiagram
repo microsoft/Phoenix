@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="7c7a6c23-1445-4476-baa6-3fb5d14b23cc" name="ResizeVmUi" linkedPackageId="8eabbf2a-0f78-4f87-b5d5-f67991b3ef30" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="06e35601-b407-4c6f-bc90-468988bdfb23">
+      <elementDefinition Id="03a65f75-1895-4fef-af22-78e95eff10e2" />
+      <body>ResizeVmProcess.activitydiagram</body>
+      <annotatedElements>
+        <opaqueActionMoniker Id="0d6ac353-3052-487b-a6fe-f5a1d38ba0d5" LastKnownName="System processes resize request" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="c08386ec-4b84-4cb2-b16c-8bcda2d79c10">
+      <profileInstance Id="eb86c452-21bf-466d-9739-1cf30cedf13e" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="964441a2-b93e-46f7-9234-1ba5642bf501">
+      <profileInstance Id="83c790a3-5724-4971-b900-250087bbccb4" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="6a03120e-39a6-4eff-83d9-a27242d0e76f" name="ResizeVmUi" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="d5e98f6d-6070-4a47-9924-55b339078d94" />
+        <nodes>
+          <initialNode Id="f9e2c387-93ac-417b-ba44-4a43a7e11ef9" name="Initial1" isLeaf="false">
+            <elementDefinition Id="77ee2578-3150-4fb3-8021-138adaf07202" />
+            <flowNodeTargets>
+              <controlFlow Id="b841f004-1d4c-4b2d-8115-26287f2ea3a0" isLeaf="false">
+                <opaqueActionMoniker Id="0cec137a-1544-462e-97cd-54ec8a608856" LastKnownName="User Selects VM in WAP UI" />
+                <elementDefinition Id="f4dadb27-7de4-4ce4-91a7-1d81881adfd4" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="0cec137a-1544-462e-97cd-54ec8a608856" name="User Selects VM in WAP UI" isLeaf="false">
+            <elementDefinition Id="c0a1ffad-c66d-4520-b6e1-e4b83b461eda" />
+            <flowNodeTargets>
+              <controlFlow Id="3b4df57e-ed7f-40eb-bf26-17749e4861e8" isLeaf="false">
+                <opaqueActionMoniker Id="0a0ee995-3c56-4149-b037-f78a65b9010b" LastKnownName="User selects Resize Button" />
+                <elementDefinition Id="ff03ae8d-5d32-4417-adb9-9a74ea6caf8c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="0a0ee995-3c56-4149-b037-f78a65b9010b" name="User selects Resize Button" isLeaf="false">
+            <elementDefinition Id="a434cd44-1d05-4d1e-a385-bef6520784c8" />
+            <flowNodeTargets>
+              <controlFlow Id="57bab065-860c-4e97-a0af-49056462f514" isLeaf="false">
+                <opaqueActionMoniker Id="60d6898d-8d00-4925-b48a-943348d86916" LastKnownName="System showes resize dialog" />
+                <elementDefinition Id="13f4f708-bbef-45a6-8a88-728e630539e1" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="60d6898d-8d00-4925-b48a-943348d86916" name="System showes resize dialog" isLeaf="false">
+            <elementDefinition Id="b6fb0b66-fe3e-47fe-9225-c0e238d521c2" />
+            <flowNodeTargets>
+              <controlFlow Id="840189ae-48f0-4949-99c5-ddb2782c45f8" isLeaf="false">
+                <opaqueActionMoniker Id="10aadc5d-e3f3-4857-9613-a27bb4b4d7b0" LastKnownName="User selects new size" />
+                <elementDefinition Id="8702b097-d979-4b29-8087-59a602235b03" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="10aadc5d-e3f3-4857-9613-a27bb4b4d7b0" name="User selects new size" isLeaf="false">
+            <elementDefinition Id="ce25982f-8fa8-485e-b69b-5ae0a0a5cf0e" />
+            <flowNodeTargets>
+              <controlFlow Id="fd1e7353-4e2c-4817-9a46-7c8eed1cf600" isLeaf="false">
+                <opaqueActionMoniker Id="7048fde6-6492-4945-a9f3-5d7be1e5a1c1" LastKnownName="System shows progress bar" />
+                <elementDefinition Id="dd896d4e-c095-490a-a68f-e103a5c29f9a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="0d6ac353-3052-487b-a6fe-f5a1d38ba0d5" name="System processes resize request" isLeaf="false">
+            <elementDefinition Id="f5f7803b-3c0e-4753-a7af-4697ec271620" />
+            <flowNodeTargets>
+              <controlFlow Id="1f818fa3-c392-4286-bfd2-aa57c0f3abfe" isLeaf="false">
+                <opaqueActionMoniker Id="2f40b2f7-b874-4ef4-abda-c8124e2ed88e" LastKnownName="System displays result to UI" />
+                <elementDefinition Id="16f6d4fd-9757-46f3-a2e8-59a2a5cb8216" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="7048fde6-6492-4945-a9f3-5d7be1e5a1c1" name="System shows progress bar" isLeaf="false">
+            <elementDefinition Id="47c9f2fd-099d-4733-84ac-e6fd8a49d616" />
+            <flowNodeTargets>
+              <controlFlow Id="1d7ecf00-298c-4a25-8b1a-a979110f5651" isLeaf="false">
+                <opaqueActionMoniker Id="0d6ac353-3052-487b-a6fe-f5a1d38ba0d5" LastKnownName="System processes resize request" />
+                <elementDefinition Id="27e21a38-1160-4092-8478-0973c42d0a5b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="2f40b2f7-b874-4ef4-abda-c8124e2ed88e" name="System displays result to UI" isLeaf="false">
+            <elementDefinition Id="251b486d-1e47-4923-b8fa-b8ac1cea24e3" />
+            <flowNodeTargets>
+              <controlFlow Id="ef637fc4-55e3-4d3b-b47d-4e101da2cf11" isLeaf="false">
+                <activityFinalNodeMoniker Id="ffdd1dc2-d40a-4f65-b7bc-fa293bf1a3a1" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="c8287808-ce62-48ef-a4c6-6ca94aab1ba6" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="ffdd1dc2-d40a-4f65-b7bc-fa293bf1a3a1" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="ccf6309d-e076-4eb1-b6e2-7de50c067a88" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="8eabbf2a-0f78-4f87-b5d5-f67991b3ef30" name="CmpWapModel">
+    <elementDefinition Id="8689a160-402e-4038-90af-0c8b64ee7274" />
+  </package>
+</activityRootModel>

@@ -1,0 +1,67 @@
+﻿<div >
+    <div class="vm-dashboard-usageAndLinked" >
+        <h2 class="usageheader">usage overview</h2>
+        <div class="vm-dashboard-usage">
+           
+          
+        </div>
+        <div class="vm-dashboard-attached-devices" >
+            <h2 class="usageheader">disks</h2>
+            
+
+            <div class="gridContainer"></div>
+        </div>
+    </div>
+    <div class="vm-dashboard-quickglance-info" >
+        <div class="quickglance">
+            <label>quick glance</label>
+        </div>
+        <div class="section">
+            <label class="quickglanceproperty">Status</label><br />
+            <label class="quickglancepropvalue" id="vmstatus"></label>
+        </div>
+        <div class="section">
+            <label class="quickglanceproperty">Request Queue Status</label><br />
+            <label class="quickglancepropvalue" id="vmreq-queue-status"></label>
+        </div>
+        <div class="section">
+            <label class="quickglanceproperty">dns name</label><br />
+            <label class="quickglancepropvalue" id="dnsname"></label>
+        </div>
+        <div class="section">
+            <label class="quickglanceproperty">host Name</label><br />
+            <label class="quickglancepropvalue" id="hostname"></label>
+        </div>
+        <div class="section">
+            <label class="quickglanceproperty">ip address</label><br />
+            <label class="quickglancepropvalue" id="internalip"></label>
+        </div>
+        <div class="section">
+            <label class="quickglanceproperty">size</label><br/>
+            <label class="quickglancepropvalue" id="vmsize"></label>
+        </div>
+
+        <!--This section is hidden. Remove hidden keywords to make it appear in dashboard-->
+        <div class="section" hidden>
+            <label class="quickglanceproperty" hidden>rdp certificate thumbprint</label><br/>
+            <label class="quickglancepropvalue" id="rdpcert" hidden></label>
+        </div>
+
+        <div class="section">
+            <label class="quickglanceproperty">deployment id</label><br />
+            <label class="quickglancepropvalue" id="deployid"></label>
+        </div>
+        <div class="section">
+            <label class="quickglanceproperty">subscription name</label><br />
+            <label class="quickglancepropvalue" id="subscriptionname"></label>
+        </div>
+        <div class="section">
+            <label class="quickglanceproperty">subscription id</label><br />
+            <label class="quickglancepropvalue" id="subscriptionId"></label>
+        </div>
+    </div>
+
+    <div id="errordashboard"></div>
+</div>
+
+

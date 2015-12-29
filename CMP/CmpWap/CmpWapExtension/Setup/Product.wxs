@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:fw="http://schemas.microsoft.com/wix/FirewallExtension"
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+     xmlns:uti="http://schemas.microsoft.com/wix/UtilExtension">
+
+  <?ifndef TargetX86 ?>
+  <?define ProductPlatform="x64" ?>
+  <?define Win64="yes" ?>
+  <?define RootInstallDir="ProgramFiles64Folder" ?>
+  <?else?>
+  <?define ProductPlatform="x86" ?>
+  <?define Win64="no" ?>
+  <?define RootInstallDir="ProgramFilesFolder" ?>
+  <?endif?>
+
+  <!-- AssemblyFileVersion -->
+  <?define FileVersion=!(bind.fileVersion.Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll) ?>
+
+  <!-- Required Properties -->
+  <?define ProductCode="1D9E8A31-EC87-4E2F-9458-0C01331D90E5" ?>
+  <?define ProductName="Windows Azure Pack: CMP Common WAP Extension Components" ?>
+  <?define ProductVersion="$(var.FileVersion)" ?>
+  <?define ProductLanguage="1033" ?>
+  <?define Manufacturer="Microsoft Corporation" ?>
+  <?define UpgradeCode="092688F9-8EF4-4D99-AEBF-CBDEB5276D2C" ?>
+  <?define UpgradeMinimumVersion="0.0.0.0" ?>
+  <?define ProductDescription="$(var.ProductName) $(var.ProductVersion)" ?>
+  <?define ProductComments="$(var.ProductName) $(var.ProductVersion)"?>
+
+  <!-- Codepage="65001" is UTF-8 -->
+  <Product Id="$(var.ProductCode)"
+           Codepage="65001"
+           Name="$(var.ProductName)"
+           Language="1033"
+           Version="$(var.ProductVersion)"
+           Manufacturer="$(var.Manufacturer)"
+           UpgradeCode="$(var.UpgradeCode)">
+
+    <!-- Summary Information: Id is auto-generated -->
+    <Package Id="*"
+             Keywords="Installer"
+             Description="$(var.ProductDescription)"
+             Comments="$(var.ProductComments)"
+             Manufacturer="$(var.Manufacturer)"
+             InstallerVersion="500"
+             Languages="$(var.ProductLanguage)"
+             Compressed="yes"
+             InstallPrivileges="elevated"
+             InstallScope="perMachine" />
+
+    <Media Id="1"
+           Cabinet="media1.cab"
+           EmbedCab="yes" />
+
+    <?include ARP.wxi ?>
+    <?include Prerequisites.wxi ?>
+    <?include Upgrade.wxi ?>
+
+    <Directory Id="TARGETDIR"
+               Name="SourceDir">
+      <!-- INETPUBDIR = C:\inetpub\ -->
+      <Directory Id="INETPUBDIR"
+                 Name="inetpub">
+        <Directory Id="WEBSITEDIR"
+                   Name="MgmtSvc-CmpWapExtension">
+        </Directory>
+      </Directory>
+      <!-- ProgramFiles64Folder = C:\Program Files\ -->
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="MgmtSvc"
+                   Name="Management Service">
+          <Directory Id="INSTALLDIR"
+                     Name="MgmtSvc-CmpWapExtension">
+            <?include Registry.wxi ?>
+          </Directory>
+        </Directory>
+      </Directory>
+      <!-- Use existing MgmtSvc-AdminSite web site root directory found from registry search. -->
+      <Directory Id="PATHADMINSITE"
+                 Name="AdminSiteDir">
+        <Directory Id="AdminSiteBinDir"
+                   Name="bin">
+        </Directory>
+        <Directory Id="AdminSiteContentDir"
+                   Name="Content">
+          <Directory Id="AdminSiteContentExtDir"
+                     Name="CmpWapExtensionAdmin">
+          </Directory>
+          <Directory Id="PlansAdminExtDir"
+                     Name="PlansAdmin">
+            <Directory Id="PlansTemplateDir"
+                       Name="Templates">
+              <Directory Id="PlansTabViewDir"
+                         Name="PlansTabView">                
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id="AdminSiteManifestsDir"
+                   Name="Manifests">
+        </Directory>
+        <Directory Id="AdminSiteViewsDir"
+                   Name="Views">
+        </Directory>
+      </Directory>
+      <!-- Use existing MgmtSvc-TenantSite web site root directory found from registry search. -->
+      <Directory Id="PATHTENANTSITE"
+                 Name="TenantSiteDir">
+        <Directory Id="TenantSiteBinDir"
+                   Name="bin">
+        </Directory>
+        <Directory Id="TenantSiteContentDir"
+                   Name="Content">
+          <Directory Id="TenantSiteContentExtDir"
+                     Name="CmpWapExtensionTenant">
+          </Directory>
+        </Directory>
+        <Directory Id="TenantSiteManifestsDir"
+                   Name="Manifests">
+        </Directory>
+      </Directory>
+      <!-- SystemFolder = C:\Windows\System32 -->
+      <Directory Id="System64Folder" />
+    </Directory>
+
+    <?include Feature\AdminSite.wxi ?>
+    <?include Feature\TenantSite.wxi ?>
+    <?include Service\WebSite.wxi ?>
+    <?include Service\WebSiteContent.wxi ?>
+    
+    <!-- UI -->
+    <Property Id="WIXUI_INSTALLDIR"
+              Value="INSTALLDIR" />
+    <WixVariable Id="WixUILicenseRtf"
+                 Value=".\Documents\EULA.rtf" />
+    <WixVariable Id="WixUIBannerBmp"
+                 Value=".\Bitmaps\bannrbmp.bmp" />
+    <WixVariable Id="WixUIDialogBmp"
+                 Value=".\Bitmaps\dlgbmp.bmp" />
+    <UI>
+      <UIRef Id="WixUI_FeatureTree" />
+      <UIRef Id="WixUI_ErrorProgressText" />
+    </UI>
+
+    <Feature Id="ProductFeature"
+             Title="$(var.ProductName)"
+             ConfigurableDirectory="INSTALLDIR"
+             Description="Installs $(var.ProductDescription)"
+             AllowAdvertise="no"
+             Display="expand"
+             Level="1">
+      <ComponentRef Id="ProductRegistry" />
+
+      <Feature Id="AdminSiteFeature"
+               Title="MgmtSvc-AdminSite Extension"
+               Description="Installs MgmtSvc-AdminSite Extension"
+               AllowAdvertise="no"
+               Level="1">
+        <ComponentGroupRef Id="AdminSiteContent" />
+      </Feature>
+      <Feature Id="TenantSiteFeature"
+               Title="MgmtSvc-TenantSite Extension"
+               Description="Installs MgmtSvc-TenantSite Extension"
+               AllowAdvertise="no"
+               Level="1">
+        <ComponentGroupRef Id="TenantSiteContent" />
+      </Feature>
+      <Feature Id="ServiceFeature"
+               Title="MgmtSvc-CmpWapExtension Backend Service"
+               Description="Installs MgmtSvc-CmpWapExtension Backend Service"
+               AllowAdvertise="no"
+               Level="1">
+        <ComponentRef Id="WebSite" />
+        <ComponentGroupRef Id="WebSiteContent" />
+      </Feature>
+    </Feature>
+
+  </Product>
+</Wix>

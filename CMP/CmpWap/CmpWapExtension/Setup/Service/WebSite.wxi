@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi"
+         xmlns:fw="http://schemas.microsoft.com/wix/FirewallExtension"
+         xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
+         xmlns:uti="http://schemas.microsoft.com/wix/UtilExtension">
+
+  <!-- %SystemRoot%\System32\inetsrv\config\applicationHost.config -->
+  <Property Id="WebAppPoolName"
+            Value="MgmtSvc-CmpWapExtension"/>
+  <Property Id="WebSiteName"
+            Value="MgmtSvc-CmpWapExtension"/>
+  <Property Id="HTTP_PORT"
+            Secure="yes"
+            Value="30666" />
+  
+   <!--<Property Id="MyAppPoolUser"
+           CreateUser="no"
+           Name="[APPPOOL_USER]"
+           Password="[APPPOOL_PASS]"
+           Domain="." />-->
+  
+  <DirectoryRef Id="WEBSITEDIR">
+
+    <Component Id="WebSite"
+               Guid="{3B5C04B0-D5D5-474B-BEDD-DBE98D382753}">
+      <CreateFolder />
+      
+      <!-- Local Block Start
+      <uti:User Id="MyAppPoolUser"
+           CreateUser="no"
+           Name="[APPPOOL_USER]"
+           Password="[APPPOOL_PASS]"
+           Domain="." />
+      Local Block End --> 
+          
+      <!-- ApplicationPoolIdentity: "IIS APPPOOL\[WebAppPoolName]" -->
+
+      <!-- Local Block Start 
+      <iis:WebAppPool Id="WebAppPool"
+                      Name="[WebAppPoolName]"
+                      ManagedPipelineMode="integrated"
+                      ManagedRuntimeVersion="v4.0" Identity="other" User="MyAppPoolUser" />
+       Local Block End -->
+
+      <!-- Local Block Start-->
+      <iis:WebAppPool Id="WebAppPool"
+                            Name="[WebAppPoolName]"
+                            ManagedPipelineMode="integrated"
+                            ManagedRuntimeVersion="v4.0"/>
+      <!--Local Block End -->
+        
+      <!-- Nesting WebSite under a Component element will result in a WebSite being installed to the machine as the package is installed. -->
+      <iis:WebSite Id="WebSite"
+                   Description="[WebSiteName]"
+                   AutoStart="yes"
+                   StartOnInstall="yes"
+                   ConfigureIfExists="yes"
+                   Directory="WEBSITEDIR">
+        <iis:WebAddress Id="AllUnassignedHttp"
+                        Port="[HTTP_PORT]"
+                        Secure="yes" /> <!-- Only for this sample sake we are using http. Recommendation is to make this true and use https -->
+        <iis:WebApplication Id="WebApplication"
+                            Name="[WebSiteName]"
+                            WebAppPool="WebAppPool" />
+        <iis:WebDirProperties Id="WebDirProperties"
+                              AnonymousAccess="yes"
+                              WindowsAuthentication="no"
+                              DefaultDocuments="Default.aspx" />
+      </iis:WebSite>
+
+      <fw:FirewallException Id="HTTP_In"
+                            Name="[WebSiteName] (HTTP-In)"
+                            Port="[HTTP_PORT]"
+                            Protocol="tcp"
+                            Scope="any" />
+    </Component>
+  </DirectoryRef>
+
+  <!-- icacls [WEBSITEDIR] /grant BUILTIN\IIS_IUSRS:(RX) -->
+  <SetProperty Id="QtExec_icacls_grant_IIS_IUSRS_RX"
+               Value="&quot;[System64Folder]icacls.exe&quot; &quot;[WEBSITEDIR].&quot; /grant *S-1-5-32-568:(RX)"
+               After="CostFinalize" />
+  <CustomAction Id="QtExec_icacls_grant_IIS_IUSRS_RX"
+                BinaryKey="WixCA"
+                DllEntry="CAQuietExec64"
+                Execute="deferred"
+                Return="check"
+                Impersonate="no" />
+
+  <!-- icacls [WEBSITEDIR] /grant BUILTIN\IIS_IUSRS:(OI)(CI)(IO)(GR,GE) -->
+  <SetProperty Id="QtExec_icacls_grant_IIS_IUSRS_GRGE"
+               Value="&quot;[System64Folder]icacls.exe&quot; &quot;[WEBSITEDIR].&quot; /grant *S-1-5-32-568:(OI)(CI)(IO)(GR,GE)"
+               After="CostFinalize" />
+  <CustomAction Id="QtExec_icacls_grant_IIS_IUSRS_GRGE"
+                BinaryKey="WixCA"
+                DllEntry="CAQuietExec64"
+                Execute="deferred"
+                Return="check"
+                Impersonate="no" />
+
+  <InstallExecuteSequence>
+    <Custom Action="QtExec_icacls_grant_IIS_IUSRS_RX"
+            After="CreateFolders">
+      <![CDATA[NOT Installed]]>
+    </Custom>
+    <Custom Action="QtExec_icacls_grant_IIS_IUSRS_GRGE"
+            After="CreateFolders">
+      <![CDATA[NOT Installed]]>
+    </Custom>
+  </InstallExecuteSequence>
+</Include>

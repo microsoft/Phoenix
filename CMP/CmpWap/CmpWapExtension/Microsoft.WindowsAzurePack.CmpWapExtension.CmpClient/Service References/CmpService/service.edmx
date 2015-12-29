@@ -1,0 +1,44 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="3.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="CmpInterfaceModel.Models" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="VmDeploymentRequest">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="RequestName" Type="Edm.String" />
+        <Property Name="RequestDescription" Type="Edm.String" />
+        <Property Name="ParentAppName" Type="Edm.String" />
+        <Property Name="ParentAppID" Type="Edm.String" />
+        <Property Name="RequestType" Type="Edm.String" />
+        <Property Name="TargetServiceProviderType" Type="Edm.String" />
+        <Property Name="TargetServiceName" Type="Edm.String" />
+        <Property Name="TargetLocation" Type="Edm.String" />
+        <Property Name="TargetLocationType" Type="Edm.String" />
+        <Property Name="TargetAccount" Type="Edm.String" />
+        <Property Name="TargetAccountType" Type="Edm.String" />
+        <Property Name="TargetAccountCreds" Type="Edm.String" />
+        <Property Name="VmSize" Type="Edm.String" />
+        <Property Name="TagData" Type="Edm.String" />
+        <Property Name="TagID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Config" Type="Edm.String" />
+        <Property Name="TargetVmName" Type="Edm.String" />
+        <Property Name="SourceServerName" Type="Edm.String" />
+        <Property Name="SourceVhdFilesCSV" Type="Edm.String" />
+        <Property Name="WhoRequested" Type="Edm.String" />
+        <Property Name="WhenRequested" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="ExceptionMessage" Type="Edm.String" />
+        <Property Name="LastStatusUpdate" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="Status" Type="Edm.String" />
+        <Property Name="StatusMessage" Type="Edm.String" />
+        <Property Name="AftsID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Active" Type="Edm.Boolean" Nullable="false" />
+      </EntityType>
+    </Schema>
+    <Schema Namespace="Default" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityContainer Name="Container" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="VmDeployments" EntityType="CmpInterfaceModel.Models.VmDeploymentRequest" />
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

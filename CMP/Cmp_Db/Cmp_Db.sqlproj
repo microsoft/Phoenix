@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Cmp_Db</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{a03aa38a-8fe2-4856-9d95-1c3b46df1c6c}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureDatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootNamespace>Cmp_Db</RootNamespace>
+    <AssemblyName>Cmp_Db</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+  </PropertyGroup>
+  <Import Project="..\..\Environment.props" />
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSBuild\ToolsVersions\12.0@MsBuildToolsRoot)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="Scripts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\VmMigrationRequests.sql" />
+    <Build Include="dbo\Tables\VmDeploymentRequests.sql" />
+    <Build Include="dbo\Tables\ServiceProviderSlots.sql" />
+    <Build Include="dbo\Tables\ServiceProviderAccounts.sql" />
+    <Build Include="dbo\Tables\Sequences.sql" />
+    <Build Include="dbo\Tables\FluRequests.sql" />
+    <Build Include="dbo\Tables\CmpServiceUserAccounts.sql" />
+    <Build Include="dbo\Tables\ChangeLog.sql" />
+    <Build Include="dbo\Functions\fn_CompletedBuildStatTotals.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Get_CMPJobStatusResults.sql" />
+    <Build Include="dbo\Functions\fnCheckUniqueRecord.sql" />
+    <Build Include="dbo\Tables\Config.sql" />
+    <None Include="Scripts\Data.BadAssets.sql" />
+    <Build Include="dbo\Tables\WAPMAPPINGDATA.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ClearWapMappingData.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Get_CMPMetrics_BoxesResubmitted.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Get_CMPMetrics_BuildsCompleted.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Get_CMPMetrics_CompletedCount.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Get_CMPMetrics_CompletedWithResubmissionsCount.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Get_CMPMetrics_ExceptionsByFrequency.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Get_CMPMetrics_FirstTimeRightCount.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Get_CMPMetrics_ManuallyRemediatedCount.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Get_InFlightRequests.sql" />
+    <Build Include="dbo\Tables\BadAssets.sql" />
+    <Build Include="dbo\Tables\OpRequests.sql" />
+    <Build Include="dbo\Tables\AzureRoleSize.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMPDevDbToSource.scmp" />
+    <None Include="CMPProdDb.scmp" />
+    <None Include="CMPTestDb.scmp" />
+    <None Include="CMPUatDb.scmp" />
+    <None Include="Scripts\Data.Config.sql" />
+    <None Include="Scripts\Data.ServiceProviderAccounts.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.InitialPostDeploymentCMPDB.sql" />
+    <None Include="Scripts\Data.AzureRoleSize.sql" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Message Text="Project Configuration = $(Configuration)" />
+    <Message Text="Project OutputPath = $(OutputPath)" />
+  </Target>
+</Project>

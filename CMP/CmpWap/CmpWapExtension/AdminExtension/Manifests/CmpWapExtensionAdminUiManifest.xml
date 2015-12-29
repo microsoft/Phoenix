@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiManifest>
+  <!--CmpWapExtension Management-->
+  <extension name="CmpWapExtensionAdminExtension"
+             baseUri="~/Content/CmpWapExtensionAdmin">
+    <scripts>
+      <script src="~/Scripts/CmpWapExtension.Controller.js" />
+      <script src="~/Scripts/CmpWapExtension.VmsTab.js" />
+      <script src="~/Scripts/CmpWapExtension.DomainsTab.js" />
+      <script src="~/Scripts/CmpWapExtension.OssTab.js" />
+      <script src="~/Scripts/CmpWapExtension.VmsizesTab.js" />
+      <script src="~/Scripts/CmpWapExtension.ServiceProviderAccountsTab.js" />
+      <script src="~/Scripts/CmpWapExtension.RegionsTab.js" />
+      <script src="~/Scripts/CmpWapExtension.AppsTab.js" />
+      <!--<script src="~/Scripts/CmpWapExtension.ProductsTab.js" />-->
+      <script src="~/Scripts/CmpWapExtension.QuickStartTab.js" />
+      <script src="~/Scripts/CmpWapExtension.SettingsTab.js" />
+      <script src="~/Scripts/CmpWapExtension.ControlsTab.js" />
+      <script src="~/CmpWapExtensionAdminExtension.js" />   
+      <!--Self registration-->
+      <script src="~/extensions.data.js" />
+    </scripts>
+    <stylesheets>
+      <stylesheet src="~/Styles/CmpWapExtensionAdmin.css"/>
+      <stylesheet src="~/Styles/CmpWapExtensionControls.css"/>
+    </stylesheets>
+    <templates>
+      <template name="vmsTab"
+                src="~/Templates/Tabs/VmsTab.html" />
+      <template name="domainsTab"
+                src="~/Templates/Tabs/DomainsTab.html" />
+      <template name="ossTab"
+                src="~/Templates/Tabs/OssTab.html" />
+      <template name="vmsizesTab"
+                src="~/Templates/Tabs/VmsizesTab.html" />
+      <template name="vmsTab"
+                src="~/Templates/Tabs/VmsTab.html" />
+      <template name="regionsTab"
+                src="~/Templates/Tabs/RegionsTab.html" />
+      <template name="ServiceProviderAccountsTab"
+                src="~/Templates/Tabs/ServiceProviderAccountsTab.html" />
+      <!--<template name="fileServersTabEmpty"
+                src="~/Templates/Tabs/FileServersTabEmpty.html" />
+      <template name="productsTab"
+                src="~/Templates/Tabs/ProductsTab.html" />
+      <template name="productsTabEmpty"
+                src="~/Templates/Tabs/ProductsTabEmpty.html" />-->
+      <template name="quickStartTab"
+                src="~/Templates/Tabs/QuickStartTab.html" />
+      <template name="quickStartTabContent"
+                src="~/Templates/Tabs/QuickStartTabContent.html" />
+      <template name="settingsTab"
+                src="~/Templates/Tabs/SettingsTab.html" />
+      <template name="controlsTab"
+                src="~/Templates/Tabs/ControlsTab.html" />
+      <template name="registerEndpoint"
+                src="~/Templates/Dialogs/RegisterEndpoint.html" />
+      <template name="EditServiceProviderAccountDialog1"
+          src="~/Templates/Dialogs/EditServiceProviderAccountDialog1.html"/>
+      <template name="EditServiceProviderAccountDialog2"
+                src="~/Templates/Dialogs/EditServiceProviderAccountDialog2.html"/>
+    </templates>
+  </extension>
+</uiManifest>

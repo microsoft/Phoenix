@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uiManifest>
+  <!--CmpWapExtension-->
+  <extension name="CmpWapExtensionTenantExtension"
+             baseUri="~/Content/CmpWapExtensionTenant">
+    <scripts>
+      <script src="~/Scripts/ViewModel/HW.ViewModels.QuickCreate.js" />
+      <script src="~/Scripts/CmpWapExtensionTenant.Controller.js" />
+      <script src="~/Scripts/CmpWapExtensionTenant.FileSharesTab.js" />
+      <script src="~/Scripts/CmpWapExtensionTenant.SettingsTab.js" />
+      <script src="~/CmpWapExtensionTenantExtension.js" />
+      <script src="~/Scripts/CmpWapExtensionTenant.VMDashboardTab.js" />
+      <script src="~/Scripts/CmpWapExtensionTenant.VMConfigureTab.js" />
+      <!--Self registration-->
+      <script src="~/extensions.data.js" />
+    </scripts>
+    <stylesheets>
+      <stylesheet src="~/Styles/CmpWapExtensionTenant.css"/>
+      <stylesheet src="~/Styles/CmpWapExtensionControls.css"/>
+    </stylesheets>
+    <templates>
+      <template name="customCreatePreview"
+                src="~/Templates/Dialogs/CustomCreatePreview.html" />
+      <template name="CreateFileShare"
+                src="~/Templates/Dialogs/CreateFileShare.html" />
+      <template name="FileSharesTab"
+                src="~/Templates/Tabs/FileSharesTab.html" />
+      <template name="FileSharesTabEmpty"
+                src="~/Templates/Tabs/FileSharesTabEmpty.html" />
+      <template name="settingsTab"
+                src="~/Templates/Tabs/SettingsTab.html" />
+      <template name="VMDashboardTab"
+                src="~/Templates/Tabs/VMDashboardTab.html" />
+      <template name="VMConfigureTab"
+                src="~/Templates/Tabs/VMConfigureTab.html" />
+      <template name="CreateFileShareQuick"
+                src="~/Templates/Menu/FileShareQuickCreate.html" />
+      <template name="CreateVM1"
+                src="~/Templates/Dialogs/CreateVM1.html" />
+      <template name="CreateVM2"
+                src="~/Templates/Dialogs/CreateVM2.html" />
+      <template name="CreateVM3"
+                src="~/Templates/Dialogs/CreateVM3.html" />
+      <template name="CreateVM4"
+                src="~/Templates/Dialogs/CreateVM4.html" />
+      <template name="AttachDisk"
+                src="~/Templates/Dialogs/AttachDisk.html" />
+      <template name="DetachDisk"
+                src="~/Templates/Dialogs/DetachDisk.html" />
+      <template name="ShutDownVMDialogBox"
+                src="~/Templates/Dialogs/ShutDownVMDialogBox.html"/>
+      <template name="DeleteVMDialogBox"
+                src="~/Templates/Dialogs/DeleteVMDialogBox.html"/>      
+    </templates>
+  </extension>
+</uiManifest>

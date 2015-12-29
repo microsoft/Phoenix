@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm12="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm13="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" dslVersion="1.0.0.0" Id="e60c88c6-04ec-49d9-b3f6-efb430c4ce99" name="VmTransferActivity" linkedPackageId="7658aacc-a1eb-499d-af50-1f395b2da968" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="370a1c5d-0cfe-4ddd-99c6-92412a5f661a">
+      <elementDefinition Id="823e19b0-c90e-4031-9cc1-4fa6df78e36b" />
+      <body>Initiated by dispatcher work order</body>
+    </comment>
+    <comment Id="b4b9ab80-1dfb-485a-9519-33339a17a11b">
+      <elementDefinition Id="9f793ea0-7700-4159-ab75-4b72aebf1348" />
+      <body>Status update:
+Suceess or Exception.
+Exception is picked up by ProcessException Activity
+Success is picked up by VmProvision Acticity</body>
+    </comment>
+    <comment Id="fd234a2b-c858-4031-8894-6bf8a00daeca">
+      <elementDefinition Id="90f30a9f-ee42-4124-a60d-948afc352d1e" />
+      <body>See TransferFileToBlob Activity</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="d656cc78-9176-4848-8b57-8d4a0ac1275c">
+      <profileInstance Id="3d318d15-7ed0-4f9b-8390-c074780820c0" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="a2873cc7-1075-40c1-87fd-a7a86cff072d">
+      <profileInstance Id="8371eb3d-3a60-44bb-a672-844d34413d17" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="f05c0c91-cbba-43f2-92dc-84ff6ffcbe9b" name="VmTransferActivity" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="9c6584fe-827c-4682-afe1-f30bf6a3ed06" />
+        <nodes>
+          <initialNode Id="1e2b56d6-c64c-4b79-ac1b-6a2f6399e2cd" name="Initial1" isLeaf="false">
+            <elementDefinition Id="c03da74a-22c7-4593-8a24-0087b3642458" />
+            <flowNodeTargets>
+              <controlFlow Id="623ddd72-d24f-44cc-83ea-89a8a5c379cf" isLeaf="false">
+                <opaqueActionMoniker Id="016711d7-0cdb-4cce-bc3e-fec28a438985" LastKnownName="Validate Request" />
+                <elementDefinition Id="e4c4a68c-4545-4de7-819c-aa7f186e27bc" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="016711d7-0cdb-4cce-bc3e-fec28a438985" name="Validate Request" isLeaf="false">
+            <elementDefinition Id="11294da5-e9fe-4967-81d6-737cc42a6f77" />
+            <flowNodeTargets>
+              <controlFlow Id="1bdaa2aa-bb65-4d14-8307-8dc00f33ef54" isLeaf="false">
+                <opaqueActionMoniker Id="5d2d494a-0cff-402a-b144-a1428854937b" LastKnownName="Determine Placement" />
+                <elementDefinition Id="199a6a25-100f-4de6-9394-b29cd1b7fc7b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <sendSignalAction Id="be8a140e-6837-48ab-bb46-4dfeaa33f6f4" name="Invoke AzureFileTransferService" isLeaf="false">
+            <elementDefinition Id="d4d52e06-7f56-49b2-86b3-1416a810dffb" />
+            <flowNodeTargets>
+              <controlFlow Id="b1e15a14-aa10-4121-8c9f-50bc411fe095" isLeaf="false">
+                <opaqueActionMoniker Id="47693a3d-33e4-45c7-aa34-b6393c3cc788" LastKnownName="Update Status" />
+                <elementDefinition Id="bcba4938-ff3b-4b9f-8eda-5a67de8b410e" />
+              </controlFlow>
+              <controlFlow Id="f532e265-13e6-4c06-8459-15176614d303" isLeaf="false">
+                <acceptEventActionMoniker Id="ee59d00b-13e6-4c17-b99b-df3229c2c268" LastKnownName="AzureFileTransferService Invoked" />
+                <elementDefinition Id="f7f82028-3ae2-48df-95cb-96bb72095d0b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <acceptEventAction Id="ee59d00b-13e6-4c17-b99b-df3229c2c268" name="AzureFileTransferService Invoked" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="a4e0f87f-e0e2-47be-be55-f4b181086426" />
+            <flowNodeTargets>
+              <controlFlow Id="d4d31258-7d76-4490-9ef3-e46740850c08" isLeaf="false">
+                <callBehaviorActionMoniker Id="abc53725-9808-49c9-a02e-b92da73e2d97" LastKnownName="TransferFileToBlob" />
+                <elementDefinition Id="36958c2d-5583-427f-bd0a-8e566a02a4dc" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <activityFinalNode Id="3e07166f-99f9-4d69-a2b3-f076c2f77b0d" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="2a66c292-d3fa-4be0-b0d1-ad18c8907e59" />
+          </activityFinalNode>
+          <opaqueAction Id="47693a3d-33e4-45c7-aa34-b6393c3cc788" name="Update Status" isLeaf="false">
+            <elementDefinition Id="ce86093e-c4fd-4a20-8d23-51bfd78944c2" />
+            <flowNodeTargets>
+              <controlFlow Id="0b55b63f-772c-49df-b94e-ea9658e6dfb2" isLeaf="false">
+                <activityFinalNodeMoniker Id="3e07166f-99f9-4d69-a2b3-f076c2f77b0d" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="46fa15e2-0fe2-456b-81bc-e60a96cf07a2" />
+              </controlFlow>
+            </flowNodeTargets>
+            <objectFlowTargets>
+              <objectFlow Id="88e0ae77-5342-4696-a89e-21a7b5272c8a" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="69e0fcf2-d33d-4296-908c-02ea0479b070" LastKnownName="Work Order" />
+                <elementDefinition Id="0a7db917-63d4-4711-b9c8-c6fb95762517" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <callBehaviorAction Id="abc53725-9808-49c9-a02e-b92da73e2d97" name="TransferFileToBlob" isLeaf="false">
+            <elementDefinition Id="e150081e-a261-41c1-a406-2d0c831523b9" />
+            <flowNodeTargets>
+              <controlFlow Id="1a74e878-b41a-4793-9be4-ff99a20f56a0" isLeaf="false">
+                <opaqueActionMoniker Id="db49891e-bba7-4e71-afb0-8e60caf01987" LastKnownName="Update Status" />
+                <elementDefinition Id="27477a44-a830-47f0-a26b-7953d598b451" />
+              </controlFlow>
+            </flowNodeTargets>
+          </callBehaviorAction>
+          <opaqueAction Id="db49891e-bba7-4e71-afb0-8e60caf01987" name="Update Status" isLeaf="false">
+            <elementDefinition Id="f6427f08-35ab-433d-a055-f1231979d14b" />
+            <flowNodeTargets>
+              <controlFlow Id="cd5742f5-d808-43a3-92c4-e3680defdb1c" isLeaf="false">
+                <activityFinalNodeMoniker Id="b686e4c0-4dbb-4d19-b464-ec129fae76e5" LastKnownName="ActivityFinal2" />
+                <elementDefinition Id="97d78d93-650b-485a-8511-3b053270c0df" />
+              </controlFlow>
+            </flowNodeTargets>
+            <objectFlowTargets>
+              <objectFlow Id="4553f7b9-f59e-4fa3-8ae5-35ab7136b8b1" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="69e0fcf2-d33d-4296-908c-02ea0479b070" LastKnownName="Work Order" />
+                <elementDefinition Id="0ef66359-53a1-4404-ac9a-e31cc0df36d9" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <activityFinalNode Id="b686e4c0-4dbb-4d19-b464-ec129fae76e5" name="ActivityFinal2" isLeaf="false">
+            <elementDefinition Id="ebdb5acf-4bc7-4f3f-916c-1b17c4d1c9bd" />
+          </activityFinalNode>
+          <objectNode Id="69e0fcf2-d33d-4296-908c-02ea0479b070" name="Work Order" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="5195728b-d8ae-4bdf-ba38-9a25afffc90d" />
+            <upperBound>
+              <literalInteger Id="50a4281c-ec9a-4f37-b348-4c36cd663036" name="2147483647" value="2147483647">
+                <elementDefinition Id="9b8391d7-ecd8-4a71-b4c0-c3eec86bfe1f" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="5d2d494a-0cff-402a-b144-a1428854937b" name="Determine Placement" isLeaf="false">
+            <elementDefinition Id="8e287132-f764-40f1-8ff7-917afe707b94" />
+            <flowNodeTargets>
+              <controlFlow Id="6359bb43-f188-469b-8ca2-75180b30bfc5" isLeaf="false">
+                <sendSignalActionMoniker Id="be8a140e-6837-48ab-bb46-4dfeaa33f6f4" LastKnownName="Invoke AzureFileTransferService" />
+                <elementDefinition Id="5b92d11d-d9f1-4c7a-bf98-e58d4708f487" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="7658aacc-a1eb-499d-af50-1f395b2da968" name="ZephyrModel">
+    <elementDefinition Id="3bdf886d-8653-44a6-876a-8d5021e414ed" />
+  </package>
+</activityRootModel>

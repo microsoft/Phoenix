@@ -1,0 +1,73 @@
+﻿
+
+<div class="hw-create-fileshare-container">
+
+    <div class="drawer-form-wapitem">
+        <h2>Server Configuration</h2>
+    </div>
+
+    <div class="drawer-form-wapitem">
+        <label for="VmSourceImage">Server Name</label>
+        <input id="VmServerName" type="text" maxlength="15" class="fx-textbox fx-validation fx-editablecontrol" data-val="true" data-val-required="VM name is required" data-val-regex="VM Name should contain letters and numbers" data-val-regex-pattern="(^[A-Za-z0-9|-]{0,15}$)" />
+      
+    </div>
+
+    <div class="drawer-form-wapitem">
+        <label for="VmSize">Azure OS Version</label>
+        <select id="VmSourceImage" name="VmSize" data-fxcontroltype="fxDropdown">
+           
+
+        </select>
+    </div>
+
+    <div class="drawer-form-wapitem">
+        <label for="VmRegion">Azure Compute SKU</label>
+        <select id="VmSize" data-fxcontroltype="fxDropdown">
+            <option value="West Eroupe">A1-</option>
+
+        </select>
+    </div>
+
+    <div class="drawer-form-wapitem" style="width: 500px; height: 180px">
+        <div id="isDomainjoined">
+            <label for="domain-joined-radio">Domain Joined</label>
+            <div id="domain-joined-radio" class="radio pushbutton">
+            </div>
+        </div>
+        
+        <label id="UserLabel" for="VmAdminGroup">Server Admin Security Group</label>
+        <input id="VmAdminGroup" type="text" class="fx-textbox fx-validation fx-editablecontrol" data-val="true" data-val-required="VM admin group is required"/>
+        <div id="nameresolve">
+
+        </div>
+        <div id="loading">
+           
+        </div><br/>
+        <label id="lblmessage"></label>
+
+        <div id="VmAdminPasswordDiv">
+            <label id="PasswordLabel" for="VmAdminPassword">Local Admin Password</label>
+            <input id="VmAdminPassword" name="VmAdminPassword" type="password" data-val="true" data-val-required="Password is required" data-val-regex="Password should contain more than 8 characters with 3 of the following: a lowercase character, an uppercase character, a number, a special character" 
+                   data-val-regex-pattern="^(?!.* )(?=.*\d)(?=.*[A-Z]).{8,123}$"/>
+        </div>
+
+        <div id="VmDomains">
+            <label for="VmDomain">Active Directory Domain</label>
+            <select id="VmDomain" name="VmDomain" class="VmDomain" data-fxcontroltype="fxDropdown"></select>
+            <label class="VmDomain"></label>
+        </div>
+
+        <div id="VmNics">
+            <label for="VmNic1">NIC</label>
+            <select id="VmNic1" data-fxcontroltype="fxDropdown">
+                <option value="West Eroupe"> </option>
+            </select>
+        </div>
+    </div>
+
+<!--   <div class="drawer-form-wapitem">
+        <label for="VmSourceImage">MSIT Monitored</label>
+        <div id="msitradio" class="radio pushbutton">
+        </div>
+    </div> -->
+ </div>
