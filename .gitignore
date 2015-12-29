@@ -19,7 +19,7 @@ OneBranch Specific
 msbuild.log
 
 # VSMSBuild generated files in CoreXT
-*.sln
+#*.sln
 *.projhash*
 *.slnhash*
 
