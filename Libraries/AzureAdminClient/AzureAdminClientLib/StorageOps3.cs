@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if BLOB_XFER
+using System;
 using System.Collections.Generic;
 using CmpInterfaceModel;
 using Microsoft.WindowsAzure.Storage.DataMovement;
@@ -332,3 +333,4 @@ namespace AzureAdminClientLib
         }
     }
 }
+#endif
