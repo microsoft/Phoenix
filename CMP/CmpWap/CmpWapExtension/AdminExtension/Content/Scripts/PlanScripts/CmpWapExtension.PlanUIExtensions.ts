@@ -372,29 +372,35 @@ module PlanServices {
         toggleArmOrAsm(): void {
             var subType = $("#subscriptionType").val();
             if (subType == "ARM") {
+                alert("Debug: ARM SELECTED");
                 $("#certificateThumbprint").prop("disabled", true);//.prop("data-val", false);
-                $("#certificateThumbprint").settings.ignore = "";
+                //$("#certificateThumbprint").settings.ignore = "";
                 $("#tenantID").prop("disabled", false);//.prop("data-val", true);
-                $("#tenantID").settings.ignore = ".ignore";
+                //$("#tenantID").settings.ignore = ".ignore";
                 $("#clientID").prop("disabled", false);//.prop("data-val", true);
-                $("#clientID").settings.ignore = ".ignore";
+                //$("#clientID").settings.ignore = ".ignore";
                 $("#clientKey").prop("disabled", false);//.prop("data-val", true);
-                $("#clientKey").settings.ignore = ".ignore";
+                //$("#clientKey").settings.ignore = ".ignore";
             }
             if (subType == "ASM") {
+                alert("Debug: ASM SELECTED");
                 $("#certificateThumbprint").prop("disabled", false);//.prop("data-val", false);
-                $("#certificateThumbprint").settings.ignore = "";
+                //$("#certificateThumbprint").settings.ignore = "";
                 $("#tenantID").prop("disabled", true);//.prop("data-val", true);
-                $("#tenantID").settings.ignore = ".ignore";
+                //$("#tenantID").settings.ignore = ".ignore";
                 $("#clientID").prop("disabled", true);//.prop("data-val", true);
-                $("#clientID").settings.ignore = ".ignore";
+                //$("#clientID").settings.ignore = ".ignore";
                 $("#clientKey").prop("disabled", true);//.prop("data-val", true);
-                $("#clientKey").settings.ignore = ".ignore";
+                //$("#clientKey").settings.ignore = ".ignore";
             }
+
+            //Esto esta fallando. El unobstrusive es null. Moverle.
             $.validator.unobtrusive.parse($("#certificateThumbprint"));
             $.validator.unobtrusive.parse($("#tenantID"));
             $.validator.unobtrusive.parse($("#clientID"));
             $.validator.unobtrusive.parse($("#clientKey"));
+
+            alert("Debug: Exiting handler");
         }
     }
 } 
