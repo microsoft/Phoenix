@@ -372,7 +372,7 @@ module PlanServices {
         toggleArmOrAsm(): void {
             var subType = $("#subscriptionType").val();
             if (subType == "ARM") {
-                alert("Debug: ARM SELECTED");
+                //alert("Debug: ARM SELECTED");
                 $("#certificateThumbprint").prop("disabled", true);//.prop("data-val", false);
                 //$("#certificateThumbprint").settings.ignore = "";
                 $("#tenantID").prop("disabled", false);//.prop("data-val", true);
@@ -383,7 +383,7 @@ module PlanServices {
                 //$("#clientKey").settings.ignore = ".ignore";
             }
             if (subType == "ASM") {
-                alert("Debug: ASM SELECTED");
+                //alert("Debug: ASM SELECTED");
                 $("#certificateThumbprint").prop("disabled", false);//.prop("data-val", false);
                 //$("#certificateThumbprint").settings.ignore = "";
                 $("#tenantID").prop("disabled", true);//.prop("data-val", true);
@@ -395,12 +395,12 @@ module PlanServices {
             }
 
             //Esto esta fallando. El unobstrusive es null. Moverle.
-            $.validator.unobtrusive.parse($("#certificateThumbprint"));
-            $.validator.unobtrusive.parse($("#tenantID"));
-            $.validator.unobtrusive.parse($("#clientID"));
-            $.validator.unobtrusive.parse($("#clientKey"));
+            //$.validator.unobtrusive.parse($("#certificateThumbprint"));
+            //$.validator.unobtrusive.parse($("#tenantID"));
+            //$.validator.unobtrusive.parse($("#clientID"));
+            //$.validator.unobtrusive.parse($("#clientKey"));
 
-            alert("Debug: Exiting handler");
+            //alert("Debug: Exiting handler");
         }
     }
 } 

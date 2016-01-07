@@ -87,14 +87,14 @@
                    Name="Content">
           <Directory Id="AdminSiteContentExtDir"
                      Name="CmpWapExtensionAdmin">
-          </Directory>
-        </Directory>
-        <Directory Id="PlansAdminExtDir"
-                   Name="PlansAdmin">
-          <Directory Id="PlansTemplateDir"
-                     Name="Templates">
-            <Directory Id="PlansTabViewDir"
-                       Name="PlansTabView">
+          </Directory>       
+          <Directory Id="PlansAdminExtDir"
+                     Name="PlansAdmin">
+            <Directory Id="PlansTemplateDir"
+                       Name="Templates">
+              <Directory Id="PlansTabViewDir"
+                         Name="PlansTabView">
+              </Directory>
             </Directory>
           </Directory>
         </Directory>        

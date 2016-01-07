@@ -331,9 +331,9 @@ namespace CMP.Setup.Helpers
                 if (isNewDatabase || isEmptyDatabase)
                 {
                     // Output the dacpac files to use them
-                    string pathToCMPDBDacpac = SetupDatabaseHelper.GetPathToOutputEmbeddedResource(SetupDatabaseHelper.CMPDBResourceName, "dacpac");
+                    string pathToDatabaseDacpac = isWap ? SetupDatabaseHelper.GetPathToOutputEmbeddedResource(SetupDatabaseHelper.CMPWAPDBResourceName, "dacpac") : SetupDatabaseHelper.GetPathToOutputEmbeddedResource(SetupDatabaseHelper.CMPDBResourceName, "dacpac");
 
-                    var dp = DacPackage.Load(pathToCMPDBDacpac);
+                    var dp = DacPackage.Load(pathToDatabaseDacpac);
                     var dbDeployOptions = new DacDeployOptions
                     {
                         BlockOnPossibleDataLoss = false,
@@ -757,7 +757,10 @@ namespace CMP.Setup.Helpers
         /// Creates the Database with parameters specified in the constructor.
         /// </summary>
         /// <param name="onRemoteServer">whether we are create db on remote server</param>
-        /// <param name="upgrading">we don't delete schedules when this is true</param>
+        /// <param name="connectionString"></param>
+        /// <param name="masterDBConnectionString"></param>
+        /// <param name="dbName"></param>
+        /// <param name="instanceName"></param>
         public static void CreateDB(bool onRemoteServer, string connectionString, string masterDBConnectionString, string dbName, string instanceName)
         {
             String commandText;

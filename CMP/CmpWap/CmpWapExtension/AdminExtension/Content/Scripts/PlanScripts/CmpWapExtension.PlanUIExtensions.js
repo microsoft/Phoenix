@@ -367,7 +367,7 @@ var PlanServices;
         PlanUiExtensions.prototype.toggleArmOrAsm = function () {
             var subType = $("#subscriptionType").val();
             if (subType == "ARM") {
-                alert("Debug: ARM SELECTED");
+                //alert("Debug: ARM SELECTED");
                 $("#certificateThumbprint").prop("disabled", true); //.prop("data-val", false);
 
                 //$("#certificateThumbprint").settings.ignore = "";
@@ -381,7 +381,7 @@ var PlanServices;
                 //$("#clientKey").settings.ignore = ".ignore";
             }
             if (subType == "ASM") {
-                alert("Debug: ASM SELECTED");
+                //alert("Debug: ASM SELECTED");
                 $("#certificateThumbprint").prop("disabled", false); //.prop("data-val", false);
 
                 //$("#certificateThumbprint").settings.ignore = "";
@@ -394,14 +394,12 @@ var PlanServices;
                 $("#clientKey").prop("disabled", true); //.prop("data-val", true);
                 //$("#clientKey").settings.ignore = ".ignore";
             }
-
             //Esto esta fallando. El unobstrusive es null. Moverle.
-            $.validator.unobtrusive.parse($("#certificateThumbprint"));
-            $.validator.unobtrusive.parse($("#tenantID"));
-            $.validator.unobtrusive.parse($("#clientID"));
-            $.validator.unobtrusive.parse($("#clientKey"));
-
-            alert("Debug: Exiting handler");
+            //$.validator.unobtrusive.parse($("#certificateThumbprint"));
+            //$.validator.unobtrusive.parse($("#tenantID"));
+            //$.validator.unobtrusive.parse($("#clientID"));
+            //$.validator.unobtrusive.parse($("#clientKey"));
+            //alert("Debug: Exiting handler");
         };
         return PlanUiExtensions;
     })();

@@ -40,7 +40,7 @@ namespace CMP.Setup
 
         public const String SqlDatabaseName = SetupConstants.DefaultDBName;
 
-        public const String WapSqlDatabaseName = "WAP";
+        public const String WapSqlDatabaseName = "CMPWAP_DB";
 
         public const int SqlServerPort = 0;
 
