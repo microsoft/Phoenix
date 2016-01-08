@@ -139,11 +139,11 @@ module AzureSubOps {
             var deferred = $.Deferred();
             var adminUpdateServiceProviderAccountUrl = this.baseUrl + "/UpdateServiceProviderAccount";
             
-            if (name !== "" &&
-                description !== "" &&
-                resourceGroup !== "" &&
-                accountType !== "" &&
-                certificateThumbprint !== ""
+            if (name !== "" 
+                && description !== "" 
+                && resourceGroup !== "" 
+                && accountType !== "" 
+                //&& certificateThumbprint !== ""
                 ) {
                 $.post(adminUpdateServiceProviderAccountUrl,
                     {

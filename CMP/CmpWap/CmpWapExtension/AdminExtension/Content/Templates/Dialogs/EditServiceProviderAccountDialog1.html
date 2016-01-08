@@ -5,12 +5,12 @@
         <div class="aux-dialog-item">
             <label for="name" class="aux-dialog-item">Name</label>
             <input id="name" type="text" maxlength="1024" class="fx-textbox fx-validation fx-editablecontrol"
-                   data-val="true" data-val-required="Required" data-val-length="The endpoint URL length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="1024" data-val-regex="Not URL" data-val-regex-pattern="^(http|https):\/\/(.*)$" />
+                   data-val="true" data-val-required="Required" data-val-length="The name length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="1024" data-val-regex="Not URL" data-val-regex-pattern="^(http|https):\/\/(.*)$" />
         </div>
         <div class="aux-dialog-item">
             <label for="description" class="aux-dialog-item">Description</label>
             <input id="description" maxlength="128" type="text" class="fx-textbox fx-validation fx-editablecontrol"
-                   data-val="true" data-val-required="Required" data-val-length="The username length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="128" />
+                   data-val="true" data-val-required="Required" data-val-length="The description length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="128" />
         </div>
         <div class="aux-dialog-item">
             <label for="resourceGroup" class="aux-dialog-item">Service Provider Group</label>
@@ -19,7 +19,7 @@
         <div class="aux-dialog-item">
             <label for="accountId" class="aux-dialog-item">Azure Subscription ID</label>
             <input id="accountId" maxlength="255" type="text" class="fx-textbox fx-validation fx-editablecontrol"
-                   data-val="true" data-val-required="Required" data-val-length="The password length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="255" />
+                   data-val="true" data-val-required="Required" data-val-length="The Azure Subscription ID length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="255" />
         </div>
         <div class="aux-dialog-item">
             <label for="accountType" class="aux-dialog-item">Account Type</label>
@@ -29,8 +29,7 @@
         </div>
         <div class="aux-dialog-item">
             <label for="certificateThumbprint" class="aux-dialog-item">Certificate Thumbprint</label>
-            <input id="certificateThumbprint" maxlength="255" type="text" class="fx-textbox fx-validation fx-editablecontrol"
-                   data-val="true" data-val-required="Required" data-val-length="The password length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="255" />
+            <input id="certificateThumbprint" maxlength="255" type="text" class="fx-textbox fx-validation fx-editablecontrol"  /><!--data-val="true" data-val-required="Required" data-val-length="The password length must be between {:min:} and {:max:}" data-val-length-min="1" data-val-length-max="255"-->
         </div>
 
         {{if data.registerReseller == true}}
