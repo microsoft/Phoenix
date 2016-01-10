@@ -217,6 +217,40 @@
     }
 
     //*************************************************************************
+    // Changes the region list to the single region of the selecetd app
+    //*************************************************************************
+    function vmSelectedAppChanged() {
+        var selectedApp = $("#VmAppNameSelect").val();
+
+        if (appList) {
+            for (var index = 0; index < appList.length; index++) {
+                if (selectedApp == appList[index].Name) {
+                    setVmRegionList(appList[index].Region);
+                    return;
+                }
+            }
+        };
+
+        setVmRegionList(null);
+    }
+
+    function setVmRegionList(selectedRegion) {
+        var listItems = "";
+
+        if (selectedRegion) {
+            listItems += "<option value='" + selectedRegion + "'>" + selectedRegion + "</option>";
+            $("#VmRegion").html(listItems);
+            $("#VmRegion").selectedIndex = 0;
+        }
+        else if (targetRegionsList) {
+            for (var i = 0; i < targetRegionsList.length; i++) {
+                listItems += "<option value='" + targetRegionsList[i].Name + "'>" + targetRegionsList[i].Description + "</option>";
+            }
+            $("#VmRegion").html(listItems);
+        }
+    }
+
+    //*************************************************************************
     // Updates the drive size list
     //*************************************************************************
     function driveSizeChanged() {
@@ -426,6 +460,11 @@
             });
             $("#VmSourceImage").change(function () {
                 vmSourceImageChanged();
+            });
+
+            //** thing ***
+            $("#VmAppNameSelect").change(function () {
+                vmSelectedAppChanged();
             });
         } catch (err) {
             alert(err.message);
