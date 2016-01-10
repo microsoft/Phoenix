@@ -149,7 +149,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Tests
                     CreatedOn = DateTime.UtcNow,
                     LastUpdatedOn = DateTime.UtcNow,
                     Name = "App1",
-                    SubscriptionId = "abcd-1234"
+                    SubscriptionId = "abcd-1234",
+                    Region = "USWest"
                 },
                 new Models.Application
                 {
@@ -163,7 +164,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Tests
                     CreatedOn = DateTime.UtcNow,
                     LastUpdatedOn = DateTime.UtcNow,
                     Name = "App2",
-                    SubscriptionId = "abcd-1234"
+                    SubscriptionId = "abcd-1234",
+                    Region = "USWest"
                 }
             };
 

@@ -23,5 +23,6 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models
         public string CreatedBy { get; set; }
         public System.DateTime LastUpdatedOn { get; set; }
         public string LastUpdatedBy { get; set; }
+        public string Region { get; set; }
     }
 }

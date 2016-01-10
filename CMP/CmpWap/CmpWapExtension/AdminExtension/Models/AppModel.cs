@@ -38,6 +38,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.Models
             this.ApplicationId = createAppFromApi.ApplicationId;
             this.IsActive = createAppFromApi.IsActive;
             this.AppCode = createAppFromApi.Code;
+            this.Region = createAppFromApi.Region;
         }
 
         //*********************************************************************
@@ -56,7 +57,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.Models
                 Name = this.Name,
                 ApplicationId = this.ApplicationId,
                 IsActive = this.IsActive,
-                Code = this.AppCode
+                Code = this.AppCode,
+                Region = this.Region
             };
         }
 
@@ -71,5 +73,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.Models
 
         /// <summary> </summary>
         public bool IsActive { get; set; }
+
+        /// <summary> </summary>
+        public string Region { get; set; }
     }
 }

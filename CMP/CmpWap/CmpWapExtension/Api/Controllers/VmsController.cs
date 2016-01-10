@@ -297,7 +297,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
                     cmpi.PerformAppDataOps(new CreateVm { VmAppName = vM.VmAppName, 
                         VmAppId = vM.VmAppId, 
                         SubscriptionId = vM.SubscriptionId, 
-                        AccountAdminLiveEmailId = vM.AccountAdminLiveEmailId 
+                        AccountAdminLiveEmailId = vM.AccountAdminLiveEmailId,
+                        VmRegion = vM.VmRegion
                     });
                     //Submit VM information to the WAP DB
                     vM = cmpi.SubmitVmRequest(vM);

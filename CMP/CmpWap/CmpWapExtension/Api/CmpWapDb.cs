@@ -86,7 +86,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     }
                     else
                     {
-                        var maxAppId = db.Applications.Max(app => app.ApplicationId);
+                        var maxAppId = db.Applications.Any() ? db.Applications.Max(app => app.ApplicationId) : 0;
 
                         var appn = new Application
                         {
@@ -100,7 +100,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                             CreatedBy = vm.AccountAdminLiveEmailId,
                             LastUpdatedOn = DateTime.UtcNow,
                             LastUpdatedBy = vm.AccountAdminLiveEmailId,
-                            CIOwner = vm.AccountAdminLiveEmailId
+                            CIOwner = vm.AccountAdminLiveEmailId,
+                            Region = vm.VmRegion
                         };
 
                         db.Applications.Add(appn);

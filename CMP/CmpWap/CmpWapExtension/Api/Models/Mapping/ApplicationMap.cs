@@ -45,6 +45,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(50);
 
+            this.Property(t => t.Region)
+                .IsRequired()
+                .HasMaxLength(50);
+
             // Table & Column Mappings
             this.ToTable("Application");
             this.Property(t => t.ApplicationId).HasColumnName("ApplicationId");
@@ -58,6 +62,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models.Mapping
             this.Property(t => t.CreatedBy).HasColumnName("CreatedBy");
             this.Property(t => t.LastUpdatedOn).HasColumnName("LastUpdatedOn");
             this.Property(t => t.LastUpdatedBy).HasColumnName("LastUpdatedBy");
+            this.Property(t => t.Region).HasColumnName("Region");
         }
     }
 }

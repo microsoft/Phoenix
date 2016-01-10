@@ -38,5 +38,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.DataContracts
         public bool IsActive { get; set; }
         [DataMember(Order = 6)]
         public string SubscriptionId { get; set; }
+        [DataMember(Order = 7)]
+        public string Region { get; set; }
     }
 }

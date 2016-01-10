@@ -31,6 +31,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Models
             this.IsActive = createOsFromApi.IsActive;
             this.AppCode = createOsFromApi.Code;
             this.SubscriptionId = createOsFromApi.SubscriptionId;
+            this.Region = createOsFromApi.Region;
         }
 
         /// <summary>
@@ -45,7 +46,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Models
             ApplicationId = this.ApplicationId,
             IsActive = this.IsActive,
             Code = this.AppCode,
-            SubscriptionId = this.SubscriptionId
+            SubscriptionId = this.SubscriptionId,
+            Region = this.Region
             };
         }
 
@@ -63,6 +65,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Models
         public bool IsActive { get; set; }
 
         public string SubscriptionId { get; set; }
+
+        public string Region { get; set; }
 
     }
 }

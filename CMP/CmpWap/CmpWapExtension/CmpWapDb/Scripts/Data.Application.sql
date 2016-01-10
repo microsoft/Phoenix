@@ -18,6 +18,7 @@ CREATE TABLE #WorkTable (
 , [CreatedBy] [nvarchar] (256) NOT NULL
 , [LastUpdatedOn] [datetime]  NOT NULL
 , [LastUpdatedBy] [varchar] (50) NOT NULL
+, [Region] [nvarchar] (50) NOT NULL
 )
 GO
  
@@ -56,6 +57,7 @@ SET   Name = source.Name
         , CreatedBy = source.CreatedBy
         , LastUpdatedOn = source.LastUpdatedOn
         , LastUpdatedBy = source.LastUpdatedBy
+		, Region = source.Region
 
 FROM #WorkTable source
     JOIN Application target
@@ -70,6 +72,7 @@ FROM #WorkTable source
     OR  ISNULL(source.CreatedBy , '') <>  ISNULL(target.CreatedBy , '')
     OR  ISNULL(source.LastUpdatedOn , '') <>  ISNULL(target.LastUpdatedOn , '')
     OR  ISNULL(source.LastUpdatedBy , '') <>  ISNULL(target.LastUpdatedBy , '')
+    OR  ISNULL(source.Region , '') <>  ISNULL(target.Region , '')
     )
  
 SELECT @vUpdatedRows = @@ROWCOUNT
@@ -78,9 +81,9 @@ SELECT @vUpdatedRows = @@ROWCOUNT
 -- Insert new data. 
 --------------------------------------------------
 INSERT Application
-    (Name, Code, HasService, CIOwner, IsActive, SubscriptionId, CreatedOn, CreatedBy, LastUpdatedOn, LastUpdatedBy)
+    (Name, Code, HasService, CIOwner, IsActive, SubscriptionId, CreatedOn, CreatedBy, LastUpdatedOn, LastUpdatedBy, Region)
 SELECT
-    Name, Code, HasService, CIOwner, IsActive, SubscriptionId, CreatedOn, CreatedBy, LastUpdatedOn, LastUpdatedBy
+    Name, Code, HasService, CIOwner, IsActive, SubscriptionId, CreatedOn, CreatedBy, LastUpdatedOn, LastUpdatedBy, Region
 FROM #WorkTable source
 WHERE NOT EXISTS(SELECT * 
 FROM Application target
