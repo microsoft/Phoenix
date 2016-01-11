@@ -381,7 +381,11 @@ namespace CmpServiceLib
                     db.Configuration.LazyLoadingEnabled = false;                   
                     db.Database.Connection.ConnectionString = _ConnectionString;                    
 
-                    IOrderedQueryable<VmDeploymentRequest> vmrQ ;                  
+                    IOrderedQueryable<VmDeploymentRequest> vmrQ ;
+
+                    if (null != status)
+                        if (0 == status.Length) 
+                            status = null;
 
                     if (null == status)
                         vmrQ = db.VmDeploymentRequests.Where(rb => (rb.Active == active))

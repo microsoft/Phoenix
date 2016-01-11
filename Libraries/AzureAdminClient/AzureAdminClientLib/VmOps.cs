@@ -526,6 +526,7 @@ namespace AzureAdminClientLib
 
         public List<Role> FetchVmList()
         {
+            //*** TODO * markw * make this ARM compatible ***
             try
             {
                 var hostedServices = Client.HostedServices.List();

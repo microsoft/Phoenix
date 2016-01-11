@@ -52,7 +52,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             _syncWorker._workerThread = new Thread(_syncWorker.Worker);
             _syncWorker._azureThread = new Thread(_syncWorker.AzureWorker);
 
-            _syncWorker._azureThread.Start();
+            _syncWorker._workerThread.Start();
+            //_syncWorker._azureThread.Start();
         }
 
         //*********************************************************************

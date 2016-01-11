@@ -342,7 +342,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //FetchRegionsTest();
                 //FetchResourceGroupNameTest();
                 //FetchRoleSizes();
-                //TestSyncWorker();
+                TestSyncWorker();
                 //FetchTenantInfo();
                 //SetVmOsByBatch();
                 //FetchPlanConfigInfo();
@@ -352,7 +352,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //FetchTenantVmSizes();
                 //FetchDefaultResourceGroupTest();
 
-                GetVmTest();
+                //GetVmTest();
                 //PostOpsProcessingTest();
                 //VmOpsTest();
                 //VmOpsStopTest();
