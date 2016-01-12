@@ -187,9 +187,8 @@ namespace CmpServiceLib
                 _po = new ProcessorOps(_eventLog);
                 _po.ProcessOpsRequestsAsynch(cmpDbConnectionString);
 
-                //*** TODO * markw * uncomment this after 'public List<Role> FetchVmList()' is ARM compatible ***
-                //_pss = new ProcessorSyncSubs(_eventLog);
-                //_pss.ProcessSyncAzureSubsAsync(cmpDbConnectionString);
+                _pss = new ProcessorSyncSubs(_eventLog);
+                _pss.ProcessSyncAzureSubsAsync(cmpDbConnectionString);
 
                 _psai = new ProcessorSyncAzureInfo(_eventLog);
                 _psai.ProcessSyncAzureInfo(cmpDbConnectionString);

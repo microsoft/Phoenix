@@ -182,6 +182,7 @@
     <Compile Include="AzureVmOsARMData.cs" />
     <Compile Include="AzureVmSizeArmData.cs" />
     <Compile Include="DataContracts\ArmInstanceViewStatus.cs" />
+    <Compile Include="SubscriptionOps.cs" />
     <Compile Include="DiskOps.cs" />
     <Compile Include="RegistryHelper.cs" />
     <Compile Include="ScriptOps.cs" />

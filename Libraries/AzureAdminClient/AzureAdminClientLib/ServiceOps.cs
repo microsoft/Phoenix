@@ -15,6 +15,13 @@ using Microsoft.WindowsAzure.Management.Compute.Models;
 
 namespace AzureAdminClientLib
 {
+    public class AzureResourceGroup
+    {
+        public string Id;
+        public string Name;
+        public string Location;
+    }
+
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/windowsazure")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://schemas.microsoft.com/windowsazure", IsNullable = false)]
@@ -1645,6 +1652,39 @@ namespace AzureAdminClientLib
 
             return ServiceAvailabilityEnum.Available;
         }
+
+        public List<AzureResourceGroup> FetchResourceGroupList()
+        {
+            // https://msdn.microsoft.com/en-us/library/azure/dn790529.aspx
+
+            var resourceGroups = new List<AzureResourceGroup>();
+
+            try
+            {
+                var rgList = GetResourceGroupList();
+                var resGrouplist = Utilities.FetchJsonValue(rgList.Body, "value") as Newtonsoft.Json.Linq.JArray;
+
+                if (null != resGrouplist)
+                    foreach (var resGroup in resGrouplist)
+                    {
+                        var foundName = Utilities.FetchJsonValue(resGroup.ToString(), "name") as string;
+
+                        resourceGroups.Add(new AzureResourceGroup()
+                        {
+                            Id = Utilities.FetchJsonValue(resGroup.ToString(), "id") as string,
+                            Name = Utilities.FetchJsonValue(resGroup.ToString(), "name") as string,
+                            Location = Utilities.FetchJsonValue(resGroup.ToString(), "location") as string,
+                        });
+                    }
+
+                return resourceGroups;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("excpetion in FetchResourceGroupList() : " + ex.Message);
+            }
+        }
+
 
         //*********************************************************************
         ///

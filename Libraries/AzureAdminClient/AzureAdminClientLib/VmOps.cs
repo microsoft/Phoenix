@@ -526,7 +526,9 @@ namespace AzureAdminClientLib
 
         public List<Role> FetchVmList()
         {
-            //*** TODO * markw * make this ARM compatible ***
+            if(null != Connection.AdToken)
+                return FetchVmListArm();
+
             try
             {
                 var hostedServices = Client.HostedServices.List();
@@ -2225,6 +2227,81 @@ namespace AzureAdminClientLib
             }
         }
 
+        public VmRole ExtractVmInfo(string vmInfoJson, string vmName, string resourceGroupName)
+        {
+            try
+            {
+                //ExtractDataDiskInfo(vmInfoJson);
+
+                var osVirtualDisk = new OsVirtualHardDisk
+                {
+                    DiskLabel = "C",
+                    DiskName =
+                        Utilities.FetchJsonValue(vmInfoJson,
+                            new string[] { "properties", "storageProfile", "osDisk", "name" }) as string,
+                    HostCaching =
+                        Utilities.FetchJsonValue(vmInfoJson,
+                            new string[] { "properties", "storageProfile", "osDisk", "caching" }) as string,
+                    MediaLink =
+                        Utilities.FetchJsonValue(vmInfoJson,
+                            new string[] { "properties", "storageProfile", "osDisk", "vhd", "uri" }) as string,
+                    OS =
+                        Utilities.FetchJsonValue(vmInfoJson,
+                            new string[] { "properties", "storageProfile", "osDisk", "osType" }) as string,
+                    SourceImageName = null,
+                    RemoteSourceImageLink = null
+                };
+
+                var name = Utilities.FetchJsonValue(vmInfoJson, new string[] { "name" }) as string;
+                var size = Utilities.FetchJsonValue(vmInfoJson, new string[] { "properties", "hardwareProfile", "vmSize" }) as string;
+
+                var deployment = new Deployment
+                {
+                    PrivateID = Utilities.FetchJsonValue(vmInfoJson, new string[] { "properties", "vmId" }) as string,
+                    RoleInstanceList = new List<DeploymentRoleInstance>
+                    {
+                        new DeploymentRoleInstance
+                        {
+                            IpAddress = FetchVmIpAddressArm(vmInfoJson, resourceGroupName),
+                            RemoteAccessCertificateThumbprint = null,
+                            InstanceName = name,
+                            InstanceSize = size,
+                            //InstanceStatus = Utilities.FetchJsonValue(vmInfoJson, new string[] {"properties", "provisioningState"}) as string,
+                            InstanceStatus = GetVmInstanceStatus(vmName, resourceGroupName),
+                            GuestAgentStatus = null,
+                            HostName = Utilities.FetchJsonValue(vmInfoJson, new string[] {"properties", "osProfile", "computerName"})
+                                    as string,
+                            //InstanceFaultDomain = null,
+                            InstanceStateDetails = null,
+                            //InstanceUpgradeDomain = null,
+                            PowerState = null,
+                            ResourceExtensionStatusList = null,
+                            RoleName = name
+                        }
+                    }.ToArray(),
+                    Url = FetchVmPublicFqdnArm(vmInfoJson, resourceGroupName)
+                };
+
+                var subscription = new SubscriptionInfo
+                {
+                    CurrentCoreCount = "0",
+                    MaximumCoreCount = "100",
+                    SubscriptionID = Connection.SubcriptionID,
+                    SubscriptionName = FetchSubscriptionNameArm(Connection.SubcriptionID)
+                };
+
+                var vmrole = new VmRole(name, size,
+                    ExtractDataDiskInfo(vmInfoJson), osVirtualDisk, deployment, subscription);
+
+                return vmrole;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in GetVmArm() :" + 
+                    Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
         //*********************************************************************
         /// 
         ///   <summary>
@@ -2300,10 +2377,16 @@ namespace AzureAdminClientLib
                     Url = FetchVmPublicFqdnArm(vmInfoJson, resourceGroupName)
                 };
 
+                //*** TODO * markwes * use region of given VM
+                var azureRegion = "westus";
+
+                var subOps = new SubscriptionOps(Connection);
+                var coreUsage = subOps.FetchResourceUsage(azureRegion, "cores");
+
                 var subscription = new SubscriptionInfo
                 {
-                    CurrentCoreCount = "0",
-                    MaximumCoreCount = "100",
+                    CurrentCoreCount = coreUsage.Value.ToString(),
+                    MaximumCoreCount = coreUsage.Limit.ToString(),
                     SubscriptionID = Connection.SubcriptionID,
                     SubscriptionName = FetchSubscriptionNameArm(Connection.SubcriptionID)
                 };
@@ -2315,9 +2398,21 @@ namespace AzureAdminClientLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in GetVmArm() :" + Utilities.UnwindExceptionMessages(ex));
+                throw new Exception("Exception in GetVmArm() :" + 
+                    Utilities.UnwindExceptionMessages(ex));
             }
         }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vmName"></param>
+        /// <param name="resourceGroupName"></param>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
 
         private string GetVmInstanceStatus(string vmName, string resourceGroupName)
         {
@@ -2357,9 +2452,132 @@ namespace AzureAdminClientLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in GetVmInstanceStatus() :" + Utilities.UnwindExceptionMessages(ex));
+                throw new Exception("Exception in GetVmInstanceStatus() :" + 
+                    Utilities.UnwindExceptionMessages(ex));
             }
         }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vmRole"></param>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+
+        private Role Convert(VmRole vmRole)
+        {
+            return new Role()
+            {
+                AvailabilitySetName = null, 
+                ConfigurationSets = null, 
+                DataVirtualHardDisks = null, 
+                DefaultWinRmCertificateThumbprint = null, 
+                Label = CmpInterfaceModel.Utilities.StringToB64(vmRole.RoleName), 
+                MediaLocation = null, 
+                OSVersion = null, 
+                OSVirtualHardDisk = new OSVirtualHardDisk()
+                {
+                    HostCaching = vmRole.OSVirtualHardDisk.HostCaching,
+                    Label = vmRole.OSVirtualHardDisk.DiskLabel,
+                    Name = vmRole.OSVirtualHardDisk.DiskName, 
+                    //IOType = null
+                    MediaLink = (null != vmRole.OSVirtualHardDisk.MediaLink)? new Uri(vmRole.OSVirtualHardDisk.MediaLink) : null,
+                    OperatingSystem = vmRole.OSVirtualHardDisk.OS,
+                    RemoteSourceImageLink = (null != vmRole.OSVirtualHardDisk.RemoteSourceImageLink)? new Uri(vmRole.OSVirtualHardDisk.RemoteSourceImageLink) : null, 
+                    //ResizedSizeInGB = null,
+                    SourceImageName = vmRole.OSVirtualHardDisk.SourceImageName
+                }, 
+                ProvisionGuestAgent = true, 
+                ResourceExtensionReferences = null,
+                RoleName = vmRole.RoleName, 
+                RoleSize = vmRole.RoleSize, 
+                RoleType = "PersistentVMRole", 
+                VMImageInput = null, 
+                VMImageName = null
+            };
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="resourceGroupName"></param>
+        /// 
+        //*********************************************************************
+
+        public List<Role> FetchVmListArm(string resourceGroupName)
+        {
+            string URLTEMPLATE_FETCHVMLISTINRESGROUP_ARM =
+                "https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/virtualmachines?api-version={2}";
+
+            var vmList = new List<Role>();
+
+            try
+            {
+                var url = string.Format(URLTEMPLATE_FETCHVMLISTINRESGROUP_ARM,
+                    Connection.SubcriptionID, resourceGroupName, "2015-06-15");
+
+                var hi = new HttpInterface(Connection);
+                var resp = hi.PerformRequestArm(HttpInterface.RequestType_Enum.GET, url);
+
+                if (resp.HadError)
+                    throw new Exception("Exception in Azure :" + resp.Body);
+
+                var vmListJson = Utilities.FetchJsonValue(resp.Body, "value") as Newtonsoft.Json.Linq.JArray;
+
+                if (null != vmListJson)
+                    foreach (var vmJson in vmListJson)
+                    {
+                        var name = Utilities.FetchJsonValue(vmJson.ToString(), "name") as string;
+                        vmList.Add(Convert(ExtractVmInfo(vmJson.ToString(), name, resourceGroupName)));
+                    }
+
+                return vmList;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("excpetion in FetchVmListArm() : " + 
+                    Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+
+        public List<Role> FetchVmListArm()
+        {
+            // https://msdn.microsoft.com/en-us/library/azure/mt163572.aspx
+
+            try
+            {
+                var hso = new HostedServiceOps(Connection);
+                var resourceGroups = hso.FetchResourceGroupList();
+                var vmList = new List<Role>();
+
+                foreach (var rg in resourceGroups)
+                {
+                    vmList.AddRange(FetchVmListArm(rg.Name));
+                }
+
+                return vmList;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("excpetion in FetchVmListArm() : " + 
+                    Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
 
         #endregion
     }
