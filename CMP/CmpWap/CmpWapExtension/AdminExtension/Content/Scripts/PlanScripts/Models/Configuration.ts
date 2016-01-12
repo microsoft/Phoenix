@@ -6,6 +6,7 @@
         private _vmSizes: Array<ISetting>;
 		private _azureRegions: Array<ISetting>;
         private _azureSubscriptionSettings: Array<ISetting>;
+        //private _planSubdataShown: boolean;
 
         get OperatingSystems(): Array<ISetting> {
             return this._operatingSystems;
@@ -38,5 +39,13 @@
         set AzureSubscriptions(azureSubscriptionSettings: Array<ISetting>) {
             this._azureSubscriptionSettings = azureSubscriptionSettings;
         }
+
+        /*get planSubdataShown(): boolean {
+            return this._planSubdataShown;
+        }
+
+        set planSubdataShown(dataShown: boolean) {
+            this._planSubdataShown = dataShown;
+        }*/
     }
 } 

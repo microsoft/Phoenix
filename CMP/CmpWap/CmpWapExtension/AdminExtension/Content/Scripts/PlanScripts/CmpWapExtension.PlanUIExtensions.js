@@ -19,6 +19,8 @@ var PlanServices;
     $('head').append('<meta http-equiv="Cache-Directive" content="no-cache" />');
     $('head').append('<meta http-equiv="Expires" content="-1" />');
 
+    var PlanSubDataShown = false;
+
     var PlanUiExtensions = (function () {
         function PlanUiExtensions() {
             var _this = this;
@@ -143,25 +145,28 @@ var PlanServices;
                 //Load subscription settings
                 _this.loadPlanSubscriptionSettings(_this._planConfigSettings.AzureSubscriptions);
 
-                //Load OS settings
-                if (_this._planConfigSettings.OperatingSystems.length > 0) {
-                    var sectionName = "osType";
-                    $("#" + sectionName).show();
-                    _this.loadSettingsIntoPage(sectionName, _this._planConfigSettings.OperatingSystems);
-                }
+                if (!PlanSubDataShown) {
+                    PlanSubDataShown = true;
+                    //Load OS settings
+                    if (_this._planConfigSettings.OperatingSystems.length > 0) {
+                        var sectionName = "osType";
+                        $("#" + sectionName).show();
+                        _this.loadSettingsIntoPage(sectionName, _this._planConfigSettings.OperatingSystems);
+                    }
 
-                //Load VM Sizes settings
-                if (_this._planConfigSettings.VmSizes.length > 0) {
-                    var sectionName = "vmSizes";
-                    $("#" + sectionName).show();
-                    _this.loadSettingsIntoPage(sectionName, _this._planConfigSettings.VmSizes);
-                }
+                    //Load VM Sizes settings
+                    if (_this._planConfigSettings.VmSizes.length > 0) {
+                        var sectionName = "vmSizes";
+                        $("#" + sectionName).show();
+                        _this.loadSettingsIntoPage(sectionName, _this._planConfigSettings.VmSizes);
+                    }
 
-                //Load AzureRegion settings
-                if (_this._planConfigSettings.AzureRegions.length > 0) {
-                    var sectionName = "azureRegions";
-                    $("#" + sectionName).show();
-                    _this.loadSettingsIntoPage(sectionName, _this._planConfigSettings.AzureRegions);
+                    //Load AzureRegion settings
+                    if (_this._planConfigSettings.AzureRegions.length > 0) {
+                        var sectionName = "azureRegions";
+                        $("#" + sectionName).show();
+                        _this.loadSettingsIntoPage(sectionName, _this._planConfigSettings.AzureRegions);
+                    }
                 }
             }, function (failMessage) {
                 _this.showPlanConfigMessage(failMessage, true);
