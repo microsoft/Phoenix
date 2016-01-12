@@ -175,7 +175,7 @@ namespace CmpServiceLib
         ///  <param name="cmpDbConnectionString"></param>
         /// <param name="aftsDbConnectionString"></param>
         ///  
-        //*********************************************************************
+        //**********************************************************************
 
         public void AsynchStart(string cmpDbConnectionString, string aftsDbConnectionString)
         {
