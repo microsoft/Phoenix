@@ -170,19 +170,7 @@
         <File Id="A_CmpWapExtension.PlanServiceOffer.js"
               KeyPath="yes"
               Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\CmpWapExtension.PlanServiceOffer.js" />
-      </Component>
-      <!--<Component Id="A_CmpWapExtension.PlanServiceOffer.ts"
-                 Guid="{2A791340-1761-4DCF-841A-56E4F4F31FC9}">
-        <File Id="A_CmpWapExtension.PlanServiceOffer.ts"
-              KeyPath="yes"
-              Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\CmpWapExtension.PlanServiceOffer.ts" />
-      </Component>
-      <Component Id="A_CmpWapExtension.PlanServiceOffer.js.map"
-                 Guid="{82C97544-9153-42EC-8873-07FCAD2700C9}">
-        <File Id="A_CmpWapExtension.PlanServiceOffer.js.map"
-              KeyPath="yes"
-              Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\CmpWapExtension.PlanServiceOffer.js.map" />
-      </Component>-->      
+      </Component>   
       <Component Id="A_CmpWapExtension.AzureSubOps.js"
                  Guid="{C6F38739-6F94-463C-81A7-E2EB94A6FBC2}">
         <File Id="A_CmpWapExtension.AzureSubOps.js"
@@ -201,18 +189,6 @@
               KeyPath="yes"
               Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\CmpWapExtension.Utility.js" />
       </Component>   
-      <!--<Component Id="A_CmpWapExtension.AzureSubOps.ts"
-                 Guid="{A5200C13-6BD8-4A40-AB5E-51DBB98838CD}">
-        <File Id="A_CmpWapExtension.AzureSubOps.ts"
-              KeyPath="yes"
-              Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\CmpWapExtension.AzureSubOps.ts" />
-      </Component>
-      <Component Id="A_CmpWapExtension.AzureSubOps.js.map"
-                 Guid="{7E64889D-F9AC-4921-A260-1497F7C6F7C6}">
-        <File Id="A_CmpWapExtension.AzureSubOps.js.map"
-              KeyPath="yes"
-              Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\CmpWapExtension.AzureSubOps.js.map" />
-      </Component>-->      
       <Component Id="A_CmpWapExtension.AzureSubs.js"
                  Guid="{8481F65A-57F8-4948-9A2C-C6E144D140AB}">
         <File Id="A_CmpWapExtension.AzureSubs.js"

@@ -77,7 +77,19 @@
               KeyPath="yes"
               Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.Controller.js" />
       </Component>
+      <Component Id="A_Setting.js"
+                 Guid="{09562C2D-54A6-485E-9619-5C2A86C508C6}">
+        <File Id="A_Setting.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\Models\Setting.js" />
+      </Component>
 
+      <Component Id="A_Configuration.js"
+                 Guid="{0DE37248-978A-4A24-A81B-6B8B50397856}">
+        <File Id="A_Configuration.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\Models\Configuration.js" />
+      </Component>
       <Component Id="A_CmpWapExtension.VmsTab.js"
                  Guid="{575E3B2A-3C69-43A9-AC08-008C43C28EB2}">
         <File Id="A_CmpWapExtension.VmsTab.js"
@@ -150,6 +162,36 @@
         <File Id="A_CmpWapExtension.ControlsTab.js"
               KeyPath="yes"
               Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.ControlsTab.js" />
+      </Component>
+      <Component Id="A_CmpWapExtension.PlanServiceOffer.js"
+                 Guid="{5159F983-B32F-465B-ABAC-BDD8C54E73A2}">
+        <File Id="A_CmpWapExtension.PlanServiceOffer.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\CmpWapExtension.PlanServiceOffer.js" />
+      </Component>
+      <Component Id="A_CmpWapExtension.AzureSubOps.js"
+                 Guid="{C6F38739-6F94-463C-81A7-E2EB94A6FBC2}">
+        <File Id="A_CmpWapExtension.AzureSubOps.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\CmpWapExtension.AzureSubOps.js" />
+      </Component>
+      <Component Id="A_CmpWapExtension.PlanUIExtensions.js"
+                 Guid="{F5D45165-9D6D-4B0A-9600-C2F50A8D02E4}">
+        <File Id="A_CmpWapExtension.PlanUIExtensions.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\CmpWapExtension.PlanUIExtensions.js" />
+      </Component>
+      <Component Id="A_CmpWapExtension.Utility.js"
+                 Guid="{A0F60C4A-78D7-4AC4-B1A0-670B44FE6BCD}">
+        <File Id="A_CmpWapExtension.Utility.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\PlanScripts\CmpWapExtension.Utility.js" />
+      </Component>
+      <Component Id="A_CmpWapExtension.AzureSubs.js"
+                 Guid="{8481F65A-57F8-4948-9A2C-C6E144D140AB}">
+        <File Id="A_CmpWapExtension.AzureSubs.js"
+              KeyPath="yes"
+              Source="$(var.AdminExtensionRoot)\Content\Scripts\CmpWapExtension.AzureSubs.js" />
       </Component>
     </Directory>
     <Directory Id="A_Styles"
@@ -309,6 +351,8 @@
     <ComponentRef Id="A_VirtualMachines.png" />
     <ComponentRef Id="A_quickstart.png" />
     <ComponentRef Id="A_quickstart_connectto.png" />
+    <ComponentRef Id="A_Setting.js" />
+    <ComponentRef Id="A_Configuration.js" />
     <ComponentRef Id="A_CmpWapExtension.Controller.js" />
     <ComponentRef Id="A_CmpWapExtension.VmsTab.js" />
     <ComponentRef Id="A_CmpWapExtension.DomainsTab.js" />
@@ -321,6 +365,11 @@
     <ComponentRef Id="A_CmpWapExtension.QuickStartTab.js" />
     <ComponentRef Id="A_CmpWapExtension.SettingsTab.js" />
     <ComponentRef Id="A_CmpWapExtension.ControlsTab.js" />
+    <ComponentRef Id="A_CmpWapExtension.PlanServiceOffer.js"/>
+    <ComponentRef Id="A_CmpWapExtension.AzureSubOps.js"/>
+    <ComponentRef Id="A_CmpWapExtension.PlanUIExtensions.js"/>
+    <ComponentRef Id="A_CmpWapExtension.Utility.js"/>
+    <ComponentRef Id="A_CmpWapExtension.AzureSubs.js"/>
     <ComponentRef Id="A_CmpWapExtensionAdmin.css" />
     <ComponentRef Id="A_CmpWapExtensionControls.css" />
     <ComponentRef Id="A_RegisterEndpoint.html" />
