@@ -51,7 +51,8 @@
                 Width="27" />
             <ColumnDefinition
                 x:Uid="ColumnDefinition_2"
-                Width="*" />
+                Width="220*" />
+            <ColumnDefinition Width="361*"/>
             <ColumnDefinition
                 x:Uid="ColumnDefinition_3"
                 Width="Auto" />
@@ -62,16 +63,18 @@
         <TextBlock
             x:Name="licenseAgreementHeader"
             x:Uid="licenseAgreementHeader"
-            Style="{StaticResource StylePageHeader}" />
+            Style="{StaticResource StylePageHeader}" Grid.ColumnSpan="2" Grid.Column="1" Margin="30,17,0,9">
+          
+        </TextBlock>
+
         <wfi:WindowsFormsHost
             x:Name="wfHostControl1"
             x:Uid="wfHostControl1"
             Grid.Column="1"
-            Grid.ColumnSpan="2"
-            Grid.Row="1"
+            Grid.ColumnSpan="3"
             Height="Auto"
             TabIndex="11"
-            Width="Auto">
+            Width="Auto" ChildChanged="wfHostControl1_ChildChanged" Margin="0,55,0,0" Grid.RowSpan="2">
             <wf:RichTextBox
                 x:Name="richTextBoxEula"
                 x:Uid="richTextBoxEula" />
@@ -95,10 +98,10 @@
             x:Uid="buttonPrint"
             Click="printButton_Click"
             Content="Prin_t"
-            Grid.Column="2"
+            Grid.Column="3"
             Grid.Row="3"
             HorizontalAlignment="Right"
             Style="{StaticResource StyleButton}"
-            TabIndex="13" />
+            TabIndex="13" IsEnabled="False" />
     </Grid>
 </ns0:BasePageForWpfControls>

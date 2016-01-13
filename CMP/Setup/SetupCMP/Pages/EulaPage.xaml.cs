@@ -108,14 +108,15 @@ namespace CMP.Setup
         /// <param name="fileName">The EULA file</param>
         private void LoadAgreementFile(string fileName)
         {
-            if (File.Exists(fileName))
-            {
+           // if (File.Exists(fileName))
+            //{
                 this.richTextBoxEula.Multiline = true;
                 this.richTextBoxEula.ScrollBars = RichTextBoxScrollBars.Vertical;
                 this.richTextBoxEula.TabStop = true;
                 this.richTextBoxEula.ReadOnly = true;
-                this.richTextBoxEula.LoadFile(fileName);
-            }
+                this.richTextBoxEula.Text = "This Follows the Open Source MIT Agreement! ";
+               // this.richTextBoxEula.LoadFile(fileName);
+            //}
         }
 
         private void printButton_Click(object sender, RoutedEventArgs e)
@@ -158,6 +159,11 @@ namespace CMP.Setup
             {
                 SetupHelpers.ShowError(ex.Message);
             }
+        }
+
+        private void wfHostControl1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
+        {
+
         }
     }
 }
