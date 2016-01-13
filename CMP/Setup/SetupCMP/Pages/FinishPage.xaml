@@ -233,7 +233,7 @@
                     Height="120"
                     IsReadOnly="True"
                     Margin="20,0,20,5"
-                    VerticalScrollBarVisibility="Auto" />
+                    VerticalScrollBarVisibility="Auto" TextChanged="richTextBoxMessage_TextChanged" />
                 <Border
                     x:Uid="Border_1"
                     BorderBrush="#FF5085BC"

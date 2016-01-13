@@ -208,6 +208,11 @@ namespace CMP.Setup
 
             e.Handled = true;
         }
+
+        private void richTextBoxMessage_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 
     /// <summary>
