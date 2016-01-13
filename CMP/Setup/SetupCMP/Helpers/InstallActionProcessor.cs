@@ -1363,10 +1363,11 @@ namespace CMP.Setup
                 }
                 if (progressDataInfo.StartMinorStep)
                 {
-                    if (currentNode != null)
-                    {
-                        currentNode.SetValue("/SetupCMP;component/Images/smallWait.png");
-                    }
+                    // Commenting out because we should fix the wait icon to show up at every node instead of just a single spot
+                    //if (currentNode != null)
+                    //{
+                    //    currentNode.SetValue("/SetupCMP;component/Images/smallWait.png");
+                    //}
                     progressDataInfo.StartMinorStep = false;
                 }
                 if (progressDataInfo.FinishMinorStep)
@@ -1380,10 +1381,11 @@ namespace CMP.Setup
                         }
                         else
                         {
-                            if (currentNode != null)
-                            {
-                                currentNode.SetValue("/SetupCMP;component/Images/smallGreenCheck.png");
-                            }
+                            // Commenting out because we should fix the check icon to show up at every node instead of just a single spot
+                            //if (currentNode != null)
+                            //{
+                            //    currentNode.SetValue("/SetupCMP;component/Images/smallGreenCheck.png");
+                            //}
                         }
                     }
                     else
