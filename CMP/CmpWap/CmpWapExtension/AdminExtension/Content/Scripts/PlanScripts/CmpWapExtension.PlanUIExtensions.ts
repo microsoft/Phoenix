@@ -29,6 +29,7 @@ module PlanServices {
         private _planConfigSettings: Models.Configuration;
         private _planSubscriptions;
         private _azureSubscriptions;
+        private _planSubdataShown = false;
 
         constructor() {
             $(".hs-empty-header").hide(); // hide default message
@@ -152,23 +153,27 @@ module PlanServices {
                     this._planConfigSettings = planConfigData;
                     //Load subscription settings
                     this.loadPlanSubscriptionSettings(this._planConfigSettings.AzureSubscriptions);
-                    //Load OS settings
-                    if (this._planConfigSettings.OperatingSystems.length > 0) {
-                        var sectionName = "osType";
-                        $("#" + sectionName).show();
-                        this.loadSettingsIntoPage(sectionName, this._planConfigSettings.OperatingSystems);
-                    }
-                    //Load VM Sizes settings
-                    if (this._planConfigSettings.VmSizes.length > 0) {
-                        var sectionName = "vmSizes";
-                        $("#" + sectionName).show();
-                        this.loadSettingsIntoPage(sectionName, this._planConfigSettings.VmSizes);
-                    }
-                    //Load AzureRegion settings
-                    if (this._planConfigSettings.AzureRegions.length > 0) {
-                        var sectionName = "azureRegions";
-                        $("#" + sectionName).show();
-                        this.loadSettingsIntoPage(sectionName, this._planConfigSettings.AzureRegions);
+
+                    if (!this._planSubdataShown) {
+                        this._planSubdataShown = true;
+                        //Load OS settings
+                        if (this._planConfigSettings.OperatingSystems.length > 0) {
+                            var sectionName = "osType";
+                            $("#" + sectionName).show();
+                            this.loadSettingsIntoPage(sectionName, this._planConfigSettings.OperatingSystems);
+                        }
+                        //Load VM Sizes settings
+                        if (this._planConfigSettings.VmSizes.length > 0) {
+                            var sectionName = "vmSizes";
+                            $("#" + sectionName).show();
+                            this.loadSettingsIntoPage(sectionName, this._planConfigSettings.VmSizes);
+                        }
+                        //Load AzureRegion settings
+                        if (this._planConfigSettings.AzureRegions.length > 0) {
+                            var sectionName = "azureRegions";
+                            $("#" + sectionName).show();
+                            this.loadSettingsIntoPage(sectionName, this._planConfigSettings.AzureRegions);
+                        }
                     }
                 },
                 (failMessage) => {
