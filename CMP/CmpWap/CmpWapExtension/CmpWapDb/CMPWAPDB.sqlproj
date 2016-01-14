@@ -73,13 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
-    <None Include="Scripts\Data.AzureAdminSubscriptionMapping.sql" />
-    <None Include="Scripts\Data.AzureAdminSubscriptionVmOsMapping.sql" />
     <None Include="Scripts\Data.WapSubscriptionGroupMembership.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\Data.AdDomainMap.sql" />
-    <None Include="Scripts\Data.Application.sql" />
     <None Include="Scripts\Data.AzureRegion.sql" />
     <None Include="Scripts\Data.EnvironmentType.sql" />
     <None Include="Scripts\Data.IISRoleService.sql" />
@@ -88,13 +84,9 @@
     <None Include="Scripts\Data.ServerRole.sql" />
     <None Include="Scripts\Data.ServerRoleDriveMapping.sql" />
     <None Include="Scripts\Data.ServiceCategory.sql" />
-    <None Include="Scripts\Data.SQLAnalysisServicesMode.sql" />
-    <None Include="Scripts\Data.SQLCollation.sql" />
-    <None Include="Scripts\Data.SQLVersion.sql" />
     <None Include="Scripts\Data.VmOs.sql" />
     <None Include="Scripts\Data.VmSize.sql" />
     <Build Include="dbo\Tables\IpakVersionMap.sql" />
-    <None Include="Scripts\Data.IpakVersionMap.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CmpWapDb.refactorlog" />

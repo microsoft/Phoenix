@@ -29,9 +29,9 @@ SELECT @vNow = GETDATE()
 --------------------------------------------------
 -- Populate base temp table. 
 --------------------------------------------------
-INSERT #WorkTable 
-(EnvironmentTypeId, Name, Description, IsActive, CreatedOn, CreatedBy, LastUpdatedOn, LastUpdatedBy)
-SELECT 1, N'Prod', N'Prod', 1, N'Jan 1 2015  12:00:00:000AM', N'contoso\administrator', N'Jan 1 2015  12:00:00:000AM', N'contoso\administrator'
+--INSERT #WorkTable 
+--(EnvironmentTypeId, Name, Description, IsActive, CreatedOn, CreatedBy, LastUpdatedOn, LastUpdatedBy)
+--SELECT 1, N'Prod', N'Prod', 1, N'Jan 1 2015  12:00:00:000AM', N'contoso\administrator', N'Jan 1 2015  12:00:00:000AM', N'contoso\administrator'
  
  
  

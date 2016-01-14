@@ -28,9 +28,9 @@ SELECT @vNow = GETDATE()
 -- Populate base temp table. 
 --------------------------------------------------
 
-INSERT #WorkTable
-(Id, WapSubscriptionID, GroupID, GroupName, Config, TagData, TagId, IsActive)
-SELECT 1, 1, 1, N'SampleGroup', N'SampleConfig', N'SampleTag', 1, 1
+--INSERT #WorkTable
+--(Id, WapSubscriptionID, GroupID, GroupName, Config, TagData, TagId, IsActive)
+--SELECT 1, 1, 1, N'SampleGroup', N'SampleConfig', N'SampleTag', 1, 1
 
 -----------------------------------------------------
 -- Begin script transaction

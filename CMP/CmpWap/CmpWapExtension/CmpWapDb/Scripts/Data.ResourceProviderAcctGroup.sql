@@ -32,9 +32,9 @@ SELECT @vNow = GETDATE()
 -- Populate base temp table. 
 --------------------------------------------------
  
-INSERT #WorkTable
-([ResourceProviderAcctGroupId], [Name], [DomainId], [NetworkNICId], [EnvironmentTypeId], [IsActive], [CreatedOn], [CreatedBy], [LastUpdatedOn], [LastUpdatedBy])
-SELECT 1, N'SampleGroup', 1, 1, 1, 1, N'09/29/2015', N'contoso\administrator', N'09/29/2015', N'contoso\administrator'
+--INSERT #WorkTable
+--([ResourceProviderAcctGroupId], [Name], [DomainId], [NetworkNICId], [EnvironmentTypeId], [IsActive], [CreatedOn], [CreatedBy], [LastUpdatedOn], [LastUpdatedBy])
+--SELECT 1, N'SampleGroup', 1, 1, 1, 1, N'09/29/2015', N'contoso\administrator', N'09/29/2015', N'contoso\administrator'
  
 -----------------------------------------------------
 -- Begin script transaction

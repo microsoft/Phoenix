@@ -33,21 +33,21 @@ SELECT @vNow = GETDATE()
 
 INSERT #WorkTable 
 ([AzureRegionId], [Name], [Description], [OsImageContainer], [IsActive], [CreatedOn], [CreatedBy], [LastUpdatedOn], [LastUpdatedBy]) 
-SELECT 2, N'South Central US', N'South Central US', NULL, 1, N'2015-11-08 06:41:36.110' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.110' AS DateTime, N'CONTOSO-administrator'
+SELECT 2, N'South Central US', N'South Central US', NULL, 1, N'2015-11-08 06:41:36.110' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.110' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 3, N'West US', N'West US', NULL, 1, N'2015-11-08 06:41:36.140' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.140' AS DateTime, N'CONTOSO-administrator'
+SELECT 3, N'West US', N'West US', NULL, 1, N'2015-11-08 06:41:36.140' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.140' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 4, N'Central US', N'Central US', NULL, 1, N'2015-11-08 06:41:36.157' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.157' AS DateTime, N'CONTOSO-administrator'
+SELECT 4, N'Central US', N'Central US', NULL, 1, N'2015-11-08 06:41:36.157' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.157' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 5, N'East US 2', N'East US 2', NULL, 1, N'2015-11-08 06:41:36.170' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.170' AS DateTime, N'CONTOSO-administrator'
+SELECT 5, N'East US 2', N'East US 2', NULL, 1, N'2015-11-08 06:41:36.170' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.170' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 6, N'North Europe', N'North Europe', NULL, 1, N'2015-11-08 06:41:36.170' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.170' AS DateTime, N'CONTOSO-administrator'
+SELECT 6, N'North Europe', N'North Europe', NULL, 1, N'2015-11-08 06:41:36.170' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.170' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 7, N'West Europe', N'West Europe', NULL, 1, N'2015-11-08 06:41:36.187' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.187' AS DateTime, N'CONTOSO-administrator'
+SELECT 7, N'West Europe', N'West Europe', NULL, 1, N'2015-11-08 06:41:36.187' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.187' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 8, N'Southeast Asia', N'Southeast Asia', NULL, 1, N'2015-11-08 06:41:36.203' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.203' AS DateTime, N'CONTOSO-administrator'
+SELECT 8, N'Southeast Asia', N'Southeast Asia', NULL, 1, N'2015-11-08 06:41:36.203' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.203' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 9, N'East Asia', N'East Asia', NULL, 1, N'2015-11-08 06:41:36.203' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.203' AS DateTime, N'CONTOSO-administrator'
+SELECT 9, N'East Asia', N'East Asia', NULL, 1, N'2015-11-08 06:41:36.203' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.203' AS DateTime, N'CMP WAP Extension Installer'
 
  
 -----------------------------------------------------

@@ -35,39 +35,39 @@ SELECT @vNow = GETDATE()
 
 INSERT #WorkTable 
 (VmSizeId, Name, Description, Cores, Memory, MaxDataDiskCount, IsActive, CreatedOn, CreatedBy, LastUpdatedOn, LastUpdatedBy)
-SELECT 37, N'Standard_A0', N'Standard_A0 - 1 Cores, 768 MB, 1 Disk', 1, 768, 1, 1, N'2015-11-08 06:41:36.250' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.250' AS DateTime, N'CONTOSO-administrator'
+SELECT 37, N'Standard_A0', N'Standard_A0 - 1 Cores, 768 MB, 1 Disk', 1, 768, 1, 1, N'2015-11-08 06:41:36.250' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.250' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 38, N'Standard_A1', N'Standard_A1 - 1 Cores, 1 GB, 2 Disk', 1, 1792, 2, 1, N'2015-11-08 06:41:36.267' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.267' AS DateTime, N'CONTOSO-administrator'
+SELECT 38, N'Standard_A1', N'Standard_A1 - 1 Cores, 1 GB, 2 Disk', 1, 1792, 2, 1, N'2015-11-08 06:41:36.267' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.267' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 39, N'Standard_A2', N'Standard_A2 - 2 Cores, 3 GB, 4 Disk', 2, 3584, 4, 1, N'2015-11-08 06:41:36.280' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.280' AS DateTime, N'CONTOSO-administrator'
+SELECT 39, N'Standard_A2', N'Standard_A2 - 2 Cores, 3 GB, 4 Disk', 2, 3584, 4, 1, N'2015-11-08 06:41:36.280' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.280' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 40, N'Standard_A3', N'Standard_A3 - 4 Cores, 7 GB, 8 Disk', 4, 7168, 8, 1, N'2015-11-08 06:41:36.297' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.297' AS DateTime, N'CONTOSO-administrator'
+SELECT 40, N'Standard_A3', N'Standard_A3 - 4 Cores, 7 GB, 8 Disk', 4, 7168, 8, 1, N'2015-11-08 06:41:36.297' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.297' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 41, N'Standard_A5', N'Standard_A5 - 2 Cores, 14 GB, 4 Disk', 2, 14336, 4, 1, N'2015-11-08 06:41:36.313' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.313' AS DateTime, N'CONTOSO-administrator'
+SELECT 41, N'Standard_A5', N'Standard_A5 - 2 Cores, 14 GB, 4 Disk', 2, 14336, 4, 1, N'2015-11-08 06:41:36.313' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.313' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 42, N'Standard_A4', N'Standard_A4 - 8 Cores, 14 GB, 16 Disk', 8, 14336, 16, 1, N'2015-11-08 06:41:36.313' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.313' AS DateTime, N'CONTOSO-administrator'
+SELECT 42, N'Standard_A4', N'Standard_A4 - 8 Cores, 14 GB, 16 Disk', 8, 14336, 16, 1, N'2015-11-08 06:41:36.313' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.313' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 43, N'Standard_A6', N'Standard_A6 - 4 Cores, 28 GB, 8 Disk', 4, 28672, 8, 1, N'2015-11-08 06:41:36.327' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.327' AS DateTime, N'CONTOSO-administrator'
+SELECT 43, N'Standard_A6', N'Standard_A6 - 4 Cores, 28 GB, 8 Disk', 4, 28672, 8, 1, N'2015-11-08 06:41:36.327' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.327' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 44, N'Standard_A7', N'Standard_A7 - 8 Cores, 57 GB, 16 Disk', 8, 57344, 16, 1, N'2015-11-08 06:41:36.343' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.343' AS DateTime, N'CONTOSO-administrator'
+SELECT 44, N'Standard_A7', N'Standard_A7 - 8 Cores, 57 GB, 16 Disk', 8, 57344, 16, 1, N'2015-11-08 06:41:36.343' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.343' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 45, N'Basic_A0', N'Basic_A0 - 1 Cores, 768 MB, 1 Disk', 1, 768, 1, 1, N'2015-11-08 06:41:36.343' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.343' AS DateTime, N'CONTOSO-administrator'
+SELECT 45, N'Basic_A0', N'Basic_A0 - 1 Cores, 768 MB, 1 Disk', 1, 768, 1, 1, N'2015-11-08 06:41:36.343' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.343' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 46, N'Basic_A1', N'Basic_A1 - 1 Cores, 1 GB, 2 Disk', 1, 1792, 2, 1, N'2015-11-08 06:41:36.360' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.360' AS DateTime, N'CONTOSO-administrator'
+SELECT 46, N'Basic_A1', N'Basic_A1 - 1 Cores, 1 GB, 2 Disk', 1, 1792, 2, 1, N'2015-11-08 06:41:36.360' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.360' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 47, N'Basic_A2', N'Basic_A2 - 2 Cores, 3 GB, 4 Disk', 2, 3584, 4, 1, N'2015-11-08 06:41:36.373' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.373' AS DateTime, N'CONTOSO-administrator'
+SELECT 47, N'Basic_A2', N'Basic_A2 - 2 Cores, 3 GB, 4 Disk', 2, 3584, 4, 1, N'2015-11-08 06:41:36.373' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.373' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 48, N'Basic_A3', N'Basic_A3 - 4 Cores, 7 GB, 8 Disk', 4, 7168, 8, 1, N'2015-11-08 06:41:36.390' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.390' AS DateTime, N'CONTOSO-administrator'
+SELECT 48, N'Basic_A3', N'Basic_A3 - 4 Cores, 7 GB, 8 Disk', 4, 7168, 8, 1, N'2015-11-08 06:41:36.390' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.390' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 49, N'Basic_A4', N'Basic_A4 - 8 Cores, 14 GB, 16 Disk', 8, 14336, 16, 1, N'2015-11-08 06:41:36.390' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.390' AS DateTime, N'CONTOSO-administrator'
+SELECT 49, N'Basic_A4', N'Basic_A4 - 8 Cores, 14 GB, 16 Disk', 8, 14336, 16, 1, N'2015-11-08 06:41:36.390' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.390' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 50, N'Standard_A8', N'Standard_A8 - 8 Cores, 57 GB, 16 Disk', 8, 57344, 16, 1, N'2015-11-08 06:41:36.407' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.407' AS DateTime, N'CONTOSO-administrator'
+SELECT 50, N'Standard_A8', N'Standard_A8 - 8 Cores, 57 GB, 16 Disk', 8, 57344, 16, 1, N'2015-11-08 06:41:36.407' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.407' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 51, N'Standard_A9', N'Standard_A9 - 16 Cores, 114 GB, 16 Disk', 16, 114688, 16, 1, N'2015-11-08 06:41:36.407' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.407' AS DateTime, N'CONTOSO-administrator'
+SELECT 51, N'Standard_A9', N'Standard_A9 - 16 Cores, 114 GB, 16 Disk', 16, 114688, 16, 1, N'2015-11-08 06:41:36.407' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.407' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 52, N'Standard_A10', N'Standard_A10 - 8 Cores, 57 GB, 16 Disk', 8, 57344, 16, 1, N'2015-11-08 06:41:36.420' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.420' AS DateTime, N'CONTOSO-administrator'
+SELECT 52, N'Standard_A10', N'Standard_A10 - 8 Cores, 57 GB, 16 Disk', 8, 57344, 16, 1, N'2015-11-08 06:41:36.420' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.420' AS DateTime, N'CMP WAP Extension Installer'
 UNION ALL
-SELECT 53, N'Standard_A11', N'Standard_A11 - 16 Cores, 114 GB, 16 Disk', 16, 114688, 16, 1, N'2015-11-08 06:41:36.437' AS DateTime, N'CONTOSO-administrator', N'2015-11-08 06:41:36.437' AS DateTime, N'CONTOSO-administrator'
+SELECT 53, N'Standard_A11', N'Standard_A11 - 16 Cores, 114 GB, 16 Disk', 16, 114688, 16, 1, N'2015-11-08 06:41:36.437' AS DateTime, N'CMP WAP Extension Installer', N'2015-11-08 06:41:36.437' AS DateTime, N'CMP WAP Extension Installer'
 
 
 -----------------------------------------------------

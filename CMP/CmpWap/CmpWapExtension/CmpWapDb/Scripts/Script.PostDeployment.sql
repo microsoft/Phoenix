@@ -9,22 +9,16 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-:r .\Data.AdDomainMap.sql
-:r .\Data.Application.sql
-:r .\Data.AzureAdminSubscriptionMapping.sql
-:r .\Data.AzureAdminSubscriptionVmOsMapping.sql
+--:r .\Data.AdDomainMap.sql
+--:r .\Data.Application.sql
 :r .\Data.AzureRegion.sql
 :r .\Data.EnvironmentType.sql
 :r .\Data.IISRoleService.sql
 :r .\Data.NetworkNIC.sql
 :r .\Data.ResourceProviderAcctGroup.sql
-:r .\Data.IpakVersionMap.sql
 :r .\Data.ServerRole.sql
 :r .\Data.ServerRoleDriveMapping.sql
 :r .\Data.ServiceCategory.sql
-:r .\Data.SQLAnalysisServicesMode.sql
-:r .\Data.SQLCollation.sql
-:r .\Data.SQLVersion.sql
 :r .\Data.VmOs.sql
 :r .\Data.VmSize.sql
 :r .\Data.WapSubscriptionGroupMembership.sql

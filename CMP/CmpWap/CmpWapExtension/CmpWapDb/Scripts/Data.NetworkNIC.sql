@@ -31,9 +31,6 @@ SELECT @vNow = GETDATE()
 --------------------------------------------------
 -- Populate base temp table. 
 --------------------------------------------------
-INSERT #WorkTable 
-(NetworkNICId, Name, Description, IsActive, CreatedOn, CreatedBy, LastUpdatedOn, LastUpdatedBy, ADDomain, ADDomainId)
-SELECT 1, N'CORPNET', N'CORPNET', 1, N'Jan 1 2015  12:00:00:000AM', N'contoso\administrator', N'Jan 1 2015  12:00:00:000AM', N'contoso\administrator', N'Temp', 1
  
  
  
