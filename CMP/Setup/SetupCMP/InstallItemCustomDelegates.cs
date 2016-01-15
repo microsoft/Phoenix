@@ -621,7 +621,7 @@ namespace CMP.Setup
                 sqlServerInstanceName = String.Format(SetupConstants.UserAccountTemplate, sqlMachineName, instanceName);
             }
             int sqlPort = (int)SetupInputs.Instance.FindItem(SetupInputTags.SqlServerPortTag);
-            if (sqlPort != 0)
+            if (sqlPort != 0 && sqlPort != 1433)
             {
                 sqlServerInstanceName = String.Format("{0},{1}", sqlServerInstanceName, sqlPort);
             }
