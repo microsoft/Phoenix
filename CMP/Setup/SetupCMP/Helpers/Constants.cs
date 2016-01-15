@@ -96,6 +96,7 @@ namespace CMP.Setup
 
         // SQL server settings
         public const string DefaultDBName = "CMP_DB";
+        public const string DefaultWapDBName = "CMPWAP_DB";
         public const string DBNameRegistryValueName = @"DatabaseName";
         public const string OnRemoteRegistryValueName = @"OnRemoteServer"; 
         public const string InstanceNameRegistryValueName = @"InstanceName";

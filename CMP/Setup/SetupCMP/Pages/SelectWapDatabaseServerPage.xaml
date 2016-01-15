@@ -152,8 +152,9 @@
                 Grid.Row="5"
                 MaxLength="6"
                 Style="{StaticResource StyleBasicOneLineInput}"
+                Text="1433"
                 TextChanged="textBoxPort_Changed"
-                Width="70" />
+                Width="70" VerticalAlignment="Top" />
         </Grid>
         <Grid
             x:Name="stackPanelCredential"

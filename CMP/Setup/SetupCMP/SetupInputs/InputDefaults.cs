@@ -40,11 +40,11 @@ namespace CMP.Setup
 
         public const String SqlDatabaseName = SetupConstants.DefaultDBName;
 
-        public const String WapSqlDatabaseName = "CMPWAP_DB";
+        public const String WapSqlDatabaseName = SetupConstants.DefaultWapDBName;
 
-        public const int SqlServerPort = 0;
+        public const int SqlServerPort = 1433;
 
-        public const int WapSqlServerPort = 0;
+        public const int WapSqlServerPort = 1433;
 
         public const bool OnRemoteServer = false; // use local host
 
