@@ -111,7 +111,8 @@ namespace CMP.Setup
                 this.textBoxServer.Text = this.serverName;
 
                 this.port = (int)SetupInputs.Instance.FindItem(SetupInputTags.WapSqlServerPortTag);
-                String sqlPortAsString = String.Empty;
+                String sqlPortAsString = "1433";
+
                 if (this.port != InputDefaults.WapSqlServerPort)
                 {
                     sqlPortAsString = Convert.ToString(this.port);
