@@ -2297,7 +2297,7 @@ namespace AzureAdminClientLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in GetVmArm() :" + 
+                throw new Exception("Exception in ExtractVmInfo() :" + 
                     Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2525,7 +2525,7 @@ namespace AzureAdminClientLib
                 var resp = hi.PerformRequestArm(HttpInterface.RequestType_Enum.GET, url);
 
                 if (resp.HadError)
-                    throw new Exception("Exception in Azure :" + resp.Body);
+                    throw new Exception("Exception in Azure call in FetchVmListArm():" + resp.Body);
 
                 var vmListJson = Utilities.FetchJsonValue(resp.Body, "value") as Newtonsoft.Json.Linq.JArray;
 
@@ -2540,7 +2540,7 @@ namespace AzureAdminClientLib
             }
             catch (Exception ex)
             {
-                throw new Exception("excpetion in FetchVmListArm() : " + 
+                throw new Exception("Exception in FetchVmListArm() : " + 
                     Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2573,7 +2573,7 @@ namespace AzureAdminClientLib
             }
             catch (Exception ex)
             {
-                throw new Exception("excpetion in FetchVmListArm() : " + 
+                throw new Exception("Exception in FetchVmListArm() : " + 
                     Utilities.UnwindExceptionMessages(ex));
             }
         }
