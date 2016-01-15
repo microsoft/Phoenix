@@ -69,6 +69,7 @@ namespace CMP.Setup
         public override void EnterPage()
         {
             base.EnterPage();
+            //this.checkBoxNewUserId.IsVisible = false;
             this.SetCredentialBlock();
             this.SetNextButtonState();
 
@@ -534,7 +535,8 @@ namespace CMP.Setup
 
         private void SetCredentialBlock()
         {
-            this.labelUserName.IsEnabled = this.checkBoxNewUserId.IsChecked.GetValueOrDefault(false);
+            //commented for this release
+            /*this.labelUserName.IsEnabled = this.checkBoxNewUserId.IsChecked.GetValueOrDefault(false);
             this.textBoxUserName.IsEnabled = this.checkBoxNewUserId.IsChecked.GetValueOrDefault(false);
             this.labelUserNameFormat.IsEnabled = this.checkBoxNewUserId.IsChecked.GetValueOrDefault(false);
             this.labelPassword.IsEnabled = this.checkBoxNewUserId.IsChecked.GetValueOrDefault(false);
@@ -543,6 +545,33 @@ namespace CMP.Setup
             {
                 this.passwordBoxPassword.Clear();
             }
+            */
+            if (this.radioExistingDatabase.IsChecked.GetValueOrDefault())
+            {
+                this.checkBoxNewUserId.IsEnabled = true;
+            }
+               
+
+            if (this.radioExistingDatabase.IsChecked.GetValueOrDefault() && this.checkBoxNewUserId.IsChecked.GetValueOrDefault())
+            {
+                this.comboBoxExistingDatabaseName.IsEnabled = true;
+                this.labelUserName.IsEnabled = true;
+                this.textBoxUserName.IsEnabled = true;
+                this.labelUserNameFormat.IsEnabled = true;
+                this.labelPassword.IsEnabled = true;
+                this.passwordBoxPassword.IsEnabled = true;
+            }
+            else
+            {
+                this.comboBoxExistingDatabaseName.IsEnabled = false;
+                this.labelUserName.IsEnabled = false;
+                this.textBoxUserName.IsEnabled = false;
+                this.labelUserNameFormat.IsEnabled = false;
+                this.labelPassword.IsEnabled = false;
+                this.passwordBoxPassword.IsEnabled = false;
+            }
+            
+
         }
 
         private void PopulateInstancesAsync()
@@ -665,6 +694,7 @@ namespace CMP.Setup
         {
             this.textBoxNewDatabaseName.IsEnabled = this.radioNewDatabase.IsChecked.GetValueOrDefault(false);
             this.comboBoxExistingDatabaseName.IsEnabled = this.radioExistingDatabase.IsChecked.GetValueOrDefault(false);
+            this.checkBoxNewUserId.IsEnabled = this.radioExistingDatabase.IsChecked.GetValueOrDefault(true);;
         }
 
         private void SetNextButtonState()

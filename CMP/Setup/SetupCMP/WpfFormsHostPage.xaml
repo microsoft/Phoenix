@@ -602,8 +602,8 @@
             HorizontalContentAlignment="Center"
             Style="{StaticResource StyleHyperLinkButton}"
             TabIndex="103"
-            VerticalAlignment="Center"
-            VerticalContentAlignment="Bottom">_Report a problem</Button>
+            VerticalAlignment="Top"
+            VerticalContentAlignment="Bottom" Margin="0,7,0,0">_Report a problem</Button>
         <ProgressBar
             x:Name="setupPhaseProgressBar"
             x:Uid="setupPhaseProgressBar"

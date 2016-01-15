@@ -159,7 +159,7 @@
             x:Name="stackPanelCredential"
             x:Uid="Grid_2"
             Grid.Column="0"
-            Grid.Row="2">
+            Grid.Row="4" Margin="23,125,-23,4">
             <Grid.RowDefinitions>
                 <RowDefinition
                     x:Uid="RowDefinition_8"
@@ -221,16 +221,17 @@
                     Width="32" />
                 <!-- 6 - Right margin -->
             </Grid.ColumnDefinitions>
+            <!--Hiding the Username/PAssword section for this release-->
             <CheckBox
                 x:Name="checkBoxNewUserId"
                 x:Uid="checkBoxNewUserId"
                 Checked="checkBoxcheckBoxNewUserId_CheckedChanged"
-                Content="Use the _following credentials"
+                Content="Use the _following credentials for existing DB"
                 Grid.Column="1"
                 Grid.ColumnSpan="3"
                 Grid.Row="0"
-                HorizontalAlignment="Stretch"
-                Unchecked="checkBoxcheckBoxNewUserId_CheckedChanged" />
+                HorizontalAlignment="Right"
+                Unchecked="checkBoxcheckBoxNewUserId_CheckedChanged" Width="669" IsEnabled="False" />
             <Label
                 x:Name="labelUserName"
                 x:Uid="labelUserName"
@@ -240,7 +241,7 @@
                 Margin="20,1,0,0"
                 Style="{StaticResource StyleBasicLabel}"
                 Target="{Binding ElementName=textBoxUserName}"
-                VerticalAlignment="Top" />
+                VerticalAlignment="Top" Grid.ColumnSpan="3" Width="57" />
             <TextBox
                 x:Name="textBoxUserName"
                 x:Uid="textBoxUserName"
@@ -248,7 +249,7 @@
                 Grid.Row="2"
                 HorizontalAlignment="Stretch"
                 LostFocus="textBoxUserName_LostFocus"
-                Style="{StaticResource StyleBasicOneLineInput}" />
+                Style="{StaticResource StyleBasicOneLineInput}" Margin="65,3,20,1" />
             <Label
                 x:Name="labelUserNameFormat"
                 x:Uid="labelUserNameFormat"
@@ -265,7 +266,7 @@
                 Margin="20,1,0,0"
                 Style="{StaticResource StyleBasicLabel}"
                 Target="{Binding ElementName=passwordBoxPassword}"
-                VerticalAlignment="Top" />
+                VerticalAlignment="Top" Grid.ColumnSpan="3" Width="57" />
             <PasswordBox
                 x:Name="passwordBoxPassword"
                 x:Uid="passwordBoxPassword"
@@ -275,13 +276,14 @@
                 MaxLength="256"
                 PasswordChanged="passwordBox_PasswordChanged"
                 Style="{StaticResource StylePasswordBox}"
-                Width="200" />
+                Width="200" Margin="65,0,0,0" />
+
         </Grid>
         <Grid
             x:Name="stackPanelInstanceDatabase"
             x:Uid="Grid_3"
             Grid.Column="0"
-            Grid.Row="4">
+            Grid.Row="4" Margin="3,0,-3,0">
             <Grid.RowDefinitions>
                 <!-- 0 - Instance -->
                 <RowDefinition
@@ -328,7 +330,8 @@
                 <ColumnDefinition
                     x:Uid="ColumnDefinition_19"
                     SharedSizeGroup="LabelColumns"
-                    Width="Auto" />
+                    Width="30" />
+                <ColumnDefinition Width="83"/>
                 <!-- 1 - Label -->
                 <ColumnDefinition
                     x:Uid="ColumnDefinition_20"
@@ -356,25 +359,24 @@
                 Content="_Instance name:"
                 Grid.Column="1"
                 Grid.Row="0"
-                Margin="0,3,0,0"
                 Style="{StaticResource StyleBasicLabel}"
                 Target="{Binding ElementName=comboBoxInstance}"
-                VerticalAlignment="Top" />
+                VerticalAlignment="Top" Margin="0,-4,0,0" Grid.ColumnSpan="2" />
             <ComboBox
                 x:Name="comboBoxInstance"
                 x:Uid="comboBoxInstance"
                 DropDownOpened="comboBoxInstance_DropDownOpened"
-                Grid.Column="3"
+                Grid.Column="2"
                 Grid.Row="0"
                 HorizontalAlignment="Stretch"
                 IsEditable="True"
-                LostFocus="comboBoxInstance_LostFocus" />
+                LostFocus="comboBoxInstance_LostFocus" Margin="72,-7,18,6" Grid.ColumnSpan="3" />
             <TextBlock
                 x:Name="textBlockDatabaseChoice"
                 x:Uid="textBlockDatabaseChoice"
                 Foreground="Black"
                 Grid.Column="1"
-                Grid.ColumnSpan="5"
+                Grid.ColumnSpan="4"
                 Grid.Row="2"
                 Style="{StaticResource StyleBasicTextBlock}"
                 Text="Select an existing database or create a new database." />
@@ -387,11 +389,11 @@
                 Grid.Row="4"
                 GroupName="radioButtonDatabaseChoice"
                 Margin="0,2,0,0"
-                VerticalAlignment="Top" />
+                VerticalAlignment="Top" Grid.ColumnSpan="2" />
             <TextBox
                 x:Name="textBoxNewDatabaseName"
                 x:Uid="textBoxNewDatabaseName"
-                Grid.Column="3"
+                Grid.Column="4"
                 Grid.Row="4"
                 HorizontalAlignment="Stretch"
                 Style="{StaticResource StyleBasicOneLineInput}"
@@ -405,12 +407,12 @@
                 Grid.Row="6"
                 GroupName="radioButtonDatabaseChoice"
                 Margin="0,4,0,0"
-                VerticalAlignment="Top" />
+                VerticalAlignment="Top" Grid.ColumnSpan="2" />
             <ComboBox
                 x:Name="comboBoxExistingDatabaseName"
                 x:Uid="comboBoxExistingDatabaseName"
                 DropDownOpened="comboBoxExistingDatabaseName_DropDownOpened"
-                Grid.Column="3"
+                Grid.Column="4"
                 Grid.Row="6"
                 HorizontalAlignment="Stretch"
                 IsEditable="True"
@@ -419,8 +421,8 @@
             <StackPanel
                 x:Name="stackPanelCommunicatingSqlServer"
                 x:Uid="stackPanelCommunicatingSqlServer"
-                Grid.Column="1"
-                Grid.ColumnSpan="5"
+                Grid.Column="4"
+                Grid.ColumnSpan="2"
                 Grid.Row="8"
                 HorizontalAlignment="Right"
                 Orientation="Horizontal"

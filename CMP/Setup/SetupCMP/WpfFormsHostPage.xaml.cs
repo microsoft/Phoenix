@@ -188,7 +188,7 @@ namespace CMP.Setup
 
         #region Private Members
 
-        private const String ReportAProblemLink = @"http://go.microsoft.com/fwlink/?LinkId=193489";
+        private const String ReportAProblemLink = @"https://github.com/microsoft/phoenix";
 
         #region Button State Private Helper Methods
 
