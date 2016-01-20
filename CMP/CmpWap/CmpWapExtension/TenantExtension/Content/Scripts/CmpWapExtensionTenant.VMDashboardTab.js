@@ -16,6 +16,7 @@
             iconName: "spinner"
         }
     };
+
     var vmId = "";
     var subscriptionRegisteredToService;
     var vmName = "";
@@ -88,13 +89,13 @@
                 global.Shell.UI.Spinner.hide();
             });
 
-            var detachedDisksPromise = global.CmpWapExtensionTenantExtension.Controller.getDetachedDisks(vmId);
+            /*var detachedDisksPromise = global.CmpWapExtensionTenantExtension.Controller.getDetachedDisks(vmId);
             detachedDisksPromise.done(function (value) {
                 detachedDisks = [];
                 $.each(value.data, function (index, disk) {
                     detachedDisks[detachedDisks.length] = disk.DiskName;
                 });
-            });
+            });*/
         } else {
             $(".vm-dashboard-usageAndLinked").css("display", "none");
             $(".vm-dashboard-attached-devices").css("display", "none");
