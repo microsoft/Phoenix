@@ -409,7 +409,7 @@ namespace CMP.Setup
         /// <summary>
         /// Adds the item to uninstall list.
         /// </summary>
-        /// <param name="itemToInstall">The item to uninstall.</param>
+        /// <param name="itemToUninstall">The item to uninstall.</param>
         private static void AddItemToUninstallList(InstallItemsInstallDataItem itemToUninstall)
         {
             ArrayList itemsToUninstall;
@@ -549,7 +549,7 @@ namespace CMP.Setup
         /// <summary>
         /// Checks the point passed.
         /// </summary>
-        /// <param name="itemPassed">The item passed.</param>
+        /// <param name="logFile"></param>
         /// <param name="itemToCheckPoint">The item to check point.</param>
         /// <returns></returns>
         static private bool CheckPointPassed(string logFile, InstallItemsInstallDataItem itemToCheckPoint)
@@ -925,7 +925,7 @@ namespace CMP.Setup
         /// Launches a Msi
         /// </summary>
         /// <param name="msiPath">The msi path.</param>
-        /// <param name="argumentsToUse">The arguments to use.</param>
+        /// <param name="commandLineArguments">The arguments to use.</param>
         /// <param name="installerLogFile">The installer log file.</param>
         /// <param name="productCode">The product code.</param>
         /// <returns></returns>

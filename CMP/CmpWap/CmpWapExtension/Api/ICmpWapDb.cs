@@ -221,7 +221,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <returns>boolean</returns>
         /// 
         //*********************************************************************
-        bool CheckResourceGroupExists(string resourceGrp);
+        bool CheckResourceGroupExists(string resourceGroup);
 
         //*********************************************************************
         ///
