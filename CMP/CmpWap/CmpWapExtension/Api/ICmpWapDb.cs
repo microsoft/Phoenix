@@ -231,7 +231,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <returns>void</returns>
         /// 
         //*********************************************************************
-        void InsertResourceProviderAcctGroup(string resourceGrp);
+        void InsertResourceProviderAcctGroup(string resourceGroup);
 
         //*********************************************************************
         ///
