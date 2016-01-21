@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Threading;
@@ -83,6 +84,7 @@ namespace AzureAdminClientLib
         const string URLTEMPLATE_STARTVM_ARM = "https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/virtualMachines/{2}/stART?api-version={3}";
         const string URLTEMPLATE_RESTARTVM_ARM = "https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/virtualMachines/{2}/restart?api-version={3}";
         const string URLTEMPLATE_DELETEVM_ARM = "https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/virtualMachines/{2}?api-version={3}";
+        const string URLTEMPLATE_FETCHDEPLOYMENTINFO_ARM = @"https://management.azure.com/subscriptions/{0}/resourcegroups/{1}/providers/microsoft.resources/deployments/{2}?api-version={3}";
         const string APIVERSION_VMOPS = "2015-06-15";
 
         const string URLTEMPLATE_GETOSIMAGES = "https://management.core.windows.net/{0}/services/images";
@@ -385,7 +387,7 @@ namespace AzureAdminClientLib
                 nullUrl = true;
 
             if (nullUrl)
-        {
+            {
                 var ret = new HttpResponse { HadError = true, Body = "statusCheckUrl is null or empty", Retry = false };
                 return ret;
             }
@@ -396,29 +398,25 @@ namespace AzureAdminClientLib
 
                 if (null != vmConf.AzureArmConfig)
                 {
-                    var url =
-                        string.Format(
-                            @"https://management.azure.com/subscriptions/{0}/resourcegroups/{1}/providers/microsoft.resources/deployments/{2}?api-version={3}",
-                            Connection.SubcriptionID, vmConf.HostedServiceConfig.ServiceName,
-                            vmConf.AzureArmConfig.properties.template.variables.vmName, "2015-01-01");
+                    var ret = Interface.PerformRequestArm(HttpInterface.RequestType_Enum.GET, statusCheckUrl, null);
 
-                    var ret = Interface.PerformRequestArm(HttpInterface.RequestType_Enum.GET, url, null);
+                    if (ret.HadError)
+                        if (ret.Body.ToLower().Contains("query parameter value is invalid"))
+                            ret.Retry = true;
 
-                    if (ret.ProviderRequestState.Equals("Failed"))
-                    {
-                        ret = Interface.PerformRequestArm(HttpInterface.RequestType_Enum.GET, statusCheckUrl, null);
-
-                        if (ret.HadError)
-                            if (ret.Body.ToLower().Contains("query parameter value is invalid"))
-                                ret.Retry = true;
-
-                        /*Web Error making REST API call.
-                        Message: The remote server returned an error: (400) Bad Request.
-                        Response:
-                        { "Code":"BadRequest","Message":"The $filter query parameter value is invalid."}*/
-                    }
+                    if (ret.Body.ToLower().Contains("\"status\":\"failed\""))
+                        ret.HadError = true;
 
                     return ret;
+
+                    /* Code left for example. Use this to fetch deployment info as needed, 
+                    This is different from fetching deployment task info as seen above.
+                    
+                    var url = string.Format( URLTEMPLATE_FETCHDEPLOYMENTINFO_ARM,
+                        Connection.SubcriptionID, vmConf.HostedServiceConfig.ServiceName,
+                        vmConf.AzureArmConfig.properties.template.variables.vmName, "2015-01-01");
+
+                    var ret = Interface.PerformRequestArm(HttpInterface.RequestType_Enum.GET, url, null);*/
                 }
             }
 
