@@ -255,7 +255,6 @@ namespace PowershellLib
 
                     connectionInfo = new WSManConnectionInfo(connectTo,
                         "http://schemas.microsoft.com/powershell/Microsoft.PowerShell", psCred);
- 
                 }
                 else
                 {
@@ -296,6 +295,53 @@ namespace PowershellLib
             {
                 var message = ex.Message;
                 throw new FailToConnectException(UnwindExceptionMessages(ex));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in Remoting.GetOpenRunspace() : " + ex.Message);
+            }
+        }
+
+        //*************************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        //*************************************************************************
+
+        Runspace GetOpenRunspace()
+        {
+            try
+            {
+                if (_Runspace?.RunspaceStateInfo.State == RunspaceState.Opened)
+                    return _Runspace;
+
+                var connectionInfo = new WSManConnectionInfo();
+
+                // http://blogs.msdn.com/b/powershell/archive/2006/04/25/583250.aspx
+                //*** Can I use this? Why should I? ***
+                /*using (RunspaceInvoke invoker = new RunspaceInvoke())
+                {
+                    invoker.Invoke("Set-ExecutionPolicy Unrestricted -Scope Process");
+                }*/
+
+                /*if (impersonate)
+                {
+                    using (new CmpServiceLib.Impersonator(userName, "ImpersonateDomain", userPassword))
+                    {
+                        _Runspace = RunspaceFactory.CreateRunspace(connectionInfo);
+                        _Runspace.Open();
+                    }
+                }
+                else
+                {*/
+                _Runspace = RunspaceFactory.CreateRunspace(connectionInfo);
+                _Runspace.Open();
+                //}
+
+                return _Runspace;
             }
             catch (Exception ex)
             {
