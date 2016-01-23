@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CMP.Setup.Helpers
+﻿namespace CMP.Setup.Helpers
 {
     class SetupValidationHelpers
     {

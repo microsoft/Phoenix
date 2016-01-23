@@ -165,10 +165,11 @@ namespace CMP.Setup
             }
             else
             {
-                if (!this.radioLocalSystemAccount.IsChecked.GetValueOrDefault(false))
-                {
-                    this.radioDomainAccount.IsChecked = true;
-                }
+                //if (!this.radioLocalSystemAccount.IsChecked.GetValueOrDefault(false))
+                //{
+                //    this.radioDomainAccount.IsChecked = true;
+                //}
+                this.radioLocalSystemAccount.IsChecked = true;
             }
 
             if (!PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.Server))

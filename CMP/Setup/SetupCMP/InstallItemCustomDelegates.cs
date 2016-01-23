@@ -778,7 +778,7 @@ namespace CMP.Setup
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "SETUPLANGUAGE=\"{0}\" ", CultureInfo.CurrentUICulture.Name);
 
                 String certificateThumbprint = (String)SetupInputs.Instance.FindItem(SetupInputTags.CmpCertificateThumbprintTag);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "CERTIFICATETHUMPRINT=\"{0}\" ", "LocalMachine,My," + certificateThumbprint);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "CERTIFICATETHUMBPRINT=\"{0}\" ", "LocalMachine,My," + certificateThumbprint);
 
                 // Encrypt the password of the worker service so that WAP extensions can use it
                 InputParameter pwd = SetupInputs.Instance.FindItem(SetupInputTags.SqlDBAdminPasswordTag);
@@ -799,6 +799,7 @@ namespace CMP.Setup
                 string encryptedPassword = String.Format("{0}{1}{2}", "[KText]", UserAccountHelper.EncryptStringUsingLocalCertificate(passwordAsText, certificateThumbprint), "[KText]");
 
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONTEXTPASSWORDSTRING=\"{0}\" ", encryptedPassword);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "KRYPTOCERTSTRING=\"{0}\" ", certificateThumbprint);
             }
 
             return arguments.ToString();
