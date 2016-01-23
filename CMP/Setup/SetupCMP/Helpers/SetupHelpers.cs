@@ -1423,6 +1423,18 @@ namespace CMP.Setup
             {
                 SetupLogger.LogException(ex);
             }
+
+            try
+            {
+                var el3 = new EventLog("Application");
+                el3.Source = CmpCommon.Constants.CmpWapConnector_EventlogSourceName;
+                el3.WriteEntry("Successfully created '" + CmpCommon.Constants.CmpWapConnector_EventlogSourceName + "' event source.", EventLogEntryType.Information, 0, 0);
+                SetupLogger.LogInfo("Successfully created '" + CmpCommon.Constants.CmpWapConnector_EventlogSourceName + "' event source.");
+            }
+            catch (Exception ex)
+            {
+                SetupLogger.LogException(ex);
+            }
         }
 
         internal static void DeleteEventSources()
@@ -1441,6 +1453,16 @@ namespace CMP.Setup
             {
                 EventLog.DeleteEventSource(CmpCommon.Constants.CmpAzureServiceWorkerRole_EventlogSourceName);
                 SetupLogger.LogInfo("Successfully deleted '" + CmpCommon.Constants.CmpAzureServiceWorkerRole_EventlogSourceName + "' event source.");
+            }
+            catch (Exception ex)
+            {
+                SetupLogger.LogException(ex);
+            }
+
+            try
+            {
+                EventLog.DeleteEventSource(CmpCommon.Constants.CmpWapConnector_EventlogSourceName);
+                SetupLogger.LogInfo("Successfully deleted '" + CmpCommon.Constants.CmpWapConnector_EventlogSourceName + "' event source.");
             }
             catch (Exception ex)
             {

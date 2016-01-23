@@ -103,6 +103,7 @@ namespace CmpServiceLib.Stages
                             continue;
 
                         vmReq.StatusCode = Constants.StatusEnum.Exception.ToString();
+                        vmReq.StatusMessage = "Error in CheckCheckVmCreation()";
                         vmReq.ExceptionMessage = "Error in CheckCheckVmCreation() : " + resp.Body;
                         Utilities.SetVmReqExceptionType(vmReq,
                             CmpInterfaceModel.Constants.RequestExceptionTypeCodeEnum.Admin);

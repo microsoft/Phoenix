@@ -95,7 +95,7 @@ SET   Name = source.Name
 
 FROM #WorkTable source
     JOIN VmSize target
-    ON      source.VmSizeId = target.VmSizeId
+    ON      source.Name = target.Name
     AND ( ISNULL(source.Name , '') <>  ISNULL(target.Name , '')
     OR  ISNULL(source.Description , '') <>  ISNULL(target.Description , '')
     OR  ISNULL(source.Cores , 0) <>  ISNULL(target.Cores , 0)
@@ -135,7 +135,7 @@ FROM VmSize target
 WHERE NOT EXISTS (
     SELECT * 
     FROM #WorkTable source 
-    WHERE     source.VmSizeId = target.VmSizeId
+    WHERE     source.Name = target.Name
 
 )
  

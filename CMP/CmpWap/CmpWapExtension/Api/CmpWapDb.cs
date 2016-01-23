@@ -44,6 +44,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <summary>
         ///     This method checks if Application data exists
         /// </summary>
+        /// <param name="vm"></param>
         /// <returns>boolean</returns>
         /// 
         //*********************************************************************
@@ -69,6 +70,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <summary>
         ///     This method inserts Application data
         /// </summary>
+        /// <param name="vm"></param>
         /// <returns>void</returns>
         /// 
         //*********************************************************************
@@ -204,6 +206,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <summary>
         ///     This method fetches VM size info by subscription id
         /// </summary>
+        /// <param name="wapSubscriptionId"></param>
         /// <returns>VM Size IEnumerable</returns>
         /// 
         //*********************************************************************
@@ -385,7 +388,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <summary>
         ///     Thie method updates VM Size information based on an VmSize object
         /// </summary>
-        /// <param name="vmSize"></param>
+        /// <param name="vmSize">A single VM Size object</param>
         /// 
         //*********************************************************************
         public void UpdateVmSizeInfo(Models.VmSize vmSize)
@@ -459,7 +462,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <summary>
         ///     This method is used to delete a VM Size.
         /// </summary>
-        /// <param name="vmSizeId"></param>
+        /// <param name="vmSizeId">The ID of a vmSize object to delete</param>
         /// 
         //*********************************************************************
 
@@ -690,7 +693,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <summary>
         ///     Thie method updates VM OS information based on an VmOs object
         /// </summary>
-        /// <param name="vmOsInfo"></param>
+        /// <param name="vmOsInfo">A sinlge VmOs Object</param>
         /// 
         //*********************************************************************
         public void UpdateOsInfo(VmOs vmOsInfo)
@@ -768,7 +771,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <summary>
         ///     This method is used to delete a VM OS Info record.
         /// </summary>
-        /// <param name="vmOsInfoId"></param>
+        /// <param name="vmOsInfoId">The ID of a VmOs object to delete</param>
         /// 
         //*********************************************************************
         public void DeleteOsInfo(int vmOsInfoId)
@@ -906,34 +909,34 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             //*** TODO * remove this short circuit after the admin console successfully adds region data to db.AzureAdminSubscriptionRegionMappings. This essentially means activating the Azure Region objects in the Plan Config section in the admin Portal
             return FetchAzureRegionList(onlyActiveOnes: true);
 
-            var resultList = new List<AzureRegion>();
-            string planId = GetPlanMappedToWapSubscription(wapSubscriptionId); //Name is the PlanId
+            //var resultList = new List<AzureRegion>();
+            //string planId = GetPlanMappedToWapSubscription(wapSubscriptionId); //Name is the PlanId
 
-            try
-            {
-                if (planId == null)
-                    throw new InvalidDataException("No plan was found mapped to the provided WapSubscription");
+            //try
+            //{
+            //    if (planId == null)
+            //        throw new InvalidDataException("No plan was found mapped to the provided WapSubscription");
 
-                //Now using the resolved planId as the clause to search the correct AzureAdminSubscriptionMapping
-                //This block is the same as the admin portion, since it relies on a PlanId.
-                using (var db = new MicrosoftMgmtSvcCmpContext())
-                {
-                    var regions = from ar in db.AzureRegions
-                                  join subMapTable in db.AzureAdminSubscriptionRegionMappings
-                                  on ar.AzureRegionId equals subMapTable.AzureRegionId 
-                                  orderby ar.Name
-                                  where ar.IsActive && subMapTable.PlanId == planId
-                                  select ar;
+            //    //Now using the resolved planId as the clause to search the correct AzureAdminSubscriptionMapping
+            //    //This block is the same as the admin portion, since it relies on a PlanId.
+            //    using (var db = new MicrosoftMgmtSvcCmpContext())
+            //    {
+            //        var regions = from ar in db.AzureRegions
+            //                      join subMapTable in db.AzureAdminSubscriptionRegionMappings
+            //                      on ar.AzureRegionId equals subMapTable.AzureRegionId 
+            //                      orderby ar.Name
+            //                      where ar.IsActive && subMapTable.PlanId == planId
+            //                      select ar;
 
-                    resultList.AddRange(regions);
-                    return resultList;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Exception in FetchAzureRegionsList() : "
-                    + Utilities.UnwindExceptionMessages(ex));
-            }
+            //        resultList.AddRange(regions);
+            //        return resultList;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("Exception in FetchAzureRegionsList() : "
+            //        + Utilities.UnwindExceptionMessages(ex));
+            //}
         }
 
         //*********************************************************************
@@ -1178,13 +1181,13 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     {
                         AdDomainMap = null,
                         Name = item.ResourceGroup,
-                        CreatedBy = "Cmp Wap Extension",
+                        CreatedBy = "CMP WAP Extension",
                         CreatedOn = DateTime.Now,
                         DomainId = 1,
                         EnvironmentType = null,
                         EnvironmentTypeId = 1,
                         IsActive = true,
-                        LastUpdatedBy = "Cmp Wap Extension",
+                        LastUpdatedBy = "CMP WAP Extension",
                         LastUpdatedOn = DateTime.Now,
                         NetworkNIC = null,
                         NetworkNICId = 0,
@@ -1246,13 +1249,13 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     {
                         AdDomainMap = null,
                         Name = item.ResourceGroup,
-                        CreatedBy = "Cmp Wap Extension",
+                        CreatedBy = "CMP WAP Extension",
                         CreatedOn = DateTime.Now,
                         DomainId = 1,
                         EnvironmentType = null,
                         EnvironmentTypeId = 1,
                         IsActive = true,
-                        LastUpdatedBy = "Cmp Wap Extension",
+                        LastUpdatedBy = "CMP WAP Extension",
                         LastUpdatedOn = DateTime.Now,
                         NetworkNIC = null,
                         NetworkNICId = 0,
@@ -1302,16 +1305,17 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <summary>
         ///     Check if Resource Group Exists
         /// </summary>
+        /// <param name="resourceGroup"></param>
         /// <returns>boolean</returns>
         /// 
         //*********************************************************************
-        public bool CheckResourceGroupExists(string resourceGrp)
+        public bool CheckResourceGroupExists(string resourceGroup)
         {
             try
             {
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
-                    return db.ResourceProviderAcctGroups.Any(r => r.Name == resourceGrp);
+                    return db.ResourceProviderAcctGroups.Any(r => r.Name == resourceGroup);
                 }
             }
             catch (Exception ex)
@@ -1329,15 +1333,15 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <returns>void</returns>
         /// 
         //*********************************************************************
-        public void InsertResourceProviderAcctGroup(string resourceGrp)
+        public void InsertResourceProviderAcctGroup(string resourceGroup)
         {
             try
             {
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
-                    if (db.ResourceProviderAcctGroups.Any(r => r.Name == resourceGrp))
+                    if (db.ResourceProviderAcctGroups.Any(r => r.Name == resourceGroup))
                     {
-                        throw new Exception("Exception in InsertAppDataRecord() : Unable to locate VM request record: ID: ");
+                        throw new Exception("Exception in InsertResourceProviderAcctGroup() : Unable to locate the resource group parameter: " + resourceGroup);
                     }
 
                     var maxRgrpId = db.ResourceProviderAcctGroups.Max(rgrp => rgrp.ResourceProviderAcctGroupId);
@@ -1345,15 +1349,15 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     var appn = new ResourceProviderAcctGroup
                     {
                         ResourceProviderAcctGroupId = maxRgrpId + 1,
-                        Name = resourceGrp,
+                        Name = resourceGroup,
                         DomainId = 1,
                         NetworkNICId = 1,
                         EnvironmentTypeId = 1,
                         IsActive = true,
                         CreatedOn = DateTime.UtcNow,
-                        CreatedBy = "AdminExtension", // 
+                        CreatedBy = "CMP WAP Extension", // 
                         LastUpdatedOn = DateTime.UtcNow,
-                        LastUpdatedBy = "AdminExtension",
+                        LastUpdatedBy = "CMP WAP Extension",
                     };
 
                     db.ResourceProviderAcctGroups.Add(appn);
@@ -1617,25 +1621,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     foundReq.Config = vmRequest.Config;
                     foundReq.AddressFromVm = vmRequest.AddressFromVm;
 
-                    //if (null != vmRequest.SourceVhdFilesCSV)
-                    //    FoundReq.SourceVhdFilesCSV = vmRequest.SourceVhdFilesCSV;
-
-                    //if (null != vmRequest.ServiceProviderStatusCheckTag)
-                    //    FoundReq.ServiceProviderStatusCheckTag = vmRequest.ServiceProviderStatusCheckTag;
-
                     db.SaveChanges();
-
-                    //*** Save change record ***
-
-                    /*Models.ChangeLog CL = new Models.ChangeLog
-                        {
-                            Message = vmRequest.ExceptionMessage,
-                            StatusCode = vmRequest.StatusCode,
-                            RequestID = vmRequest.ID,
-                            When = Now
-                        };
-
-                        SaveChangeRecord(db, CL);*/
                 }
             }
             catch (Exception ex)
@@ -1975,7 +1961,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
 
         #endregion
 
-        #region ---SQL Collation ---
+        #region ---Sql Collation ---
 
         //*********************************************************************
         ///
@@ -2005,14 +1991,14 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchSQLCollationInfoList() : "
+                throw new Exception("Exception in FetchSqlCollationInfoList() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
 
         #endregion
 
-        #region ---SQL Version ---
+        #region ---Sql Version ---
 
         //*********************************************************************
         ///
@@ -2042,14 +2028,14 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchSQLVersionInfoList() : "
+                throw new Exception("Exception in FetchSqlVersionInfoList() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
 
         #endregion
 
-        #region ---SQLAnalysisServices Mode ---
+        #region ---SqlAnalysisServices Mode ---
 
         //*********************************************************************
         ///
@@ -2078,21 +2064,21 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchSQLAnalysisServicesModeInfoList() : "
+                throw new Exception("Exception in FetchSqlAnalysisServicesModeInfoList() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
 
         #endregion
 
-        #region ---IISRoleService---
+        #region ---IisRoleService---
 
         //*********************************************************************
         ///
         /// <summary>
         ///     This method fetches IISRoleService list
         /// </summary>
-        /// <returns>IISRoleService list</returns>
+        /// <returns>IisRoleService list</returns>
         /// 
         //*********************************************************************
 
@@ -2115,7 +2101,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchIISRoleServiceInfoList() : "
+                throw new Exception("Exception in FetchIisRoleServiceInfoList() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2292,7 +2278,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             {
                 LogThis("Exception in UpdateVmSize() : ", "UpdateVmSize()", ex, EventLogEntryType.Error);
 
-                throw new Exception("Exception in UpdateVmSize() : "
+                throw new Exception("Exception in UpdateSequenceRequestSize() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2324,7 +2310,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in DeleteVmDepRequest() : "
+                throw new Exception("Exception in DeleteSequenceRequest() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2378,30 +2364,12 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     foundReq.Config = vmRequest.Config;
                     foundReq.AddressFromVm = vmRequest.AddressFromVm;
 
-                    //if (null != vmRequest.SourceVhdFilesCSV)
-                    //    FoundReq.SourceVhdFilesCSV = vmRequest.SourceVhdFilesCSV;
-
-                    //if (null != vmRequest.ServiceProviderStatusCheckTag)
-                    //    FoundReq.ServiceProviderStatusCheckTag = vmRequest.ServiceProviderStatusCheckTag;
-
                     db.SaveChanges();
-
-                    //*** Save change record ***
-
-                    /*Models.ChangeLog CL = new Models.ChangeLog
-                        {
-                            Message = vmRequest.ExceptionMessage,
-                            StatusCode = vmRequest.StatusCode,
-                            RequestID = vmRequest.ID,
-                            When = Now
-                        };
-
-                        SaveChangeRecord(db, CL);*/
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in SetVmRequestStatus() : "
+                throw new Exception("Exception in SetSequenceRequestStatus() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2431,7 +2399,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchMaxVmDepID() : " + ex.Message);
+                throw new Exception("Exception in FetchMaxSequenceDepID() : " + ex.Message);
             }
 
             return maxId;
@@ -2680,6 +2648,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         ///     This method retrieves the plan information associated with the
         ///     WAP subscription provided
         /// </summary>
+        /// <param name="wapSubscriptionId"></param>
         /// <returns>Plan Id (as defined by MgmtSvc.Store database)</returns>
         /// 
         //*********************************************************************

@@ -1392,7 +1392,7 @@ SET   Name = source.Name
 
 FROM #WorkTable source
     JOIN VmOs target
-    ON      source.VmOsId = target.VmOsId
+    ON      source.Name = target.Name
     AND ( ISNULL(source.Name , '') <>  ISNULL(target.Name , '')
     OR  ISNULL(source.Description , '') <>  ISNULL(target.Description , '')
     OR  ISNULL(source.OsFamily , '') <>  ISNULL(target.OsFamily , '')
@@ -1435,7 +1435,7 @@ FROM VmOs target
 WHERE NOT EXISTS (
     SELECT * 
     FROM #WorkTable source 
-    WHERE     source.VmOsId = target.VmOsId
+    WHERE     source.Name = target.Name
 
 )
  

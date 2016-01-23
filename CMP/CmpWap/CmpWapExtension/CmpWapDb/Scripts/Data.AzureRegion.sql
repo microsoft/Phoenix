@@ -73,7 +73,7 @@ SET   Name = source.Name
 
 FROM #WorkTable source
     JOIN AzureRegion target
-    ON      source.AzureRegionId = target.AzureRegionId
+    ON      source.Name = target.Name
     AND ( ISNULL(source.Name , '') <>  ISNULL(target.Name , '')
     OR  ISNULL(source.Description , '') <>  ISNULL(target.Description , '')
     OR  ISNULL(source.OsImageContainer , '') <>  ISNULL(target.OsImageContainer , '')
@@ -111,7 +111,7 @@ FROM AzureRegion target
 WHERE NOT EXISTS (
     SELECT * 
     FROM #WorkTable source 
-    WHERE     source.AzureRegionId = target.AzureRegionId
+    WHERE     source.Name = target.Name
 
 )
  
