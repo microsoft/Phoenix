@@ -22,9 +22,9 @@
   <!-- Help Link -->
   <Property Id="ARPHELPLINK"
             Value="https://github.com/Microsoft/Phoenix/wiki" />
-  <!-- Help Telephone -->
+  <!-- Help Telephone --><!--
   <Property Id="ARPHELPTELEPHONE"
-            Value="" />
+            Value="(555) 555-5555" />-->
   <!-- Support Link -->
   <Property Id="ARPURLINFOABOUT"
             Value="https://github.com/Microsoft/Phoenix/wiki" />
