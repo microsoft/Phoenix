@@ -479,6 +479,11 @@ namespace WpfResources
             }
         }
 
+        public static string UninstallFailed
+        {
+            get { return (string) resources["UninstallFailed"]; }
+        }
+
         public static string ArchTypeFolderx86
         {
             get

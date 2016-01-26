@@ -43,7 +43,7 @@
       <RegistryValue Id="SqlServerPort"
                         Name="Port" Type="string" Value="[WAPSQLPORT]" />
       <RegistryValue Id="KryptoCertRegKey"
-                        Name="KryptoCert" Type="string" Value="[CERTIFICATETHUMPRINT]" />
+                        Name="KryptoCert" Type="string" Value="[CERTIFICATETHUMBPRINT]" />
       <RegistryValue Id="CmpDatabaseUserNameRegKey"
                         Name="CmpDatabaseUserName" Type="string" Value="[CMPDATABASEUSERNAME]" />
       <RegistryValue Id="CMPContextPasswordRegKey"

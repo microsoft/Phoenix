@@ -109,7 +109,11 @@ namespace CMP.Setup
                     }
                     else
                     {
-                        this.finishPageHeader.Text = WPFResourceDictionary.UninstallSuccessful;
+                        if (PropertyBagDictionary.Instance.PropertyExists((PropertyBagDictionary.VitalFailure)))
+                        {
+                            this.finishPageHeader.Text = WPFResourceDictionary.Uninstall;
+                        }
+                        this.finishPageHeader.Text = WPFResourceDictionary.UninstallFailed;
                     }
                 }
                 // Installation is successful

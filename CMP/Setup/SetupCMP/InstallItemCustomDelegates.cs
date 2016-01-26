@@ -1,4 +1,3 @@
-
 //-----------------------------------------------------------------------
 // <copyright file="InstallItemCustomDelegates.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -224,7 +223,7 @@ namespace CMP.Setup
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSQLMACHINEFQDN=\"{0}\" ", sqlMachineFqdn);
 
                 String certificateThumbprint = (String)SetupInputs.Instance.FindItem(SetupInputTags.CmpCertificateThumbprintTag);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "CERTIFICATETHUMPRINT=\"{0}\" ", "LocalMachine,My," + certificateThumbprint);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "CERTIFICATETHUMBPRINT=\"{0}\" ", "LocalMachine,My," + certificateThumbprint);
 
                 // Write the cmp database connection string
                 sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(false);
@@ -258,6 +257,12 @@ namespace CMP.Setup
                 string encryptedPassword = String.Format("{0}{1}{2}", "[KText]", UserAccountHelper.EncryptStringUsingLocalCertificate(passwordAsText, certificateThumbprint), "[KText]");
 
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONTEXTPASSWORDSTRING=\"{0}\" ", encryptedPassword);
+
+                //Write the MicrosoftMgmtSvcStoreContext connection string (part of WAP original installation)
+                dbName = SetupConstants.DefaultWapStoreDBName;
+                partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+                connectionString = String.Format("{0}database={1}", partialConnectionString, dbName);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSTORECONNECTIONSTR=\"{0}\" ", connectionString);
             }
 
             return arguments.ToString();
@@ -799,7 +804,6 @@ namespace CMP.Setup
                 string encryptedPassword = String.Format("{0}{1}{2}", "[KText]", UserAccountHelper.EncryptStringUsingLocalCertificate(passwordAsText, certificateThumbprint), "[KText]");
 
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONTEXTPASSWORDSTRING=\"{0}\" ", encryptedPassword);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "KRYPTOCERTSTRING=\"{0}\" ", certificateThumbprint);
             }
 
             return arguments.ToString();
@@ -838,7 +842,7 @@ namespace CMP.Setup
             }
             catch (Exception exception)
             {
-                SetupLogger.LogException(exception, "VMMPostinstallProcessor threw an exception");
+                SetupLogger.LogException(exception, "CMPServerPostinstallProcessor threw an exception");
                 PropertyBagDictionary.Instance.SafeAdd(PropertyBagDictionary.VitalFailure,
                     (PropertyBagDictionary.Instance.PropertyExists(PropertyBagDictionary.VitalFailure)
                     ? (PropertyBagDictionary.Instance.GetProperty<InstallItemsInstallDataItem.InstallDataInputs>

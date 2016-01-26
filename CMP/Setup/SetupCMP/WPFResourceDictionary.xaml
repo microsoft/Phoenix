@@ -881,7 +881,7 @@ Are you sure you want to cancel installation?
         x:Uid="UninstallCanNotBeCanceled">This action cannot be canceled.</s:String>
     <s:String
         x:Key="SetupMessageBoxTitle"
-        x:Uid="SetupMessageBoxTitle">Microsoft System Center VMM Setup</s:String>
+        x:Uid="SetupMessageBoxTitle">Phoenix CMP WAP Extension</s:String>
     <s:String
         x:Key="DescripOnANewCluster"
         x:Uid="DescripOnANewCluster">Setup is running on a cluster node. 

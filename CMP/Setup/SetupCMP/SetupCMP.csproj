@@ -337,7 +337,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Pages\Pages.xml" />
+    <Resource Include="Pages\Pages.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\smallGreenCheck.png" />
