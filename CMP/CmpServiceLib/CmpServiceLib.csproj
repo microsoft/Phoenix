@@ -158,6 +158,7 @@
     <Compile Include="Models\ChangeLog.cs" />
     <Compile Include="Models\CMPContext.cs" />
     <Compile Include="Models\CmpServiceUserAccount.cs" />
+    <Compile Include="Models\Container.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\DirectoryMonitor.cs" />
     <Compile Include="Models\FluRequest.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Models\Mapping\BadAssetMap.cs" />
     <Compile Include="Models\Mapping\ChangeLogMap.cs" />
     <Compile Include="Models\Mapping\CmpServiceUserAccountMap.cs" />
+    <Compile Include="Models\Mapping\ContainerMap.cs" />
     <Compile Include="Models\Mapping\ConfigMap.cs" />
     <Compile Include="Models\Mapping\DirectoryMonitorMap.cs" />
     <Compile Include="Models\Mapping\FluRequestMap.cs" />

@@ -315,7 +315,7 @@ namespace PowershellLib
         {
             try
             {
-                if (_Runspace.RunspaceStateInfo.State == RunspaceState.Opened)
+                if (_Runspace?.RunspaceStateInfo.State == RunspaceState.Opened)
                     return _Runspace;
 
                 var connectionInfo = new WSManConnectionInfo();
