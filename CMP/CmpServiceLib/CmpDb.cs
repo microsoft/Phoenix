@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using AzureAdminClientLib;
 
 //*****************************************************************************
 //
@@ -2345,6 +2346,27 @@ namespace CmpServiceLib
 
         #region Sync with Azure Containers Region
 
+        private int FetchMaxAzureContainerID(Models.CMPContext db)
+        {
+            int maxId = 0;
+
+            try
+            {
+                maxId = (from rb in db.Containers
+                         select rb.ID).Max();
+            }
+            catch (InvalidOperationException)
+            {
+                maxId = 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in FetchMaxAzureContainerID() : " + ex.Message);
+            }
+
+            return maxId;
+        }
+
         //*********************************************************************
         ///
         /// <summary>
@@ -2356,9 +2378,9 @@ namespace CmpServiceLib
         /// 
         //*********************************************************************
 
-        public IEnumerable<Container> FetchAzureContainerList()
+        public IEnumerable<AzureResourceGroup> FetchAzureContainerList()
         {
-            //var azureRoleSizesList = new List<AzureRoleSize>();
+            var azureResourceGroupList = new List<AzureResourceGroup>();
 
             try
             {
@@ -2366,12 +2388,18 @@ namespace CmpServiceLib
                 {
                     db.Database.Connection.ConnectionString = _ConnectionString;
 
-                    var azureContainerSet = (from ars in db.Containers
+                    var qresult = (from ars in db.Containers
                                              orderby ars.Name
                                              select ars);
 
-                    return azureContainerSet.ToList();
-                    //return azureRoleSizesList;
+                    azureResourceGroupList.AddRange(qresult.Select(arg => new AzureResourceGroup()
+                    {
+                        Id = arg.ID.ToString(),
+                        Name = arg.Name,
+                        Location = arg.Region
+                    }));
+
+                    return azureResourceGroupList;
                 }
             }
             catch (Exception ex)
@@ -2392,9 +2420,9 @@ namespace CmpServiceLib
         /// 
         //*********************************************************************
   
-        public IEnumerable<Container> FetchAzureContainerList(string subscriptionId)
+        public IEnumerable<AzureResourceGroup> FetchAzureContainerList(string subscriptionId)
         {
-            //var azureRoleSizesList = new List<AzureRoleSize>();
+            var azureResourceGroupList = new List<AzureResourceGroup>();
 
             if (null == subscriptionId)
                 return FetchAzureContainerList();
@@ -2405,13 +2433,19 @@ namespace CmpServiceLib
                 {
                     db.Database.Connection.ConnectionString = _ConnectionString;
 
-                    var azureContainerSet = (from ars in db.Containers
+                    var qresult = (from ars in db.Containers
                                              where ars.SubscriptionId.Equals(subscriptionId)
                                              orderby ars.Name
                                              select ars);
 
-                    return azureContainerSet.ToList();
-                    //return azureRoleSizesList;
+                    azureResourceGroupList.AddRange(qresult.Select(arg => new AzureResourceGroup()
+                    {
+                        Id = arg.ID.ToString(),
+                        Name = arg.Name,
+                        Location = arg.Region
+                    }));
+
+                    return azureResourceGroupList;
                 }
             }
             catch (Exception ex)
@@ -2438,6 +2472,8 @@ namespace CmpServiceLib
                 using (var db = new Models.CMPContext())
                 {
                     db.Database.Connection.ConnectionString = _ConnectionString;
+
+                    cont.ID = 1 + FetchMaxAzureContainerID(db);
 
                     db.Containers.Add(cont);
                     db.SaveChanges();

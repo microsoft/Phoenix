@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Containers] (
-    [ContainerId]    INT            IDENTITY (1, 1) NOT NULL,
+    [ID]    INT      NOT NULL,
     [Name]           NVARCHAR (300) NOT NULL,
     [Code]           NVARCHAR (300) NULL,
     [Type]           NVARCHAR (50)  NOT NULL,
@@ -18,4 +18,4 @@
 
 GO
 CREATE CLUSTERED INDEX [ci_azure_fixup_dbo_Containers]
-    ON [dbo].[Containers]([ContainerId] ASC);
+    ON [dbo].[Containers]([ID] ASC);

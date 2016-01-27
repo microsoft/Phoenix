@@ -432,7 +432,7 @@ namespace CmpServiceLib
             Models.ServiceProviderAccount spa, IEnumerable<VmDeploymentRequest> vmDepReqs)
         {
             //*** Look for VM in list of VmDepReqs, leave if found
-            if (vmDepReqs.Any(vdr => vdr.TargetVmName.Equals(vm.RoleName, 
+            if (vmDepReqs.Any(vdr => vdr.TargetVmName.Equals(vm.RoleName,
                 StringComparison.InvariantCultureIgnoreCase)))
                 return;
 
@@ -448,27 +448,27 @@ namespace CmpServiceLib
                 Active = true,
                 AftsID = 0,
                 Config = config,
-                ConfigOriginal = config, 
-                CurrentStateStartTime = utcNow, 
+                ConfigOriginal = config,
+                CurrentStateStartTime = utcNow,
                 CurrentStateTryCount = 0,
-                ExceptionMessage = null, 
+                ExceptionMessage = null,
                 ExceptionTypeCode = null,
                 ID = 0,
                 LastStatusUpdate = utcNow,
-                LastState = CmpInterfaceModel.Constants.StatusEnum.Complete.ToString(), 
+                LastState = CmpInterfaceModel.Constants.StatusEnum.Complete.ToString(),
                 OverwriteExisting = false,
                 ParentAppID = "",
                 ParentAppName = "",
                 RequestDescription = "SyncVm:" + vm.RoleName,
                 RequestName = "SyncVm:" + vm.RoleName,
-                RequestType = CmpInterfaceModel.Constants.RequestTypeEnum.SyncVm.ToString(), 
-                ServiceProviderAccountID = spa.ID, 
+                RequestType = CmpInterfaceModel.Constants.RequestTypeEnum.SyncVm.ToString(),
+                ServiceProviderAccountID = spa.ID,
                 ServiceProviderResourceGroup = null,
-                ServiceProviderStatusCheckTag = null, 
+                ServiceProviderStatusCheckTag = null,
                 SourceServerName = null,
                 SourceServerRegion = null,
                 SourceVhdFilesCSV = null,
-                StatusCode = CmpInterfaceModel.Constants.StatusEnum.Complete.ToString(), 
+                StatusCode = CmpInterfaceModel.Constants.StatusEnum.Complete.ToString(),
                 StatusMessage = "Imported from Azure Subscription",
                 TagData = "<SyncReq></SyncReq>",
                 TagID = 0,
@@ -476,7 +476,7 @@ namespace CmpServiceLib
                 TargetAccountCreds = null,
                 TargetAccountType = CmpInterfaceModel.Constants.TargetAccountTypeEnum.AzureSubscription.ToString(),
                 TargetLocation = null,
-                TargetLocationType = null, 
+                TargetLocationType = null,
                 TargetServicename = vm.Label,
                 TargetServiceProviderType = CmpInterfaceModel.Constants.TargetServiceProviderTypeEnum.Azure.ToString(),
                 TargetVmName = vm.RoleName,
@@ -494,6 +494,53 @@ namespace CmpServiceLib
         ///  <summary>
         ///  
         ///  </summary>
+        ///  <param name="arg"></param>
+        ///  <param name="spa"></param>
+        ///  <param name="aRGs"></param>
+        /// <param name="hso"></param>
+        ///  
+        //*********************************************************************
+        private void ProcessFoundRg(AzureResourceGroup arg, Models.ServiceProviderAccount spa, 
+            IEnumerable<AzureResourceGroup> aRGs, HostedServiceOps hso)
+        {
+            //*** Look for RG in list of aRGs, leave if found
+            if (aRGs.Any(vdr => vdr.Name.Equals(arg.Name,
+                StringComparison.InvariantCultureIgnoreCase)))
+                return;
+
+            //var rg = hso.GetResourceGroup(arg.Name);
+
+            //*** RG not found, so add to RG DB table
+            var utcNow = DateTime.UtcNow;
+
+            var vdb = new Models.Container()
+            {
+                //ID = 0,
+                Name = arg.Name,
+                Region = arg.Location,
+                SubscriptionId = spa.AccountID,
+                CIOwner = "",
+                Code = "",
+                Config = "",
+                CreatedBy = "",
+                CreatedOn = utcNow,
+                HasService = false,
+                IsActive = true,
+                LastUpdatedBy = "",
+                LastUpdatedOn = 
+                utcNow,
+                Path = arg.Id,
+                Type = CmpInterfaceModel.Constants.ContainerTypeEnum.ResourceGroup.ToString()
+            };
+
+            _cdb.InsertAzureContainer(vdb);
+        }
+
+        //*********************************************************************
+        /// 
+        ///  <summary>
+        ///  
+        ///  </summary>
         /// <param name="spa"></param>
         /// <param name="vmDepReqs"></param>
         ///  
@@ -501,10 +548,20 @@ namespace CmpServiceLib
 
         //*** NOTE * Network
 
-        private void ProcessSub(Models.ServiceProviderAccount spa, List<Models.VmDeploymentRequest> vmDepReqs)
+        private void ProcessSub(Models.ServiceProviderAccount spa, 
+            List<Models.VmDeploymentRequest> vmDepReqs, IEnumerable<AzureResourceGroup> aRGs)
         {
             try
             {
+                var servOps = new HostedServiceOps(new Connection(
+                    spa.AccountID, spa.CertificateThumbprint,
+                    spa.AzureADTenantId, spa.AzureADClientId, spa.AzureADClientKey));
+
+                var rgList = servOps.FetchResourceGroupList();
+
+                foreach (var rg in rgList)
+                    ProcessFoundRg(rg, spa, aRGs, servOps);
+
                 var vmOps = new VmOps(new Connection(
                     spa.AccountID, spa.CertificateThumbprint, 
                     spa.AzureADTenantId, spa.AzureADClientId, spa.AzureADClientKey));
@@ -539,6 +596,7 @@ namespace CmpServiceLib
         public object SyncWithAzureSubscriptions()
         {
             List<Models.VmDeploymentRequest> vmDepReqs = null;
+            IEnumerable<AzureResourceGroup> aRgList = null;
             _cdb = new CmpDb(_CmpDbConnectionString);
             ReadConfigValues(_cdb);
 
@@ -547,12 +605,13 @@ namespace CmpServiceLib
                 var spaList = _cdb.FetchServiceProviderAccountList(String.Empty);
 
                 vmDepReqs = _cdb.FetchVmDepRequests(null, true);
+                aRgList = _cdb.FetchAzureContainerList();
 
                 foreach (var spa in spaList)
                 {
                     try
                     {
-                        ProcessSub(spa, vmDepReqs);
+                        ProcessSub(spa, vmDepReqs, aRgList);
                     }
                     catch (Exception ex)
                     {

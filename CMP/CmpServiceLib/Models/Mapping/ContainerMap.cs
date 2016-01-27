@@ -8,11 +8,11 @@ namespace CmpServiceLib.Models.Mapping
         public ContainerMap()
         {
             // Primary Key
-            this.HasKey(t => new { t.ContainerId, t.Name, t.Type, t.IsActive, t.SubscriptionId, t.CreatedOn, t.CreatedBy, t.LastUpdatedOn, t.LastUpdatedBy });
+            this.HasKey(t => t.ID);
 
             // Properties
-            this.Property(t => t.ContainerId)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.Property(t => t.ID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.Name)
                 .IsRequired()
@@ -48,7 +48,7 @@ namespace CmpServiceLib.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("Containers");
-            this.Property(t => t.ContainerId).HasColumnName("ContainerId");
+            this.Property(t => t.ID).HasColumnName("ID");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.Code).HasColumnName("Code");
             this.Property(t => t.Type).HasColumnName("Type");
