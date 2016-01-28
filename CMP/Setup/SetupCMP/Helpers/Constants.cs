@@ -99,8 +99,10 @@ namespace CMP.Setup
         public const string DefaultWapDBName = @"CMPWAP_DB";
         public const string DefaultWapStoreDBName = @"Microsoft.MgmtSvc.Store";
         public const string DBNameRegistryValueName = @"DatabaseName";
+        public const string WapDbNameRegistryValueName = @"WapDatabaseName";
         public const string OnRemoteRegistryValueName = @"OnRemoteServer"; 
         public const string InstanceNameRegistryValueName = @"InstanceName";
+        public const string WapInstanceNameRegistryValueName = @"WapInstanceName";
         public const string MachineNameRegistryValueName = @"MachineName";
         public const string SqlSettingsRegKey = SetupConstants.ServerSettingsRegKey + @"\" + SetupConstants.SqlSettingsKeyName;
         public const string WapSqlSettingsRegKey = @"SOFTWARE\Microsoft\MgmtSvc\CmpWapExtension";
@@ -109,7 +111,7 @@ namespace CMP.Setup
         public const string ServerSettingsRegKey = SetupConstants.ServerRegKey + @"\" + SetupConstants.SettingsKeyName;
         public const string ConnectionStringRegistryValueName = @"CMPContext";
         public const string FqdnRegistryValueName = @"MachineFQDN";
-        public const string UserNameRegistryValueName = @"DatabaseName";
+        public const string UserNameRegistryValueName = @"CmpDatabaseUserName";
         public const string VmmServiceAccountValueName = @"VmmServiceAccount";
 
         // Server settings
@@ -262,7 +264,7 @@ namespace CMP.Setup
         {
             get
             {
-                return RegistryUtils.ReadRegistryValue(SetupConstants.WapSqlSettingsRegKey, SetupConstants.DBNameRegistryValueName, null, false, ignoreArchitecture: true) as string;
+                return RegistryUtils.ReadRegistryValue(SetupConstants.WapSqlSettingsRegKey, SetupConstants.WapDbNameRegistryValueName, null, false, ignoreArchitecture: true) as string;
             }
         }
 
@@ -299,7 +301,7 @@ namespace CMP.Setup
         {
             get
             {
-                return RegistryUtils.ReadRegistryValue(SetupConstants.WapSqlSettingsRegKey, SetupConstants.InstanceNameRegistryValueName, null, false, ignoreArchitecture:true) as string;
+                return RegistryUtils.ReadRegistryValue(SetupConstants.WapSqlSettingsRegKey, SetupConstants.WapInstanceNameRegistryValueName, null, false, ignoreArchitecture:true) as string;
             }
         }
 

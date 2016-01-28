@@ -27,21 +27,33 @@
                      Name="TenantSitePath"
                      Value="[PATHTENANTSITE]" />
       <RegistryValue Id="InstanceNameRegKey"
-                  Name="InstanceName" Type="string" Value="[WAPINSTANCENAME]"  />
+                  Name="InstanceName" Type="string" Value="[INSTANCENAME]"  />
+      <RegistryValue Id="WapInstanceNameRegKey"
+                  Name="WapInstanceName" Type="string" Value="[WAPINSTANCENAME]"  />
       <RegistryValue Id="DatabaseNameRegKey"
-                        Name="DatabaseName" Type="string" Value="[WAPDATABASENAME]" />
-      <RegistryValue Id="ConnectionStringRegKey"
+                        Name="DatabaseName" Type="string" Value="[DATABASENAME]" />
+      <RegistryValue Id="WapDatabaseNameRegKey"
+                        Name="WapDatabaseName" Type="string" Value="[WAPDATABASENAME]" />
+      <RegistryValue Id="WapConnectionStringRegKey"
                         Name="MicrosoftMgmtSvcCmpContext" Type="string" Value="[WAPCONNECTIONSTR]" />
       <RegistryValue Id="CmpConnectionStringRegKey"
                         Name="CMPContext" Type="string" Value="[CMPCONNECTIONSTR]" />
       <RegistryValue Id="OnRemoteServerRegKey"
-                        Name="OnRemoteServer" Type="string" Value="[WAPONREMOTESERVER]" />
+                        Name="OnRemoteServer" Type="string" Value="[ONREMOTESERVER]" />
       <RegistryValue Id="SqlMachineNameRegKey"
-                        Name="MachineName" Type="string" Value="[WAPSQLMACHINENAME]" />
+                        Name="MachineName" Type="string" Value="[SQLMACHINENAME]" />
       <RegistryValue Id="SqlMachineFQDNRegKey"
-                        Name="MachineFQDN" Type="string" Value="[WAPSQLMACHINEFQDN]" />
+                        Name="MachineFQDN" Type="string" Value="[SQLMACHINEFQDN]" />
       <RegistryValue Id="SqlServerPort"
-                        Name="Port" Type="string" Value="[WAPSQLPORT]" />
+                        Name="Port" Type="string" Value="[SQLPORT]" />
+      <RegistryValue Id="WapOnRemoteServerRegKey"
+                        Name="WapOnRemoteServer" Type="string" Value="[WAPONREMOTESERVER]" />
+      <RegistryValue Id="WapSqlMachineNameRegKey"
+                        Name="WapMachineName" Type="string" Value="[WAPSQLMACHINENAME]" />
+      <RegistryValue Id="WapSqlMachineFQDNRegKey"
+                        Name="WapMachineFQDN" Type="string" Value="[WAPSQLMACHINEFQDN]" />
+      <RegistryValue Id="WapSqlServerPort"
+                        Name="WapPort" Type="string" Value="[WAPSQLPORT]" />
       <RegistryValue Id="KryptoCertRegKey"
                         Name="KryptoCert" Type="string" Value="[CERTIFICATETHUMBPRINT]" />
       <RegistryValue Id="CmpDatabaseUserNameRegKey"

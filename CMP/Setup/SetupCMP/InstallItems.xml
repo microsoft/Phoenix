@@ -50,26 +50,6 @@
 </InstallDataItem>
 -->
 
-  <InstallDataItem
-    ControlTitle="CMPServer"
-    DisplayTitle="CMPServer"
-    InstallType="MicrosoftInstaller"
-    ItemWeAreInstalling="MicrosoftInstaller"
-    FullPathToLaunch="CmpWorkerServiceInstaller.msi"
-    Arguments="INSTALLINGLANGUAGE = 1033 REBOOT=ReallySuppress "
-    LogFile="cmpServer.log"
-    ProductCode="FAC2B832-6869-4F2B-9625-0EDE1644CB09"
-    Time="0"
-    SuccessValue="0"
-    ParentItem="Server"
-    ParentItemDisplayText="CMP server">
-    <PreProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">CMPServerPreinstallProcessor</PreProcessing>
-    <CustomAction DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP"></CustomAction>
-    <PostProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">CMPServerPostinstallProcessor</PostProcessing>
-    <Prereq DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">DummyPrerequsiteProcessor</Prereq>
-    <Dependency />
-  </InstallDataItem>
-
   <InstallDataItem 
     ControlTitle="WAPExtensionCommon"
     DisplayTitle="WAPExtensionCommon"
@@ -89,6 +69,25 @@
     <Prereq DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">DummyPrerequsiteProcessor</Prereq>
   </InstallDataItem>
 
+  <InstallDataItem
+    ControlTitle="CMPServer"
+    DisplayTitle="CMPServer"
+    InstallType="MicrosoftInstaller"
+    ItemWeAreInstalling="MicrosoftInstaller"
+    FullPathToLaunch="CmpWorkerServiceInstaller.msi"
+    Arguments="INSTALLINGLANGUAGE = 1033 REBOOT=ReallySuppress "
+    LogFile="cmpServer.log"
+    ProductCode="FAC2B832-6869-4F2B-9625-0EDE1644CB09"
+    Time="0"
+    SuccessValue="0"
+    ParentItem="Server"
+    ParentItemDisplayText="CMP server">
+    <PreProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">CMPServerPreinstallProcessor</PreProcessing>
+    <CustomAction DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP"></CustomAction>
+    <PostProcessing DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">CMPServerPostinstallProcessor</PostProcessing>
+    <Prereq DelegateId="CMP.Setup.InstallItemCustomDelegates,SetupCMP">DummyPrerequsiteProcessor</Prereq>
+    <Dependency />
+  </InstallDataItem>
     
   <InstallDataItem 
     ControlTitle="TenantWAPExtension"
