@@ -407,6 +407,11 @@ namespace AzureAdminClientLib
                     if (ret.Body.ToLower().Contains("\"status\":\"failed\""))
                         ret.HadError = true;
 
+                    var stat = Utilities.FetchJsonValue(ret.Body, "status");
+
+                    if(null != stat)
+                        ret.ProviderRequestState = stat.ToString();
+
                     return ret;
 
                     /* Code left for example. Use this to fetch deployment info as needed, 

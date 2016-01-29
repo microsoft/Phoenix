@@ -15,22 +15,22 @@
                After="CostFinalize" />
   <!-- Comments -->
   <Property Id="ARPCOMMENTS"
-            Value="Windows Azure Pack - CmpWapExtension" />
+            Value="Windows Azure Pack: CMP Common WAP Extension Components" />
   <!-- Contact -->
   <Property Id="ARPCONTACT"
             Value="Microsoft Corporation" />
   <!-- Help Link -->
   <Property Id="ARPHELPLINK"
-            Value="http://www.microsoft.com/" />
-  <!-- Help Telephone -->
+            Value="https://github.com/Microsoft/Phoenix/wiki" />
+  <!-- Help Telephone --><!--
   <Property Id="ARPHELPTELEPHONE"
-            Value="(555) 555-5555" />
+            Value="(555) 555-5555" />-->
   <!-- Support Link -->
   <Property Id="ARPURLINFOABOUT"
-            Value="http://support.microsoft.com/" />
+            Value="https://github.com/Microsoft/Phoenix/wiki" />
   <!-- Update Info Link -->
   <Property Id="ARPURLUPDATEINFO"
-            Value="http://update.microsoft.com/" />
+            Value="https://github.com/Microsoft/Phoenix" />
   <!-- Readme -->
   <SetProperty Id="ARPREADME"
                Value="[INSTALLDIR]Readme.txt"

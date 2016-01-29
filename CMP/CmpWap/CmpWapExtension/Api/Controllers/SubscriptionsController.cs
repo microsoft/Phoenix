@@ -25,6 +25,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
         [HttpPost]
         public List<Subscription> GetSubscriptionList([FromBody]string [] wapSubscriptions)
         {
+            //Null parameter check
+            if (wapSubscriptions == null)
+                return Enumerable.Empty<Subscription>().ToList();
+
             var cwdb = new CmpWapDb();
             List<Subscription> resultList = new List<Subscription>();
 

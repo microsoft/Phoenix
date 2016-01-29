@@ -36,10 +36,15 @@ namespace CMP.Setup.Helpers
             Exception error;
             do
             {
-                RegistryKey hiveKey = GetHiveKeyForProcess(registryHive, ignoreArchitecture);
+                //RegistryKey hiveKey = GetHiveKeyForProcess(registryHive, ignoreArchitecture);
+                var registryBitType = Environment.Is64BitOperatingSystem
+                    ? RegistryView.Registry64
+                    : RegistryView.Registry32;
+                RegistryKey localKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, registryBitType);
+                RegistryKey regKey = localKey.OpenSubKey(key, false);
+                
                 // Flip the value to indicate completion after at most two tries
                 ignoreArchitecture = !ignoreArchitecture;
-                RegistryKey regKey = hiveKey.OpenSubKey(key, false);
 
                 try
                 {
@@ -69,7 +74,7 @@ namespace CMP.Setup.Helpers
                         regKey.Dispose();
                     }
 
-                    hiveKey.Dispose();
+                    localKey.Dispose();
                 }
             }
             while (!ignoreArchitecture);

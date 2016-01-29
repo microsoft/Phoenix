@@ -21,6 +21,7 @@ namespace CmpServiceLib.Models
         public DbSet<ChangeLog> ChangeLogs { get; set; }
         public DbSet<CmpServiceUserAccount> CmpServiceUserAccounts { get; set; }
         public DbSet<Config> Configs { get; set; }
+        public DbSet<Container> Containers { get; set; }
         public DbSet<FluRequest> FluRequests { get; set; }
         public DbSet<OpRequest> OpRequests { get; set; }
         public DbSet<Sequence> Sequences { get; set; }
@@ -37,6 +38,7 @@ namespace CmpServiceLib.Models
             modelBuilder.Configurations.Add(new ChangeLogMap());
             modelBuilder.Configurations.Add(new CmpServiceUserAccountMap());
             modelBuilder.Configurations.Add(new ConfigMap());
+            modelBuilder.Configurations.Add(new ContainerMap());
             modelBuilder.Configurations.Add(new FluRequestMap());
             modelBuilder.Configurations.Add(new OpRequestMap());
             modelBuilder.Configurations.Add(new SequenceMap());

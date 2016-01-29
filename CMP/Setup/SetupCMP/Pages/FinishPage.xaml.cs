@@ -102,14 +102,14 @@ namespace CMP.Setup
                 if (PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.Uninstall))
                 {
                     // Succeed with warning
-                    if (PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.WarningReason))
+                    if (PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.WarningReason) || PropertyBagDictionary.Instance.PropertyExists(PropertyBagDictionary.NonVitalFailure))
                     {
                         this.finishPageHeader.Text = WPFResourceDictionary.UninstallSucceededWithWarnings;
                         this.PopulateWarningMessage();
                     }
                     else
                     {
-                        this.finishPageHeader.Text = WPFResourceDictionary.UninstallSuccessful;
+                        this.finishPageHeader.Text = PropertyBagDictionary.Instance.PropertyExists((PropertyBagDictionary.VitalFailure)) ? WPFResourceDictionary.UninstallFailed : WPFResourceDictionary.UninstallSuccessful;   
                     }
                 }
                 // Installation is successful

@@ -1,4 +1,3 @@
-
 //-----------------------------------------------------------------------
 // <copyright file="InstallItemCustomDelegates.cs" company="Microsoft">
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -205,33 +204,51 @@ namespace CMP.Setup
                 arguments.Append("ADDLOCAL=ProductFeature,ServiceFeature ");
 
                 // Add the SQL database information so that it can be written to the registry and accessed by the services
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSQLPORT=\"{0}\" ", (int)SetupInputs.Instance.FindItem(SetupInputTags.WapSqlServerPortTag));
-                string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(true);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPINSTANCENAME=\"{0}\" ", sqlInstanceName);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "SQLPORT=\"{0}\" ", (int)SetupInputs.Instance.FindItem(SetupInputTags.SqlServerPortTag));
+                string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(false);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "INSTANCENAME=\"{0}\" ", sqlInstanceName);
 
-                String dbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.WapSqlDatabaseNameTag);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPDATABASENAME=\"{0}\" ", dbName);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSQLPORT=\"{0}\" ", (int)SetupInputs.Instance.FindItem(SetupInputTags.WapSqlServerPortTag));
+                string wapSqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(true);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPINSTANCENAME=\"{0}\" ", wapSqlInstanceName);
+
+                String dbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.SqlDatabaseNameTag);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "DATABASENAME=\"{0}\" ", dbName);
                 string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
                 string connectionString = String.Format("{0}database={1}", partialConnectionString, dbName);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPCONNECTIONSTR=\"{0}\" ", connectionString);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONNECTIONSTR=\"{0}\" ", connectionString);
 
-                string sqlMachineName = DnsHelper.GetComputerNameFromFqdnOrNetBios((String)SetupInputs.Instance.FindItem(SetupInputTags.GetSqlMachineNameTag(true)));
-                bool onRemoteMachine = String.Compare(sqlMachineName, Environment.MachineName, true) != 0;
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPONREMOTESERVER=\"{0}\" ", onRemoteMachine ? 1 : 0);
+                String wapDbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.WapSqlDatabaseNameTag);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPDATABASENAME=\"{0}\" ", wapDbName);
+                string wapPartialConnectionString = SetupDatabaseHelper.ConstructConnectionString(wapSqlInstanceName);
+                string wapConnectionString = String.Format("{0}database={1}", wapPartialConnectionString, wapDbName);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPCONNECTIONSTR=\"{0}\" ", wapConnectionString);
+
+                string sqlMachineName = DnsHelper.GetComputerNameFromFqdnOrNetBios((String)SetupInputs.Instance.FindItem(SetupInputTags.GetSqlMachineNameTag(false)));
+                bool onRemoteMachine = String.Compare(sqlMachineName, Environment.MachineName, StringComparison.OrdinalIgnoreCase) != 0;
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "ONREMOTESERVER=\"{0}\" ", onRemoteMachine ? 1 : 0);
+
+                string wapSqlMachineName = DnsHelper.GetComputerNameFromFqdnOrNetBios((String)SetupInputs.Instance.FindItem(SetupInputTags.GetSqlMachineNameTag(true)));
+                bool wapOnRemoteMachine = String.Compare(wapSqlMachineName, Environment.MachineName, StringComparison.OrdinalIgnoreCase) != 0;
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPONREMOTESERVER=\"{0}\" ", wapOnRemoteMachine ? 1 : 0);
 
                 String sqlMachineFqdn = DnsHelper.GetFullyQualifiedName(sqlMachineName);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSQLMACHINENAME=\"{0}\" ", sqlMachineName);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSQLMACHINEFQDN=\"{0}\" ", sqlMachineFqdn);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "SQLMACHINENAME=\"{0}\" ", sqlMachineName);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "SQLMACHINEFQDN=\"{0}\" ", sqlMachineFqdn);
+
+                String wapSqlMachineFqdn = DnsHelper.GetFullyQualifiedName(sqlMachineName);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSQLMACHINENAME=\"{0}\" ", wapSqlMachineName);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSQLMACHINEFQDN=\"{0}\" ", wapSqlMachineFqdn);
 
                 String certificateThumbprint = (String)SetupInputs.Instance.FindItem(SetupInputTags.CmpCertificateThumbprintTag);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "CERTIFICATETHUMPRINT=\"{0}\" ", "LocalMachine,My," + certificateThumbprint);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "CERTIFICATETHUMBPRINT=\"{0}\" ", "LocalMachine,My," + certificateThumbprint);
 
                 // Write the cmp database connection string
                 sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(false);
-                dbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.SqlDatabaseNameTag);
-                partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
-                connectionString = String.Format("{0}database={1}", partialConnectionString, dbName);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONNECTIONSTR=\"{0}\" ", connectionString);
+                wapDbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.SqlDatabaseNameTag);
+                wapPartialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+                wapConnectionString = String.Format("{0}database={1}", wapPartialConnectionString, wapDbName);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONNECTIONSTR=\"{0}\" ", wapConnectionString);
 
                 // Save the user name to use on the cmp service database
                 String userName = SetupInputs.Instance.FindItem(SetupInputTags.SqlDBAdminNameTag);
@@ -258,6 +275,12 @@ namespace CMP.Setup
                 string encryptedPassword = String.Format("{0}{1}{2}", "[KText]", UserAccountHelper.EncryptStringUsingLocalCertificate(passwordAsText, certificateThumbprint), "[KText]");
 
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONTEXTPASSWORDSTRING=\"{0}\" ", encryptedPassword);
+
+                //Write the MicrosoftMgmtSvcStoreContext connection string (part of WAP original installation)
+                wapDbName = SetupConstants.DefaultWapStoreDBName;
+                wapPartialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+                wapConnectionString = String.Format("{0}database={1}", wapPartialConnectionString, wapDbName);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSTORECONNECTIONSTR=\"{0}\" ", wapConnectionString);
             }
 
             return arguments.ToString();
@@ -567,11 +590,11 @@ namespace CMP.Setup
             string sqlInstanceName = GetSQLServerInstanceNameStr(false);
             string wapSqlInstanceName = GetSQLServerInstanceNameStr(true);
             WriteSqlRegistryValue(SetupConstants.InstanceNameRegistryValueName, sqlInstanceName);
-            WriteWapSqlRegistryValue(SetupConstants.InstanceNameRegistryValueName, wapSqlInstanceName);
+            WriteWapSqlRegistryValue(SetupConstants.WapInstanceNameRegistryValueName, wapSqlInstanceName);
             string dbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.SqlDatabaseNameTag);
             WriteSqlRegistryValue(SetupConstants.DBNameRegistryValueName, dbName);
             string wapDBName = (String)SetupInputs.Instance.FindItem(SetupInputTags.WapSqlDatabaseNameTag);
-            WriteWapSqlRegistryValue(SetupConstants.DBNameRegistryValueName, wapDBName);
+            WriteWapSqlRegistryValue(SetupConstants.WapDbNameRegistryValueName, wapDBName);
             string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
             string wapPartialConnectionString = SetupDatabaseHelper.ConstructConnectionString(wapSqlInstanceName);
             string connectionString = String.Format("{0}database={1}", partialConnectionString, dbName);
@@ -799,7 +822,6 @@ namespace CMP.Setup
                 string encryptedPassword = String.Format("{0}{1}{2}", "[KText]", UserAccountHelper.EncryptStringUsingLocalCertificate(passwordAsText, certificateThumbprint), "[KText]");
 
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONTEXTPASSWORDSTRING=\"{0}\" ", encryptedPassword);
-                arguments.AppendFormat(CultureInfo.InvariantCulture, "KRYPTOCERTSTRING=\"{0}\" ", certificateThumbprint);
             }
 
             return arguments.ToString();
@@ -838,7 +860,7 @@ namespace CMP.Setup
             }
             catch (Exception exception)
             {
-                SetupLogger.LogException(exception, "VMMPostinstallProcessor threw an exception");
+                SetupLogger.LogException(exception, "CMPServerPostinstallProcessor threw an exception");
                 PropertyBagDictionary.Instance.SafeAdd(PropertyBagDictionary.VitalFailure,
                     (PropertyBagDictionary.Instance.PropertyExists(PropertyBagDictionary.VitalFailure)
                     ? (PropertyBagDictionary.Instance.GetProperty<InstallItemsInstallDataItem.InstallDataInputs>

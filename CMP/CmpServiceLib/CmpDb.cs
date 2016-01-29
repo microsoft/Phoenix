@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using AzureAdminClientLib;
 
 //*****************************************************************************
 //
@@ -2268,8 +2269,8 @@ namespace CmpServiceLib
                     db.Database.Connection.ConnectionString = _ConnectionString;
 
                     var azureRoleSizesSet = (from ars in db.AzureRoleSizes
-                                orderby ars.Name
-                                select ars);
+                                             orderby ars.Name
+                                             select ars);
 
                     return azureRoleSizesSet.ToList();
                     //return azureRoleSizesList;
@@ -2337,6 +2338,180 @@ namespace CmpServiceLib
             catch (Exception ex)
             {
                 throw new Exception("GetAzureRoleSizeFromName()"
+                    + Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
+        #endregion
+
+        #region Sync with Azure Containers Region
+
+        private int FetchMaxAzureContainerID(Models.CMPContext db)
+        {
+            int maxId = 0;
+
+            try
+            {
+                maxId = (from rb in db.Containers
+                         select rb.ID).Max();
+            }
+            catch (InvalidOperationException)
+            {
+                maxId = 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in FetchMaxAzureContainerID() : " + ex.Message);
+            }
+
+            return maxId;
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        ///     This method fetches VM size (Azure RoleSize) info from the CMP
+        ///     DB, which is synced with Azure ARM to provide the most current
+        ///     offerings of VM sizes
+        /// </summary>
+        /// <returns>AzureRoleSize IEnumerable</returns>
+        /// 
+        //*********************************************************************
+
+        public IEnumerable<AzureResourceGroup> FetchAzureContainerList()
+        {
+            var azureResourceGroupList = new List<AzureResourceGroup>();
+
+            try
+            {
+                using (var db = new Models.CMPContext())
+                {
+                    db.Database.Connection.ConnectionString = _ConnectionString;
+
+                    var qresult = (from ars in db.Containers
+                                             orderby ars.Name
+                                             select ars);
+
+                    azureResourceGroupList.AddRange(qresult.Select(arg => new AzureResourceGroup()
+                    {
+                        Id = arg.ID.ToString(),
+                        Name = arg.Name,
+                        Location = arg.Region
+                    }));
+
+                    return azureResourceGroupList;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in FetchAzureContainerList() : "
+                    + Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        ///     This method fetches VM size (Azure RoleSize) info from the CMP
+        ///     DB, which is synced with Azure ARM to provide the most current
+        ///     offerings of VM sizes
+        /// </summary>
+        /// <returns>AzureRoleSize IEnumerable</returns>
+        /// 
+        //*********************************************************************
+  
+        public IEnumerable<AzureResourceGroup> FetchAzureContainerList(string subscriptionId)
+        {
+            var azureResourceGroupList = new List<AzureResourceGroup>();
+
+            if (null == subscriptionId)
+                return FetchAzureContainerList();
+
+            try
+            {
+                using (var db = new Models.CMPContext())
+                {
+                    db.Database.Connection.ConnectionString = _ConnectionString;
+
+                    var qresult = (from ars in db.Containers
+                                             where ars.SubscriptionId.Equals(subscriptionId)
+                                             orderby ars.Name
+                                             select ars);
+
+                    azureResourceGroupList.AddRange(qresult.Select(arg => new AzureResourceGroup()
+                    {
+                        Id = arg.ID.ToString(),
+                        Name = arg.Name,
+                        Location = arg.Region
+                    }));
+
+                    return azureResourceGroupList;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in FetchAzureContainerList() : "
+                    + Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        ///     This method is used to insert an AzureContainer into the CmpDb
+        /// </summary>
+        /// <param name="cont"></param>
+        /// <returns>AzureRoleSize object</returns>
+        /// 
+        //*********************************************************************
+
+        public void InsertAzureContainer(CmpServiceLib.Models.Container cont)
+        {
+            try
+            {
+                using (var db = new Models.CMPContext())
+                {
+                    db.Database.Connection.ConnectionString = _ConnectionString;
+
+                    cont.ID = 1 + FetchMaxAzureContainerID(db);
+
+                    db.Containers.Add(cont);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in InsertAzureContainer() "
+                    + Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+
+        public Container GetAzureContainerFromName(string name)
+        {
+            try
+            {
+                using (var db = new Models.CMPContext())
+                {
+                    db.Database.Connection.ConnectionString = _ConnectionString;
+
+                    var result = db.Containers.FirstOrDefault(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("GetAzureContainerFromName()"
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }

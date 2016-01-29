@@ -107,7 +107,7 @@ namespace CMP.Setup
             SetupLogger.Initialize(PropertyBagDictionary.Instance.GetProperty<string>(PropertyBagConstants.DefaultLogName));
             SetupLogger.LogInfo("Application Started");
             bool createdNew;
-            Mutex mSetupwizard = new Mutex(true, @"Global\Beanstalk Setup", out createdNew);
+            Mutex mSetupwizard = new Mutex(true, @"Global\Phoenix Setup", out createdNew);
             if (!createdNew)
             {
                 SetupLogger.LogInfo("There is already another setup wizard running on this computer.");

@@ -94,33 +94,9 @@ namespace CmpInterfaceModel.Models
         public string ParentSubscriptionID { get; set; }
 
         /// <summary>
-        /// The domain\account of the user who initiated the request.
-        /// </summary>
-        public string RequestedBy { get; set; }
-
-        /// <summary>
-        /// The domain\account of the user who created the request... Not really sure the difference between this
-        /// one and the requested by value.
-        /// </summary>
-        public string CreatedBy { get; set; }
-
-
-        /// <summary>
         /// records the initial record id for migration
         /// </summary>
         public string RfcNmuber { get; set; }
-
-
-        /// <summary>
-        /// Not actually an alias. This is the domain\account of a user who can approve requests.
-        /// </summary>
-        public string ApproverAlias { get; set; }
-
-        /// <summary>
-        /// KCTNumber is either KCT0001830 for creating CIs in UAT or KCT0003740 for creating CIs in prod.
-        /// </summary>
-        public string KCTFolderName { get; set; }
-
 
         public string OrgDivison { get; set; }
         public string OrgDomain { get; set; }

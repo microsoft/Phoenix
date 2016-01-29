@@ -311,7 +311,7 @@ namespace CMP.Setup.Helpers
 
             string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(isWap);
             string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
-            string dbName = isWap ? SetupConstants.WapDBName : SetupConstants.DBName;
+            string dbName = isWap ? SetupInputs.Instance.FindItem(SetupInputTags.WapSqlDatabaseNameTag) : SetupInputs.Instance.FindItem(SetupInputTags.SqlDatabaseNameTag);
 
             string connectionString = String.Format(DBConnectionStringFormat, partialConnectionString, dbName);
             string masterDBConnectionString = String.Format(DBConnectionStringFormat, partialConnectionString, SetupDatabaseHelper.MasterDatabaseName);

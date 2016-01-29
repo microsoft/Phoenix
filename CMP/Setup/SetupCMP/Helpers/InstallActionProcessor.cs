@@ -48,7 +48,6 @@ namespace CMP.Setup
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="wizardScreenData"></param>
         public InstallActionProcessor()
         {
             this.progressData = ProgressData.Instance;

@@ -2108,7 +2108,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
 
         #endregion
 
-        #region --- ServiceProviderAccounts ---
+        #region --- Sequence Requests ---
 
         //*********************************************************************
         ///

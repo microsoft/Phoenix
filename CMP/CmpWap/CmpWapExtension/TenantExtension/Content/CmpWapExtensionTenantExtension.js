@@ -229,7 +229,8 @@
                     return;
                 }
             }
-        };
+        }
+        ;
 
         setVmRegionList(null);
     }
@@ -241,8 +242,7 @@
             listItems += "<option value='" + selectedRegion + "'>" + selectedRegion + "</option>";
             $("#VmRegion").html(listItems);
             $("#VmRegion").selectedIndex = 0;
-        }
-        else if (targetRegionsList) {
+        } else if (targetRegionsList) {
             for (var i = 0; i < targetRegionsList.length; i++) {
                 listItems += "<option value='" + targetRegionsList[i].Name + "'>" + targetRegionsList[i].Description + "</option>";
             }
@@ -1372,7 +1372,7 @@
     }
 
     //*************************************************************************
-    // Initializes the Beanstalk extension
+    // Initializes the Phoenix CMP WAP extension
     //*************************************************************************
     CmpWapExtensionTenantExtensionActivationInit = function () {
         var subs = Exp.Rdfe.getSubscriptionList(), CmpWapExtensionExtension = $.extend(this, global.CmpWapExtensionTenantExtension);

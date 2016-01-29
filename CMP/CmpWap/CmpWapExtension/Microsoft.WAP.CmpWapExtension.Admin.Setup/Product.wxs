@@ -24,7 +24,7 @@
   <?define ProductVersion="$(var.FileVersion)" ?>
   <?define ProductLanguage="1033" ?>
   <?define Manufacturer="Microsoft Corporation" ?>
-  <?define UpgradeCode="092688F9-8EF4-4D99-AEBF-CBDEB5276D2A" ?>
+  <?define UpgradeCode="092688F9-8EF4-4D99-AEBF-CBDEB5276D2D" ?>
   <?define UpgradeMinimumVersion="0.0.0.0" ?>
   <?define ProductDescription="$(var.ProductName) $(var.ProductVersion)" ?>
   <?define ProductComments="$(var.ProductName) $(var.ProductVersion)"?>

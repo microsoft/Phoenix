@@ -84,7 +84,7 @@ namespace CMP.Setup
                     guid = "092688F9-8EF4-4D99-AEBF-CBDEB5276D2B";
                     break;
                 case SetupFeatures.AdminExtension:
-                    guid = "092688F9-8EF4-4D99-AEBF-CBDEB5276D2A";
+                    guid = "092688F9-8EF4-4D99-AEBF-CBDEB5276D2D";
                     break;
                 case SetupFeatures.Server:
                     guid = "93CAADEF-B45F-4343-B824-B90245A80500";
@@ -95,20 +95,23 @@ namespace CMP.Setup
         }
 
         // SQL server settings
-        public const string DefaultDBName = "CMP_DB";
-        public const string DefaultWapDBName = "CMPWAP_DB";
+        public const string DefaultDBName = @"CMP_DB";
+        public const string DefaultWapDBName = @"CMPWAP_DB";
+        public const string DefaultWapStoreDBName = @"Microsoft.MgmtSvc.Store";
         public const string DBNameRegistryValueName = @"DatabaseName";
+        public const string WapDbNameRegistryValueName = @"WapDatabaseName";
         public const string OnRemoteRegistryValueName = @"OnRemoteServer"; 
         public const string InstanceNameRegistryValueName = @"InstanceName";
+        public const string WapInstanceNameRegistryValueName = @"WapInstanceName";
         public const string MachineNameRegistryValueName = @"MachineName";
         public const string SqlSettingsRegKey = SetupConstants.ServerSettingsRegKey + @"\" + SetupConstants.SqlSettingsKeyName;
-        public const string WapSqlSettingsRegKey = @"Software\Microsoft\MgmtSvc\CmpWapExtension";
-        public const string SettingsKeyName = @"Settings";
-        public const string SqlSettingsKeyName = @"Sql";
+        public const string WapSqlSettingsRegKey = @"SOFTWARE\Microsoft\MgmtSvc\CmpWapExtension";
+        public const string SettingsKeyName = @"";
+        public const string SqlSettingsKeyName = @"";
         public const string ServerSettingsRegKey = SetupConstants.ServerRegKey + @"\" + SetupConstants.SettingsKeyName;
-        public const string ConnectionStringRegistryValueName = @"ConnectionString";
+        public const string ConnectionStringRegistryValueName = @"CMPContext";
         public const string FqdnRegistryValueName = @"MachineFQDN";
-        public const string UserNameRegistryValueName = @"UserName";
+        public const string UserNameRegistryValueName = @"CmpDatabaseUserName";
         public const string VmmServiceAccountValueName = @"VmmServiceAccount";
 
         // Server settings
@@ -116,23 +119,23 @@ namespace CMP.Setup
         private static string tenantExtensionInstallationPath = null;
         private static string extensionCommonInstallationPath = null;
         private static string adminExtensionInstallationPath = null;
-        
-        public const string RootRegKey = @"Software\Microsoft\";
-        public const string BeanstalkRegSubKey = @"Beanstalk\";
-        public const string ServerRegSubKey = SetupConstants.BeanstalkRegSubKey + @"CMPService";
+
+        public const string RootRegKey = @"SOFTWARE\Microsoft\";
+        public const string BeanstalkRegSubKey = @"MgmtSvc\";
+        public const string ServerRegSubKey = SetupConstants.BeanstalkRegSubKey + @"CmpWapExtension";
         public const string ServerRegKey = SetupConstants.RootRegKey + SetupConstants.ServerRegSubKey;
-        public const string SetupKeyName = @"Setup";
+        public const string SetupKeyName = @"";
         public const string ServerSetupInfoRegKey = SetupConstants.ServerRegKey + @"\" + SetupConstants.SetupKeyName;
 
-        public const string TenantExtensionRegSubKey = SetupConstants.BeanstalkRegSubKey + @"TenantExtension";
-        public const string TenantExtensionRegKey = SetupConstants.RootRegKey + SetupConstants.TenantExtensionRegSubKey;
-        public const string TenantExtensionSetupInfoRegKey = SetupConstants.TenantExtensionRegKey + @"\" + SetupConstants.SetupKeyName;
+        //public const string TenantExtensionRegSubKey = SetupConstants.BeanstalkRegSubKey + @"TenantExtension";
+        //public const string TenantExtensionRegKey = SetupConstants.RootRegKey + SetupConstants.TenantExtensionRegSubKey;
+        //public const string TenantExtensionSetupInfoRegKey = SetupConstants.TenantExtensionRegKey + @"\" + SetupConstants.SetupKeyName;
 
-        public const string AdminExtensionRegSubKey = SetupConstants.BeanstalkRegSubKey + @"AdminExtension";
-        public const string AdminExtensionRegKey = SetupConstants.RootRegKey + SetupConstants.AdminExtensionRegSubKey;
-        public const string AdminExtensionSetupInfoRegKey = SetupConstants.AdminExtensionRegKey + @"\" + SetupConstants.SetupKeyName;
+        //public const string AdminExtensionRegSubKey = SetupConstants.BeanstalkRegSubKey + @"AdminExtension";
+        //public const string AdminExtensionRegKey = SetupConstants.RootRegKey + SetupConstants.AdminExtensionRegSubKey;
+        //public const string AdminExtensionSetupInfoRegKey = SetupConstants.AdminExtensionRegKey + @"\" + SetupConstants.SetupKeyName;
 
-        public const string RegistrationKeyName = @"Registration";
+        public const string RegistrationKeyName = @"";
         public const string ServerRegistrationRegKey = SetupConstants.ServerSetupInfoRegKey + @"\" + SetupConstants.RegistrationKeyName;
 
         public const string InstallPath = "InstallPath";
@@ -261,7 +264,7 @@ namespace CMP.Setup
         {
             get
             {
-                return RegistryUtils.ReadRegistryValue(SetupConstants.WapSqlSettingsRegKey, SetupConstants.DBNameRegistryValueName, null, false, ignoreArchitecture: true) as string;
+                return RegistryUtils.ReadRegistryValue(SetupConstants.WapSqlSettingsRegKey, SetupConstants.WapDbNameRegistryValueName, null, false, ignoreArchitecture: true) as string;
             }
         }
 
@@ -290,7 +293,7 @@ namespace CMP.Setup
         {
             get
             {
-                return RegistryUtils.ReadRegistryValue(SetupConstants.SqlSettingsRegKey, SetupConstants.InstanceNameRegistryValueName, null, false) as string;
+                return RegistryUtils.ReadRegistryValue(SetupConstants.SqlSettingsRegKey, SetupConstants.InstanceNameRegistryValueName, Environment.MachineName, false) as string;
             }
         }
 
@@ -298,7 +301,7 @@ namespace CMP.Setup
         {
             get
             {
-                return RegistryUtils.ReadRegistryValue(SetupConstants.WapSqlSettingsRegKey, SetupConstants.InstanceNameRegistryValueName, null, false, ignoreArchitecture:true) as string;
+                return RegistryUtils.ReadRegistryValue(SetupConstants.WapSqlSettingsRegKey, SetupConstants.WapInstanceNameRegistryValueName, null, false, ignoreArchitecture:true) as string;
             }
         }
 
@@ -306,7 +309,7 @@ namespace CMP.Setup
         {
             get
             {
-                return RegistryUtils.ReadRegistryValue(SetupConstants.SqlSettingsRegKey, SetupConstants.MachineNameRegistryValueName, null, false) as string;
+                return RegistryUtils.ReadRegistryValue(SetupConstants.SqlSettingsRegKey, SetupConstants.MachineNameRegistryValueName, Environment.MachineName, false) as string;
             }
         }
 

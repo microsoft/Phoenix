@@ -71,6 +71,7 @@
     <Build Include="dbo\Tables\BadAssets.sql" />
     <Build Include="dbo\Tables\OpRequests.sql" />
     <Build Include="dbo\Tables\AzureRoleSize.sql" />
+    <Build Include="dbo\Tables\Containers.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CMPDevDbToSource.scmp" />

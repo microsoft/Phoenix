@@ -1393,7 +1393,7 @@ declare var resources;
     }
 
     //*************************************************************************
-    // Initializes the Beanstalk extension
+    // Initializes the Phoenix CMP WAP extension
     //*************************************************************************
     CmpWapExtensionTenantExtensionActivationInit = function () {
         var subs = Exp.Rdfe.getSubscriptionList(), CmpWapExtensionExtension = $.extend(this, global.CmpWapExtensionTenantExtension);

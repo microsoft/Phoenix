@@ -15,6 +15,7 @@
         public enum VmSizeEnum { VmSizeCustom, ExtraSmall, Small, Medium, Large, ExtraLarge, A5, A6, A7 }
         public enum TargetLocationTypeEnum { Region, AffinityGroup, Vnet }
         public enum TargetServiceProviderTypeEnum { Azure }
+        public enum ContainerTypeEnum { Service, ResourceGroup }
         public enum TargetAccountTypeEnum { AzureSubscription }
         public enum RequestTypeEnum { NewVM, MigrateVm, SyncVm }
         public enum AftsDestinationTypeEnum { BLOB }

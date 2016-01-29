@@ -881,7 +881,7 @@ Are you sure you want to cancel installation?
         x:Uid="UninstallCanNotBeCanceled">This action cannot be canceled.</s:String>
     <s:String
         x:Key="SetupMessageBoxTitle"
-        x:Uid="SetupMessageBoxTitle">Microsoft System Center VMM Setup</s:String>
+        x:Uid="SetupMessageBoxTitle">Phoenix CMP WAP Extension</s:String>
     <s:String
         x:Key="DescripOnANewCluster"
         x:Uid="DescripOnANewCluster">Setup is running on a cluster node. 
@@ -995,25 +995,25 @@ Are you sure to uninstall the highly available VMM?</s:String>
         x:Uid="productRegistrationPageTitle">Enter product registration information</s:String>
     <s:String
         x:Key="productTitle"
-        x:Uid="productTitle">Microsoft CMP Services</s:String>
+        x:Uid="productTitle">Phoenix CMP Service for Windows Azure Pack</s:String>
     <s:String
         x:Key="wizardTitle"
-        x:Uid="wizardTitle">Microsoft CMP Services</s:String>
+        x:Uid="wizardTitle">Phoenix CMP Service for Windows Azure Pack</s:String>
     <s:String
         x:Key="reportingImagesFolder"
         x:Uid="reportingImagesFolder">ReportingImages</s:String>
     <s:String
         x:Key="resultLabelError"
-        x:Uid="resultLabelError">Microsoft CMP Services install failed</s:String>
+        x:Uid="resultLabelError">Phoenix CMP Service for Windows Azure Pack install failed</s:String>
     <s:String
         x:Key="resultLabelSuccess"
-        x:Uid="resultLabelSuccess">Microsoft CMP Services installed successfully</s:String>
+        x:Uid="resultLabelSuccess">Phoenix CMP Service for Windows Azure Pack installed successfully</s:String>
     <s:String
         x:Key="resultLabelWarning"
-        x:Uid="resultLabelWarning">Microsoft CMP Services installed with warnings</s:String>
+        x:Uid="resultLabelWarning">Phoenix CMP Service for Windows Azure Pack installed with warnings</s:String>
     <s:String
         x:Key="AnotherSetupRunningOnThisMachineMessage"
-        x:Uid="AnotherSetupRunningOnThisMachineMessage">There is already another Microsoft CMP services setup running on this computer. Please wait until that program is finished.</s:String>
+        x:Uid="AnotherSetupRunningOnThisMachineMessage">There is already another Phoenix CMP Service for Windows Azure Pack setup running on this computer. Please wait until that program is finished.</s:String>
     <s:String
         x:Key="windowsUpdateContentFolderDefault"
         x:Uid="windowsUpdateContentFolderDefault">WindowsUpdateContent</s:String>

@@ -6,7 +6,7 @@
 
   <!-- Required Properties -->
   <?define ProductCode="FAC2B832-6869-4F2B-9625-0EDE1644CB09" ?>
-  <?define ProductName="Windows Azure Pack: Cmp Worker Service" ?>
+  <?define ProductName="Phoenix CMP Worker Service for Windows Azure Pack" ?>
   <?define ProductVersion="1.0" ?>
   <?define ProductLanguage="1033" ?>
   <?define Manufacturer="Microsoft Corporation" ?>
@@ -14,7 +14,7 @@
   <?define UpgradeMinimumVersion="0.0.0.0" ?>
   <?define ProductDescription="$(var.ProductName) $(var.ProductVersion)" ?>
   <?define ProductComments="$(var.ProductName) $(var.ProductVersion)"?>
-  <?define regKeySubPath="Beanstalk\CMPService" ?>
+  <?define regKeySubPath="Phoenix\CMPService" ?>
   <?define buildCPUType=$(var.Platform)?>
   <?if $(var.buildCPUType)=x64?>
   <?define isWin64=yes ?>
@@ -131,7 +131,7 @@
               <RegistryValue Id="SqlServerPort" Root="HKLM" Key="Software\Microsoft\$(var.regKeySubPath)\Settings\Sql"
                                 Name="Port" Type="string" Value="[REGSQLPORT]" />
               <RegistryValue Id="KryptoCertRegKey" Root="HKLM" Key="Software\Microsoft\$(var.regKeySubPath)\Settings"
-                                Name="KryptoCert" Type="string" Value="[CERTIFICATETHUMPRINT]" />
+                                Name="KryptoCert" Type="string" Value="[CERTIFICATETHUMBPRINT]" />
 
             </Component>
             <Directory Id="CmpWorkerServiceFolder" Name="CmpWorkerService"/>
@@ -196,11 +196,21 @@
       <!--<Component Id="cmp15F7CE700D798B7448B814BE801313F2" Guid="{AFC68C82-2D4C-43EC-8510-DB1011BB1066}">
             <File Id="filEEC87EB3C133C62C55BD8EE7573113E8" KeyPath="yes" Source="$(var.CMPRoot)\CmpWorkerService\$(var.IntermediateOutputPath)\CmpWorkerService.exe" />
           </Component>-->
+      
+      
+      
+      
+      <!--Here's the section for configuring the values to be present in CmpWorkerService.exe.config-->
       <Component Id="cmpD21211531D427F5DD8BE47202943CC00" Guid="{26CA032A-B2A3-4A31-8649-8AAF4054539F}">
         <File Id="fil86A6327D93C6D0A33D746EA4AA2A382A" KeyPath="yes" Source="$(var.OutputPath)\CmpWorkerService.exe.config" />
         <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AConfig' File='[#fil86A6327D93C6D0A33D746EA4AA2A382A]' Action='setValue' ElementPath="//connectionStrings/add[\[]@name='CMPContext'[\]]/@connectionString" Value="[REGCONNECTIONSTR]" SelectionLanguage="XPath"/>
         <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AtConfig' File='[#fil86A6327D93C6D0A33D746EA4AA2A382A]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CMPContextPassword'[\]]/@value" Value="[CMPCONTEXTPASSWORDSTRING]" SelectionLanguage="XPath"/>
+        <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AkConfig' File='[#fil86A6327D93C6D0A33D746EA4AA2A382A]' Action='setValue' ElementPath="//appSettings/add[\[]@key='KryptoCert'[\]]/@value" Value="[CERTIFICATETHUMBPRINT]" SelectionLanguage="XPath"/>
       </Component>
+      
+      
+      
+      
       <Component Id="cmp2914CF29AC6F8C0B98A9F137A8A46076" Guid="{CD6C8B94-1B56-46DF-A4D3-340934E6D59D}">
         <File Id="fil9EED2E3F576F30C2439BB45D94A97FD6" KeyPath="yes" Source="$(var.OutputPath)\SMAApi.pdb" />
       </Component>

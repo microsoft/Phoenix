@@ -147,7 +147,7 @@ namespace CMP.Setup
             if (!PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.Server))
             {
                 this.radioExistingDatabase.IsChecked = true;
-                this.radioNewDatabase.IsEnabled = false;
+                this.radioNewDatabase.IsEnabled = true;
             }
             else
             {

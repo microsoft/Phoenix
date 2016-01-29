@@ -72,26 +72,26 @@ namespace CMP.Setup
 
             if (!PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.AddRemoveProgramFilesPath))
             {
-                if (PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.Uninstall))
-                {
-                    // get the registry string
-                    addRemoveProgramsCachePath = SetupHelpers.ReadRemoteRegistryEx(SystemInformation.ComputerName, string.Format(CultureInfo.InvariantCulture, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", WpfResources.WPFResourceDictionary.ProductTitle), "UninstallString");
-                    if (string.Equals(addRemoveProgramsCachePath, "Error", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return string.Empty;
-                    }
+                //if (PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.Uninstall))
+                //{
+                //    // get the registry string
+                //    addRemoveProgramsCachePath = SetupHelpers.ReadRemoteRegistryEx(SystemInformation.ComputerName, string.Format(CultureInfo.InvariantCulture, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", WpfResources.WPFResourceDictionary.ProductTitle), "UninstallString");
+                //    if (string.Equals(addRemoveProgramsCachePath, "Error", StringComparison.OrdinalIgnoreCase))
+                //    {
+                //        return string.Empty;
+                //    }
 
-                    // Strip out the exe name from the path
-                    addRemoveProgramsCachePath =
-                        addRemoveProgramsCachePath.Replace("\"", String.Empty);
-                    addRemoveProgramsCachePath =
-                        addRemoveProgramsCachePath.Remove(
-                            addRemoveProgramsCachePath.LastIndexOf(
-                                (SetupConstants.SetupFolder + Path.DirectorySeparatorChar + SetupExe),
-                                StringComparison.OrdinalIgnoreCase));
-                }
-                else
-                {
+                //    // Strip out the exe name from the path
+                //    addRemoveProgramsCachePath =
+                //        addRemoveProgramsCachePath.Replace("\"", String.Empty);
+                //    addRemoveProgramsCachePath =
+                //        addRemoveProgramsCachePath.Remove(
+                //            addRemoveProgramsCachePath.LastIndexOf(
+                //                (SetupConstants.SetupFolder + Path.DirectorySeparatorChar + SetupExe),
+                //                StringComparison.OrdinalIgnoreCase));
+                //}
+                //else
+                //{
                     if (PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.VhdVersionConfiguration))
                     {
                         addRemoveProgramsCachePath = SetupConstants.GetServerInstallPath();
@@ -100,7 +100,7 @@ namespace CMP.Setup
                     {
                         addRemoveProgramsCachePath = SetupInputs.Instance.FindItem(SetupInputTags.BinaryInstallLocationTag);
                     }
-                }
+                //}
 
                 if (!addRemoveProgramsCachePath.EndsWith(Path.DirectorySeparatorChar.ToString()))
                 {
@@ -1385,10 +1385,10 @@ namespace CMP.Setup
                 // move up the application's current working directory so that various parent directories can be deleted if they are empty.
                 Environment.CurrentDirectory = vmmDirInfo.Parent != null ? Directory.GetParent(vmmDirInfo.FullName).FullName : vmmDirInfo.FullName;
 
-                Directory.Delete(cachePath);  // Delete the setup directory if it is empty
+                Directory.Delete(cachePath, true);  // Delete the setup directory. joaldaba
                 if (vmmDirInfo.Parent != null)
                 {
-                    Directory.Delete(vmmDirInfo.FullName);  // Delete the VMM directory if is empty
+                    Directory.Delete(vmmDirInfo.FullName, true);  // Delete the VMM directory if is empty
                 }
             }
             catch (Exception e)

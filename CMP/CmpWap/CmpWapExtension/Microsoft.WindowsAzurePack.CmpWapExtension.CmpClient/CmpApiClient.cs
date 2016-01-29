@@ -243,9 +243,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             if (CmpAccessMode == CmpAccessModeEnum.Monolith)
             {
                 //addsa -- Impersonate ITSM user (config in CMPWAPExtension.Api)
-                var userName = System.Configuration.ConfigurationManager.AppSettings["ItsmUserName"];
-                var userDomain = System.Configuration.ConfigurationManager.AppSettings["ItsmUserDomain"];
-                var userPassword = System.Configuration.ConfigurationManager.AppSettings["ItsmUserPassword"];
+                string userName = null;//System.Configuration.ConfigurationManager.AppSettings["ItsmUserName"];
+                string userDomain = null; //System.Configuration.ConfigurationManager.AppSettings["ItsmUserDomain"];
+                string userPassword = null; //System.Configuration.ConfigurationManager.AppSettings["ItsmUserPassword"];
 
                 var cmp = new CmpServiceLib.CmpService(_eventLog, CmpDbConnectionString, null);
 

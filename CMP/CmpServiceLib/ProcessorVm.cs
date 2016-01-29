@@ -175,7 +175,7 @@ namespace CmpServiceLib
 
             //***
 
-            _isMsitDeployment = GetSettingBoolValue("MsitDeployment");
+            //_isMsitDeployment = GetSettingBoolValue("MsitDeployment");
             _performValidation = GetSettingBoolValue("PerformValidation");
             _disableSmartCardAuth = GetSettingBoolValue("DisableSmartCardAuth");
             _movePagefile = GetSettingBoolValue("MovePagefile");
