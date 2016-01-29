@@ -84,7 +84,7 @@ namespace CMP.Setup
                     guid = "092688F9-8EF4-4D99-AEBF-CBDEB5276D2B";
                     break;
                 case SetupFeatures.AdminExtension:
-                    guid = "092688F9-8EF4-4D99-AEBF-CBDEB5276D2A";
+                    guid = "092688F9-8EF4-4D99-AEBF-CBDEB5276D2D";
                     break;
                 case SetupFeatures.Server:
                     guid = "93CAADEF-B45F-4343-B824-B90245A80500";
