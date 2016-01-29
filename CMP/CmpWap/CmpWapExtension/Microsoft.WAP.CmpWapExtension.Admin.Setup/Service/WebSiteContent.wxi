@@ -18,6 +18,8 @@ xmlns:uti="http://schemas.microsoft.com/wix/UtilExtension">
             CompanionFile="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll"
             Source="$(var.WebSiteRoot)\Global.asax" />
     </Component>
+    
+    
     <Component Id="Web.config"
                Guid="{356DE5E5-BFFA-4B15-9CE5-C96434CA0AB3}">
       <File Id="Web.config"
@@ -25,17 +27,10 @@ xmlns:uti="http://schemas.microsoft.com/wix/UtilExtension">
             Source="$(var.WebSiteRoot)\Web.config" />
       <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AConfig' File='[#Web.config]' Action='setValue' ElementPath="//connectionStrings/add[\[]@name='CMPContext'[\]]/@connectionString" Value="[REGCONNECTIONSTR]" SelectionLanguage="XPath"/>
       <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AtConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CMPContextPassword'[\]]/@value" Value="[CMPCONTEXTPASSWORDSTRING]" SelectionLanguage="XPath"/>
-      <!--      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA482AuConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='AdminserviceEndpoint'[\]]/@value" Value="[ADMINSERVICEENDPOINTSTRING]" SelectionLanguage="XPath"/>
-      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AuConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='WindowsAuthEndpoint'[\]]/@value" Value="[WINDOWSAUTHENDPOINTSTRING]" SelectionLanguage="XPath"/>
-      <uti:XmlFile Id='fil86A6327D93C6D0A332A382dAConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='ItsmBaseurl'[\]]/@value" Value="[ITSMBASEURLSTRING]" SelectionLanguage="XPath"/>
-      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382dBConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CmpServiceCredentials'[\]]/@value" Value="[CMPSERVICECREDENTIALSSTRING]" SelectionLanguage="XPath"/>
-      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382yAConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='ApproverAlias'[\]]/@value" Value="[APPROVERALIASSTRING]" SelectionLanguage="XPath"/>
-      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382ymConfig' File='[#Web.config]' Action='setValue' ElementPath="//connectionStrings/add[\[]@name='MicrosoftMgmtSvcCmpContext'[\]]/@connectionString" Value="[MICROSOFTMEMTSVCCMPCONTEXTSTRING]" SelectionLanguage="XPath"/>
-      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4A2ymConfig' File='[#Web.config]' Action='setValue' ElementPath="//connectionStrings/add[\[]@name='ECSPortalDBContext'[\]]/@connectionString" Value="[ECSPORTALDBCONTEXTSTRING]" SelectionLanguage="XPath"/>
-      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A38' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CmpServiceUrl'[\]]/@value" Value="[CMPSERVICEURLSTRING]" SelectionLanguage="XPath"/>
--->
-
     </Component>
+    
+    
+    
     <Component Id="Default.html"
                Guid="{5901D4CC-33BE-4F10-AE96-E5931512DE6D}">
       <File Id="Default.html"
