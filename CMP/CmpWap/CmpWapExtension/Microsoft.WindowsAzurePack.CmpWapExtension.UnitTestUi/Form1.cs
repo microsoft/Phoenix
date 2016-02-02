@@ -316,6 +316,12 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             var resp = tc.GetSubscriptionList(subId);
         }
 
+        private void CmpSyncTest()
+        {
+            var sw = new SyncWorker();
+            sw.SynchWithCmp();
+        }
+
         private async void button_Test_Click(object sender, EventArgs e)
         {
             try
@@ -342,7 +348,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //FetchRegionsTest();
                 //FetchResourceGroupNameTest();
                 //FetchRoleSizes();
-                TestSyncWorker();
+                //TestSyncWorker();
                 //FetchTenantInfo();
                 //SetVmOsByBatch();
                 //FetchPlanConfigInfo();
@@ -359,6 +365,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //TenantGetSubMappingsTest();
 
                 //FetchEnvironmentTypesTest();
+
+                CmpSyncTest();
 
                 /*
                 vt = new VmTests();

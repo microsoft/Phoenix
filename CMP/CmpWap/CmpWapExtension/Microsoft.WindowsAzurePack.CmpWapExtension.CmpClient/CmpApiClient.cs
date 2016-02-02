@@ -1131,6 +1131,30 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
         }
 
+        public List<CmpServiceLib.Models.Container> FetchAzureResourceGroups()
+        {
+            try
+            {
+                if (CmpAccessMode == CmpAccessModeEnum.Monolith)
+                {
+                    var cmp = new CmpServiceLib.CmpService(_eventLog, CmpDbConnectionString, null);
+                    var fdrList = cmp.FetchAzureResourceGroups();
+
+                    //var outList = new List<CmpService.VmDeploymentRequest>(fdrList.Count);
+                    //outList.AddRange(fdrList.Select(Translate));
+                    return fdrList;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in CmpClient.FetchCmpRequests() : " + Utils.UnwindExceptionMessages(ex));
+            }
+        }
+
 
         //*********************************************************************
         ///
