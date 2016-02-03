@@ -10,4 +10,4 @@
     [CreatedBy]        NVARCHAR (256) CONSTRAINT [DF_AzureMasterData_CreatedBy] DEFAULT (suser_sname()) NOT NULL,
     [LastUpdatedOn]    DATETIME       CONSTRAINT [DF_AzureMasterData_LastUpdatedOn] DEFAULT (getdate()) NOT NULL,
     [LastUpdatedBy]    VARCHAR (50)   CONSTRAINT [DF_AzureMasterData_LastUpdatedBy] DEFAULT (suser_sname()) NOT NULL,
- CONSTRAINT [PK_AzureMasterData] PRIMARY KEY CLUSTERED ([Id] ASC)) ON [PRIMARY]
+ CONSTRAINT [PK_AzureMasterData] PRIMARY KEY CLUSTERED ([Id] ASC))
