@@ -39,7 +39,7 @@ CREATE TABLE #WorkTable (
 [VmsPerServiceCountMax]      INT            NULL,
 [AzureADClientId]			 VARCHAR (50)   NULL,
 [AzureADTenantId]			 VARCHAR (50)   NULL,
-[AzureADClientKey]			 VARCHAR (max)   NULL
+[AzureADClientKey]			 VARCHAR (50)   NULL
 )
 GO
  

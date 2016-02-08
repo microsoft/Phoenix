@@ -29,7 +29,7 @@
     [VmsPerServiceCountMax]      INT            NULL,
 	[AzureADTenantId]			VARCHAR(50)		NULL,
 	[AzureADClientId]			VARCHAR(50)		NULL,
-	[AzureADClientKey]			VARCHAR(MAX)		NULL	
+	[AzureADClientKey]			VARCHAR(50)		NULL	
 );
 
 

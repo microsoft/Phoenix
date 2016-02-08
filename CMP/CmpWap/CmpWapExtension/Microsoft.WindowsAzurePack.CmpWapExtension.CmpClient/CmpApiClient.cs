@@ -1059,7 +1059,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in CmpClient.InsertServiceProviderAccount() : " +
+                throw new Exception("Exception in CmpClient.FetchServProvAcctList() : " +
                     Utils.UnwindExceptionMessages(ex));
             }
         }
@@ -1091,7 +1091,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in CmpClient.UpdateServiceProviderAccount() : " +
+                throw new Exception("Exception in CmpClient.FetchServProvAcctList() : " +
                     Utils.UnwindExceptionMessages(ex));
             }
         }
