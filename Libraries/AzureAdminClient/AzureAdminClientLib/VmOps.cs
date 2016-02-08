@@ -93,7 +93,8 @@ namespace AzureAdminClientLib
 
         const string URLTEMPLATE_FETCHVMINFO_ARM = @"https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/virtualMachines/{2}?api-version={3}";
         const string URLTEMPLATE_FETCHVMINFOINSTANCEVIEW_ARM = @"https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/virtualMachines/{2}/InstanceView?api-version={3}";
-        const string URLTEMPLATE_ADDVM_ARM = "https://{0}/subscriptions/{1}/resourcegroups/{2}/providers/microsoft.resources/deployments/{3}?api-version={4}";
+        const string URLTEMPLATE_ADDDEPLOYMENT_ARM = "https://{0}/subscriptions/{1}/resourcegroups/{2}/providers/microsoft.resources/deployments/{3}?api-version={4}";
+        const string URLTEMPLATE_ADDUPDATEVM_ARM = "https://{0}/subscriptions/{1}/resourcegroups/{2}/providers/microsoft.compute/virtualMachines/{3}?api-version={4}";
 
         const string AZURECREATEVMBODYSHELL = @"<?xml version=""1.0"" encoding=""utf-8""?><Deployment xmlns=""http://schemas.microsoft.com/windowsazure"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"">{0}</Deployment>";
         const string AZUREADDVMBODYSHELL = @"<?xml version=""1.0"" encoding=""utf-8""?><PersistentVMRole xmlns=""http://schemas.microsoft.com/windowsazure"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"">{0}</PersistentVMRole>";
@@ -475,7 +476,7 @@ namespace AzureAdminClientLib
             {
                 ReferenceExistingArmResources(vmc);
 
-                url = string.Format(URLTEMPLATE_ADDVM_ARM,
+                url = string.Format(URLTEMPLATE_ADDDEPLOYMENT_ARM,
                     Constants.ARMMANAGEMENTADDRESS, Connection.SubcriptionID, vmDepReq.TargetServiceName,
                     vmDepReq.TargetVmName, Constants.AZUREAPIVERSION);
 
@@ -1251,6 +1252,11 @@ namespace AzureAdminClientLib
         {
             try
             {
+                if (IsArm)
+                {
+                    ResizeArm(vmName, serviceName, size);
+                    return "";
+                }
 
                 HostedServiceListResponse.HostedService service;
                 DeploymentGetResponse deployment;
@@ -1943,6 +1949,70 @@ namespace AzureAdminClientLib
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="vmInfoJson"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+
+        private string ExtractArmProperty(string vmInfoJson, string propertyName)
+        {
+            var nicListOut = new List<string>();
+            try
+            {
+                var jvList = Utilities.FetchJsonValue(vmInfoJson, "properties");
+
+                if (null == jvList)
+                    return null;
+
+                jvList = Utilities.FetchJsonValue(jvList.ToString(), propertyName);
+
+                if (null == jvList)
+                    return null;
+
+                return jvList.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in ExtractArmProperty() :" + ex.Message);
+            }
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vmInfoJson"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+
+        private string ExtractArmVmSize(string vmInfoJson)
+        {
+            try
+            {
+                var hwp = ExtractArmProperty(vmInfoJson, "hardwareProfile");
+
+                if (null == hwp)
+                    return null;
+
+                var vmSize = Utilities.FetchJsonValue(hwp, "vmSize");
+
+                return vmSize?.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in ExtractArmVmSize() :" + ex.Message);
+            }
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="aadToken"></param>
         /// <param name="subscriptionId"></param>
         /// <param name="resourceGroupName"></param>
@@ -2306,15 +2376,17 @@ namespace AzureAdminClientLib
         }
 
         //*********************************************************************
+        ///
+        /// <summary>
         /// 
-        ///   <summary>
-        ///  
-        ///   </summary>
-        ///   <param name="vmName"></param>
+        /// </summary>
+        /// <param name="vmName"></param>
         /// <param name="resourceGroupName"></param>
-        ///  
+        /// <returns></returns>
+        /// 
         //*********************************************************************
-        public VmRole GetVmArm(string vmName, string resourceGroupName)
+
+        public string GetVmInfoJsonArm(string vmName, string resourceGroupName)
         {
             try
             {
@@ -2327,7 +2399,29 @@ namespace AzureAdminClientLib
                 if (resp.HadError)
                     throw new Exception("Exception in Azure call within GetVmArm() :" + resp.Body);
 
-                var vmInfoJson = resp.Body;
+                return resp.Body;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in GetVmInfoArm() :" +
+                    Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
+        //*********************************************************************
+        /// 
+        ///   <summary>
+        ///  
+        ///   </summary>
+        ///   <param name="vmName"></param>
+        /// <param name="resourceGroupName"></param>
+        ///  
+        //*********************************************************************
+        public VmRole GetVmArm(string vmName, string resourceGroupName)
+        {
+            try
+            {
+                var vmInfoJson = GetVmInfoJsonArm(vmName, resourceGroupName);
 
                 //ExtractDataDiskInfo(vmInfoJson);
 
@@ -2581,6 +2675,54 @@ namespace AzureAdminClientLib
             }
         }
 
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vmName"></param>
+        /// <param name="resourceGroupName"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+
+        public string ResizeArm(string vmName, string resourceGroupName, string size)
+        {
+            try
+            {
+                var vmInfoJson = GetVmInfoJsonArm(vmName, resourceGroupName);
+
+                if (null == vmInfoJson)
+                    throw new Exception("Unable to locate VM '" +
+                        vmName + "'");
+
+                var foundSize = ExtractArmVmSize(vmInfoJson);
+
+                if(null == foundSize)
+                    throw new Exception("Unable to extract properties:hardwareProfile:vmSize from Azure response");
+
+                vmInfoJson = vmInfoJson.Replace("\"" + foundSize + "\"", "\"" + size + "\"");
+
+                var url = string.Format(URLTEMPLATE_ADDUPDATEVM_ARM,
+                    Constants.ARMMANAGEMENTADDRESS, Connection.SubcriptionID, resourceGroupName,
+                    vmName, "2015-06-15");
+
+                var body = vmInfoJson;
+
+                var resp = Interface.PerformRequestArm(HttpInterface.RequestType_Enum.PUT, url, body);
+
+                if (resp.HadError)
+                    throw new Exception(resp.Body);
+
+                return resp.StatusCheckUrl;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in VmOps.Resize() : " +
+                   Utilities.UnwindExceptionMessages(ex));
+            }
+        }
 
         #endregion
     }
