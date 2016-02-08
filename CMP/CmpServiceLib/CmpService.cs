@@ -285,6 +285,15 @@ namespace CmpServiceLib
 
         #endregion
 
+        #region --- ResourceGroups Region ----------------------------------------------
+
+        public List<Container> FetchAzureResourceGroups()
+        {
+            var cdb = new CmpDb(_cmpDbConnectionString);
+            return cdb.GetAzureContainers();
+        }
+
+        #endregion
 
         #region --- VmDepRequest Region ----------------------------------------------
 

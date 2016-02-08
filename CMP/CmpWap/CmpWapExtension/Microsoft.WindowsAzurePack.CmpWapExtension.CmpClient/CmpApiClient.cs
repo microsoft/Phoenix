@@ -243,9 +243,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             if (CmpAccessMode == CmpAccessModeEnum.Monolith)
             {
                 //addsa -- Impersonate ITSM user (config in CMPWAPExtension.Api)
-                var userName = System.Configuration.ConfigurationManager.AppSettings["ItsmUserName"];
-                var userDomain = System.Configuration.ConfigurationManager.AppSettings["ItsmUserDomain"];
-                var userPassword = System.Configuration.ConfigurationManager.AppSettings["ItsmUserPassword"];
+                string userName = null;//System.Configuration.ConfigurationManager.AppSettings["ItsmUserName"];
+                string userDomain = null; //System.Configuration.ConfigurationManager.AppSettings["ItsmUserDomain"];
+                string userPassword = null; //System.Configuration.ConfigurationManager.AppSettings["ItsmUserPassword"];
 
                 var cmp = new CmpServiceLib.CmpService(_eventLog, CmpDbConnectionString, null);
 
@@ -1119,6 +1119,30 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                     var outList = new List<CmpService.VmDeploymentRequest>(fdrList.Count);
                     outList.AddRange(fdrList.Select(Translate));
                     return outList;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in CmpClient.FetchCmpRequests() : " + Utils.UnwindExceptionMessages(ex));
+            }
+        }
+
+        public List<CmpServiceLib.Models.Container> FetchAzureResourceGroups()
+        {
+            try
+            {
+                if (CmpAccessMode == CmpAccessModeEnum.Monolith)
+                {
+                    var cmp = new CmpServiceLib.CmpService(_eventLog, CmpDbConnectionString, null);
+                    var fdrList = cmp.FetchAzureResourceGroups();
+
+                    //var outList = new List<CmpService.VmDeploymentRequest>(fdrList.Count);
+                    //outList.AddRange(fdrList.Select(Translate));
+                    return fdrList;
                 }
                 else
                 {
