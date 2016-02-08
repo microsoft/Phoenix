@@ -608,7 +608,7 @@ namespace CmpServiceLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in SetVmRequestStatus() : "
+                throw new Exception("Exception in ResubmitVmDepRequest() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -646,7 +646,7 @@ namespace CmpServiceLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchVmDepRequests() : "
+                throw new Exception("Exception in IsVmDepRequestInProcess() : "
                                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -795,7 +795,7 @@ namespace CmpServiceLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in SetVmRequestStatus() : "
+                throw new Exception("Exception in ReplaceVmDepRequest() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -1353,6 +1353,7 @@ namespace CmpServiceLib
                     else
                     {
                         Out = foundReqList.First() as Models.ServiceProviderAccount;
+                        var cert = new KryptoLib.X509Krypto("KryptoCert");
 
                         if (null != Out.AzAffinityGroup)
                             Out.AzAffinityGroup = Out.AzAffinityGroup.TrimEnd(trimChars);
@@ -1364,6 +1365,8 @@ namespace CmpServiceLib
                             Out.AzSubnet = Out.AzSubnet.TrimEnd(trimChars);
                         if (null != Out.AzVNet)
                             Out.AzVNet = Out.AzVNet.TrimEnd(trimChars);
+                        if (null != Out.AzureADClientKey)
+                            Out.AzureADClientKey = cert.Decrypt(Out.AzureADClientKey);
                     }
 
                     return Out;
@@ -1392,6 +1395,8 @@ namespace CmpServiceLib
             {
                 var trimChars = new char[] { ' ' };
                 var outList = new List<Models.ServiceProviderAccount>();
+                var cert = new KryptoLib.X509Krypto("KryptoCert");
+
 
                 using (var db = new Models.CMPContext())
                 {
@@ -1432,6 +1437,7 @@ namespace CmpServiceLib
                         spa.AzStorageContainerUrl   = null == spa.AzStorageContainerUrl ? null : spa.AzStorageContainerUrl.TrimEnd(trimChars);
                         spa.AzSubnet                = null == spa.AzSubnet ? null : spa.AzSubnet.TrimEnd(trimChars);
                         spa.AzVNet                  = null == spa.AzVNet ? null : spa.AzVNet.TrimEnd(trimChars);
+                        spa.AzureADClientKey = null == spa.AzureADClientKey ? null : cert.Decrypt(spa.AzureADClientKey);
 
                         outList.Add(spa);
                     }
@@ -1582,6 +1588,9 @@ namespace CmpServiceLib
                     db.Database.Connection.ConnectionString = _ConnectionString;
 
                     sPa.ID = ServiceProviderAccountId(db) + 1;
+                    var cert = new KryptoLib.X509Krypto("KryptoCert");
+
+                    sPa.AzureADClientKey = cert.Encrypt(sPa.AzureADClientKey);
 
                     db.ServiceProviderAccounts.Add(sPa);
                     db.SaveChanges();
@@ -1593,7 +1602,7 @@ namespace CmpServiceLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchServiceProviderAccountList() : "
+                throw new Exception("Exception in InsertServiceProviderAccount() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -1647,7 +1656,7 @@ namespace CmpServiceLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchServiceProviderAccount() : "
+                throw new Exception("Exception in UpdateServiceProviderAccount() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -1690,7 +1699,7 @@ namespace CmpServiceLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchServiceProviderAccount() : "
+                throw new Exception("Exception in DeleteServiceProviderAccount() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2535,7 +2544,7 @@ namespace CmpServiceLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchAzureContainerList() : "
+                throw new Exception("Exception in GetAzureContainers() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }

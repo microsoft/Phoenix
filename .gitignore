@@ -283,3 +283,4 @@ FakesAssemblies/
 *.opt
 /src
 *.config
+/Documents

@@ -276,6 +276,26 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             var result = ctr.FetchDefaultResourceProviderGroupName("1f686bd0-edb3-4c71-b550-d23a7666c853");
         }
 
+        private void ServiceProviderFetchTest()
+        {
+            var sp = new ServiceProviderAccountsController();
+            string subID = "";
+            var result = sp.ListServiceProviderAccounts();
+
+        }
+
+        private void ServiceProviderInsertTest()
+        {
+            var sp = new ServiceProviderAccountsController();
+            ServiceProviderAccount spA = new ServiceProviderAccount();
+            //spA.ID = 345;
+            spA.Name = "Test";
+            spA.ClientKey = "123abc!!!";
+            string subID = "";
+            var result = sp.UpdateServiceProviderAccount(spA);
+
+        }
+
         private async void GetVmTest()
         {
             var subID = "c438fe96-7cc3-43a1-ac87-c2795a6eea79";
@@ -385,6 +405,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //FetchEnvironmentTypesTest();
 
                 //CmpSyncTest();
+                //ServiceProviderInsertTest();
+                //ServiceProviderFetchTest();
 
                 /*
                 vt = new VmTests();
