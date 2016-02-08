@@ -297,6 +297,26 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             //p.ProcessOpsSubmissions();
         }
 
+        private void ServiceProviderFetchTest()
+        {
+            var sp = new ServiceProviderAccountsController();
+            string subID = "";
+            var result = sp.ListServiceProviderAccounts();
+
+        }
+
+        private void ServiceProviderInsertTest()
+        {
+            var sp = new ServiceProviderAccountsController();
+            ServiceProviderAccount spA = new ServiceProviderAccount();
+            //spA.ID = 345;
+            spA.Name = "Test";
+            spA.ClientKey = "123abc!!!";
+            string subID = "";
+            var result = sp.UpdateServiceProviderAccount(spA);
+
+        }
+
         private void VmOpsTest()
         {
             var ctr = new VmOpsController();
@@ -342,7 +362,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //FetchRegionsTest();
                 //FetchResourceGroupNameTest();
                 //FetchRoleSizes();
-                TestSyncWorker();
+                //TestSyncWorker();
                 //FetchTenantInfo();
                 //SetVmOsByBatch();
                 //FetchPlanConfigInfo();
@@ -359,6 +379,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //TenantGetSubMappingsTest();
 
                 //FetchEnvironmentTypesTest();
+                //ServiceProviderInsertTest();
+                //ServiceProviderFetchTest();
 
                 /*
                 vt = new VmTests();
