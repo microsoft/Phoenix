@@ -7,6 +7,9 @@
 
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using AzureAdminClientLib;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
 namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
 {
@@ -42,6 +45,41 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
 
             return message;
-        } 
+        }
+
+        //*********************************************************************
+        /// 
+        ///  <summary>
+        ///  This method validates the Azure Active Directory parameters that
+        ///  the user inputs as part of a Service Provider Account.
+        ///  </summary>
+        /// <param name="clientId"></param>
+        /// <param name="tenantId"></param>
+        /// <param name="clientKey"></param>
+        /// <returns>A bool stating whether the credentials are valid (true) or
+        /// not (false)</returns>
+        ///  
+        //*********************************************************************
+        public static bool ValidateAadCredentials(string clientId, string tenantId, string clientKey)
+        {
+            if (string.IsNullOrEmpty(clientId) || string.IsNullOrEmpty(tenantId) || string.IsNullOrEmpty(clientKey))
+                return false;
+
+            AuthenticationResult adToken = null;
+            
+            var task = Task.Run(() =>
+            {
+                var response = AzureActiveDir.GetAdUserToken(tenantId, clientId, clientKey);
+                response.Wait();
+                adToken = response.Result;
+            });
+
+            task.Wait();
+
+            if (adToken != null)
+                return true;
+
+            return false;
+        }
     }
 }

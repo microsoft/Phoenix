@@ -54,7 +54,9 @@
     <Content Include="Feature\TenantSite.wxi" />
     <Content Include="Icons\Windows-Azure-Dark-Blue.ico" />
     <Content Include="Icons\Windows-Azure-Light-Blue.ico" />
-    <Content Include="PowerShell\Register-ResourceProvider.ps1" />
+    <None Include="PowerShell\Register-ResourceProvider.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Prerequisites.wxi" />
     <Content Include="ReadMe.txt" />
     <Content Include="Registry.wxi" />

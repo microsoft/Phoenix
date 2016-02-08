@@ -690,14 +690,15 @@ declare var sizeInfoList;
 						//wizard = this;
 						// options description
 						var optiondesc = {
-							deletedisk: "This option deletes the disk attached to the VM.",
-							keepdisk: "This option does not delete any disks attached to the VM."
+							deletedisk: "This option deletes the disk attached to the VM."//,
+							//keepdisk: "This option does not delete any disks attached to the VM."
 						};
 
 						$("#vmdelete-option-desc").text(optiondesc.deletedisk); //tie description to textbox
 
-						var types = [{ text: "Delete VM with disk", value: "deleteVManddisk" },
-						{ text: "Delete VM keep disk", value: "deallocateVMnodisk" }];
+					    var types = [{ text: "Delete VM with disk", value: "deleteVManddisk" }//,
+						//{ text: "Delete VM keep disk", value: "deallocateVMnodisk" }
+                        ];
 
 						$("#vm-delete-radio").fxRadio({
 							value: types[0], //default value
@@ -706,9 +707,9 @@ declare var sizeInfoList;
 								if (args.value.value == "deleteVManddisk") {
 									$("#vmdelete-option-desc").text(optiondesc.deletedisk);
 								}
-								else if (args.value.value == "deallocateVMnodisk") {
-									$("#vmdelete-option-desc").text(optiondesc.keepdisk);
-								}
+								//else if (args.value.value == "deallocateVMnodisk") {
+								//	$("#vmdelete-option-desc").text(optiondesc.keepdisk);
+								//}
 							}
 						});
 					},
@@ -722,9 +723,9 @@ declare var sizeInfoList;
 						case "deleteVManddisk":
 							onDeleteVMkWithDisk(item, targetVMName);
 							break;
-						case "deallocateVMnodisk":
-							onDeleteVMWithoutDisk(item, targetVMName);
-							break;
+						//case "deallocateVMnodisk":
+						//	onDeleteVMWithoutDisk(item, targetVMName);
+						//	break;
 						}
 					}
 				}

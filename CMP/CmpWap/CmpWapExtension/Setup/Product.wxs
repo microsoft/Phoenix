@@ -5,16 +5,6 @@
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:uti="http://schemas.microsoft.com/wix/UtilExtension">
 
-  <?ifndef TargetX86 ?>
-  <?define ProductPlatform="x64" ?>
-  <?define Win64="yes" ?>
-  <?define RootInstallDir="ProgramFiles64Folder" ?>
-  <?else?>
-  <?define ProductPlatform="x86" ?>
-  <?define Win64="no" ?>
-  <?define RootInstallDir="ProgramFilesFolder" ?>
-  <?endif?>
-
   <!-- AssemblyFileVersion -->
   <?define FileVersion=!(bind.fileVersion.Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll) ?>
 
@@ -28,6 +18,15 @@
   <?define UpgradeMinimumVersion="0.0.0.0" ?>
   <?define ProductDescription="$(var.ProductName) $(var.ProductVersion)" ?>
   <?define ProductComments="$(var.ProductName) $(var.ProductVersion)"?>
+
+  <?if $(var.Platform) = x86 ?>
+  <?define Win64 = "no" ?>
+  <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+  <?else ?>
+  <?define ProductDisplayName = "$(var.ProductName) 64-bit" ?>
+  <?define Win64 = "yes" ?>
+  <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+  <?endif ?>
 
   <!-- Codepage="65001" is UTF-8 -->
   <Product Id="$(var.ProductCode)"

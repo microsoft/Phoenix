@@ -137,7 +137,7 @@ var AzureSubOps;
                     //new PlanServices.PlanUiExtensions().loadAzureSubUi(this._planId);
                     deferred.resolve();
                 }).fail(function (jqXhr, textStatus, errorThrown) {
-                    deferred.reject("Could not add azure subscription");
+                    deferred.reject("Could not add azure subscription: " + errorThrown);
                 });
             } else {
                 deferred.reject("Required field missing.");
