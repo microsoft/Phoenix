@@ -318,9 +318,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
 
         private void SpaAadValidationTest()
         {
-            var tenantId = "";
-            var clientId = "";
-            var clientKey = "";
+            var tenantId = "72f988bf-86f1-41af-91ab-2d7cd011db47";
+            var clientId = "d11ac2a1-9d9d-4bee-8248-7a8a8d890d8d";
+            var clientKey = "123abc!!!";
             bool result = Microsoft.WindowsAzurePack.CmpWapExtension.Api.Utilities.ValidateAadCredentials(clientId, tenantId, clientKey);
         }
 
