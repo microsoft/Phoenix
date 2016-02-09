@@ -2516,6 +2516,31 @@ namespace CmpServiceLib
             }
         }
 
+        public List<Container> GetAzureContainers()
+        {
+            var azureResourceGroupList = new List<AzureResourceGroup>();
+
+            try
+            {
+                using (var db = new Models.CMPContext())
+                {
+                    db.Database.Connection.ConnectionString = _ConnectionString;
+
+                    var result = (from ars in db.Containers
+                                   orderby ars.Name
+                                   select ars);
+
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in FetchAzureContainerList() : "
+                    + Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
+
         #endregion
 
     }
