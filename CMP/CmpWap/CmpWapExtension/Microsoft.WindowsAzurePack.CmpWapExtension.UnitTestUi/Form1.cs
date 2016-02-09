@@ -135,10 +135,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
 
         private Connection GetTestConnection()
         {
-            var subId = "00f885db-ef1d-4545-ad2d-64c0caf93384";
-            var tenantId = "72f988bf-86f1-41af-91ab-2d7cd011db47";
-            var clientId = "d11ac2a1-9d9d-4bee-8248-7a8a8d890d8d";
-            var clientKey = "123abc!!!";
+            var subId = "";
+            var tenantId = "";
+            var clientId = "";
+            var clientKey = "";
 
             return new Connection(subId, null, tenantId, clientId, clientKey);
         }
@@ -267,13 +267,13 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
         private void FetchTenantVmSizes()
         {
             ICmpWapDbTenantRepository ctr = new CmpWapDb();
-            var result = ctr.FetchVmSizeInfoList("1f686bd0-edb3-4c71-b550-d23a7666c853");
+            var result = ctr.FetchVmSizeInfoList("");
         }
 
         private void FetchDefaultResourceGroupTest()
         {
             var ctr = new CmpWapDb();
-            var result = ctr.FetchDefaultResourceProviderGroupName("1f686bd0-edb3-4c71-b550-d23a7666c853");
+            var result = ctr.FetchDefaultResourceProviderGroupName("");
         }
 
         private void ServiceProviderFetchTest()
@@ -359,6 +359,14 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             sw.SynchWithCmp();
         }
 
+        private void SpaAadValidationTest()
+        {
+            var tenantId = "72f988bf-86f1-41af-91ab-2d7cd011db47";
+            var clientId = "d11ac2a1-9d9d-4bee-8248-7a8a8d890d8d";
+            var clientKey = "123abc!!!";
+            bool result = Microsoft.WindowsAzurePack.CmpWapExtension.Api.Utilities.ValidateAadCredentials(clientId, tenantId, clientKey);
+        }
+
         private async void button_Test_Click(object sender, EventArgs e)
         {
             try
@@ -403,6 +411,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //TenantGetSubMappingsTest();
 
                 //FetchEnvironmentTypesTest();
+                SpaAadValidationTest();
 
                 //CmpSyncTest();
                 //ServiceProviderInsertTest();

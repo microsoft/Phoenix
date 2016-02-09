@@ -2000,7 +2000,7 @@ namespace AzureAdminClientLib
 
                 var vmSize = Utilities.FetchJsonValue(hwp, "vmSize");
 
-                return vmSize?.ToString();
+                return vmSize.ToString();
             }
             catch (Exception ex)
             {

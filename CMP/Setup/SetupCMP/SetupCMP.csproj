@@ -8,6 +8,11 @@
     <AssemblyName>SetupCMP</AssemblyName>
     <ApplicationIcon>Images\Product.ico</ApplicationIcon>
     <AppConfig>SetupCMP.exe.config</AppConfig>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -16,32 +21,43 @@
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\..\out\Debug\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\..\out\Release\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
   <ItemGroup>
     <Binplace Include="Images\ServerConfig.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(OutputPath)\Cmp_Db.dacpac" />
-    <EmbeddedResource Include="$(OutputPath)\CMPWAPDB.dacpac" />
+  <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <EmbeddedResource Include="..\..\..\..\out\Debug\Cmp_Db.dacpac" />
+    <EmbeddedResource Include="..\..\..\..\out\Debug\CMPWAPDB.dacpac" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <EmbeddedResource Include="..\..\..\..\out\Release\Cmp_Db.dacpac" />
+    <EmbeddedResource Include="..\..\..\..\out\Release\CMPWAPDB.dacpac" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Data.Tools.Schema.Sql, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -60,42 +76,21 @@
       <HintPath>$(PkgMicrosoft_SqlServer_DACFx)\lib\Microsoft.SqlServer.Dac.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.DirectoryServices.AccountManagement">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IdentityModel.Selectors">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Printing">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.DirectoryServices.Protocols" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="WindowsFormsIntegration" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UIAutomationProvider">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -105,7 +100,6 @@
     <Reference Include="PresentationFramework">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Management.Automation" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Retry_16.png" />
@@ -327,8 +321,9 @@
     <Compile Include="Navigation\Page.cs" />
     <Compile Include="Navigation\PageNavigation.cs" />
     <Compile Include="Navigation\PageRegistry.cs" />
-    <None Include="app.config" />
-    <None Include="app.manifest" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Navigation\Pages.xsd">
       <SubType>
       </SubType>
@@ -402,14 +397,6 @@
     <ProjectReference Include="..\..\CmpCommon\CmpCommon.csproj">
       <Project>{b1bed686-72f1-4a29-b81b-8b7ef9bb5739}</Project>
       <Name>CmpCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\cmp_db\cmp_db.sqlproj">
-      <Project>{a03aa38a-8fe2-4856-9d95-1c3b46df1c6c}</Project>
-      <Name>Cmp_Db</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CmpWap\CmpWapExtension\CmpWapDb\CMPWAPDB.sqlproj">
-      <Project>{99f4571c-d18b-4a73-b5b8-9aabc16faad1}</Project>
-      <Name>CMPWAPDB</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

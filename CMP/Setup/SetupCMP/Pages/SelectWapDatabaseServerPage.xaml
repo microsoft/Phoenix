@@ -374,10 +374,10 @@
                 x:Uid="textBlockDatabaseChoice"
                 Foreground="Black"
                 Grid.Column="1"
-                Grid.ColumnSpan="5"
+                Grid.ColumnSpan="3"
                 Grid.Row="2"
                 Style="{StaticResource StyleBasicTextBlock}"
-                Text="Select the existing WAP database." />
+                Text="Create a new CMPWAP database or select an existing one." Margin="0,0,0,1" VerticalAlignment="Stretch" />
             <RadioButton
                 x:Name="radioNewDatabase"
                 x:Uid="radioNewDatabase"

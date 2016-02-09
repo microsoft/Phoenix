@@ -15,19 +15,21 @@
   <?define ProductDescription="$(var.ProductName) $(var.ProductVersion)" ?>
   <?define ProductComments="$(var.ProductName) $(var.ProductVersion)"?>
   <?define regKeySubPath="Phoenix\CMPService" ?>
-  <?define buildCPUType=$(var.Platform)?>
-  <?if $(var.buildCPUType)=x64?>
-  <?define isWin64=yes ?>
-  <?define programFilesDir="ProgramFiles64Folder" ?>
-  <?else?>
-  <?define isWin64=no ?>
-  <?define programFilesDir="ProgramFilesFolder" ?>
-  <?endif?>
+
+  <?if $(var.Platform) = x86 ?>
+  <?define ProductDisplayName = "$(var.ProductName)" ?>
+  <?define isWin64 = "no" ?>
+  <?define programFilesDir = "ProgramFilesFolder" ?>
+  <?else ?>
+  <?define ProductDisplayName = "$(var.ProductName) 64-bit" ?>
+  <?define isWin64 = "yes" ?>
+  <?define programFilesDir = "ProgramFiles64Folder" ?>
+  <?endif ?>
 
   <!-- Codepage="65001" is UTF-8 -->
   <Product Id="$(var.ProductCode)"
            Codepage="65001"
-           Name="$(var.ProductName)"
+           Name="$(var.ProductDisplayName)"
            Language="1033"
            Version="$(var.ProductVersion)"
            Manufacturer="$(var.Manufacturer)"

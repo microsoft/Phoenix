@@ -161,7 +161,7 @@ module AzureSubOps {
                         //new PlanServices.PlanUiExtensions().loadAzureSubUi(this._planId);
                         deferred.resolve();
                     }).fail((jqXhr, textStatus, errorThrown) => {
-                        deferred.reject("Could not add azure subscription");
+                        deferred.reject("Could not add Azure Subscription. Please double-check your AAD creds and your web config for the CMP service. Error:");
                     });
             }
             else {

@@ -16,7 +16,6 @@
             iconName: "spinner"
         }
     };
-
     var vmId = "";
     var subscriptionRegisteredToService;
     var vmName = "";
@@ -88,13 +87,13 @@
             }).always(function () {
                 global.Shell.UI.Spinner.hide();
             });
-
-            /*var detachedDisksPromise = global.CmpWapExtensionTenantExtension.Controller.getDetachedDisks(vmId);
+            /* TODO: Commenting out since it is not needed.
+            var detachedDisksPromise = global.CmpWapExtensionTenantExtension.Controller.getDetachedDisks(vmId);
             detachedDisksPromise.done(function (value) {
-                detachedDisks = [];
-                $.each(value.data, function (index, disk) {
-                    detachedDisks[detachedDisks.length] = disk.DiskName;
-                });
+            detachedDisks = [];
+            $.each(value.data, function (index, disk) {
+            detachedDisks[detachedDisks.length] = disk.DiskName;
+            });
             });*/
         } else {
             $(".vm-dashboard-usageAndLinked").css("display", "none");
@@ -567,15 +566,14 @@
                         //wizard = this;
                         // options description
                         var optiondesc = {
-                            deletedisk: "This option deletes the disk attached to the VM.",
-                            keepdisk: "This option does not delete any disks attached to the VM."
+                            deletedisk: "This option deletes the disk attached to the VM."
                         };
 
                         $("#vmdelete-option-desc").text(optiondesc.deletedisk); //tie description to textbox
 
                         var types = [
-                            { text: "Delete VM with disk", value: "deleteVManddisk" },
-                            { text: "Delete VM keep disk", value: "deallocateVMnodisk" }];
+                            { text: "Delete VM with disk", value: "deleteVManddisk" }
+                        ];
 
                         $("#vm-delete-radio").fxRadio({
                             value: types[0],
@@ -583,9 +581,10 @@
                             change: function (event, args) {
                                 if (args.value.value == "deleteVManddisk") {
                                     $("#vmdelete-option-desc").text(optiondesc.deletedisk);
-                                } else if (args.value.value == "deallocateVMnodisk") {
-                                    $("#vmdelete-option-desc").text(optiondesc.keepdisk);
                                 }
+                                //else if (args.value.value == "deallocateVMnodisk") {
+                                //	$("#vmdelete-option-desc").text(optiondesc.keepdisk);
+                                //}
                             }
                         });
                     },
@@ -598,9 +597,6 @@
                         switch (getSelectedValue().value) {
                             case "deleteVManddisk":
                                 onDeleteVMkWithDisk(item, targetVMName);
-                                break;
-                            case "deallocateVMnodisk":
-                                onDeleteVMWithoutDisk(item, targetVMName);
                                 break;
                         }
                     }

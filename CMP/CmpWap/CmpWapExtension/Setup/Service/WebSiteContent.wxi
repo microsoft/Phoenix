@@ -18,6 +18,12 @@
             CompanionFile="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll"
             Source="$(var.WebSiteRoot)\Global.asax" />
     </Component>
+    <Component Id="RegisterResourceProvider.ps1"
+               Guid="{5BEA978F-2B14-486F-80EB-6C80B690BD3B}">
+      <File Id="RegisterResourceProvider.ps1"
+            CompanionFile="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll"
+            Source="Powershell\Register-ResourceProvider.ps1" />
+    </Component>
     <Component Id="Web.config"
                Guid="{356DE5E5-BFFA-4B15-9CE5-C96434CA0AB3}">
       <File Id="Web.config"
@@ -363,6 +369,7 @@
   </DirectoryRef>
   <ComponentGroup Id="WebSiteContent">
     <ComponentRef Id="Global.asax" />
+    <ComponentRef Id="RegisterResourceProvider.ps1" />
     <ComponentRef Id="Web.config" />
     <ComponentRef Id="Default.html" />
     <ComponentRef Id="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll" />
