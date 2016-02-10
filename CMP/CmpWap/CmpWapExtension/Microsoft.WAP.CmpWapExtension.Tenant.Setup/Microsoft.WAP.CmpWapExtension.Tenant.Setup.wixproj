@@ -36,7 +36,6 @@
     <Content Include="Feature\TenantSite.wxi" />
     <Content Include="Icons\Windows-Azure-Dark-Blue.ico" />
     <Content Include="Icons\Windows-Azure-Light-Blue.ico" />
-    <Content Include="Microsoft.WAP.CmpWapExtension.Tenant.Setup.wixproj.vspscc" />
     <Content Include="Prerequisites.wxi" />
     <Content Include="ReadMe.txt" />
     <Content Include="Registry.wxi" />
