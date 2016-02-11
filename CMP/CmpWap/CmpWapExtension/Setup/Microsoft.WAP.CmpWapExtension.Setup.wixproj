@@ -19,15 +19,17 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DefineConstants>Debug;</DefineConstants>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <OutputPath>$(OutputPathHint)\</OutputPath>
+    <OutputPath>$(OutputPathHint)\Installer\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
     <SuppressPdbOutput>True</SuppressPdbOutput>
+    <Cultures>en-US;</Cultures>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <OutputPath>$(OutputPathHint)\</OutputPath>
+    <OutputPath>$(OutputPathHint)\Installer\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
     <SuppressPdbOutput>True</SuppressPdbOutput>
+    <Cultures>en-US;</Cultures>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DefineConstants>Debug;</DefineConstants>

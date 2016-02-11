@@ -19,6 +19,13 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <SuppressSpecificWarnings>80</SuppressSpecificWarnings>
+    <OutputPath>$(OutputPath)\Installer\</OutputPath>
+    <Cultures>en-US;</Cultures>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>$(OutputPath)\Installer\</OutputPath>
+    <Cultures>en-US;</Cultures>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Bitmaps\" />

@@ -35,25 +35,30 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\..\..\out\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\out\Debug\Installer\</OutputPath>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\..\..\out\Release\</OutputPath>
+    <OutputPath>..\..\..\..\out\Release\Installer\</OutputPath>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
     <Optimize>true</Optimize>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Binplace Include="Images\ServerConfig.ico" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <EmbeddedResource Include="..\..\..\..\out\Debug\Cmp_Db.dacpac" />
-    <EmbeddedResource Include="..\..\..\..\out\Debug\CMPWAPDB.dacpac" />
+    <EmbeddedResource Include="..\..\..\..\out\Debug\Cmp_Db.dacpac">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\..\out\Debug\CMPWAPDB.dacpac">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <EmbeddedResource Include="..\..\..\..\out\Release\Cmp_Db.dacpac" />
@@ -330,6 +335,9 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="packages.config" />
+    <None Include="Register-ResourceProvider.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Pages\Pages.xml">
