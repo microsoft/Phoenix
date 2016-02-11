@@ -137,7 +137,7 @@ var AzureSubOps;
                     //new PlanServices.PlanUiExtensions().loadAzureSubUi(this._planId);
                     deferred.resolve();
                 }).fail(function (jqXhr, textStatus, errorThrown) {
-                    deferred.reject("Could not add azure subscription: " + errorThrown);
+                    deferred.reject("Could not add Azure Subscription. Please double-check your AAD creds and your web config for the CMP service.");
                 });
             } else {
                 deferred.reject("Required field missing.");

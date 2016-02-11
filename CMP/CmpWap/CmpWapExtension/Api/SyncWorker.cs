@@ -169,22 +169,75 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         //*********************************************************************
         ///
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="resGroup"></param>
+        /// <param name="cwdb"></param>
+        /// 
+        //*********************************************************************
+
+        private void ImportApp(CmpServiceLib.Models.Container resGroup, CmpWapDb cwdb)
+        {
+            try
+            {
+                var app = new Application()
+                {
+                    ApplicationId = 0,
+                    Code = resGroup.Code,
+                    Name = resGroup.Name,
+                    HasService = (bool)resGroup.HasService,
+                    IsActive = resGroup.IsActive,
+                    SubscriptionId = resGroup.SubscriptionId,
+                    CreatedOn = resGroup.CreatedOn,
+                    CreatedBy = resGroup.CreatedBy,
+                    LastUpdatedOn = resGroup.LastUpdatedOn,
+                    LastUpdatedBy = resGroup.LastUpdatedBy,
+                    CIOwner = resGroup.CIOwner,
+                    Region = resGroup.Region
+                };
+
+                cwdb.InsertApp(app);
+            }
+            catch (Exception ex)
+            {
+                LogThis(ex, EventLogEntryType.Error,
+                    "Exception in SyncWorker.ImportApp()", 0, 0);
+            }
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
         /// Sync the CMP VM list with the CmpWap VM list
         /// </summary>
         /// 
         //*********************************************************************
 
-        private void SynchWithCmp()
+        public void SynchWithCmp()
         {
-            //*** Fetch the CMP VM list ***
             var cmp = new CmpApiClient(_eventLog);
+            var cwdb = new CmpWapDb();
+
+            //*** Fetch the CMP resource group list ***
+            var cmpResGroupList = cmp.FetchAzureResourceGroups();
+
+            //*** Fetch the CmpWap app list ***
+            var cmpWapAppList = cwdb.FetchAppList();
+
+            //*** Fold ***
+            foreach (var cmpResGroup in cmpResGroupList.Where(cmpResGroup =>
+                !cmpWapAppList.Any(cmpWapApp => cmpResGroup.Name.Equals(
+                    cmpWapApp.Name, StringComparison.InvariantCultureIgnoreCase))))
+                ImportApp(cmpResGroup, cwdb);
+
+            //*** Fetch the CMP VM list ***
             var cmpVmList = cmp.FetchCmpRequests();
 
             //*** Fetch the CmpWap VM list ***
-            var cwdb = new CmpWapDb();
             var cmpWapVmList = cwdb.FetchVmDepRequests(null, true);
 
-            foreach (var cmpVm in cmpVmList.Where(cmpVm => 
+            //*** Fold ***
+            foreach (var cmpVm in cmpVmList.Where(cmpVm =>
                 !cmpWapVmList.Any(cmpWapVm => cmpVm.TargetVmName.Equals(
                     cmpWapVm.TargetVmName, StringComparison.InvariantCultureIgnoreCase))))
                 ImportVm(cmpVm, cwdb);

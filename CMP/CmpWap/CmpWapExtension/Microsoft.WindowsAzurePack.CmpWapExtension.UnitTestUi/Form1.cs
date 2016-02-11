@@ -276,6 +276,26 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             var result = ctr.FetchDefaultResourceProviderGroupName("");
         }
 
+        private void ServiceProviderFetchTest()
+        {
+            var sp = new ServiceProviderAccountsController();
+            string subID = "";
+            var result = sp.ListServiceProviderAccounts();
+
+        }
+
+        private void ServiceProviderInsertTest()
+        {
+            var sp = new ServiceProviderAccountsController();
+            ServiceProviderAccount spA = new ServiceProviderAccount();
+            //spA.ID = 345;
+            spA.Name = "Test";
+            spA.ClientKey = "123abc!!!";
+            string subID = "";
+            var result = sp.UpdateServiceProviderAccount(spA);
+
+        }
+
         private async void GetVmTest()
         {
             var subID = "c438fe96-7cc3-43a1-ac87-c2795a6eea79";
@@ -309,11 +329,34 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             vmops.Stop("raldabadec10", "RobertoTest-01");
         }
 
+        private void VmOpsResizeTest()
+        {
+            var vmops = new VmOps(GetTestConnection());
+
+            try
+            {
+                vmops.Resize("aaa", "bbb", "bad");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            //vmops.Resize("aaa", "bbb", "Standard_A6");
+            vmops.Resize("aaa", "bbb", "Standard_A7");
+        }
+
         private async void TenantGetSubMappingsTest()
         {
             string [] subId = {"c438fe96-7cc3-43a1-ac87-c2795a6eea79"};
             var tc = new SubscriptionsController();
             var resp = tc.GetSubscriptionList(subId);
+        }
+
+        private void CmpSyncTest()
+        {
+            var sw = new SyncWorker();
+            sw.SynchWithCmp();
         }
 
         private void SpaAadValidationTest()
@@ -364,10 +407,15 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //PostOpsProcessingTest();
                 //VmOpsTest();
                 //VmOpsStopTest();
+                VmOpsResizeTest();
                 //TenantGetSubMappingsTest();
 
                 //FetchEnvironmentTypesTest();
                 SpaAadValidationTest();
+
+                //CmpSyncTest();
+                //ServiceProviderInsertTest();
+                //ServiceProviderFetchTest();
 
                 /*
                 vt = new VmTests();

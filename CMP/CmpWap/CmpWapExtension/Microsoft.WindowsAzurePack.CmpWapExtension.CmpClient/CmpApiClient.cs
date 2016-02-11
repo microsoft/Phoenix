@@ -1059,7 +1059,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in CmpClient.FetchServProvAcctList() : " +
+                throw new Exception("Exception in CmpClient.InsertServiceProviderAccount() : " +
                     Utils.UnwindExceptionMessages(ex));
             }
         }
@@ -1091,7 +1091,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in CmpClient.FetchServProvAcctList() : " +
+                throw new Exception("Exception in CmpClient.UpdateServiceProviderAccount() : " +
                     Utils.UnwindExceptionMessages(ex));
             }
         }
@@ -1119,6 +1119,30 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                     var outList = new List<CmpService.VmDeploymentRequest>(fdrList.Count);
                     outList.AddRange(fdrList.Select(Translate));
                     return outList;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in CmpClient.FetchCmpRequests() : " + Utils.UnwindExceptionMessages(ex));
+            }
+        }
+
+        public List<CmpServiceLib.Models.Container> FetchAzureResourceGroups()
+        {
+            try
+            {
+                if (CmpAccessMode == CmpAccessModeEnum.Monolith)
+                {
+                    var cmp = new CmpServiceLib.CmpService(_eventLog, CmpDbConnectionString, null);
+                    var fdrList = cmp.FetchAzureResourceGroups();
+
+                    //var outList = new List<CmpService.VmDeploymentRequest>(fdrList.Count);
+                    //outList.AddRange(fdrList.Select(Translate));
+                    return fdrList;
                 }
                 else
                 {

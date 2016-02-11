@@ -120,6 +120,29 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
         }
 
+        public void InsertApp(Application newApp)
+        {
+            try
+            {
+                using (var db = new MicrosoftMgmtSvcCmpContext())
+                {
+                    var maxAppId = db.Applications.Any() ? db.Applications.Max(app => app.ApplicationId) : 0;
+
+                    newApp.ApplicationId = maxAppId + 1;
+
+                    db.Applications.Add(newApp);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogThis("Exception in InsertAppDataRecord()", "InsertAppDataRecord()", ex, EventLogEntryType.Error);
+
+                throw new Exception("Exception in InsertAppDataRecord() : "
+                                    + Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
         //*********************************************************************
         ///
         /// <summary>

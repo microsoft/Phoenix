@@ -8,11 +8,9 @@ Post-Deployment Script Template
  Example:      :setvar TableName MyTable							
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
-
-
-:r .\Data.BadAssets.sql
-:r .\Data.Config.sql
-:r .\Data.ServiceProviderAccounts.sql
-:r .\Data.AzureRoleSize.sql
-
 */
+
+--:r .\Data.BadAssets.sql
+--:r .\Data.Config.sql
+--:r .\Data.ServiceProviderAccounts.sql
+:r .\Data.AzureRoleSize.sql
