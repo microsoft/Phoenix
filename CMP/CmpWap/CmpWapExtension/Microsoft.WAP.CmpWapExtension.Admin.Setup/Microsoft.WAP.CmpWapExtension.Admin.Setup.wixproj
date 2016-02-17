@@ -19,6 +19,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <SuppressPdbOutput>True</SuppressPdbOutput>
+    <Cultures>en-US;</Cultures>
+    <OutputPath>$(OutputPath)\Installer\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <Cultures>en-US;</Cultures>
+    <OutputPath>$(OutputPath)\Installer\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />

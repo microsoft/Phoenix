@@ -58,8 +58,8 @@
                         Name="KryptoCert" Type="string" Value="[CERTIFICATETHUMBPRINT]" />
       <RegistryValue Id="CmpDatabaseUserNameRegKey"
                         Name="CmpDatabaseUserName" Type="string" Value="[CMPDATABASEUSERNAME]" />
-      <RegistryValue Id="CMPContextPasswordRegKey"
-                        Name="CMPContextPassword" Type="string" Value="[CMPCONTEXTPASSWORDSTRING]" />
+      <!--<RegistryValue Id="CMPContextPasswordRegKey"
+                        Name="CMPContextPassword" Type="string" Value="[CMPCONTEXTPASSWORDSTRING]" />-->
     </RegistryKey>
   </Component>
 </Include>
