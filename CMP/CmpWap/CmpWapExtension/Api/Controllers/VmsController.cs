@@ -181,11 +181,14 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
                 if (null != foundVmDepRequest && null != foundVmDepRequest.CmpRequestID)
                 {
                     var cmpi = new VMServiceRepository(_eventLog);
-                    var vm = cmpi.GetVm(Convert.ToInt32(foundVmDepRequest.CmpRequestID));
+                    
+                    //var vm = cmpi.GetVm(Convert.ToInt32(foundVmDepRequest.CmpRequestID), CmpInterfaceModel.Constants.FetchType.AzureStatus);
+                    var vm = GetLocalvmDBI(foundVmDepRequest);
 
                     vm.Cores = vmsizes.Where(x => x.Name == vm.RoleSize).Select(x => x.Cores).FirstOrDefault().ToString();
-                    vm.DataVirtualHardDisks.Select(d => { d.Type = "Data Disk"; return d; }).ToList();
                     vm.OSVirtualHardDisk.Type = "OS Disk";
+                    if(vm.DataVirtualHardDisks != null)
+                        vm.DataVirtualHardDisks.Select(d => { d.Type = "Data Disk"; return d; }).ToList();
                     return vm;
                 }
                 return null;
@@ -195,6 +198,47 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
                 LogThis(ex, EventLogEntryType.Error, "CmpWapExtension.VmsController.GetVm()", 100, 1);
                 throw;
             }
+        }
+
+        private VmDashboardInfo GetLocalvmDBI(Models.CmpRequest cmpReq)
+        {
+            VmDashboardInfo vmDBI = new VmDashboardInfo()
+            {
+                //Cores = "",
+                DataVirtualHardDisks = new List<ApiClient.DataContracts.DataVirtualHardDisk>(),
+                DeploymentID = "",
+                DNSName = cmpReq.TargetVmName + "." + cmpReq.TargetLocation.ToLower().Replace(" ", "") + ".cloudapp.azure.com",
+                InternalIP = cmpReq.AddressFromVm,
+                MediaLocation = null,
+                OSVersion = cmpReq.SourceImageName,
+                OSVirtualHardDisk = new OsVirtualHardDisk()
+                {
+                    DiskLabel = "C",
+                    DiskName = "osdisk",
+                    HostCaching = "ReadWrite",
+                    MediaLink = string.Format("http://{0}.blob.core.windows.net/{1}/{2}.vhd",
+                        Utilities.GetXmlInnerText(cmpReq.Config, "newStorageAccountName"),
+                        Utilities.GetXmlInnerText(cmpReq.Config, "vmStorageAccountContainerName"),
+                        Utilities.GetXmlInnerText(cmpReq.Config, "OSDiskName")),
+                    OS = "Windows",
+                    RemoteSourceImageLink = null,
+                    SourceImageName = null
+                },
+                QueueStatus = "",
+                RDPCertificateThumbprint = "",
+                RoleName = cmpReq.TargetVmName,
+                RoleSize = cmpReq.VmSize,
+                Status = "Running", //*** TODO * MW * This is not good
+                Subscription = new SubscriptionInfo() 
+                { 
+                    CurrentCoreCount = "0", 
+                    MaximumCoreCount = "0", 
+                    SubscriptionID = "", 
+                    SubscriptionName = ""  
+                }
+            };
+
+            return vmDBI;
         }
 
         #endregion

@@ -76,7 +76,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
         /// <returns>VMinfo object containing VM information</returns>
         /// 
         //*********************************************************************
-        CmpApiClient.VmInfo GetVm(int cmpRequestId);
+        CmpApiClient.VmInfo GetVm(int cmpRequestId, CmpInterfaceModel.Constants.FetchType fetchType);
 
         ///
         /// <summary>

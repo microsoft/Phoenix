@@ -403,7 +403,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //FetchTenantVmSizes();
                 //FetchDefaultResourceGroupTest();
 
-                //GetVmTest();
+                GetVmTest();
                 //PostOpsProcessingTest();
                 //VmOpsTest();
                 //VmOpsStopTest();
@@ -415,7 +415,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
 
                 //CmpSyncTest();
                 //ServiceProviderInsertTest();
-                ServiceProviderFetchTest();
+                //ServiceProviderFetchTest();
 
                 /*
                 vt = new VmTests();

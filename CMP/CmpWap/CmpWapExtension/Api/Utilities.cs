@@ -48,6 +48,40 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         }
 
         //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+
+        static public string GetXmlInnerText(string body, string tag)
+        {
+            string Out;
+
+            try
+            {
+                var Index = body.IndexOf("<" + tag + ">");
+
+                if (-1 == Index)
+                    return null;
+
+                Out = body.Substring(Index + tag.Length + 2);
+                Index = Out.IndexOf("</" + tag + ">");
+                Out = Out.Substring(0, Index);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            return Out;
+        }
+
+        //*********************************************************************
         /// 
         ///  <summary>
         ///  This method validates the Azure Active Directory parameters that

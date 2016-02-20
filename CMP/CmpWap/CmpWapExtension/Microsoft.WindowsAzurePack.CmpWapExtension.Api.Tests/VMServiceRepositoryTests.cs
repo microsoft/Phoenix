@@ -276,7 +276,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Tests
             _cmpApiServiceMock.Setup(r => r.GetDetachedDisks(It.IsAny<int>()))
                 .Returns((int n) => n == 123 ? detachedDisks : null);
 
-            _cmpApiServiceMock.Setup(r => r.GetVm(It.IsAny<int>()))
+            _cmpApiServiceMock.Setup(r => r.GetVm(It.IsAny<int>(), CmpInterfaceModel.Constants.FetchType.AzureFull))
                 .Returns((int n) => n == 123 ? vmInfo : null);
 
             // Mocks for WAP DB
@@ -400,7 +400,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Tests
             var repo = new VMServiceRepository() { CmpSvProxy = _cmpApiServiceMock.Object };
 
             //Act
-            var output = repo.GetVm(123);
+            var output = repo.GetVm(123, CmpInterfaceModel.Constants.FetchType.AzureFull);
 
             //Assert
             Assert.IsNotNull(output);

@@ -142,7 +142,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <returns>VmDashboardInfo</returns>
         /// 
         //*********************************************************************
-        VmDashboardInfo GetVm(int cmpRequestId);
+        VmDashboardInfo GetVm(int cmpRequestId, CmpInterfaceModel.Constants.FetchType fetchType);
 
         ///
         /// <summary>
