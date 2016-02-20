@@ -46,7 +46,7 @@ namespace AzureAdminClientLib
 
         public List<ResourceUsageStruct> FetchResourceUsage()
         {
-            var aro = new AzureRegionOps(_Connection);
+            var aro = new AzureCatalogueOps(_Connection);
             var regionlist = aro.GetAzureLocationsList();
             var usageList = new List<ResourceUsageStruct>();
 

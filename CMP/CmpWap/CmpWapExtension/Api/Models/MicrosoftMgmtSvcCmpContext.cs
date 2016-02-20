@@ -40,6 +40,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models
         public DbSet<AzureMasterData> AzureMasterDatas { get; set; }
         public DbSet<AzureRegion> AzureRegions { get; set; }
         public DbSet<AzureRegionVmSizeMapping> AzureRegionVmSizeMappings { get; set; }
+        public DbSet<AzureRegionVmOsMapping> AzureRegionVmOsMappings { get; set; }
         public DbSet<CmpRequest> CmpRequests { get; set; }
         public DbSet<EnvironmentType> EnvironmentTypes { get; set; }
         public DbSet<Group> Groups { get; set; }
@@ -72,6 +73,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models
             modelBuilder.Configurations.Add(new AzureMasterDataMap());
             modelBuilder.Configurations.Add(new AzureRegionMap());
             modelBuilder.Configurations.Add(new AzureRegionVmSizeMappingMap());
+            modelBuilder.Configurations.Add(new AzureRegionVmOsMappingMap());
             modelBuilder.Configurations.Add(new CmpRequestMap());
             modelBuilder.Configurations.Add(new EnvironmentTypeMap());
             modelBuilder.Configurations.Add(new GroupMap());

@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AzureAdminClientLib;
-using CmpInterfaceModel.Models;
 using Microsoft.WindowsAzurePack.CmpWapExtension.Api;
 using Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers;
 using Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.DataContracts;
 using CmpServiceLib;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
-using System.Data.Entity;
 using System.Diagnostics;
 using Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.Controllers;
 using Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.Models;
@@ -113,12 +106,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
 
         private void AzureCall_FetchRegionsTest()
         {
-            IEnumerable<AzureLocationArmData> locationResult = null;
-            IEnumerable<AzureVmSizeArmData> sizeResult = null;
-            IEnumerable<AzureVmOsArmData> dataResult = null;
-            AzureRefreshService ars = new AzureRefreshService(null, ConfigurationManager.ConnectionStrings["CMPContext"].ConnectionString);
-            //AzureRefreshService ars = new AzureRefreshService(null, "Data Source=thezephyr;Initial Catalog=CMP;Persist Security Info=True;User ID=sa;Password=123Mainau!;MultipleActiveResultSets=True");
-            ars.FetchAzureInformationWithArm(out locationResult, out sizeResult, out dataResult);
+            var ars = new AzureRefreshService(null, ConfigurationManager.ConnectionStrings["CMPContext"].ConnectionString);
+            var acList = ars.FetchAzureInformationWithArm();
             //UpdateAzureRegions(locationResult.ToList());
             //UpdateVmSizes(sizeResult.ToList());
             //osResult = ars.FetchAzureOsList();
@@ -126,10 +115,11 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             //UpdateVmOsArm(dataResult);
         }
 
-        private void TestSyncWorkerWithAzure()
+        private static void TestSyncWorkerWithAzure()
         {
-            /* You'll have to make the method static to run this unit test*/
-            //SyncWorker.SyncWithAzure();
+            /* You'll have to make the method below public to run this unit test. By
+             default it's private */
+            SyncWorker.SyncWithAzure();
         }
 
 
@@ -218,7 +208,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             var result = ctr.ListEnvironmentTypes("");
         }
 
-        private void TestSyncWorker()
+        private static void TestSyncWorker()
         {
             SyncWorker.StartAsync(null);
         }
@@ -279,7 +269,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
         private void ServiceProviderFetchTest()
         {
             var sp = new ServiceProviderAccountsController();
-            string subID = "";
+            string subId = "";
             var result = sp.ListServiceProviderAccounts();
 
         }
@@ -290,8 +280,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             ServiceProviderAccount spA = new ServiceProviderAccount();
             //spA.ID = 345;
             spA.Name = "Test";
-            spA.ClientKey = "123abc!!!";
-            string subID = "";
+            spA.ClientKey = "";
+            string subId = "";
             var result = sp.UpdateServiceProviderAccount(spA);
 
         }
@@ -398,7 +388,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //SetVmOsByBatch();
                 //FetchPlanConfigInfo();
                 //AzureCall_FetchRegionsTest();
-                //TestSyncWorkerWithAzure();
+                TestSyncWorkerWithAzure();
                 //FetchOsInfoTest();
                 //FetchTenantVmSizes();
                 //FetchDefaultResourceGroupTest();
@@ -415,7 +405,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
 
                 //CmpSyncTest();
                 //ServiceProviderInsertTest();
-                ServiceProviderFetchTest();
+                //ServiceProviderFetchTest();
 
                 /*
                 vt = new VmTests();

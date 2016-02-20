@@ -2,7 +2,7 @@
 // File: SyncWorker.cs
 // Project: Microsoft.WindowsAzurePack.CmpWapExtension.Api
 // Purpose: This class contains methods that are used for syncing with 
-//          an external service (CMP).
+//          an external service (CMP) and Azure.
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 //*****************************************************************************
 
@@ -22,7 +22,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
 
     /// <remarks>
     /// This class contains methods that are used for syncing with 
-    /// an external service (CMP).
+    /// an external service (CMP) and Azure in different threads.
     /// </remarks>
     public class SyncWorker
     {
@@ -53,8 +53,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             _syncWorker._azureThread = new Thread(_syncWorker.AzureWorker);
 
             _syncWorker._workerThread.Start();
-            //_syncWorker._azureThread.Start();
+            _syncWorker._azureThread.Start();
         }
+
+        #region --- CMP Sync Worker ---
 
         //*********************************************************************
         ///
@@ -79,35 +81,6 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 {
                     LogThis(ex, EventLogEntryType.Error, 
                         "Exception in SyncWorker.SynchWithCmp()", 0, 0);
-                }
-            }
-        }
-
-        private void AzureWorker()
-        {
-            var retryCount = 1;
-
-            while (true)
-            {
-                try
-                {
-                    SyncWithAzure();
-                    Thread.Sleep(AzureSleepTime);
-                }
-                catch (Exception ex)
-                {
-                    var error = Utilities.UnwindExceptionMessages(ex);
-
-                    if (error.Contains("503") & (5 > retryCount++))
-                        Thread.Sleep((int)(1000 * Math.Pow(4.17, retryCount)));
-                    else if (3 > retryCount++)
-                        Thread.Sleep(5000*retryCount);
-                    else
-                    {
-                        LogThis(ex, EventLogEntryType.Error,
-                            "Exception in SyncWorker.SyncWithAzure()", 0, 0);
-                        Thread.Sleep(1000*60*5);
-                    }
                 }
             }
         }
@@ -243,6 +216,39 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 ImportVm(cmpVm, cwdb);
         }
 
+        #endregion
+
+        #region --- Azure Sync Worker --
+
+        private void AzureWorker()
+        {
+            var retryCount = 1;
+
+            while (true)
+            {
+                try
+                {
+                    SyncWithAzure();
+                    Thread.Sleep(AzureSleepTime);
+                }
+                catch (Exception ex)
+                {
+                    var error = Utilities.UnwindExceptionMessages(ex);
+
+                    if (error.Contains("503") & (5 > retryCount++))
+                        Thread.Sleep((int)(1000 * Math.Pow(4.17, retryCount)));
+                    else if (3 > retryCount++)
+                        Thread.Sleep(5000 * retryCount);
+                    else
+                    {
+                        LogThis(ex, EventLogEntryType.Error,
+                            "Exception in SyncWorker.SyncWithAzure()", 0, 0);
+                        Thread.Sleep(1000 * 60 * 5);
+                    }
+                }
+            }
+        }
+
         //*********************************************************************
         ///
         /// <summary>
@@ -250,30 +256,28 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// </summary>
         /// 
         //*********************************************************************
-        private void SyncWithAzure()
+        public static void SyncWithAzure()
         {
-            IEnumerable<AzureLocationArmData> locationResult;
-            IEnumerable<AzureVmSizeArmData> sizeResult;
-            IEnumerable<AzureVmOsArmData> dataResult;
+            var ars = new AzureRefreshService(_eventLog, WebConfigurationManager.ConnectionStrings["CMPContext"].ConnectionString);
+            IEnumerable<AzureCatalogue> azureCatalogueResult = ars.FetchAzureInformationWithArm().ToList();
 
-            AzureRefreshService ars = new AzureRefreshService(_eventLog, WebConfigurationManager.ConnectionStrings["CMPContext"].ConnectionString);
-            ars.FetchAzureInformationWithArm(out locationResult, out sizeResult, out dataResult);
-
-            UpdateAzureRegions(locationResult.ToList());
-            UpdateVmSizes(sizeResult.ToList());
-            UpdateVmOs(dataResult);
+            UpdateAzureRegions(azureCatalogueResult);
+            UpdateVmSizes(azureCatalogueResult);
+            UpdateRegionVmSizeMappings(azureCatalogueResult);
+            UpdateVmOs(azureCatalogueResult);
+            UpdateRegionVmOsMappings(azureCatalogueResult);
         }
 
-        private static void UpdateAzureRegions(List<AzureLocationArmData> azureLocations)
+        private static void UpdateAzureRegions(IEnumerable<AzureCatalogue> azureCatalogueResult)
         {
             try
             {
-                CmpWapDb cmpWapDb = new CmpWapDb();
-                List<AzureRegion> cmpRegions = cmpWapDb.FetchAzureRegionList(onlyActiveOnes: false);
-                var azureRegions = azureLocations.Select(loc => new AzureRegion
+                var cmpWapDb = new CmpWapDb();
+                var cmpRegions = cmpWapDb.FetchAzureRegionList(onlyActiveOnes: false);
+                var azureRegions = azureCatalogueResult.Select(ac => new AzureRegion
                 {
-                    Name = loc.Name,
-                    Description = loc.DisplayName,
+                    Name = ac.RegionName,
+                    Description = ac.RegionDisplayName,
                     OsImageContainer = null,
                     IsActive = true,
                     CreatedBy = "CMP WAP Extension",
@@ -295,15 +299,24 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
         }
 
-        private void UpdateVmSizes(List<AzureVmSizeArmData> azureVmSizes)
+        private static void UpdateVmSizes(IEnumerable<AzureCatalogue> azureCatalogueResult)
         {
             try
             {
-                CmpWapDb cmpWapDb = new CmpWapDb();
-                List<VmSize> cmpWapVmSizes = cmpWapDb.FetchVmSizeInfoList(onlyActiveOnes: false).ToList();
-                List<VmSize> newVmSizes = new List<VmSize>();
+                var cmpWapDb = new CmpWapDb();
+                var cmpWapVmSizes = cmpWapDb.FetchVmSizeInfoList(onlyActiveOnes: false).ToList();
+                var newVmSizes = new List<VmSize>();
+                var azureCatalogueVmSizes = new List<AzureVmSizeArmData>();
 
-                foreach (AzureVmSizeArmData vmSize in azureVmSizes)
+                //Eliminate dupes, we only need them to establish the mappings in another method.
+                foreach (var regionInCatalogue in azureCatalogueResult)
+                {
+                    azureCatalogueVmSizes.AddRange(regionInCatalogue.VmSizes); 
+                }
+                azureCatalogueVmSizes = azureCatalogueVmSizes.Distinct(new AzureVmSizeArmData.AzureVmSizeComparer()).ToList();
+
+                //Translate and convert each AzureVmSizeArmData object into a VmSize object.
+                foreach (var vmSize in azureCatalogueVmSizes)
                 {
                     if (!cmpWapVmSizes.Any(x => string.Equals(vmSize.name, x.Name, StringComparison.InvariantCultureIgnoreCase)))
                     {
@@ -328,10 +341,11 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                         {
                             newVmSize.Description = vmSize.name + " - " + vmSize.numberOfCores + " Cores, " + vmSize.memoryInMB + " MB, " + vmSize.maxDataDiskCount + " Disk";
                         }
-                        
+
                         newVmSizes.Add(newVmSize);
                     }
                 }
+                            
 
                 if (newVmSizes.Any())
                 {
@@ -344,14 +358,24 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
         }
 
-        private void UpdateVmOs(IEnumerable<AzureVmOsArmData> dataList)
+        private static void UpdateVmOs(IEnumerable<AzureCatalogue> azureCatalogueResult)
         {
             try
             {
-                CmpWapDb cmpWapDb = new CmpWapDb();
-                List<VmOs> cmpVmOses = cmpWapDb.FetchOsInfoList(onlyActiveOnes: false).ToList();
+                var cmpWapDb = new CmpWapDb();
+                var cmpVmOses = cmpWapDb.FetchOsInfoList(onlyActiveOnes: false).ToList();
+                var newVmOses = new List<VmOs>();
+                var azureCatalogueVmOses = new List<AzureVmOsArmData>();
 
-                var azureVmOses = dataList.Select(data => new VmOs
+                //Eliminate dupes, we only need them to establish the mappings in another method.
+                foreach (var regionInCatalogue in azureCatalogueResult)
+                {
+                    azureCatalogueVmOses.AddRange(regionInCatalogue.VmOses);               
+                }
+                azureCatalogueVmOses = azureCatalogueVmOses.Distinct(new AzureVmOsArmData.AzureVmOsArmDataComparer()).ToList();
+
+                //Translate and convert each AzureVmOsArmData object into a VmOs object.
+                var azureVmOses = azureCatalogueVmOses.Select(data => new VmOs
                 {
                     Name = (data.Publisher + ", " + data.Offer + ", " + data.SKU).Length >= 100 ? (data.Publisher + ", " + data.Offer + ", " + data.SKU).Substring(0, 100) : (data.Publisher + ", " + data.Offer + ", " + data.SKU),//Adjusting for DB limitations in length, so that the logic comparison does not fail
                     Description = string.Empty,
@@ -368,7 +392,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     AzureWindowsOSVersion = data.SKU
                 });
 
-                var newVmOses = azureVmOses.Where(azureItem => !cmpVmOses.Any(cmpItem => string.Equals(azureItem.Name, cmpItem.Name, StringComparison.InvariantCultureIgnoreCase))).ToList();
+                newVmOses.AddRange(azureVmOses.Where(azureItem => !cmpVmOses.Any(cmpItem => string.Equals(azureItem.Name, cmpItem.Name, StringComparison.InvariantCultureIgnoreCase))).ToList());
 
                 if (newVmOses.Any())
                 {
@@ -380,6 +404,95 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 throw new Exception("Exception caught in UpdateVmOs: " + ex.ToString());
             }
         }
+
+        private static void UpdateRegionVmSizeMappings(IEnumerable<AzureCatalogue> azureCatalogueResult)
+        {
+            var cmpWapDb = new CmpWapDb();
+            var cmpWapRegions = cmpWapDb.FetchAzureRegionList(onlyActiveOnes: false).ToList();
+            var cmpWapVmSizes = cmpWapDb.FetchVmSizeInfoList(onlyActiveOnes: false).ToList();
+            var newMappings = new List<AzureRegionVmSizeMapping>();
+
+            try
+            {
+                foreach (var regionInCatalogue in azureCatalogueResult)
+                {
+                    foreach (var vmSize in regionInCatalogue.VmSizes)
+                    {
+                        //We need to get the IDs to make the mapping object. Query the VmSize and Region tables to get them.
+                        var vmSizeToMap = cmpWapVmSizes.FirstOrDefault(x => string.Equals(vmSize.name, x.Name, StringComparison.InvariantCultureIgnoreCase));
+                        var regionToMap = cmpWapRegions.FirstOrDefault(y => string.Equals(regionInCatalogue.RegionName.Replace(" ", string.Empty), y.Name.Replace(" ", string.Empty), StringComparison.InvariantCultureIgnoreCase));
+                        if (vmSizeToMap == null || regionToMap == null) 
+                            continue; //something's wrong here if we reach this.
+
+                        var newMapping = new AzureRegionVmSizeMapping
+                        {
+                            AzureRegionId = regionToMap.AzureRegionId,
+                            VmSizeId = vmSizeToMap.VmSizeId,
+                            IsActive = true
+                        };
+
+                        newMappings.Add(newMapping);
+                    }
+                }             
+
+                if (newMappings.Any())
+                {
+                    cmpWapDb.SetRegionVmSizeMappingsByBatch(newMappings);
+                } 
+            }
+            catch (Exception ex)
+            {
+               throw new Exception("Exception caught in UpdateRegionVmSizeMappings: " + ex.ToString());
+            }            
+        }
+
+        private static void UpdateRegionVmOsMappings(IEnumerable<AzureCatalogue> azureCatalogueResult)
+        {
+            var cmpWapDb = new CmpWapDb();
+            var cmpWapRegions = cmpWapDb.FetchAzureRegionList(onlyActiveOnes: false).ToList();
+            var cmpWapVmOses = cmpWapDb.FetchOsInfoList(onlyActiveOnes: false).ToList();
+            var newMappings = new List<AzureRegionVmOsMapping>();
+
+            try
+            {
+                foreach (var regionInCatalogue in azureCatalogueResult)
+                {
+                    foreach (var vmOs in regionInCatalogue.VmOses)
+                    {
+                        //Since we format the VmOs name when inserting it into the DB table, to look it up, we will need to do the same format operation as before
+                        var vmOsName = (vmOs.Publisher + ", " + vmOs.Offer + ", " + vmOs.SKU).Length >= 100
+                            ? (vmOs.Publisher + ", " + vmOs.Offer + ", " + vmOs.SKU).Substring(0, 100)
+                            : (vmOs.Publisher + ", " + vmOs.Offer + ", " + vmOs.SKU); //Adjusting for DB limitations in length, so that the logic comparison does not fail
+
+                        //We need to get the IDs to make the mapping object. Query the VmOs and Region tables to get them.
+                        var vmOsToMap = cmpWapVmOses.FirstOrDefault(x => string.Equals(vmOsName, x.Name, StringComparison.InvariantCultureIgnoreCase));
+                        var regionToMap = cmpWapRegions.FirstOrDefault(y => string.Equals(regionInCatalogue.RegionName.Replace(" ", string.Empty), y.Name.Replace(" ", string.Empty), StringComparison.InvariantCultureIgnoreCase));
+                        if (vmOsToMap == null || regionToMap == null)
+                            continue; //something's wrong here if we reach this.
+
+                        var newMapping = new AzureRegionVmOsMapping
+                        {
+                            AzureRegionId = regionToMap.AzureRegionId,
+                            VmOsId = vmOsToMap.VmOsId,
+                            IsActive = true
+                        };
+
+                        newMappings.Add(newMapping);
+                    }
+                }
+
+                if (newMappings.Any())
+                {
+                    cmpWapDb.SetRegionVmOsMappingsByBatch(newMappings);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception caught in UpdateRegionVmOsMappings: " + ex.ToString());
+            }
+        }
+
+        #endregion
 
         //*********************************************************************
         ///
@@ -394,17 +507,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// 
         //*********************************************************************
 
-        private void LogThis(Exception ex, EventLogEntryType type, string prefix,
-            int id, short category)
+        private void LogThis(Exception ex, EventLogEntryType type, string prefix, int id, short category)
         {
-            try
-            {
-                if (null != _eventLog)
-                    _eventLog.WriteEntry(prefix + " : " +
-                        CmpInterfaceModel.Utilities.UnwindExceptionMessages(ex), type, id, category);
-            }
-            catch (Exception ex2)
-            { var x = ex2.Message; }
+            if (null != _eventLog)
+                _eventLog.WriteEntry(prefix + " : " + CmpInterfaceModel.Utilities.UnwindExceptionMessages(ex), type, id, category);
         }
     }
 }
