@@ -40,6 +40,13 @@
         display:none;
     }
 
+    #lblmessageStatus
+    {
+        font-size:10px;
+        color:red;
+        display:none;
+    }
+
     #nameresolve,#nameresolveSql{
        background-color:lightgray;display:inline-block;
        width:20px;

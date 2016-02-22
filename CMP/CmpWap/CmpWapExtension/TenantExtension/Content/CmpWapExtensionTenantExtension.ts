@@ -626,9 +626,36 @@ declare var resources;
 
                         /////////////////////////////////////////
                         $("#VmAdminGroup").keydown(function () {
-                            $("#lblmessage").css("display", "none");
+                            $("#lblmessageStatus").css("display", "none");
                         });
 
+                        $("#VmAdminGroup").on("change", function () {
+                            var vmAdminName = $("#VmAdminGroup").val();
+
+                            vmAdminName = $.trim(vmAdminName);
+                            vmAdminName = vmAdminName.toLowerCase();
+
+                            var foundInvalidStr = false;
+                            var invalidStrs = [/admin/g]; //Add more invalid strings
+                            var length = invalidStrs.length;
+
+                            while (length--) {
+                                if (invalidStrs[length].test(vmAdminName)) {
+                                    foundInvalidStr = true;
+                                    break;
+                                }
+                            }
+
+                            if (foundInvalidStr == true) {
+                                $("#lblmessageStatus").css("display", "block");
+                                $("#lblmessageStatus").text("Please enter valid username without containing 'admin'");
+                                valid = false;
+                            }
+                            else {
+                                $("#lblmessageStatus").css("display", "none");
+                                valid = true;
+                            }
+                        });
                         $("#VmAdminGroup").blur(function () {
                             if (($("#domain-joined-radio").fxRadio("value").value) && (domainList != null && domainList.Count > 0)) {
                                 var vmAdminName = $("#VmAdminGroup").val();
@@ -637,6 +664,7 @@ declare var resources;
                                     $("#loading").css("display", "inline-block");
 
                                     vmAdminName = removewaq(vmAdminName);
+                                   
                                     prevvalue = currentgroups;
                                     var promise = global.CmpWapExtensionTenantExtension.Controller.nameResolution(vmAdminName);
                                     promise.done(function (value) {
@@ -1970,10 +1998,10 @@ declare var resources;
                 Shell.UI.PasswordComplexity.parse(valContainerSelector);
             },
             ok: function (object) {
-                var dialogFields = object.fields, isValid = validateAccount();
+                var dialogFields = object.fields, isValid = this.validateAccount();
 
                 if (isValid) {
-                    createAccountWithRdfeCore(dialogFields);
+                    this.createAccountWithRdfeCore(dialogFields);
                 }
                 return false;
             },
