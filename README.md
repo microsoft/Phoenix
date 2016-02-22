@@ -1,14 +1,14 @@
 # Phoenix
 
-Microsoft Phoenix is a solution for [Windows Azure Pack (WAP)] {http://aka.ms/azurepack} that enables public Azure IaaS provisioning and management via Azure Resource Manager. The extension and resource provider enable a single pane of glass user experience for public and private cloud deployments through WAP.
+Microsoft Phoenix is a solution for [Windows Azure Pack] (http://aka.ms/azurepack) that enables public Azure IaaS provisioning and management via Azure Resource Manager. The extension and resource provider enable a single pane of glass user experience for public and private cloud deployments through WAP.
 
 ## Installation & Usage
 
-Follow instructions in the [Admin Guide] {doc/AdminGuide.docx} to install the binaries.
+Follow instructions in the [Admin Guide] (doc/AdminGuide.docx) to install the binaries.
 
 ## Using a Azure Subscription with Phoenix
 
-Follow the intructions in the [CSP Subscription Guide] {doc/CSPSubGuide.docx} to prepare a subscription for use with Phoenix.
+Follow the intructions in the [CSP Subscription Guide] (doc/CSPSubGuide.docx) to prepare a subscription for use with Phoenix.
 
 ## Project Information
 
@@ -29,7 +29,7 @@ In order to compile the project, you will need the following components:
 * Wix Toolset
 * DLL's from WAP installation (UR8 or above)
 
-For detailed instructions, see the [Admin Guide] {doc/AdminGuide.docx}
+For detailed instructions, see the [Admin Guide] (doc/AdminGuide.docx)
 
 ## License
 
