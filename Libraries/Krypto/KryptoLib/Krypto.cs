@@ -483,38 +483,29 @@ namespace KryptoLib
         {
             try
             {
-                var CmpDbConnectionString =
+                var dbConnectionString =
                     GetConnectionString(connectionStringName);
-
-                if (0 > CmpDbConnectionString.IndexOf("Password=", StringComparison.InvariantCultureIgnoreCase))
-                    return CmpDbConnectionString;
-
-                if (null == CmpDbConnectionString)
-                    throw new Exception("Value for '" + connectionStringName + "' not found in app settings");
-
-                if (0 == CmpDbConnectionString.Length)
-                    throw new Exception("Value for '" + connectionStringName + "' not found in app settings");
-
-                var CMPContextPassword =
+                var contextPassword =
                     Microsoft.Azure.CloudConfigurationManager.GetSetting(passwordConfigName) as string;
 
-                if (null == CMPContextPassword)
-                    //throw new Exception("Value for '" + passwordConfigName + "' not found in app settings");
-                    return CmpDbConnectionString;
+                if (0 > dbConnectionString.IndexOf("Password=", StringComparison.InvariantCultureIgnoreCase))
+                    return dbConnectionString;
 
-                if (0 == CMPContextPassword.Length)
-                    //throw new Exception("Value for '" + passwordConfigName + "' not found in app settings");
-                    return CmpDbConnectionString;
+                if (string.IsNullOrEmpty(dbConnectionString))
+                    throw new Exception("Value for '" + connectionStringName + "' not found in app settings");
 
-                CMPContextPassword = DecrpytKText(CMPContextPassword);
-                var Index1 = CmpDbConnectionString.IndexOf("Password=") + 9;
-                var Postfix = CmpDbConnectionString.Substring(Index1);
-                var Index2 = Postfix.IndexOf(";");
-                Postfix = Postfix.Substring(Index2);
-                CmpDbConnectionString = CmpDbConnectionString.Substring(0, Index1) +
-                    CMPContextPassword + Postfix;
+                if (string.IsNullOrEmpty(contextPassword))
+                    return dbConnectionString;
 
-                return CmpDbConnectionString;
+                contextPassword = DecrpytKText(contextPassword);
+                var index1 = dbConnectionString.IndexOf("Password=", StringComparison.Ordinal) + 9;
+                var postfix = dbConnectionString.Substring(index1);
+                var index2 = postfix.IndexOf(";", StringComparison.Ordinal);
+                postfix = postfix.Substring(index2);
+                dbConnectionString = dbConnectionString.Substring(0, index1) +
+                    contextPassword + postfix;
+
+                return dbConnectionString;
             }
             catch (Exception ex)
             {

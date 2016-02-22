@@ -23,6 +23,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.Azure.Portal.Configuration">
       <HintPath>..\References\Microsoft.Azure.Portal.Configuration.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\Packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>

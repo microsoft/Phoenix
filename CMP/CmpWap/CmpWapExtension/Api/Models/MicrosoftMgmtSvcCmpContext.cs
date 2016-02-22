@@ -6,7 +6,6 @@
 //*****************************************************************************
 
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models.Mapping;
 
 namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models
@@ -19,8 +18,15 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models
         }
 
         public MicrosoftMgmtSvcCmpContext()
-            : base("Name=MicrosoftMgmtSvcCmpContext")
+            : base(GetConnectionString())
         {
+        }
+
+        public static string GetConnectionString()
+        {
+            var xk = new KryptoLib.X509Krypto();
+            return xk.GetKTextConnectionString("MicrosoftMgmtSvcCmpContext",
+                "MicrosoftMgmtSvcCmpContextPassword");
         }
 
         public DbSet<AdDomainMap> AdDomainMaps { get; set; }

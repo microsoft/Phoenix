@@ -440,17 +440,18 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         {
             return new VmDashboardInfo()
             {
-                DataVirtualHardDisks = vm.DataVirtualHardDisks.Select(x => new DataVirtualHardDisk
-                {
-                    DiskLabel=x.DiskLabel,
-                    DiskName=x.DiskName,
-                    HostCaching=x.HostCaching,
-                    LogicalDiskSizeInGB=x.LogicalDiskSizeInGB,
-                    Lun=x.Lun,
-                    MediaLink=x.MediaLink,
-                    SourceMediaLink=x.SourceMediaLink
+                DataVirtualHardDisks = (vm.DataVirtualHardDisks == null) ? null : 
+                    vm.DataVirtualHardDisks.Select(x => new DataVirtualHardDisk
+                    {
+                        DiskLabel=x.DiskLabel,
+                        DiskName=x.DiskName,
+                        HostCaching=x.HostCaching,
+                        LogicalDiskSizeInGB=x.LogicalDiskSizeInGB,
+                        Lun=x.Lun,
+                        MediaLink=x.MediaLink,
+                        SourceMediaLink=x.SourceMediaLink
 
-                }).ToList(),
+                    }).ToList(),
                 OSVirtualHardDisk = new OsVirtualHardDisk 
                 { 
                     DiskLabel=vm.OSVirtualHardDisk.DiskLabel,
@@ -475,7 +476,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     SubscriptionID=vm.Subscription.SubscriptionID,
                     SubscriptionName=vm.Subscription.SubscriptionName
                 },
-                QueueStatus = vm.QueueStatus // get queue status of the VM
+                QueueStatus = vm.QueueStatus, // get queue status of the VM
+                MediaLocation = vm.MediaLocation, 
+                OSVersion = vm.OSVersion 
             };
         }
 
@@ -489,10 +492,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// 
         //*********************************************************************
 
-        public VmDashboardInfo GetVm(int cmpRequestId)
+        public VmDashboardInfo GetVm(int cmpRequestId, CmpInterfaceModel.Constants.FetchType fetchType )
         {
             var cmp = CmpSvProxy;
-            var vmInfo = cmp.GetVm(cmpRequestId);
+            var vmInfo = cmp.GetVm(cmpRequestId, fetchType);
 
 
             var vm = Translatevm(vmInfo);

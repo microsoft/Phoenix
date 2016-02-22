@@ -382,12 +382,12 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
         /// 
         //*********************************************************************
 
-        public CmpApiClient.VmInfo GetVm(int cmpRequestId)
+        public CmpApiClient.VmInfo GetVm(int cmpRequestId, CmpInterfaceModel.Constants.FetchType fetchType)
         {
             if (CmpAccessMode == CmpAccessModeEnum.Monolith)
             {
                 var cmp = new CmpServiceLib.CmpService(_eventLog, CmpDbConnectionString, null);
-                var vmRole = cmp.VmGet(cmpRequestId);
+                var vmRole = cmp.VmGet(cmpRequestId, fetchType);
                 var queueStatus = "";
                 try
                 {
@@ -416,7 +416,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                         RoleSize = vmRole.RoleSize,
                         Status = vmRole.Status,
                         Subscription = vmRole.Subscription,
-                        QueueStatus = queueStatus
+                        QueueStatus = queueStatus,
+                        OSVersion = vmRole.OSVersion, 
+                        MediaLocation = vmRole.MediaLocation
                     };
                     return vmInfo;
                 }

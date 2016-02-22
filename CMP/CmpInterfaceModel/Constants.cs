@@ -29,6 +29,7 @@
         public enum AzureApiType { Undefined, RDFE, ARM }
         public enum BuildMigratedVmConfigStringResultEnum { Success, MissingDisk }
         public enum PostProvInintDisksResultEnum { Success, FailToConnect, NotFound }
+        public enum FetchType { DBonly, AzureFull, AzureStatus }
 
         public const string AUTOBLOBSTORELOCATION = "[AUTOBLOBSTORELOCATION]";
         public const string AUTOLOCALADMINUSERNAME = "[AUTOLOCALADMINUSERNAME]";

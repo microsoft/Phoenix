@@ -19,8 +19,15 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models.MicrosoftMgmtSvc
         }
 
         public MicrosoftMgmtSvcStoreContext()
-            : base("Name=MicrosoftMgmtSvcStoreContext")
+            : base(GetConnectionString())
         {
+        }
+
+        public static string GetConnectionString()
+        {
+            var xk = new KryptoLib.X509Krypto();
+            return xk.GetKTextConnectionString("MicrosoftMgmtSvcStoreContext",
+                "MicrosoftMgmtSvcStoreContextPassword");
         }
 
         public DbSet<Plan> Plans { get; set; }

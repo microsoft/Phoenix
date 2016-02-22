@@ -403,15 +403,15 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //FetchTenantVmSizes();
                 //FetchDefaultResourceGroupTest();
 
-                //GetVmTest();
+                GetVmTest();
                 //PostOpsProcessingTest();
                 //VmOpsTest();
                 //VmOpsStopTest();
-                VmOpsResizeTest();
+                //VmOpsResizeTest();
                 //TenantGetSubMappingsTest();
 
                 //FetchEnvironmentTypesTest();
-                SpaAadValidationTest();
+                //SpaAadValidationTest();
 
                 //CmpSyncTest();
                 //ServiceProviderInsertTest();

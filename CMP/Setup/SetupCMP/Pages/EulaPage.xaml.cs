@@ -69,8 +69,7 @@ namespace CMP.Setup
             this.currentAgreementType = AgreementType.Notice;
             this.licenseAgreementHeader.Text = WpfResources.WPFResourceDictionary.PlsReadNotice;
             this.acessTextLicense.Text = WpfResources.WPFResourceDictionary.AgreeWithNotice;
-            String filePath = String.Empty;
-            this.LoadAgreementFile(filePath);
+            this.LoadAgreementFile(SetupConstants.LicensePath);
         }
 
         /// <summary>
@@ -108,15 +107,14 @@ namespace CMP.Setup
         /// <param name="fileName">The EULA file</param>
         private void LoadAgreementFile(string fileName)
         {
-           // if (File.Exists(fileName))
-            //{
+            if (File.Exists(fileName))
+            {
                 this.richTextBoxEula.Multiline = true;
                 this.richTextBoxEula.ScrollBars = RichTextBoxScrollBars.Vertical;
                 this.richTextBoxEula.TabStop = true;
                 this.richTextBoxEula.ReadOnly = true;
-                this.richTextBoxEula.Text = "This Follows the Open Source MIT Agreement! ";
-               // this.richTextBoxEula.LoadFile(fileName);
-            //}
+                this.richTextBoxEula.LoadFile(fileName, RichTextBoxStreamType.PlainText);
+            }
         }
 
         private void printButton_Click(object sender, RoutedEventArgs e)
