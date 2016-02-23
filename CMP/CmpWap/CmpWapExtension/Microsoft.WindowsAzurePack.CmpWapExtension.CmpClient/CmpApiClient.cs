@@ -81,6 +81,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
 
         static EventLog _eventLog = null;
         static string _cmpDbConnectionString = null;
+        static Random _storageAccntRandomNum=new Random();
 
         /// <summary>
         /// Event log for logging
@@ -2261,7 +2262,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                     dnsNameForPublicIP = computerName,
                     //newStorageAccountName = CmpInterfaceModel.Constants.AUTOSTORAGEACCOUNTNAME,
                     //newStorageAccountName = safeServiceName + "store",
-                    newStorageAccountName = computerName + "store",
+                    newStorageAccountName = computerName + "store"+_storageAccntRandomNum.Next(100000),
                     //windowsOSVersion = "2012-R2-Datacenter"
                     windowsOSVersion = cmpVmReq.RequestRecord.AzureWindowsOSVersion,
                     nsgName = computerName + "_nsg",
