@@ -181,9 +181,11 @@
     <Compile Include="Models\AzureAdminSubscriptionVnet.cs" />
     <Compile Include="Models\AzureAdminSubscriptionVnetMapping.cs" />
     <Compile Include="Models\AzureMasterData.cs" />
+    <Compile Include="Models\AzureRegionVmOsMapping.cs" />
     <Compile Include="Models\AzureRegionVmSizeMapping.cs" />
     <Compile Include="Models\AzureSubscription.cs" />
     <Compile Include="Models\Interfaces\IAzureSubscription.cs" />
+    <Compile Include="Models\Mapping\AzureRegionVmOsMappingMap.cs" />
     <Compile Include="Models\Mapping\MicrosoftMgmtSvcStore\PlanMap.cs" />
     <Compile Include="Models\Mapping\MicrosoftMgmtSvcStore\WapSubscriptionMap.cs" />
     <Compile Include="Models\MicrosoftMgmtSvcStore\MicrosoftMgmtSvcStoreContext.cs" />

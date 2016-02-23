@@ -97,6 +97,7 @@
     <Build Include="dbo\Tables\AzureAdminSubscriptionRegionMapping.sql" />
     <Build Include="dbo\Tables\AzureMasterData.sql" />
     <Build Include="dbo\Tables\AzureRegionVmSizeMapping.sql" />
+    <Build Include="dbo\Tables\AzureRegionVmOsMapping.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />

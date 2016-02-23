@@ -659,7 +659,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         ///
         /// <summary>
         ///     This method is used to write an association between a plan (or
-        ///     its related subscriptions and a VmOs object in the DB
+        ///     its related subscriptions) and a VmOs object in the DB
         /// </summary>
         /// <param name="vmOsList"></param>
         /// <param name="planId"></param>
@@ -2659,6 +2659,100 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 }
             //}
             return result;
+        }
+
+        #endregion
+
+        #region --- Mappings (Azure regions to VM Sizes / VM OSes) ---
+
+        //*********************************************************************
+        /// 
+        ///  <summary>
+        ///      This method is used to write an association between a region
+        ///      and a VmSize object in the DB
+        ///  </summary>
+        /// <param name="mappingsToUpdate"></param>
+        ///  
+        //*********************************************************************
+        public void SetRegionVmSizeMappingsByBatch(IEnumerable<AzureRegionVmSizeMapping> mappingsToUpdate)
+        {
+            try
+            {
+                using (var db = new MicrosoftMgmtSvcCmpContext())
+                {
+                    foreach (var mappingParameter in mappingsToUpdate)
+                    {
+                        var targetMapping = db.AzureRegionVmSizeMappings.FirstOrDefault(x => x.VmSizeId == mappingParameter.VmSizeId && x.AzureRegionId == mappingParameter.AzureRegionId);
+                        if (targetMapping != null)
+                        {
+                            //Mapping exists on table. Just toggle the IsActive value for every subscription which implements that that combo between the VmSize and the AzureRegion
+                            targetMapping.IsActive = mappingParameter.IsActive; //This flag represents if the mapping is valid or not. True is valid, False is an invalid. In other words, Valid mappings means that this region does contain this VM Size.
+                        }
+                        else
+                        {
+                            //Mapping doesn't exist on table. It's a new association. Add mapping record to table for each of the subscriptions associated to the plan.
+                            db.AzureRegionVmSizeMappings.Add(new AzureRegionVmSizeMapping
+                            {
+                                VmSizeId = mappingParameter.VmSizeId,
+                                AzureRegionId = mappingParameter.AzureRegionId,
+                                IsActive = mappingParameter.IsActive
+                            });
+                        }
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in SetRegionVmSizeMappingsByBatch() : "
+                    + Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
+        //*********************************************************************
+        /// 
+        ///  <summary>
+        ///      This method is used to write an association between a region
+        ///      and a VmOs object in the DB
+        ///  </summary>
+        /// <param name="mappingsToUpdate"></param>
+        ///  
+        //*********************************************************************
+        public void SetRegionVmOsMappingsByBatch(IEnumerable<AzureRegionVmOsMapping> mappingsToUpdate)
+        {
+            try
+            {
+                using (var db = new MicrosoftMgmtSvcCmpContext())
+                {
+                    foreach (var mappingParameter in mappingsToUpdate)
+                    {
+                        var targetMapping = db.AzureRegionVmOsMappings.FirstOrDefault(x => x.VmOsId == mappingParameter.VmOsId && x.AzureRegionId == mappingParameter.AzureRegionId);
+                        if (targetMapping != null)
+                        {
+                            //Mapping exists on table. Just toggle the IsActive value for every subscription which implements that that combo between the VmOs and the AzureRegion
+                            targetMapping.IsActive = mappingParameter.IsActive; //This flag represents if the mapping is valid or not. True is valid, False is an invalid. In other words, Valid mappings means that this region does contain this VM Os.
+                        }
+                        else
+                        {
+                            //Mapping doesn't exist on table. It's a new association. Add mapping record to table for each of the subscriptions associated to the plan.
+                            db.AzureRegionVmOsMappings.Add(new AzureRegionVmOsMapping
+                            {
+                                VmOsId = mappingParameter.VmOsId,
+                                AzureRegionId = mappingParameter.AzureRegionId,
+                                IsActive = mappingParameter.IsActive
+                            });
+                        }
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in SetRegionVmOssMappingsByBatch() : "
+                    + Utilities.UnwindExceptionMessages(ex));
+            }
         }
 
         #endregion
