@@ -188,13 +188,14 @@
   <ItemGroup>
     <Compile Include="..\..\..\Build\AssemblyVersionInfo.cs" />
     <Compile Include="AzureActiveDir.cs" />
+    <Compile Include="AzureCatalogue.cs" />
     <Compile Include="AzureEvent.cs" />
     <Compile Include="AzureOffer.cs" />
     <Compile Include="AzurePublisher.cs" />
-    <Compile Include="AzureRegionOps.cs" />
+    <Compile Include="AzureRegionArmData.cs" />
+    <Compile Include="AzureCatalogueOps.cs" />
     <Compile Include="AzureSKU.cs" />
-    <Compile Include="AzureVmOs.cs" />
-    <Compile Include="AzureVmOsARMData.cs" />
+    <Compile Include="AzureVmOsArmData.cs" />
     <Compile Include="AzureVmSizeArmData.cs" />
     <Compile Include="DataContracts\ArmInstanceViewStatus.cs" />
     <Compile Include="SubscriptionOps.cs" />

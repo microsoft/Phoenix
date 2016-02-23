@@ -182,7 +182,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
                 {
                     var cmpi = new VMServiceRepository(_eventLog);
                     
-                    //var vm = cmpi.GetVm(Convert.ToInt32(foundVmDepRequest.CmpRequestID), CmpInterfaceModel.Constants.FetchType.AzureStatus);
+                    //when we solve the big 'method not returning' bug: uncomment line below, delete second line below
+                    //var vm = cmpi.GetVm(Convert.ToInt32(foundVmDepRequest.CmpRequestID), 
+                    //    CmpInterfaceModel.Constants.FetchType.AzureStatus);
                     var vm = GetLocalvmDBI(foundVmDepRequest);
 
                     vm.Cores = vmsizes.Where(x => x.Name == vm.RoleSize).Select(x => x.Cores).FirstOrDefault().ToString();
@@ -200,7 +202,136 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
             }
         }
 
+        //********************************************************************
+        ///
+        /// <summary>
+        /// Ugly code, does not belong here. Belongs in a lib. Should remove
+        /// this when we solve the big 'method not returning' bug
+        /// </summary>
+        /// <param name="cmpReq"></param>
+        /// <returns></returns>
+        /// 
+        //********************************************************************
+
         private VmDashboardInfo GetLocalvmDBI(Models.CmpRequest cmpReq)
+        {
+            string cmpDbConnectionString = GetCmpContextConnectionStringFromConfig();
+
+            CmpServiceLib.CmpService cmps = new CmpServiceLib.CmpService(eventLog, cmpDbConnectionString, null);
+            var vmg = cmps.VmGet((int)cmpReq.CmpRequestID, CmpInterfaceModel.Constants.FetchType.AzureFull);
+
+            VmDashboardInfo vmDBI = new VmDashboardInfo()
+            {
+                //Cores = "",
+                DataVirtualHardDisks = ConvertDisk(vmg.DataVirtualHardDisks),
+                DeploymentID = vmg.DeploymentID,
+                DNSName = vmg.DNSName,
+                InternalIP = vmg.InternalIP,
+                MediaLocation = vmg.MediaLocation,
+                OSVersion = vmg.OSVersion,
+                OSVirtualHardDisk = new OsVirtualHardDisk()
+                {
+                    DiskLabel = vmg.OSVirtualHardDisk.DiskLabel,
+                    DiskName = vmg.OSVirtualHardDisk.DiskName,
+                    HostCaching = vmg.OSVirtualHardDisk.HostCaching,
+                    MediaLink = vmg.OSVirtualHardDisk.MediaLink,
+                    OS = vmg.OSVirtualHardDisk.OS,
+                    RemoteSourceImageLink = vmg.OSVirtualHardDisk.RemoteSourceImageLink,
+                    SourceImageName = vmg.OSVirtualHardDisk.SourceImageName
+                },
+                QueueStatus = "",
+                RDPCertificateThumbprint = "",
+                RoleName = vmg.RoleName,
+                RoleSize = cmpReq.VmSize,
+                Status = vmg.Status,
+                Subscription = new SubscriptionInfo()
+                {
+                    CurrentCoreCount = vmg.Subscription.CurrentCoreCount,
+                    MaximumCoreCount = vmg.Subscription.MaximumCoreCount,
+                    SubscriptionID = vmg.Subscription.SubscriptionID,
+                    SubscriptionName = vmg.Subscription.SubscriptionName
+                }
+            };
+
+            return vmDBI;
+        }
+
+        //********************************************************************
+        ///
+        /// <summary>
+        /// Ugly code, does not belong here. Belongs in a lib. Should remove
+        /// this when we solve the big 'method not returning' bug
+        /// </summary>
+        /// <param name="dVHDs"></param>
+        /// <returns></returns>
+        /// 
+        //********************************************************************
+
+        private IList<ApiClient.DataContracts.DataVirtualHardDisk> ConvertDisk(
+            IList<CmpInterfaceModel.Models.DataVirtualHardDisk> dVHDs)
+        {
+            var dVHDsOut = new List<ApiClient.DataContracts.DataVirtualHardDisk>();
+
+            if(null == dVHDs)
+                return dVHDsOut;
+
+            foreach(var dVHD in dVHDs)
+            {
+                dVHDsOut.Add(new DataVirtualHardDisk()
+                {
+                    DiskLabel = dVHD.DiskLabel,
+                    DiskName = dVHD.DiskName,
+                    HostCaching = dVHD.HostCaching,
+                    LogicalDiskSizeInGB = dVHD.LogicalDiskSizeInGB,
+                    Lun = dVHD.Lun,
+                    MediaLink = dVHD.MediaLink,
+                    SourceMediaLink = dVHD.SourceMediaLink,
+                    Type = ""
+                });
+            }
+
+            return dVHDsOut;
+        }
+
+        //********************************************************************
+        ///
+        /// <summary>
+        /// Ugly code, does not belong here. Belongs in a lib. Should remove
+        /// this when we solve the big 'method not returning' bug
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        //********************************************************************
+
+        private string GetCmpContextConnectionStringFromConfig()
+        {
+            try
+            {
+                var xk = new KryptoLib.X509Krypto(null);
+                return (xk.GetKTextConnectionString("CMPContext", "CMPContextPassword"));
+            }
+            catch (Exception ex)
+            {
+                if (null != _eventLog)
+                    _eventLog.WriteEntry("Exception when reading CMPContext connection string : " +
+                        ex.Message, EventLogEntryType.Error, 100, 100);
+
+                return null;
+            }
+        }
+
+        //********************************************************************
+        ///
+        /// <summary>
+        /// Ugly code, does not belong here. Belongs in a lib. Should remove
+        /// this when we solve the big 'method not returning' bug
+        /// </summary>
+        /// <param name="cmpReq"></param>
+        /// <returns></returns>
+        /// 
+        //********************************************************************
+
+        private VmDashboardInfo GetLocalvmDBI2(Models.CmpRequest cmpReq)
         {
             VmDashboardInfo vmDBI = new VmDashboardInfo()
             {
@@ -229,12 +360,12 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
                 RoleName = cmpReq.TargetVmName,
                 RoleSize = cmpReq.VmSize,
                 Status = "Running", //*** TODO * MW * This is not good
-                Subscription = new SubscriptionInfo() 
-                { 
-                    CurrentCoreCount = "0", 
-                    MaximumCoreCount = "0", 
-                    SubscriptionID = "", 
-                    SubscriptionName = ""  
+                Subscription = new SubscriptionInfo()
+                {
+                    CurrentCoreCount = "0",
+                    MaximumCoreCount = "0",
+                    SubscriptionID = "",
+                    SubscriptionName = ""
                 }
             };
 
