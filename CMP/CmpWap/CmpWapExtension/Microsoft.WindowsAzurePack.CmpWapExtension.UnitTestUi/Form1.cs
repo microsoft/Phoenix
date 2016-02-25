@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AzureAdminClientLib;
-using CmpInterfaceModel.Models;
 using Microsoft.WindowsAzurePack.CmpWapExtension.Api;
 using Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers;
 using Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.DataContracts;
 using CmpServiceLib;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
-using System.Data.Entity;
 using System.Diagnostics;
 using Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.Controllers;
 using Microsoft.WindowsAzurePack.CmpWapExtension.AdminExtension.Models;
@@ -113,12 +106,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
 
         private void AzureCall_FetchRegionsTest()
         {
-            IEnumerable<AzureLocationArmData> locationResult = null;
-            IEnumerable<AzureVmSizeArmData> sizeResult = null;
-            IEnumerable<AzureVmOsArmData> dataResult = null;
-            AzureRefreshService ars = new AzureRefreshService(null, ConfigurationManager.ConnectionStrings["CMPContext"].ConnectionString);
-            //AzureRefreshService ars = new AzureRefreshService(null, "Data Source=thezephyr;Initial Catalog=CMP;Persist Security Info=True;User ID=sa;Password=123Mainau!;MultipleActiveResultSets=True");
-            ars.FetchAzureInformationWithArm(out locationResult, out sizeResult, out dataResult);
+            var ars = new AzureRefreshService(null, ConfigurationManager.ConnectionStrings["CMPContext"].ConnectionString);
+            var acList = ars.FetchAzureInformationWithArm();
             //UpdateAzureRegions(locationResult.ToList());
             //UpdateVmSizes(sizeResult.ToList());
             //osResult = ars.FetchAzureOsList();
@@ -126,19 +115,20 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             //UpdateVmOsArm(dataResult);
         }
 
-        private void TestSyncWorkerWithAzure()
+        private static void TestSyncWorkerWithAzure()
         {
-            /* You'll have to make the method static to run this unit test*/
-            //SyncWorker.SyncWithAzure();
+            /* You'll have to make the method below public to run this unit test. By
+             default it's private */
+            SyncWorker.SyncWithAzure();
         }
 
 
         private Connection GetTestConnection()
         {
-            var subId = "00f885db-ef1d-4545-ad2d-64c0caf93384";
-            var tenantId = "72f988bf-86f1-41af-91ab-2d7cd011db47";
-            var clientId = "d11ac2a1-9d9d-4bee-8248-7a8a8d890d8d";
-            var clientKey = "123abc!!!";
+            var subId = "";
+            var tenantId = "";
+            var clientId = "";
+            var clientKey = "";
 
             return new Connection(subId, null, tenantId, clientId, clientKey);
         }
@@ -218,7 +208,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             var result = ctr.ListEnvironmentTypes("");
         }
 
-        private void TestSyncWorker()
+        private static void TestSyncWorker()
         {
             SyncWorker.StartAsync(null);
         }
@@ -267,13 +257,33 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
         private void FetchTenantVmSizes()
         {
             ICmpWapDbTenantRepository ctr = new CmpWapDb();
-            var result = ctr.FetchVmSizeInfoList("1f686bd0-edb3-4c71-b550-d23a7666c853");
+            var result = ctr.FetchVmSizeInfoList("");
         }
 
         private void FetchDefaultResourceGroupTest()
         {
             var ctr = new CmpWapDb();
-            var result = ctr.FetchDefaultResourceProviderGroupName("1f686bd0-edb3-4c71-b550-d23a7666c853");
+            var result = ctr.FetchDefaultResourceProviderGroupName("");
+        }
+
+        private void ServiceProviderFetchTest()
+        {
+            var sp = new ServiceProviderAccountsController();
+            string subId = "";
+            var result = sp.ListServiceProviderAccounts();
+
+        }
+
+        private void ServiceProviderInsertTest()
+        {
+            var sp = new ServiceProviderAccountsController();
+            ServiceProviderAccount spA = new ServiceProviderAccount();
+            //spA.ID = 345;
+            spA.Name = "Test";
+            spA.ClientKey = "";
+            string subId = "";
+            var result = sp.UpdateServiceProviderAccount(spA);
+
         }
 
         private async void GetVmTest()
@@ -309,11 +319,42 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             vmops.Stop("raldabadec10", "RobertoTest-01");
         }
 
+        private void VmOpsResizeTest()
+        {
+            var vmops = new VmOps(GetTestConnection());
+
+            try
+            {
+                vmops.Resize("aaa", "bbb", "bad");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            //vmops.Resize("aaa", "bbb", "Standard_A6");
+            vmops.Resize("aaa", "bbb", "Standard_A7");
+        }
+
         private async void TenantGetSubMappingsTest()
         {
             string [] subId = {"c438fe96-7cc3-43a1-ac87-c2795a6eea79"};
             var tc = new SubscriptionsController();
             var resp = tc.GetSubscriptionList(subId);
+        }
+
+        private void CmpSyncTest()
+        {
+            var sw = new SyncWorker();
+            sw.SynchWithCmp();
+        }
+
+        private void SpaAadValidationTest()
+        {
+            var tenantId = "";
+            var clientId = "";
+            var clientKey = "";
+            bool result = Microsoft.WindowsAzurePack.CmpWapExtension.Api.Utilities.ValidateAadCredentials(clientId, tenantId, clientKey);
         }
 
         private async void button_Test_Click(object sender, EventArgs e)
@@ -342,23 +383,29 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //FetchRegionsTest();
                 //FetchResourceGroupNameTest();
                 //FetchRoleSizes();
-                TestSyncWorker();
+                //TestSyncWorker();
                 //FetchTenantInfo();
                 //SetVmOsByBatch();
                 //FetchPlanConfigInfo();
                 //AzureCall_FetchRegionsTest();
-                //TestSyncWorkerWithAzure();
+                TestSyncWorkerWithAzure();
                 //FetchOsInfoTest();
                 //FetchTenantVmSizes();
                 //FetchDefaultResourceGroupTest();
 
-                //GetVmTest();
+                GetVmTest();
                 //PostOpsProcessingTest();
                 //VmOpsTest();
                 //VmOpsStopTest();
+                //VmOpsResizeTest();
                 //TenantGetSubMappingsTest();
 
                 //FetchEnvironmentTypesTest();
+                //SpaAadValidationTest();
+
+                //CmpSyncTest();
+                //ServiceProviderInsertTest();
+                //ServiceProviderFetchTest();
 
                 /*
                 vt = new VmTests();

@@ -101,7 +101,7 @@
                     x:Uid="TextBlock_1"
                     Grid.Row="2"
                     Style="{StaticResource StyleBasicTextBlock}">
-                    Choose this option if you plan to reinstall CMP and want to resume managing 
+                    Choose this option if you plan to reinstall the WAP extension database and want to resume managing 
                     resources in the same environment.
                 </TextBlock>
             </Grid>

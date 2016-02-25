@@ -11,6 +11,7 @@ using System.Linq;
 using System.Web.Http;
 using Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient.DataContracts;
 using System.Diagnostics;
+using System.IO;
 
 namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
 {
@@ -164,8 +165,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
             }
             catch (Exception ex)
             {
-                LogThis(ex, EventLogEntryType.Error, 
-                    "CmpWapExtension.DomainsController.ListServiceProviderAccounts()", 100, 1);
+                LogThis(ex, EventLogEntryType.Error,
+                    "CmpWapExtension.ServiceProviderAccountsController.ListServiceProviderAccounts()", 100, 1);
                 throw;
             }
         }
@@ -204,7 +205,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
             }
             catch(Exception ex)
             {
-                LogThis(ex, EventLogEntryType.Error, "CmpWapExtension.DomainsController.ListServiceProviderAccounts()", 100, 1);
+                LogThis(ex, EventLogEntryType.Error, "CmpWapExtension.ServiceProviderAccountsController.ListServiceProviderAccounts()", 100, 1);
                 throw;
             }
         }
@@ -224,9 +225,15 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
         {
             try
             {
+                if (!Utilities.ValidateAadCredentials(sPa.ClientID, sPa.TenantID, sPa.ClientKey))
+                {
+                    throw new InvalidDataException(
+                        "The AAD credentials provided were not accepted by Azure. Please double-check for accuracy or possible mismatch between fields.");
+                }
+                    
+
                 if (0 == sPa.ID)
                 {
-
                     sPa.ExpirationDate = new DateTime(2100, 1, 1);
                     sPa.Active = true;
                     return AddSpaToDb(sPa);
@@ -237,7 +244,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
             catch (Exception ex)
             {
                 LogThis(ex, EventLogEntryType.Error,
-                    "CmpWapExtension.DomainsController.UpdateServiceProviderAccount()", 100, 1);
+                    "CmpWapExtension.ServiceProviderAccountsController.UpdateServiceProviderAccount()", 100, 1);
                 throw;
             }
         }

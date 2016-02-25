@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.Azure;
 
 namespace CmpServiceLib
 {
@@ -10,6 +11,19 @@ namespace CmpServiceLib
     {
         private static string _cmpDbConnectionString;
         protected static EventLog EventLog;
+
+        #region Class-specific variables
+
+        private static string _targetPublisherString;
+        private static string _targetRegionString;
+        private static int _targetNumberOfPublishers;
+
+        //Default values in case config settings are not present
+        private readonly string _defaultPublisherString = "OpenLogic";
+        private readonly string _defaultRegionString = "Europe";
+        private readonly int _defaultNumberOfPublishers = 50;
+
+        #endregion
 
         #region --- Setup Methods --------------------------------------------
 
@@ -55,6 +69,15 @@ namespace CmpServiceLib
         {
             EventLog = eLog;
             _cmpDbConnectionString = cmpDbConnectionString;
+            _targetPublisherString = CloudConfigurationManager.GetSetting("AzureCatalogueSyncTargetPublisher");
+            _targetRegionString = CloudConfigurationManager.GetSetting("AzureCatalogueSyncTargetRegion");
+
+            if (!int.TryParse(CloudConfigurationManager.GetSetting("AzureCatalogueSyncTargetNumberOfPublishers"), out _targetNumberOfPublishers))
+                _targetNumberOfPublishers = _defaultNumberOfPublishers;
+            if (string.IsNullOrEmpty(_targetPublisherString))
+                _targetPublisherString = _defaultPublisherString;
+            if (string.IsNullOrEmpty(_targetRegionString))
+                _targetRegionString = _defaultRegionString;
         }
 
         #endregion
@@ -73,14 +96,15 @@ namespace CmpServiceLib
         /// and AzureVmOsArmData objects. </returns>
         /// 
         //*********************************************************************
-        public void FetchAzureInformationWithArm(out IEnumerable<AzureLocationArmData> locationResult, out IEnumerable<AzureVmSizeArmData> vmSizeResult, out IEnumerable<AzureVmOsArmData> vmOsResult)
+        public IEnumerable<AzureCatalogue> FetchAzureInformationWithArm()
         {
-            locationResult = Enumerable.Empty<AzureLocationArmData>(); //AzureLocationArmData is an Azure region, in accordance to Azure API
-            vmSizeResult = Enumerable.Empty<AzureVmSizeArmData>(); //AzureVmSizeArmData is a VM Size
-            vmOsResult = new List<AzureVmOsArmData>(); //AzureVmOsArmData is a VM OS
+            //Data Contracts
+            var locationResult = Enumerable.Empty<AzureLocationArmData>(); //AzureLocationArmData is an Azure region, in accordance to Azure API
+            var publisherList = Enumerable.Empty<AzurePublisher>();
+            var offerList = Enumerable.Empty<AzureOffer>();
 
-            IEnumerable<AzurePublisher> publisherList = Enumerable.Empty<AzurePublisher>();
-            IEnumerable<AzureOffer> offerList = Enumerable.Empty<AzureOffer>();
+            //Result payload of all Azure calls to be sent back for processing
+            var azureResultsList = new List<AzureCatalogue>();
 
             /*
              * Hierarchy of the API calls through ARM:
@@ -97,31 +121,34 @@ namespace CmpServiceLib
                 //Retrieving Service provider accounts and initializing a Connection object with each one, so we get appropriate AAD creds
                 var serviceAccountList = ServProvAccount.GetAzureServiceAccountList(_cmpDbConnectionString).Where(sa => sa.AccountID != null);
                 var subscriptionsList = serviceAccountList.Select(
-                    sa => new AzureRegionOps(new Connection(
+                    sa => new AzureCatalogueOps(new Connection(
                         sa.AccountID, sa.CertificateThumbprint, sa.AzureADTenantId, sa.AzureADClientId, sa.AzureADClientKey)));
 
+                //Block that starts getting the info for each subscription
                 foreach (var subscription in subscriptionsList)
                 {         
                     IList<AzureLocationArmData> azureLocationsList = subscription.GetAzureLocationsList().ToList();
                     locationResult = locationResult.Union(azureLocationsList, new LocationComparer());
 
-                    //Debugging and test section
-                    azureLocationsList = azureLocationsList.Where(loc => loc.Name.ToUpper().Contains("US")).ToList();
-                    //End debugging and test section
+                    //Section to limit amount of regions (to avoid pulling an obscene amount of data)
+                    azureLocationsList = azureLocationsList.Where(loc => loc.Name.ToUpperInvariant().Contains(_targetRegionString.ToUpperInvariant()) && loc.DisplayName.ToUpperInvariant().Contains(_targetRegionString.ToUpperInvariant())).ToList();
+                    //End section to limit amount of regions
 
+                    //This loop starts the actual querying of Azure and getting the entire catalogue of offerings
                     foreach (var loc in azureLocationsList)
                     {
+                        var azureCatalogueItem = new AzureCatalogue(loc.Id, loc.Name, loc.DisplayName, loc.Longitude, loc.Latitude);
                         var locationString = loc.Name.Replace(" ", string.Empty);
                         IList<AzureVmSizeArmData> azureVmSizeList = subscription.GetVmSizeList(locationString).ToList();
                         IList<AzurePublisher> azurePublishers = subscription.GetPublisherList(locationString).ToList();
 
-                        vmSizeResult = vmSizeResult.Union(azureVmSizeList, new AzureVmSizeArmData.AzureVmSizeComparer());
+                        azureCatalogueItem.VmSizes = azureCatalogueItem.VmSizes.Union(azureVmSizeList, new AzureVmSizeArmData.AzureVmSizeComparer());
                         publisherList = publisherList.Union(azurePublishers, new AzurePublisher.AzurePublisherComparer());
 
-                        //Debugging and test section
+                        //Section to limit amount of publishers (to avoid pulling an obscene amount of data)
                         var pubCount = 0;
-                        azurePublishers = azurePublishers.Where(ap => ap.name.Contains("MicrosoftWindowsServer")).ToList();
-                        //End debugging and test section
+                        azurePublishers = azurePublishers.Where(ap => ap.name.Contains(_targetPublisherString)).ToList();
+                        //End section to limit amount of publishers
 
                         foreach (var ap in azurePublishers)
                         {
@@ -132,24 +159,21 @@ namespace CmpServiceLib
                             foreach (var ao in subOfferList)
                             {
                                 var azureOfferName = ao.name;
-                                IList<AzureSku> azureSkusList = subscription.GetSKUList(locationString, ap.name, ao.name).ToList();
+                                IList<AzureSku> azureSkusList = subscription.GetSkuList(locationString, ap.name, ao.name).ToList();
 
-                                vmOsResult = azureSkusList.Select(sku => new AzureVmOsArmData
+                                azureCatalogueItem.VmOses = azureSkusList.Select(sku => new AzureVmOsArmData
                                                 {
                                                     Publisher = azurePublisherName,
                                                     Offer = azureOfferName,
                                                     SKU = sku.name
-                                                }).Union(vmOsResult, new AzureVmOsArmData.AzureVmOsArmDataComparer());
+                                                }).Union(azureCatalogueItem.VmOses, new AzureVmOsArmData.AzureVmOsArmDataComparer());
                             }
 
-                            //Testing for 50 publishers for now
-                            pubCount++;
-                            if (pubCount >= 50)
-                            {
-                                break;
-                            }
+                            //Limiting publishers to a constant to avoid major delays in the syncing process. Configurable.
+                            if (pubCount++ >= _targetNumberOfPublishers) break;
                         }
-                        //break; //Testing only 1 region for now
+                        
+                        azureResultsList.Add(azureCatalogueItem);
                     }
                 }
             }
@@ -159,6 +183,7 @@ namespace CmpServiceLib
                    "Exception in AzureRefreshService:FetchAzureInformationWithArm()", 1, 1);
                 throw;
             }
+            return azureResultsList;
         }
 
         #endregion

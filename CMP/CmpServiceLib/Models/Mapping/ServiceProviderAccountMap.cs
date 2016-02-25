@@ -60,7 +60,7 @@ namespace CmpServiceLib.Models.Mapping
                 .HasMaxLength(50);
 
             this.Property(t => t.AzureADClientKey)
-                .HasMaxLength(50);
+                .HasMaxLength(500);
 
             // Table & Column Mappings
             this.ToTable("ServiceProviderAccounts");

@@ -19,15 +19,30 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DefineConstants>Debug;</DefineConstants>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <OutputPath>$(OutputPathHint)\</OutputPath>
+    <OutputPath>$(OutputPathHint)\Installer\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
     <SuppressPdbOutput>True</SuppressPdbOutput>
+    <Cultures>en-US;</Cultures>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <OutputPath>$(OutputPathHint)\</OutputPath>
+    <OutputPath>$(OutputPathHint)\Installer\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
     <SuppressPdbOutput>True</SuppressPdbOutput>
+    <Cultures>en-US;</Cultures>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DefineConstants>Debug;</DefineConstants>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <OutputPath>$(OutputPathHint)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
@@ -41,7 +56,9 @@
     <Content Include="Feature\TenantSite.wxi" />
     <Content Include="Icons\Windows-Azure-Dark-Blue.ico" />
     <Content Include="Icons\Windows-Azure-Light-Blue.ico" />
-    <Content Include="PowerShell\Register-ResourceProvider.ps1" />
+    <None Include="PowerShell\Register-ResourceProvider.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Prerequisites.wxi" />
     <Content Include="ReadMe.txt" />
     <Content Include="Registry.wxi" />

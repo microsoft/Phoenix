@@ -81,6 +81,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
 
         static EventLog _eventLog = null;
         static string _cmpDbConnectionString = null;
+        static Random _storageAccntRandomNum=new Random();
 
         /// <summary>
         /// Event log for logging
@@ -382,12 +383,12 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
         /// 
         //*********************************************************************
 
-        public CmpApiClient.VmInfo GetVm(int cmpRequestId)
+        public CmpApiClient.VmInfo GetVm(int cmpRequestId, CmpInterfaceModel.Constants.FetchType fetchType)
         {
             if (CmpAccessMode == CmpAccessModeEnum.Monolith)
             {
                 var cmp = new CmpServiceLib.CmpService(_eventLog, CmpDbConnectionString, null);
-                var vmRole = cmp.VmGet(cmpRequestId);
+                var vmRole = cmp.VmGet(cmpRequestId, fetchType);
                 var queueStatus = "";
                 try
                 {
@@ -416,7 +417,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                         RoleSize = vmRole.RoleSize,
                         Status = vmRole.Status,
                         Subscription = vmRole.Subscription,
-                        QueueStatus = queueStatus
+                        QueueStatus = queueStatus,
+                        OSVersion = vmRole.OSVersion, 
+                        MediaLocation = vmRole.MediaLocation
                     };
                     return vmInfo;
                 }
@@ -1059,7 +1062,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in CmpClient.FetchServProvAcctList() : " +
+                throw new Exception("Exception in CmpClient.InsertServiceProviderAccount() : " +
                     Utils.UnwindExceptionMessages(ex));
             }
         }
@@ -1091,7 +1094,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in CmpClient.FetchServProvAcctList() : " +
+                throw new Exception("Exception in CmpClient.UpdateServiceProviderAccount() : " +
                     Utils.UnwindExceptionMessages(ex));
             }
         }
@@ -1119,6 +1122,30 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                     var outList = new List<CmpService.VmDeploymentRequest>(fdrList.Count);
                     outList.AddRange(fdrList.Select(Translate));
                     return outList;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in CmpClient.FetchCmpRequests() : " + Utils.UnwindExceptionMessages(ex));
+            }
+        }
+
+        public List<CmpServiceLib.Models.Container> FetchAzureResourceGroups()
+        {
+            try
+            {
+                if (CmpAccessMode == CmpAccessModeEnum.Monolith)
+                {
+                    var cmp = new CmpServiceLib.CmpService(_eventLog, CmpDbConnectionString, null);
+                    var fdrList = cmp.FetchAzureResourceGroups();
+
+                    //var outList = new List<CmpService.VmDeploymentRequest>(fdrList.Count);
+                    //outList.AddRange(fdrList.Select(Translate));
+                    return fdrList;
                 }
                 else
                 {
@@ -2235,7 +2262,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                     dnsNameForPublicIP = computerName,
                     //newStorageAccountName = CmpInterfaceModel.Constants.AUTOSTORAGEACCOUNTNAME,
                     //newStorageAccountName = safeServiceName + "store",
-                    newStorageAccountName = computerName + "store",
+                    newStorageAccountName = computerName + "store"+_storageAccntRandomNum.Next(100000),
                     //windowsOSVersion = "2012-R2-Datacenter"
                     windowsOSVersion = cmpVmReq.RequestRecord.AzureWindowsOSVersion,
                     nsgName = computerName + "_nsg",

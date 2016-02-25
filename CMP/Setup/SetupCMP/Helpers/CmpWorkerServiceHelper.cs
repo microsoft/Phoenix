@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Text;
@@ -39,7 +38,7 @@ namespace CMP.Setup.Helpers
                 ServiceConfigurationHandler.StopAndRemoveService(hSCManager, SetupConstants.EngineServiceName);
 
                 //construct paths to service binaries
-                string servicePathEngine = PathHelper.QuoteString(installPath + @"\MSIT\CmpWorkerService\" + SetupConstants.EngineServiceBinary);
+                string servicePathEngine = PathHelper.QuoteString(installPath + @"MSIT\CmpWorkerService\" + SetupConstants.EngineServiceBinary);
                 SetupLogger.LogInfo("BackEnd.Configure: Engine Service path is : {0}", servicePathEngine);
 
                 //Get account
@@ -628,7 +627,8 @@ namespace CMP.Setup.Helpers
                 if (autoStart)
                     svcStartType = NativeMethods.SERVICE_AUTO_START;
 
-                if (!NativeMethods.NullIntPtr.Equals(password)) //if we are using a password we need to gr  ant logon as service permissions to this user.
+                if (!NativeMethods.NullIntPtr.Equals(password))
+                    //if we are using a password we need to gr  ant logon as service permissions to this user.
                 {
                     try
                     {
@@ -637,7 +637,8 @@ namespace CMP.Setup.Helpers
                     }
                     catch (Exception exp)
                     {
-                        SetupLogger.LogError("Failed to grant user ( " + serviceStartName + " ) logon as service permissions. Error: " + exp.Message);
+                        SetupLogger.LogError("Failed to grant user ( " + serviceStartName +
+                                             " ) logon as service permissions. Error: " + exp.Message);
                     }
                 }
 
@@ -650,10 +651,10 @@ namespace CMP.Setup.Helpers
                     svcStartType,
                     NativeMethods.SERVICE_ERROR_NORMAL,
                     binaryPath,
-                    null,  //load order group
-                    NativeMethods.NullIntPtr,  //[out] tagId
+                    null, //load order group
+                    NativeMethods.NullIntPtr, //[out] tagId
                     dependenciesString,
-                    serviceStartName,  //Username
+                    serviceStartName, //Username
                     password
                     );
 
@@ -667,7 +668,8 @@ namespace CMP.Setup.Helpers
 
                 NativeMethods.SERVICE_DESCRIPTION svcDesc = new NativeMethods.SERVICE_DESCRIPTION();
                 svcDesc.lpDescription = svcDescription;
-                bool success = NativeMethods.ChangeServiceConfig2(hService, NativeMethods.SERVICE_CONFIG_DESCRIPTION, ref svcDesc);
+                bool success = NativeMethods.ChangeServiceConfig2(hService, NativeMethods.SERVICE_CONFIG_DESCRIPTION,
+                    ref svcDesc);
 
                 if (!success)
                 {
@@ -679,7 +681,8 @@ namespace CMP.Setup.Helpers
                 // Set service SID type. This is required for any service that has a firewall rule targeted for that specific service.
                 NativeMethods.SERVICE_SID_INFO svcSidType = new NativeMethods.SERVICE_SID_INFO();
                 svcSidType.serviceSidType = NativeMethods.SERVICE_SID_TYPE.SERVICE_SID_TYPE_UNRESTRICTED;
-                success = NativeMethods.ChangeServiceConfig2(hService, NativeMethods.SERVICE_CONFIG_SERVICE_SID_INFO, ref svcSidType);
+                success = NativeMethods.ChangeServiceConfig2(hService, NativeMethods.SERVICE_CONFIG_SERVICE_SID_INFO,
+                    ref svcSidType);
 
                 if (!success)
                 {
@@ -687,6 +690,10 @@ namespace CMP.Setup.Helpers
                     int lastWin32Error = System.Runtime.InteropServices.Marshal.GetLastWin32Error();
                     throw new Exception(String.Format("Cannot create service {0}", svcName));
                 }
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
             finally
             {

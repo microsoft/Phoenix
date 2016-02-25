@@ -18,6 +18,12 @@
             CompanionFile="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll"
             Source="$(var.WebSiteRoot)\Global.asax" />
     </Component>
+    <Component Id="RegisterResourceProvider.ps1"
+               Guid="{5BEA978F-2B14-486F-80EB-6C80B690BD3B}">
+      <File Id="RegisterResourceProvider.ps1"
+            CompanionFile="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll"
+            Source="Powershell\Register-ResourceProvider.ps1" />
+    </Component>
     <Component Id="Web.config"
                Guid="{356DE5E5-BFFA-4B15-9CE5-C96434CA0AB3}">
       <File Id="Web.config"
@@ -25,9 +31,11 @@
             Source="$(var.WebSiteRoot)\Web.config" />
       
       <!-- Local Block Start -->
+      
+      <!--This block handles the Web.config values that get put in by default when running the installer.-->
 
       <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AConfig' File='[#Web.config]' Action='setValue' ElementPath="//connectionStrings/add[\[]@name='CMPContext'[\]]/@connectionString" Value="[CMPCONNECTIONSTR]" SelectionLanguage="XPath"/>
-      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AtConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CMPContextPassword'[\]]/@value" Value="[CMPCONTEXTPASSWORDSTRING]" SelectionLanguage="XPath"/>
+      <!--<uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AtConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CMPContextPassword'[\]]/@value" Value="[CMPCONTEXTPASSWORDSTRING]" SelectionLanguage="XPath"/>-->
       <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AkConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='KryptoCert'[\]]/@value" Value="[CERTIFICATETHUMBPRINT]" SelectionLanguage="XPath"/>
       <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA482AuConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='AdminserviceEndpoint'[\]]/@value" Value="[ADMINSERVICEENDPOINTSTRING]" SelectionLanguage="XPath"/>
       <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382AuConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='WindowsAuthEndpoint'[\]]/@value" Value="[WINDOWSAUTHENDPOINTSTRING]" SelectionLanguage="XPath"/>
@@ -363,6 +371,7 @@
   </DirectoryRef>
   <ComponentGroup Id="WebSiteContent">
     <ComponentRef Id="Global.asax" />
+    <ComponentRef Id="RegisterResourceProvider.ps1" />
     <ComponentRef Id="Web.config" />
     <ComponentRef Id="Default.html" />
     <ComponentRef Id="Microsoft.WindowsAzurePack.CmpWapExtension.Api.dll" />

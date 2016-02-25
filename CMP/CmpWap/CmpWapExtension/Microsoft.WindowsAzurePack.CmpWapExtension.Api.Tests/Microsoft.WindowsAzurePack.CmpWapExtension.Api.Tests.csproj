@@ -28,6 +28,13 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <DebugType>full</DebugType>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <OutputPath>..\..\..\..\..\out\Release\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Moq">
       <HintPath>$(PkgMoq)\lib\net40\Moq.dll</HintPath>
@@ -66,6 +73,10 @@
     <ProjectReference Include="..\..\..\CmpCommon\CmpCommon.csproj">
       <Project>{b1bed686-72f1-4a29-b81b-8b7ef9bb5739}</Project>
       <Name>CmpCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CmpInterfaceModel\CmpInterfaceModel.csproj">
+      <Project>{b3eb01ee-64c2-495a-9fd9-610974c4fe3e}</Project>
+      <Name>CmpInterfaceModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\CmpServiceLib\CmpServiceLib.csproj">
       <Project>{fe5ef66f-8aba-4cbf-9998-0bbc98b76e53}</Project>

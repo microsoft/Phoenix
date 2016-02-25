@@ -285,6 +285,15 @@ namespace CmpServiceLib
 
         #endregion
 
+        #region --- ResourceGroups Region ----------------------------------------------
+
+        public List<Container> FetchAzureResourceGroups()
+        {
+            var cdb = new CmpDb(_cmpDbConnectionString);
+            return cdb.GetAzureContainers();
+        }
+
+        #endregion
 
         #region --- VmDepRequest Region ----------------------------------------------
 
@@ -1179,7 +1188,7 @@ namespace CmpServiceLib
             Models.VmDeploymentRequest vmDepReq = null;
 
             var connection = GetConnectionFromVmDepRqId(cmpRequestId, out vmDepReq);
-            var vmInfo = VmGet(cmpRequestId);
+            var vmInfo = VmGet(cmpRequestId, CmpInterfaceModel.Constants.FetchType.AzureFull);
 
             var vmo = new AzureAdminClientLib.VmOps(connection);
             var resize = vmo.Resize(vmDepReq.TargetVmName, vmDepReq.TargetServicename, size);
@@ -1228,41 +1237,134 @@ namespace CmpServiceLib
         /// 
         //*********************************************************************
 
-        public VmInfo  VmGet(int cmpRequestId)
+        public VmInfo VmGet(int cmpRequestId, CmpInterfaceModel.Constants.FetchType fetchType)
         {
             Models.VmDeploymentRequest vmDepReq = null;
-           
             var connection = GetConnectionFromVmDepRqId(cmpRequestId, out vmDepReq);
+            VmInfo vm = null;
+            string region;
 
-            var vmo = new AzureAdminClientLib.VmOps(connection);
-            var role = vmo.GetVM(vmDepReq.TargetVmName, vmDepReq.TargetServicename);
-
-            var roleInstance = role.Deployment.RoleInstanceList.FirstOrDefault();
-
-            if (null == roleInstance)
-                return null;
-
-            var vm = new VmInfo
+            switch(fetchType)
             {
-                RoleName = role.RoleName,
-                DataVirtualHardDisks = role.DataVirtualHardDisks,
-                OSVirtualHardDisk =role.OSVirtualHardDisk,
-                InternalIP = roleInstance.IpAddress,
-                RDPCertificateThumbprint=roleInstance.RemoteAccessCertificateThumbprint,
-                DNSName = role.Deployment.Url,
-                RoleSize = roleInstance.InstanceSize,
-                Status=roleInstance.InstanceStatus.ToString(),
-                DeploymentID = role.Deployment.PrivateID,
-                MediaLocation = new Uri(role.OSVirtualHardDisk.MediaLink),
-                OSVersion = null, 
-                Subscription =new SubscriptionInfo 
-                {
-                SubscriptionID = role.Subscription.SubscriptionID,
-                SubscriptionName = role.Subscription.SubscriptionName,
-                MaximumCoreCount = role.Subscription.MaximumCoreCount.ToString(),
-                CurrentCoreCount = role.Subscription.CurrentCoreCount.ToString()
-                }
-            };
+                case CmpInterfaceModel.Constants.FetchType.DBonly:
+
+                    vmDepReq = FetchVmDepRequest(cmpRequestId);
+
+                    region = vmDepReq.TargetLocation.ToLower().Replace(" ", "");
+
+                    vm = new VmInfo
+                    {
+                        RoleName = vmDepReq.TargetVmName,
+                        DataVirtualHardDisks = null,
+                        OSVirtualHardDisk = new OsVirtualHardDisk()
+                        {
+                            DiskLabel = "C",
+                            DiskName = "osdisk",
+                            HostCaching = "ReadWrite",
+                            MediaLink = string.Format("http://{0}.blob.core.windows.net/{1}/{2}.vhd",
+                                Utilities.GetXmlInnerText(vmDepReq.Config, "newStorageAccountName"),
+                                Utilities.GetXmlInnerText(vmDepReq.Config, "vmStorageAccountContainerName"),
+                                Utilities.GetXmlInnerText(vmDepReq.Config, "OSDiskName")),
+                            OS = "Windows", 
+                            RemoteSourceImageLink = null, 
+                            SourceImageName = null
+                        },
+                        InternalIP = Utilities.GetXmlInnerText(vmDepReq.Config, "VmAddress"),
+                        RDPCertificateThumbprint = null,
+                        DNSName = vmDepReq.TargetVmName + "." + region + ".cloudapp.azure.com",
+                        RoleSize = Utilities.GetXmlInnerText(vmDepReq.Config, "vmSize"),
+                        Status = "Running", //*** TODO * MW * This is not good
+                        DeploymentID = null,
+                        MediaLocation = null,
+                        OSVersion = Utilities.GetXmlInnerText(vmDepReq.Config, "windowsOSVersion"),
+                        Subscription = new SubscriptionInfo
+                        {
+                            SubscriptionID = connection.SubcriptionID,
+                            SubscriptionName = connection.SubcriptionID,
+                            MaximumCoreCount = "",
+                            CurrentCoreCount = ""
+                        }
+                    };
+
+                    break;
+
+                case CmpInterfaceModel.Constants.FetchType.AzureStatus:
+                    
+                    region = vmDepReq.TargetLocation.ToLower().Replace(" ", "");
+
+                    var subOps = new SubscriptionOps(connection);
+                    var coreUsage = subOps.FetchResourceUsage(region, "cores");
+
+                    vm = new VmInfo
+                    {
+                        RoleName = vmDepReq.TargetVmName,
+                        DataVirtualHardDisks = new List<CmpInterfaceModel.Models.DataVirtualHardDisk>(),
+                        OSVirtualHardDisk = new OsVirtualHardDisk()
+                        {
+                            DiskLabel = "C",
+                            DiskName = "osdisk",
+                            HostCaching = "ReadWrite",
+                            MediaLink = string.Format("http://{0}.blob.core.windows.net/{1}/{2}.vhd",
+                                Utilities.GetXmlInnerText(vmDepReq.Config, "newStorageAccountName"),
+                                Utilities.GetXmlInnerText(vmDepReq.Config, "vmStorageAccountContainerName"),
+                                Utilities.GetXmlInnerText(vmDepReq.Config, "OSDiskName")),
+                            OS = "Windows", 
+                            RemoteSourceImageLink = null, 
+                            SourceImageName = null
+                        },
+                        InternalIP = Utilities.GetXmlInnerText(vmDepReq.Config, "VmAddress"),
+                        RDPCertificateThumbprint = null,
+                        DNSName = vmDepReq.TargetVmName + "." + region + ".cloudapp.azure.com",
+                        RoleSize = Utilities.GetXmlInnerText(vmDepReq.Config, "vmSize"),
+                        Status = "Running", //*** TODO * MW * This is not good
+                        DeploymentID = null,
+                        MediaLocation = null,
+                        OSVersion = Utilities.GetXmlInnerText(vmDepReq.Config, "windowsOSVersion"),
+                        Subscription = new SubscriptionInfo
+                        {
+                            SubscriptionID = connection.SubcriptionID,
+                            SubscriptionName = connection.SubcriptionID,
+                            MaximumCoreCount = (coreUsage == null) ? "" : coreUsage.Limit.ToString(),
+                            CurrentCoreCount = (coreUsage == null) ? "" : coreUsage.Value.ToString()
+                        }
+                    };
+
+                    break;
+
+                case  CmpInterfaceModel.Constants.FetchType.AzureFull:
+
+                    var vmo = new AzureAdminClientLib.VmOps(connection);
+                    var role = vmo.GetVM(vmDepReq.TargetVmName, vmDepReq.TargetServicename);
+
+                    var roleInstance = role.Deployment.RoleInstanceList.FirstOrDefault();
+
+                    if (null == roleInstance)
+                        return null;
+
+                    vm = new VmInfo
+                    {
+                        RoleName = role.RoleName,
+                        DataVirtualHardDisks = role.DataVirtualHardDisks,
+                        OSVirtualHardDisk =role.OSVirtualHardDisk,
+                        InternalIP = roleInstance.IpAddress,
+                        RDPCertificateThumbprint=roleInstance.RemoteAccessCertificateThumbprint,
+                        DNSName = role.Deployment.Url,
+                        RoleSize = roleInstance.InstanceSize,
+                        Status=roleInstance.InstanceStatus.ToString(),
+                        DeploymentID = role.Deployment.PrivateID,
+                        MediaLocation = new Uri(role.OSVirtualHardDisk.MediaLink),
+                        OSVersion = null, 
+                        Subscription =new SubscriptionInfo 
+                        {
+                            SubscriptionID = role.Subscription.SubscriptionID,
+                            SubscriptionName = role.Subscription.SubscriptionName,
+                            MaximumCoreCount = role.Subscription.MaximumCoreCount.ToString(),
+                            CurrentCoreCount = role.Subscription.CurrentCoreCount.ToString()
+                        }
+                    };
+
+                    break;
+            }
 
             return vm;
         }

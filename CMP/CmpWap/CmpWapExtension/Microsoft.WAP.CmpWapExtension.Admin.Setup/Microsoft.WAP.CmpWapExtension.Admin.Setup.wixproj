@@ -17,6 +17,15 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccLocalPath>SAK</SccLocalPath>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <Cultures>en-US;</Cultures>
+    <OutputPath>$(OutputPath)\Installer\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <Cultures>en-US;</Cultures>
+    <OutputPath>$(OutputPath)\Installer\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
   </ItemGroup>
@@ -28,7 +37,9 @@
     <Content Include="Feature\AdminSite.wxi" />
     <Content Include="Icons\Windows-Azure-Dark-Blue.ico" />
     <Content Include="Icons\Windows-Azure-Light-Blue.ico" />
-    <Content Include="PowerShell\Register-ResourceProvider.ps1" />
+    <Content Include="PowerShell\Register-ResourceProvider.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Prerequisites.wxi" />
     <Content Include="ReadMe.txt" />
     <Content Include="Registry.wxi" />

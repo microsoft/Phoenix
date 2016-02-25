@@ -28,11 +28,15 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models.Mapping
             this.Property(t => t.AzureRegionId)
                 .IsRequired();
 
+            this.Property(t => t.AzureSubscriptionId)
+                .HasMaxLength(100);
+
             // Table & Column Mappings
             this.ToTable("AzureRegionVmSizeMapping");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.VmSizeId).HasColumnName("VmSizeId");
             this.Property(t => t.AzureRegionId).HasColumnName("AzureRegionId");
+            this.Property(t => t.AzureSubscriptionId).HasColumnName("AzureSubscriptionId");
             this.Property(t => t.IsActive).HasColumnName("IsActive");
         }
     }

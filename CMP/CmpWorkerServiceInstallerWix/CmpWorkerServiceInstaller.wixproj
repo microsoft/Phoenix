@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\Environment.props" />
   <PropertyGroup>
+    <Configuration>$(Configuration)</Configuration>
+    <Platform>x86</Platform>
     <ProductVersion>3.8</ProductVersion>
     <ProjectGuid>5a127e0c-15b7-4e1b-aac2-ec569633d95b</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
@@ -15,19 +17,30 @@
     <SccLocalPath>SAK</SccLocalPath>
     <Name>CmpWorkerServiceInstaller</Name>
     <EnableProjectHarvesting>True</EnableProjectHarvesting>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <!-- <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir> -->
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(BuildingInsideVisualStudio)' != 'true' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <Cultures>en-US;</Cultures>
+    <OutputPath>$(OutputPath)\Installer\</OutputPath>
+    <DefineConstants>OutputPath=$(OutputPath)</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Cultures>en-US;</Cultures>
+    <OutputPath>$(OutputPath)\Installer\</OutputPath>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <DefineConstants>OutputPath=$(OutputPath)</DefineConstants>
+  </PropertyGroup>
+  <!--   <PropertyGroup Condition="'$(BuildingInsideVisualStudio)' != 'true' ">
     <OutputFilesDir>$(OutDir)\</OutputFilesDir>
     <OutputFilesSLDir>$(solutiondir)external</OutputFilesSLDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(BuildingInsideVisualStudio)' == 'true' ">
     <OutputFilesDir>$(solutiondir)\cmpworkerservice\bin\debug</OutputFilesDir>
     <OutputFilesSLDir>$(solutiondir)\CmpServiceLib\bin\debug</OutputFilesSLDir>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <PropertyGroup>
-    <DefineConstants>OutputFilesDir=$(OutputPath);OutputFilesSLDir=$(OutputFilesSLDir);OutputPath=$(OutputPath)</DefineConstants>
+    <DefineConstants>OutputPath=$(OutputPath)</DefineConstants>
   </PropertyGroup>
   <!--<PropertyGroup Condition="'$(TF_BUILD)'=='True'">
     <OutputFilesDir>$(OutDir)\</OutputFilesDir>

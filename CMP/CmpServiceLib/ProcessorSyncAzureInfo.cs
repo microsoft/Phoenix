@@ -163,14 +163,8 @@ namespace CmpServiceLib
         public object SyncWithAzure()
         {
             var ars = new AzureRefreshService(null, _cmpDbConnectionString);
-
-            var locationResult = Enumerable.Empty<AzureLocationArmData>();
-            var sizeResult = Enumerable.Empty<AzureVmSizeArmData>();
-            var dataResult = Enumerable.Empty<AzureVmOsArmData>();
-
-            ars.FetchAzureInformationWithArm(out locationResult, out sizeResult, out dataResult);
-            UpdateAzureRoleSizes(sizeResult.ToList());
-
+            var azureCatalogue = ars.FetchAzureInformationWithArm();
+            UpdateAzureRoleSizes(azureCatalogue);
             return 0;
         }
 
@@ -179,28 +173,35 @@ namespace CmpServiceLib
         ///  <summary>
         ///  
         ///  </summary>
-        /// <param name="azureVmSizes"></param>
+        /// <param name="azureCatalogueSet"></param>
         ///  
         //*********************************************************************
-        private void UpdateAzureRoleSizes(List<AzureVmSizeArmData> azureVmSizes)
+        private void UpdateAzureRoleSizes(IEnumerable<AzureCatalogue> azureCatalogueSet)
         {
             try
             {
-                CmpDb cmpDb = new CmpDb(_cmpDbConnectionString);
+                var cmpDb = new CmpDb(_cmpDbConnectionString);
 
-                List<AzureRoleSize> cmpVmSizes = cmpDb.FetchAzureRoleSizeList().ToList();
-                var cmpWapVmSizeNames = cmpVmSizes.Select(vs => vs.Name);
+                var cmpVmSizes = cmpDb.FetchAzureRoleSizeList().ToList();
+                var cmpWapVmSizeNames = cmpVmSizes.Select(vs => vs.Name).ToList();
+                var azureCatalogueVmSizes = new List<AzureVmSizeArmData>();
 
-                foreach (AzureVmSizeArmData vmSize in azureVmSizes)
+                //Eliminate dupes, we only need them to establish the mappings in another method.
+                foreach (var regionInCatalogue in azureCatalogueSet)
+                {
+                    azureCatalogueVmSizes.AddRange(regionInCatalogue.VmSizes);
+                }
+                azureCatalogueVmSizes = azureCatalogueVmSizes.Distinct(new AzureVmSizeArmData.AzureVmSizeComparer()).ToList();
+
+                foreach (var vmSize in azureCatalogueVmSizes)
                 {
                     if (!cmpWapVmSizeNames.Any(x => string.Equals(vmSize.name, x, StringComparison.InvariantCultureIgnoreCase)))
                     {
-                        /*Translating AzureVmSizeArmData object to AzureRoleSize object. They are essentially the same,
-                         * VmOs objects, but with slightly different attributes. Azure gives them one way, CMP needs
-                         * them another, hence the translation of the attributes that do match. Others are set with default 
-                         * values
+                        /* Translating AzureVmSizeArmData object to AzureRoleSize object. They are essentially the same, 
+                         * but with slightly different attributes. Azure gives them one way, CMP needs
+                         * them another, hence the translation of the attributes that do match. Others are set with default values
                          */
-                        AzureRoleSize newVmSize = new AzureRoleSize
+                        var newVmSize = new AzureRoleSize
                         {
                             Name = vmSize.name,
                             CoreCount = vmSize.numberOfCores,
@@ -214,7 +215,7 @@ namespace CmpServiceLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception caught in UpdateVmSizes: " + ex.ToString());
+                throw new Exception("Exception caught in UpdateAzureRoleSizes: " + ex.ToString());
             }
         }
 
