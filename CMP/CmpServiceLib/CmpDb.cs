@@ -1395,7 +1395,7 @@ namespace CmpServiceLib
             {
                 var trimChars = new char[] { ' ' };
                 var outList = new List<Models.ServiceProviderAccount>();
-                var cert = new KryptoLib.X509Krypto("KryptoCert");
+                //var cert = new KryptoLib.X509Krypto("KryptoCert");
 
 
                 using (var db = new Models.CMPContext())
@@ -1437,7 +1437,11 @@ namespace CmpServiceLib
                         spa.AzStorageContainerUrl   = null == spa.AzStorageContainerUrl ? null : spa.AzStorageContainerUrl.TrimEnd(trimChars);
                         spa.AzSubnet                = null == spa.AzSubnet ? null : spa.AzSubnet.TrimEnd(trimChars);
                         spa.AzVNet                  = null == spa.AzVNet ? null : spa.AzVNet.TrimEnd(trimChars);
-                        spa.AzureADClientKey = null == spa.AzureADClientKey ? null : cert.Decrypt(spa.AzureADClientKey);
+                        //Temporarily using "using" because of the Safe handle has been closed issue. 
+                        using (var cert = new KryptoLib.X509Krypto("KryptoCert"))
+                        {
+                            spa.AzureADClientKey = null == spa.AzureADClientKey ? null : cert.Decrypt(spa.AzureADClientKey);
+                        }
 
                         outList.Add(spa);
                     }
