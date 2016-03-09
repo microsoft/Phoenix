@@ -2755,6 +2755,40 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
         }
 
+        /// <summary>
+        ///     This method checks if the OS and Region mapping in the
+        ///     WAP subscription provided is available
+        /// </summary>
+        /// <param name="wapSubscriptionId"></param>
+        /// <returns>true/false (as defined by CMPWAP_DB database)</returns>
+        /// 
+        //*********************************************************************
+        public bool GetOSMappedToWapSubscription(int regionId, int osId)
+        {
+            try
+            {
+                //Getting the mapping of a wapSubscription to OS
+                using (var db = new MicrosoftMgmtSvcCmpContext())
+                {
+                    var OSResult = (from wapSub in db.AzureRegionVmOsMappings
+                                    where wapSub.AzureRegionId == regionId && wapSub.VmOsId == osId && wapSub.IsActive == true
+                              select wapSub).FirstOrDefault();
+                    if (OSResult == null)
+                        return false;
+
+                    return true;
+
+                }
+
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Exception in GetOSMappedToWapSubscription() : "
+                        + Utilities.UnwindExceptionMessages(ex));
+            }
+
+        }
+
         #endregion
 
         #region --- Class Utilites ---

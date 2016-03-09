@@ -757,6 +757,37 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Controllers
         }
 
         //*********************************************************************
+        ///
+        /// <summary>
+        /// Returns the mappings between the selected Region and OS
+        /// </summary>
+        /// <param name="subscriptionId">The WAP subscription id selected
+        /// <param name="Ids">Region and OS Ids
+        /// </param>
+        /// <returns>True/False for valid mapping</returns>
+        /// 
+        //*********************************************************************
+        [HttpPost]
+        public async Task<JsonResult> ListVMOSMappings(string subscriptionId, int[] Ids)
+        {
+            try
+            {
+                if (!subscriptionId.Any())
+                {
+                    throw new HttpException("Subscription Id not found");
+                }
+
+                var mappings = await ClientFactory.CmpWapExtensionClient.ListVMOSMappings(subscriptionId, Ids);
+                return this.Json(mappings);
+            }
+            catch (Exception ex)
+            {
+                throw new PortalException(ex.Message);   // Throw an exception that is to be handled by the portal
+            }
+
+        }
+
+        //*********************************************************************
         /// 
         /// <summary>
         /// Creates an RDP connection

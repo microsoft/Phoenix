@@ -169,6 +169,7 @@
     <Compile Include="Controllers\ResourceGroupController.cs" />
     <Compile Include="Controllers\SQLAnalysisServicesModesController.cs" />
     <Compile Include="Controllers\ScriptJobsController.cs" />
+    <Compile Include="Controllers\VmOsMappingController.cs" />
     <Compile Include="ECSPortalDB.cs" />
     <Compile Include="ICmpWapDb.cs" />
     <Compile Include="ICmpWapDbAdminRepository.cs" />

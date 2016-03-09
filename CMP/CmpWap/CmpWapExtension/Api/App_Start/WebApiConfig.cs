@@ -256,6 +256,16 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 defaults: new { controller = "SQLAnalysisServicesModes" });
 
             config.Routes.MapHttpRoute(
+                name: "SubscriptionList",
+                routeTemplate: "subscriptions/{subscriptionId}/wapSubscriptions",
+                defaults: new { controller = "Subscriptions" });
+
+            config.Routes.MapHttpRoute(
+                name: "OSMapping",
+                routeTemplate: "subscriptions/{subscriptionId}/vmos",
+                defaults: new { controller = "VmOsMapping" });
+
+            config.Routes.MapHttpRoute(
                 name: "NameResolution",
                 //  routeTemplate: "nameresolution/{securitygroups}",
                 routeTemplate: "subscriptions/{subscriptionId}/nameresolution/{securitygroups}",
