@@ -702,7 +702,7 @@ declare var resources;
                     },
                     // Called before the wizard moves to the next step
                     onNextStep: function () {
-                      var selectedImage = $("#VmSourceImage").val();
+                       var selectedImage = $("#VmSourceImage").val();
                         var selectedSize = $("#VmSize").val();
                         var selectedRegion = $("#VmRegion").val();
 
@@ -2061,8 +2061,6 @@ declare var resources;
             data: JSON.stringify(mappingInfo),
             async: false
         }).done(function (data) {
-            alert('fetchos mapping true');
-            //this.subscriptionRegionOSMapping = data;
             gotRegionOSMappingsList(data);
         });
     }
@@ -2084,7 +2082,6 @@ declare var resources;
             data: JSON.stringify(mappingInfo),
             async: false
         }).done(function (data) {
-            alert('fetchsize mapping true');
             gotRegionSizeMappingsList(data);
         });
     }
