@@ -36,7 +36,6 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Controllers
         /// <returns>A JSON object containing the file shares</returns>
         /// 
         //*********************************************************************
-        static string _recentIP;
         [HttpPost]
         public async Task<JsonResult> ListFileShares(string[] subscriptionIds)
         {
@@ -664,13 +663,11 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Controllers
 
         [HttpPost]
         public async Task<JsonResult> GetVm(string subscriptionId, int vmId)
-        {
-    
+        {    
             var result = new VmDashboardModel();
             var vmInfo = 
                 await ClientFactory.CmpWapExtensionClient.VmgetAsync(
                 subscriptionId, vmId);
-            _recentIP = vmInfo.InternalIP;
             return this.JsonDataSet(vmInfo);
         }
 
@@ -767,7 +764,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Controllers
         [HttpGet]
         public ActionResult OpenRDP()
         {
-            string address = _recentIP;//Request.QueryString["vmIp"];
+            string address = Request.QueryString["vmIp"];
             Response.ContentType = "application/octet-stream";
             Response.AppendHeader("Content-Disposition", string.Format("attachment; filename={0}.rdp", address));
             Response.Output.Write(@"
