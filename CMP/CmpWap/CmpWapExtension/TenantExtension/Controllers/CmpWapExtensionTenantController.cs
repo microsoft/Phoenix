@@ -36,7 +36,6 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Controllers
         /// <returns>A JSON object containing the file shares</returns>
         /// 
         //*********************************************************************
-
         [HttpPost]
         public async Task<JsonResult> ListFileShares(string[] subscriptionIds)
         {
@@ -664,13 +663,11 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Controllers
 
         [HttpPost]
         public async Task<JsonResult> GetVm(string subscriptionId, int vmId)
-        {
-    
+        {    
             var result = new VmDashboardModel();
             var vmInfo = 
                 await ClientFactory.CmpWapExtensionClient.VmgetAsync(
                 subscriptionId, vmId);
-
             return this.JsonDataSet(vmInfo);
         }
 
