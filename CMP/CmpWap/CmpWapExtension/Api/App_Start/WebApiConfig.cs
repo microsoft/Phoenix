@@ -261,9 +261,14 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 defaults: new { controller = "Subscriptions" });
 
             config.Routes.MapHttpRoute(
-                name: "OSMapping",
-                routeTemplate: "subscriptions/{subscriptionId}/vmos",
-                defaults: new { controller = "VmOsMapping" });
+                name: "RegionOSMappingValidation",
+                routeTemplate: "subscriptions/{subscriptionId}/regionosmappingvalidation",
+                defaults: new { controller = "VmRegionOsMappingValidation" });
+
+            config.Routes.MapHttpRoute(
+                name: "RegionSizeMappingValidation",
+                routeTemplate: "subscriptions/{subscriptionId}/regionsizemappingvalidation",
+                defaults: new { controller = "VmRegionSizeMappingValidation" });
 
             config.Routes.MapHttpRoute(
                 name: "NameResolution",

@@ -8,9 +8,8 @@ using System.Diagnostics;
 
 namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
 {
-    public class VmOsMappingController : BaseApiController
+    public class VmRegionSizeMappingValidationController : BaseApiController
     {
-
         public static EventLog EventLog;
         public static List<Models.AzureRegionVmOsMapping> osMapping = new List<Models.AzureRegionVmOsMapping>();
 
@@ -22,25 +21,24 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
         /// 
         //*********************************************************************
 
-        private bool GetOSSubscriptionMappingsFromDb(int regionId, int osId)
+        private bool GetVmRegionSizeMappingValidationFromDb(int regionId, int sizeId)
         {
             var cwdb = new CmpWapDb();
-            bool result = cwdb.GetOSMappedToWapSubscription(regionId, osId);
+            bool result = cwdb.GetRegionVmSizeMappings(regionId, sizeId);
             return result;
         }
 
         [HttpPost]
-        public bool GetOSSubscriptionMappings([FromBody]int[] regionId)
+        public bool GetVmRegionSizeMappingValidation([FromBody]int[] RegionSizeIds)
         {
-            if (regionId == null)
+            if ((RegionSizeIds == null) || (RegionSizeIds.Length == 0))
             {
-                var ex = new ArgumentException("RegionId is invalid");
+                var ex = new ArgumentException("RegionId or SizeId is empty/invalid");
                 Logger.Log(ex, EventLogEntryType.Error, 100, 1);
                 throw ex;
             }
-            return GetOSSubscriptionMappingsFromDb(regionId[0], regionId[1]);
+            return GetVmRegionSizeMappingValidationFromDb(RegionSizeIds[0], RegionSizeIds[1]);
 
         }
-
     }
 }

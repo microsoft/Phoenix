@@ -53,6 +53,12 @@
         color:red;
         display:none;
     }
+    #lblRegionSizeMappingStatus
+    {
+        font-size:10px;
+        color:red;
+        display:none;
+    }
 
     #nameresolve,#nameresolveSql{
        background-color:lightgray;display:inline-block;

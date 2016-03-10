@@ -2763,17 +2763,17 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <returns>true/false (as defined by CMPWAP_DB database)</returns>
         /// 
         //*********************************************************************
-        public bool GetOSMappedToWapSubscription(int regionId, int osId)
+        public bool GetRegionVmOSMappings(int regionId, int osId)
         {
             try
             {
                 //Getting the mapping of a wapSubscription to OS
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
-                    var OSResult = (from wapSub in db.AzureRegionVmOsMappings
+                    var Result = (from wapSub in db.AzureRegionVmOsMappings
                                     where wapSub.AzureRegionId == regionId && wapSub.VmOsId == osId && wapSub.IsActive == true
                               select wapSub).FirstOrDefault();
-                    if (OSResult == null)
+                    if (Result == null)
                         return false;
 
                     return true;
@@ -2783,7 +2783,41 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             }
             catch(Exception ex)
             {
-                throw new Exception("Exception in GetOSMappedToWapSubscription() : "
+                throw new Exception("Exception in GetRegionVmOSMappings() : "
+                        + Utilities.UnwindExceptionMessages(ex));
+            }
+
+        }
+
+        /// <summary>
+        ///     This method checks if the Size and Region mapping in the
+        ///     WAP subscription provided is available
+        /// </summary>
+        /// <param name="wapSubscriptionId"></param>
+        /// <returns>true/false (as defined by CMPWAP_DB database)</returns>
+        /// 
+        //*********************************************************************
+        public bool GetRegionVmSizeMappings(int regionId, int sizeId)
+        {
+            try
+            {
+                //Getting the mapping of a wapSubscription to OS
+                using (var db = new MicrosoftMgmtSvcCmpContext())
+                {
+                    var Result = (from wapSub in db.AzureRegionVmSizeMappings
+                                    where wapSub.AzureRegionId == regionId && wapSub.VmSizeId == sizeId && wapSub.IsActive == true
+                                    select wapSub).FirstOrDefault();
+                    if (Result == null)
+                        return false;
+
+                    return true;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in GetRegionVmSizeMappings() : "
                         + Utilities.UnwindExceptionMessages(ex));
             }
 
