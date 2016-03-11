@@ -186,7 +186,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
                     //var vm = cmpi.GetVm(Convert.ToInt32(foundVmDepRequest.CmpRequestID), 
                     //    CmpInterfaceModel.Constants.FetchType.AzureStatus);
                     var vm = GetLocalvmDBI(foundVmDepRequest);
-
+                    cwdb.UpdateVmIP(Id,vm.InternalIP);
                     vm.Cores = vmsizes.Where(x => x.Name == vm.RoleSize).Select(x => x.Cores).FirstOrDefault().ToString();
                     vm.OSVirtualHardDisk.Type = "OS Disk";
                     if(vm.DataVirtualHardDisks != null)

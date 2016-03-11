@@ -210,8 +210,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     }
 
                     var altVmSizeQuery = from rb in db.VmSizes
-                                     orderby rb.Name
-                                     select rb;
+                                         orderby rb.Name
+                                         select rb;
 
                     vmSizeResultList.AddRange(altVmSizeQuery);
                     return vmSizeResultList;
@@ -265,7 +265,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 throw new Exception("Exception in FetchVmSizeInfoList() : "
                     + Utilities.UnwindExceptionMessages(ex) + ex);
             }
-        }      
+        }
 
         //*********************************************************************
         ///
@@ -350,14 +350,14 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                         else
                         {
                             //Mapping doesn't exist on table. It's a new association. Add mapping record to table for each of the subscriptions associated to the plan.
-                                db.AzureAdminSubscriptionVmSizeMappings.Add(new AzureAdminSubscriptionVmSizeMapping
-                                {
-                                    VmSizeId = vmSizeParameter.VmSizeId,
-                                    PlanId = planId,
-                                    IsActive = vmSizeParameter.IsActive
-                                });
-                            }
+                            db.AzureAdminSubscriptionVmSizeMappings.Add(new AzureAdminSubscriptionVmSizeMapping
+                            {
+                                VmSizeId = vmSizeParameter.VmSizeId,
+                                PlanId = planId,
+                                IsActive = vmSizeParameter.IsActive
+                            });
                         }
+                    }
 
                     db.SaveChanges();
                 }
@@ -388,8 +388,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
                     var vmrQ = (from rb in db.VmSizes
-                                where rb.IsActive && 
-                                rb.Name.Equals(roleSizeName,StringComparison.InvariantCultureIgnoreCase)
+                                where rb.IsActive &&
+                                rb.Name.Equals(roleSizeName, StringComparison.InvariantCultureIgnoreCase)
                                 select rb);
 
                     if (!vmrQ.Any())
@@ -421,8 +421,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
                     var foundVmSizesList = (from vms in db.VmSizes
-                                           where vms.VmSizeId == vmSize.VmSizeId
-                                           select vms).ToList();
+                                            where vms.VmSizeId == vmSize.VmSizeId
+                                            select vms).ToList();
 
                     if (!foundVmSizesList.Any())
                     {
@@ -496,13 +496,13 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
                     var foundVmSizesList = from vms in db.VmSizes
-                                               where vms.VmSizeId == vmSizeId
-                                               select vms;
+                                           where vms.VmSizeId == vmSizeId
+                                           select vms;
 
                     foreach (var foundVmSize in foundVmSizesList)
                     {
                         db.VmSizes.Remove(foundVmSize);
-                    }                  
+                    }
                     db.SaveChanges();
                 }
             }
@@ -540,9 +540,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     if (onlyActiveOnes)
                     {
                         var osQuery = from rb in db.VmOs
-                                   where rb.IsActive
-                                   orderby rb.Name
-                                   select rb;
+                                      where rb.IsActive
+                                      orderby rb.Name
+                                      select rb;
 
                         osResultList.AddRange(osQuery);
                         return osResultList;
@@ -692,14 +692,14 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                         else
                         {
                             //Mapping doesn't exist on table. It's a new association. Add mapping record to table for each of the subscriptions associated to the plan.
-                                db.AzureAdminSubscriptionVmOsMappings.Add(new AzureAdminSubscriptionVmOsMapping
-                                {
-                                    VmOsId = vmOsParameter.VmOsId,
-                                    PlanId = planId,
-                                    IsActive = vmOsParameter.IsActive
-                                });
-                            }
+                            db.AzureAdminSubscriptionVmOsMappings.Add(new AzureAdminSubscriptionVmOsMapping
+                            {
+                                VmOsId = vmOsParameter.VmOsId,
+                                PlanId = planId,
+                                IsActive = vmOsParameter.IsActive
+                            });
                         }
+                    }
 
                     db.SaveChanges();
                 }
@@ -726,8 +726,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
                     var foundVmOsInfoList = (from vmo in db.VmOs
-                                            where vmo.VmOsId == vmOsInfo.VmOsId
-                                            select vmo).ToList();
+                                             where vmo.VmOsId == vmOsInfo.VmOsId
+                                             select vmo).ToList();
 
                     if (!foundVmOsInfoList.Any())
                     {
@@ -778,7 +778,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
 
                         db.VmOs.Add(item);
                     }
-                    
+
                     db.SaveChanges();
                 }
             }
@@ -804,8 +804,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
                     var foundVmOsInfoList = from vmo in db.VmOs
-                                               where vmo.VmOsId == vmOsInfoId
-                                               select vmo;
+                                            where vmo.VmOsId == vmOsInfoId
+                                            select vmo;
 
                     foreach (var foundVmOsInfo in foundVmOsInfoList)
                     {
@@ -847,21 +847,21 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     if (onlyActiveOnes)
                     {
                         var regionQuery = from rb in db.AzureRegions
-                               orderby rb.Name
-                               where rb.IsActive
-                               select rb;
+                                          orderby rb.Name
+                                          where rb.IsActive
+                                          select rb;
 
                         regionResultList.AddRange(regionQuery);
                         return regionResultList;
                     }
 
                     var altRegionQuery = from rb in db.AzureRegions
-                                     orderby rb.Name
-                                     select rb;
+                                         orderby rb.Name
+                                         select rb;
 
                     regionResultList.AddRange(altRegionQuery);
                     return regionResultList;
-                    
+
                 }
             }
             catch (Exception ex)
@@ -892,12 +892,12 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             {
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
-                    var regionQuery =   from regions in db.AzureRegions
-                                        join mapTable in db.AzureAdminSubscriptionRegionMappings
-                                        on regions.AzureRegionId equals mapTable.AzureRegionId into joinedEntities
-                                        from mapTable in joinedEntities.DefaultIfEmpty()
-                                        where regions.IsActive && (mapTable.PlanId == planId || mapTable == null || mapTable.PlanId == planId)
-                                        select new { Key = regions, Value = mapTable == null ? false : mapTable.IsActive };
+                    var regionQuery = from regions in db.AzureRegions
+                                      join mapTable in db.AzureAdminSubscriptionRegionMappings
+                                      on regions.AzureRegionId equals mapTable.AzureRegionId into joinedEntities
+                                      from mapTable in joinedEntities.DefaultIfEmpty()
+                                      where regions.IsActive && (mapTable.PlanId == planId || mapTable == null || mapTable.PlanId == planId)
+                                      select new { Key = regions, Value = mapTable == null ? false : mapTable.IsActive };
 
                     if (!regionQuery.Any())
                         return null;
@@ -1139,8 +1139,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
                     var foundAzureRegionList = from ar in db.AzureRegions
-                                       where ar.AzureRegionId == azureRegionId
-                                       select ar;
+                                               where ar.AzureRegionId == azureRegionId
+                                               select ar;
 
                     foreach (var foundAzureRegion in foundAzureRegionList)
                     {
@@ -1237,7 +1237,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         //*********************************************************************
 
         public IEnumerable<ResourceProviderAcctGroup> FetchResourceGroupList(string wapSubscriptionId)
-        {   
+        {
             try
             {
                 VMServiceRepository vmsRepo = new VMServiceRepository();
@@ -1482,8 +1482,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                                    where (rb.StatusCode == status & rb.Active == active)
                                    && rb.WapSubscriptionID == subscriptionId
                                    orderby rb.Id
-                                   select rb;                        
-                    }             
+                                   select rb;
+                    }
                     return vmrQ.ToList();
                 }
             }
@@ -1563,7 +1563,44 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
+        /// <summary>
+        /// This methos id used to update the VM IP if it changes on shutdown-start
+        /// </summary>
+        /// <param name="vmDepReqId"></param>
+        /// <param name="size"></param>
+        public void UpdateVmIP(int vmDepReqId, string newIpAddress)
+        {
+            try
+            {
+                using (var db = new MicrosoftMgmtSvcCmpContext())
+                {
 
+                    var foundReqList = from vmr in db.CmpRequests
+                                       where vmr.Id == vmDepReqId
+                                       select vmr;
+
+                    if (!foundReqList.Any())
+                    {
+                        throw new Exception("Unable to locate VM request record: ID: "
+                            + vmDepReqId);
+                    }
+
+                    var foundReq = foundReqList.First();
+                    if (foundReq.AddressFromVm != newIpAddress && newIpAddress != null)
+                    {
+                        foundReq.AddressFromVm = newIpAddress;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogThis("Exception in UpdateVmSize() : ", "UpdateVmSize()", ex, EventLogEntryType.Error);
+
+                throw new Exception("Exception in UpdateVmSize() : "
+                    + Utilities.UnwindExceptionMessages(ex));
+            }
+        }
         //*********************************************************************
         ///
         /// <summary>
@@ -1618,7 +1655,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
 
                     if (!foundReqList.Any())
                     {
-                        
+
                         throw new Exception("Unable to locate VM request record: ID: "
                             + vmRequest.Id);
                     }
@@ -1760,7 +1797,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 LastStatusUpdate = DateTime.UtcNow,
                 Active = true,
                 TagData = createVm.VmTagData,
-                TagID = 0, 
+                TagID = 0,
                 AddressFromVm = ""
             };
 
@@ -1832,9 +1869,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
                     var result = (from sr in db.ServerRoles
-                                 orderby sr.Name
-                                 where sr.IsActive
-                                 select sr);
+                                  orderby sr.Name
+                                  where sr.IsActive
+                                  select sr);
 
                     serverRoleList.AddRange(result);
                     return serverRoleList;
@@ -1930,7 +1967,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         public List<Models.NetworkNIC> FetchNetworkNicInfoList()
         {
             var networkNicList = new List<Models.NetworkNIC>();
-            
+
             try
             {
                 using (var db = new MicrosoftMgmtSvcCmpContext())
@@ -1971,7 +2008,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                                       select nn);
 
                         networkNicList.AddRange(result);
-                    } 
+                    }
                     return networkNicList;
                 }
             }
@@ -2004,9 +2041,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
                     var result = from item in db.SQLCollations
-                                  orderby item.Name
-                                  where item.IsActive
-                                  select item;
+                                 orderby item.Name
+                                 where item.IsActive
+                                 select item;
 
                     list.AddRange(result);
                     return list;
@@ -2514,7 +2551,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             {
                 if (planId == null)
                     throw new InvalidDataException("No plan was found mapped to the provided WapSubscription");
-                
+
                 //Now using the resolved planId as the clause to search the correct AzureAdminSubscriptionMapping
                 //This block is the same as the admin portion, since it relies on a PlanId.
                 using (var db = new MicrosoftMgmtSvcCmpContext())
@@ -2568,8 +2605,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
                     var mappingsFromDb = (from map in db.AzureAdminSubscriptionMappings
-                        where map.PlanId == aasm.PlanId && map.SubId == aasm.SubId
-                        select map).ToList();
+                                          where map.PlanId == aasm.PlanId && map.SubId == aasm.SubId
+                                          select map).ToList();
 
                     if (mappingsFromDb.Any())
                     {
@@ -2611,8 +2648,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             using (var db = new MicrosoftMgmtSvcCmpContext())
             {
                 var spaMappings = (from map in db.AzureAdminSubscriptionMappings
-                                    where map.PlanId == planId && map.IsActive
-                                    select map);
+                                   where map.PlanId == planId && map.IsActive
+                                   select map);
 
                 /*In order not to mix the two contexts (DBs and avoid model overhead in projects,
                  * we have to extract the scalar values of the FK Id and make Enumerables of 
@@ -2636,27 +2673,27 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 Value = activeMappings.Contains(x.ID)
             });
 
-                foreach (var item in resultSpas.Distinct())
+            foreach (var item in resultSpas.Distinct())
+            {
+                AzureSubscription key = new AzureSubscription
                 {
-                    AzureSubscription key = new AzureSubscription
-                    {
-                        Id = item.Key.ID,
-                        Name = item.Key.Name,
-                        Description = item.Key.Description,
-                        AccountType = item.Key.AccountType,
-                        ExpirationDate = item.Key.ExpirationDate,
-                        CertificateBlob = item.Key.CertificateBlob,
-                        CertificateThumbprint = item.Key.CertificateThumbprint,
-                        AccountID = item.Key.AccountID,
-                        AccountPassword = item.Key.AccountPassword,
-                        Active = item.Key.Active,
-                        TenantID = item.Key.TenantID,
-                        ClientID = item.Key.ClientID,
-                        ClientKey = item.Key.ClientKey,
-                        PlanId = planId
-                    };
-                    result.Add(key, item.Value);
-                }
+                    Id = item.Key.ID,
+                    Name = item.Key.Name,
+                    Description = item.Key.Description,
+                    AccountType = item.Key.AccountType,
+                    ExpirationDate = item.Key.ExpirationDate,
+                    CertificateBlob = item.Key.CertificateBlob,
+                    CertificateThumbprint = item.Key.CertificateThumbprint,
+                    AccountID = item.Key.AccountID,
+                    AccountPassword = item.Key.AccountPassword,
+                    Active = item.Key.Active,
+                    TenantID = item.Key.TenantID,
+                    ClientID = item.Key.ClientID,
+                    ClientKey = item.Key.ClientKey,
+                    PlanId = planId
+                };
+                result.Add(key, item.Value);
+            }
             //}
             return result;
         }
@@ -2772,15 +2809,15 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         public string GetPlanMappedToWapSubscription(string wapSubscriptionId)
         {
             Models.MicrosoftMgmtSvcStore.Plan result;
-            
+
             //Getting the mapping of a wapSubscription to a plan so we can query the Admin Mappings
             using (var db = new Models.MicrosoftMgmtSvcStore.MicrosoftMgmtSvcStoreContext())
             {
                 result = (from wapSub in db.Subscriptions
-                              join plan in db.Plans
-                              on wapSub.PlanId equals plan.Id
-                              where wapSub.SubscriptionId == wapSubscriptionId
-                              select plan).FirstOrDefault();
+                          join plan in db.Plans
+                          on wapSub.PlanId equals plan.Id
+                          where wapSub.SubscriptionId == wapSubscriptionId
+                          select plan).FirstOrDefault();
             }
 
             if (result == null)
