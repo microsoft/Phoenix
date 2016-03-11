@@ -36,6 +36,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Controllers
         /// <returns>A JSON object containing the file shares</returns>
         /// 
         //*********************************************************************
+
         [HttpPost]
         public async Task<JsonResult> ListFileShares(string[] subscriptionIds)
         {
@@ -663,7 +664,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Controllers
 
         [HttpPost]
         public async Task<JsonResult> GetVm(string subscriptionId, int vmId)
-        {    
+        {
             var result = new VmDashboardModel();
             var vmInfo = 
                 await ClientFactory.CmpWapExtensionClient.VmgetAsync(
@@ -751,6 +752,68 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Controllers
                 throw new PortalException(ex.Message);   // Throw an exception that is to be handled by the portal
             }
             
+        }
+
+        //*********************************************************************
+        /// 
+        /// <summary>
+        /// Returns the mappings between the selected Region and OS
+        /// </summary>
+        /// <param name="subscriptionId">The WAP subscription id selected
+        /// <param name="Ids">Region and OS Ids
+        /// </param>
+        /// <returns>True/False for valid mapping</returns>
+        /// 
+        //*********************************************************************
+        [HttpPost]
+        public async Task<JsonResult> ListVMRegionOSMappings(string subscriptionId, int[] Ids)
+        {
+            try
+            {
+                if (!subscriptionId.Any())
+                {
+                    throw new HttpException("Subscription Id not found");
+                }
+
+                var mappings = await ClientFactory.CmpWapExtensionClient.GetVMRegionOSMappings(subscriptionId, Ids);
+                return this.Json(mappings);
+            }
+            catch (Exception ex)
+            {
+                throw new PortalException(ex.Message);   // Throw an exception that is to be handled by the portal
+            }
+
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// Returns the mappings between the selected Region and OS
+        /// </summary>
+        /// <param name="subscriptionId">The WAP subscription id selected
+        /// <param name="Ids">Region and OS Ids
+        /// </param>
+        /// <returns>True/False for valid mapping</returns>
+        /// 
+        //*********************************************************************
+        [HttpPost]
+        public async Task<JsonResult> ListVMRegionSizeMappings(string subscriptionId, int[] Ids)
+        {
+            try
+            {
+                if (!subscriptionId.Any())
+                {
+                    throw new HttpException("Subscription Id not found");
+                }
+
+                var mappings = await ClientFactory.CmpWapExtensionClient.GetVMRegionSizeMappings(subscriptionId, Ids);
+                return this.Json(mappings);
+            }
+            catch (Exception ex)
+            {
+                throw new PortalException(ex.Message);   // Throw an exception that is to be handled by the portal
+            }
+
         }
 
         //*********************************************************************
