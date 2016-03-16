@@ -89,9 +89,8 @@ declare var sizeInfoList;
 								templateName: "FileSharesTabEmpty"
 							}
 						});
-
-
-	   
+                
+                addressFromVm = value.data.InternalIP;
 					_attachLayout(renderArea, value.data);
 					_attachquickglanceLayout(renderArea, value.data);
 
