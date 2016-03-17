@@ -34,7 +34,7 @@
     var resources = [], CmpWapExtensionTenantExtensionActivationInit, subscriptionRegisteredToService, accountAdminLiveEmailId, navigation, selectedrow, lastselecteddrive, serviceName = "CmpWapExtension", defaultdriveslist = ["D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"], extradrivenames = [], defaultsqlcollation = "SQL_Latin1_General_CP1_CI_AS";
 
     var allSubscriptionIds;
-    var getDomainlistUrl = "/CmpWapExtensionTenant/ListDomains", getResourceGroupsUrl = "/CmpWapExtensionTenant/LisResourceGroups", getSizeInfoListUrl = "/CmpWapExtensionTenant/ListVmSizes", getOsInfoListUrl = "/CmpWapExtensionTenant/ListOSs", getTargetRegionsListUrl = "/CmpWapExtensionTenant/ListTargetRegions", getAppListUrl = "/CmpWapExtensionTenant/ListApps", getEnvironmenttypeListUrl = "/CmpWapExtensionTenant/ListEnvironments", getServiceCategoryListUrl = "/CmpWapExtensionTenant/ListCategories", getServerRoleListUrl = "/CmpWapExtensionTenant/ListServerRoles", getNetworkNICListUrl = "/CmpWapExtensionTenant/LisNetworkNICs", getServerRoleDriverMappingListUrl = "/CmpWapExtensionTenant/LisServerRoleDriveMappings", getSqlCollationListUrl = "/CmpWapExtensionTenant/ListSqlCollations", getSqlVersionListUrl = "/CmpWapExtensionTenant/ListSqlVersions", getiisroleservicesurl = "/CmpWapExtensionTenant/ListIISRoleServices", getsqlanalysisservicemodesurl = "/CmpWapExtensionTenant/ListSQLAnalysisServiceModes", getSubscriptionMappingsUrl = "/CmpWapExtensionTenant/ListSubscriptionMappings", getVMRegionOSMappingsUrl = "/CmpWapExtensionTenant/ListVMRegionOSMappings";
+    var getDomainlistUrl = "/CmpWapExtensionTenant/ListDomains", getResourceGroupsUrl = "/CmpWapExtensionTenant/LisResourceGroups", getSizeInfoListUrl = "/CmpWapExtensionTenant/ListVmSizes", getOsInfoListUrl = "/CmpWapExtensionTenant/ListOSs", getTargetRegionsListUrl = "/CmpWapExtensionTenant/ListTargetRegions", getAppListUrl = "/CmpWapExtensionTenant/ListApps", getEnvironmenttypeListUrl = "/CmpWapExtensionTenant/ListEnvironments", getServiceCategoryListUrl = "/CmpWapExtensionTenant/ListCategories", getServerRoleListUrl = "/CmpWapExtensionTenant/ListServerRoles", getNetworkNICListUrl = "/CmpWapExtensionTenant/LisNetworkNICs", getServerRoleDriverMappingListUrl = "/CmpWapExtensionTenant/LisServerRoleDriveMappings", getSqlCollationListUrl = "/CmpWapExtensionTenant/ListSqlCollations", getSqlVersionListUrl = "/CmpWapExtensionTenant/ListSqlVersions", getiisroleservicesurl = "/CmpWapExtensionTenant/ListIISRoleServices", getsqlanalysisservicemodesurl = "/CmpWapExtensionTenant/ListSQLAnalysisServiceModes", getSubscriptionMappingsUrl = "/CmpWapExtensionTenant/ListSubscriptionMappings", getVMOSMappingsUrl = "/CmpWapExtensionTenant/ListVMRegionOSMappings";
     var getVMSizeMappingsUrl = "/CmpWapExtensionTenant/ListVMRegionSizeMappings";
     //*************************************************************************
     // Clears view when navigating away from the page
@@ -491,6 +491,7 @@
                     template: "CreateVM1",
                     // Called when the step is first created
                     onStepCreated: function () {
+                        populateUiElements();
                         //wizard = this;
                     },
                     // Called before the wizard moves to the next step
@@ -515,7 +516,6 @@
                     },
                     // Called each time the step is displayed
                     onStepActivate: function () {
-                        populateUiElements();
                         $("#lblmessage").css("display", "none");
                         valid = true;
                     }
@@ -674,7 +674,7 @@
                                 }
                             }
                         });
-                        $("#VmSourceImage").on("change", function () {                            
+                        $("#VmSourceImage").on("change", function () {
                             $("#lblRegionOsMappingStatus").css("display", "none");
                         });
                         $("#VmSize").on("change", function () {
@@ -704,8 +704,8 @@
                         sizeInfoList.forEach(function(value, index) {
                             if (selectedSize == sizeInfoList[index].Name) {
                                 sizeId = sizeInfoList[index].VMSizeId;
-                                }
-                         });
+                            }
+                        });
 
                         targetRegionsList.forEach(function (value, index) {
                             if (selectedRegion == targetRegionsList[index].Name) {
@@ -716,7 +716,7 @@
                         var regionOsIds = [selectedRegionId, osId];
                         if (selectedRegionId > 0 && osId > 0) {
                             fetchVMOSMappings(subId, regionOsIds);
-                        }                        
+                        }
 
                         var regionSizeIds = [selectedRegionId, sizeId];
                         if (selectedRegionId > 0 && sizeId > 0) {
@@ -744,10 +744,10 @@
                         if (Shell.UI.Validation.validateContainer(".hw-create-fileshare-container")) {
                             if (!valid) {
                                 return false;
-                        } else {
+                            } else {
                                 valid = true;
                             }
-                            } else {
+                        } else {
                             return false;
                         }
                     },
@@ -2005,7 +2005,6 @@
     //*************************************************************************
     function gotSubscriptionMappingsList(data) {
         subscriptionMappingsList = data;
-        //alert(this.subscriptionMappingsList);
         //alert("init " + JSON.stringify(data));
     }
 
@@ -2036,12 +2035,11 @@
         var mappingInfo = { "subscriptionId": allSubscriptionIds, "Ids": ids };
         $.ajax({
             type: 'POST',
-            url: getVMRegionOSMappingsUrl,
+            url: getVMOSMappingsUrl,
             contentType: 'application/json',
             data: JSON.stringify(mappingInfo),
             async: false
         }).done(function (data) {
-            //this.subscriptionRegionOSMapping = data;
             gotRegionOSMappingsList(data);
         });
     }

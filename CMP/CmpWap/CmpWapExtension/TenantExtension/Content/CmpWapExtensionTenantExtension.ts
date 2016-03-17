@@ -508,6 +508,8 @@ declare var resources;
                     template: "CreateVM1",
                     // Called when the step is first created
                     onStepCreated: function () {
+                        populateUiElements();
+
                         //wizard = this;
                     },
                     // Called before the wizard moves to the next step
@@ -532,7 +534,6 @@ declare var resources;
                     },
                     // Called each time the step is displayed
                     onStepActivate: function () {
-                        populateUiElements();
                         $("#lblmessage").css("display", "none");
                         valid = true;
                     }
