@@ -36,11 +36,20 @@
             }
 
             WindowsApplicationHelper.SetForegroundWindow(hWnd);
-            SendKeys.SendWait(userName);  System.Threading.Thread.Sleep(2000);
-            SendKeys.SendWait("{TAB}"); System.Threading.Thread.Sleep(2000);
-            SendKeys.SendWait(password); System.Threading.Thread.Sleep(2000);
+            SendKeys.SendWait(userName);
+       
+            System.Threading.Thread.Sleep(2000);
+            SendKeys.SendWait("{TAB}");
+
+            System.Threading.Thread.Sleep(2000);
+            SendKeys.SendWait(password);
+            SendKeys.SendWait("{TAB}");
+            System.Threading.Thread.Sleep(2000);
             SendKeys.SendWait("{ENTER}");
+
+            
         }
+
 
         public static void Login0(string windowTitle, string userName, string password)
         {

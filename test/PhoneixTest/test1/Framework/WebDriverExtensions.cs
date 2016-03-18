@@ -290,7 +290,7 @@ namespace Phoenix.Test.UI.Framework
             int sleepInterval = 10000)
         {
             //Log.Information("Waiting for all Ajax calls to finish.");
-
+            
             return Wait(driver,
                 drv => drv.ExecuteJavaScript<bool>("return $.active == 0"),
                 timeout,

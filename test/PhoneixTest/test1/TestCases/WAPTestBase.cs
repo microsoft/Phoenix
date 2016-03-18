@@ -9,6 +9,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using OpenQA.Selenium.Firefox;
     using OpenQA.Selenium.IE;
+    using System;
 
     [TestClass]
     public abstract class WAPTestBase
@@ -27,6 +28,8 @@
         {
             //this.driver = new FirefoxDriver();
             this.driver = new InternetExplorerDriver();
+            this.driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
+            this.driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(15));
         }
 
         [TestCleanup]

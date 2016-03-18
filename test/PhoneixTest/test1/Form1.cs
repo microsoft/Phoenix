@@ -37,6 +37,18 @@ namespace Phoenix.Test.UI
         public Form1()
         {
             InitializeComponent();
+
+            SetDefaultAccountInfo();
+        }
+
+        private void SetDefaultAccountInfo()
+        {
+            this.textBox_UserName.Text = "redmond\\v-sowan";
+            this.textBox_ClientId.Text = "d11ac2a1-9d9d-4bee-8248-7a8a8d890d8d";
+            this.textBox_ClientKey.Text = "123abc!!!";
+            this.textBox_TenantId.Text = "72f988bf-86f1-41af-91ab-2d7cd011db47";
+            this.textBox1.Text = "00f885db-ef1d-4545-ad2d-64c0caf93384";
+            this.textBox_AdminPortalServer.Text = "MININT-N9J02SU";
         }
 
         private void button1_Click(object sender, EventArgs e)

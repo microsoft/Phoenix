@@ -13,6 +13,8 @@ namespace Phoenix.Test.UI.Framework.WebPages
     using Phoenix.Test.UI.Framework.Logging;
     using Phoenix.Test.UI.Framework.WebPages;
     using Phoenix.Test.Data;
+    using OpenQA.Selenium.Support.UI;
+    using OpenQA.Selenium.Interactions;
 
     public class SmpPage : Page
     {
@@ -97,7 +99,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
         public void CreatePlanFromNewButton(CreatePlanData data)
         {
             Log.Information("---Click New button---");
-            Browser.WaitForAjax();
+           // Browser.WaitForAjax();
             OpenDrawer();
             Log.Information("---Select Create Plan---");
             this.drawer.SelectItem("PLAN");
@@ -132,8 +134,28 @@ namespace Phoenix.Test.UI.Framework.WebPages
         public void OpenDrawer()
         {
             Log.Information("Click New button to open drawer.");
-            this.btnNew.Click();
+            // this.btnNew.Click();
+
+            IJavaScriptExecutor js = this.Browser as IJavaScriptExecutor;
+            js.ExecuteScript("arguments[0].click()", this.btnNew.Element); //this.Browser.FindElement(By.ClassName("fxs-drawertaskbar-newbutton"))); ;
+            /*
+            MouseHoverByJavaScript(this.btnNew.Element);
+
+            ((IHasInputDevices)this.Browser).Mouse.MouseMove(((ILocatable)this.btnNew.Element).Coordinates);
+            new Actions(this.Browser).MoveToElement(this.btnNew.Element).Build().Perform();
+            new Actions(this.Browser).MoveToElement(this.btnNew.Element).Click().Build().Perform();*/
         }
+
+        public void MouseHoverByJavaScript(IWebElement targetElement)
+        {
+
+            string javaScript = "var evObj = document.createEvent('MouseEvents');" +
+                                "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
+                                "arguments[0].dispatchEvent(evObj);";
+            IJavaScriptExecutor js = this.Browser as IJavaScriptExecutor;
+            js.ExecuteScript(javaScript, targetElement);
+        }
+
 
         public void OpenMenuPlans()
         {
@@ -197,6 +219,5 @@ namespace Phoenix.Test.UI.Framework.WebPages
         {
             this.btnCloseFirstTimeWizard.Click();
         }
-
     }
 }

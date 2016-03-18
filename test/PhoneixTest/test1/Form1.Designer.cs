@@ -109,7 +109,7 @@
             // 
             this.textBox_ClientId.Location = new System.Drawing.Point(148, 104);
             this.textBox_ClientId.Name = "textBox_ClientId";
-            this.textBox_ClientId.Size = new System.Drawing.Size(306, 24);
+            this.textBox_ClientId.Size = new System.Drawing.Size(306, 28);
             this.textBox_ClientId.TabIndex = 7;
             // 
             // label1
@@ -118,7 +118,7 @@
             this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(9, 182);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 15);
+            this.label1.Size = new System.Drawing.Size(84, 21);
             this.label1.TabIndex = 5;
             this.label1.Text = "TENANT ID";
             // 
@@ -128,7 +128,7 @@
             this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(9, 104);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 15);
+            this.label2.Size = new System.Drawing.Size(75, 21);
             this.label2.TabIndex = 0;
             this.label2.Text = "CLIENT ID";
             // 
@@ -138,7 +138,7 @@
             this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(9, 142);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 15);
+            this.label3.Size = new System.Drawing.Size(86, 21);
             this.label3.TabIndex = 7;
             this.label3.Text = "CLIENT KEY";
             // 
@@ -159,21 +159,21 @@
             // 
             this.textBox_ClientKey.Location = new System.Drawing.Point(148, 142);
             this.textBox_ClientKey.Name = "textBox_ClientKey";
-            this.textBox_ClientKey.Size = new System.Drawing.Size(306, 24);
+            this.textBox_ClientKey.Size = new System.Drawing.Size(306, 28);
             this.textBox_ClientKey.TabIndex = 8;
             // 
             // textBox_TenantId
             // 
             this.textBox_TenantId.Location = new System.Drawing.Point(148, 182);
             this.textBox_TenantId.Name = "textBox_TenantId";
-            this.textBox_TenantId.Size = new System.Drawing.Size(306, 24);
+            this.textBox_TenantId.Size = new System.Drawing.Size(306, 28);
             this.textBox_TenantId.TabIndex = 9;
             // 
             // textBox_UserName
             // 
             this.textBox_UserName.Location = new System.Drawing.Point(148, 28);
             this.textBox_UserName.Name = "textBox_UserName";
-            this.textBox_UserName.Size = new System.Drawing.Size(306, 24);
+            this.textBox_UserName.Size = new System.Drawing.Size(306, 28);
             this.textBox_UserName.TabIndex = 5;
             // 
             // label6
@@ -182,7 +182,7 @@
             this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(9, 28);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 15);
+            this.label6.Size = new System.Drawing.Size(119, 21);
             this.label6.TabIndex = 1;
             this.label6.Text = "USER ACCOUNT";
             // 
@@ -192,7 +192,7 @@
             this.label7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(9, 66);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 15);
+            this.label7.Size = new System.Drawing.Size(89, 21);
             this.label7.TabIndex = 0;
             this.label7.Text = "PASSWORD";
             // 
@@ -201,7 +201,7 @@
             this.textBox_Password.Location = new System.Drawing.Point(148, 66);
             this.textBox_Password.Name = "textBox_Password";
             this.textBox_Password.PasswordChar = '*';
-            this.textBox_Password.Size = new System.Drawing.Size(306, 24);
+            this.textBox_Password.Size = new System.Drawing.Size(306, 28);
             this.textBox_Password.TabIndex = 6;
             // 
             // label8
@@ -210,7 +210,7 @@
             this.label8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(9, 101);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(136, 15);
+            this.label8.Size = new System.Drawing.Size(185, 21);
             this.label8.TabIndex = 16;
             this.label8.Text = "DATABASE SERVER NAME";
             // 
@@ -218,7 +218,7 @@
             // 
             this.textBox_ServerName.Location = new System.Drawing.Point(169, 101);
             this.textBox_ServerName.Name = "textBox_ServerName";
-            this.textBox_ServerName.Size = new System.Drawing.Size(306, 24);
+            this.textBox_ServerName.Size = new System.Drawing.Size(306, 28);
             this.textBox_ServerName.TabIndex = 3;
             this.textBox_ServerName.TextChanged += new System.EventHandler(this.textBox_ServerName_TextChanged);
             // 
@@ -272,14 +272,14 @@
             this.textBox_SQLAdmPswd.Location = new System.Drawing.Point(170, 61);
             this.textBox_SQLAdmPswd.Name = "textBox_SQLAdmPswd";
             this.textBox_SQLAdmPswd.PasswordChar = '*';
-            this.textBox_SQLAdmPswd.Size = new System.Drawing.Size(306, 24);
+            this.textBox_SQLAdmPswd.Size = new System.Drawing.Size(306, 28);
             this.textBox_SQLAdmPswd.TabIndex = 2;
             // 
             // textBox_SQLAdmin
             // 
             this.textBox_SQLAdmin.Location = new System.Drawing.Point(170, 19);
             this.textBox_SQLAdmin.Name = "textBox_SQLAdmin";
-            this.textBox_SQLAdmin.Size = new System.Drawing.Size(306, 24);
+            this.textBox_SQLAdmin.Size = new System.Drawing.Size(306, 28);
             this.textBox_SQLAdmin.TabIndex = 1;
             // 
             // label13
@@ -288,7 +288,7 @@
             this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(9, 61);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(68, 15);
+            this.label13.Size = new System.Drawing.Size(89, 21);
             this.label13.TabIndex = 27;
             this.label13.Text = "PASSWORD";
             // 
@@ -298,7 +298,7 @@
             this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(9, 19);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(123, 15);
+            this.label12.Size = new System.Drawing.Size(163, 21);
             this.label12.TabIndex = 26;
             this.label12.Text = "SQL ADMIN ACCOUNT";
             // 
@@ -335,7 +335,7 @@
             this.lblCheckWebApps.BackColor = System.Drawing.Color.White;
             this.lblCheckWebApps.Location = new System.Drawing.Point(210, 313);
             this.lblCheckWebApps.Name = "lblCheckWebApps";
-            this.lblCheckWebApps.Size = new System.Drawing.Size(109, 17);
+            this.lblCheckWebApps.Size = new System.Drawing.Size(133, 21);
             this.lblCheckWebApps.TabIndex = 22;
             this.lblCheckWebApps.Text = "CHECK WEB APPS";
             this.lblCheckWebApps.Click += new System.EventHandler(this.label10_Click);
@@ -345,7 +345,7 @@
             this.lblCheckServices.AutoSize = true;
             this.lblCheckServices.Location = new System.Drawing.Point(210, 284);
             this.lblCheckServices.Name = "lblCheckServices";
-            this.lblCheckServices.Size = new System.Drawing.Size(216, 17);
+            this.lblCheckServices.Size = new System.Drawing.Size(264, 21);
             this.lblCheckServices.TabIndex = 21;
             this.lblCheckServices.Text = "CHECK CMP AND RELATED SERVICES";
             // 
@@ -354,7 +354,7 @@
             this.lblCheckDatabases.AutoSize = true;
             this.lblCheckDatabases.Location = new System.Drawing.Point(210, 255);
             this.lblCheckDatabases.Name = "lblCheckDatabases";
-            this.lblCheckDatabases.Size = new System.Drawing.Size(116, 17);
+            this.lblCheckDatabases.Size = new System.Drawing.Size(141, 21);
             this.lblCheckDatabases.TabIndex = 20;
             this.lblCheckDatabases.Text = "CHECK DATABASES";
             // 
@@ -365,7 +365,7 @@
             this.lblPostInstallSteps.ForeColor = System.Drawing.Color.Black;
             this.lblPostInstallSteps.Location = new System.Drawing.Point(166, 219);
             this.lblPostInstallSteps.Name = "lblPostInstallSteps";
-            this.lblPostInstallSteps.Size = new System.Drawing.Size(160, 17);
+            this.lblPostInstallSteps.Size = new System.Drawing.Size(192, 21);
             this.lblPostInstallSteps.TabIndex = 19;
             this.lblPostInstallSteps.Text = "POST-INSTALL TEST STEPS:";
             this.lblPostInstallSteps.Click += new System.EventHandler(this.lblPostInstallSteps_Click);
@@ -410,7 +410,7 @@
             this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(9, 259);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 15);
+            this.label5.Size = new System.Drawing.Size(173, 21);
             this.label5.TabIndex = 19;
             this.label5.Text = "ADMIN PORTAL SERVER";
             // 
@@ -418,7 +418,7 @@
             // 
             this.textBox_AdminPortalServer.Location = new System.Drawing.Point(148, 259);
             this.textBox_AdminPortalServer.Name = "textBox_AdminPortalServer";
-            this.textBox_AdminPortalServer.Size = new System.Drawing.Size(306, 24);
+            this.textBox_AdminPortalServer.Size = new System.Drawing.Size(306, 28);
             this.textBox_AdminPortalServer.TabIndex = 11;
             // 
             // label4
@@ -427,7 +427,7 @@
             this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(9, 221);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 15);
+            this.label4.Size = new System.Drawing.Size(161, 21);
             this.label4.TabIndex = 17;
             this.label4.Text = "AZURE SUBSCRIPTION";
             // 
@@ -435,7 +435,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(148, 221);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(306, 24);
+            this.textBox1.Size = new System.Drawing.Size(306, 28);
             this.textBox1.TabIndex = 10;
             // 
             // tenantUIPage
@@ -461,7 +461,7 @@
             this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(8, 101);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(133, 15);
+            this.label11.Size = new System.Drawing.Size(179, 21);
             this.label11.TabIndex = 20;
             this.label11.Text = "TENANT PORTAL SERVER";
             // 
@@ -471,7 +471,7 @@
             this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(8, 62);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(68, 15);
+            this.label10.Size = new System.Drawing.Size(89, 21);
             this.label10.TabIndex = 15;
             this.label10.Text = "PASSWORD";
             // 
@@ -481,7 +481,7 @@
             this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(8, 22);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(89, 15);
+            this.label9.Size = new System.Drawing.Size(119, 21);
             this.label9.TabIndex = 14;
             this.label9.Text = "USER ACCOUNT";
             // 
@@ -489,7 +489,7 @@
             // 
             this.textBox_TenantPortalServer.Location = new System.Drawing.Point(145, 101);
             this.textBox_TenantPortalServer.Name = "textBox_TenantPortalServer";
-            this.textBox_TenantPortalServer.Size = new System.Drawing.Size(290, 24);
+            this.textBox_TenantPortalServer.Size = new System.Drawing.Size(290, 28);
             this.textBox_TenantPortalServer.TabIndex = 15;
             // 
             // textBox_TenantPassword
@@ -497,7 +497,7 @@
             this.textBox_TenantPassword.Location = new System.Drawing.Point(145, 62);
             this.textBox_TenantPassword.Name = "textBox_TenantPassword";
             this.textBox_TenantPassword.PasswordChar = '*';
-            this.textBox_TenantPassword.Size = new System.Drawing.Size(290, 24);
+            this.textBox_TenantPassword.Size = new System.Drawing.Size(290, 28);
             this.textBox_TenantPassword.TabIndex = 14;
             this.textBox_TenantPassword.TextChanged += new System.EventHandler(this.textBox_TenantPassword_TextChanged);
             // 
@@ -505,7 +505,7 @@
             // 
             this.textBox_TenantUserAccount.Location = new System.Drawing.Point(145, 22);
             this.textBox_TenantUserAccount.Name = "textBox_TenantUserAccount";
-            this.textBox_TenantUserAccount.Size = new System.Drawing.Size(290, 24);
+            this.textBox_TenantUserAccount.Size = new System.Drawing.Size(290, 28);
             this.textBox_TenantUserAccount.TabIndex = 13;
             // 
             // imageList1
@@ -517,7 +517,7 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(608, 481);
