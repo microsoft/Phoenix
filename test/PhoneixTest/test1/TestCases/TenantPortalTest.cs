@@ -93,11 +93,6 @@ namespace Phoenix.Test.UI.TestCases
             //Assert.IsTrue(smpPage.VerifyVmCreated(createVmData), "Failed to create VM from new button.");
         }
 
-        public void TenantAddCoAdminFromNewButtonTest()
-        {
-
-        }
-
 
 
 
