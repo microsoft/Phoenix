@@ -163,8 +163,8 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public bool VerifyVmCreated(CreateVmData data)
         {
-            Log.Information("Wait 30 sec for the new VM refresh ...");
-            System.Threading.Thread.Sleep(30000);
+            Log.Information("Wait 60 sec for the new VM refresh ...");
+            System.Threading.Thread.Sleep(60000);
 
             Log.Information("Find main menu ...");
             GetMainMenu_TenantPortal();
