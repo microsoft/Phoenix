@@ -60,11 +60,19 @@
             driver.Url = "https://" + serverName + ":30091";
 
             Log.Information("Get user and password.");
-            this.loginPage = new AdminLoginPage(driver);
-            loginPage.Login(userName, password);
+           // this.loginPage = new AdminLoginPage(driver);
+           // loginPage.Login(userName, password);
 
-            driver.Manage().Window.Maximize();
-            System.Threading.Thread.Sleep(20000);
+           //driver.Manage().Window.Maximize();
+           // System.Threading.Thread.Sleep(20000);
+
+            WebDriverWait waiter = new WebDriverWait(this.driver, TimeSpan.FromSeconds(10));
+            IAlert a = waiter.Until(ExpectedConditions.AlertIsPresent());
+            a.SetAuthenticationCredentials(userName, password);
+            a.Accept();
+
+            // wait for redirect complete
+            waiter.Until(d => d.GetUri().ToString().EndsWith("dashboard"));
         }
 
 
