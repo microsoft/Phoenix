@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using Phoenix.Test.UI.Framework;
 using Phoenix.Test.UI.Framework.WebPages;
+using Phoenix.Test.UI.Framework.Logging;
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
@@ -210,7 +211,7 @@ namespace Phoenix.Test.UI.Framework.Controls
             var errorMessage = "Wait element to show failed!";
             if (By != null)
             {
-                //Console.WriteLine(string.Format("Waiting for element {0} to show", By.ToString()));
+                Log.Information(string.Format("Waiting for element {0} to show", By.ToString()));
                 errorMessage += "The element info: " + By.ToString();
             }
 
@@ -346,6 +347,7 @@ namespace Phoenix.Test.UI.Framework.Controls
 
         public virtual void ClickButtonToNavigate()
         {
+            this.WaitEnable();
             this.Click();
             System.Threading.Thread.Sleep(10000);
         }

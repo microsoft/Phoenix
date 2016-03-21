@@ -53,7 +53,9 @@ namespace Phoenix.Test.UI
 
             
             var data = test.GetCreatePlanData();
-            data.planName = "ArmVMs"; // currently, we hard code the plan name here, need to add this name to configure file.
+            test.ReadConfig();
+            data.planName = test.defaultPlanName;
+
             data.clientId = this.textBox_ClientId.Text; data.clientKey = this.textBox_ClientKey.Text;
             data.tenantId = this.textBox_TenantId.Text; data.azureSubscription = this.textBox1.Text;
             var anySubscriptionName = test.GetRandomSubscriptionName();
@@ -74,14 +76,6 @@ namespace Phoenix.Test.UI
         //not sure what this is doing in here - KH
         public void TestCase02()
         {
-            var driver = new FirefoxDriver();
-            var page = new SmpPage(driver);
-            //string user = "test01@microsoft.com";
-            //string psw = GetPassword();
-
-            driver.Url = "https://khphoenixsql2.redmond.corp.microsoft.com:30081/#Workspaces/All/dashboard";
-            driver.Manage().Window.Maximize();
-            //page.AddSubscription();
         }
 
         [TestInitialize]

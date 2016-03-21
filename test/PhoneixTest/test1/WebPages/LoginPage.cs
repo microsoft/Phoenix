@@ -34,19 +34,19 @@ namespace Phoenix.Test.UI.Framework.WebPages
         #region Elements
 
         [FindsBy(How = How.ClassName, Using = "kt-login-button")]
-        private HtmlButton login { get; set; }
+        public HtmlButton login { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "kt-signup-button")]
         private HtmlTextBox singUp { get; set; }
 
         [FindsBy(How = How.Name, Using = "LoginMe-Button")]
-        private HtmlButton submit { get; set; }
+        public HtmlButton submit { get; set; }
 
         [FindsBy(How = How.Name, Using = "EmailAddress")]
-        private HtmlTextBox emailAddress { get; set; }
+        public HtmlTextBox emailAddress { get; set; }
 
         [FindsBy(How = How.Name, Using = "Password")]
-        private HtmlTextBox password { get; set; }
+        public HtmlTextBox password { get; set; }
 
         #endregion
 
@@ -62,6 +62,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
             this.submit.ClickButtonToNavigate();
 
             var page = new SmpPage(Browser);
+            page.smp.WaitShow();
             return page;
         }
 

@@ -43,7 +43,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
         protected HtmlScrollBarMenu_Admin mainMenu { get; set; }
 
         [FindsBy(How = How.Name, Using = "Service Management")]
-        protected HtmlDiv smp { get; set; }
+        public HtmlDiv smp { get; set; }
 
 
         public bool IsFirstTimeLogin
@@ -132,7 +132,9 @@ namespace Phoenix.Test.UI.Framework.WebPages
         public void OpenDrawer()
         {
             Log.Information("Click New button to open drawer.");
+            this.btnNew.WaitShow();
             this.btnNew.Click();
+            this.drawer.WaitShow();
         }
 
         public void OpenMenuPlans()
@@ -153,24 +155,27 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public void GetMainMenu_TenantPortal()
         {
+            this.mainMenuTenantPortal.WaitShow();
             this.mainMenuTenantPortal = new HtmlScrollBarMenu_Tenant(this, By.Id("fxshell-nav1-items"));
         }
 
         public void GetMainMenu_AdminPortal()
         {
+            this.mainMenuAdminPortal.WaitShow();
             this.mainMenuAdminPortal = new HtmlScrollBarMenu_Admin(this, By.Id("fxshell-nav1-items"));
         }
 
         public bool VerifyVmCreated(CreateVmData data)
         {
-            Log.Information("Wait 30 sec for the new VM refresh ...");
-            System.Threading.Thread.Sleep(30000);
+            Log.Information("Wait 60 sec for the new VM refresh ...");
+            System.Threading.Thread.Sleep(60000);
 
             Log.Information("Find main menu ...");
             GetMainMenu_TenantPortal();
             this.mainMenuTenantPortal.SelectAzureVms();
 
             Log.Information("Find Azure VMs table ...");
+            this.tableAzureVMs.WaitShow();
             this.tableAzureVMs = new HtmlTable(this, By.ClassName("fx-grid-full"));
             Log.Information("Find Azure VMs table row for: " + data.serverName + " ...");
             var row = this.tableAzureVMs.Rows[data.serverName];

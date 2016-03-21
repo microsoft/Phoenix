@@ -10,6 +10,7 @@
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
+    using System;
     using System.Collections.Generic;
     using Phoenix.Test.UI.Framework.WebPages;
     using OpenQA.Selenium;
@@ -76,8 +77,24 @@ namespace Phoenix.Test.UI.Framework.Controls
                             var values = new string[elements.Count-1];
                             for (int j = 1; j < elements.Count; j++)
                             {
-                                Log.Information("Item" + j + ": " + elements[j].Text);
-                                values[j-1] = elements[j].Text;
+                                string str = "";
+                                try
+                                {
+                                    str = elements[j].Text;
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.Information("Exception occured !! " + ex.Message);
+                                }
+
+                                try
+                                {
+                                    //Log.Information("Item" + j + ": " + str);
+                                    values[j - 1] = str;
+                                }
+                                catch (Exception ex)
+                                { }
+
                             }
                             RowValues.Add(inlineSectionItem.Name, values);
                         }
@@ -98,8 +115,23 @@ namespace Phoenix.Test.UI.Framework.Controls
                             var values = new string[elements.Count - 1];
                             for (int j = 1; j < elements.Count; j++)
                             {
-                                Log.Information("Item" + j + ": " + elements[j].Text);
-                                values[j - 1] = elements[j].Text;
+                                string str = "";
+                                try
+                                {
+                                    str = elements[j].Text;
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.Information("Exception occured !! " + ex.Message);
+                                }
+
+                                try
+                                {
+                                    //Log.Information("Item" + j + ": " + str);
+                                    values[j - 1] = str;
+                                }
+                                catch (Exception ex)
+                                { }
                             }
                             RowValues.Add(inlineSectionItem.Name, values);
                         }

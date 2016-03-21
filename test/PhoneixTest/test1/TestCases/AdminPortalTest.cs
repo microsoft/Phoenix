@@ -17,6 +17,7 @@
     using Phoenix.Test.Common;
     using Microsoft.VisualStudio.TestTools;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Data;
 
 
     [TestClass]
@@ -36,6 +37,8 @@
         private string azureSubscription;
         //private string url;
 
+        public string defaultPlanName;
+
         public AdminPortalTest(string userAccount, string password, string serverName, string clientId, string clientKey, string tenantId, string azureSubscription)
         {
             this.userName = userAccount;
@@ -52,15 +55,24 @@
         public override void TestInitialize()
         {
             base.TestInitialize();
-            Log.Information("Start test init.");
+
+            Log.Information("Start admin portal test init...");
             driver.Url = "https://" + serverName + ":30091";
 
             Log.Information("Get user and password.");
-            this.loginPage = new AdminLoginPage(driver);
-            loginPage.Login(userName, password);
+           // this.loginPage = new AdminLoginPage(driver);
+           // loginPage.Login(userName, password);
 
-            driver.Manage().Window.Maximize();
-            System.Threading.Thread.Sleep(10000);
+           //driver.Manage().Window.Maximize();
+           // System.Threading.Thread.Sleep(20000);
+
+            WebDriverWait waiter = new WebDriverWait(this.driver, TimeSpan.FromSeconds(10));
+            IAlert a = waiter.Until(ExpectedConditions.AlertIsPresent());
+            a.SetAuthenticationCredentials(userName, password);
+            a.Accept();
+
+            // wait for redirect complete
+            waiter.Until(d => d.GetUri().ToString().EndsWith("dashboard"));
         }
 
 
@@ -164,6 +176,13 @@
         public string GetRandomSubscriptionName()
         {
             return "Subsc" + TestDataUtils.GetRandomString(4);
+        }
+
+        public void ReadConfig()
+        {
+            base.TestInitialize();
+            Log.Information("Get default plan name from configuration file...");
+            this.defaultPlanName = config.Tables[8].Rows[0].ItemArray[0].ToString().Trim();
         }
     }
 }

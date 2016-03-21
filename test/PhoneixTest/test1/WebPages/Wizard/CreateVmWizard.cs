@@ -67,17 +67,19 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public void GoNext()
         {
-            System.Threading.Thread.Sleep(500);
+            this.next.WaitEnable();
             this.next.Click();
         }
 
         public void Complete()
         {
+            this.next.WaitEnable();
             this.next.Click();
         }
 
         public void GoBack()
         {
+            this.back.WaitEnable();
             this.back.Click();
         }
 
