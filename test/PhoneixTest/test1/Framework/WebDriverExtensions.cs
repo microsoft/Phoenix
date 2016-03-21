@@ -290,15 +290,14 @@ namespace Phoenix.Test.UI.Framework
             int sleepInterval = 10000)
         {
             //Log.Information("Waiting for all Ajax calls to finish.");
-            
+
             return Wait(driver,
-                drv => drv.ExecuteJavaScript<bool>("return $.active == 0"),
+                drv => drv.ExecuteJavaScript<bool>("return window.jQuery!=null && $.active == 0"),
                 timeout,
                 sleepInterval,
                 true,
                 "WaitForAjax failed!");
         }
-
 
         public static void Refresh(this IWebDriver driver)
         {

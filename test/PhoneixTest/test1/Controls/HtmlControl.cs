@@ -330,8 +330,8 @@ namespace Phoenix.Test.UI.Framework.Controls
                 }
 
                 //Log.Information("Click element: {0}", this.ToString());
-                this.Element.Click();
-
+                //this.Element.Click();
+                this.ExcuteScriptOnElement(".click();");
                 //if (verifyBlocker)
                 //{
                 //    Page.VerifyBlocker();
@@ -355,7 +355,7 @@ namespace Phoenix.Test.UI.Framework.Controls
             ExcuteScriptOnElement(".removeAttribute('class')");
         }
 
-        private void ExcuteScriptOnElement(string script)
+        public void ExcuteScriptOnElement(string script)
         {
             ((IJavaScriptExecutor)Page.Browser).ExecuteScript("arguments[0]" + script, Element);
         }

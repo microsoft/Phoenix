@@ -51,8 +51,10 @@ namespace Phoenix.Test.UI.Framework.Controls
             get
             {
                 Dictionary<string, HtmlSectionItem> sectionItems = new Dictionary<string, HtmlSectionItem>();
+
+             
                 //var sectionContainers = this.Element.FindElements(By.CssSelector(".fx-scrollbar-scrollable .fxs-menu-tablediv"));
-                var sectionContainers = this.Element.FindElements(By.CssSelector(".fxs-menu-tablediv"));
+                var sectionContainers = this.Element.FindElements(By.XPath(".//li"));
 
                 foreach (var item in sectionContainers)
                 {
@@ -71,6 +73,7 @@ namespace Phoenix.Test.UI.Framework.Controls
         public void SelectItem(string name)
         {
             Log.Information("Select item " + name);
+            string a = Items[name].LabelText;
             Items[name].Select();
         }
     }

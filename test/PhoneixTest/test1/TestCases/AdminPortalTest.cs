@@ -51,7 +51,8 @@
         [TestInitialize]
         public override void TestInitialize()
         {
-            base.TestInitialize();
+            if (driver == null)
+                base.TestInitialize();
             Log.Information("Start test init.");
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://" + serverName + ":30091");
@@ -60,13 +61,16 @@
            // this.loginPage = new AdminLoginPage(driver);
            // loginPage.Login(userName, password);
 
-            WebDriverWait waiter = new WebDriverWait(this.driver, TimeSpan.FromSeconds(10));
-            IAlert a = waiter.Until(ExpectedConditions.AlertIsPresent());
-            a.SetAuthenticationCredentials(userName, password);
-            a.Accept();
+            var authWindow = this.driver.Wait(ExpectedConditions.AlertIsPresent(), 5000);
+            if (authWindow != null)
+            {
+                authWindow.SetAuthenticationCredentials(userName, password);
+                authWindow.Accept();
+            }
 
             // wait for redirect complete
-            waiter.Until(d => d.GetUri().ToString().EndsWith("dashboard"));
+            this.driver.Wait(d=>d.Url.EndsWith("dashboard"));
+            this.driver.WaitForAjax(20*1000);
         }
 
 
@@ -105,7 +109,7 @@
             //////Assert.IsTrue(smpPage.VerifyPlanCreated(data), "Failed to create plan from new button.");
         }
 
-        public void AdminOnboardSubscriptionTest(CreatePlanData data, string subscriptionName)
+        public void AdminOnboardSubscriptionTest(CreatePlanData planData, CreateAddonData data, string subscriptionName)
         {
             Log.Information("---Open Add-ons List Page...---");
             TestInitialize();
@@ -119,8 +123,8 @@
             var page = new AddonListPage(this.driver);
             Log.Information("---Select Add-ons tab...---");
             page.SelectAddonsTab();
-            Log.Information("---Click Add-on " + data.planName + " and check details...---");
-            page.SelectAddonInTableAndCheckDatails(data.planName);
+            Log.Information("---Click Add-on " + data.addonName + " and check details...---");
+            page.SelectAddonInTableAndCheckDatails(data.addonName);
 
             var configPage = new AddonConfigPage(this.driver); string name = "Cmp Wap Extension";
             Log.Information("---Click Add-on service " + name + " and check details...---");
@@ -128,7 +132,7 @@
 
             var subscptPage = new SubscriptionPage(this.driver);
             Log.Information("---Onboarding subscripton...---");
-            subscptPage.OnboardSubscription(data, subscriptionName); //, data.clientId, data.clientKey, data.tenantId, data.azureSubscription
+            subscptPage.OnboardSubscription(planData, subscriptionName); //, data.clientId, data.clientKey, data.tenantId, data.azureSubscription
         }
 
 

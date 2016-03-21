@@ -47,13 +47,14 @@ namespace Phoenix.Test.UI.Framework.Controls
 
         private HtmlButton InnerButton
         {
-            get { return new HtmlButton(this.page, By.ClassName("icon FileShares")); }
+            get { return new HtmlButton(this.page, this.itemContainer.FindElement(By.XPath(".//a"))); }
         }
 
         public void Select()
         {
             Log.Information("Select item: " + this.itemContainer.Text);
-            this.itemContainer.Click();
+           // this.itemContainer.Click();
+            this.InnerButton.Click();
         }
 
 

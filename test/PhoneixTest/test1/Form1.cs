@@ -43,6 +43,7 @@ namespace Phoenix.Test.UI
 
         private void SetDefaultAccountInfo()
         {
+            this.textBox_Password.Text = "2Bewithyou()";
             this.textBox_UserName.Text = "redmond\\v-sowan";
             this.textBox_ClientId.Text = "d11ac2a1-9d9d-4bee-8248-7a8a8d890d8d";
             this.textBox_ClientKey.Text = "123abc!!!";
@@ -53,7 +54,7 @@ namespace Phoenix.Test.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(this.textBox_UserName.Text) || String.IsNullOrWhiteSpace(this.textBox_Password.Text)  || 
+            if (String.IsNullOrWhiteSpace(this.textBox_UserName.Text) || String.IsNullOrWhiteSpace(this.textBox_Password.Text) ||
                 String.IsNullOrWhiteSpace(this.textBox_AdminPortalServer.Text))
             {
                 MessageBox.Show("Please input Administrator username, password, and Admin Portal Servername.");
@@ -63,21 +64,19 @@ namespace Phoenix.Test.UI
             var test = new AdminPortalTest(this.textBox_UserName.Text, this.textBox_Password.Text, this.textBox_AdminPortalServer.Text,
                 this.textBox_ClientId.Text, this.textBox_ClientKey.Text, this.textBox_TenantId.Text, this.textBox1.Text);
 
-            
+
             var data = test.GetCreatePlanData();
-            data.planName = "ArmVMs"; // currently, we hard code the plan name here, need to add this name to configure file.
+            // data.planName = "ArmVMs"; // currently, we hard code the plan name here, need to add this name to configure file.
             data.clientId = this.textBox_ClientId.Text; data.clientKey = this.textBox_ClientKey.Text;
             data.tenantId = this.textBox_TenantId.Text; data.azureSubscription = this.textBox1.Text;
             var anySubscriptionName = test.GetRandomSubscriptionName();
 
-            ////        var data = test.GetCreateAddonData(this.textBox_ClientId.Text, this.textBox_ClientKey.Text,
-            ////this.textBox1.Text, this.textBox_AdminPortalServer.Text);
-            ////        data.addonName = "MAMBO";
+            var addonData = test.GetCreateAddonData(this.textBox_ClientId.Text, this.textBox_ClientKey.Text, this.textBox1.Text, this.textBox_AdminPortalServer.Text);
 
 
             test.AdminCreatePlanTest();
-
-            test.AdminOnboardSubscriptionTest(data, anySubscriptionName);
+            test.AdminCreateAddonTest(addonData);
+            test.AdminOnboardSubscriptionTest(data, addonData, anySubscriptionName);
 
             test.TestCleanup();
         }

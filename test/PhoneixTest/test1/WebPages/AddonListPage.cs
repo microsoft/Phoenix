@@ -68,9 +68,10 @@ namespace Phoenix.Test.UI.Framework.WebPages
         public void SelectAddonsTab()
         {
             // workaround - use tab button for demo first..
-            //this.tabAddons.Click();
-            this.tabPlans.Click();
-            System.Threading.Thread.Sleep(5000);
+          // this.tabAddons.Click();
+        //    this.tabPlans.Click();
+           this.tabAddons.ExcuteScriptOnElement(".click()");
+
         }
         
 

@@ -99,18 +99,25 @@ namespace Phoenix.Test.UI.Framework.WebPages
         public void CreatePlanFromNewButton(CreatePlanData data)
         {
             Log.Information("---Click New button---");
-           // Browser.WaitForAjax();
+            Browser.WaitForAjax();
             OpenDrawer();
             Log.Information("---Select Create Plan---");
-            this.drawer.SelectItem("PLAN");
-            this.drawer.SelectItem("CREATE PLAN");
 
-            Log.Information("---Go through wizard to create plan---");
-            var createPlanWizard = new CreatePlanWizard(this.Browser);
-            createPlanWizard.Step1(data); createPlanWizard.GoNext();
-            createPlanWizard.Step2(data); createPlanWizard.GoNext();
-            createPlanWizard.Step3(data); createPlanWizard.Complete();
-            Log.Information("---Create plan request send successfully---");
+           // IJavaScriptExecutor js = this.Browser as IJavaScriptExecutor;
+           // js.ExecuteScript("arguments[-1].click()", this.Browser.FindElement(By.ClassName("fxs-menu-tablediv")));
+            Browser.WaitForAjax();
+
+           this.drawer.SelectItem("PLAN");
+
+           Browser.WaitForAjax();
+           this.drawer.SelectItem("CREATE PLAN");
+
+           Log.Information("---Go through wizard to create plan---");
+           var createPlanWizard = new CreatePlanWizard(this.Browser);
+           createPlanWizard.Step1(data); createPlanWizard.GoNext();
+           createPlanWizard.Step2(data); createPlanWizard.GoNext();
+           createPlanWizard.Step3(data); createPlanWizard.Complete();
+           Log.Information("---Create plan request send successfully---");
         }
 
         public void CreateAddonFromNewButton(CreateAddonData data)
@@ -134,16 +141,8 @@ namespace Phoenix.Test.UI.Framework.WebPages
         public void OpenDrawer()
         {
             Log.Information("Click New button to open drawer.");
-            // this.btnNew.Click();
-
-            IJavaScriptExecutor js = this.Browser as IJavaScriptExecutor;
-            js.ExecuteScript("arguments[0].click()", this.btnNew.Element); //this.Browser.FindElement(By.ClassName("fxs-drawertaskbar-newbutton"))); ;
-            /*
-            MouseHoverByJavaScript(this.btnNew.Element);
-
-            ((IHasInputDevices)this.Browser).Mouse.MouseMove(((ILocatable)this.btnNew.Element).Coordinates);
-            new Actions(this.Browser).MoveToElement(this.btnNew.Element).Build().Perform();
-            new Actions(this.Browser).MoveToElement(this.btnNew.Element).Click().Build().Perform();*/
+           // this.btnNew.Click();
+            this.btnNew.ExcuteScriptOnElement(".click()");
         }
 
         public void MouseHoverByJavaScript(IWebElement targetElement)

@@ -50,7 +50,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public void GoNext()
         {
-            this.next.Click();
+            this.next.ExcuteScriptOnElement(".click()");
             System.Threading.Thread.Sleep(500);
         }
 

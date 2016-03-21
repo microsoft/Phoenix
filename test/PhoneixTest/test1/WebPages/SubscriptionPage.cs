@@ -57,7 +57,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public void OnboardSubscription(CreatePlanData data, string subscriptionName) // , string cId, string cKey, string tId, string subscpt
         {
-            System.Threading.Thread.Sleep(6000);
+          //  System.Threading.Thread.Sleep(6000);
 
             Log.Information("---Input onboard subscription parameters...---");
             var frame = this.Browser.SwitchTo().Frame("plansIframeWind"); IWebElement e;

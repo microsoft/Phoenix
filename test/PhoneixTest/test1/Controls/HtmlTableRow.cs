@@ -53,8 +53,7 @@ namespace Phoenix.Test.UI.Framework.Controls
 
         public void SelectAndCheckDatails()
         {
-            this.Server.Click();
-            System.Threading.Thread.Sleep(5000);
+            new HtmlButton(page, this.Server.Element.FindElement(By.XPath("./a"))).Click();
         }
 
 
