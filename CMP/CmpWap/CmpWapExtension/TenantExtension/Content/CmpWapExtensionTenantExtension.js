@@ -22,6 +22,8 @@
     var sqlanalysisservicemodesList;
     var sqlcollationList;
     var subscriptionMappingsList;
+    var subscriptionRegionOSMapping;
+    var subscriptionRegionSizeMapping;
     var sqlVersionList;
     var environmenttypeList;
     var targetRegionsList;
@@ -32,8 +34,8 @@
     var resources = [], CmpWapExtensionTenantExtensionActivationInit, subscriptionRegisteredToService, accountAdminLiveEmailId, navigation, selectedrow, lastselecteddrive, serviceName = "CmpWapExtension", defaultdriveslist = ["D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"], extradrivenames = [], defaultsqlcollation = "SQL_Latin1_General_CP1_CI_AS";
 
     var allSubscriptionIds;
-    var getDomainlistUrl = "/CmpWapExtensionTenant/ListDomains", getResourceGroupsUrl = "/CmpWapExtensionTenant/LisResourceGroups", getSizeInfoListUrl = "/CmpWapExtensionTenant/ListVmSizes", getOsInfoListUrl = "/CmpWapExtensionTenant/ListOSs", getTargetRegionsListUrl = "/CmpWapExtensionTenant/ListTargetRegions", getAppListUrl = "/CmpWapExtensionTenant/ListApps", getEnvironmenttypeListUrl = "/CmpWapExtensionTenant/ListEnvironments", getServiceCategoryListUrl = "/CmpWapExtensionTenant/ListCategories", getServerRoleListUrl = "/CmpWapExtensionTenant/ListServerRoles", getNetworkNICListUrl = "/CmpWapExtensionTenant/LisNetworkNICs", getServerRoleDriverMappingListUrl = "/CmpWapExtensionTenant/LisServerRoleDriveMappings", getSqlCollationListUrl = "/CmpWapExtensionTenant/ListSqlCollations", getSqlVersionListUrl = "/CmpWapExtensionTenant/ListSqlVersions", getiisroleservicesurl = "/CmpWapExtensionTenant/ListIISRoleServices", getsqlanalysisservicemodesurl = "/CmpWapExtensionTenant/ListSQLAnalysisServiceModes", getSubscriptionMappingsUrl = "/CmpWapExtensionTenant/ListSubscriptionMappings";
-
+    var getDomainlistUrl = "/CmpWapExtensionTenant/ListDomains", getResourceGroupsUrl = "/CmpWapExtensionTenant/LisResourceGroups", getSizeInfoListUrl = "/CmpWapExtensionTenant/ListVmSizes", getOsInfoListUrl = "/CmpWapExtensionTenant/ListOSs", getTargetRegionsListUrl = "/CmpWapExtensionTenant/ListTargetRegions", getAppListUrl = "/CmpWapExtensionTenant/ListApps", getEnvironmenttypeListUrl = "/CmpWapExtensionTenant/ListEnvironments", getServiceCategoryListUrl = "/CmpWapExtensionTenant/ListCategories", getServerRoleListUrl = "/CmpWapExtensionTenant/ListServerRoles", getNetworkNICListUrl = "/CmpWapExtensionTenant/LisNetworkNICs", getServerRoleDriverMappingListUrl = "/CmpWapExtensionTenant/LisServerRoleDriveMappings", getSqlCollationListUrl = "/CmpWapExtensionTenant/ListSqlCollations", getSqlVersionListUrl = "/CmpWapExtensionTenant/ListSqlVersions", getiisroleservicesurl = "/CmpWapExtensionTenant/ListIISRoleServices", getsqlanalysisservicemodesurl = "/CmpWapExtensionTenant/ListSQLAnalysisServiceModes", getSubscriptionMappingsUrl = "/CmpWapExtensionTenant/ListSubscriptionMappings", getVMRegionOSMappingsUrl = "/CmpWapExtensionTenant/ListVMRegionOSMappings";
+    var getVMSizeMappingsUrl = "/CmpWapExtensionTenant/ListVMRegionSizeMappings";
     //*************************************************************************
     // Clears view when navigating away from the page
     //*************************************************************************
@@ -672,16 +674,80 @@
                                 }
                             }
                         });
+                        $("#VmSourceImage").on("change", function () {                            
+                            $("#lblRegionOsMappingStatus").css("display", "none");
+                        });
+                        $("#VmSize").on("change", function () {
+                            $("#lblRegionSizeMappingStatus").css("display", "none");
+                        });
                     },
                     // Called before the wizard moves to the next step
                     onNextStep: function () {
+                        var selectedImage = $("#VmSourceImage").val();
+                        var selectedSize = $("#VmSize").val();
+                        var selectedRegion = $("#VmRegion").val();
+
+                        var validMapping = false;
+                        var osId = 0;
+                        var sizeId = 0;
+                        var subId = subscriptionId;
+                        var selectedRegionId = 0;
+
+                        var ASubId = subscriptionMappingsList[0].AzureSubscriptionId;
+
+                        osInfoList.forEach(function (value, index) {
+                            if (selectedImage == osInfoList[index].Name) {
+                                osId = osInfoList[index].VmOsId;
+                            }
+                        });
+
+                        sizeInfoList.forEach(function(value, index) {
+                            if (selectedSize == sizeInfoList[index].Name) {
+                                sizeId = sizeInfoList[index].VMSizeId;
+                                }
+                         });
+
+                        targetRegionsList.forEach(function (value, index) {
+                            if (selectedRegion == targetRegionsList[index].Name) {
+                                selectedRegionId = targetRegionsList[index].AzureRegionId;
+                            }
+                        });
+
+                        var regionOsIds = [selectedRegionId, osId];
+                        if (selectedRegionId > 0 && osId > 0) {
+                            fetchVMOSMappings(subId, regionOsIds);
+                        }                        
+
+                        var regionSizeIds = [selectedRegionId, sizeId];
+                        if (selectedRegionId > 0 && sizeId > 0) {
+                            fetchVMSizeMappings(subId, regionSizeIds);
+                        }
+
+                        if (subscriptionRegionOSMapping == false) {
+                            $("#lblRegionOsMappingStatus").css("display", "block");
+                            $("#lblRegionOsMappingStatus").text("Please select a different OS for the selected region");
+                            valid = false;
+                        } else {
+                            $("#lblRegionOsMappingStatus").css("display", "none");
+                            valid = true;
+                        }
+
+                        if (subscriptionRegionSizeMapping == false) {
+                            $("#lblRegionSizeMappingStatus").css("display", "block");
+                            $("#lblRegionSizeMappingStatus").text("Please select a different SKU for the selected region");
+                            valid = false;
+                        } else if (valid == true){
+                            $("#lblRegionSizeMappingStatus").css("display", "none");
+                            valid = true;
+                        }
+
                         if (Shell.UI.Validation.validateContainer(".hw-create-fileshare-container")) {
                             if (!valid) {
                                 return false;
-                            } else {
+                        } else {
                                 valid = true;
                             }
-                        } else {
+                            } else {
                             return false;
                         }
                     },
@@ -1939,6 +2005,7 @@
     //*************************************************************************
     function gotSubscriptionMappingsList(data) {
         subscriptionMappingsList = data;
+        //alert(this.subscriptionMappingsList);
         //alert("init " + JSON.stringify(data));
     }
 
@@ -1952,7 +2019,51 @@
             contentType: 'application/json',
             data: JSON.stringify(allSubscriptionIds)
         }).done(function (data) {
-            gotSubscriptionMappingsList(data.data);
+            this.subscriptionMappingsList = data;
+            gotSubscriptionMappingsList(data);
+        });
+    }
+
+    function gotRegionOSMappingsList(data) {
+        subscriptionRegionOSMapping = data;
+    }
+
+    //*************************************************************************
+    // Fetches the list of mappings between Regions and OS
+    //*************************************************************************
+    var fetchVMOSMappings = function(allSubscriptionIds, ids) {
+
+        var mappingInfo = { "subscriptionId": allSubscriptionIds, "Ids": ids };
+        $.ajax({
+            type: 'POST',
+            url: getVMRegionOSMappingsUrl,
+            contentType: 'application/json',
+            data: JSON.stringify(mappingInfo),
+            async: false
+        }).done(function (data) {
+            //this.subscriptionRegionOSMapping = data;
+            gotRegionOSMappingsList(data);
+        });
+    }
+
+    function gotRegionSizeMappingsList(data) {
+        subscriptionRegionSizeMapping = data;
+    }
+
+    //*************************************************************************
+    // Fetches the list of mappings between Regions and Size
+    //*************************************************************************
+    var fetchVMSizeMappings = function (allSubscriptionIds, ids) {
+
+        var mappingInfo = { "subscriptionId": allSubscriptionIds, "Ids": ids };
+        $.ajax({
+            type: 'POST',
+            url: getVMSizeMappingsUrl,
+            contentType: 'application/json',
+            data: JSON.stringify(mappingInfo),
+            async: false
+        }).done(function (data) {
+            gotRegionSizeMappingsList(data);
         });
     }
 

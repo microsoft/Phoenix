@@ -514,5 +514,11 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// 
         //*********************************************************************
         IEnumerable<ServiceProviderAccount> FetchServiceProviderAccountsAssociatedWithPlan(string planId);
+        /// <summary>
+        /// This methos id used to update the VM IP if it changes on shutdown-start
+        /// </summary>
+        /// <param name="vmDepReqId"></param>
+        /// <param name="size"></param>
+        void UpdateVmIp(int vmDepReqId, string size);
     }
 }
