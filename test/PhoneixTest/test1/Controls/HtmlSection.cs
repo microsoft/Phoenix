@@ -8,10 +8,12 @@
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
+    using System;
     using System.Collections.Generic;
+    using OpenQA.Selenium;
     using Phoenix.Test.UI.Framework.Logging;
     using Phoenix.Test.UI.Framework.WebPages;
-    using OpenQA.Selenium;
+
 
     /// <summary>
     /// Defines the generic properties for an Html tag structure like this: .section > .section-title ~ .section-body > .section-item.
@@ -58,9 +60,16 @@ namespace Phoenix.Test.UI.Framework.Controls
                 {
                     if (item.Displayed)
                     {
-                        HtmlSectionItem inlineSectionItem = new HtmlSectionItem(this.page, item);
-                        string labelKey = inlineSectionItem.LabelText;
-                        sectionItems.Add(labelKey, new HtmlSectionItem(this.page, item));
+                        try
+                        {
+                            HtmlSectionItem inlineSectionItem = new HtmlSectionItem(this.page, item);
+                            string labelKey = inlineSectionItem.LabelText;
+                            sectionItems.Add(labelKey, new HtmlSectionItem(this.page, item));
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Information("Get Menu Item failed! : " + ex.Message);
+                        }
                     }
                 }
 
@@ -71,7 +80,10 @@ namespace Phoenix.Test.UI.Framework.Controls
         public void SelectItem(string name)
         {
             Log.Information("Select item " + name);
-            Items[name].Select();
+            if (Items.ContainsKey(name))
+                Items[name].Select();
+            else
+                Log.Information("Could not find Menu Item: {0}", name);
         }
     }
 }
