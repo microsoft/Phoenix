@@ -37,19 +37,6 @@ namespace Phoenix.Test.UI
         public Form1()
         {
             InitializeComponent();
-
-            SetDefaultAccountInfo();
-        }
-
-        private void SetDefaultAccountInfo()
-        {
-            this.textBox_Password.Text = "2Bewithyou()";
-            this.textBox_UserName.Text = "redmond\\v-sowan";
-            this.textBox_ClientId.Text = "d11ac2a1-9d9d-4bee-8248-7a8a8d890d8d";
-            this.textBox_ClientKey.Text = "123abc!!!";
-            this.textBox_TenantId.Text = "72f988bf-86f1-41af-91ab-2d7cd011db47";
-            this.textBox1.Text = "00f885db-ef1d-4545-ad2d-64c0caf93384";
-            this.textBox_AdminPortalServer.Text = "MININT-N9J02SU";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,7 +51,6 @@ namespace Phoenix.Test.UI
             var test = new AdminPortalTest(this.textBox_UserName.Text, this.textBox_Password.Text, this.textBox_AdminPortalServer.Text,
                 this.textBox_ClientId.Text, this.textBox_ClientKey.Text, this.textBox_TenantId.Text, this.textBox1.Text);
 
-
             var data = test.GetCreatePlanData();
             // data.planName = "ArmVMs"; // currently, we hard code the plan name here, need to add this name to configure file.
             data.clientId = this.textBox_ClientId.Text; data.clientKey = this.textBox_ClientKey.Text;
@@ -73,14 +59,12 @@ namespace Phoenix.Test.UI
 
             var addonData = test.GetCreateAddonData(this.textBox_ClientId.Text, this.textBox_ClientKey.Text, this.textBox1.Text, this.textBox_AdminPortalServer.Text);
 
-
             test.AdminCreatePlanTest();
             test.AdminCreateAddonTest(addonData);
             test.AdminOnboardSubscriptionTest(data, addonData, anySubscriptionName);
 
             test.TestCleanup();
         }
-
 
         //not sure what this is doing in here - KH
         public void TestCase02()
@@ -116,7 +100,6 @@ namespace Phoenix.Test.UI
             test.TestCleanup();
         }
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -130,8 +113,8 @@ namespace Phoenix.Test.UI
             lblCheckDatabases.Text = "CHECKING DATABASES...";
             var databasesTest = new installationTest();
             databasesTest.Initialize();
-            databasesTest.dbTest(textBox_SQLAdmin.Text,textBox_SQLAdmPswd.Text, textBox_ServerName.Text);
-            
+            databasesTest.dbTest(textBox_SQLAdmin.Text, textBox_SQLAdmPswd.Text, textBox_ServerName.Text);
+
             if (databasesTest.GetPass())
             {
                 databasesPic.BackgroundImage = imageList1.Images[1];
@@ -146,7 +129,7 @@ namespace Phoenix.Test.UI
             {
                 cmpwapProgressBar.PerformStep();
             }
- 
+
 
             lblCheckServices.Text = "CHECKING CMP AND RELATED SERVICES...";
             var servicesTest = new installationTest();

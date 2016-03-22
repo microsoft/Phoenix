@@ -87,6 +87,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
             this.azureSuscription.Input(data.azureSubscription);
 
             e = frame.FindElement(By.Id("azuresub-btn-add"));
+
             this.submit = new HtmlButton(this, e);
             this.submit.Click();
 
