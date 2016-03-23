@@ -69,7 +69,7 @@
             }
 
             // wait for redirect complete
-            this.driver.Wait(d=>d.Url.EndsWith("dashboard"));
+            this.driver.Wait(ExpectedConditions.TitleContains("Azue"));
             this.driver.WaitForAjax(20*1000);
         }
 
