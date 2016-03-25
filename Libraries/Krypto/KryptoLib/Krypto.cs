@@ -12,7 +12,7 @@ namespace KryptoLib
         public X509Certificate2 Certificate
         {
             set { _Cert = value; }
-            get { return _Cert;  }
+            get { return _Cert; }
         }
 
         //*************************************************************************
@@ -77,10 +77,7 @@ namespace KryptoLib
                     throw new Exception("KryptoCert key '" + appSettingName +
                         "' value does not contain three CSVs. Value must be '[store location],[store name],[cert thumbprint]'");
 
-                var SN = (StoreName)Enum.Parse(typeof(StoreName), StoreInfo[1], true);
-                var SL = (StoreLocation)Enum.Parse(typeof(StoreLocation), StoreInfo[0], true);
-
-                _Cert = FetchCertFromStore(SN, SL, StoreInfo[2]);
+                FetchCertFromStore(StoreInfo[1], StoreInfo[0], StoreInfo[2]);
             }
             catch (Exception ex)
             {
@@ -108,7 +105,7 @@ namespace KryptoLib
         //*************************************************************************
         ///
         /// <summary>
-        /// 
+        /// Pass in string values to store the cert
         /// </summary>
         /// <param name="storeName"></param>
         /// <param name="storeLocation"></param>
@@ -124,7 +121,7 @@ namespace KryptoLib
 
             _Cert = FetchCertFromStore(SN, SL, thumbprint);
 
-            if(null == _Cert)
+            if (null == _Cert)
                 throw new Exception("Certificate not found in store");
         }
 
@@ -244,9 +241,24 @@ namespace KryptoLib
                     kText = ReplaceKText(kText, "KText", ClearText);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Exception in DecrpytKText() : " + UnwindExceptionMessages(ex));
+            }
+        }
+
+        public string EncyptKText(string clearText)
+        {
+            if (null == clearText)
+                return null;
+
+            try
+            {
+                return "[KText]" + Encrypt(clearText) + @"[/KText]";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in EncyptKText() : " + UnwindExceptionMessages(ex));
             }
         }
 
@@ -271,7 +283,37 @@ namespace KryptoLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchCertFromStore() : " + 
+                throw new Exception("Exception in FetchCertFromStore() : " +
+                    UnwindExceptionMessages(ex));
+            }
+        }
+
+        //*************************************************************************
+        ///
+        /// <summary>
+        /// This passes in string values for storeName and storeLocation
+        /// </summary>
+        /// <param name="storeName"></param>
+        /// <param name="storeLocation"></param>
+        /// <param name="thumbprint"></param>
+        /// <returns></returns>
+        /// 
+        //*************************************************************************
+
+        public X509Certificate2 FetchCertFromStore(string storeName, string
+            storeLocation, string thumbprint)
+        {
+            try
+            {
+                var SN = (StoreName)Enum.Parse(typeof(StoreName), storeName, true);
+                var SL = (StoreLocation)Enum.Parse(typeof(StoreLocation), storeLocation, true);
+
+                this._Cert = FetchCertFromStore(SN, SL, thumbprint);
+                return this._Cert;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in FetchCertFromStore() : " +
                     UnwindExceptionMessages(ex));
             }
         }
@@ -483,10 +525,8 @@ namespace KryptoLib
         {
             try
             {
-                var dbConnectionString =
-                    GetConnectionString(connectionStringName);
-                var contextPassword =
-                    Microsoft.Azure.CloudConfigurationManager.GetSetting(passwordConfigName) as string;
+                var dbConnectionString = GetConnectionString(connectionStringName);
+                var contextPassword = Microsoft.Azure.CloudConfigurationManager.GetSetting(passwordConfigName) as string;
 
                 if (0 > dbConnectionString.IndexOf("Password=", StringComparison.InvariantCultureIgnoreCase))
                     return dbConnectionString;
