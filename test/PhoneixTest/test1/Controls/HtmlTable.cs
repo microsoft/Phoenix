@@ -11,6 +11,7 @@
 namespace Phoenix.Test.UI.Framework.Controls
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Phoenix.Test.UI.Framework.WebPages;
     using OpenQA.Selenium;
     using Phoenix.Test.UI.Framework.Logging;
@@ -22,7 +23,7 @@ namespace Phoenix.Test.UI.Framework.Controls
     {
         private Page page;
 
-        public Dictionary<string, string[]> RowValues = new Dictionary<string,string[]>();
+        public Dictionary<string, string[]> RowValues = new Dictionary<string, string[]>();
 
         /// <summary>
         /// Construct HtmlSection found using By accessor.
@@ -33,6 +34,7 @@ namespace Phoenix.Test.UI.Framework.Controls
             : base(page, by)
         {
             this.page = page;
+            this.Headers = this.getHeaders().Select(e => e.Text).ToArray();
         }
 
         /// <summary>
@@ -44,6 +46,7 @@ namespace Phoenix.Test.UI.Framework.Controls
             : base(page, element)
         {
             this.page = page;
+            this.Headers = this.getHeaders().Select(e => e.Text).ToArray();
         }
 
         /// <summary>
@@ -54,61 +57,21 @@ namespace Phoenix.Test.UI.Framework.Controls
             get
             {
                 var sectionItems = new Dictionary<string, HtmlTableRow>();
-                var sectionContainers1 = this.Element.FindElements(By.ClassName("even"));
-                var sectionContainers2 = this.Element.FindElements(By.ClassName("odd"));
-
-                Log.Information("Find Even Rows: " + sectionContainers1.Count + " item(s).");
-                Log.Information("Find Odd Rows: " + sectionContainers2.Count + " item(s).");
-                for (int i = 0; i < sectionContainers1.Count; i++)
+                var tableRows = this.Element.FindElements(By.XPath(".//tr[@role='row']")).Select(e => new HtmlTableRow(this.page, this, e));
+                foreach (var row in tableRows)
                 {
-                    if (sectionContainers1[i].Displayed)
-                    {
-                        Log.Information("Create Table Rows for Even and add them to dictionary...");
-                        var inlineSectionItem = new HtmlTableRow(this.page, sectionContainers1[i]);
-                        if (!sectionItems.ContainsKey(inlineSectionItem.Name))
-                        {
-                            sectionItems.Add(inlineSectionItem.Name, inlineSectionItem);
-
-                            //var elements = inlineSectionItem.itemContainer.FindElements(By.CssSelector("td[role='gridcell']"));
-                            var elements = inlineSectionItem.itemContainer.FindElements(By.CssSelector("td"));
-                            Log.Information("Even rows...");
-                            Log.Information("Count number: " + elements.Count.ToString());
-                            var values = new string[elements.Count-1];
-                            for (int j = 1; j < elements.Count; j++)
-                            {
-                                Log.Information("Item" + j + ": " + elements[j].Text);
-                                values[j-1] = elements[j].Text;
-                            }
-                            RowValues.Add(inlineSectionItem.Name, values);
-                        }
-
-                    }
-                    if (i < sectionContainers2.Count && sectionContainers2[i].Displayed)
-                    {
-                        Log.Information("Create Table Rows for Odd and add them to dictionary...");
-                        var inlineSectionItem = new HtmlTableRow(this.page, sectionContainers2[i]);
-                        if (!sectionItems.ContainsKey(inlineSectionItem.Name))
-                        {
-                            sectionItems.Add(inlineSectionItem.Name, inlineSectionItem);
-
-                            //var elements = inlineSectionItem.itemContainer.FindElements(By.CssSelector("td[role='gridcell']"));
-                            var elements = inlineSectionItem.itemContainer.FindElements(By.CssSelector("td"));
-                            Log.Information("Odd rows...");
-                            Log.Information("Count number: " + elements.Count.ToString());
-                            var values = new string[elements.Count - 1];
-                            for (int j = 1; j < elements.Count; j++)
-                            {
-                                Log.Information("Item" + j + ": " + elements[j].Text);
-                                values[j - 1] = elements[j].Text;
-                            }
-                            RowValues.Add(inlineSectionItem.Name, values);
-                        }
-                    }
+                    sectionItems.Add(row.Name, row);
                 }
-
                 return sectionItems;
             }
+
         }
 
+        public string[] Headers { get; private set; }
+
+        private IWebElement[] getHeaders()
+        {
+            return this.Element.FindElements(By.XPath(".//th[@role='columnheader']")).ToArray();
+        }
     }
 }

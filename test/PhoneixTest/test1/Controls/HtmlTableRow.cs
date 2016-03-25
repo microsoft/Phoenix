@@ -17,6 +17,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Phoenix.Test.UI.Framework.Controls
 {
+    using System.Linq;
     using Phoenix.Test.UI.Framework.WebPages;
     using OpenQA.Selenium;
     using System.Collections.ObjectModel;
@@ -27,7 +28,11 @@ namespace Phoenix.Test.UI.Framework.Controls
     /// </summary>
     public class HtmlTableRow
     {
+        private HtmlTable table;
+
         private Page page;
+
+        private IWebElement[] columns;
 
         /// <summary>
         /// A div.section-item html element which contains current section items.
@@ -38,62 +43,49 @@ namespace Phoenix.Test.UI.Framework.Controls
         /// Construct HtmlSectionItem by a container element.
         /// </summary>
         /// <param name="itemContainer">The each section items for the container elemnt to get.</param>
-        public HtmlTableRow(Page page, IWebElement itemContainer)
+        public HtmlTableRow(Page page, HtmlTable table, IWebElement itemContainer)
         {
+            this.table = table;
             this.page = page;
             this.itemContainer = itemContainer;
+            this.columns = this.itemContainer.FindElements(By.XPath(".//td[@role='gridcell']")).ToArray();
         }
 
-        /// <summary>
+        public HtmlControl GetColumn(string header)
+        {
+            return new HtmlControl(this.page, this.columns.ElementAt(this.findHeaderIndex(header)));
+        }
+
+        public string Name { get { return this.columns[0].Text; } }
 
         public void Select()
         {
-            this.Status.Click();
+            new HtmlButton(page, this.columns[1]).Click();
         }
 
         public void SelectAndCheckDatails()
         {
-            new HtmlButton(page, this.Server.Element.FindElement(By.XPath("./a"))).Click();
+           // new HtmlButton(page, this.columns[0]).Click();
+            new HtmlButton(page, this.columns[0].FindElement(By.XPath("./a"))).Click();
         }
 
-
-
-        public ReadOnlyCollection<IWebElement> bindingProperties
+        private int findHeaderIndex(string header)
         {
-            get 
+            var headers = this.table.Headers;
+            if (header == null || header.Length == 0)
             {
-                Log.Information("Get TableRow's bindingProperties...");
-                var elements = this.itemContainer.FindElements(By.CssSelector("td[role='gridcell']"));
-                return elements;
+                throw new NotFoundException("Headers not found!");
             }
-        }
-
-        public string Name
-        {
-            get {
-                Log.Information("Get TableRow's Server Text...");
-                return this.Server.Text; }
-        }
-        public HtmlButton Server
-        {   
-
-            // get { return new HtmlLink(this.page, this.itemContainer.FindElement(By.ClassName("waz-grid-navigation"))); } //class name should not use .
-            get {
-                Log.Information("Get TableRow's Server...");
-                return new HtmlButton(this.page, this.bindingProperties[0]); } //class name should not use .
-        }
-
-        public HtmlButton Status
-        {
-            get {
-                Log.Information("Get TableRow's Server Status...");
-                return new HtmlButton(this.page, this.bindingProperties[1]); }
-        }
-
-        public void SelectStatusColumn()
-        {
+            int index = -1;
+            while (++index < headers.Length)
+            {
+                if (headers[index].Equals(header))
+                {
+                    return index;
+                }
+            }
+            throw new NotFoundException("Header not found!");
         }
 
     }
-
 }

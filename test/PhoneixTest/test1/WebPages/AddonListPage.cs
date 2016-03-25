@@ -61,7 +61,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
         public void SelectAddonInTableAndCheckDatails(string name)
         {
             Log.Information("---Find Add-ons table...---");
-            this.tableAddons = new HtmlTable(this, By.ClassName("fx-grid-full"));
+            this.tableAddons = new HtmlTable(this, By.Id("__fx-grid3"));
             this.tableAddons.Rows[name].SelectAndCheckDatails();
         }
 
@@ -73,7 +73,6 @@ namespace Phoenix.Test.UI.Framework.WebPages
            this.tabAddons.ExcuteScriptOnElement(".click()");
 
         }
-        
 
         public void OnboardSubscription(CreateAddonData data)
         {

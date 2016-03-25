@@ -27,6 +27,7 @@ namespace Phoenix.Test.UI.TestCases
     public class TenantPortalTest : WAPTestBase
     {
         private LoginPage loginPage;
+        private SmpPage smpPage;
 
         private DataSet config;
         private string userName;
@@ -48,19 +49,25 @@ namespace Phoenix.Test.UI.TestCases
             base.TestInitialize();
             driver.Url = "https://" + serverName + ":30081";
 
+            /*
             config = new DataSet();
             config.ReadXml(Directory.GetCurrentDirectory() + @"\PhoenixTest.exe.config");
             ReadConfigTestUser(config);
+            */
+
+            this.driver.Wait(ExpectedConditions.TitleContains("Authentication"));
+            this.driver.WaitForAjax();
 
             this.loginPage = new LoginPage(driver);
-            System.Threading.Thread.Sleep(10000);
-            driver.Manage().Window.Maximize();
+            this.smpPage = LoginTenantProtal(this.userName, this.password);
+           // System.Threading.Thread.Sleep(10000);
+           // driver.Manage().Window.Maximize();
         }
 
         [TestCleanup]
         public override void TestCleanup()
         {
-            System.Threading.Thread.Sleep(5000);
+            // System.Threading.Thread.Sleep(5000);
             base.TestCleanup();
         }
 
@@ -71,7 +78,7 @@ namespace Phoenix.Test.UI.TestCases
         Description("Verify tenant user can create a VM from new button.")]
         public void TenantCreateVmFromNewButtonTest()
         {
-            var smpPage = LoginTenantProtal(this.userName, this.password);
+            //var smpPage = LoginTenantProtal(this.userName, this.password);
             var createVmData = GetCreateVmData();
 
             smpPage.CreateVmFromNewButton(createVmData);
@@ -83,7 +90,7 @@ namespace Phoenix.Test.UI.TestCases
 
         public void TenantCreateVmFromMainMenuTest()
         {
-            var smpPage = LoginTenantProtal(this.userName, this.password);
+            // var smpPage = LoginTenantProtal(this.userName, this.password);
             var createVmData = GetCreateVmData();
 
             smpPage.CreateVmFromNewButton(createVmData);

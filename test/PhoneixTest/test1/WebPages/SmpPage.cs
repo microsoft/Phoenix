@@ -15,6 +15,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
     using Phoenix.Test.Data;
     using OpenQA.Selenium.Support.UI;
     using OpenQA.Selenium.Interactions;
+    using System.Diagnostics;
 
     public class SmpPage : Page
     {
@@ -184,8 +185,8 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public bool VerifyVmCreated(CreateVmData data)
         {
-            Log.Information("Wait 30 sec for the new VM refresh ...");
-            System.Threading.Thread.Sleep(30000);
+            // Log.Information("Wait 30 sec for the new VM refresh ...");
+            // System.Threading.Thread.Sleep(30000);
 
             Log.Information("Find main menu ...");
             GetMainMenu_TenantPortal();
@@ -196,9 +197,12 @@ namespace Phoenix.Test.UI.Framework.WebPages
             Log.Information("Find Azure VMs table row for: " + data.serverName + " ...");
             var row = this.tableAzureVMs.Rows[data.serverName];
             Log.Information("Check server status ...");
-            row.Status.Click();
+            var statusColumn = row.GetColumn("BUILD STATUS");
+            row.GetColumn("BUILD STATUS").Click();
 
-            string buildStatus = this.tableAzureVMs.RowValues[data.serverName][0];
+            this.Browser.Wait(d => statusColumn.Text == "Complete", 1800 * 1000);
+
+            string buildStatus = statusColumn.Text;
             Log.Information("Build Status: " + buildStatus);
             if (buildStatus.ToLower().Contains("complete"))
             {

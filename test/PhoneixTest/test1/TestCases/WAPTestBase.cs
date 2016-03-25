@@ -30,6 +30,7 @@
             this.driver = new InternetExplorerDriver();
             this.driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
             this.driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(15));
+            this.driver.Manage().Window.Maximize();
         }
 
         [TestCleanup]
