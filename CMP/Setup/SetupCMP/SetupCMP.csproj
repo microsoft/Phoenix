@@ -209,6 +209,7 @@
     <Compile Include="Helpers\CmpWorkerServiceHelper.cs" />
     <Compile Include="Helpers\DnsHelper.cs" />
     <Compile Include="Helpers\ImpersonationHelper.cs" />
+    <Compile Include="Helpers\InstallationSqlLoginQuery.cs" />
     <Compile Include="Helpers\SetupDatabaseHelper.cs" />
     <Compile Include="Helpers\SetupValidationHelpers.cs" />
     <Compile Include="Helpers\SizeFormat.cs" />

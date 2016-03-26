@@ -16,7 +16,7 @@ namespace CMP.Setup.Helpers
     {
         private const String PartialConnectionStringTemplate = "Integrated Security=SSPI;Application Name=CMP;Max Pool Size=500;Encrypt=true;TrustServerCertificate=true;Server={0};"; //connection string minus the database name
         private const String ConnectionStringTemplate = SetupDatabaseHelper.PartialConnectionStringTemplate + "Database={1};";
-        private const String PartialWebsiteConnectionStringTemplate = "Persist Security Info=True;User ID=cmp_0;Password=;MultipleActiveResultSets=True;Data Source={0}.corp.microsoft.com;"; //connection string minus the database name
+        private const String PartialWebsiteConnectionStringTemplate = "Persist Security Info=True;User ID={0};Password=;MultipleActiveResultSets=True;Data Source={1}.corp.microsoft.com;"; //connection string minus the database name
 
         internal const String LocalHost = "localhost";
         public const String SqlLocalHostString = "(local)";
@@ -92,13 +92,15 @@ namespace CMP.Setup.Helpers
                                                     FROM master.sys.master_files
                                                     WHERE database_id = 1 AND file_id = 1";
 
+        private const string SqlUsernameDuringInstall = "cmp_0";
         public static readonly string SqlDbUserPassword = null;
 
         static SetupDatabaseHelper()
         {
             // Create a random password
-            //SqlDbUserPassword = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10);
-            SqlDbUserPassword = "!!123abcdefghtytt";
+            SqlDbUserPassword = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10);
+
+            CreateSqlLoginUser(SqlUsernameDuringInstall, SqlDbUserPassword);
         }
 
         private enum SpidColumns
@@ -172,10 +174,10 @@ namespace CMP.Setup.Helpers
         /// </summary>
         /// <param name="instanceName"></param>
         /// <returns></returns>
-        public static string ConstructWebsiteConnectionString(string instanceName)
+        public static string ConstructWebsiteConnectionString(string username, string instanceName)
         {
             AppAssert.Assert(null != instanceName, "Null instance name passed to ConstructConnectionString");
-            string retstr = string.Format(SetupDatabaseHelper.PartialWebsiteConnectionStringTemplate, instanceName);
+            string retstr = string.Format(SetupDatabaseHelper.PartialWebsiteConnectionStringTemplate, username, instanceName);
             return retstr;
         }
 
@@ -468,7 +470,6 @@ namespace CMP.Setup.Helpers
                 }
             }
         }
-
 
         private static String GetBinarySidString(String accountName)
         {
@@ -1195,6 +1196,27 @@ namespace CMP.Setup.Helpers
                 newDBNames[i] = dbNames[i];
             }
             return newDBNames;
+        }
+
+        public static void CreateSqlLoginUser(string username, string password)
+        {
+            SetupLogger.LogInfo("Creating sql and db user [{0}]", username);
+
+            string query = String.Format(InstallationSqlLoginQuery.SqlLoginQueryDuringInstall, username, password);
+
+            string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(true);
+            string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+            string masterDBConnectionString = String.Format(DBConnectionStringFormat, partialConnectionString, SetupDatabaseHelper.MasterDatabaseName);
+            SqlConnection sqlConnection = new SqlConnection(masterDBConnectionString);
+            String commandText = String.Format(query, username);
+
+            SqlCommand sqlCmd = new SqlCommand(commandText, sqlConnection);
+
+            sqlConnection.Open();
+            sqlCmd.ExecuteNonQuery();
+
+            sqlConnection.Close();
+            SetupLogger.LogInfo("Successfully created sql and db user [{0}]", username);
         }
     }
 }
