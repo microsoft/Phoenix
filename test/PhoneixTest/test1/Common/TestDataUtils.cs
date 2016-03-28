@@ -64,19 +64,12 @@ namespace Phoenix.Test.Common
         /// </summary>
         /// <param name="length">The length of the sequence to generate</param>
         /// <returns>A sequence of random characters</returns>
-        public static IEnumerable<char> GetRandomCharSequence(int length = 16)
+        public static string GetRandomCharString(int length = 16)
         {
-            for (int i = 0; i < length; i++)
-            {
-                char ch;
-                do
-                {
-                    ch = (char)rng.Value.Next(char.MaxValue);
-                }
-                while (char.IsControl(ch));
-
-                yield return ch;
-            }
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         /// <summary>

@@ -16,6 +16,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
     using OpenQA.Selenium.Support.UI;
     using OpenQA.Selenium.Interactions;
     using System.Diagnostics;
+    using System.Threading;
 
     public class SmpPage : Page
     {
@@ -64,14 +65,14 @@ namespace Phoenix.Test.UI.Framework.WebPages
             Browser.WaitForAjax();
 
             Log.Information("---Click New button---");
-            OpenDrawer(); 
+            OpenDrawer();
             Log.Information("---Select Create VM---");
             this.drawer.SelectItem("AZURE VMS");
             this.drawer.SelectItem("CREATE AZURE VM");
 
             Log.Information("---Go through wizard to create VM---");
             var createVmWizard = new CreateVmWizard(this.Browser);
-            createVmWizard.Step1(data); createVmWizard.GoNext();
+            createVmWizard.Step1(data, this); createVmWizard.GoNext();
             createVmWizard.Step2(data); createVmWizard.GoNext();
             createVmWizard.Step3(data); createVmWizard.Complete();
             Log.Information("---Create VM request send successfully---");
@@ -91,7 +92,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
             Log.Information("---Go through wizard to create VM---");
             var createVmWizard = new CreateVmWizard(this.Browser);
-            createVmWizard.Step1(data); createVmWizard.GoNext();
+            createVmWizard.Step1(data, this); createVmWizard.GoNext();
             createVmWizard.Step2(data); createVmWizard.GoNext();
             createVmWizard.Step3(data); createVmWizard.Complete();
             Log.Information("---Create VM request send successfully---");
@@ -104,21 +105,21 @@ namespace Phoenix.Test.UI.Framework.WebPages
             OpenDrawer();
             Log.Information("---Select Create Plan---");
 
-           // IJavaScriptExecutor js = this.Browser as IJavaScriptExecutor;
-           // js.ExecuteScript("arguments[-1].click()", this.Browser.FindElement(By.ClassName("fxs-menu-tablediv")));
+            // IJavaScriptExecutor js = this.Browser as IJavaScriptExecutor;
+            // js.ExecuteScript("arguments[-1].click()", this.Browser.FindElement(By.ClassName("fxs-menu-tablediv")));
             Browser.WaitForAjax();
 
-           this.drawer.SelectItem("PLAN");
+            this.drawer.SelectItem("PLAN");
 
-           Browser.WaitForAjax();
-           this.drawer.SelectItem("CREATE PLAN");
+            Browser.WaitForAjax();
+            this.drawer.SelectItem("CREATE PLAN");
 
-           Log.Information("---Go through wizard to create plan---");
-           var createPlanWizard = new CreatePlanWizard(this.Browser);
-           createPlanWizard.Step1(data); createPlanWizard.GoNext();
-           createPlanWizard.Step2(data); createPlanWizard.GoNext();
-           createPlanWizard.Step3(data); createPlanWizard.Complete();
-           Log.Information("---Create plan request send successfully---");
+            Log.Information("---Go through wizard to create plan---");
+            var createPlanWizard = new CreatePlanWizard(this.Browser);
+            createPlanWizard.Step1(data); createPlanWizard.GoNext();
+            createPlanWizard.Step2(data); createPlanWizard.GoNext();
+            createPlanWizard.Step3(data); createPlanWizard.Complete();
+            Log.Information("---Create plan request send successfully---");
         }
 
         public void CreateAddonFromNewButton(CreateAddonData data)
@@ -133,7 +134,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
             Log.Information("---Go through wizard to create Addon---");
             var createAddonWizard = new CreateAddonWizard(this.Browser);
             createAddonWizard.Step1(data); createAddonWizard.GoNext();
-            createAddonWizard.Step2(data); createAddonWizard.Complete();            
+            createAddonWizard.Step2(data); createAddonWizard.Complete();
             Log.Information("---Create add-on request send successfully---");
 
 
@@ -142,7 +143,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
         public void OpenDrawer()
         {
             Log.Information("Click New button to open drawer.");
-           // this.btnNew.Click();
+            // this.btnNew.Click();
             this.btnNew.ExcuteScriptOnElement(".click()");
         }
 
@@ -192,19 +193,17 @@ namespace Phoenix.Test.UI.Framework.WebPages
             GetMainMenu_TenantPortal();
             this.mainMenuTenantPortal.SelectAzureVms();
 
-            Log.Information("Find Azure VMs table ...");
-            this.tableAzureVMs = new HtmlTable(this, By.ClassName("fx-grid-full"));
-            Log.Information("Find Azure VMs table row for: " + data.serverName + " ...");
-            var row = this.tableAzureVMs.Rows[data.serverName];
-            Log.Information("Check server status ...");
-            var statusColumn = row.GetColumn("BUILD STATUS");
-            row.GetColumn("BUILD STATUS").Click();
+            //Log.Information("Find Azure VMs table ...");
+            //this.tableAzureVMs = new HtmlTable(this, By.ClassName("fx-grid-full"));
+            //Log.Information("Find Azure VMs table row for: " + data.serverName + " ...");
+            //var row = this.tableAzureVMs.Rows[data.serverName];
+            //Log.Information("Check server status ...");
+            //var statusColumn = row.GetColumn("BUILD STATUS");
+            //row.GetColumn("BUILD STATUS").Click();
+            var status = GetBuildStatus(data);
 
-            this.Browser.Wait(d => statusColumn.Text == "Complete", 1800 * 1000);
-
-            string buildStatus = statusColumn.Text;
-            Log.Information("Build Status: " + buildStatus);
-            if (buildStatus.ToLower().Contains("complete"))
+            Log.Information("Build Status: " + status);
+            if (status.ToLower().Contains("complete"))
             {
                 Log.Information("Create VM success!");
                 return true;
@@ -215,9 +214,32 @@ namespace Phoenix.Test.UI.Framework.WebPages
                 return false;
             }
         }
+        string buildStatus;
 
+        public string GetBuildStatus(CreateVmData data)
+        {
 
+            for (int retryAttempt = 1; retryAttempt <= 5; retryAttempt++)
+            {
 
+                this.tableAzureVMs = new HtmlTable(this, By.ClassName("fx-grid-full"));
+                var row = this.tableAzureVMs.Rows[data.serverName];
+                var statusColumn = row.GetColumn("BUILD STATUS");
+                row.GetColumn("BUILD STATUS").Click();
+                buildStatus = statusColumn.Text;
+                if (buildStatus == "Complete")
+                {
+                    break;
+                }
+                else
+                {
+                    Thread.Sleep(1000 * 60 * 5); // Sleep 1 second before retrying
+                }
+
+            }
+            return buildStatus;
+
+        }
         public void CloseFirstTimeWizard()
         {
             this.btnCloseFirstTimeWizard.Click();

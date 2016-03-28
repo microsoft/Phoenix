@@ -111,14 +111,14 @@ namespace Phoenix.Test.UI.TestCases
         public CreateVmData GetCreateVmData()
         {
             string anyVmName = GetRandomVmName();
-            return new CreateVmData() { groupName = "Group01", serverName = anyVmName, userName = "test01@microsoft.com", localAdminPassword = "Password0)" };
+            return new CreateVmData() { groupName = TestDataUtils.GetRandomCharString(7), serverName = anyVmName, userName = TestDataUtils.GetRandomCharString(7), localAdminPassword = "Password0)" };
             //Do I need to replace this line using the non-hardcoded parameters that this class is getting from the application form? Yes.
             //return new CreateVmData() { groupName = "Group01", serverName = anyVmName, userName = this.userName, localAdminPassword = this.password };
         }
 
         public string GetRandomVmName()
         {
-            return TestDataUtils.GetRandomString(8);
+            return TestDataUtils.GetRandomCharString(8);
         }
 
         public void ReadConfigTestUser(DataSet config)

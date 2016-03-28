@@ -69,7 +69,7 @@
             }
 
             // wait for redirect complete
-            this.driver.Wait(ExpectedConditions.TitleContains("Azue"));
+            this.driver.Wait(ExpectedConditions.TitleContains("Azure"));
             this.driver.WaitForAjax(20*1000);
         }
 

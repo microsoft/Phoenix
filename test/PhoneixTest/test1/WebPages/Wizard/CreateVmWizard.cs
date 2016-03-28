@@ -17,6 +17,8 @@ namespace Phoenix.Test.UI.Framework.WebPages
     using Phoenix.Test.UI.Framework.Logging;
     using Phoenix.Test.UI.Framework.WebPages;
     using Phoenix.Test.Data;
+    using System.Windows.Forms;
+    using OpenQA.Selenium.Support.UI;
 
     class CreateVmWizard : Page
     {
@@ -33,7 +35,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
         [FindsBy(How = How.Id, Using = "VmAppNameSelect")]
         private HtmlTextBox groupName { get; set; }
 
-        [FindsBy(How = How.Name, Using = "VmRegion")]
+        [FindsBy(How = How.Id, Using = "VmRegion")]
         private HtmlComboBox region { get; set; }
 
         // step 2
@@ -81,10 +83,14 @@ namespace Phoenix.Test.UI.Framework.WebPages
             this.back.Click();
         }
 
-        public void Step1(CreateVmData data)
+        public void Step1(CreateVmData data,Page page)
         {
             Log.Information("Input Group Name.");
             this.groupName.SetText(data.groupName);
+            IWebElement ee = page.SearchContext.FindElement(By.Id("VmRegion"));
+            SelectElement e = new SelectElement(ee);
+            e.WrappedElement.Click();
+            e.SelectByText("Central US");
         }
 
         public void Step2(CreateVmData data)
