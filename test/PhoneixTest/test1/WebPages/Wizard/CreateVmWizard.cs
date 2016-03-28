@@ -1,24 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Phoenix.Test.UI.Framework.WebPages
+﻿namespace Phoenix.Test.UI.Framework.WebPages
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Support.PageObjects;
+    using OpenQA.Selenium.Support.UI;
+    using Phoenix.Test.Data;
     using Phoenix.Test.UI.Framework.Controls;
     using Phoenix.Test.UI.Framework.Logging;
-    using Phoenix.Test.UI.Framework.WebPages;
-    using Phoenix.Test.Data;
-    using System.Windows.Forms;
-    using OpenQA.Selenium.Support.UI;
 
     class CreateVmWizard : Page
     {
@@ -105,8 +92,6 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public void Step3(CreateVmData data)
         {
-            //if (data.needAdditionalDrives != null && data.needAdditionalDrives)
-            //    this.needAdditionalDrives.Check();
         }
     }
 }

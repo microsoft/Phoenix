@@ -28,6 +28,9 @@ namespace Phoenix.Test.UI.Framework.WebPages
         [FindsBy(How = How.ClassName, Using = "fxs-drawertaskbar-newbutton")]
         protected HtmlButton btnNew { get; set; }
 
+        [FindsBy(How = How.ClassName, Using = "fxs-drawertray-button fx-button")]
+        protected HtmlButton completedActions { get; set; }
+
         [FindsBy(How = How.ClassName, Using = "fxs-drawer-drawermenu")]
         protected HtmlSection drawer { get; set; }
 
@@ -48,7 +51,6 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         [FindsBy(How = How.Name, Using = "Service Management")]
         protected HtmlDiv smp { get; set; }
-
 
         public bool IsFirstTimeLogin
         {
@@ -94,7 +96,8 @@ namespace Phoenix.Test.UI.Framework.WebPages
             var createVmWizard = new CreateVmWizard(this.Browser);
             createVmWizard.Step1(data, this); createVmWizard.GoNext();
             createVmWizard.Step2(data); createVmWizard.GoNext();
-            createVmWizard.Step3(data); createVmWizard.Complete();
+           // createVmWizard.Step3(data); 
+            createVmWizard.Complete();
             Log.Information("---Create VM request send successfully---");
         }
 
@@ -160,15 +163,6 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public void OpenMenuPlans()
         {
-            //if (this.mainMenuAdminPortal.Items.Count == 0)
-            //    Log.Information("Count is 0.");
-            //else
-            //{
-            //    foreach (var item in this.mainMenuAdminPortal.Items)
-            //    {
-            //        Log.Information("key: " + item.Key + " | " + "value: " + item.Value.ToString());
-            //    }
-            //}
             if (this.mainMenuAdminPortal == null)
                 Log.Information("cannot find main menu Admin Portal");
             this.mainMenuAdminPortal.SelectPlans();
@@ -186,60 +180,62 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public bool VerifyVmCreated(CreateVmData data)
         {
-            // Log.Information("Wait 30 sec for the new VM refresh ...");
-            // System.Threading.Thread.Sleep(30000);
+            Log.Information("Click Completed operation button...");
+            Thread.Sleep(1000 * 15);
+            var completedOp = new HtmlButton(this, By.ClassName("fxs-drawertray-button"));
+            completedOp.Click();
 
-            Log.Information("Find main menu ...");
-            GetMainMenu_TenantPortal();
-            this.mainMenuTenantPortal.SelectAzureVms();
+            Log.Information("Check the progress box...");
 
-            //Log.Information("Find Azure VMs table ...");
-            //this.tableAzureVMs = new HtmlTable(this, By.ClassName("fx-grid-full"));
-            //Log.Information("Find Azure VMs table row for: " + data.serverName + " ...");
-            //var row = this.tableAzureVMs.Rows[data.serverName];
-            //Log.Information("Check server status ...");
-            //var statusColumn = row.GetColumn("BUILD STATUS");
-            //row.GetColumn("BUILD STATUS").Click();
-            var status = GetBuildStatus(data);
-
-            Log.Information("Build Status: " + status);
-            if (status.ToLower().Contains("complete"))
-            {
-                Log.Information("Create VM success!");
+            var progressBox = new HtmlDiv(this, By.ClassName("fxs-progressbox-header"));
+            if (progressBox.Text == "Successfully submitted VM request.")
                 return true;
-            }
             else
-            {
-                Log.Information("Create VM failed. Error Message: " + this.tableAzureVMs.RowValues[data.serverName][1]);
                 return false;
-            }
+            //Log.Information("Find main menu ...");
+            //GetMainMenu_TenantPortal();
+            //this.mainMenuTenantPortal.SelectAzureVms();
+
+            //var status = GetBuildStatus(data);
+
+            //Log.Information("Build Status: " + status);
+            //if (status.ToLower().Contains("complete"))
+            //{
+            //    Log.Information("Create VM success!");
+            //    return true;
+            //}
+            //else
+            //{
+            //    Log.Information("Create VM failed. Error Message: " + this.tableAzureVMs.RowValues[data.serverName][1]);
+            //    return false;
+            //}
         }
-        string buildStatus;
+       // string buildStatus;
 
-        public string GetBuildStatus(CreateVmData data)
-        {
+        //public string GetBuildStatus(CreateVmData data)
+        //{
 
-            for (int retryAttempt = 1; retryAttempt <= 5; retryAttempt++)
-            {
+        //    for (int retryAttempt = 1; retryAttempt <= 5; retryAttempt++)
+        //    {
 
-                this.tableAzureVMs = new HtmlTable(this, By.ClassName("fx-grid-full"));
-                var row = this.tableAzureVMs.Rows[data.serverName];
-                var statusColumn = row.GetColumn("BUILD STATUS");
-                row.GetColumn("BUILD STATUS").Click();
-                buildStatus = statusColumn.Text;
-                if (buildStatus == "Complete")
-                {
-                    break;
-                }
-                else
-                {
-                    Thread.Sleep(1000 * 60 * 5); // Sleep 1 second before retrying
-                }
+        //        this.tableAzureVMs = new HtmlTable(this, By.ClassName("fx-grid-full"));
+        //        var row = this.tableAzureVMs.Rows[data.serverName];
+        //        var statusColumn = row.GetColumn("BUILD STATUS");
+        //        row.GetColumn("BUILD STATUS").Click();
+        //        buildStatus = statusColumn.Text;
+        //        if (buildStatus == "Complete")
+        //        {
+        //            break;
+        //        }
+        //        else
+        //        {
+        //            Thread.Sleep(1000 * 60 * 5); // Sleep 1 second before retrying
+        //        }
 
-            }
-            return buildStatus;
+        //    }
+        //    return buildStatus;
 
-        }
+        //}
         public void CloseFirstTimeWizard()
         {
             this.btnCloseFirstTimeWizard.Click();

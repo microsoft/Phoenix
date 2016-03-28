@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Phoenix.Test.UI.Framework.WebPages
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Support.PageObjects;
+    using Phoenix.Test.Data;
     using Phoenix.Test.UI.Framework.Controls;
     using Phoenix.Test.UI.Framework.Logging;
-    using Phoenix.Test.UI.Framework.WebPages;
-    using Phoenix.Test.Data;
 
     class CreateAddonWizard : Page
     {
@@ -35,8 +24,6 @@ namespace Phoenix.Test.UI.Framework.WebPages
         private HtmlCheckBox cmpWapExtension { get; set; }
 
         // step 3
-
-
 
         public CreateAddonWizard(IWebDriver browser)
             : base(browser)
@@ -72,8 +59,6 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public void Step2(CreateAddonData data)
         {
-            // The checkbox will NOT be created until step2 show up, so we have to create it here.
-            //this.cmpWapExtension = new HtmlCheckBox(this, By.Name("CmpWapExtension"));
             this.cmpWapExtension = new HtmlCheckBox(this, By.Id("availableService2"));
             this.cmpWapExtension.Check();
         }

@@ -6,5 +6,6 @@ namespace Phoenix.Test.UI.Framework
     {
         public const string JohnYu = "v-feyu";
         public const string KenHill = "v-kenhil";
+        public const string Sophia = "v-sowan";
     }
 }

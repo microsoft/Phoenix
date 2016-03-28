@@ -8,10 +8,10 @@
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
-    using System.Collections.Generic;
+    using OpenQA.Selenium;
     using Phoenix.Test.UI.Framework.Logging;
     using Phoenix.Test.UI.Framework.WebPages;
-    using OpenQA.Selenium;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Defines the generic properties for an Html tag structure like this: .section > .section-title ~ .section-body > .section-item.
@@ -51,9 +51,7 @@ namespace Phoenix.Test.UI.Framework.Controls
             get
             {
                 Dictionary<string, HtmlSectionItem> sectionItems = new Dictionary<string, HtmlSectionItem>();
-
              
-                //var sectionContainers = this.Element.FindElements(By.CssSelector(".fx-scrollbar-scrollable .fxs-menu-tablediv"));
                 var sectionContainers = this.Element.FindElements(By.XPath(".//li"));
 
                 foreach (var item in sectionContainers)

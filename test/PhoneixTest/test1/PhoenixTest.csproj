@@ -88,8 +88,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\PowerShellHelper.cs" />
-    <Compile Include="Common\WindowsApplicationHelper.cs" />
     <Compile Include="Controls\HtmlScrollBarMenu_Tenant.cs" />
     <Compile Include="Controls\HtmlScrollBarMenuItem.cs" />
     <Compile Include="Controls\HtmlScrollBarMenu_Admin.cs" />

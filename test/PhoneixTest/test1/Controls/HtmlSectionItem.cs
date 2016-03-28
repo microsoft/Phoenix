@@ -8,9 +8,9 @@
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
+    using OpenQA.Selenium;
     using Phoenix.Test.UI.Framework.Logging;
     using Phoenix.Test.UI.Framework.WebPages;
-    using OpenQA.Selenium;
 
     /// <summary>
     /// Defines the generic properties for an Html tag structure like this: .section-item > .section-item-label ~ .section-item-editor.
@@ -53,7 +53,6 @@ namespace Phoenix.Test.UI.Framework.Controls
         public void Select()
         {
             Log.Information("Select item: " + this.itemContainer.Text);
-           // this.itemContainer.Click();
             this.InnerButton.Click();
         }
 

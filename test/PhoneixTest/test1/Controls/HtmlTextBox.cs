@@ -10,9 +10,8 @@
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
-    using Phoenix.Test.UI.Framework.WebPages;
     using OpenQA.Selenium;
-    using Phoenix.Test.UI.Framework.Logging;
+    using Phoenix.Test.UI.Framework.WebPages;
 
     public class HtmlTextBox : HtmlControl
     {
@@ -26,7 +25,6 @@ namespace Phoenix.Test.UI.Framework.Controls
 
         public void Input(string input)
         {
-            //Log.Information("Input: " + input);
             SendKeys(input);
         }
 

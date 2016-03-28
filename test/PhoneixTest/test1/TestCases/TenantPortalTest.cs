@@ -1,40 +1,23 @@
 ﻿
 namespace Phoenix.Test.UI.TestCases
 {
-    using System;
 
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Interactions;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using OpenQA.Selenium.Support.UI;
-    
+    using Phoenix.Test.Common;
     using Phoenix.Test.Data;
     using Phoenix.Test.UI.Framework;
-    using Phoenix.Test.UI.Framework.Logging;
-    //using Phoenix.Test.UI.Framework.Authentication;
-    //using Phoenix.Test.UI.Framework.Configuration;
-    using Phoenix.Test.UI.Framework.Controls;
-    //using Phoenix.Test.UI.Framework.Shared;
     using Phoenix.Test.UI.Framework.WebPages;
-    using Phoenix.Test.Common;
-    using Microsoft.VisualStudio.TestTools;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Data;
-    using System.IO;
-    using System.Xml;
 
     [TestClass]
-    //[SignInAs(EUserTypes.Regular)]
     public class TenantPortalTest : WAPTestBase
     {
         private LoginPage loginPage;
         private SmpPage smpPage;
-
-        private DataSet config;
         private string userName;
         private string password;
         private string serverName;
-        private string url;
-
 
         public TenantPortalTest(string userAccount, string password, string serverName)
         {
@@ -49,25 +32,16 @@ namespace Phoenix.Test.UI.TestCases
             base.TestInitialize();
             driver.Url = "https://" + serverName + ":30081";
 
-            /*
-            config = new DataSet();
-            config.ReadXml(Directory.GetCurrentDirectory() + @"\PhoenixTest.exe.config");
-            ReadConfigTestUser(config);
-            */
-
             this.driver.Wait(ExpectedConditions.TitleContains("Authentication"));
             this.driver.WaitForAjax();
 
             this.loginPage = new LoginPage(driver);
             this.smpPage = LoginTenantProtal(this.userName, this.password);
-           // System.Threading.Thread.Sleep(10000);
-           // driver.Manage().Window.Maximize();
         }
 
         [TestCleanup]
         public override void TestCleanup()
         {
-            // System.Threading.Thread.Sleep(5000);
             base.TestCleanup();
         }
 
@@ -78,30 +52,22 @@ namespace Phoenix.Test.UI.TestCases
         Description("Verify tenant user can create a VM from new button.")]
         public void TenantCreateVmFromNewButtonTest()
         {
-            //var smpPage = LoginTenantProtal(this.userName, this.password);
             var createVmData = GetCreateVmData();
 
             smpPage.CreateVmFromNewButton(createVmData);
 
             smpPage.VerifyVmCreated(createVmData);
-
-            //Assert.IsTrue(smpPage.VerifyVmCreated(createVmData), "Failed to create VM from new button.");
         }
 
         public void TenantCreateVmFromMainMenuTest()
         {
-            // var smpPage = LoginTenantProtal(this.userName, this.password);
             var createVmData = GetCreateVmData();
 
             smpPage.CreateVmFromNewButton(createVmData);
 
             smpPage.VerifyVmCreated(createVmData);
 
-            //Assert.IsTrue(smpPage.VerifyVmCreated(createVmData), "Failed to create VM from new button.");
         }
-
-
-
 
         public SmpPage LoginTenantProtal(string user, string psw)
         {
@@ -112,8 +78,6 @@ namespace Phoenix.Test.UI.TestCases
         {
             string anyVmName = GetRandomVmName();
             return new CreateVmData() { groupName = TestDataUtils.GetRandomCharString(7), serverName = anyVmName, userName = TestDataUtils.GetRandomCharString(7), localAdminPassword = "Password0)" };
-            //Do I need to replace this line using the non-hardcoded parameters that this class is getting from the application form? Yes.
-            //return new CreateVmData() { groupName = "Group01", serverName = anyVmName, userName = this.userName, localAdminPassword = this.password };
         }
 
         public string GetRandomVmName()

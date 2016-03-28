@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HtmlComboBox.cs" company="Microsoft Corporation">
+//   Microsoft Corporation. All rights reserved.
+//   Information Contained Herein is Proprietary and Confidential.
+// </copyright>
+// <summary>
+//  Defines the generic actions for an Html ComboBox.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
     using Phoenix.Test.UI.Framework.WebPages;
     using OpenQA.Selenium;
-    using OpenQA.Selenium.Support.UI;
-  
 
     class HtmlComboBox : HtmlControl
     {
@@ -18,8 +19,6 @@ namespace Phoenix.Test.UI.Framework.Controls
         public HtmlComboBox(Page page, By by)
             : base(page, by)
         {
-          
-         
         }
     }
 }

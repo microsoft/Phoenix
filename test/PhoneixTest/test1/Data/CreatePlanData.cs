@@ -1,22 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CreatePlanData.cs" company="Microsoft Corporation">
+//   Microsoft Corporation. All rights reserved.
+//   Information Contained Herein is Proprietary and Confidential.
+// </copyright>
+// <summary>
+//   Utilities for generating test data.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Phoenix.Test.Data
 {
     public class CreatePlanData
     {
+        // Step 1
         public string planName { get; set; }
 
-
         public string clientId { get; set; }
+
         public string clientKey { get; set; }
+
         public string tenantId { get; set; }
+
         public string azureSubscription { get; set; }
-
-
 
         public string groupName { get; set; }
 

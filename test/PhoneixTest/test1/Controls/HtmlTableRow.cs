@@ -17,14 +17,12 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Phoenix.Test.UI.Framework.Controls
 {
-    using System.Linq;
-    using Phoenix.Test.UI.Framework.WebPages;
     using OpenQA.Selenium;
-    using System.Collections.ObjectModel;
-    using Phoenix.Test.UI.Framework.Logging;
+    using Phoenix.Test.UI.Framework.WebPages;
+    using System.Linq;
 
     /// <summary>
-    /// Defines the generic properties for an Html tag structure like this: .section-item > .section-item-label ~ .section-item-editor.
+    /// Defines the generic properties for an Html table structure.
     /// </summary>
     public class HtmlTableRow
     {
@@ -65,7 +63,6 @@ namespace Phoenix.Test.UI.Framework.Controls
 
         public void SelectAndCheckDatails()
         {
-           // new HtmlButton(page, this.columns[0]).Click();
             new HtmlButton(page, this.columns[0].FindElement(By.XPath("./a"))).Click();
         }
 
@@ -86,6 +83,5 @@ namespace Phoenix.Test.UI.Framework.Controls
             }
             throw new NotFoundException("Header not found!");
         }
-
     }
 }

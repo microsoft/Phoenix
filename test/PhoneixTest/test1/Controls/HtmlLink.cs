@@ -10,8 +10,8 @@
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
-    using Phoenix.Test.UI.Framework.WebPages;
     using OpenQA.Selenium;
+    using Phoenix.Test.UI.Framework.WebPages;
 
     public class HtmlLink : HtmlControl
     {

@@ -29,7 +29,7 @@
         public void Login(string userName, string password)
         {
             //System.Threading.Thread.Sleep(10000);
-            WindowsApplicationHelper.Login(loginWindowTitle, userName, password);
+            //WindowsApplicationHelper.Login(loginWindowTitle, userName, password);
             //System.Threading.Thread.Sleep(10000);
         }
 

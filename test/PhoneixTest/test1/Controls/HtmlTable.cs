@@ -4,20 +4,19 @@
 //   Information Contained Herein is Proprietary and Confidential.
 // </copyright>
 // <summary>
-//  Defines the generic properties for an Html tag structure like this: 
+//  Defines the generic properties for an Html table structure like this: 
 //
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
+    using OpenQA.Selenium;
+    using Phoenix.Test.UI.Framework.WebPages;
     using System.Collections.Generic;
     using System.Linq;
-    using Phoenix.Test.UI.Framework.WebPages;
-    using OpenQA.Selenium;
-    using Phoenix.Test.UI.Framework.Logging;
 
     /// <summary>
-    /// Defines the generic properties for an Html tag structure like this: .section > .section-title ~ .section-body > .section-item.
+    /// Defines the generic properties for an Html table.    
     /// </summary>
     public class HtmlTable : HtmlControl
     {
@@ -26,7 +25,7 @@ namespace Phoenix.Test.UI.Framework.Controls
         public Dictionary<string, string[]> RowValues = new Dictionary<string, string[]>();
 
         /// <summary>
-        /// Construct HtmlSection found using By accessor.
+        /// Construct HtmlTable found using By accessor.
         /// </summary>
         /// <param name="page">Page where control is found.</param>
         /// <param name="by">By accessor to find element.</param>
@@ -38,7 +37,7 @@ namespace Phoenix.Test.UI.Framework.Controls
         }
 
         /// <summary>
-        /// Construct HtmlSection by directly passing its element.
+        /// Construct HtmlTable by directly passing its element.
         /// </summary>
         /// <param name="page">Page where control is found.</param>
         /// <param name="element">IWebElement representing the control.</param>

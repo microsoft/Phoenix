@@ -10,8 +10,8 @@
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
-    using Phoenix.Test.UI.Framework.WebPages;
     using OpenQA.Selenium;
+    using Phoenix.Test.UI.Framework.WebPages;
 
     public class HtmlDiv : HtmlControl
     {
@@ -22,7 +22,6 @@ namespace Phoenix.Test.UI.Framework.Controls
 
         public HtmlDiv(Page page, IWebElement element) : base(page, element)
         {
-
         }
     }
 }

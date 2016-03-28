@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using Phoenix.Test.UI;
-using System.Collections.ObjectModel;
-using System.Drawing;
-using Phoenix.Test.UI.Framework;
-using Phoenix.Test.UI.Framework.WebPages;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HtmlButton.cs" company="Microsoft Corporation">
+//   Microsoft Corporation. All rights reserved.
+//   Information Contained Herein is Proprietary and Confidential.
+// </copyright>
+// <summary>
+//  Defines the generic actions for an Html Controls.
+// </summary>
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
+    using OpenQA.Selenium;
+    using Phoenix.Test.UI.Framework.WebPages;
+    using System.Collections.ObjectModel;
+    using System.Drawing;
     public class HtmlControl : ElementContainer
     {
         private readonly IWebElement element;
@@ -200,48 +201,9 @@ namespace Phoenix.Test.UI.Framework.Controls
                 throwErrorIfFalse: false);
         }
 
-        ///// <summary>
-        ///// Wait the HtmlControl to show up in UI during a timeout setting.
-        ///// </summary>
-        ///// <param name="timeOut">Set milliseconds timeout value for wait the HtmlControl displayed. Default value is set by App.config, TestSettings section group, pageTimeOut property value.</param>
-        ///// <param name="sleepInterval">Set milliseconds timeout value indicating how often to check for the condition to be true. Default is 500 milliseconds.</param>
-        public void WaitShow(int timeOut = 0, int sleepInterval = 0)
-        {
-            var errorMessage = "Wait element to show failed!";
-            if (By != null)
-            {
-                //Console.WriteLine(string.Format("Waiting for element {0} to show", By.ToString()));
-                errorMessage += "The element info: " + By.ToString();
-            }
+ 
 
-            Page.Browser.Wait((driver) => Element.Displayed, timeOut, sleepInterval, throwErrorMessage: errorMessage);
-        }
-
-        ///// <summary>
-        ///// Wait the HtmlControl to hide in UI during a timeout setting.
-        ///// </summary>
-        ///// <param name="timeOut">Set milliseconds timeout value for wait the HtmlControl hidden. Default value is set by App.config, TestSettings section group, pageTimeOut property value.</param>
-        ///// <param name="sleepInterval">Set milliseconds timeout value indicating how often to check for the condition to be true. Default is 500 milliseconds.</param>
-        public void WaitHide(int timeOut = 0, int sleepInterval = 0)
-        {
-            Page.Browser.Wait((driver) =>
-            {
-                try
-                {
-                    return !Element.Displayed;
-                }
-                catch (StaleElementReferenceException)
-                {
-
-                    // If the element is stale, it is gone.
-                    return true;
-                }
-            },
-            timeOut,
-            sleepInterval,
-                throwErrorMessage: "Wait element to hide failed! The element info: " + ToString());
-        }
-
+      
         /// <summary>
         /// Wait the HtmlControl to enabled during a timeout setting.
         /// </summary>

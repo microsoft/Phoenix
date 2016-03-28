@@ -9,10 +9,10 @@
 
 namespace Phoenix.Test.UI.Framework.Controls
 {
-    using System.Collections.Generic;
+    using OpenQA.Selenium;
     using Phoenix.Test.UI.Framework.Logging;
     using Phoenix.Test.UI.Framework.WebPages;
-    using OpenQA.Selenium;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Defines the generic properties for an Html tag structure like this: .section > .section-title ~ .section-body > .section-item.

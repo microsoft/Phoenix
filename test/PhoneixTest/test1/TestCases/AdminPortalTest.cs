@@ -1,40 +1,24 @@
 ﻿namespace Phoenix.Test.UI.TestCases
 {
-    using System;
-
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Interactions;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using OpenQA.Selenium.Support.UI;
-
+    using Phoenix.Test.Common;
     using Phoenix.Test.Data;
     using Phoenix.Test.UI.Framework;
     using Phoenix.Test.UI.Framework.Logging;
-    //using Phoenix.Test.UI.Framework.Authentication;
-    //using Phoenix.Test.UI.Framework.Configuration;
-    using Phoenix.Test.UI.Framework.Controls;
-    //using Phoenix.Test.UI.Framework.Shared;
     using Phoenix.Test.UI.Framework.WebPages;
-    using Phoenix.Test.Common;
-    using Microsoft.VisualStudio.TestTools;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
     [TestClass]
-    //[SignInAs(EUserTypes.Regular)]
     public class AdminPortalTest : WAPTestBase
     {
-
-        private AdminLoginPage loginPage;
-
         private string userName;
         private string password;
         private string serverName;
-
         private string clientId;
         private string clientKey;
         private string tenantId;
         private string azureSubscription;
-        //private string url;
 
         public AdminPortalTest(string userAccount, string password, string serverName, string clientId, string clientKey, string tenantId, string azureSubscription)
         {
@@ -58,8 +42,6 @@
             driver.Navigate().GoToUrl("https://" + serverName + ":30091");
 
             Log.Information("Get user and password.");
-           // this.loginPage = new AdminLoginPage(driver);
-           // loginPage.Login(userName, password);
 
             var authWindow = this.driver.Wait(ExpectedConditions.AlertIsPresent(), 5000);
             if (authWindow != null)
@@ -89,7 +71,6 @@
 
             smpPage.CreatePlanFromNewButton(data);
 
-            //Assert.IsTrue(smpPage.VerifyPlanCreated(data), "Failed to create plan from new button.");
         }
 
         [TestMethod,
@@ -104,9 +85,6 @@
             var smpPage = new SmpPage(this.driver);
 
             smpPage.CreateAddonFromNewButton(data);
-
-
-            //////Assert.IsTrue(smpPage.VerifyPlanCreated(data), "Failed to create plan from new button.");
         }
 
         public void AdminOnboardSubscriptionTest(CreatePlanData planData, CreateAddonData data, string subscriptionName)
@@ -132,16 +110,14 @@
 
             var subscptPage = new SubscriptionPage(this.driver);
             Log.Information("---Onboarding subscripton...---");
-            subscptPage.OnboardSubscription(planData, subscriptionName); //, data.clientId, data.clientKey, data.tenantId, data.azureSubscription
+            subscptPage.OnboardSubscription(planData, subscriptionName);
         }
 
 
         public void AdminConfigureAddon()
         {
             var addonConfigPage = new AddonConfigPage(this.driver);
-
         }
-
 
         [TestCleanup]
         public override void TestCleanup()
