@@ -1,37 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-//using Phoenix.Test.UI.Framework.Advertiser.Pages;
-using Phoenix.Test.UI.Framework;
-using Phoenix.Test.UI.Framework.Logging;
-using Phoenix.Test.UI.Framework.WebPages;
-using Phoenix.Test.UI.TestCases;
-using Phoenix.Test.Data;
-using Phoenix.Test.Installation.TestCase;
-//using Phoenix.Test.UI.Framework.Configuration;
-//using Framework;
-//using Framework.Authentication;
-//using Framework.Helper;
-//using Framework.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.ObjectModel;
-//using CampaignSummaryPage = Framework.Advertiser.Pages.CampaignSummaryPage;
-
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
-
-
-namespace Phoenix.Test.UI
+﻿namespace Phoenix.Test.UI
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using OpenQA.Selenium.Firefox;
+    using Phoenix.Test.Data;
+    using Phoenix.Test.Installation.TestCase;
+    using Phoenix.Test.UI.Framework.WebPages;
+    using Phoenix.Test.UI.TestCases;
+    using System;
+    using System.Windows.Forms;
     public partial class Form1 : Form
     {
         public Form1()
@@ -48,35 +24,32 @@ namespace Phoenix.Test.UI
                 return;
             }
 
-            var test = new AdminPortalTest(this.textBox_UserName.Text, this.textBox_Password.Text, this.textBox_AdminPortalServer.Text,
-                this.textBox_ClientId.Text, this.textBox_ClientKey.Text, this.textBox_TenantId.Text, this.textBox1.Text);
+            var test = new AdminPortalTest(
+                this.textBox_UserName.Text, 
+                this.textBox_Password.Text, 
+                this.textBox_AdminPortalServer.Text,
+                this.textBox_ClientId.Text, 
+                this.textBox_ClientKey.Text, 
+                this.textBox_TenantId.Text, 
+                this.textBox1.Text,
+                this.textBox_TenantUserAccount.Text,
+                this.textBox_TenantPassword.Text);
 
             var data = test.GetCreatePlanData();
-            // data.planName = "ArmVMs"; // currently, we hard code the plan name here, need to add this name to configure file.
             data.clientId = this.textBox_ClientId.Text; data.clientKey = this.textBox_ClientKey.Text;
             data.tenantId = this.textBox_TenantId.Text; data.azureSubscription = this.textBox1.Text;
             var anySubscriptionName = test.GetRandomSubscriptionName();
+            var tenantData = new CreateTenantUserData()
+            {
+                emailAddress = this.textBox_TenantUserAccount.Text,
+                password = this.textBox_TenantPassword.Text
+            };
 
-            var addonData = test.GetCreateAddonData(this.textBox_ClientId.Text, this.textBox_ClientKey.Text, this.textBox1.Text, this.textBox_AdminPortalServer.Text);
-
-            test.AdminCreatePlanTest();
-            test.AdminCreateAddonTest(addonData);
-            test.AdminOnboardSubscriptionTest(data, addonData, anySubscriptionName);
-
+            test.AdminCreatePlanTest(data);
+            test.AdminChangePlanAccess(data);
+            test.AdminCreateUserTest(tenantData, data.planName);
+            test.AdminOnboardSubscriptionTest(data, anySubscriptionName);
             test.TestCleanup();
-        }
-
-        //not sure what this is doing in here - KH
-        public void TestCase02()
-        {
-            var driver = new FirefoxDriver();
-            var page = new SmpPage(driver);
-            //string user = "test01@microsoft.com";
-            //string psw = GetPassword();
-
-            driver.Url = "https://khphoenixsql2.redmond.corp.microsoft.com:30081/#Workspaces/All/dashboard";
-            driver.Manage().Window.Maximize();
-            //page.AddSubscription();
         }
 
         [TestInitialize]
@@ -98,6 +71,8 @@ namespace Phoenix.Test.UI
             test.TestInitialize();
             test.TenantCreateVmFromNewButtonTest();
             test.TestCleanup();
+
+            MessageBox.Show("Tests done!");
         }
 
         private void Form1_Load(object sender, EventArgs e)
