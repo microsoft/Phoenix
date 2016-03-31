@@ -14,22 +14,10 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
     public class LoginPage : Page
     {
-
-
-        public string machineName = "phoenixtest2";
-        public int portAdmin = 30091;
-        public int portTenant = 30081;
-
-        //public string UrlLocation
-        //{
-        //    get { return "https://" + machineName + "northamerica.corp.microsoft.com:" + portTenant; }
-        //}
-
         public override HtmlControl VerifyPageElement
         {
             get { return submit; }
         }
-
 
         #region Elements
 
@@ -50,23 +38,13 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         #endregion
 
-        public LoginPage(IWebDriver browser) : base(browser) 
-        {
-        }
+        public LoginPage(IWebDriver browser) : base(browser) {}
 
-        public SmpPage Login(string userName, string password)
+        public void Login(string userName, string password)
         {
             this.emailAddress.SetText(userName);
             this.password.SetText(password);
-
             this.submit.ClickButtonToNavigate();
-
-            var page = new SmpPage(Browser);
-            return page;
         }
-
-
-
-
     }
 }

@@ -93,6 +93,7 @@
     <Compile Include="Controls\HtmlScrollBarMenu_Admin.cs" />
     <Compile Include="Data\CreateAddonData.cs" />
     <Compile Include="Data\CreatePlanData.cs" />
+    <Compile Include="Data\CreateTenantUserData.cs" />
     <Compile Include="Framework\Log.cs" />
     <Compile Include="TestCases\AdminPortalTest.cs" />
     <Compile Include="Common\TestDataUtils.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="WebPages\AdminLoginPage.cs" />
     <Compile Include="WebPages\AzureSubscriptionOnboardingPage.cs" />
     <Compile Include="WebPages\SubscriptionPage.cs" />
+    <Compile Include="WebPages\WelcomePage.cs" />
     <Compile Include="WebPages\Wizard\CreateAddonWizard.cs" />
     <Compile Include="WebPages\Wizard\CreatePlanWizard.cs" />
     <Compile Include="WebPages\DrawerPage.cs" />

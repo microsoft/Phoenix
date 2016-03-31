@@ -46,7 +46,6 @@ namespace Phoenix.Test.UI.Framework.WebPages
         [FindsBy(How = How.Name, Using = "Service Management")]
         private HtmlDiv smp { get; set; }
 
-
         public override HtmlControl VerifyPageElement
         {
             get { return smp; }
@@ -57,17 +56,17 @@ namespace Phoenix.Test.UI.Framework.WebPages
         {
             this.name.Input(name);
             this.description.Input(description);
-
-
             this.clientId.Input(clientId);
             this.clientKey.Input(clientKey);
             this.tenantId.Input(tenantId);
             this.azureSubscriptionId.Input(azureSubscription);
-
             this.addSubscription.Click();
         }
 
-
-
+        public void AddSubscriptionToPlan(string name)
+        {
+            var availableSubs = new HtmlTable(this, By.ClassName(""));
+            var row = availableSubs.Rows[name];
+        }
     }
 }

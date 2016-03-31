@@ -19,8 +19,19 @@
         private string clientKey;
         private string tenantId;
         private string azureSubscription;
+        private string tenantUserAccount;
+        private string tenantUserPassword;
 
-        public AdminPortalTest(string userAccount, string password, string serverName, string clientId, string clientKey, string tenantId, string azureSubscription)
+        public AdminPortalTest(
+            string userAccount, 
+            string password, 
+            string serverName, 
+            string clientId, 
+            string clientKey, 
+            string tenantId, 
+            string azureSubscription,
+            string tenantUserAccount,
+            string tenantUserPassword)
         {
             this.userName = userAccount;
             this.password = password;
@@ -30,6 +41,8 @@
             this.clientKey = clientKey;
             this.tenantId = tenantId;
             this.azureSubscription = azureSubscription;
+            this.tenantUserAccount = tenantUserAccount;
+            this.tenantUserPassword = tenantUserPassword;
         }
 
         [TestInitialize]
@@ -52,7 +65,7 @@
 
             // wait for redirect complete
             this.driver.Wait(ExpectedConditions.TitleContains("Azure"));
-            this.driver.WaitForAjax(20*1000);
+            this.driver.WaitForAjax(30*1000);
         }
 
 
@@ -61,33 +74,16 @@
         Priority(TestPriority.P0),
         TestCategory(TestCategory.BVT),
         Description("Verify administrator can create a plan.")]
-        public void AdminCreatePlanTest()
+        public void AdminCreatePlanTest(CreatePlanData data)
         {
             Log.Information("---Start AdminCreatePlanTest---");
             TestInitialize();
             var smpPage = new SmpPage(this.driver);
-
-            var data = GetCreatePlanData();
-
             smpPage.CreatePlanFromNewButton(data);
 
         }
 
-        [TestMethod,
-        Owner(TestOwners.JohnYu),
-        Priority(TestPriority.P0),
-        TestCategory(TestCategory.BVT),
-        Description("Verify administrator can create a add-on.")]
-        public void AdminCreateAddonTest(CreateAddonData data)
-        {
-            Log.Information("---Start AdminCreateAddonTest---");
-            TestInitialize();
-            var smpPage = new SmpPage(this.driver);
-
-            smpPage.CreateAddonFromNewButton(data);
-        }
-
-        public void AdminOnboardSubscriptionTest(CreatePlanData planData, CreateAddonData data, string subscriptionName)
+        public void AdminOnboardSubscriptionTest(CreatePlanData planData, string subscriptionName)
         {
             Log.Information("---Open Add-ons List Page...---");
             TestInitialize();
@@ -100,9 +96,10 @@
             
             var page = new AddonListPage(this.driver);
             Log.Information("---Select Add-ons tab...---");
-            page.SelectAddonsTab();
-            Log.Information("---Click Add-on " + data.addonName + " and check details...---");
-            page.SelectAddonInTableAndCheckDatails(data.addonName);
+            page.SelectPlansTab();
+            
+            Log.Information("---Click Add-on " + planData.planName + " and check details...---");
+            page.SelectPlanInTableAndCheckDatails(planData.planName);
 
             var configPage = new AddonConfigPage(this.driver); string name = "Cmp Wap Extension";
             Log.Information("---Click Add-on service " + name + " and check details...---");
@@ -111,12 +108,37 @@
             var subscptPage = new SubscriptionPage(this.driver);
             Log.Information("---Onboarding subscripton...---");
             subscptPage.OnboardSubscription(planData, subscriptionName);
+
+            Log.Information("Added subscription to plan");
+        }
+
+        public void AdminChangePlanAccess(CreatePlanData planData)
+        {
+            Log.Information("---Open Add-ons List Page...---");
+            TestInitialize();
+            var smpPage = new SmpPage(this.driver);
+
+            Log.Information("---Open Add-ons List Page...---");
+            Log.Information("Find main menu ...");
+            smpPage.GetMainMenu_AdminPortal();
+            smpPage.OpenMenuPlans();
+
+            var page = new AddonListPage(this.driver);
+            Log.Information("---Select Add-ons tab...---");
+            page.SelectPlansTab();
+
+            Log.Information("---Click Add-on " + planData.planName + " and check details...---");
+            page.SelectPlanInTable(planData.planName);
+            page.ChangePlanAccess();
         }
 
 
-        public void AdminConfigureAddon()
+        public void AdminCreateUserTest(CreateTenantUserData data,string planName)
         {
-            var addonConfigPage = new AddonConfigPage(this.driver);
+            Log.Information("---Open Service Management Portal Page...---");
+            TestInitialize();
+            var smpPage = new SmpPage(this.driver);
+            smpPage.CreateUserFromNewButton(data,planName);
         }
 
         [TestCleanup]

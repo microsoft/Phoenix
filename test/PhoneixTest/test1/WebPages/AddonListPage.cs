@@ -14,7 +14,6 @@ namespace Phoenix.Test.UI.Framework.WebPages
     using Phoenix.Test.UI.Framework.WebPages;
     using Phoenix.Test.Data;
 
-
     public class AddonListPage : SmpPage
     {
         public AddonListPage(IWebDriver browser) : base(browser) { }
@@ -28,25 +27,11 @@ namespace Phoenix.Test.UI.Framework.WebPages
         [FindsBy(How = How.CssSelector, Using = "div.fxshell-tabcontainer ul li:nth-child(3)")]
         private HtmlButton tabSubscriptions { get; set; }
 
-        //[FindsBy(How = How.Id, Using = "__fx-grid17")]
         [FindsBy(How = How.ClassName, Using = "fx-grid-full")]
         private HtmlTable tableAddons { get; set; }
 
-        [FindsBy(How = How.Name, Using = "Service Management")]
-        private HtmlDiv smp { get; set; }
-
-
-        // Addon details..
-        private HtmlTextBox clientId;
-        private HtmlTextBox clientKey;
-        private HtmlTextBox tenantId;
-        private HtmlTextBox azureSubscriptioin;
-
-
-        public override HtmlControl VerifyPageElement
-        {
-            get { return smp; }
-        }
+        [FindsBy(How = How.ClassName, Using = "fx-grid-full")]
+        private HtmlTable tablePlans { get; set; }
 
         public void OpenCreateVm()
         {
@@ -65,39 +50,50 @@ namespace Phoenix.Test.UI.Framework.WebPages
             this.tableAddons.Rows[name].SelectAndCheckDatails();
         }
 
+        public void SelectPlanInTableAndCheckDatails(string name)
+        {
+            Log.Information("---Find Plan table...---");
+            this.tablePlans = new HtmlTable(this, By.Id("__fx-grid2"));
+            this.tablePlans.Rows[name].SelectAndCheckDatails();
+        }
+
+        public void SelectPlanInTable(string name)
+        {
+            Log.Information("---Find Plan table...---");
+            this.tablePlans = new HtmlTable(this, By.Id("__fx-grid2"));
+            this.tablePlans.Rows[name].Select();
+        }
+
+        public void ChangePlanAccess()
+        {
+            System.Threading.Thread.Sleep(1000 * 3);
+            var changeAccessButton = new HtmlButton(this, By.XPath("//*[text()='Change access']"));
+            changeAccessButton.Click();
+
+            System.Threading.Thread.Sleep(1000 * 3);
+            var buttons = this.Browser.FindElements(By.XPath("//*[text()='Public']"));
+            var publicButton = new HtmlButton(this, buttons.First(b => b.TagName == "a"));
+            publicButton.Click();
+
+            System.Threading.Thread.Sleep(1000 * 3);
+            var confirmButtons = this.Browser.FindElements(By.ClassName("fxs-confirmation-button"));
+            var yesButton = new HtmlButton(this, confirmButtons.First(b => b.Text == "YES"));
+            yesButton.Click();
+        }
+
         public void SelectAddonsTab()
         {
-            // workaround - use tab button for demo first..
-          // this.tabAddons.Click();
-        //    this.tabPlans.Click();
-           this.tabAddons.ExcuteScriptOnElement(".click()");
+            this.tabAddons.ExcuteScriptOnElement(".click()");
+        }
 
+        public void SelectPlansTab()
+        {
+            this.tabPlans.ExcuteScriptOnElement(".click()");
         }
 
         public void OnboardSubscription(CreateAddonData data)
         {
             SelectAddonInTableAndCheckDatails(data.addonName);
-
-
-
-
-            ////this.clientId = new HtmlTextBox(this, By.Name("")); // ???
-            ////this.clientKey = new HtmlTextBox(this, By.Name(""));
-            ////this.tenantId = new HtmlTextBox(this, By.Name(""));
-            ////this.azureSubscriptioin = new HtmlTextBox(this, By.Name(""));
-
-            ////this.tableAddons.Click();
-
-            ////this.tableAddons = new HtmlTable(this, By.Id(""));
-
-            //////this.clientId.Input(data.clientId);
-            //////this.clientKey.Input(data.clientKey);
-            //////this.tenantId.Input(data.tenantId);
-            //////this.azureSubscriptioin.Input(data.azureSubscription);
-
-
         }
-
-
     }
 }

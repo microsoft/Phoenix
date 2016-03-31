@@ -13,17 +13,11 @@ namespace Phoenix.Test.UI.Framework.WebPages
     using Phoenix.Test.UI.Framework.Logging;
     using Phoenix.Test.UI.Framework.WebPages;
     using Phoenix.Test.Data;
-
+    using OpenQA.Selenium.Interactions;
 
     public class SubscriptionPage : SmpPage
     {
-        public SubscriptionPage(IWebDriver browser) : base(browser) { }
 
-        //[FindsBy(How = How.CssSelector, Using = "form.aux-dialog-form div.aux-dialog-item:first-child input.fx-textbox")]
-        //[FindsBy(How = How.XPath, Using = "//input[@data-val-length='Azure subscription friendly name is required']")]
-        //[FindsBy(How = How.XPath, Using = "//form[@class='aux-dialog-form pln-form']/div[1]/input")]
-        //[FindsBy(How = How.CssSelector, Using = "form.aux-dialog-form div:first-child")]
-        //[FindsBy(How = How.CssSelector, Using = "div.fxshell-tabcontainer ul li:first-child")]
         [FindsBy(How = How.Id, Using = "azuresub-obn-scn")]
         private HtmlTextBox name { get; set; }
 
@@ -43,13 +37,22 @@ namespace Phoenix.Test.UI.Framework.WebPages
         private HtmlTextBox azureSuscription { get; set; }
 
         [FindsBy(How = How.Id, Using = "azuresub-btn-add")]
-        private HtmlButton submit { get; set; }
+        private HtmlButton AddSubcrpt { get; set; }
 
+        [FindsBy(How = How.Id, Using = "azuresub-btn-add-to-plan")]
+        private HtmlButton AddSelectedSubscrpt { get; set; }
+
+        [FindsBy(How = How.Id, Using = "save-plan-config")]
+        private HtmlButton Save { get; set; }
+
+        [FindsBy(How = How.Id, Using = "azuresub-btn-remove-from-plan")]
+        private HtmlButton RemoveSubscrpt { get; set; }
 
         [FindsBy(How = How.Name, Using = "Service Management")]
         private HtmlDiv smp { get; set; }
 
-
+        public SubscriptionPage(IWebDriver browser) : base(browser) { }
+      
         public override HtmlControl VerifyPageElement
         {
             get { return smp; }
@@ -57,10 +60,9 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public void OnboardSubscription(CreatePlanData data, string subscriptionName) // , string cId, string cKey, string tId, string subscpt
         {
-          //  System.Threading.Thread.Sleep(6000);
-
             Log.Information("---Input onboard subscription parameters...---");
-            var frame = this.Browser.SwitchTo().Frame("plansIframeWind"); IWebElement e;
+            var frame = this.Browser.SwitchTo().Frame("plansIframeWind");
+            IWebElement e;
 
             e = frame.FindElement(By.Id("name"));
             this.name = new HtmlTextBox(this, e);
@@ -85,13 +87,60 @@ namespace Phoenix.Test.UI.Framework.WebPages
             e = frame.FindElement(By.Id("accountId"));
             this.azureSuscription = new HtmlTextBox(this, e);
             this.azureSuscription.Input(data.azureSubscription);
+            this.AddSelectedSubscrpt = new HtmlButton(this, frame.FindElement(By.Id("azuresub-btn-add-to-plan")));
+            this.Save = new HtmlButton(this, frame.FindElement(By.Id("save-plan-config")));
+            this.AddSubcrpt = new HtmlButton(this, frame.FindElement(By.Id("azuresub-btn-add")));
+            this.RemoveSubscrpt = new HtmlButton(this, frame.FindElement(By.Id("azuresub-btn-remove-from-plan")));
 
-            e = frame.FindElement(By.Id("azuresub-btn-add"));
+            e = frame.FindElement(By.Id("save-plan-config"));
 
-            this.submit = new HtmlButton(this, e);
-            this.submit.Click();
+            this.AddSubcrpt.Click();
+
+            SelectSubscription(subscriptionName);
+
+            this.AddSelectedSubscrpt.Click();
+            this.Save.Click();
 
             Log.Information("---Onboarding subscription " + subscriptionName + " success.---");
+
+            ScrollToElement(e, this.Browser);
+            ConfigPlan();
+            this.Save.Click();
+        }
+
+        public void SelectSubscription(string name)
+        {
+            var searchText = "//*[text()='match']";
+            searchText = searchText.Replace("match", name);
+            var row = new HtmlControl(this, By.XPath(searchText));
+            row.Click();
+        }
+
+        public void ScrollToElement(IWebElement e, IWebDriver driver)
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", e);
+            System.Threading.Thread.Sleep(500);
+        }
+
+        public void ConfigPlan()
+        {
+            var osCheckBox1 = new HtmlCheckBox(this, By.Id("op-id-osType1"));
+            var osCheckBox2 = new HtmlCheckBox(this, By.Id("op-id-osType2"));
+            var osCheckBox3 = new HtmlCheckBox(this, By.Id("op-id-osType3"));
+
+            var vmSizeCheckBox1 = new HtmlCheckBox(this, By.Id("op-id-vmSizes26"));
+            var vmSizeCheckBox2 = new HtmlCheckBox(this, By.Id("op-id-vmSizes27"));
+            var vmSizeCheckBox3 = new HtmlCheckBox(this, By.Id("op-id-vmSizes28"));
+
+            osCheckBox1.Check();
+            osCheckBox2.Check();
+            osCheckBox3.Check();
+
+            vmSizeCheckBox1.Check();
+            vmSizeCheckBox2.Check();
+            vmSizeCheckBox3.Check();
+
+            this.Save.Click();
         }
 
     }

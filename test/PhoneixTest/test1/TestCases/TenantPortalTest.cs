@@ -36,7 +36,10 @@ namespace Phoenix.Test.UI.TestCases
             this.driver.WaitForAjax();
 
             this.loginPage = new LoginPage(driver);
-            this.smpPage = LoginTenantProtal(this.userName, this.password);
+            LoginTenantProtal(this.userName, this.password);
+            var welcomeWiz = new WelcomePage(driver);
+            welcomeWiz.HandleWelcomeWizard();
+            this.smpPage = new SmpPage(driver);
         }
 
         [TestCleanup]
@@ -53,25 +56,20 @@ namespace Phoenix.Test.UI.TestCases
         public void TenantCreateVmFromNewButtonTest()
         {
             var createVmData = GetCreateVmData();
-
             smpPage.CreateVmFromNewButton(createVmData);
-
             smpPage.VerifyVmCreated(createVmData);
         }
 
         public void TenantCreateVmFromMainMenuTest()
         {
             var createVmData = GetCreateVmData();
-
             smpPage.CreateVmFromNewButton(createVmData);
-
             smpPage.VerifyVmCreated(createVmData);
-
         }
 
-        public SmpPage LoginTenantProtal(string user, string psw)
+        public void LoginTenantProtal(string user, string psw)
         {
-            return loginPage.Login(user, psw);
+           loginPage.Login(user, psw);
         }
 
         public CreateVmData GetCreateVmData()
