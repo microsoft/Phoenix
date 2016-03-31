@@ -532,6 +532,7 @@ declare var resources;
                             } else {
                                 valid = true;
                                 updateSkuList();
+                                updateSku();
                             }
                         } else {
                             return false;
