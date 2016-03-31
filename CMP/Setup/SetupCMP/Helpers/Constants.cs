@@ -275,18 +275,16 @@ namespace CMP.Setup
         {
             get
             {
-                int? returnValue = RegistryUtils.ReadRegistryValue(SetupConstants.SqlSettingsRegKey, SetupConstants.OnRemoteRegistryValueName, 0, false) as int?;
-
-                return returnValue.HasValue ? (returnValue.Value == 1) : false;
+                string returnValue = Convert.ToString(RegistryUtils.ReadRegistryValue(SetupConstants.SqlSettingsRegKey, SetupConstants.OnRemoteRegistryValueName, 0, false));
+                return (returnValue == "1") ? true : false;
             }
         }
         public static bool WapDBOnRemoteServer
         {
             get
             {
-                int? returnValue = RegistryUtils.ReadRegistryValue(SetupConstants.WapSqlSettingsRegKey, SetupConstants.OnRemoteRegistryValueName, 0, false, ignoreArchitecture: true) as int?;
-
-                return returnValue.HasValue ? (returnValue.Value == 1) : false;
+                string returnValue = Convert.ToString(RegistryUtils.ReadRegistryValue(SetupConstants.WapSqlSettingsRegKey, SetupConstants.OnRemoteRegistryValueName, 0, false, ignoreArchitecture: true));
+                return (returnValue == "1") ? true : false;
             }
         }
 
