@@ -615,16 +615,6 @@
                             $("#VmNic1").html(listItems);
                         });
 
-                        $("#VmServerName").keydown(function () {
-                            updateSku();
-                        });
-
-                        $("#VmSourceImage").keydown(function () {
-                            updateSku();
-                        });
-                        $("#VmSize").keydown(function () {
-                            updateSku();
-                        });
                         /////////////////////////////////////////
                         $("#VmAdminGroup").keydown(function () {
                             $("#lblmessageStatus").css("display", "none");
