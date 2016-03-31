@@ -509,7 +509,11 @@ declare var resources;
                     // Called when the step is first created
                     onStepCreated: function () {
                         populateUiElements();
+                        fetchOsInfoList(allSubscriptionIds);
 
+                        $("#SubscriptionName").on("change", function () {
+                            updateSkuList();
+                        });
                         //wizard = this;
                     },
                     // Called before the wizard moves to the next step
@@ -527,6 +531,7 @@ declare var resources;
                                 return false;
                             } else {
                                 valid = true;
+                                updateSkuList();
                             }
                         } else {
                             return false;
@@ -1090,6 +1095,37 @@ declare var resources;
             listItems += "<option value='" + sizeList[i].Name + "' data-maxdiskcount='" + sizeList[i].MaxDataDiskCount + "'>" + sizeList[i].Description + ", MaxDataDiskCount-" + sizeList[i].MaxDataDiskCount + "</option>";
         }
         $("#VmSize").html(listItems);
+    }
+
+    function populateOsDropdown() {
+        var listItems = "";
+        for (var i = 0; i < osInfoList.length; i++) {
+            listItems += "<option value='" + osInfoList[i].Name + "'>" + osInfoList[i].Name + "</option>";
+        }
+        $("#VmSourceImage").html(listItems);
+    }
+
+    function updateSku() {
+        var selectedrole = 3;
+        var drivecount = $.grep(serverroleDrivemappingList, function (val) {
+            return val.ServerRoleId == selectedrole;
+        });
+        var filteredskulist = $.grep(sizeInfoList, function (val) {
+            return val.MaxDataDiskCount >= drivecount.length + 1;
+        });
+
+        populateskudropdown(filteredskulist);
+        populateOsDropdown();
+    }
+
+    function updateSkuList() {
+        var oldOslist = osInfoList;
+        var subscriptionID = $('#SubscriptionName').val();
+        var selectedPlan = [subscriptionID];
+        fetchOsInfoList(selectedPlan);
+        fetchSizeInfoList(selectedPlan);
+
+        var oslist = osInfoList;
     }
 
     //*************************************************************************

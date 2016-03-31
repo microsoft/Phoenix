@@ -492,7 +492,11 @@
                     // Called when the step is first created
                     onStepCreated: function () {
                         populateUiElements();
-                        //wizard = this;
+                        fetchOsInfoList(allSubscriptionIds);
+
+                        $("#SubscriptionName").on("change", function () {
+                            updateSkuList();
+                        });
                     },
                     // Called before the wizard moves to the next step
                     onNextStep: function () {
@@ -509,6 +513,7 @@
                                 return false;
                             } else {
                                 valid = true;
+                                updateSkuList();
                             }
                         } else {
                             return false;
@@ -609,6 +614,16 @@
                             $("#VmNic1").html(listItems);
                         });
 
+                        $("#VmServerName").keydown(function () {
+                            updateSku();
+                        });
+
+                        $("#VmSourceImage").keydown(function () {
+                            updateSku();
+                        });
+                        $("#VmSize").keydown(function () {
+                            updateSku();
+                        });
                         /////////////////////////////////////////
                         $("#VmAdminGroup").keydown(function () {
                             $("#lblmessageStatus").css("display", "none");
@@ -1069,6 +1084,36 @@
         $("#VmSize").html(listItems);
     }
 
+    function populateOsDropdown() {
+        var listItems = "";
+        for (var i = 0; i < osInfoList.length; i++) {
+            listItems += "<option value='" + osInfoList[i].Name + "'>" + osInfoList[i].Name + "</option>";
+        }
+        $("#VmSourceImage").html(listItems);
+    }
+
+    function updateSku() {
+        var selectedrole = 3;
+        var drivecount = $.grep(serverroleDrivemappingList, function (val) {
+            return val.ServerRoleId == selectedrole;
+        });
+        var filteredskulist = $.grep(sizeInfoList, function (val) {
+            return val.MaxDataDiskCount >= drivecount.length + 1;
+        });
+
+        populateskudropdown(filteredskulist);
+        populateOsDropdown();
+    }
+
+    function updateSkuList() {
+        var oldOslist = osInfoList;
+        var subscriptionID = $('#SubscriptionName').val();
+        var selectedPlan = [subscriptionID];
+        fetchOsInfoList(selectedPlan);
+        fetchSizeInfoList(selectedPlan);
+
+        var oslist = osInfoList;
+    }
     //*************************************************************************
     // Removes a virtual machine administrator
     // todo: Rename
