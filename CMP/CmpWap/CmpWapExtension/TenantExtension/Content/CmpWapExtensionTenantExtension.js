@@ -514,6 +514,7 @@
                             } else {
                                 valid = true;
                                 updateSkuList();
+                                updateSku();
                             }
                         } else {
                             return false;
