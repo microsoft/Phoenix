@@ -77,7 +77,7 @@
             IWebElement ee = page.SearchContext.FindElement(By.Id("VmRegion"));
             SelectElement e = new SelectElement(ee);
             e.WrappedElement.Click();
-            e.SelectByText("Central US");
+            e.SelectByText(data.region);
         }
 
         public void Step2(CreateVmData data)

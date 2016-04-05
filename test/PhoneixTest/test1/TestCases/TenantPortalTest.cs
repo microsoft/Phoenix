@@ -18,12 +18,14 @@ namespace Phoenix.Test.UI.TestCases
         private string userName;
         private string password;
         private string serverName;
+        private string region;
 
-        public TenantPortalTest(string userAccount, string password, string serverName)
+        public TenantPortalTest(string userAccount, string password, string serverName, string region)
         {
             this.userName = userAccount;
             this.password = password;
             this.serverName = serverName;
+            this.region = region;
         }
 
         [TestInitialize]
@@ -38,7 +40,13 @@ namespace Phoenix.Test.UI.TestCases
             this.loginPage = new LoginPage(driver);
             LoginTenantProtal(this.userName, this.password);
             var welcomeWiz = new WelcomePage(driver);
-            welcomeWiz.HandleWelcomeWizard();
+            try
+            {
+                welcomeWiz.HandleWelcomeWizard();
+            }
+            catch (System.Exception ex)
+            {}
+
             this.smpPage = new SmpPage(driver);
         }
 
@@ -75,7 +83,12 @@ namespace Phoenix.Test.UI.TestCases
         public CreateVmData GetCreateVmData()
         {
             string anyVmName = GetRandomVmName();
-            return new CreateVmData() { groupName = TestDataUtils.GetRandomCharString(7), serverName = anyVmName, userName = TestDataUtils.GetRandomCharString(7), localAdminPassword = "Password0)" };
+            return new CreateVmData() 
+            { groupName = TestDataUtils.GetRandomCharString(7), 
+                serverName = anyVmName, 
+                userName = "TestUser", 
+                localAdminPassword = "Password0)",
+                 region =this.region};
         }
 
         public string GetRandomVmName()

@@ -28,7 +28,7 @@
         [TestCleanup]
         public virtual void TestCleanup()
         {
-            this.driver.Close();
+            this.driver.Quit();
         }
     }
 }

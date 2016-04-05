@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Phoenix.Test.Data
 {
-   public class CreateTenantUserData
+   public class TenantData
     {
         public string emailAddress { get; set; }
 
         public string password { get; set; }
 
-        public string plan { get; set; }
+      //  public string plan { get; set; }
+
+        public string region { get; set; }
 
     }
 }

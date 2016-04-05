@@ -133,7 +133,7 @@
         }
 
 
-        public void AdminCreateUserTest(CreateTenantUserData data,string planName)
+        public void AdminCreateUserTest(TenantData data,string planName)
         {
             Log.Information("---Open Service Management Portal Page...---");
             TestInitialize();

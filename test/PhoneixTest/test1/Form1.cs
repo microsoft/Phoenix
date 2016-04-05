@@ -15,6 +15,7 @@
             InitializeComponent();
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(this.textBox_UserName.Text) || String.IsNullOrWhiteSpace(this.textBox_Password.Text) ||
@@ -32,17 +33,17 @@
                 this.textBox_ClientKey.Text, 
                 this.textBox_TenantId.Text, 
                 this.textBox1.Text,
-                this.textBox_TenantUserAccount.Text,
-                this.textBox_TenantPassword.Text);
+                this.tenantUserAccount.Text,
+                this.tenantUserPsw.Text);
 
             var data = test.GetCreatePlanData();
             data.clientId = this.textBox_ClientId.Text; data.clientKey = this.textBox_ClientKey.Text;
             data.tenantId = this.textBox_TenantId.Text; data.azureSubscription = this.textBox1.Text;
             var anySubscriptionName = test.GetRandomSubscriptionName();
-            var tenantData = new CreateTenantUserData()
+            var tenantData = new TenantData()
             {
-                emailAddress = this.textBox_TenantUserAccount.Text,
-                password = this.textBox_TenantPassword.Text
+                emailAddress = this.tenantUserAccount.Text,
+                password = this.tenantUserPsw.Text
             };
 
             test.AdminCreatePlanTest(data);
@@ -60,19 +61,18 @@
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(this.textBox_TenantUserAccount.Text) || String.IsNullOrWhiteSpace(this.textBox_TenantPassword.Text) ||
-                String.IsNullOrWhiteSpace(this.textBox_TenantPortalServer.Text))
+            if ( String.IsNullOrWhiteSpace(this.textBox_TenantPortalServer.Text))
             {
-                MessageBox.Show("Please input Tenant username, password, and Admin Portal Servername.");
+                MessageBox.Show("Tenant Portal Servername.");
                 return;
             }
 
-            var test = new TenantPortalTest(this.textBox_TenantUserAccount.Text, this.textBox_TenantPassword.Text, this.textBox_TenantPortalServer.Text);
+            var test = new TenantPortalTest(this.tenantUserAccount.Text, this.tenantUserPsw.Text, this.textBox_TenantPortalServer.Text,this.regions.Text);
             test.TestInitialize();
             test.TenantCreateVmFromNewButtonTest();
             test.TestCleanup();
 
-            MessageBox.Show("Tests done!");
+            MessageBox.Show("Tests done! Please check the VM status on tenant portal.");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -200,6 +200,16 @@
         }
 
         private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tenantUserAccount_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -108,7 +108,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
             Log.Information("---Create plan request send successfully---");
         }
 
-        public void CreateUserFromNewButton(CreateTenantUserData data, string planName)
+        public void CreateUserFromNewButton(TenantData data, string planName)
         {
             Log.Information("---Click New button---");
             Browser.WaitForAjax();
