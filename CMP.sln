@@ -177,29 +177,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmAccessTools", "tools\Arm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonPrettyPrinterPlus", "Libraries\JsonPrettyPrint\JsonPrettyPrinterPlus.csproj", "{6DDF6CD7-5C09-4609-A587-D5284587AB8D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{17861A68-A8E4-4679-8495-080CA8171E8B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PhoenixSmokeTestTool", "PhoenixSmokeTestTool", "{4F0B9EC0-7194-4E35-BF41-57FA3D822106}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bits", "Bits", "{F158F665-612E-4E3B-80AB-A13C665BC4A3}"
-	ProjectSection(SolutionItems) = preProject
-		test\PhoenixSmokeTestTool\Bits\IEDriverServer.exe = test\PhoenixSmokeTestTool\Bits\IEDriverServer.exe
-		test\PhoenixSmokeTestTool\Bits\Microsoft.VisualStudio.QualityTools.LoadTestFramework.dll = test\PhoenixSmokeTestTool\Bits\Microsoft.VisualStudio.QualityTools.LoadTestFramework.dll
-		test\PhoenixSmokeTestTool\Bits\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll = test\PhoenixSmokeTestTool\Bits\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-		test\PhoenixSmokeTestTool\Bits\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll = test\PhoenixSmokeTestTool\Bits\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll
-		test\PhoenixSmokeTestTool\Bits\Microsoft.Web.Administration.dll = test\PhoenixSmokeTestTool\Bits\Microsoft.Web.Administration.dll
-		test\PhoenixSmokeTestTool\Bits\PhoenixTest.exe = test\PhoenixSmokeTestTool\Bits\PhoenixTest.exe
-		test\PhoenixSmokeTestTool\Bits\PhoenixTest.exe.config = test\PhoenixSmokeTestTool\Bits\PhoenixTest.exe.config
-		test\PhoenixSmokeTestTool\Bits\PhoenixTest.pdb = test\PhoenixSmokeTestTool\Bits\PhoenixTest.pdb
-		test\PhoenixSmokeTestTool\Bits\PhoenixTest.vshost.exe = test\PhoenixSmokeTestTool\Bits\PhoenixTest.vshost.exe
-		test\PhoenixSmokeTestTool\Bits\PhoenixTest.vshost.exe.config = test\PhoenixSmokeTestTool\Bits\PhoenixTest.vshost.exe.config
-		test\PhoenixSmokeTestTool\Bits\PhoenixTest.vshost.exe.manifest = test\PhoenixSmokeTestTool\Bits\PhoenixTest.vshost.exe.manifest
-		test\PhoenixSmokeTestTool\Bits\WebDriver.dll = test\PhoenixSmokeTestTool\Bits\WebDriver.dll
-		test\PhoenixSmokeTestTool\Bits\WebDriver.pdb = test\PhoenixSmokeTestTool\Bits\WebDriver.pdb
-		test\PhoenixSmokeTestTool\Bits\WebDriver.Support.dll = test\PhoenixSmokeTestTool\Bits\WebDriver.Support.dll
-		test\PhoenixSmokeTestTool\Bits\WebDriver.Support.pdb = test\PhoenixSmokeTestTool\Bits\WebDriver.Support.pdb
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -638,7 +615,5 @@ Global
 		{39B9C4F6-5A5F-493D-8B07-C6F3C4CA5A98} = {6499AFDF-829C-4FA0-B5DE-711CC04D2D54}
 		{72F979FE-A744-42EA-9D4D-1B865EAB1066} = {A03007D7-A69A-44E4-924C-0CE2DCBDAB76}
 		{6DDF6CD7-5C09-4609-A587-D5284587AB8D} = {BCD1D384-8B02-434C-AFC6-389D55F24B90}
-		{4F0B9EC0-7194-4E35-BF41-57FA3D822106} = {17861A68-A8E4-4679-8495-080CA8171E8B}
-		{F158F665-612E-4E3B-80AB-A13C665BC4A3} = {4F0B9EC0-7194-4E35-BF41-57FA3D822106}
 	EndGlobalSection
 EndGlobal
