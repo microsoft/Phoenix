@@ -45,6 +45,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient
         public const string Regions = "{0}/" + RegisteredPath + "/regions";
         public const string OSs = "{0}/" + RegisteredPath + "/oss";
         public const string Apps = "{0}/" + RegisteredPath + "/apps";
+        public const string Subs = "{0}/" + RegisteredPath + "/wapsubscriptions";
+        public const string RegionOSMappingValidation = "{0}/" + RegisteredPath + "/regionosmappingvalidation";
+        public const string RegionSizeMappingValidation = "{0}/" + RegisteredPath + "/regionsizemappingvalidation";
+
         public const string ServicePrividerAccts = "{0}/" + RegisteredPath + "/servprovaccts";
         public const string ServiceCategories = "{0}/" + RegisteredPath + "/servicecategories";
         public const string ServerRoles = "{0}/" + RegisteredPath + "/serverroles";
@@ -75,7 +79,6 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient
         public const string AllEnvironmentTypes = RegisteredPath + "/environmenttypes";
         public const string AllIIsRoleServices = RegisteredPath + "/iissroleservices";
         public const string AllSQLAnalysisServiceModes = RegisteredPath + "/sqlanalysisservicesmodes";
-        public const string AllSubscriptionsMappings = RegisteredPath + "/subscriptionsmapping";
 
         public Uri BaseEndpoint { get; set; }
         public HttpClient HttpClient;
@@ -198,6 +201,40 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient
 
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<List<FileServer>>();
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// GetVMOSMappings return list of OS mapped to the subscription hosted in 
+        /// CmpWapExtension Resource Provider
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+
+        public  Task<bool> GetVMRegionOSMappings(string subscriptionId, int[] Ids)
+        {
+            var requestUrl = this.CreateRequestUri(CmpWapExtensionClient.CreateVmRegionOSMappingValidationUri(subscriptionId));
+
+            return this.PostAsyncWithReturnValue<int[], bool>(requestUrl, Ids);
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// GetVMOSMappings return list of OS mapped to the subscription hosted in 
+        /// CmpWapExtension Resource Provider
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+
+        public Task<bool> GetVMRegionSizeMappings(string subscriptionId, int[] Ids)
+        {
+            var requestUrl = this.CreateRequestUri(CmpWapExtensionClient.CreateVmRegionSizeMappingValidationUri(subscriptionId));
+
+            return this.PostAsyncWithReturnValue<int[], bool>(requestUrl, Ids);
         }
 
         //*********************************************************************
@@ -831,8 +868,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient
 
         public async Task<List<Subscription>> ListSubscriptionMappings(string [] subscriptionIds)
         {
-            var requestUrl = this.CreateRequestUri(CmpWapExtensionClient.AllSubscriptionsMappings);
-            return await this.PostAsyncWithReturnValue<string [], List<Subscription>>(requestUrl, subscriptionIds);
+            var requestUrl = this.CreateRequestUri(CmpWapExtensionClient.CreateSubsUri(subscriptionIds[0]));
+
+            return await this.PostAsyncWithReturnValue<string[], List<Subscription>>(requestUrl, subscriptionIds);
         }
 
 #endregion 
@@ -1519,6 +1557,24 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient
         {
             return string.Format(CultureInfo.InvariantCulture, 
                 CmpWapExtensionClient.OSs, subscriptionId);
+        }
+
+        private static string CreateSubsUri(string subscriptionId)
+        {
+            return string.Format(CultureInfo.InvariantCulture,
+                CmpWapExtensionClient.Subs, subscriptionId);
+        }
+
+        private static string CreateVmRegionOSMappingValidationUri(string subscriptionId)
+        {
+            return string.Format(CultureInfo.InvariantCulture,
+                CmpWapExtensionClient.RegionOSMappingValidation, subscriptionId);
+        }
+
+        private static string CreateVmRegionSizeMappingValidationUri(string subscriptionId)
+        {
+            return string.Format(CultureInfo.InvariantCulture,
+                CmpWapExtensionClient.RegionSizeMappingValidation, subscriptionId);
         }
         #endregion
     }

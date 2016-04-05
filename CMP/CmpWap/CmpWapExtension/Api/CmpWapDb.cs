@@ -354,7 +354,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                                 {
                                     VmSizeId = vmSizeParameter.VmSizeId,
                                     PlanId = planId,
-                                    IsActive = vmSizeParameter.IsActive
+                                    IsActive = false
                                 });
                             }
                         }
@@ -389,7 +389,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 {
                     var vmrQ = (from rb in db.VmSizes
                                 where rb.IsActive && 
-                                rb.Name.Equals(roleSizeName,StringComparison.InvariantCultureIgnoreCase)
+                                rb.Name.Equals(roleSizeName, StringComparison.InvariantCultureIgnoreCase)
                                 select rb);
 
                     if (!vmrQ.Any())
@@ -696,7 +696,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                                 {
                                     VmOsId = vmOsParameter.VmOsId,
                                     PlanId = planId,
-                                    IsActive = vmOsParameter.IsActive
+                                    IsActive = false
                                 });
                             }
                         }
@@ -892,7 +892,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             {
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
-                    var regionQuery =   from regions in db.AzureRegions
+                    var regionQuery = from regions in db.AzureRegions
                                         join mapTable in db.AzureAdminSubscriptionRegionMappings
                                         on regions.AzureRegionId equals mapTable.AzureRegionId into joinedEntities
                                         from mapTable in joinedEntities.DefaultIfEmpty()
@@ -1563,7 +1563,44 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     + Utilities.UnwindExceptionMessages(ex));
             }
         }
+        /// <summary>
+        /// This methos id used to update the VM IP if it changes on shutdown-start
+        /// </summary>
+        /// <param name="vmDepReqId"></param>
+        /// <param name="size"></param>
+        public void UpdateVmIp(int vmDepReqId, string newIpAddress)
+        {
+            try
+            {
+                using (var db = new MicrosoftMgmtSvcCmpContext())
+                {
 
+                    var foundReqList = from vmr in db.CmpRequests
+                                       where vmr.Id == vmDepReqId
+                                       select vmr;
+
+                    if (!foundReqList.Any())
+                    {
+                        throw new Exception("Unable to locate VM request record: ID: "
+                            + vmDepReqId);
+                    }
+
+                    var foundReq = foundReqList.First();
+                    if (foundReq.AddressFromVm != newIpAddress && newIpAddress != null)
+                    {
+                        foundReq.AddressFromVm = newIpAddress;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogThis("Exception in UpdateVmIp() : ", "UpdateVmIp()", ex, EventLogEntryType.Error);
+
+                throw new Exception("Exception in UpdateVmIp() : "
+                    + Utilities.UnwindExceptionMessages(ex));
+            }
+        }
         //*********************************************************************
         ///
         /// <summary>
@@ -2753,6 +2790,74 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 throw new Exception("Exception in SetRegionVmOssMappingsByBatch() : "
                     + Utilities.UnwindExceptionMessages(ex));
             }
+        }
+
+        /// <summary>
+        ///     This method checks if the OS and Region mapping in the
+        ///     WAP subscription provided is available
+        /// </summary>
+        /// <param name="wapSubscriptionId"></param>
+        /// <returns>true/false (as defined by CMPWAP_DB database)</returns>
+        /// 
+        //*********************************************************************
+        public bool GetRegionVmOSMappings(int regionId, int osId)
+        {
+            try
+            {
+                //Getting the mapping of a wapSubscription to OS
+                using (var db = new MicrosoftMgmtSvcCmpContext())
+                {
+                    var Result = (from wapSub in db.AzureRegionVmOsMappings
+                                    where wapSub.AzureRegionId == regionId && wapSub.VmOsId == osId && wapSub.IsActive == true
+                              select wapSub).FirstOrDefault();
+                    if (Result == null)
+                        return false;
+
+                    return true;
+
+                }
+
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Exception in GetRegionVmOSMappings() : "
+                        + Utilities.UnwindExceptionMessages(ex));
+            }
+
+        }
+
+        /// <summary>
+        ///     This method checks if the Size and Region mapping in the
+        ///     WAP subscription provided is available
+        /// </summary>
+        /// <param name="wapSubscriptionId"></param>
+        /// <returns>true/false (as defined by CMPWAP_DB database)</returns>
+        /// 
+        //*********************************************************************
+        public bool GetRegionVmSizeMappings(int regionId, int sizeId)
+        {
+            try
+            {
+                //Getting the mapping of a wapSubscription to OS
+                using (var db = new MicrosoftMgmtSvcCmpContext())
+                {
+                    var Result = (from wapSub in db.AzureRegionVmSizeMappings
+                                    where wapSub.AzureRegionId == regionId && wapSub.VmSizeId == sizeId && wapSub.IsActive == true
+                                    select wapSub).FirstOrDefault();
+                    if (Result == null)
+                        return false;
+
+                    return true;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in GetRegionVmSizeMappings() : "
+                        + Utilities.UnwindExceptionMessages(ex));
+            }
+
         }
 
         #endregion

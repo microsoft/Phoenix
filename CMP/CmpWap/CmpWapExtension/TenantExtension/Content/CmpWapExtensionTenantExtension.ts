@@ -32,6 +32,8 @@ declare var resources;
     var sqlanalysisservicemodesList;
     var sqlcollationList;
     var subscriptionMappingsList;
+    var subscriptionRegionOSMapping;
+    var subscriptionRegionSizeMapping;
     var sqlVersionList;
     var environmenttypeList;
     var targetRegionsList;
@@ -42,8 +44,8 @@ declare var resources;
     var resources = [], CmpWapExtensionTenantExtensionActivationInit, subscriptionRegisteredToService, accountAdminLiveEmailId, navigation, selectedrow, lastselecteddrive, serviceName = "CmpWapExtension", defaultdriveslist = ["D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"], extradrivenames = [], defaultsqlcollation = "SQL_Latin1_General_CP1_CI_AS";
 
     var allSubscriptionIds: string[];
-    var getDomainlistUrl = "/CmpWapExtensionTenant/ListDomains", getResourceGroupsUrl = "/CmpWapExtensionTenant/LisResourceGroups", getSizeInfoListUrl = "/CmpWapExtensionTenant/ListVmSizes", getOsInfoListUrl = "/CmpWapExtensionTenant/ListOSs", getTargetRegionsListUrl = "/CmpWapExtensionTenant/ListTargetRegions", getAppListUrl = "/CmpWapExtensionTenant/ListApps", getEnvironmenttypeListUrl = "/CmpWapExtensionTenant/ListEnvironments", getServiceCategoryListUrl = "/CmpWapExtensionTenant/ListCategories", getServerRoleListUrl = "/CmpWapExtensionTenant/ListServerRoles", getNetworkNICListUrl = "/CmpWapExtensionTenant/LisNetworkNICs", getServerRoleDriverMappingListUrl = "/CmpWapExtensionTenant/LisServerRoleDriveMappings", getSqlCollationListUrl = "/CmpWapExtensionTenant/ListSqlCollations", getSqlVersionListUrl = "/CmpWapExtensionTenant/ListSqlVersions", getiisroleservicesurl = "/CmpWapExtensionTenant/ListIISRoleServices", getsqlanalysisservicemodesurl = "/CmpWapExtensionTenant/ListSQLAnalysisServiceModes", getSubscriptionMappingsUrl = "/CmpWapExtensionTenant/ListSubscriptionMappings";
-
+    var getDomainlistUrl = "/CmpWapExtensionTenant/ListDomains", getResourceGroupsUrl = "/CmpWapExtensionTenant/LisResourceGroups", getSizeInfoListUrl = "/CmpWapExtensionTenant/ListVmSizes", getOsInfoListUrl = "/CmpWapExtensionTenant/ListOSs", getTargetRegionsListUrl = "/CmpWapExtensionTenant/ListTargetRegions", getAppListUrl = "/CmpWapExtensionTenant/ListApps", getEnvironmenttypeListUrl = "/CmpWapExtensionTenant/ListEnvironments", getServiceCategoryListUrl = "/CmpWapExtensionTenant/ListCategories", getServerRoleListUrl = "/CmpWapExtensionTenant/ListServerRoles", getNetworkNICListUrl = "/CmpWapExtensionTenant/LisNetworkNICs", getServerRoleDriverMappingListUrl = "/CmpWapExtensionTenant/LisServerRoleDriveMappings", getSqlCollationListUrl = "/CmpWapExtensionTenant/ListSqlCollations", getSqlVersionListUrl = "/CmpWapExtensionTenant/ListSqlVersions", getiisroleservicesurl = "/CmpWapExtensionTenant/ListIISRoleServices", getsqlanalysisservicemodesurl = "/CmpWapExtensionTenant/ListSQLAnalysisServiceModes", getSubscriptionMappingsUrl = "/CmpWapExtensionTenant/ListSubscriptionMappings", getVMOSMappingsUrl = "/CmpWapExtensionTenant/ListVMRegionOSMappings";
+    var getVMSizeMappingsUrl = "/CmpWapExtensionTenant/ListVMRegionSizeMappings";
     //*************************************************************************
     // Clears view when navigating away from the page
     //*************************************************************************
@@ -371,7 +373,7 @@ declare var resources;
                 }
                 $("#VmDomain").html(listItems);
             }
-                // populateskudropdown(sizeInfoList);
+            // populateskudropdown(sizeInfoList);
             if (osInfoList) {
                 listItems = "";
                 for (var i = 0; i < osInfoList.length; i++) {
@@ -401,11 +403,11 @@ declare var resources;
                 $("#VmRegion").html(listItems);
             }
 
-                /*listItems = "";
-                for (var i = 0; i < serviceCategoryList.length; i++) {
-                listItems += "<option value='" + serviceCategoryList[i].Name + "'>" + serviceCategoryList[i].Name + "</option>";
-                }
-                $("#vm-config-service").html(listItems);*/
+            /*listItems = "";
+            for (var i = 0; i < serviceCategoryList.length; i++) {
+            listItems += "<option value='" + serviceCategoryList[i].Name + "'>" + serviceCategoryList[i].Name + "</option>";
+            }
+            $("#vm-config-service").html(listItems);*/
             if (environmenttypeList) {
                 listItems = "";
                 for (var i = 0; i < environmenttypeList.length; i++) {
@@ -413,12 +415,12 @@ declare var resources;
                 }
                 $("#VmEnvironment").html(listItems);
             }
-                /* addsa - Commented out. Modified dynamically below based on domain selection
-                listItems = "";
-                for (var i = 0; i < networkNicList.length; i++) {
-                listItems += "<option data-Id='" + networkNicList[i].NetworkNICId + "' value='" + networkNicList[i].Name + "'>" + networkNicList[i].Name + "</option>";
-                }
-                $("#VmNic1").html(listItems); */
+            /* addsa - Commented out. Modified dynamically below based on domain selection
+            listItems = "";
+            for (var i = 0; i < networkNicList.length; i++) {
+            listItems += "<option data-Id='" + networkNicList[i].NetworkNICId + "' value='" + networkNicList[i].Name + "'>" + networkNicList[i].Name + "</option>";
+            }
+            $("#VmNic1").html(listItems); */
             fetchAppInfoList(allSubscriptionIds).then(function () {
                 if (appList) {
                     listItems = "";
@@ -429,17 +431,17 @@ declare var resources;
                 }
             });
 
-                /* $("#VmAppNameSelect").change(function() {
-                var vmAppName = $("#VmAppNameSelect option:selected").text();
-                $("#VmAppNameSelecttxt").text(vmAppName);
-                })
-                .change();*/
-                /*
-                listItems = "";
-                for (var i = 0; i < serverRoleList.length; i++) {
-                listItems += "<option value='" + serverRoleList[i].ServerRoleId + "'>" + serverRoleList[i].Description + "</option>";
-                }
-                $("#VmServerRole").html(listItems);*/
+            /* $("#VmAppNameSelect").change(function() {
+            var vmAppName = $("#VmAppNameSelect option:selected").text();
+            $("#VmAppNameSelecttxt").text(vmAppName);
+            })
+            .change();*/
+            /*
+            listItems = "";
+            for (var i = 0; i < serverRoleList.length; i++) {
+            listItems += "<option value='" + serverRoleList[i].ServerRoleId + "'>" + serverRoleList[i].Description + "</option>";
+            }
+            $("#VmServerRole").html(listItems);*/
             if (sqlVersionList) {
                 listItems = "";
                 for (var i = 0; i < sqlVersionList.length; i++) {
@@ -469,23 +471,23 @@ declare var resources;
                 $("#sqlanalysismode").html(listItems);
             }
 
-                //populateSizeDescription(0);
-                //populateVmSourceImageDescription(0);
-                $("#VmSize").change(function () {
-                    vmSizeChanged();
-                });
-                $("#VmSourceImage").change(function () {
-                    vmSourceImageChanged();
-                });
-                //** thing ***
-                $("#VmAppNameSelect").change(function () {
-                    vmSelectedAppChanged();
-        });
+            //populateSizeDescription(0);
+            //populateVmSourceImageDescription(0);
+            $("#VmSize").change(function () {
+                vmSizeChanged();
+            });
+            $("#VmSourceImage").change(function () {
+                vmSourceImageChanged();
+            });
+            //** thing ***
+            $("#VmAppNameSelect").change(function () {
+                vmSelectedAppChanged();
+            });
 
-            }
-            catch (err) {
-                alert(err.message);
-            }
+        }
+        catch (err) {
+            alert(err.message);
+        }
         //});
     }
 
@@ -506,6 +508,12 @@ declare var resources;
                     template: "CreateVM1",
                     // Called when the step is first created
                     onStepCreated: function () {
+                        populateUiElements();
+                        fetchOsInfoList(allSubscriptionIds);
+
+                        $("#SubscriptionName").on("change", function () {
+                            updateSkuList();
+                        });
                         //wizard = this;
                     },
                     // Called before the wizard moves to the next step
@@ -523,6 +531,8 @@ declare var resources;
                                 return false;
                             } else {
                                 valid = true;
+                                updateSkuList();
+                                updateSku();
                             }
                         } else {
                             return false;
@@ -530,7 +540,6 @@ declare var resources;
                     },
                     // Called each time the step is displayed
                     onStepActivate: function () {
-                        populateUiElements();
                         $("#lblmessage").css("display", "none");
                         valid = true;
                     }
@@ -664,7 +673,7 @@ declare var resources;
                                     $("#loading").css("display", "inline-block");
 
                                     vmAdminName = removewaq(vmAdminName);
-                                   
+
                                     prevvalue = currentgroups;
                                     var promise = global.CmpWapExtensionTenantExtension.Controller.nameResolution(vmAdminName);
                                     promise.done(function (value) {
@@ -690,9 +699,73 @@ declare var resources;
                                 }
                             }
                         });
+                           
+                        $("#VmSourceImage").on("change", function () {                            
+                            $("#lblRegionOsMappingStatus").css("display", "none");
+                        });
+                        $("#VmSize").on("change", function () {
+                            $("#lblRegionSizeMappingStatus").css("display", "none");
+                        });
                     },
                     // Called before the wizard moves to the next step
                     onNextStep: function () {
+                       var selectedImage = $("#VmSourceImage").val();
+                        var selectedSize = $("#VmSize").val();
+                        var selectedRegion = $("#VmRegion").val();
+
+                        var validMapping = false;
+                        var osId = 0;
+                        var sizeId = 0;
+                        var subId = subscriptionId;
+                        var selectedRegionId = 0;
+
+                        var ASubId = subscriptionMappingsList[0].AzureSubscriptionId;
+
+                        osInfoList.forEach(function (value, index) {
+                            if (selectedImage == osInfoList[index].Name) {
+                                osId = osInfoList[index].VmOsId;
+                            }
+                        });
+
+                        sizeInfoList.forEach(function(value, index) {
+                            if (selectedSize == sizeInfoList[index].Name) {
+                                sizeId = sizeInfoList[index].VMSizeId;
+                                }
+                         });
+
+                        targetRegionsList.forEach(function (value, index) {
+                            if (selectedRegion == targetRegionsList[index].Name) {
+                                selectedRegionId = targetRegionsList[index].AzureRegionId;
+                            }
+                        });
+
+                        var regionOsIds = [selectedRegionId, osId];
+                        if (selectedRegionId > 0 && osId > 0) {
+                            fetchVMOSMappings(subId, regionOsIds);
+                        }                        
+
+                        var regionSizeIds = [selectedRegionId, sizeId];
+                        if (selectedRegionId > 0 && sizeId > 0) {
+                            fetchVMSizeMappings(subId, regionSizeIds);
+                        }
+
+                        if (subscriptionRegionOSMapping == false) {
+                            $("#lblRegionOsMappingStatus").css("display", "block");
+                            $("#lblRegionOsMappingStatus").text("Please select a different OS for the selected region");
+                            valid = false;
+                        } else {
+                            $("#lblRegionOsMappingStatus").css("display", "none");
+                            valid = true;
+                        }
+
+                        if (subscriptionRegionSizeMapping == false) {
+                            $("#lblRegionSizeMappingStatus").css("display", "block");
+                            $("#lblRegionSizeMappingStatus").text("Please select a different SKU for the selected region");
+                            valid = false;
+                        } else if (valid == true){
+                            $("#lblRegionSizeMappingStatus").css("display", "none");
+                            valid = true;
+                        }
                         if (Shell.UI.Validation.validateContainer(".hw-create-fileshare-container")) {
                             if (!valid) {
                                 return false;
@@ -931,7 +1004,7 @@ declare var resources;
                 var subscriptionId = $('#SubscriptionName').val();
                 //for (var item in resourcegroupList) {
                 //    if (item.) {
-                        
+
                 //    }
                 //}
 
@@ -947,7 +1020,7 @@ declare var resources;
 
                     $.each(resourcegroupList, function (i, val) {
                         if (val.DomainId == parseInt(domainId) && val.EnvironmentTypeId == parseInt(envId) && val.NetworkNICId == parseInt(nicId))
-                        {
+                         {
                             envResourcegroupname = val.Name;
                         }
                     });
@@ -1023,6 +1096,37 @@ declare var resources;
             listItems += "<option value='" + sizeList[i].Name + "' data-maxdiskcount='" + sizeList[i].MaxDataDiskCount + "'>" + sizeList[i].Description + ", MaxDataDiskCount-" + sizeList[i].MaxDataDiskCount + "</option>";
         }
         $("#VmSize").html(listItems);
+    }
+
+    function populateOsDropdown() {
+        var listItems = "";
+        for (var i = 0; i < osInfoList.length; i++) {
+            listItems += "<option value='" + osInfoList[i].Name + "'>" + osInfoList[i].Name + "</option>";
+        }
+        $("#VmSourceImage").html(listItems);
+    }
+
+    function updateSku() {
+        var selectedrole = 3;
+        var drivecount = $.grep(serverroleDrivemappingList, function (val) {
+            return val.ServerRoleId == selectedrole;
+        });
+        var filteredskulist = $.grep(sizeInfoList, function (val) {
+            return val.MaxDataDiskCount >= drivecount.length + 1;
+        });
+
+        populateskudropdown(filteredskulist);
+        populateOsDropdown();
+    }
+
+    function updateSkuList() {
+        var oldOslist = osInfoList;
+        var subscriptionID = $('#SubscriptionName').val();
+        var selectedPlan = [subscriptionID];
+        fetchOsInfoList(selectedPlan);
+        fetchSizeInfoList(selectedPlan);
+
+        var oslist = osInfoList;
     }
 
     //*************************************************************************
@@ -1643,7 +1747,7 @@ declare var resources;
             contentType: 'application/json',
             data: JSON.stringify(allSubscriptionIds)
         }).done(function (data) {
-            gotIISRoleServicesList(data.data);
+                gotIISRoleServicesList(data.data);
             });
     }
 
@@ -1863,11 +1967,11 @@ declare var resources;
             contentType: 'application/json',
             data: JSON.stringify(allSubscriptionIds)
         }).done(function(data) {
-            gotTheServerRoleList(data.data);
-        });
+                gotTheServerRoleList(data.data);
+            });
     }
 
-//*************************************************************************
+    //*************************************************************************
     // Saves the list of service categories
     //*************************************************************************
     function gotTheServiceCategoryList(data) {
@@ -1973,8 +2077,51 @@ declare var resources;
             contentType: 'application/json',
             data: JSON.stringify(allSubscriptionIds)
         }).done(function (data) {
-                gotSubscriptionMappingsList(data.data);
+            this.subscriptionMappingsList = data;
+                gotSubscriptionMappingsList(data);
             });
+    }
+
+       function gotRegionOSMappingsList(data) {
+        subscriptionRegionOSMapping = data;
+    }
+
+    //*************************************************************************
+    // Fetches the list of mappings between Regions and OS
+    //*************************************************************************
+    var fetchVMOSMappings = function(allSubscriptionIds, ids) {
+
+        var mappingInfo = { "subscriptionId": allSubscriptionIds, "Ids": ids };
+        $.ajax({
+            type: 'POST',
+            url: getVMOSMappingsUrl,
+            contentType: 'application/json',
+            data: JSON.stringify(mappingInfo),
+            async: false
+        }).done(function (data) {
+            gotRegionOSMappingsList(data);
+        });
+    }
+
+    function gotRegionSizeMappingsList(data) {
+        subscriptionRegionSizeMapping = data;
+    }
+
+    //*************************************************************************
+    // Fetches the list of mappings between Regions and Size
+    //*************************************************************************
+    var fetchVMSizeMappings = function(allSubscriptionIds, ids) {
+
+        var mappingInfo = { "subscriptionId": allSubscriptionIds, "Ids": ids };
+        $.ajax({
+            type: 'POST',
+            url: getVMSizeMappingsUrl,
+            contentType: 'application/json',
+            data: JSON.stringify(mappingInfo),
+            async: false
+        }).done(function (data) {
+            gotRegionSizeMappingsList(data);
+        });
     }
 
     //*************************************************************************
