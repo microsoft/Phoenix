@@ -4,10 +4,20 @@
     using OpenQA.Selenium.Firefox;
     using Phoenix.Test.Data;
     using Phoenix.Test.Installation.TestCase;
+    using Phoenix.Test.UI.Framework.Logging;
     using Phoenix.Test.UI.Framework.WebPages;
     using Phoenix.Test.UI.TestCases;
     using System;
     using System.Windows.Forms;
+    using System.Threading;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
     public partial class Form1 : Form
     {
         public Form1()
@@ -82,80 +92,229 @@
 
         private void btn_TestPlan_Click(object sender, EventArgs e)
         {
-            cmpwapProgressBar.Value = 1;
-            cmpwapProgressBar.Maximum = 23;
+            Thread.Sleep(2000);
+            //initialize values for status on screen
+            cmpwapProgressBar.Value = 0;
+            infraCheckPic.BackgroundImage = null;
+            infraCheckPic.Update();
+            lblCheckInfra.Text = "GATHER INFRASTRUCTURE INFORMATION";
+            lblCheckInfra.Update();
+            resourceProviderPic.BackgroundImage = null;
+            resourceProviderPic.Update();
+            lblCheckResourceProvider.Text = "CHECK RESOURCE PROVIDER";
+            databasesPic.BackgroundImage = null;
+            databasesPic.Update();
+            lblCheckDatabases.Text = "CHECK DATABASES";
+            servicesPic.BackgroundImage = null;
+            servicesPic.Update();
+            lblCheckServices.Text = "CHECK CMP SERVICE";
+            webappsPic.BackgroundImage = null;
+            webappsPic.Update();
+            lblCheckWebApps.Text = "CHECK WEB APPS";
+            lblAllTests.Text = "INSTALLATION TEST IN PROGRESS";
+            lblAllTests.Visible = false;
+            lblAllTests.Update();
+            allTestsPic.BackgroundImage = null;
+            allTestsPic.Update();
 
-            lblCheckDatabases.Text = "CHECKING DATABASES...";
-            var databasesTest = new installationTest();
-            databasesTest.Initialize();
-            databasesTest.dbTest(textBox_SQLAdmin.Text, textBox_SQLAdmPswd.Text, textBox_ServerName.Text);
-
-            if (databasesTest.GetPass())
+            //Use the manifest class to read in information for distributed environments.
+            lblCheckInfra.Text = "GATHERING INFRASTRUCTURE INFORMATION...";
+            lblCheckInfra.Update();
+            lblAllTests.Visible = true;
+            lblAllTests.Update();
+            for (int progressCount = 0; progressCount < 2; progressCount++)
             {
-                databasesPic.BackgroundImage = imageList1.Images[1];
-                lblCheckDatabases.Text = "DATABASES CHECKED - PASSED";
+                cmpwapProgressBar.PerformStep();
+                cmpwapProgressBar.Update();
             }
-            else
+            var Manifest = new infraManifest(textBox_ServerName.Text);
+            appDatabase CMPDB = Manifest.GetCMPServer();
+            appDatabase RPDB = Manifest.GetStoreServer();
+            List<appDatabase> Databases = Manifest.GetDatabases();
+            List<appSite> Sites = Manifest.GetSites();
+
+            if (Manifest.GetManifestPassed() && Manifest.GetManifestFinished())
             {
+                infraCheckPic.BackgroundImage = imageList1.Images[1];
+                infraCheckPic.Update();
+                lblCheckInfra.Text = "GATHERED INFRASTRUCTURE INFORMATION - PASSED";
+                lblCheckInfra.Update();
+
+                lblCheckResourceProvider.Text = "CHECKING RESOURCE PROVIDER...";
+                lblCheckResourceProvider.Update();
+                for (int progressCount = 0; progressCount < 2; progressCount++)
+                {
+                    cmpwapProgressBar.PerformStep();
+                    cmpwapProgressBar.Update();
+                    lblAllTests.Text = "INSTALLATION TEST IN PROGRESS.";
+                    lblAllTests.Update();
+                }
+                var rpTest = new resourceProviderTest(RPDB);
+                rpTest.runResourceProviderTest();
+
+                Thread.Sleep(2000);
+                if (rpTest.getTestPassed())
+                {
+                    resourceProviderPic.BackgroundImage = imageList1.Images[1];
+                    resourceProviderPic.Update();
+                    lblCheckResourceProvider.Text = "RESOURCE PROVIDER CHECKED - PASSED";
+                    lblCheckResourceProvider.Update();
+                }
+                else
+                {
+                    resourceProviderPic.BackgroundImage = imageList1.Images[0];
+                    resourceProviderPic.Update();
+                    lblCheckResourceProvider.Text = "RESOURCE PROVIDER CHECKED - FAILED";
+                    lblCheckResourceProvider.Update();
+                }
+
+
+                if (rpTest.getTestFinished())
+                {
+                    lblCheckDatabases.Text = "CHECKING DATABASES...";
+                    lblCheckDatabases.Update();
+                    for (int progressCount = 0; progressCount < 3; progressCount++)
+                    {
+                        cmpwapProgressBar.PerformStep();
+                        cmpwapProgressBar.Update();
+                        lblAllTests.Text = "INSTALLATION TEST IN PROGRESS..";
+                        lblAllTests.Update();
+                    }
+                    Thread.Sleep(2000);
+                    var dbTest = new databasesTest(Databases);
+                    dbTest.runDatabasesTest();
+
+                    if (dbTest.getTestPassed())
+                    {
+                        databasesPic.BackgroundImage = imageList1.Images[1];
+                        databasesPic.Update();
+                        lblCheckDatabases.Text = "DATABASES CHECKED - PASSED";
+                        lblCheckDatabases.Update();
+                    }
+                    else
+                    {
+                        databasesPic.BackgroundImage = imageList1.Images[0];
+                        databasesPic.Update();
+                        lblCheckDatabases.Text = "DATABASES CHECKED - FAILED";
+                        lblCheckDatabases.Update();
+                    }
+
+
+                    if (dbTest.getTestFinished())
+                    {
+                        lblCheckServices.Text = "CHECKING CMP SERVICE...";
+                        lblCheckServices.Update();
+                        for (int progressCount = 0; progressCount < 1; progressCount++)
+                        {
+                            cmpwapProgressBar.PerformStep();
+                            cmpwapProgressBar.Update();
+                            lblAllTests.Text = "INSTALLATION TEST IN PROGRESS...";
+                            lblAllTests.Update();
+                        }
+                        Thread.Sleep(2000);
+                        var svcsTest = new servicesTest(textBox_ServerName.Text);
+                        svcsTest.AddService("CmpWorkerService");
+                        //svcsTest.AddService("");  <- to add more services in the future if necessary.  I had the SQL and IIS services being tested, but it is redundant
+                        //as the database and site tests will log if anything is wrong.
+                        svcsTest.runServicesTest();
+
+                        if (svcsTest.getTestPassed())
+                        {
+                            servicesPic.BackgroundImage = imageList1.Images[1];
+                            servicesPic.Update();
+                            lblCheckServices.Text = "CMP SERVICE - PASSED";
+                            lblCheckServices.Update();
+                        }
+                        else
+                        {
+                            servicesPic.BackgroundImage = imageList1.Images[0];
+                            servicesPic.Update();
+                            lblCheckServices.Text = "CMP SERVICE - FAILED";
+                            lblCheckServices.Update();
+                        }
+
+                        if (svcsTest.getTestFinished())
+                        {
+                            lblCheckWebApps.Text = "CHECKING WEB APPS...";
+                            lblCheckWebApps.Update();
+                            for (int progressCount = 0; progressCount < 13; progressCount++)
+                            {
+                                cmpwapProgressBar.PerformStep();
+                                cmpwapProgressBar.Update();
+                                lblAllTests.Text = "INSTALLATION TEST IN PROGRESS....";
+                                lblAllTests.Update();
+                            }
+                            Thread.Sleep(2000);
+                            var stsTest = new sitesTest(Sites);
+                            stsTest.runSitesTest();
+                            if (stsTest.getTestPassed())
+                            {
+                                webappsPic.BackgroundImage = imageList1.Images[1];
+                                webappsPic.Update();
+                                lblCheckWebApps.Text = "WEB APPS - PASSED";
+                                lblCheckWebApps.Update();
+                            }
+                            else
+                            {
+                                webappsPic.BackgroundImage = imageList1.Images[0];
+                                webappsPic.Update();
+                                lblCheckWebApps.Text = "WEB APPS - FAILED";
+                                lblCheckWebApps.Update();
+                            }
+                        }
+                    }
+                }
+                lblAllTests.Text = "INSTALLATION TEST - COMPLETED!";
+                lblAllTests.Update();
+                allTestsPic.BackgroundImage = imageList1.Images[1];
+                allTestsPic.Update();
+                Log.Information("---END-OF-INSTALL-TEST---");
+            }
+            else  //all of it fails without the infrastructure manifest, skip it all and set them to failed if that is the case.
+            {
+                infraCheckPic.BackgroundImage = imageList1.Images[0];
+                infraCheckPic.Update();
+                lblCheckInfra.Text = "GATHERED INFRASTRUCTURE INFORMATION - FAILED";
+                lblCheckInfra.Update();
+                Log.Information("--- Manifest Creation Failed ---");
+
+                resourceProviderPic.BackgroundImage = imageList1.Images[0];
+                resourceProviderPic.Update();
+                lblCheckResourceProvider.Text = "RESOURCE PROVIDER CHECKED - FAILED";
+                lblCheckResourceProvider.Update();
+                Log.Information("--- Resource Provider Check Failed as a result of Manifest Creation Failed ---");
+
                 databasesPic.BackgroundImage = imageList1.Images[0];
+                databasesPic.Update();
                 lblCheckDatabases.Text = "DATABASES CHECKED - FAILED";
-            }
-            for (int progressCount = 0; progressCount < 2; progressCount++)
-            {
-                cmpwapProgressBar.PerformStep();
-            }
+                lblCheckDatabases.Update();
+                Log.Information("--- Database Check Failed as a result of Manifest Creation Failed ---");
 
-
-            lblCheckServices.Text = "CHECKING CMP AND RELATED SERVICES...";
-            var servicesTest = new installationTest();
-            servicesTest.Initialize();
-            servicesTest.serviceTest(textBox_ServerName.Text);
-
-            if (servicesTest.GetPass())
-            {
-                servicesPic.BackgroundImage = imageList1.Images[1];
-                lblCheckServices.Text = "CMP AND RELATED SERVICES - PASSED";
-            }
-            else
-            {
                 servicesPic.BackgroundImage = imageList1.Images[0];
-                lblCheckServices.Text = "CMP AND RELATED SERVICES - FAILED";
-            }
-            for (int progressCount = 0; progressCount < 2; progressCount++)
-            {
-                cmpwapProgressBar.PerformStep();
-            }
+                servicesPic.Update();
+                lblCheckServices.Text = "CMP SERVICE - FAILED";
+                lblCheckServices.Update();
+                Log.Information("--- CMP Service Check Failed as a result of Manifest Creation Failed ---");
 
-            lblCheckWebApps.Text = "CHECKING WEB APPS...";
-            var sitesTest = new installationTest();
-            sitesTest.Initialize();
-            sitesTest.siteTest(textBox_ServerName.Text);
-
-            if (sitesTest.GetPass())
-            {
-                webappsPic.BackgroundImage = imageList1.Images[1];
-                lblCheckWebApps.Text = "WEB APPS - PASSED";
-            }
-            else
-            {
                 webappsPic.BackgroundImage = imageList1.Images[0];
+                webappsPic.Update();
                 lblCheckWebApps.Text = "WEB APPS - FAILED";
+                lblCheckWebApps.Update();
+                Log.Information("--- Web Application Check Failed as a result of Manifest Creation Failed ---");
+
+                lblAllTests.Text = "INSTALLATION TEST - COMPLETED!";
+                lblAllTests.Update();
+                allTestsPic.BackgroundImage = imageList1.Images[1];
+                allTestsPic.Update();
+                Log.Information("---END-OF-INSTALL-TEST---");
+
+                for (int progressCount = 0; progressCount < 25; progressCount++)
+                {
+                    cmpwapProgressBar.PerformStep();
+                    cmpwapProgressBar.Update();
+                }
             }
-            for (int progressCount = 0; progressCount < 17; progressCount++)
-            {
-                cmpwapProgressBar.PerformStep();
-            }
         }
-        private void ResourceProviderTest()
-        {
-
-        }
-
-        private void textBox_ServerName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void label10_Click(object sender, EventArgs e)
         {
 
@@ -166,53 +325,17 @@
 
         }
 
-        private void textBox_TenantPassword_TextChanged(object sender, EventArgs e)
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBox2.Checked == false)
+            {
+                textBox_Password.PasswordChar = '*';
+            }
+            else if (checkBox2.Checked == true)
+            {
+                textBox_Password.PasswordChar = (char)(byte)0;
+            }
+            textBox_Password.Refresh();
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblPostInstallSteps_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click_2(object sender, EventArgs e)
-        {
-        }
-
-        private void button3_Click_3(object sender, EventArgs e)
-        {
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tenantUserAccount_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
