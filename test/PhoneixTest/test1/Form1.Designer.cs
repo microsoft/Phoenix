@@ -47,10 +47,13 @@
             this.textBox_ServerName = new System.Windows.Forms.TextBox();
             this.tabControlTesting = new System.Windows.Forms.TabControl();
             this.postInstallPage = new System.Windows.Forms.TabPage();
-            this.textBox_SQLAdmPswd = new System.Windows.Forms.TextBox();
-            this.textBox_SQLAdmin = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.allTestsPic = new System.Windows.Forms.PictureBox();
+            this.lblAllTests = new System.Windows.Forms.Label();
+            this.infraCheckPic = new System.Windows.Forms.PictureBox();
+            this.lblCheckInfra = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.resourceProviderPic = new System.Windows.Forms.PictureBox();
+            this.lblCheckResourceProvider = new System.Windows.Forms.Label();
             this.webappsPic = new System.Windows.Forms.PictureBox();
             this.servicesPic = new System.Windows.Forms.PictureBox();
             this.databasesPic = new System.Windows.Forms.PictureBox();
@@ -60,6 +63,12 @@
             this.lblPostInstallSteps = new System.Windows.Forms.Label();
             this.cmpwapProgressBar = new System.Windows.Forms.ProgressBar();
             this.adminUIPage = new System.Windows.Forms.TabPage();
+            this.regions = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tenantUserPsw = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tenantUserAccount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox_AdminPortalServer = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -67,15 +76,14 @@
             this.tenantUIPage = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox_TenantPortalServer = new System.Windows.Forms.TextBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.tenantUserAccount = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tenantUserPsw = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.regions = new System.Windows.Forms.ComboBox();
             this.tabControlTesting.SuspendLayout();
             this.postInstallPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.allTestsPic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infraCheckPic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resourceProviderPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.webappsPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.servicesPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databasesPic)).BeginInit();
@@ -111,7 +119,7 @@
             // 
             this.textBox_ClientId.Location = new System.Drawing.Point(190, 104);
             this.textBox_ClientId.Name = "textBox_ClientId";
-            this.textBox_ClientId.Size = new System.Drawing.Size(306, 28);
+            this.textBox_ClientId.Size = new System.Drawing.Size(306, 24);
             this.textBox_ClientId.TabIndex = 7;
             // 
             // label1
@@ -120,7 +128,7 @@
             this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(23, 186);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 21);
+            this.label1.Size = new System.Drawing.Size(63, 15);
             this.label1.TabIndex = 5;
             this.label1.Text = "TENANT ID";
             // 
@@ -130,7 +138,7 @@
             this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(23, 108);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 21);
+            this.label2.Size = new System.Drawing.Size(58, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "CLIENT ID";
             // 
@@ -140,7 +148,7 @@
             this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(23, 146);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 21);
+            this.label3.Size = new System.Drawing.Size(65, 15);
             this.label3.TabIndex = 7;
             this.label3.Text = "CLIENT KEY";
             // 
@@ -149,11 +157,11 @@
             this.btn_TestPlan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
             this.btn_TestPlan.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.btn_TestPlan.ForeColor = System.Drawing.Color.White;
-            this.btn_TestPlan.Location = new System.Drawing.Point(169, 144);
+            this.btn_TestPlan.Location = new System.Drawing.Point(155, 46);
             this.btn_TestPlan.Name = "btn_TestPlan";
             this.btn_TestPlan.Size = new System.Drawing.Size(306, 58);
             this.btn_TestPlan.TabIndex = 4;
-            this.btn_TestPlan.Text = "START CMPWAP POST-INSTALL TEST";
+            this.btn_TestPlan.Text = "START CMPWAP INSTALLATION TEST";
             this.btn_TestPlan.UseVisualStyleBackColor = false;
             this.btn_TestPlan.Click += new System.EventHandler(this.btn_TestPlan_Click);
             // 
@@ -161,21 +169,21 @@
             // 
             this.textBox_ClientKey.Location = new System.Drawing.Point(190, 142);
             this.textBox_ClientKey.Name = "textBox_ClientKey";
-            this.textBox_ClientKey.Size = new System.Drawing.Size(306, 28);
+            this.textBox_ClientKey.Size = new System.Drawing.Size(306, 24);
             this.textBox_ClientKey.TabIndex = 8;
             // 
             // textBox_TenantId
             // 
             this.textBox_TenantId.Location = new System.Drawing.Point(190, 182);
             this.textBox_TenantId.Name = "textBox_TenantId";
-            this.textBox_TenantId.Size = new System.Drawing.Size(306, 28);
+            this.textBox_TenantId.Size = new System.Drawing.Size(306, 24);
             this.textBox_TenantId.TabIndex = 9;
             // 
             // textBox_UserName
             // 
             this.textBox_UserName.Location = new System.Drawing.Point(190, 32);
             this.textBox_UserName.Name = "textBox_UserName";
-            this.textBox_UserName.Size = new System.Drawing.Size(306, 28);
+            this.textBox_UserName.Size = new System.Drawing.Size(306, 24);
             this.textBox_UserName.TabIndex = 5;
             // 
             // label6
@@ -184,7 +192,7 @@
             this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(23, 32);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(119, 21);
+            this.label6.Size = new System.Drawing.Size(89, 15);
             this.label6.TabIndex = 1;
             this.label6.Text = "USER ACCOUNT";
             // 
@@ -194,7 +202,7 @@
             this.label7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(23, 70);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 21);
+            this.label7.Size = new System.Drawing.Size(68, 15);
             this.label7.TabIndex = 0;
             this.label7.Text = "PASSWORD";
             // 
@@ -203,33 +211,32 @@
             this.textBox_Password.Location = new System.Drawing.Point(190, 66);
             this.textBox_Password.Name = "textBox_Password";
             this.textBox_Password.PasswordChar = '*';
-            this.textBox_Password.Size = new System.Drawing.Size(306, 28);
+            this.textBox_Password.Size = new System.Drawing.Size(306, 24);
             this.textBox_Password.TabIndex = 6;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(9, 101);
+            this.label8.Location = new System.Drawing.Point(28, 16);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(185, 21);
+            this.label8.Size = new System.Drawing.Size(109, 15);
             this.label8.TabIndex = 16;
-            this.label8.Text = "DATABASE SERVER NAME";
+            this.label8.Text = "CMP SERVER NAME";
             // 
             // textBox_ServerName
             // 
-            this.textBox_ServerName.Location = new System.Drawing.Point(169, 101);
+            this.textBox_ServerName.Location = new System.Drawing.Point(155, 16);
             this.textBox_ServerName.Name = "textBox_ServerName";
-            this.textBox_ServerName.Size = new System.Drawing.Size(306, 28);
+            this.textBox_ServerName.Size = new System.Drawing.Size(306, 24);
             this.textBox_ServerName.TabIndex = 3;
-            this.textBox_ServerName.TextChanged += new System.EventHandler(this.textBox_ServerName_TextChanged);
             // 
             // tabControlTesting
             // 
             this.tabControlTesting.Controls.Add(this.postInstallPage);
             this.tabControlTesting.Controls.Add(this.adminUIPage);
             this.tabControlTesting.Controls.Add(this.tenantUIPage);
-            this.tabControlTesting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlTesting.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControlTesting.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.tabControlTesting.ItemSize = new System.Drawing.Size(201, 49);
             this.tabControlTesting.Location = new System.Drawing.Point(0, 0);
@@ -244,10 +251,13 @@
             // 
             this.postInstallPage.BackColor = System.Drawing.Color.White;
             this.postInstallPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.postInstallPage.Controls.Add(this.textBox_SQLAdmPswd);
-            this.postInstallPage.Controls.Add(this.textBox_SQLAdmin);
-            this.postInstallPage.Controls.Add(this.label13);
+            this.postInstallPage.Controls.Add(this.allTestsPic);
+            this.postInstallPage.Controls.Add(this.lblAllTests);
+            this.postInstallPage.Controls.Add(this.infraCheckPic);
+            this.postInstallPage.Controls.Add(this.lblCheckInfra);
             this.postInstallPage.Controls.Add(this.label12);
+            this.postInstallPage.Controls.Add(this.resourceProviderPic);
+            this.postInstallPage.Controls.Add(this.lblCheckResourceProvider);
             this.postInstallPage.Controls.Add(this.webappsPic);
             this.postInstallPage.Controls.Add(this.servicesPic);
             this.postInstallPage.Controls.Add(this.databasesPic);
@@ -265,49 +275,74 @@
             this.postInstallPage.Name = "postInstallPage";
             this.postInstallPage.Padding = new System.Windows.Forms.Padding(3);
             this.postInstallPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.postInstallPage.Size = new System.Drawing.Size(600, 424);
+            this.postInstallPage.Size = new System.Drawing.Size(600, 551);
             this.postInstallPage.TabIndex = 0;
-            this.postInstallPage.Text = "POST-INSTALL TEST";
+            this.postInstallPage.Text = "INSTALLATION TEST";
             // 
-            // textBox_SQLAdmPswd
+            // allTestsPic
             // 
-            this.textBox_SQLAdmPswd.Location = new System.Drawing.Point(170, 61);
-            this.textBox_SQLAdmPswd.Name = "textBox_SQLAdmPswd";
-            this.textBox_SQLAdmPswd.PasswordChar = '*';
-            this.textBox_SQLAdmPswd.Size = new System.Drawing.Size(306, 28);
-            this.textBox_SQLAdmPswd.TabIndex = 2;
+            this.allTestsPic.BackColor = System.Drawing.Color.Transparent;
+            this.allTestsPic.Location = new System.Drawing.Point(161, 289);
+            this.allTestsPic.Name = "allTestsPic";
+            this.allTestsPic.Size = new System.Drawing.Size(16, 16);
+            this.allTestsPic.TabIndex = 33;
+            this.allTestsPic.TabStop = false;
             // 
-            // textBox_SQLAdmin
+            // lblAllTests
             // 
-            this.textBox_SQLAdmin.Location = new System.Drawing.Point(170, 19);
-            this.textBox_SQLAdmin.Name = "textBox_SQLAdmin";
-            this.textBox_SQLAdmin.Size = new System.Drawing.Size(306, 28);
-            this.textBox_SQLAdmin.TabIndex = 1;
+            this.lblAllTests.BackColor = System.Drawing.Color.White;
+            this.lblAllTests.Location = new System.Drawing.Point(181, 289);
+            this.lblAllTests.Name = "lblAllTests";
+            this.lblAllTests.Size = new System.Drawing.Size(285, 17);
+            this.lblAllTests.TabIndex = 32;
+            this.lblAllTests.Text = "INSTALLATION TEST IN PROGRESS";
+            this.lblAllTests.Visible = false;
             // 
-            // label13
+            // infraCheckPic
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(9, 61);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(89, 21);
-            this.label13.TabIndex = 27;
-            this.label13.Text = "PASSWORD";
+            this.infraCheckPic.BackColor = System.Drawing.Color.Transparent;
+            this.infraCheckPic.Location = new System.Drawing.Point(161, 150);
+            this.infraCheckPic.Name = "infraCheckPic";
+            this.infraCheckPic.Size = new System.Drawing.Size(16, 16);
+            this.infraCheckPic.TabIndex = 31;
+            this.infraCheckPic.TabStop = false;
+            // 
+            // lblCheckInfra
+            // 
+            this.lblCheckInfra.Location = new System.Drawing.Point(181, 150);
+            this.lblCheckInfra.Name = "lblCheckInfra";
+            this.lblCheckInfra.Size = new System.Drawing.Size(411, 17);
+            this.lblCheckInfra.TabIndex = 30;
+            this.lblCheckInfra.Text = "GATHER INFRASTRUCTURE INFORMATION";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(9, 19);
+            this.label12.Location = new System.Drawing.Point(229, 461);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(163, 21);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "SQL ADMIN ACCOUNT";
+            this.label12.Size = new System.Drawing.Size(100, 23);
+            this.label12.TabIndex = 34;
+            // 
+            // resourceProviderPic
+            // 
+            this.resourceProviderPic.BackColor = System.Drawing.Color.Transparent;
+            this.resourceProviderPic.Location = new System.Drawing.Point(161, 179);
+            this.resourceProviderPic.Name = "resourceProviderPic";
+            this.resourceProviderPic.Size = new System.Drawing.Size(16, 16);
+            this.resourceProviderPic.TabIndex = 29;
+            this.resourceProviderPic.TabStop = false;
+            // 
+            // lblCheckResourceProvider
+            // 
+            this.lblCheckResourceProvider.Location = new System.Drawing.Point(181, 178);
+            this.lblCheckResourceProvider.Name = "lblCheckResourceProvider";
+            this.lblCheckResourceProvider.Size = new System.Drawing.Size(286, 17);
+            this.lblCheckResourceProvider.TabIndex = 28;
+            this.lblCheckResourceProvider.Text = "CHECK RESOURCE PROVIDER";
             // 
             // webappsPic
             // 
             this.webappsPic.BackColor = System.Drawing.Color.Transparent;
-            this.webappsPic.Location = new System.Drawing.Point(190, 316);
+            this.webappsPic.Location = new System.Drawing.Point(161, 263);
             this.webappsPic.Name = "webappsPic";
             this.webappsPic.Size = new System.Drawing.Size(16, 16);
             this.webappsPic.TabIndex = 25;
@@ -316,7 +351,7 @@
             // servicesPic
             // 
             this.servicesPic.BackColor = System.Drawing.Color.Transparent;
-            this.servicesPic.Location = new System.Drawing.Point(190, 286);
+            this.servicesPic.Location = new System.Drawing.Point(161, 236);
             this.servicesPic.Name = "servicesPic";
             this.servicesPic.Size = new System.Drawing.Size(16, 16);
             this.servicesPic.TabIndex = 24;
@@ -325,7 +360,7 @@
             // databasesPic
             // 
             this.databasesPic.BackColor = System.Drawing.Color.Transparent;
-            this.databasesPic.Location = new System.Drawing.Point(190, 256);
+            this.databasesPic.Location = new System.Drawing.Point(161, 208);
             this.databasesPic.Name = "databasesPic";
             this.databasesPic.Size = new System.Drawing.Size(16, 16);
             this.databasesPic.TabIndex = 23;
@@ -335,28 +370,27 @@
             // 
             this.lblCheckWebApps.AutoSize = true;
             this.lblCheckWebApps.BackColor = System.Drawing.Color.White;
-            this.lblCheckWebApps.Location = new System.Drawing.Point(210, 313);
+            this.lblCheckWebApps.Location = new System.Drawing.Point(181, 260);
             this.lblCheckWebApps.Name = "lblCheckWebApps";
-            this.lblCheckWebApps.Size = new System.Drawing.Size(133, 21);
+            this.lblCheckWebApps.Size = new System.Drawing.Size(109, 17);
             this.lblCheckWebApps.TabIndex = 22;
             this.lblCheckWebApps.Text = "CHECK WEB APPS";
-            this.lblCheckWebApps.Click += new System.EventHandler(this.label10_Click);
             // 
             // lblCheckServices
             // 
             this.lblCheckServices.AutoSize = true;
-            this.lblCheckServices.Location = new System.Drawing.Point(210, 284);
+            this.lblCheckServices.Location = new System.Drawing.Point(181, 234);
             this.lblCheckServices.Name = "lblCheckServices";
-            this.lblCheckServices.Size = new System.Drawing.Size(264, 21);
+            this.lblCheckServices.Size = new System.Drawing.Size(126, 17);
             this.lblCheckServices.TabIndex = 21;
-            this.lblCheckServices.Text = "CHECK CMP AND RELATED SERVICES";
+            this.lblCheckServices.Text = "CHECK CMP SERVICE";
             // 
             // lblCheckDatabases
             // 
             this.lblCheckDatabases.AutoSize = true;
-            this.lblCheckDatabases.Location = new System.Drawing.Point(210, 255);
+            this.lblCheckDatabases.Location = new System.Drawing.Point(181, 207);
             this.lblCheckDatabases.Name = "lblCheckDatabases";
-            this.lblCheckDatabases.Size = new System.Drawing.Size(141, 21);
+            this.lblCheckDatabases.Size = new System.Drawing.Size(116, 17);
             this.lblCheckDatabases.TabIndex = 20;
             this.lblCheckDatabases.Text = "CHECK DATABASES";
             // 
@@ -365,18 +399,19 @@
             this.lblPostInstallSteps.AutoSize = true;
             this.lblPostInstallSteps.BackColor = System.Drawing.Color.Transparent;
             this.lblPostInstallSteps.ForeColor = System.Drawing.Color.Black;
-            this.lblPostInstallSteps.Location = new System.Drawing.Point(166, 219);
+            this.lblPostInstallSteps.Location = new System.Drawing.Point(152, 123);
             this.lblPostInstallSteps.Name = "lblPostInstallSteps";
-            this.lblPostInstallSteps.Size = new System.Drawing.Size(192, 21);
+            this.lblPostInstallSteps.Size = new System.Drawing.Size(163, 17);
             this.lblPostInstallSteps.TabIndex = 19;
-            this.lblPostInstallSteps.Text = "POST-INSTALL TEST STEPS:";
-            this.lblPostInstallSteps.Click += new System.EventHandler(this.lblPostInstallSteps_Click);
+            this.lblPostInstallSteps.Text = "INSTALLATION TEST STEPS:";
             // 
             // cmpwapProgressBar
             // 
-            this.cmpwapProgressBar.Location = new System.Drawing.Point(169, 354);
+            this.cmpwapProgressBar.ForeColor = System.Drawing.Color.Teal;
+            this.cmpwapProgressBar.Location = new System.Drawing.Point(155, 327);
             this.cmpwapProgressBar.Name = "cmpwapProgressBar";
-            this.cmpwapProgressBar.Size = new System.Drawing.Size(306, 33);
+            this.cmpwapProgressBar.Size = new System.Drawing.Size(306, 73);
+            this.cmpwapProgressBar.Step = 5;
             this.cmpwapProgressBar.TabIndex = 18;
             this.cmpwapProgressBar.Click += new System.EventHandler(this.progressBar1_Click);
             // 
@@ -412,13 +447,75 @@
             this.adminUIPage.Text = "ADMIN PORTAL UI TEST";
             this.adminUIPage.UseVisualStyleBackColor = true;
             // 
+            // regions
+            // 
+            this.regions.FormattingEnabled = true;
+            this.regions.Items.AddRange(new object[] {
+            "Australia East",
+            "Australia Southeast",
+            "Central US",
+            "East US",
+            "East US 2",
+            "North Central US",
+            "South Central US",
+            "West US"});
+            this.regions.Location = new System.Drawing.Point(190, 386);
+            this.regions.Name = "regions";
+            this.regions.Size = new System.Drawing.Size(306, 23);
+            this.regions.TabIndex = 26;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(23, 388);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(131, 15);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "SUBSCRIPTION REGION";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(23, 351);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(142, 15);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "TENANT USER PASSWORD";
+            // 
+            // tenantUserPsw
+            // 
+            this.tenantUserPsw.Location = new System.Drawing.Point(190, 347);
+            this.tenantUserPsw.Name = "tenantUserPsw";
+            this.tenantUserPsw.PasswordChar = '*';
+            this.tenantUserPsw.Size = new System.Drawing.Size(306, 24);
+            this.tenantUserPsw.TabIndex = 22;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(23, 307);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(133, 15);
+            this.label14.TabIndex = 21;
+            this.label14.Text = "TENANT USER ACCOUNT";
+            // 
+            // tenantUserAccount
+            // 
+            this.tenantUserAccount.Location = new System.Drawing.Point(190, 303);
+            this.tenantUserAccount.Name = "tenantUserAccount";
+            this.tenantUserAccount.Size = new System.Drawing.Size(306, 24);
+            this.tenantUserAccount.TabIndex = 20;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(23, 263);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(173, 21);
+            this.label5.Size = new System.Drawing.Size(130, 15);
             this.label5.TabIndex = 19;
             this.label5.Text = "ADMIN PORTAL SERVER";
             // 
@@ -426,7 +523,7 @@
             // 
             this.textBox_AdminPortalServer.Location = new System.Drawing.Point(190, 259);
             this.textBox_AdminPortalServer.Name = "textBox_AdminPortalServer";
-            this.textBox_AdminPortalServer.Size = new System.Drawing.Size(306, 28);
+            this.textBox_AdminPortalServer.Size = new System.Drawing.Size(306, 24);
             this.textBox_AdminPortalServer.TabIndex = 11;
             // 
             // label4
@@ -435,7 +532,7 @@
             this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(23, 225);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(161, 21);
+            this.label4.Size = new System.Drawing.Size(123, 15);
             this.label4.TabIndex = 17;
             this.label4.Text = "AZURE SUBSCRIPTION";
             // 
@@ -443,7 +540,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(190, 221);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(306, 28);
+            this.textBox1.Size = new System.Drawing.Size(306, 24);
             this.textBox1.TabIndex = 10;
             // 
             // tenantUIPage
@@ -465,7 +562,7 @@
             this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(8, 41);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(179, 21);
+            this.label11.Size = new System.Drawing.Size(133, 15);
             this.label11.TabIndex = 20;
             this.label11.Text = "TENANT PORTAL SERVER";
             // 
@@ -473,8 +570,30 @@
             // 
             this.textBox_TenantPortalServer.Location = new System.Drawing.Point(154, 37);
             this.textBox_TenantPortalServer.Name = "textBox_TenantPortalServer";
-            this.textBox_TenantPortalServer.Size = new System.Drawing.Size(290, 28);
+            this.textBox_TenantPortalServer.Size = new System.Drawing.Size(290, 24);
             this.textBox_TenantPortalServer.TabIndex = 15;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Calibri", 9F);
+            this.checkBox2.Location = new System.Drawing.Point(460, 203);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(129, 18);
+            this.checkBox2.TabIndex = 34;
+            this.checkBox2.Text = "VIEW IN PLAIN TEXT";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(8, 72);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(68, 15);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "PASSWORD";
             // 
             // imageList1
             // 
@@ -483,72 +602,9 @@
             this.imageList1.Images.SetKeyName(0, "bad.png");
             this.imageList1.Images.SetKeyName(1, "good.png");
             // 
-            // tenantUserAccount
-            // 
-            this.tenantUserAccount.Location = new System.Drawing.Point(190, 303);
-            this.tenantUserAccount.Name = "tenantUserAccount";
-            this.tenantUserAccount.Size = new System.Drawing.Size(306, 28);
-            this.tenantUserAccount.TabIndex = 20;
-            this.tenantUserAccount.TextChanged += new System.EventHandler(this.tenantUserAccount_TextChanged);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(23, 307);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(179, 21);
-            this.label14.TabIndex = 21;
-            this.label14.Text = "TENANT USER ACCOUNT";
-            // 
-            // tenantUserPsw
-            // 
-            this.tenantUserPsw.Location = new System.Drawing.Point(190, 347);
-            this.tenantUserPsw.Name = "tenantUserPsw";
-            this.tenantUserPsw.PasswordChar = '*';
-            this.tenantUserPsw.Size = new System.Drawing.Size(306, 28);
-            this.tenantUserPsw.TabIndex = 22;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(23, 351);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(189, 21);
-            this.label15.TabIndex = 23;
-            this.label15.Text = "TENANT USER PASSWORD";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(23, 388);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(169, 21);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "SUBSCRIPTION REGION";
-            // 
-            // regions
-            // 
-            this.regions.FormattingEnabled = true;
-            this.regions.Items.AddRange(new object[] {
-            "Australia East",
-            "Australia Southeast",
-            "Central US",
-            "East US",
-            "East US 2",
-            "North Central US",
-            "South Central US",
-            "West US"});
-            this.regions.Location = new System.Drawing.Point(190, 386);
-            this.regions.Name = "regions";
-            this.regions.Size = new System.Drawing.Size(306, 29);
-            this.regions.TabIndex = 26;
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(608, 608);
@@ -562,6 +618,9 @@
             this.tabControlTesting.ResumeLayout(false);
             this.postInstallPage.ResumeLayout(false);
             this.postInstallPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.allTestsPic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infraCheckPic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resourceProviderPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.webappsPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.servicesPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databasesPic)).EndInit();
@@ -608,16 +667,21 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox_AdminPortalServer;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox_TenantPortalServer;
-        private System.Windows.Forms.TextBox textBox_SQLAdmPswd;
-        private System.Windows.Forms.TextBox textBox_SQLAdmin;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.PictureBox resourceProviderPic;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox tenantUserAccount;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblCheckResourceProvider;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label lblCheckInfra;
         private System.Windows.Forms.TextBox tenantUserPsw;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tenantUserAccount;
+        private System.Windows.Forms.PictureBox infraCheckPic;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.PictureBox allTestsPic;
+        private System.Windows.Forms.Label lblAllTests;
         private System.Windows.Forms.ComboBox regions;
     }
 }
