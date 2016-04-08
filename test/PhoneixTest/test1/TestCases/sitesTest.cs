@@ -87,7 +87,7 @@ using Phoenix.Test.UI.Framework.Logging;
                         var siteSearcher = new ManagementObjectSearcher(WMIScope, WMISiteQuery);
                         if (siteSearcher.Get().Count == 0)
                         {
-                            Log.Information(site + " is missing or could not be connected to - FAILED");
+                            Log.Information(site.serverName + " is missing or could not be connected to - FAILED");
                             Failed();
                         }
                         foreach (ManagementObject siteQueryObj in siteSearcher.Get())

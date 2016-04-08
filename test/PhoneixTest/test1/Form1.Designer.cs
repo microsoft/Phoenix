@@ -333,7 +333,7 @@
             // 
             // lblCheckResourceProvider
             // 
-            this.lblCheckResourceProvider.Location = new System.Drawing.Point(181, 178);
+            this.lblCheckResourceProvider.Location = new System.Drawing.Point(181, 177);
             this.lblCheckResourceProvider.Name = "lblCheckResourceProvider";
             this.lblCheckResourceProvider.Size = new System.Drawing.Size(286, 17);
             this.lblCheckResourceProvider.TabIndex = 28;
@@ -388,7 +388,7 @@
             // lblCheckDatabases
             // 
             this.lblCheckDatabases.AutoSize = true;
-            this.lblCheckDatabases.Location = new System.Drawing.Point(181, 207);
+            this.lblCheckDatabases.Location = new System.Drawing.Point(181, 206);
             this.lblCheckDatabases.Name = "lblCheckDatabases";
             this.lblCheckDatabases.Size = new System.Drawing.Size(116, 17);
             this.lblCheckDatabases.TabIndex = 20;
