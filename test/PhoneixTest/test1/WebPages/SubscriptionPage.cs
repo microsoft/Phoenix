@@ -124,21 +124,12 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public void ConfigPlan()
         {
-            var osCheckBox1 = new HtmlCheckBox(this, By.Id("op-id-osType1"));
-            var osCheckBox2 = new HtmlCheckBox(this, By.Id("op-id-osType2"));
-            var osCheckBox3 = new HtmlCheckBox(this, By.Id("op-id-osType3"));
-
-            var vmSizeCheckBox1 = new HtmlCheckBox(this, By.Id("op-id-vmSizes26"));
-            var vmSizeCheckBox2 = new HtmlCheckBox(this, By.Id("op-id-vmSizes27"));
-            var vmSizeCheckBox3 = new HtmlCheckBox(this, By.Id("op-id-vmSizes28"));
-
-            osCheckBox1.Check();
-            osCheckBox2.Check();
-            osCheckBox3.Check();
-
-            vmSizeCheckBox1.Check();
-            vmSizeCheckBox2.Check();
-            vmSizeCheckBox3.Check();
+            var checkBoxes = this.Browser.FindElements(By.ClassName("storageLoggingOptions"));
+            foreach (var vb in checkBoxes)
+            {
+                var checkBox = new HtmlCheckBox(this, vb);
+                checkBox.Check();
+            }
 
             this.Save.Click();
         }
