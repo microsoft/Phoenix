@@ -13,6 +13,7 @@ namespace Phoenix.Test.UI.Framework.Controls
     using Phoenix.Test.UI.Framework.Logging;
     using Phoenix.Test.UI.Framework.WebPages;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Defines the generic properties for an Html tag structure like this: .section > .section-title ~ .section-body > .section-item.
@@ -20,12 +21,7 @@ namespace Phoenix.Test.UI.Framework.Controls
     public class HtmlScrollBarMenu_Admin : HtmlControl
     {
         private Page page;
-        // Find 14 items.
-        private string[] arr = { "ALL ITEMS", "AZURE VM CLOUD", "WEB SITE CLOUDS", "VM CLOUDS", 
-                                     "SERVICE BUS CLOUDS", "SQL SERVERS", "MYSQL SERVERS", "AUTOMATION", 
-                                     "TEAM ACCESS CONTROL", "PLANS", "USER ACCOUNTS", "REQUEST MANAGEMENT",
-                                     "5NINE CLOUD SECURITY", "USER COSTS" };
-
+     
         /// <summary>
         /// Construct HtmlSection found using By accessor.
         /// </summary>
@@ -48,86 +44,71 @@ namespace Phoenix.Test.UI.Framework.Controls
             this.page = page;
         }
 
-        /// <summary>
-        /// Gets all section items as a Dictionary.
-        /// </summary>
-        public Dictionary<string, HtmlScrollBarMenuItem> Items
-        {
-            get
-            {
-                Dictionary<string, HtmlScrollBarMenuItem> sectionItems = new Dictionary<string, HtmlScrollBarMenuItem>();
-                var sectionContainers = this.Element.FindElements(By.CssSelector(".fxshell-nav1-item"));
-                Log.Information("find elements: " + sectionContainers.Count);
-
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    if (sectionContainers[i].Displayed)
-                    {
-                        var item = new HtmlScrollBarMenuItem(this.page, sectionContainers[i]);
-                        sectionItems.Add(arr[i], new HtmlScrollBarMenuItem(this.page, sectionContainers[i]));
-                    }
-                }
-
-                return sectionItems;
-            }
-        }
-
         public void SelectAllItems()
         {
             Log.Information("Select All Items");
-            Items[arr[0]].Select();
+            this.findMenuItemByName("ALL ITEMS").Select();
         }
         public void SelectAzureVmCloud()
         {
             Log.Information("Select Azure Vm Cloud");
-            Items[arr[1]].Select();
+            this.findMenuItemByName("AZURE VM CLOUD").Select();
         }
         public void SelectWebSiteClouds()
         {
             Log.Information("Select Web Site Clouds");
-            Items[arr[2]].Select();
+            this.findMenuItemByName("WEB SITE CLOUDS").Select();
         }
         public void SelectVmClouds()
         {
             Log.Information("Select Vm Clouds");
-            Items[arr[3]].Select();
+            this.findMenuItemByName("VM CLOUDS").Select();
         }
         public void SelectServiceBusClouds()
         {
             Log.Information("Select Service Bus Clouds");
-            Items[arr[4]].Select();
+            this.findMenuItemByName("SERVICE BUS CLOUDS").Select();
         }
         public void SelectSqlServers()
         {
             Log.Information("Select SQL Servers");
-            Items[arr[5]].Select();
+            this.findMenuItemByName("SQL SERVERS").Select();
         }
         public void SelectMySqlServers()
         {
             Log.Information("Select MySQL Servers");
-            Items[arr[6]].Select();
+            this.findMenuItemByName("MYSQL SERVERS").Select();
         }
         public void SelectAutomation()
         {
             Log.Information("Select Automation");
-            Items[arr[7]].Select();
+            this.findMenuItemByName("AUTOMATION").Select();
         }
-        public void SelectTeamAccessControl()
-        {
-            Log.Information("Select Team Access Control");
-            Items[arr[8]].Select();
-        }
+        //public void SelectTeamAccessControl()
+        //{
+        //    Log.Information("Select Team Access Control");
+        //    Items[arr[8]].Select();
+        //}
         public void SelectPlans()
         {
             Log.Information("Select Plans");
-            Items[arr[9]].Select();
+            this.findMenuItemByName("PLANS").Select();
         }
         public void SelectUserAccounts()
         {
             Log.Information("Select User Accounts");
-            Items[arr[10]].Select();
+            this.findMenuItemByName("USER ACCOUNTS").Select();
         }
 
+        private HtmlScrollBarMenuItem findMenuItemByName(string name)
+        {
+            var item = this.Element.FindElements(By.CssSelector(".fxshell-nav1-item")).Where(e => e.Displayed && e.Text.Contains(name)).FirstOrDefault();
+            if (item == null)
+            {
+                throw new NotFoundException("Menu item not found by name: " + name);
+            }
 
+            return new HtmlScrollBarMenuItem(page, item);
+        }
     }
 }

@@ -25,7 +25,6 @@
             InitializeComponent();
         }
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(this.textBox_UserName.Text) || String.IsNullOrWhiteSpace(this.textBox_Password.Text) ||

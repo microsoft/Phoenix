@@ -83,6 +83,7 @@
         public void Step2(CreateVmData data)
         {
             Log.Information("Input Server Name.");
+            System.Threading.Thread.Sleep(1000*2);
             this.serverName.SetText(data.serverName);
             Log.Information("Input User Name.");
             this.userName.SetText(data.userName);

@@ -102,9 +102,13 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
             Log.Information("---Go through wizard to create plan---");
             var createPlanWizard = new CreatePlanWizard(this.Browser);
+            System.Threading.Thread.Sleep(1000 * 2);
             createPlanWizard.Step1(data); createPlanWizard.GoNext();
+            System.Threading.Thread.Sleep(1000 * 2);
             createPlanWizard.Step2(data); createPlanWizard.GoNext();
+            System.Threading.Thread.Sleep(1000 * 2);
             createPlanWizard.Step3(data); createPlanWizard.Complete();
+            System.Threading.Thread.Sleep(1000);
             Log.Information("---Create plan request send successfully---");
         }
 
