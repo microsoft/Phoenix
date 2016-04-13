@@ -81,7 +81,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
 
         static EventLog _eventLog = null;
         static string _cmpDbConnectionString = null;
-        static Random _storageAccntRandomNum=new Random();
+        static Random _storageAccntRandomNum = new Random();
 
         /// <summary>
         /// Event log for logging
@@ -102,7 +102,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                 return _cmpDbConnectionString;
             }
         }
-
+   
         private readonly char[] _ignoreDriveList = { 'C' };
         private System.Net.NetworkCredential _cmpClientCredentials = null;
         List<Models.VmOs> _VmOsMap = null;
@@ -168,7 +168,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
 
                 return null;
             }
-        }
+        }       
 
         //*********************************************************************
         ///
@@ -3096,7 +3096,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception adding VM administrative users : " + Utils.UnwindExceptionMessages(ex));
+                throw new Exception("Exception in GetLocalUserList() : " + Utils.UnwindExceptionMessages(ex));
             }
         }
 
@@ -3222,11 +3222,13 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                             select rb;
 
                 if (!query.Any())
+                {
                     query = from rb in db.IpakVersionMaps
                             where rb.VersionName == versionName & rb.AdDomain == "*"
                             select rb;
 
-                return query.ToList();
+                    return query.ToList();
+                }
             }
 
             return null;
@@ -3279,12 +3281,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             var vmrList = new List<Models.VmOs>();
 
             try
-            {
-                using (var db = new Models.MicrosoftMgmtSvcCmpContext())
+            {                
+                using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
-                    //db.Database.Connection.ConnectionString = _ConnectionString;
                      var cc = db.Database.Connection.ConnectionString;
-
                     var vmrQ = from rb in db.VmOs
                                orderby rb.Name
                                select rb;

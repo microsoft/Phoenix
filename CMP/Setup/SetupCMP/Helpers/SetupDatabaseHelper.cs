@@ -99,7 +99,8 @@ namespace CMP.Setup.Helpers
         static SetupDatabaseHelper()
         {
             // Create a random password
-            SqlDbUserPassword = Membership.GeneratePassword(18, 2);
+            //SqlDbUserPassword = Membership.GeneratePassword(18, 0);            
+            SqlDbUserPassword = "PhoenixRocks!!123";
             CreateSqlLoginUser(SqlUsernameDuringInstall, SqlDbUserPassword);
         }
 
