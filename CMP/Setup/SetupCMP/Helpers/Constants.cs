@@ -61,7 +61,7 @@ namespace CMP.Setup
         public const String TenantSiteFolderName = @"MgmtSvc-TenantSite";
         public const String AdminSiteFolderName = @"MgmtSvc-AdminSite";
         public const string LicensePath = @".\LICENSE.txt";
-
+        public const string RPFilename = @"\Register-ResourceProvider.ps1";
         /// <summary>
         /// maximum version string length (required for unmanaged call)
         /// </summary>

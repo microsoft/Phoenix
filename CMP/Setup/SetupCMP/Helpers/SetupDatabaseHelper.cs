@@ -7,7 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Security.Principal;
 using System.Text;
-using Microsoft.SqlServer.Dac; 
+using Microsoft.SqlServer.Dac;
 using System.Reflection;
 using System.Data.SqlTypes;
 
@@ -21,6 +21,7 @@ namespace CMP.Setup.Helpers
         internal const String LocalHost = "localhost";
         public const String SqlLocalHostString = "(local)";
         public const String MasterDatabaseName = "master";
+        public const String StoreDatabaseName = "Microsoft.MgmtSvc.Store";
         private const string VmmSetupUserName = @"VMMSetup";
         public const string DBConnectionStringFormat = "{0}database={1}";
         private const String DatabaseOwnerRole = "db_owner";
@@ -55,7 +56,8 @@ namespace CMP.Setup.Helpers
                                                         p.Name = '{0}'
                                                       AND r.Type ='R'";
         private const String GetTableCountQuery = "select count(*) from sysobjects where xtype='U' AND Name LIKE '%WapSubscriptionData%'";
-
+        private const string GetAdminApiMachineNameQuery = @"select SUBSTRING([Value],9,LEN([Value])-8-CHARINDEX(':',REVERSE([Value])))
+FROM [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE [Name] LIKE '%FQDN%' and Namespace='AdminAPI'";
 
         private static string GetSqlServerUserName(bool isWap)
         {
@@ -96,7 +98,7 @@ namespace CMP.Setup.Helpers
         {
             Spid,
             COUNT
-        } 
+        }
 
         /// <summary>
         /// Constructs the full instance name for the SQL instance to use
@@ -410,7 +412,7 @@ namespace CMP.Setup.Helpers
             {
                 int read = input.Read(buffer, 0, buffer.Length);
                 if (read <= 0)
-                return;
+                    return;
                 output.Write(buffer, 0, read);
             }
         }
@@ -448,7 +450,7 @@ namespace CMP.Setup.Helpers
             }
         }
 
-        
+
         private static String GetBinarySidString(String accountName)
         {
             NTAccount ntAccount = new NTAccount(accountName);
@@ -473,7 +475,7 @@ namespace CMP.Setup.Helpers
         {
             SetupLogger.LogInfo("Try removing sql login [{0}]", loginName);
 
-                        SetupLogger.LogInfo("Removing db user [{0}]", loginName);
+            SetupLogger.LogInfo("Removing db user [{0}]", loginName);
 
             SqlConnection sqlConnection = new SqlConnection(masterDBConnectionString);
             String commandText = String.Format(CheckLoginServerRole, loginName);
@@ -564,6 +566,33 @@ namespace CMP.Setup.Helpers
                 dropSqlConnection.Close();
             }
         }
+        public static string GetAdminApiMachineName(bool isWap)
+        {
+            string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(isWap);
+            string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+            string dbName = StoreDatabaseName;
+
+            string connectionString = String.Format(DBConnectionStringFormat, partialConnectionString, dbName);
+            string storeDBConnectionString = String.Format(DBConnectionStringFormat, partialConnectionString, SetupDatabaseHelper.StoreDatabaseName);
+            string adminApiMachineName = "";
+
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection(storeDBConnectionString);
+                sqlConnection.Open();
+
+                string commandText = string.Format(SetupDatabaseHelper.GetAdminApiMachineNameQuery, dbName);
+                SqlCommand useDbCmd = new SqlCommand(commandText, sqlConnection);
+                adminApiMachineName = Convert.ToString(useDbCmd.ExecuteScalar());
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                SetupLogger.LogError("Exception in method GetAdminApiMachineName() - " + ex.Message);
+            }
+            return adminApiMachineName;
+        }
+
 
         private static void KillDatabaseConnections(string databaseName, string masterDbConnectionString)
         {
