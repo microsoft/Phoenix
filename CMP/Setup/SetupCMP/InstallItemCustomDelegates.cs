@@ -9,16 +9,16 @@ namespace CMP.Setup
 {
     #region Using directives
 
+    using CMP.Setup.Helpers;
+    using CMP.Setup.SetupFramework;
+    using KryptoLib;
+    using Microsoft.Win32;
     using System;
     using System.Collections;
-    using CMP.Setup.SetupFramework;
-    using Microsoft.Win32;
-    using WpfResources;
-    using CMP.Setup.Helpers;
-    using System.Globalization;
-    using System.Text;
     using System.Diagnostics;
+    using System.Globalization;
     using System.Runtime.InteropServices;
+    using System.Text;
 
     #endregion
 
@@ -203,6 +203,9 @@ namespace CMP.Setup
             {
                 arguments.Append("ADDLOCAL=ProductFeature,ServiceFeature ");
 
+                // Save the user name to use on the cmp service database
+                String userName = SetupInputs.Instance.FindItem(SetupInputTags.SqlDBAdminNameTag);
+
                 // Add the SQL database information so that it can be written to the registry and accessed by the services
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "SQLPORT=\"{0}\" ", (int)SetupInputs.Instance.FindItem(SetupInputTags.SqlServerPortTag));
                 string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(false);
@@ -214,13 +217,13 @@ namespace CMP.Setup
 
                 String dbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.SqlDatabaseNameTag);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "DATABASENAME=\"{0}\" ", dbName);
-                string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+                string partialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(userName, sqlInstanceName);
                 string connectionString = String.Format("{0}database={1}", partialConnectionString, dbName);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONNECTIONSTR=\"{0}\" ", connectionString);
 
                 String wapDbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.WapSqlDatabaseNameTag);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPDATABASENAME=\"{0}\" ", wapDbName);
-                string wapPartialConnectionString = SetupDatabaseHelper.ConstructConnectionString(wapSqlInstanceName);
+                string wapPartialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(userName, wapSqlInstanceName);
                 string wapConnectionString = String.Format("{0}database={1}", wapPartialConnectionString, wapDbName);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPCONNECTIONSTR=\"{0}\" ", wapConnectionString);
 
@@ -246,12 +249,10 @@ namespace CMP.Setup
                 // Write the cmp database connection string
                 sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(false);
                 wapDbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.SqlDatabaseNameTag);
-                wapPartialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+                wapPartialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(userName, sqlInstanceName);
                 wapConnectionString = String.Format("{0}database={1}", wapPartialConnectionString, wapDbName);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONNECTIONSTR=\"{0}\" ", wapConnectionString);
 
-                // Save the user name to use on the cmp service database
-                String userName = SetupInputs.Instance.FindItem(SetupInputTags.SqlDBAdminNameTag);
                 String domain = SetupInputs.Instance.FindItem(SetupInputTags.SqlDBAdminDomainTag);
                 string fullUserName = String.IsNullOrEmpty(domain) ? userName : domain + @"\" + userName;
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPDATABASEUSERNAME=\"{0}\" ", fullUserName);
@@ -278,9 +279,26 @@ namespace CMP.Setup
 
                 //Write the MicrosoftMgmtSvcStoreContext connection string (part of WAP original installation)
                 wapDbName = SetupConstants.DefaultWapStoreDBName;
-                wapPartialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+                wapPartialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(userName, sqlInstanceName);
                 wapConnectionString = String.Format("{0}database={1}", wapPartialConnectionString, wapDbName);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSTORECONNECTIONSTR=\"{0}\" ", wapConnectionString);
+
+                X509Krypto krypto = new X509Krypto("My", "LocalMachine", certificateThumbprint);
+                // Encrypt the password of the sql user that will be used by the website to access CMP DB
+                //string encryptedCmpDbPassword = String.Format("{0}{1}{2}", "[KText]", UserAccountHelper.EncryptStringUsingLocalCertificate(SetupDatabaseHelper.SqlDbUserPassword, certificateThumbprint), "[KText]");
+
+                string encryptedCmpDbPassword = krypto.EncyptKText(SetupDatabaseHelper.SqlDbUserPassword);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPDBPASSWORDSTRING=\"{0}\" ", encryptedCmpDbPassword);
+
+                // Encrypt the password of the sql user that will be used by the website to access CMP WAP DB
+                //string encryptedCmpWapDbPassword = String.Format("{0}{1}{2}", "[KText]", UserAccountHelper.EncryptStringUsingLocalCertificate(SetupDatabaseHelper.SqlDbUserPassword, certificateThumbprint), "[KText]");
+                string encryptedCmpWapDbPassword = krypto.EncyptKText(SetupDatabaseHelper.SqlDbUserPassword);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPWAPDBPASSWORDSTRING=\"{0}\" ", encryptedCmpWapDbPassword);
+
+                // Encrypt the password of the sql user that will be used by the website to access WAP's Microsoft.MgmtSvc.Store DB
+                //string encryptedMgmtStoreDbPassword = String.Format("{0}{1}{2}", "[KText]", UserAccountHelper.EncryptStringUsingLocalCertificate(SetupDatabaseHelper.SqlDbUserPassword, certificateThumbprint), "[KText]");
+                string encryptedMgmtStoreDbPassword = krypto.EncyptKText(SetupDatabaseHelper.SqlDbUserPassword);
+                arguments.AppendFormat(CultureInfo.InvariantCulture, "MGMTSTOREPASSWORDSTRING=\"{0}\" ", encryptedMgmtStoreDbPassword);
             }
 
             return arguments.ToString();
@@ -338,7 +356,7 @@ namespace CMP.Setup
             {
                 if (!isTenantWAPExtensionInstalling.HasValue)
                 {
-                                    // Find the installdata item in the array
+                    // Find the installdata item in the array
                     foreach (InstallItemsInstallDataItem itemToInstall in PropertyBagDictionary.Instance.GetProperty<ArrayList>(PropertyBagConstants.ItemsToInstall))
                     {
                         if (string.Equals(itemToInstall.ControlTitle, PropertyBagConstants.TenantWAPExtension, StringComparison.OrdinalIgnoreCase))
@@ -630,6 +648,12 @@ namespace CMP.Setup
             WriteConfigSettingsRegistryValue(SetupConstants.ServerSetupInfoRegKey, SetupConstants.VmmServiceAccountValueName, serviceAccount);
         }
 
+        public static void EditSqlAdminUser(string userName)
+        {
+            SetupInputs.Instance.EditItem(SetupInputTags.SqlDBAdminNameTag, userName);
+
+        }
+
         public static string GetSQLServerInstanceNameStr(bool isWap)
         {
             string sqlServerInstanceName = String.Empty;
@@ -752,7 +776,7 @@ namespace CMP.Setup
                         }
                     }
                 }
-                catch(System.ComponentModel.Win32Exception)
+                catch (System.ComponentModel.Win32Exception)
                 {
                     // Ignore an access denied error since some system processes will throw this.
                 }

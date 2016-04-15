@@ -24,9 +24,12 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models
 
         public static string GetConnectionString()
         {
-            var xk = new KryptoLib.X509Krypto();
-            return xk.GetKTextConnectionString("MicrosoftMgmtSvcCmpContext",
-                "MicrosoftMgmtSvcCmpContextPassword");
+            using (var xk = new KryptoLib.X509Krypto())
+            {
+                return xk.GetKTextConnectionString("MicrosoftMgmtSvcCmpContext",
+                    "MicrosoftMgmtSvcCmpContextPassword");
+
+            }
         }
 
         public DbSet<AdDomainMap> AdDomainMaps { get; set; }

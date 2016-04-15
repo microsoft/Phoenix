@@ -1,22 +1,23 @@
 ﻿using CMP.Setup.SetupFramework;
+using Microsoft.SqlServer.Dac;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Globalization;
 using System.IO;
-using System.Security.Principal;
-using System.Text;
-using Microsoft.SqlServer.Dac; 
 using System.Reflection;
-using System.Data.SqlTypes;
+using System.Security.Principal;
+using System.Web.Security;
 
 namespace CMP.Setup.Helpers
 {
     class SetupDatabaseHelper
-    {
+    {        
         private const String PartialConnectionStringTemplate = "Integrated Security=SSPI;Application Name=CMP;Max Pool Size=500;Encrypt=true;TrustServerCertificate=true;Server={0};"; //connection string minus the database name
         private const String ConnectionStringTemplate = SetupDatabaseHelper.PartialConnectionStringTemplate + "Database={1};";
+        private const String PartialWebsiteConnectionStringTemplate = "Persist Security Info=True;User ID={0};Password=;MultipleActiveResultSets=True;Data Source={1}.corp.microsoft.com;"; //connection string minus the database name
 
         internal const String LocalHost = "localhost";
         public const String SqlLocalHostString = "(local)";
@@ -92,11 +93,22 @@ namespace CMP.Setup.Helpers
                                                     FROM master.sys.master_files
                                                     WHERE database_id = 1 AND file_id = 1";
 
+        private const string SqlUsernameDuringInstall = "cmp_0";
+        public static readonly string SqlDbUserPassword = null;
+
+        static SetupDatabaseHelper()
+        {
+            // Create a random password
+            //SqlDbUserPassword = Membership.GeneratePassword(18, 0);            
+            SqlDbUserPassword = "PhoenixRocks!!123";
+            CreateSqlLoginUser(SqlUsernameDuringInstall, SqlDbUserPassword);
+        }
+
         private enum SpidColumns
         {
             Spid,
             COUNT
-        } 
+        }
 
         /// <summary>
         /// Constructs the full instance name for the SQL instance to use
@@ -155,6 +167,18 @@ namespace CMP.Setup.Helpers
         {
             AppAssert.Assert(null != instanceName, "Null instance name passed to ConstructConnectionString");
             string retstr = string.Format(SetupDatabaseHelper.PartialConnectionStringTemplate, instanceName);
+            return retstr;
+        }
+
+        /// <summary>
+        /// Constructs the full connection string given the instance name for use by the admin and tenant website
+        /// </summary>
+        /// <param name="instanceName"></param>
+        /// <returns></returns>
+        public static string ConstructWebsiteConnectionString(string username, string instanceName)
+        {
+            AppAssert.Assert(null != instanceName, "Null instance name passed to ConstructConnectionString");
+            string retstr = string.Format(SetupDatabaseHelper.PartialWebsiteConnectionStringTemplate, username, instanceName);
             return retstr;
         }
 
@@ -410,7 +434,7 @@ namespace CMP.Setup.Helpers
             {
                 int read = input.Read(buffer, 0, buffer.Length);
                 if (read <= 0)
-                return;
+                    return;
                 output.Write(buffer, 0, read);
             }
         }
@@ -448,7 +472,6 @@ namespace CMP.Setup.Helpers
             }
         }
 
-        
         private static String GetBinarySidString(String accountName)
         {
             NTAccount ntAccount = new NTAccount(accountName);
@@ -473,7 +496,7 @@ namespace CMP.Setup.Helpers
         {
             SetupLogger.LogInfo("Try removing sql login [{0}]", loginName);
 
-                        SetupLogger.LogInfo("Removing db user [{0}]", loginName);
+            SetupLogger.LogInfo("Removing db user [{0}]", loginName);
 
             SqlConnection sqlConnection = new SqlConnection(masterDBConnectionString);
             String commandText = String.Format(CheckLoginServerRole, loginName);
@@ -1174,6 +1197,29 @@ namespace CMP.Setup.Helpers
                 newDBNames[i] = dbNames[i];
             }
             return newDBNames;
+        }
+
+        public static void CreateSqlLoginUser(string username, string password)
+        {
+            SetupLogger.LogInfo("Creating sql and db user [{0}]", username);
+
+            string query = String.Format(InstallationSqlLoginQuery.SqlLoginQueryDuringInstall, username, password);
+
+            string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(true);
+
+            InstallItemCustomDelegates.EditSqlAdminUser(username);
+            string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+            string masterDBConnectionString = String.Format(DBConnectionStringFormat, partialConnectionString, SetupDatabaseHelper.MasterDatabaseName);
+            SqlConnection sqlConnection = new SqlConnection(masterDBConnectionString);
+            String commandText = String.Format(query, username);
+
+            SqlCommand sqlCmd = new SqlCommand(commandText, sqlConnection);
+
+            sqlConnection.Open();
+            sqlCmd.ExecuteNonQuery();
+
+            sqlConnection.Close();
+            SetupLogger.LogInfo("Successfully created sql and db user [{0}]", username);
         }
     }
 }

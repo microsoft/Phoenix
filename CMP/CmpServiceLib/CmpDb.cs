@@ -1400,7 +1400,7 @@ namespace CmpServiceLib
 
                 using (var db = new Models.CMPContext())
                 {
-                    db.Database.Connection.ConnectionString = _ConnectionString;
+                    //db.Database.Connection.ConnectionString = _ConnectionString;
 
                     IQueryable<ServiceProviderAccount> foundReqList = null;
 
