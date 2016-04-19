@@ -58,6 +58,13 @@ namespace CMP.Setup.Helpers
         private const String GetTableCountQuery = "select count(*) from sysobjects where xtype='U' AND Name LIKE '%WapSubscriptionData%'";
         private const string GetAdminApiMachineNameQuery = @"select SUBSTRING([Value],9,LEN([Value])-8-CHARINDEX(':',REVERSE([Value])))
 FROM [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE [Name] LIKE '%FQDN%' and Namespace='AdminAPI'";
+        
+        private const string UpdateRPwithAdminSiteQuery=@"Declare @machineName Nvarchar(500) 
+SET @machineName=(SELECT   SUBSTRING([value],CHARINDEX('""ReplyTo"":""https://',VALUE)+19,LEN(VALUE)-CHARINDEX(':',REVERSE(VALUE))-CHARINDEX('""ReplyTo"":""https://',VALUE)-18)  as AdminSiteNme
+from  [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE Namespace='AdminAPI' and Name='Authentication.RelyingParty.Secondary')
+UPDATE [Microsoft.MgmtSvc.Store].mp.ResourceProviders
+SET AdminForwardingAddress='https://'+@machineName+':30666/admin', TenantForwardingAddress='https://'+@machineName+':30666/',NotificationForwardingAddress='https://'+@machineName+':30666/admin'
+WHERE NAME='CmpWapExtension'";
 
         private static string GetSqlServerUserName(bool isWap)
         {
@@ -585,6 +592,7 @@ FROM [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE [Name] LIKE '%FQDN%' an
                 SqlCommand useDbCmd = new SqlCommand(commandText, sqlConnection);
                 adminApiMachineName = Convert.ToString(useDbCmd.ExecuteScalar());
                 sqlConnection.Close();
+                SetupLogger.LogInfo("GetAdminApiMachineName()- AdminApi machine name - " + adminApiMachineName);
             }
             catch (Exception ex)
             {
@@ -592,7 +600,32 @@ FROM [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE [Name] LIKE '%FQDN%' an
             }
             return adminApiMachineName;
         }
+        public static string UpdateRpWithAdminSite(bool isWap)
+        {
+            string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(isWap);
+            string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+            string dbName = StoreDatabaseName;
 
+            string connectionString = String.Format(DBConnectionStringFormat, partialConnectionString, dbName);
+            string storeDBConnectionString = String.Format(DBConnectionStringFormat, partialConnectionString, SetupDatabaseHelper.StoreDatabaseName);
+            string adminApiMachineName = "";
+
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection(storeDBConnectionString);
+                sqlConnection.Open();
+
+                string commandText = string.Format(SetupDatabaseHelper.UpdateRPwithAdminSiteQuery, dbName);
+                SqlCommand useDbCmd = new SqlCommand(commandText, sqlConnection);
+                adminApiMachineName = Convert.ToString(useDbCmd.ExecuteScalar());
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                SetupLogger.LogError("Exception in method UpdateRpWithAdminSite() - " + ex.Message);
+            }
+            return adminApiMachineName;
+        }
 
         private static void KillDatabaseConnections(string databaseName, string masterDbConnectionString)
         {

@@ -151,52 +151,48 @@ namespace CMP.Setup
             //Registering the resource provider
             try
             {
-                string errStr = "";
+                bool isRpSuccess = true;
                 string RpFile = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + SetupConstants.RPFilename;
-                if (returnValue == SetupReturnValues.Successful && isUninstall != true && SetupConstants.WapDBOnRemoteServer == false)
-                {
-
-                    Process p = new Process();
-                    p.StartInfo.FileName = "Powershell.exe";
-                    p.StartInfo.Arguments = RpFile;
-                    p.StartInfo.UseShellExecute = false;
-                    p.StartInfo.RedirectStandardInput = true;
-                    p.StartInfo.RedirectStandardOutput = true;
-                    p.StartInfo.RedirectStandardError = true;
-                    p.StartInfo.CreateNoWindow = true;
-                    p.Start();
-                    errStr = p.StandardError.ReadToEnd();
-                    if (errStr != "") SetupLogger.LogError("Error in registering resource provider - " + errStr);
-                    p.Close();
-                    p.Dispose();
-                }
-                if (returnValue == SetupReturnValues.Successful && isUninstall != true && SetupConstants.WapDBOnRemoteServer == true)
+              
+                if (returnValue == SetupReturnValues.Successful && isUninstall != true )
                 {
                     WSManConnectionInfo connectionInfo = new WSManConnectionInfo();
-                 string computerName=   SetupDatabaseHelper.GetAdminApiMachineName(true);
-                 if (computerName != "")
-                 {
-                     connectionInfo.ComputerName = computerName;
-                     Runspace runspace = RunspaceFactory.CreateRunspace(connectionInfo);
-                     runspace.Open();
-                     StreamReader sr = new StreamReader(RpFile);
-                     string script = sr.ReadToEnd();
-                     using (PowerShell ps = PowerShell.Create())
-                     {
-                         ps.Runspace = runspace;
-                         ps.AddScript(script);
-                         var results = ps.Invoke();
-                         if (ps.Streams.Error.Count > 0)
-                         {
-                             SetupLogger.LogError("Error in registering resource provider - " + ps.Streams.Error.Count);
-                         }
-                     }
-                     runspace.Close();
-                 }
-                 else
-                 {
-                     SetupLogger.LogError("Couldnt get Admin Api machine name and hence RP registatrion powershell script didnt run.");
-                 }
+                    string computerName = "";
+                    if (SetupConstants.WapDBOnRemoteServer)
+                      computerName = SetupDatabaseHelper.GetAdminApiMachineName(true);
+                    else
+                      computerName=  Environment.MachineName;
+                    if (computerName != "")
+                    {
+                        connectionInfo.ComputerName = computerName;
+                        Runspace runspace = RunspaceFactory.CreateRunspace(connectionInfo);
+                        runspace.Open();
+                        StreamReader sr = new StreamReader(RpFile);
+                        string script = sr.ReadToEnd();
+                        using (PowerShell ps = PowerShell.Create())
+                        {
+                            ps.Runspace = runspace;
+                            ps.AddScript(script);
+                            var results = ps.Invoke();
+                            if (ps.Streams.Error.Count > 0)
+                            {
+                                isRpSuccess = false;
+                                SetupLogger.LogError("Error in registering resource provider - " + ps.Streams.Error.Count);
+                            }
+                            else
+                                SetupLogger.LogInfo("Registering resource provider is successful!!");
+                        }
+                        runspace.Close();
+                    }
+                    else
+                    {
+                        isRpSuccess = false;
+                        SetupLogger.LogError("Couldnt get Admin Api machine name and hence RP registatrion powershell script didnt run.");
+                    }
+                }
+                if (isRpSuccess && SetupConstants.WapDBOnRemoteServer)
+                {
+                    SetupDatabaseHelper.UpdateRpWithAdminSite(true);
                 }
             }
             catch (Exception ex)
