@@ -87,7 +87,7 @@
             $(".vm-dashboard-attached-devices").css("display", "none");
             var $errlbl = $("#errordashboard");
             $errlbl.css("display", "block");
-            if (renderData.StatuCode == "Exception") {
+            if (renderData.StatusCode == "Exception") {
                 $errlbl.text(renderData.StatusMessage);
                 // delete option to delete vm record
                 Exp.UI.Commands.Contextual.add(new Exp.UI.Command("deleteVm", "Delete", Exp.UI.CommandIconDescriptor.getWellKnown("delete"), true, null, onDeleteOnException));
