@@ -23,7 +23,7 @@ namespace CMP.Setup
         {
             get
             {
-                String defaultInstallLocation = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + Path.DirectorySeparatorChar + SetupConstants.DefaultInstallDirectory;
+                String defaultInstallLocation = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + Path.DirectorySeparatorChar + SetupConstants.DefaultInstallDirectory;
                 return defaultInstallLocation;
             }
         }

@@ -29,6 +29,9 @@ namespace CMP.Setup
 {
     using CMP.Setup.Helpers;
     using System.Reflection;
+    using System.Diagnostics;
+    using System.Management.Automation;
+    using System.Management.Automation.Runspaces;
     /// <summary>
     /// Processing class for install actions
     /// </summary>
@@ -43,7 +46,7 @@ namespace CMP.Setup
 
         internal const string FinishPageWarning = "finishPageWarning";
 
-        const double SecondsWaitForMutexMSIExecute = 60*60;  // 1 hour
+        const double SecondsWaitForMutexMSIExecute = 60 * 60;  // 1 hour
 
         /// <summary>
         /// Constructor
@@ -65,7 +68,7 @@ namespace CMP.Setup
         public SetupReturnValues ProcessInstalls()
         {
             SetupReturnValues returnValue = SetupReturnValues.Successful;
-
+            bool isUninstall = PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.Uninstall);
             bool continueWithInstall;
             foreach (InstallItemsInstallDataItem itemToInstall
                 in PropertyBagDictionary.Instance.GetProperty<ArrayList>(PropertyBagConstants.ItemsToInstall))
@@ -88,7 +91,7 @@ namespace CMP.Setup
 
                 // Add our current install item to the property
                 PropertyBagDictionary.Instance.SafeAdd("currentInstallItem", itemToInstall);
-                
+
                 // Set the installing procress screen for this object
                 SetProgressScreen(InstallItemsInstallDataItem.InstallDataInputs.Installing | InstallItemsInstallDataItem.InstallDataInputs.InitializeProgress);
 
@@ -145,7 +148,57 @@ namespace CMP.Setup
 
                 SetProgressScreen(InstallItemsInstallDataItem.InstallDataInputs.Installing | InstallItemsInstallDataItem.InstallDataInputs.FinalizeProgress);
             }
-
+            //Registering the resource provider
+            try
+            {
+                bool isRpSuccess = true;
+                string RpFile = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + SetupConstants.RPFilename;
+              
+                if (returnValue == SetupReturnValues.Successful && isUninstall != true )
+                {
+                    WSManConnectionInfo connectionInfo = new WSManConnectionInfo();
+                    string computerName = "";
+                    if (SetupConstants.WapDBOnRemoteServer)
+                      computerName = SetupDatabaseHelper.GetAdminApiMachineName(true);
+                    else
+                      computerName=  Environment.MachineName;
+                    if (computerName != "")
+                    {
+                        connectionInfo.ComputerName = computerName;
+                        Runspace runspace = RunspaceFactory.CreateRunspace(connectionInfo);
+                        runspace.Open();
+                        StreamReader sr = new StreamReader(RpFile);
+                        string script = sr.ReadToEnd();
+                        using (PowerShell ps = PowerShell.Create())
+                        {
+                            ps.Runspace = runspace;
+                            ps.AddScript(script);
+                            var results = ps.Invoke();
+                            if (ps.Streams.Error.Count > 0)
+                            {
+                                isRpSuccess = false;
+                                SetupLogger.LogError("Azure Pack Connector Resource Provider registration failed!! - " + ps.Streams.Error.Count);
+                            }
+                            else
+                                SetupLogger.LogInfo("Azure Pack Connector Resource Provider registration is successful!!");
+                        }
+                        runspace.Close();
+                    }
+                    else
+                    {
+                        isRpSuccess = false;
+                        SetupLogger.LogError("Could not resolve the server name for the Admin API. This has aborted the PowerShell script for the Azure Pack Connector Resource Provider registration.");
+                    }
+                }
+                if (isRpSuccess && SetupConstants.WapDBOnRemoteServer)
+                {
+                    SetupDatabaseHelper.UpdateRpWithAdminSite(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                SetupLogger.LogError("Error in registering Phoenix Resource Provider - " + ex.Message);
+            }
             ProcessRollback();
 
             return returnValue;
@@ -607,7 +660,7 @@ namespace CMP.Setup
                                                                 : itemToCheckPoint));
             }
         }
-        
+
         #region Install Functions
         /// <summary>
         /// Launches an Exe Setup process
@@ -642,7 +695,7 @@ namespace CMP.Setup
                 PropertyBagDictionary.Instance.SafeAdd(PropertyBagDictionary.Rollback, true); //We may need to roll back other installs
                 return -1;
             }
-            
+
             //Take care of setting up the progress information
             progressData.TickSize = 1;
             progressData.Ticks = estimatedTimeInSeconds;
@@ -748,7 +801,7 @@ namespace CMP.Setup
                     {
                         errorLogFile = string.Format("{0}*", errorLogFile);
                         PropertyBagDictionary.Instance.Remove(PropertyBagConstants.AppendStarToLogFile);
-                    }                  
+                    }
 
                     warningNode.CreateAttribute(
                         "",
@@ -860,7 +913,7 @@ namespace CMP.Setup
             PropertyBagDictionary.Instance.SafeAdd(PropertyBagDictionary.ExecutableInstallDone, true);
             this.SetProgressScreen(InstallItemsInstallDataItem.InstallDataInputs.ProgressOnly | InstallItemsInstallDataItem.InstallDataInputs.ExecutableInstall);
             Thread.Sleep(250); // Sleep long enough for the user to see the full progressbar (.25 of a second)
-            
+
             return returnValue;
         }
 
@@ -919,7 +972,7 @@ namespace CMP.Setup
 
             return returnValue;
         }
-        
+
         /// <summary>
         /// Launches a Msi
         /// </summary>
@@ -928,13 +981,13 @@ namespace CMP.Setup
         /// <param name="installerLogFile">The installer log file.</param>
         /// <param name="productCode">The product code.</param>
         /// <returns></returns>
-        public int LaunchMsi(string msiPath, string commandLineArguments , string installerLogFile, string productCode)
+        public int LaunchMsi(string msiPath, string commandLineArguments, string installerLogFile, string productCode)
         {
             progressData.TickSize = 1;
             progressData.ProgressValue = 1;
 
             StringBuilder argumentsToUse = new StringBuilder(commandLineArguments);
-           
+
             this.SetProgressScreen(InstallItemsInstallDataItem.InstallDataInputs.MicrosoftInstaller);
             PropertyBagDictionary.Instance.Remove(PropertyBagDictionary.MicrosoftInstallerInstallDone);
             int installerReturnValue = (int)NativeMethods.InstallErrorLevel.Error_Install_Failed;
@@ -959,11 +1012,11 @@ namespace CMP.Setup
                             msiEngineMutexInUse = true;
                             PropertyBagDictionary.Instance.SafeAdd(PropertyBagDictionary.Rollback, true); //We may need to roll back other installs
                             if (!PropertyBagDictionary.Instance.PropertyExists(PropertyBagDictionary.Silent))
-                            {                                
+                            {
                                 //DialogResult result = this.wizardScreenData.LogSetupWarning(setup.mutexInUse, MessageBoxButtons.RetryCancel);
                                 //if (DialogResult.Cancel == result)
                                 //{
-                                    return (int)NativeMethods.InstallErrorLevel.Error_Install_Failed;
+                                return (int)NativeMethods.InstallErrorLevel.Error_Install_Failed;
                                 //}
                             }
                             else
@@ -999,7 +1052,7 @@ namespace CMP.Setup
                                                                                         | NativeMethods.InstallLogModes.PropertyDump
                                                                                         | NativeMethods.InstallLogModes.User
                                                                                         | NativeMethods.InstallLogModes.Warning
-                                                                                      //| NativeMethods.InstallLogModes.LogOnError
+                    //| NativeMethods.InstallLogModes.LogOnError
                                                                                         | NativeMethods.InstallLogModes.Verbose),
                                                                                         installerLogFile,
                                                                                         (int)NativeMethods.InstallLogAttributes.Append);
@@ -1127,7 +1180,7 @@ namespace CMP.Setup
 
         #region Progress Related Functions
         private delegate void ProgressCallback(); //This is used to give us a type to cast the anonymous method to
-        
+
         public int MicrosoftInstallerUIHandler(IntPtr context, Int32 messageType, string message)
         {
             //SetupLogger.LogInfo("context=" + context);
@@ -1225,7 +1278,7 @@ namespace CMP.Setup
                 default:
                     System.Diagnostics.Debug.WriteLine("Not understood outside " + message);
                     break;
-                }
+            }
 
             return 0;
         }
@@ -1271,9 +1324,9 @@ namespace CMP.Setup
 
             ProgressCallback statusUpdate = delegate
             {
-                progressPage.OnRollback();                
+                progressPage.OnRollback();
             };
-            progressPage.progressBarInstallation.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, statusUpdate);            
+            progressPage.progressBarInstallation.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, statusUpdate);
         }
 
         /// <summary>
@@ -1291,11 +1344,11 @@ namespace CMP.Setup
             {
                 return;
             }
-                
+
             XmlDocument InstallItemDataXml = PropertyBagDictionary.Instance.GetProperty<XmlDocument>("installItemData");
             string nodeToFind = string.Format(CultureInfo.InvariantCulture, "/{0}/{1}[@{2}='{3}']/@{4}", SetupConstants.Root, SetupConstants.DisplayItem, SetupConstants.Parent, itemToInstall.ParentItem, SetupConstants.Image);
             XPathNavigator currentNode = InstallItemDataXml.CreateNavigator().SelectSingleNode(nodeToFind);
-            
+
             ProgressData progressDataInfo = this.progressData;
             ProgressPage progressPage = PageRegistry.Instance.GetPage("ProgressPage").PageUI as ProgressPage;
             if (0 != (currentProgressItem & InstallItemsInstallDataItem.InstallDataInputs.ProgressOnly))
@@ -1350,7 +1403,7 @@ namespace CMP.Setup
             }
 
             ProgressCallback statusUpdate = delegate
-            {                
+            {
                 if (progressDataInfo.ResetBarValue)
                 {
                     progressPage.progressBarInstallation.Value = 0;
