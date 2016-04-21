@@ -121,8 +121,14 @@ declare var sizeInfoList;
 			$(".vm-dashboard-usageAndLinked").css("display", "none");
 			$(".vm-dashboard-attached-devices").css("display", "none");
 			var $errlbl = $("#errordashboard");
-			$errlbl.css("display", "block");
-			if(renderData.AddressFromVm == null) {
+            $errlbl.css("display", "block");
+            if (renderData.StatusCode == "Exception") {
+                $errlbl.text(renderData.StatusMessage);
+                // delete option to delete vm record
+                Exp.UI.Commands.Contextual.add(new Exp.UI.Command("deleteVm", "Delete", Exp.UI.CommandIconDescriptor.getWellKnown("delete"), true, null, onDeleteOnException));
+                Exp.UI.Commands.update();
+            }
+			if(renderData.AddressFromVm == null && renderData.StatusCode !="Exception") {
 				$errlbl.text("VM is being provisioned, please wait or contact support team.");
 				// delete option to delete vm record
 				Exp.UI.Commands.Contextual.add(new Exp.UI.Command("deleteVm", "Delete", Exp.UI.CommandIconDescriptor.getWellKnown("delete"), true, null, onDeleteOnException));
