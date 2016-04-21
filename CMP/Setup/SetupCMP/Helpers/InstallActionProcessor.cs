@@ -177,17 +177,17 @@ namespace CMP.Setup
                             if (ps.Streams.Error.Count > 0)
                             {
                                 isRpSuccess = false;
-                                SetupLogger.LogError("Error in registering resource provider - " + ps.Streams.Error.Count);
+                                SetupLogger.LogError("Azure Pack Connector Resource Provider registration failed!! - " + ps.Streams.Error.Count);
                             }
                             else
-                                SetupLogger.LogInfo("Registering resource provider is successful!!");
+                                SetupLogger.LogInfo("Azure Pack Connector Resource Provider registration is successful!!");
                         }
                         runspace.Close();
                     }
                     else
                     {
                         isRpSuccess = false;
-                        SetupLogger.LogError("Couldnt get Admin Api machine name and hence RP registatrion powershell script didnt run.");
+                        SetupLogger.LogError("Could not resolve the server name for the Admin API. This has aborted the PowerShell script for the Azure Pack Connector Resource Provider registration.");
                     }
                 }
                 if (isRpSuccess && SetupConstants.WapDBOnRemoteServer)
@@ -197,7 +197,7 @@ namespace CMP.Setup
             }
             catch (Exception ex)
             {
-                SetupLogger.LogError("Error in registering resource provider - " + ex.Message);
+                SetupLogger.LogError("Error in registering Phoenix Resource Provider - " + ex.Message);
             }
             ProcessRollback();
 
