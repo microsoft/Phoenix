@@ -217,13 +217,13 @@ namespace CMP.Setup
 
                 String dbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.SqlDatabaseNameTag);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "DATABASENAME=\"{0}\" ", dbName);
-                string partialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(userName, sqlInstanceName);
+                string partialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(SetupDatabaseHelper.SqlUsernameDuringInstall, sqlInstanceName);
                 string connectionString = String.Format("{0}database={1}", partialConnectionString, dbName);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONNECTIONSTR=\"{0}\" ", connectionString);
 
                 String wapDbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.WapSqlDatabaseNameTag);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPDATABASENAME=\"{0}\" ", wapDbName);
-                string wapPartialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(userName, wapSqlInstanceName);
+                string wapPartialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(SetupDatabaseHelper.SqlUsernameDuringInstall, wapSqlInstanceName);
                 string wapConnectionString = String.Format("{0}database={1}", wapPartialConnectionString, wapDbName);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPCONNECTIONSTR=\"{0}\" ", wapConnectionString);
 
@@ -249,7 +249,7 @@ namespace CMP.Setup
                 // Write the cmp database connection string
                 sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(false);
                 wapDbName = (String)SetupInputs.Instance.FindItem(SetupInputTags.SqlDatabaseNameTag);
-                wapPartialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(userName, sqlInstanceName);
+                wapPartialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(SetupDatabaseHelper.SqlUsernameDuringInstall, sqlInstanceName);
                 wapConnectionString = String.Format("{0}database={1}", wapPartialConnectionString, wapDbName);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "CMPCONNECTIONSTR=\"{0}\" ", wapConnectionString);
 
@@ -279,7 +279,7 @@ namespace CMP.Setup
 
                 //Write the MicrosoftMgmtSvcStoreContext connection string (part of WAP original installation)
                 wapDbName = SetupConstants.DefaultWapStoreDBName;
-                wapPartialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(userName, sqlInstanceName);
+                wapPartialConnectionString = SetupDatabaseHelper.ConstructWebsiteConnectionString(SetupDatabaseHelper.SqlUsernameDuringInstall, sqlInstanceName);
                 wapConnectionString = String.Format("{0}database={1}", wapPartialConnectionString, wapDbName);
                 arguments.AppendFormat(CultureInfo.InvariantCulture, "WAPSTORECONNECTIONSTR=\"{0}\" ", wapConnectionString);
 
