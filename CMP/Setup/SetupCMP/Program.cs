@@ -221,6 +221,8 @@ namespace CMP.Setup
                     // Set the application return value: Always success in UI mode
                     returnValue = SetupReturnValues.Successful;
                 }
+
+                SetupDatabaseHelper.CreateSqlLoginUser(SetupDatabaseHelper.SqlUsernameDuringInstall, SetupDatabaseHelper.SqlDbUserPassword); 
             }
             catch (Exception exception)
             {

@@ -93,15 +93,15 @@ namespace CMP.Setup.Helpers
                                                     FROM master.sys.master_files
                                                     WHERE database_id = 1 AND file_id = 1";
 
-        private const string SqlUsernameDuringInstall = "cmp_0";
+        public const string SqlUsernameDuringInstall = "cmp_0";
         public static readonly string SqlDbUserPassword = null;
 
         static SetupDatabaseHelper()
         {
             // Create a random password
-            //SqlDbUserPassword = Membership.GeneratePassword(18, 0);            
+            //SqlDbUserPassword = Membership.GeneratePassword(18, 0);        
+            SetupInputs.Instance.EditItem(SetupInputTags.SqlDBAdminNameTag, SqlUsernameDuringInstall);
             SqlDbUserPassword = "PhoenixRocks!!123";
-            CreateSqlLoginUser(SqlUsernameDuringInstall, SqlDbUserPassword);
         }
 
         private enum SpidColumns

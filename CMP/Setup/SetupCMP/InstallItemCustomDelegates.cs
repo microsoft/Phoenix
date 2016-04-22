@@ -651,14 +651,18 @@ namespace CMP.Setup
         public static void EditSqlAdminUser(string userName)
         {
             SetupInputs.Instance.EditItem(SetupInputTags.SqlDBAdminNameTag, userName);
-
         }
 
         public static string GetSQLServerInstanceNameStr(bool isWap)
         {
+            string sqlMachine = SelectDatabaseServerPage.sqlMachineName;
             string sqlServerInstanceName = String.Empty;
+            String sqlMachineName = String.Empty;
             String instanceName = (String)SetupInputs.Instance.FindItem(SetupInputTags.GetSqlInstanceNameTag(isWap));
-            String sqlMachineName = (String)SetupInputs.Instance.FindItem(SetupInputTags.GetSqlMachineNameTag(isWap));
+            if (sqlMachine == null)
+                sqlMachineName = (String)SetupInputs.Instance.FindItem(SetupInputTags.GetSqlMachineNameTag(isWap));
+            else
+                sqlMachineName = sqlMachine;
             if (String.IsNullOrEmpty(instanceName) || String.Equals(instanceName, sqlMachineName, StringComparison.OrdinalIgnoreCase))
             {
                 sqlServerInstanceName = sqlMachineName;
