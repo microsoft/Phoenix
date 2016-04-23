@@ -21,6 +21,7 @@ namespace CMP.Setup.Helpers
         internal const String LocalHost = "localhost";
         public const String SqlLocalHostString = "(local)";
         public const String MasterDatabaseName = "master";
+        public const String StoreDatabaseName = "Microsoft.MgmtSvc.Store";
         private const string VmmSetupUserName = @"VMMSetup";
         public const string DBConnectionStringFormat = "{0}database={1}";
         private const String DatabaseOwnerRole = "db_owner";
@@ -62,6 +63,9 @@ from  [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE Namespace='AdminAPI' a
 UPDATE [Microsoft.MgmtSvc.Store].mp.ResourceProviders
 SET AdminForwardingAddress='https://'+@machineName+':30666/admin', TenantForwardingAddress='https://'+@machineName+':30666/',NotificationForwardingAddress='https://'+@machineName+':30666/admin'
 WHERE NAME='CmpWapExtension'";
+
+        private const string GetAdminApiMachineNameQuery = @"select SUBSTRING([Value],9,LEN([Value])-8-CHARINDEX(':',REVERSE([Value])))
+FROM [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE [Name] LIKE '%FQDN%' and Namespace='AdminAPI'";
 
         private static string GetSqlServerUserName(bool isWap)
         {
@@ -593,6 +597,32 @@ WHERE NAME='CmpWapExtension'";
             }
         }
 
+        public static string UpdateRpWithAdminSite(bool isWap)
+        {
+            string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(isWap);
+            string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+            string dbName = StoreDatabaseName;
+
+            string connectionString = String.Format(DBConnectionStringFormat, partialConnectionString, dbName);
+            string storeDBConnectionString = String.Format(DBConnectionStringFormat, partialConnectionString, SetupDatabaseHelper.StoreDatabaseName);
+            string adminApiMachineName = "";
+
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection(storeDBConnectionString);
+                sqlConnection.Open();
+
+                string commandText = string.Format(SetupDatabaseHelper.UpdateRPwithAdminSiteQuery, dbName);
+                SqlCommand useDbCmd = new SqlCommand(commandText, sqlConnection);
+                adminApiMachineName = Convert.ToString(useDbCmd.ExecuteScalar());
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                SetupLogger.LogError("Exception in method UpdateRpWithAdminSite() - " + ex.Message);
+            }
+            return adminApiMachineName;
+        }
         private static void KillDatabaseConnections(string databaseName, string masterDbConnectionString)
         {
             string getSpidOfOpenConnectionsCommand = string.Format("select spid from dbo.sysprocesses where db_name(dbid) = '{0}'", databaseName);
