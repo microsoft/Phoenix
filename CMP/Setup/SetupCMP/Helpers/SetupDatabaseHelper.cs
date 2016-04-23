@@ -56,6 +56,12 @@ namespace CMP.Setup.Helpers
                                                       AND r.Type ='R'";
         private const String GetTableCountQuery = "select count(*) from sysobjects where xtype='U' AND Name LIKE '%WapSubscriptionData%'";
 
+        private const string UpdateRPwithAdminSiteQuery = @"Declare @machineName Nvarchar(500) 
+SET @machineName=(SELECT   SUBSTRING([value],CHARINDEX('""ReplyTo"":""https://',VALUE)+19,LEN(VALUE)-CHARINDEX(':',REVERSE(VALUE))-CHARINDEX('""ReplyTo"":""https://',VALUE)-18)  as AdminSiteNme
+from  [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE Namespace='AdminAPI' and Name='Authentication.RelyingParty.Secondary')
+UPDATE [Microsoft.MgmtSvc.Store].mp.ResourceProviders
+SET AdminForwardingAddress='https://'+@machineName+':30666/admin', TenantForwardingAddress='https://'+@machineName+':30666/',NotificationForwardingAddress='https://'+@machineName+':30666/admin'
+WHERE NAME='CmpWapExtension'";
 
         private static string GetSqlServerUserName(bool isWap)
         {
@@ -629,6 +635,34 @@ namespace CMP.Setup.Helpers
             }
 
             sqlConnection.Close();
+        }
+
+        public static string GetAdminApiMachineName(bool isWap)
+        {
+            string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(isWap);
+            string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+            string dbName = StoreDatabaseName;
+
+            string connectionString = String.Format(DBConnectionStringFormat, partialConnectionString, dbName);
+            string storeDBConnectionString = String.Format(DBConnectionStringFormat, partialConnectionString, SetupDatabaseHelper.StoreDatabaseName);
+            string adminApiMachineName = "";
+
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection(storeDBConnectionString);
+                sqlConnection.Open();
+
+                string commandText = string.Format(SetupDatabaseHelper.GetAdminApiMachineNameQuery, dbName);
+                SqlCommand useDbCmd = new SqlCommand(commandText, sqlConnection);
+                adminApiMachineName = Convert.ToString(useDbCmd.ExecuteScalar());
+                sqlConnection.Close();
+                SetupLogger.LogInfo("GetAdminApiMachineName()- AdminApi machine name - " + adminApiMachineName);
+            }
+            catch (Exception ex)
+            {
+                SetupLogger.LogError("Exception in method GetAdminApiMachineName() - " + ex.Message);
+            }
+            return adminApiMachineName;
         }
 
         private static String GetSqlDataLocation(string instanceName)
