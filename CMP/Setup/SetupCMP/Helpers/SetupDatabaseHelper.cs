@@ -9,12 +9,11 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Security.Principal;
-using System.Web.Security;
 
 namespace CMP.Setup.Helpers
 {
     class SetupDatabaseHelper
-    {        
+    {
         private const String PartialConnectionStringTemplate = "Integrated Security=SSPI;Application Name=CMP;Max Pool Size=500;Encrypt=true;TrustServerCertificate=true;Server={0};"; //connection string minus the database name
         private const String ConnectionStringTemplate = SetupDatabaseHelper.PartialConnectionStringTemplate + "Database={1};";
         private const String PartialWebsiteConnectionStringTemplate = "Persist Security Info=True;User ID={0};Password=;MultipleActiveResultSets=True;Data Source={1}.corp.microsoft.com;"; //connection string minus the database name
@@ -93,15 +92,15 @@ namespace CMP.Setup.Helpers
                                                     FROM master.sys.master_files
                                                     WHERE database_id = 1 AND file_id = 1";
 
-        private const string SqlUsernameDuringInstall = "cmp_0";
+        public const string SqlUsernameDuringInstall = "cmp_0";
         public static readonly string SqlDbUserPassword = null;
 
         static SetupDatabaseHelper()
         {
-            // Create a random password
-            //SqlDbUserPassword = Membership.GeneratePassword(18, 0);            
-            SqlDbUserPassword = "PhoenixRocks!!123";
-            CreateSqlLoginUser(SqlUsernameDuringInstall, SqlDbUserPassword);
+            // Create a random password. Sql DBs need a special character so adding that and a number just in case that's needed
+            SqlDbUserPassword = "!1" + Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10);
+            SetupInputs.Instance.EditItem(SetupInputTags.SqlDBAdminNameTag, SqlUsernameDuringInstall);
+
         }
 
         private enum SpidColumns

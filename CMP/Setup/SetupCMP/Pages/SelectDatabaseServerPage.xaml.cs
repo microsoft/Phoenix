@@ -43,6 +43,18 @@ namespace CMP.Setup
         private int port = 0;
         private String selectedInstance = String.Empty;
         private String selectedDatabase = String.Empty;
+        private static string _sqlMachineName = String.Empty;
+        public static string sqlMachineName
+        {
+            get
+            {
+                return _sqlMachineName;
+            }
+            private set
+            {
+                _sqlMachineName = value;
+            }
+        }
         #endregion
 
         /// <summary>
@@ -422,6 +434,7 @@ namespace CMP.Setup
                 {
                     using (ImpersonationHelper impersonationHelper = new ImpersonationHelper())
                     {
+                        //PropertyBagDictionary.Instance.SafeAdd("SQLMachineName", this.serverName);
                         instanceArray = SetupDatabaseHelper.GetSqlInstanceNames(this.serverName);
                     }
                 }
@@ -659,6 +672,7 @@ namespace CMP.Setup
             {
                 this.serverName = this.textBoxServer.Text;
             }
+            sqlMachineName = this.serverName;
 
         }
 

@@ -7,21 +7,15 @@
 //-----------------------------------------------------------------------
 namespace CMP.Setup
 {
+    using CMP.Setup.Helpers;
+    using CMP.Setup.SetupFramework;
     using System;
-    using System.Collections;
     using System.Collections.Specialized;
-    using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
-    using System.Text;
-    using System.Reflection;
     using System.Threading;
     using System.Windows;
     using System.Xml.Serialization;
-    using CMP.Setup.SetupFramework;
     using WpfResources;
-    using VMMNative = CMP.Setup.Helpers;
-    using CMP.Setup.Helpers;
 
     /// <summary>
     /// List of values that the setup can return
@@ -221,6 +215,9 @@ namespace CMP.Setup
                     // Set the application return value: Always success in UI mode
                     returnValue = SetupReturnValues.Successful;
                 }
+
+                // Create the username/password in the DBs that the service will use to access the DB
+                SetupDatabaseHelper.CreateSqlLoginUser(SetupDatabaseHelper.SqlUsernameDuringInstall, SetupDatabaseHelper.SqlDbUserPassword);
             }
             catch (Exception exception)
             {
@@ -334,8 +331,8 @@ namespace CMP.Setup
                 }
                 if ((setupFeaturesFlags & SetupFeatures.AdminExtension) == SetupFeatures.AdminExtension)
                 {
-                            PropertyBagDictionary.Instance.SafeAdd(PropertyBagConstants.AdminExtension, "1");
-                            PropertyBagDictionary.Instance.SafeAdd(PropertyBagConstants.ExtensionCommon, "1");
+                    PropertyBagDictionary.Instance.SafeAdd(PropertyBagConstants.AdminExtension, "1");
+                    PropertyBagDictionary.Instance.SafeAdd(PropertyBagConstants.ExtensionCommon, "1");
                 }
                 if ((setupFeaturesFlags & SetupFeatures.Server) == SetupFeatures.Server)
                 {
@@ -544,7 +541,7 @@ namespace CMP.Setup
                     writer.Flush();
                     stream.Position = 0;
                     Pages inputPages = (Pages)serializer.Deserialize(stream);
-                    
+
                     foreach (PagesPage page in inputPages.Page)
                     {
                         SetupLogger.LogInfo("Adding Page {0}", page.Id);
@@ -616,7 +613,7 @@ namespace CMP.Setup
             // Do the install using the passed information
             InstallActionProcessor installs = new InstallActionProcessor();
             SetupLogger.LogInfo("Silent ProcessInstalls Starting");
-            
+
             SetupReturnValues rturn = installs.ProcessInstalls();
 
             SetupLogger.LogInfo("Silent ProcessInstalls Done");
