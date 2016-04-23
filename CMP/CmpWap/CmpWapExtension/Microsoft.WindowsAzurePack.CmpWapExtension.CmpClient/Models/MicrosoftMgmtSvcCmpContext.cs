@@ -10,9 +10,24 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient.Models
     /// </summary>
     public partial class MicrosoftMgmtSvcCmpContext : DbContext
     {
-        public MicrosoftMgmtSvcCmpContext()
-            : base("name=MicrosoftMgmtSvcCmpContext")
+        static MicrosoftMgmtSvcCmpContext()
         {
+            Database.SetInitializer<MicrosoftMgmtSvcCmpContext>(null);
+        }
+
+        public MicrosoftMgmtSvcCmpContext()
+            : base(GetConnectionString())
+        {
+        }
+
+        public static string GetConnectionString()
+        {
+            using (var xk = new KryptoLib.X509Krypto())
+            {
+                return xk.GetKTextConnectionString("MicrosoftMgmtSvcCmpContext",
+                    "MicrosoftMgmtSvcCmpContextPassword");
+
+            }
         }
 
         public virtual DbSet<AdDomainMap> AdDomainMaps { get; set; }
