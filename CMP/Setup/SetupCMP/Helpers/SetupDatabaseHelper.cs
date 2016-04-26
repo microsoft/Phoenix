@@ -108,7 +108,8 @@ FROM [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE [Name] LIKE '%FQDN%' an
         static SetupDatabaseHelper()
         {
             // Create a random password. Sql DBs need a special character so adding that and a number just in case that's needed
-            SqlDbUserPassword = "!1" + Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10);
+            //SqlDbUserPassword = "!1" + Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10);
+            SqlDbUserPassword = "AzureRocksForReal!123";
             SetupInputs.Instance.EditItem(SetupInputTags.SqlDBAdminNameTag, SqlUsernameDuringInstall);
 
         }
