@@ -16,7 +16,7 @@ namespace CMP.Setup.Helpers
     {
         private const String PartialConnectionStringTemplate = "Integrated Security=SSPI;Application Name=CMP;Max Pool Size=500;Encrypt=true;TrustServerCertificate=true;Server={0};"; //connection string minus the database name
         private const String ConnectionStringTemplate = SetupDatabaseHelper.PartialConnectionStringTemplate + "Database={1};";
-        private const String PartialWebsiteConnectionStringTemplate = "Persist Security Info=True;User ID={0};Password=;MultipleActiveResultSets=True;Data Source={1}.corp.microsoft.com;"; //connection string minus the database name
+        private const String PartialWebsiteConnectionStringTemplate = "Persist Security Info=True;User ID={0};Password=;MultipleActiveResultSets=True;Data Source={1};"; //connection string minus the database name
 
         internal const String LocalHost = "localhost";
         public const String SqlLocalHostString = "(local)";
