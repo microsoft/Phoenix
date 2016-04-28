@@ -354,7 +354,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                                 {
                                     VmSizeId = vmSizeParameter.VmSizeId,
                                     PlanId = planId,
-                                    IsActive = false
+                                    IsActive = vmSizeParameter.IsActive
                                 });
                             }
                         }
@@ -696,7 +696,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                                 {
                                     VmOsId = vmOsParameter.VmOsId,
                                     PlanId = planId,
-                                    IsActive = false
+                                    IsActive = vmOsParameter.IsActive
                                 });
                             }
                         }
