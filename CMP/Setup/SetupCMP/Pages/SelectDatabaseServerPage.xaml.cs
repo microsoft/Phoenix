@@ -741,6 +741,8 @@ namespace CMP.Setup
             }
 
             this.Page.Host.SetNextButtonState(true, isNextButtonEnabled, null);
+            this.resetServerName();
+
         }
 
         #endregion
