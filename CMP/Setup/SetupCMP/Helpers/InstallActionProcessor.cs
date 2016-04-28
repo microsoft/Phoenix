@@ -149,8 +149,7 @@ namespace CMP.Setup
                 SetProgressScreen(InstallItemsInstallDataItem.InstallDataInputs.Installing | InstallItemsInstallDataItem.InstallDataInputs.FinalizeProgress);
             }
 
-            // Create the username/password in the DBs that the service will use to access the DB
-            SetupDatabaseHelper.CreateSqlLoginUser(SetupDatabaseHelper.SqlUsernameDuringInstall, SetupDatabaseHelper.SqlDbUserPassword);
+            
 
             //Registering the resource provider
             try
