@@ -50,21 +50,22 @@
         {
             if (driver == null)
                 base.TestInitialize();
-            Log.Information("Start test init.");
+            Log.Information("---Start test init---.");
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://" + serverName + ":30091");
 
-            Log.Information("Get user and password.");
+            Log.Information("---Login Admin portal---");
 
             var authWindow = this.driver.Wait(ExpectedConditions.AlertIsPresent(), 5000);
             if (authWindow != null)
             {
                 authWindow.SetAuthenticationCredentials(userName, password);
+                System.Threading.Thread.Sleep(1000 * 3);
                 authWindow.Accept();
             }
 
             // wait for redirect complete
-            this.driver.Wait(ExpectedConditions.TitleContains("Azure"));
+            this.driver.Wait(ExpectedConditions.ElementIsVisible(OpenQA.Selenium.By.ClassName("fxs-drawertaskbar-newbutton")),1000*60);
             this.driver.WaitForAjax(30*1000);
         }
 
@@ -85,20 +86,18 @@
 
         public void AdminOnboardSubscriptionTest(CreatePlanData planData, string subscriptionName)
         {
-            Log.Information("---Open Add-ons List Page...---");
+            Log.Information("---Start onboard azure subscription test.---");
             TestInitialize();
             var smpPage = new SmpPage(this.driver);
 
-            Log.Information("---Open Add-ons List Page...---");
-            Log.Information("Find main menu ...");
             smpPage.GetMainMenu_AdminPortal();
             smpPage.OpenMenuPlans();
             
             var page = new AddonListPage(this.driver);
-            Log.Information("---Select Add-ons tab...---");
+            Log.Information("---Select plans tab---");
             page.SelectPlansTab();
             
-            Log.Information("---Click Add-on " + planData.planName + " and check details...---");
+            Log.Information("---Select plan " + planData.planName + " and check details...---");
             page.SelectPlanInTableAndCheckDatails(planData.planName);
 
             var configPage = new AddonConfigPage(this.driver); string name = "Cmp Wap Extension";
@@ -109,25 +108,23 @@
             Log.Information("---Onboarding subscripton...---");
             subscptPage.OnboardSubscription(planData, subscriptionName);
 
-            Log.Information("Added subscription to plan");
+            Log.Information("---Onboarded subscription and configured plan---");
         }
 
         public void AdminChangePlanAccess(CreatePlanData planData)
         {
-            Log.Information("---Open Add-ons List Page...---");
+            Log.Information("---Start change plan access...---");
             TestInitialize();
             var smpPage = new SmpPage(this.driver);
 
-            Log.Information("---Open Add-ons List Page...---");
-            Log.Information("Find main menu ...");
             smpPage.GetMainMenu_AdminPortal();
             smpPage.OpenMenuPlans();
 
             var page = new AddonListPage(this.driver);
-            Log.Information("---Select Add-ons tab...---");
+            Log.Information("---Select plans tab---");
             page.SelectPlansTab();
 
-            Log.Information("---Click Add-on " + planData.planName + " and check details...---");
+            Log.Information("---Select plan " + planData.planName+"---");
             page.SelectPlanInTable(planData.planName);
             page.ChangePlanAccess();
         }
@@ -135,7 +132,7 @@
 
         public void AdminCreateUserTest(TenantData data,string planName)
         {
-            Log.Information("---Open Service Management Portal Page...---");
+            Log.Information("---Start create user test...---");
             TestInitialize();
             var smpPage = new SmpPage(this.driver);
             smpPage.CreateUserFromNewButton(data,planName);

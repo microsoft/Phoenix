@@ -702,6 +702,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                         }
 
                     db.SaveChanges();
+                  
                 }
             }
             catch (Exception ex)

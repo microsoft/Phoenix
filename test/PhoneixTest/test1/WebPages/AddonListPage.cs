@@ -79,6 +79,8 @@ namespace Phoenix.Test.UI.Framework.WebPages
             var confirmButtons = this.Browser.FindElements(By.ClassName("fxs-confirmation-button"));
             var yesButton = new HtmlButton(this, confirmButtons.First(b => b.Text == "YES"));
             yesButton.Click();
+            System.Threading.Thread.Sleep(1000 * 5);
+            Log.Information("---Done changing plan access...---");
         }
 
         public void SelectAddonsTab()

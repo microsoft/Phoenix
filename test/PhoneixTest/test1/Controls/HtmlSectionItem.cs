@@ -52,7 +52,7 @@ namespace Phoenix.Test.UI.Framework.Controls
 
         public void Select()
         {
-            Log.Information("Select item: " + this.itemContainer.Text);
+            Log.Information("---Select item: " + this.itemContainer.Text + "---");
             this.InnerButton.Click();
         }
 
