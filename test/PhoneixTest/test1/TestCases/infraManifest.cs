@@ -13,6 +13,8 @@ using System.Xml;
 using System.Xml.Linq;
 using Phoenix.Test.UI.Framework;
 using Phoenix.Test.UI.Framework.Logging;
+using KryptoLib;
+
 
     //gathers the website and database information from the CMPWAPEXTENSION web.config
     //The assumption is that the CMP service is installed on the same box 
@@ -52,6 +54,7 @@ using Phoenix.Test.UI.Framework.Logging;
             this.infraManifestFinished = true;
         }
         public string parseConnection(string connectionstr)
+        //parses the database connection strings from the web.config file of CMPWAPExtension
         {
             string datasource = "";
             string catalog = "";
@@ -73,11 +76,11 @@ using Phoenix.Test.UI.Framework.Logging;
                 //I was changing the case of the value string at this point, and causing myself grief.  Can't change the password case.
 
 
-                if (valueParts[0].Contains("data source")) { 
+                if (valueParts[0].Contains("data source") || valueParts[0].Contains("server")) { 
                     valueParts[1] = valueParts[1].ToLower();
                     datasource = valueParts[1];
                 }
-                if (valueParts[0].Contains("initial catalog"))
+                if (valueParts[0].Contains("initial catalog") || valueParts[0].Contains("database"))
                 { 
                     valueParts[1] = valueParts[1].ToLower();
                     catalog = valueParts[1];
@@ -312,32 +315,116 @@ using Phoenix.Test.UI.Framework.Logging;
         {
             this.infraManifestFinished = false;
             this.infraManifestPassed = false;
+            bool encrypted = false;
+            string encryptedPasswordString = "";
+            string passwordString = "";
+            string dbString = "";
+            string kryptoString = "";
+            string[] kryptoParts;
+            X509Krypto Krypto = null;
             //try finding the file web.config for CMP WAP extension on the on the target server
             Log.Information("--- Creating Phoenix Manifest Of Databases and Sites ---");
-            if (File.Exists("\\\\" + cmpserver + "\\c$\\inetpub\\MgmtSvc-CmpWapExtension\\Web.config")){
+            if (File.Exists("\\\\" + cmpserver + "\\c$\\inetpub\\MgmtSvc-CmpWapExtension\\web.config")){
                 Log.Information("CMPWAPExtension web.config file found on " + cmpserver);
                 try
                 {   // Read the SQL database names using an XMLReader
-                    XmlReader xmlReader = XmlReader.Create("\\\\" + cmpserver + "\\c$\\inetpub\\MgmtSvc-CmpWapExtension\\Web.config");
+                    XmlReader xmlReader = XmlReader.Create("\\\\" + cmpserver + "\\c$\\inetpub\\MgmtSvc-CmpWapExtension\\web.config");
                     List<string> connections = new List<string>();
 
                     while (xmlReader.Read())
                     {
-                        //keep reading until we see your element
-                        if (xmlReader.Name.Equals("add") && (xmlReader.NodeType == XmlNodeType.Element))
+                        if (xmlReader.NodeType == XmlNodeType.Element)
                         {
-                                // get attribute from the Xml element here
-                                string connection = xmlReader.GetAttribute("connectionString");
-                                // --> now **add to collection** - or whatever
-                                if (connection != null && connection.Count()>0)
+                            //Log.Information(xmlReader.Name);
+                            if (xmlReader.Name == "add")
+                            {
+                                while (xmlReader.MoveToNextAttribute())
                                 {
-                                    connections.Add(connection);
+                                    if (xmlReader.Name == "name")
+                                    {
+                                        if (xmlReader.Value == "CMPContext" || xmlReader.Value == "MicrosoftMgmtSvcCmpContext" || xmlReader.Value == "MicrosoftMgmtSvcStoreContext")
+                                        {
+                                            //Log.Information(xmlReader.Value);
+                                            //grab the database connections strings
+                                            string connection = xmlReader.GetAttribute("connectionString");
+                                            if (connection != null && connection.Count() > 0)
+                                            {
+                                                if (connection.Contains("cmp_0") && connection.Contains("Password=;")) { 
+                                                    encrypted = true;
+                                                }
+                                                connections.Add(connection);
+                                            }
+                                        }
+                                    }
+                                    else if (xmlReader.Name == "key" && encrypted)
+                                    {
+                                        if (xmlReader.Value == "KryptoCert")
+                                        {
+                                            Log.Information("Found the KryptoCert in web.config on "+cmpserver+".");
+                                            
+                                            //Get the strings needed to initialize the Krypto object
+                                            kryptoString = xmlReader.GetAttribute("value");
+                                            kryptoParts = kryptoString.Split(',');
+                                           
+                                            //NOTE: x.509 will only grab certificate info from the local machine this code runs on.  
+                                            //If this code is run remotely to test a machine that has encrypted passwords in its connectionstrings,
+                                            //the machine it is run from will need a copy of the same certificate installed locally.
+
+                                            //initialize the Krypto object
+                                            try
+                                            {
+                                                Krypto = new X509Krypto(kryptoParts[1], kryptoParts[0], kryptoParts[2]);
+                                                Log.Information("Retrieved local instance of CMPWAPExtension security certificate.");
+                                            }
+                                            catch (Exception e)
+                                            {
+                                                string eMessage = e.Message.ToString();
+                                                if (eMessage.Contains("Requested value") && eMessage.Contains("was not found."))
+                                                {
+                                                    Log.Information("EXCEPTION: The security certificate could be found locally on the machine the Installation Test is running from.");
+                                                    Log.Information("EXCEPTION: Please install a copy of the security certificate, used to encrypt the CMPWAPExtension connection strings,");
+                                                    Log.Information("EXCEPTION: on the local server.  Security Certificates for the CMPWAPExtension machine cannot be accessed remotely.");
+                                                }
+                                                Failed();
+                                            }
+                                        }
+                                        else if (xmlReader.Value == "CMPContextPassword" || xmlReader.Value == "MicrosoftMgmtSvcCmpContextPassword" || xmlReader.Value == "MicrosoftMgmtSvcStoreContextPassword")
+                                        {
+                                            //get the Encrypted Password and Decrypt it
+                                            encryptedPasswordString = xmlReader.GetAttribute("value");
+                                            passwordString = Krypto.DecrpytKText(encryptedPasswordString);
+                                            dbString = xmlReader.Value.Replace("Password", "");
+
+                                            //look through the connections strings and fill in the password.
+                                            kryptoParts = kryptoString.Split(',');
+                                            Krypto = new X509Krypto(kryptoParts[1], kryptoParts[0], kryptoParts[2]); 
+
+
+                                            for (int connectionCount = 0; connectionCount <= connections.Count()-1; connectionCount++)
+                                            {
+                                                switch (dbString)
+                                                {
+                                                    case "CMPContext":
+                                                        if (connections[connectionCount].Contains("CMP_DB")) { connections[connectionCount]=connections[connectionCount].Replace("Password=;","Password="+passwordString+";"); }
+                                                        break;
+                                                    case "MicrosoftMgmtSvcCmpContext":
+                                                        if (connections[connectionCount].Contains("CMPWAP_DB")) { connections[connectionCount] = connections[connectionCount].Replace("Password=;", "Password=" + passwordString + ";"); }
+                                                        break;
+                                                    case "MicrosoftMgmtSvcStoreContext":
+                                                        if (connections[connectionCount].Contains("Microsoft.MgmtSvc.Store")) { connections[connectionCount] = connections[connectionCount].Replace("Password=;", "Password=" + passwordString + ";"); }
+                                                        break;
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
+                                xmlReader.MoveToElement();
+                            }
                         }
                     }
                     if (connections.Count < 3)
                     {
-                        Log.Information("There are less than 3 connections strings in the local web.config file - user will need to input the information via the app.");
+                        Log.Information("There are less than 3 connections strings in the local web.config file - The webconfig should have 3 SQL connection strings.");
                         Failed();
                     }
                     else
@@ -367,7 +454,17 @@ using Phoenix.Test.UI.Framework.Logging;
                         Log.Information("** Database and Site Manifest **");
                         foreach (appDatabase TempDB in appDatabases)
                         {
-                            Log.Information("server:" + TempDB.serverName + ",DB:" + TempDB.databaseName + ",User:" + TempDB.userid + ",Password:"+TempDB.password);
+                            //this may seem dumb to have ifs for each database and a boolean for each one, indicating encryption, but I want to still work even if 
+                            //if the strings are mixed, encrypted or not.
+
+                            if (encrypted)
+                            {
+                                Log.Information("server:" + TempDB.serverName + ",DB:" + TempDB.databaseName + ",User:" + TempDB.userid + ",Password:[encrypted]");
+                            }
+                            else
+                            {
+                                Log.Information("server:" + TempDB.serverName + ",DB:" + TempDB.databaseName + ",User:" + TempDB.userid + ",Password:" + TempDB.password);
+                            }
                         }
                         foreach (appSite TempSite in appSites)
                         {

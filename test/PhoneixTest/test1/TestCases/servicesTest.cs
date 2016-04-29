@@ -96,7 +96,7 @@ using Phoenix.Test.UI.Framework.Logging;
                     }
                 }
                 // if the server can be connected to but the service isn't installed it will reach this point
-                return serviceName + "is NOT installed on " + serverName + " - FAILED";
+                return serviceName + " is NOT installed on " + serverName + " - FAILED";
             }
             catch
             {
