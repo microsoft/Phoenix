@@ -1,15 +1,14 @@
 ﻿using CMP.Setup.SetupFramework;
+using Microsoft.SqlServer.Dac;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Globalization;
 using System.IO;
-using System.Security.Principal;
-using System.Text;
-using Microsoft.SqlServer.Dac;
 using System.Reflection;
-using System.Data.SqlTypes;
+using System.Security.Principal;
 
 namespace CMP.Setup.Helpers
 {
@@ -17,6 +16,7 @@ namespace CMP.Setup.Helpers
     {
         private const String PartialConnectionStringTemplate = "Integrated Security=SSPI;Application Name=CMP;Max Pool Size=500;Encrypt=true;TrustServerCertificate=true;Server={0};"; //connection string minus the database name
         private const String ConnectionStringTemplate = SetupDatabaseHelper.PartialConnectionStringTemplate + "Database={1};";
+        private const String PartialWebsiteConnectionStringTemplate = "Persist Security Info=True;User ID={0};Password=;MultipleActiveResultSets=True;Data Source={1};"; //connection string minus the database name
 
         internal const String LocalHost = "localhost";
         public const String SqlLocalHostString = "(local)";
@@ -56,15 +56,16 @@ namespace CMP.Setup.Helpers
                                                         p.Name = '{0}'
                                                       AND r.Type ='R'";
         private const String GetTableCountQuery = "select count(*) from sysobjects where xtype='U' AND Name LIKE '%WapSubscriptionData%'";
-        private const string GetAdminApiMachineNameQuery = @"select SUBSTRING([Value],9,LEN([Value])-8-CHARINDEX(':',REVERSE([Value])))
-FROM [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE [Name] LIKE '%FQDN%' and Namespace='AdminAPI'";
-        
-        private const string UpdateRPwithAdminSiteQuery=@"Declare @machineName Nvarchar(500) 
+
+        private const string UpdateRPwithAdminSiteQuery = @"Declare @machineName Nvarchar(500) 
 SET @machineName=(SELECT   SUBSTRING([value],CHARINDEX('""ReplyTo"":""https://',VALUE)+19,LEN(VALUE)-CHARINDEX(':',REVERSE(VALUE))-CHARINDEX('""ReplyTo"":""https://',VALUE)-18)  as AdminSiteNme
 from  [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE Namespace='AdminAPI' and Name='Authentication.RelyingParty.Secondary')
 UPDATE [Microsoft.MgmtSvc.Store].mp.ResourceProviders
 SET AdminForwardingAddress='https://'+@machineName+':30666/admin', TenantForwardingAddress='https://'+@machineName+':30666/',NotificationForwardingAddress='https://'+@machineName+':30666/admin'
 WHERE NAME='CmpWapExtension'";
+
+        private const string GetAdminApiMachineNameQuery = @"select SUBSTRING([Value],9,LEN([Value])-8-CHARINDEX(':',REVERSE([Value])))
+FROM [Microsoft.MgmtSvc.Store].[Config].[Settings] WHERE [Name] LIKE '%FQDN%' and Namespace='AdminAPI'";
 
         private static string GetSqlServerUserName(bool isWap)
         {
@@ -100,6 +101,16 @@ WHERE NAME='CmpWapExtension'";
         private const string GetSqlDataLocationQuery = @"SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)
                                                     FROM master.sys.master_files
                                                     WHERE database_id = 1 AND file_id = 1";
+
+        public const string SqlUsernameDuringInstall = "cmp_0";
+        public static readonly string SqlDbUserPassword = null;
+
+        static SetupDatabaseHelper()
+        {
+            // Create a random password. Sql DBs need a special character so adding that and a number just in case that's needed
+            SqlDbUserPassword = "!1PhoenixRocks" + Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10);
+            SetupInputs.Instance.EditItem(SetupInputTags.SqlDBAdminNameTag, SqlUsernameDuringInstall);
+        }
 
         private enum SpidColumns
         {
@@ -164,6 +175,18 @@ WHERE NAME='CmpWapExtension'";
         {
             AppAssert.Assert(null != instanceName, "Null instance name passed to ConstructConnectionString");
             string retstr = string.Format(SetupDatabaseHelper.PartialConnectionStringTemplate, instanceName);
+            return retstr;
+        }
+
+        /// <summary>
+        /// Constructs the full connection string given the instance name for use by the admin and tenant website
+        /// </summary>
+        /// <param name="instanceName"></param>
+        /// <returns></returns>
+        public static string ConstructWebsiteConnectionString(string username, string instanceName)
+        {
+            AppAssert.Assert(null != instanceName, "Null instance name passed to ConstructConnectionString");
+            string retstr = string.Format(SetupDatabaseHelper.PartialWebsiteConnectionStringTemplate, username, instanceName);
             return retstr;
         }
 
@@ -457,7 +480,6 @@ WHERE NAME='CmpWapExtension'";
             }
         }
 
-
         private static String GetBinarySidString(String accountName)
         {
             NTAccount ntAccount = new NTAccount(accountName);
@@ -573,33 +595,7 @@ WHERE NAME='CmpWapExtension'";
                 dropSqlConnection.Close();
             }
         }
-        public static string GetAdminApiMachineName(bool isWap)
-        {
-            string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(isWap);
-            string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
-            string dbName = StoreDatabaseName;
 
-            string connectionString = String.Format(DBConnectionStringFormat, partialConnectionString, dbName);
-            string storeDBConnectionString = String.Format(DBConnectionStringFormat, partialConnectionString, SetupDatabaseHelper.StoreDatabaseName);
-            string adminApiMachineName = "";
-
-            try
-            {
-                SqlConnection sqlConnection = new SqlConnection(storeDBConnectionString);
-                sqlConnection.Open();
-
-                string commandText = string.Format(SetupDatabaseHelper.GetAdminApiMachineNameQuery, dbName);
-                SqlCommand useDbCmd = new SqlCommand(commandText, sqlConnection);
-                adminApiMachineName = Convert.ToString(useDbCmd.ExecuteScalar());
-                sqlConnection.Close();
-                SetupLogger.LogInfo("GetAdminApiMachineName()- AdminApi machine name - " + adminApiMachineName);
-            }
-            catch (Exception ex)
-            {
-                SetupLogger.LogError("Exception in method GetAdminApiMachineName() - " + ex.Message);
-            }
-            return adminApiMachineName;
-        }
         public static string UpdateRpWithAdminSite(bool isWap)
         {
             string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(isWap);
@@ -626,7 +622,6 @@ WHERE NAME='CmpWapExtension'";
             }
             return adminApiMachineName;
         }
-
         private static void KillDatabaseConnections(string databaseName, string masterDbConnectionString)
         {
             string getSpidOfOpenConnectionsCommand = string.Format("select spid from dbo.sysprocesses where db_name(dbid) = '{0}'", databaseName);
@@ -669,6 +664,34 @@ WHERE NAME='CmpWapExtension'";
             }
 
             sqlConnection.Close();
+        }
+
+        public static string GetAdminApiMachineName(bool isWap)
+        {
+            string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(isWap);
+            string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+            string dbName = StoreDatabaseName;
+
+            string connectionString = String.Format(DBConnectionStringFormat, partialConnectionString, dbName);
+            string storeDBConnectionString = String.Format(DBConnectionStringFormat, partialConnectionString, SetupDatabaseHelper.StoreDatabaseName);
+            string adminApiMachineName = "";
+
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection(storeDBConnectionString);
+                sqlConnection.Open();
+
+                string commandText = string.Format(SetupDatabaseHelper.GetAdminApiMachineNameQuery, dbName);
+                SqlCommand useDbCmd = new SqlCommand(commandText, sqlConnection);
+                adminApiMachineName = Convert.ToString(useDbCmd.ExecuteScalar());
+                sqlConnection.Close();
+                SetupLogger.LogInfo("GetAdminApiMachineName()- AdminApi machine name - " + adminApiMachineName);
+            }
+            catch (Exception ex)
+            {
+                SetupLogger.LogError("Exception in method GetAdminApiMachineName() - " + ex.Message);
+            }
+            return adminApiMachineName;
         }
 
         private static String GetSqlDataLocation(string instanceName)
@@ -1236,6 +1259,29 @@ WHERE NAME='CmpWapExtension'";
                 newDBNames[i] = dbNames[i];
             }
             return newDBNames;
+        }
+
+        public static void CreateSqlLoginUser(string username, string password)
+        {
+            SetupLogger.LogInfo("Creating sql and db user [{0}]", username);
+
+            string query = String.Format(InstallationSqlLoginQuery.SqlLoginQueryDuringInstall, username, password);
+
+            string sqlInstanceName = InstallItemCustomDelegates.GetSQLServerInstanceNameStr(true);
+
+            InstallItemCustomDelegates.EditSqlAdminUser(username);
+            string partialConnectionString = SetupDatabaseHelper.ConstructConnectionString(sqlInstanceName);
+            string masterDBConnectionString = String.Format(DBConnectionStringFormat, partialConnectionString, SetupDatabaseHelper.MasterDatabaseName);
+            SqlConnection sqlConnection = new SqlConnection(masterDBConnectionString);
+            String commandText = String.Format(query, username);
+
+            SqlCommand sqlCmd = new SqlCommand(commandText, sqlConnection);
+
+            sqlConnection.Open();
+            sqlCmd.ExecuteNonQuery();
+
+            sqlConnection.Close();
+            SetupLogger.LogInfo("Successfully created sql and db user [{0}]", username);
         }
     }
 }

@@ -43,6 +43,9 @@
       <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382ymConfig' File='[#Web.config]' Action='setValue' ElementPath="//connectionStrings/add[\[]@name='MicrosoftMgmtSvcCmpContext'[\]]/@connectionString" Value="[WAPCONNECTIONSTR]" SelectionLanguage="XPath"/>
       <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A382ysConfig' File='[#Web.config]' Action='setValue' ElementPath="//connectionStrings/add[\[]@name='MicrosoftMgmtSvcStoreContext'[\]]/@connectionString" Value="[WAPSTORECONNECTIONSTR]" SelectionLanguage="XPath"/>
       <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A38' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CmpServiceUrl'[\]]/@value" Value="[CMPSERVICEURLSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A38cmConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='CMPContextPassword'[\]]/@value" Value="[CMPDBPASSWORDSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A38waConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='MicrosoftMgmtSvcCmpContextPassword'[\]]/@value" Value="[CMPWAPDBPASSWORDSTRING]" SelectionLanguage="XPath"/>
+      <uti:XmlFile Id='fil86A6327D93C6D0A33D746EA4AA2A38stConfig' File='[#Web.config]' Action='setValue' ElementPath="//appSettings/add[\[]@key='MicrosoftMgmtSvcStoreContextPassword'[\]]/@value" Value="[MGMTSTOREPASSWORDSTRING]" SelectionLanguage="XPath"/>
 
       <!-- Local Block End -->
       

@@ -65,7 +65,7 @@ namespace CmpServiceLib
             {
                 using (var db = new Models.CMPContext())
                 {
-                    db.Database.Connection.ConnectionString = _ConnectionString;
+                    //db.Database.Connection.ConnectionString = _ConnectionString;
 
                     var val =
                         db.Configs.Where(rb => (rb.Name == name & rb.IsActive == isActive));
@@ -380,7 +380,7 @@ namespace CmpServiceLib
                 using (var db = new Models.CMPContext())
                 {
                     db.Configuration.LazyLoadingEnabled = false;                   
-                    db.Database.Connection.ConnectionString = _ConnectionString;                    
+                    //db.Database.Connection.ConnectionString = _ConnectionString;                    
 
                     IOrderedQueryable<VmDeploymentRequest> vmrQ ;
 
@@ -1224,7 +1224,7 @@ namespace CmpServiceLib
             {
                 using (var db = new Models.CMPContext())
                 {
-                    db.Database.Connection.ConnectionString = _ConnectionString;
+                    //db.Database.Connection.ConnectionString = _ConnectionString;
                     IQueryable<OpRequest> vmrQ;
                     vmrQ = db.OpRequests.Where(vm => (vm.TargetName.Contains(vmName) && vm.StatusCode == "Submitted")).OrderBy(rb => rb.WhenRequested);
 
@@ -1240,7 +1240,7 @@ namespace CmpServiceLib
             }
             catch(Exception ex)
             {
-                throw new Exception("Exception in FetchOpsRequests() : "
+                throw new Exception("Exception in FetchVMOpRequest() : "
                                     + Utilities.UnwindExceptionMessages(ex));            
             }
         }
@@ -1264,7 +1264,7 @@ namespace CmpServiceLib
             {
                 using (var db = new Models.CMPContext())
                 {
-                    db.Database.Connection.ConnectionString = _ConnectionString;
+                    //db.Database.Connection.ConnectionString = _ConnectionString;
 
                     IOrderedQueryable<OpRequest> vmrQ;
 
@@ -1400,7 +1400,7 @@ namespace CmpServiceLib
 
                 using (var db = new Models.CMPContext())
                 {
-                    db.Database.Connection.ConnectionString = _ConnectionString;
+                    //db.Database.Connection.ConnectionString = _ConnectionString;
 
                     IQueryable<ServiceProviderAccount> foundReqList = null;
 

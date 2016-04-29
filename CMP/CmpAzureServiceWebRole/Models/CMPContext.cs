@@ -11,8 +11,18 @@ namespace CmpAzureServiceWebRole.Models
         }
 
         public CMPContext()
-            : base("Name=CMPContext")
+            : base(GetConnectionString())
         {
+        }
+
+        public static string GetConnectionString()
+        {
+            using (var xk = new KryptoLib.X509Krypto())
+            {
+                return xk.GetKTextConnectionString("CMPContext",
+                    "CMPContextPassword");
+
+            }
         }
 
         public DbSet<ChangeLog> ChangeLogs { get; set; }

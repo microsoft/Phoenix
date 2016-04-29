@@ -36,7 +36,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\..\..\..\out\Debug\Installer\</OutputPath>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
@@ -216,6 +216,7 @@
     <Compile Include="Helpers\CmpWorkerServiceHelper.cs" />
     <Compile Include="Helpers\DnsHelper.cs" />
     <Compile Include="Helpers\ImpersonationHelper.cs" />
+    <Compile Include="Helpers\InstallationSqlLoginQuery.cs" />
     <Compile Include="Helpers\SetupDatabaseHelper.cs" />
     <Compile Include="Helpers\SetupValidationHelpers.cs" />
     <Compile Include="Helpers\SizeFormat.cs" />

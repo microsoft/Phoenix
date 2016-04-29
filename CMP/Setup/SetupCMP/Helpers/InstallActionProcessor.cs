@@ -148,6 +148,9 @@ namespace CMP.Setup
 
                 SetProgressScreen(InstallItemsInstallDataItem.InstallDataInputs.Installing | InstallItemsInstallDataItem.InstallDataInputs.FinalizeProgress);
             }
+
+            
+
             //Registering the resource provider
             try
             {
