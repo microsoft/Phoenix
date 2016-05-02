@@ -659,7 +659,7 @@ namespace CMP.Setup
             string sqlServerInstanceName = String.Empty;
             String sqlMachineName = String.Empty;
             String instanceName = (String)SetupInputs.Instance.FindItem(SetupInputTags.GetSqlInstanceNameTag(isWap));
-            if (sqlMachine == null)
+            if (String.IsNullOrEmpty(sqlMachine))
                 sqlMachineName = (String)SetupInputs.Instance.FindItem(SetupInputTags.GetSqlMachineNameTag(isWap));
             else
                 sqlMachineName = sqlMachine;
