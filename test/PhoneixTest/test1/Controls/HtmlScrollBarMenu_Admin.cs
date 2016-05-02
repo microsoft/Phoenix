@@ -91,12 +91,12 @@ namespace Phoenix.Test.UI.Framework.Controls
         //}
         public void SelectPlans()
         {
-            Log.Information("Select Plans");
+            Log.Information("---Select Plans---");
             this.findMenuItemByName("PLANS").Select();
         }
         public void SelectUserAccounts()
         {
-            Log.Information("Select User Accounts");
+            Log.Information("---Select User Accounts---");
             this.findMenuItemByName("USER ACCOUNTS").Select();
         }
 

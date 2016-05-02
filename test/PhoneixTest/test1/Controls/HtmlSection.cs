@@ -70,7 +70,7 @@ namespace Phoenix.Test.UI.Framework.Controls
 
         public void SelectItem(string name)
         {
-            Log.Information("Select item " + name);
+            Log.Information("---Select item " + name + "---");
             string a = Items[name].LabelText;
             Items[name].Select();
         }

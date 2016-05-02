@@ -104,8 +104,12 @@ namespace Phoenix.Test.UI.Framework.WebPages
             Log.Information("---Onboarding subscription " + subscriptionName + " success.---");
 
             ScrollToElement(e, this.Browser);
+            Log.Information("---Start plan configuration---"); 
             ConfigPlan();
             this.Save.Click();
+            Log.Information("---Plan configuration saved---");
+            System.Threading.Thread.Sleep(1000 * 3);  
+
         }
 
         public void SelectSubscription(string name)

@@ -66,6 +66,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
             createVmWizard.Step1(data, this); createVmWizard.GoNext();
             createVmWizard.Step2(data); createVmWizard.GoNext();
             createVmWizard.Step3(data); createVmWizard.Complete();
+            System.Threading.Thread.Sleep(1000 * 3); 
             Log.Information("---Create VM request send successfully---");
         }
 
@@ -102,13 +103,13 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
             Log.Information("---Go through wizard to create plan---");
             var createPlanWizard = new CreatePlanWizard(this.Browser);
-            System.Threading.Thread.Sleep(1000 * 2);
+            System.Threading.Thread.Sleep(1000 * 3);
             createPlanWizard.Step1(data); createPlanWizard.GoNext();
-            System.Threading.Thread.Sleep(1000 * 2);
+            System.Threading.Thread.Sleep(1000 * 3);
             createPlanWizard.Step2(data); createPlanWizard.GoNext();
-            System.Threading.Thread.Sleep(1000 * 2);
+            System.Threading.Thread.Sleep(1000 * 3);
             createPlanWizard.Step3(data); createPlanWizard.Complete();
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(1000 * 5);
             Log.Information("---Create plan request send successfully---");
         }
 
@@ -126,20 +127,24 @@ namespace Phoenix.Test.UI.Framework.WebPages
             Browser.WaitForAjax();
             this.drawer.SelectItem("QUICK CREATE");
 
+            Log.Information("---Input user account information---"); 
             var emailTextBox = new HtmlTextBox(this, this.Browser.FindElement(By.Id("accountEmail")));
             emailTextBox.SetText(data.emailAddress);
             var passwordTextBox = new HtmlTextBox(this, this.Browser.FindElement(By.Id("accountPassword")));
             passwordTextBox.SetText(data.password);
             var repeatPswTextBox = new HtmlTextBox(this, this.Browser.FindElement(By.Id("confirmPassword")));
             repeatPswTextBox.SetText(data.password);
-            Thread.Sleep(1000 * 2);
+            Thread.Sleep(1000 * 3);
             IWebElement ee = this.SearchContext.FindElement(By.Id("accountPlanDropDown"));
             SelectElement e = new SelectElement(ee);
             e.WrappedElement.Click();
             e.SelectByText(planName + " (public)");
-            Thread.Sleep(1000 * 2);
+            Thread.Sleep(1000 * 3);
             var createButton = new HtmlButton(this, this.Browser.FindElement(By.XPath("//*[text()='Create']")));
             createButton.Click();
+            Thread.Sleep(1000 * 5);
+            Log.Information("---Done user account creation---");  
+
         }
 
         public void CreateAddonFromNewButton(CreateAddonData data)
@@ -160,7 +165,7 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public void OpenDrawer()
         {
-            Log.Information("Click New button to open drawer.");
+            Log.Information("---Click New button to open drawer---");
             this.btnNew.ExcuteScriptOnElement(".click()");
         }
 
@@ -192,16 +197,19 @@ namespace Phoenix.Test.UI.Framework.WebPages
 
         public bool VerifyVmCreated(CreateVmData data)
         {
-            Log.Information("Click Completed operation button...");
+            Log.Information("---Verify vm created---"); 
             Thread.Sleep(1000 * 15);
             var completedOp = new HtmlButton(this, By.ClassName("fxs-drawertray-button"));
             completedOp.Click();
 
-            Log.Information("Check the progress box...");
+            Log.Information("---Check the progress box---"); 
 
             var progressBox = new HtmlDiv(this, By.ClassName("fxs-progressbox-header"));
             if (progressBox.Text == "Successfully submitted VM request.")
+            {
+                Log.Information("---VM creation request sent successfully---");
                 return true;
+            }
             else
                 return false;
         }

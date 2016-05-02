@@ -36,7 +36,7 @@ namespace Phoenix.Test.UI.Framework.Controls
 
         public void Select()
         {
-            Log.Information("Select item: " + this.itemContainer.Text);
+            Log.Information("---Select item: " + this.itemContainer.Text + "---");
             new HtmlButton(page, this.itemContainer.FindElement(By.XPath(".//a"))).Click();
         }
 

@@ -27,6 +27,11 @@
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.adminPortalLabel.Visible = true;
+            this.adminPortalLabel.Text = "ADMIN PORTAL UI TEST IN PROGRESS...";
+            this.adminPortalLabel.ForeColor = System.Drawing.Color.Red;
+            this.adminPortalLabel.Update();
+
             if (String.IsNullOrWhiteSpace(this.textBox_UserName.Text) || String.IsNullOrWhiteSpace(this.textBox_Password.Text) ||
                 String.IsNullOrWhiteSpace(this.textBox_AdminPortalServer.Text))
             {
@@ -35,12 +40,12 @@
             }
 
             var test = new AdminPortalTest(
-                this.textBox_UserName.Text, 
-                this.textBox_Password.Text, 
+                this.textBox_UserName.Text,
+                this.textBox_Password.Text,
                 this.textBox_AdminPortalServer.Text,
-                this.textBox_ClientId.Text, 
-                this.textBox_ClientKey.Text, 
-                this.textBox_TenantId.Text, 
+                this.textBox_ClientId.Text,
+                this.textBox_ClientKey.Text,
+                this.textBox_TenantId.Text,
                 this.textBox1.Text,
                 this.tenantUserAccount.Text,
                 this.tenantUserPsw.Text);
@@ -55,11 +60,25 @@
                 password = this.tenantUserPsw.Text
             };
 
-            test.AdminCreatePlanTest(data);
-            test.AdminChangePlanAccess(data);
-            test.AdminCreateUserTest(tenantData, data.planName);
-            test.AdminOnboardSubscriptionTest(data, anySubscriptionName);
-            test.TestCleanup();
+            try
+            {
+                test.AdminCreatePlanTest(data);
+                test.AdminChangePlanAccess(data);
+                test.AdminCreateUserTest(tenantData, data.planName);
+                test.AdminOnboardSubscriptionTest(data, anySubscriptionName);
+                this.adminPortalLabel.Text = "ADMIN PORTAL UI TESTS PASSED!";
+                this.adminPortalLabel.ForeColor = System.Drawing.Color.Green;
+                this.adminPortalLabel.Update();
+                test.TestCleanup();
+            }
+            catch (Exception ex)
+            {
+                this.adminPortalLabel.Text = "ADMIN PORTAL TESTS FAILED! PLEASE CHECK LOG FILE: PhoenixTestLog.txt.";
+                this.adminPortalLabel.ForeColor = System.Drawing.Color.Red;
+                this.adminPortalLabel.Update();
+                Log.Information(ex.ToString());
+                test.TestCleanup();
+            }
         }
 
         [TestInitialize]
@@ -70,18 +89,35 @@
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if ( String.IsNullOrWhiteSpace(this.textBox_TenantPortalServer.Text))
+            this.tenantPortalLabel.Text = "TENANT PORTAL TEST IN PROGRESS...";
+            this.tenantPortalLabel.ForeColor = System.Drawing.Color.Red;
+            this.tenantPortalLabel.Visible = true;
+            this.tenantPortalLabel.Update();
+            if (String.IsNullOrWhiteSpace(this.textBox_TenantPortalServer.Text))
             {
                 MessageBox.Show("Tenant Portal Servername.");
                 return;
             }
+            var test = new TenantPortalTest(this.tenantUserAccount.Text, this.tenantUserPsw.Text, this.textBox_TenantPortalServer.Text, this.regions.Text);
+            try
+            {
 
-            var test = new TenantPortalTest(this.tenantUserAccount.Text, this.tenantUserPsw.Text, this.textBox_TenantPortalServer.Text,this.regions.Text);
-            test.TestInitialize();
-            test.TenantCreateVmFromNewButtonTest();
-            test.TestCleanup();
+                test.TestInitialize();
+                test.TenantCreateVmFromNewButtonTest();
+                test.TestCleanup();
+                this.tenantPortalLabel.Text = "TENANT PORTAL UI TESTS PASSED!";
+                this.tenantPortalLabel.ForeColor = System.Drawing.Color.Green;
+                this.tenantPortalLabel.Update();
+            }
+            catch (Exception ex)
+            {
+                this.tenantPortalLabel.Text = "TENANT PORTAL UI TESTS FAILED, PLEASE CHECK LOG FILE: PhoenixTestLog.txt.";
+                this.tenantPortalLabel.ForeColor = System.Drawing.Color.Red;
+                this.tenantPortalLabel.Update();
+                Log.Information(ex.ToString());
+                test.TestCleanup();
+            }
 
-            MessageBox.Show("Tests done! Please check the VM status on tenant portal.");
         }
 
         private void Form1_Load(object sender, EventArgs e)
