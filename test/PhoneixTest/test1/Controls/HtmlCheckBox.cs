@@ -32,7 +32,7 @@ namespace Phoenix.Test.UI.Framework.Controls
         /// <param name="verifyBlocker">Whether should verify the blocker</param>
         public void Check(bool verifyBlocker = false)
         {
-            Log.Information("Check checkbox: " + this.Text);
+            Log.Information("---Check checkbox: " + this.Text + "---");
             if (!this.Selected)
             {
                 this.Click(verifyBlocker);
@@ -45,7 +45,7 @@ namespace Phoenix.Test.UI.Framework.Controls
         /// <param name="verifyBlocker">Whether should verify the blocker</param>
         public void UnCheck(bool verifyBlocker = false)
         {
-            Log.Information("Uncheck checkbox: " + this.Text);
+            Log.Information("---Uncheck checkbox: " + this.Text + "---");
             if (this.Selected)
             {
                 this.Click(verifyBlocker);

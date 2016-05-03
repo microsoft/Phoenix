@@ -7,6 +7,7 @@ namespace Phoenix.Test.UI.TestCases
     using Phoenix.Test.Common;
     using Phoenix.Test.Data;
     using Phoenix.Test.UI.Framework;
+    using Phoenix.Test.UI.Framework.Logging; 
     using Phoenix.Test.UI.Framework.WebPages;
     using System.Data;
 
@@ -37,11 +38,16 @@ namespace Phoenix.Test.UI.TestCases
             this.driver.Wait(ExpectedConditions.TitleContains("Authentication"));
             this.driver.WaitForAjax();
 
+            Log.Information("---Login tenant portal---"); 
+
             this.loginPage = new LoginPage(driver);
             LoginTenantProtal(this.userName, this.password);
             var welcomeWiz = new WelcomePage(driver);
             try
             {
+                Log.Information("---Handle the welcome wizard if it pops up---");
+                this.driver.Wait(ExpectedConditions.ElementIsVisible(OpenQA.Selenium.By.XPath("//a[@title='Next']")), 1000 * 60); 
+
                 welcomeWiz.HandleWelcomeWizard();
             }
             catch (System.Exception ex)
@@ -63,9 +69,11 @@ namespace Phoenix.Test.UI.TestCases
         Description("Verify tenant user can create a VM from new button.")]
         public void TenantCreateVmFromNewButtonTest()
         {
+            Log.Information("---Start VM creation---");
             var createVmData = GetCreateVmData();
             smpPage.CreateVmFromNewButton(createVmData);
             smpPage.VerifyVmCreated(createVmData);
+            System.Threading.Thread.Sleep(1000 * 3); 
         }
 
         public void TenantCreateVmFromMainMenuTest()
@@ -77,6 +85,7 @@ namespace Phoenix.Test.UI.TestCases
 
         public void LoginTenantProtal(string user, string psw)
         {
+            System.Threading.Thread.Sleep(1000 * 3); 
            loginPage.Login(user, psw);
         }
 

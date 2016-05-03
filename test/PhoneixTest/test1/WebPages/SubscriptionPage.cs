@@ -106,6 +106,8 @@ namespace Phoenix.Test.UI.Framework.WebPages
             ScrollToElement(e, this.Browser);
             ConfigPlan();
             this.Save.Click();
+            Log.Information("---Start plan configuration---");
+            System.Threading.Thread.Sleep(1000 * 3);
         }
 
         public void SelectSubscription(string name)

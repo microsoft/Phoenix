@@ -72,7 +72,9 @@
 
         public void Step1(CreateVmData data,Page page)
         {
-            Log.Information("Input Group Name.");
+            Log.Information("---Input Group Name---");
+            this.Browser.Wait(ExpectedConditions.ElementIsVisible(OpenQA.Selenium.By.Id("VmAppNameSelect")));    
+
             this.groupName.SetText(data.groupName);
             IWebElement ee = page.SearchContext.FindElement(By.Id("VmRegion"));
             SelectElement e = new SelectElement(ee);
@@ -82,13 +84,18 @@
 
         public void Step2(CreateVmData data)
         {
-            Log.Information("Input Server Name.");
+            Log.Information("---Input Server Name---");
             System.Threading.Thread.Sleep(1000*2);
             this.serverName.SetText(data.serverName);
-            Log.Information("Input User Name.");
+
+            Log.Information("---Input User Name---");
+            System.Threading.Thread.Sleep(1000 * 2);
             this.userName.SetText(data.userName);
-            Log.Information("Input Password.");
+
+            Log.Information("---Input Password---");
+            System.Threading.Thread.Sleep(1000 * 2);
             this.localAdminPassword.SetText(data.localAdminPassword);
+            System.Threading.Thread.Sleep(1000 * 2);
         }
 
         public void Step3(CreateVmData data)

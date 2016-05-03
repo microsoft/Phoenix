@@ -51,7 +51,7 @@
 
         public void Step1(CreatePlanData data)
         {
-            Log.Information("Input Plan Friendly Name.");
+            Log.Information("---Input Plan Friendly Name---"); 
             this.planEntityFriendlyName.SetText(data.planName);
         }
 
