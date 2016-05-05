@@ -634,8 +634,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                                     select new { Key = vmos, Value = mapTable == null ? false : mapTable.IsActive };
 
                     if (!vmOsQuery.Any())
-                        throw new Exception("FetchOsInfoList() : Unable to get VM OS records for the plan " + planId);
-
+                        return null;
 
                     foreach (var item in vmOsQuery.Distinct())
                     {
@@ -901,7 +900,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                                         select new { Key = regions, Value = mapTable == null ? false : mapTable.IsActive };
 
                     if (!regionQuery.Any())
-                        throw new Exception("FetchAzureRegionList() : Unable to locate Region List for the plan " + planId);
+                        return null;
 
                     foreach (var item in regionQuery.Distinct())
                     {
