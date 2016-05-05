@@ -377,5 +377,10 @@
             }
             textBox_Password.Refresh();
         }
+
+        private void adminPortalLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
