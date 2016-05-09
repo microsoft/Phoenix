@@ -65,6 +65,7 @@
             x:Uid="TextBlock_2"
             Grid.Column="1"
             Grid.Row="1"
+            Name="message"
             Style="{StaticResource StylePageHeaderDescription}"
             Text="Some CMP features are already installed on this machine." />
         <Button
