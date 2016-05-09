@@ -83,6 +83,10 @@ namespace CMP.Setup
                 PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.TenantExtensionVersion) ||
                 PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.ExtensionCommonVersion) ||
                 PropertyBagDictionary.Instance.PropertyExists(PropertyBagConstants.AdminExtensionVersion);
+            if (removeComponent.IsEnabled)
+                message.Text = "Some CMP features are already installed on this machine.";
+            else
+                message.Text = "";
         }
 
         /// <summary>
