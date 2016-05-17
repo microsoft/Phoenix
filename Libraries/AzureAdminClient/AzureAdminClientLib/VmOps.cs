@@ -2564,7 +2564,7 @@ namespace AzureAdminClientLib
         /// 
         //*********************************************************************
 
-        private Role Convert(VmRole vmRole)
+        private Role Convert(VmRole vmRole, string resourceGroupName)
         {
             return new Role()
             {
@@ -2572,7 +2572,7 @@ namespace AzureAdminClientLib
                 ConfigurationSets = null, 
                 DataVirtualHardDisks = null, 
                 DefaultWinRmCertificateThumbprint = null, 
-                Label = CmpInterfaceModel.Utilities.StringToB64(vmRole.RoleName), 
+                Label = resourceGroupName,
                 MediaLocation = null, 
                 OSVersion = null, 
                 OSVirtualHardDisk = new OSVirtualHardDisk()
@@ -2630,7 +2630,7 @@ namespace AzureAdminClientLib
                     foreach (var vmJson in vmListJson)
                     {
                         var name = Utilities.FetchJsonValue(vmJson.ToString(), "name") as string;
-                        vmList.Add(Convert(ExtractVmInfo(vmJson.ToString(), name, resourceGroupName)));
+                        vmList.Add(Convert(ExtractVmInfo(vmJson.ToString(), name, resourceGroupName), resourceGroupName));
                     }
 
                 return vmList;

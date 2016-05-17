@@ -103,7 +103,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 {
                     AccessGroupId = 0,
                     Active = true,
-                    AddressFromVm = null,
+                    AddressFromVm = "0.0.0.0",
                     CmpRequestID = cmpVm.ID,
                     Config = cmpVm.Config,
                     Domain = null,
