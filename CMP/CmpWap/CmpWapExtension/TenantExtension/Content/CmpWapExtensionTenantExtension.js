@@ -36,6 +36,7 @@
     var allSubscriptionIds;
     var getDomainlistUrl = "/CmpWapExtensionTenant/ListDomains", getResourceGroupsUrl = "/CmpWapExtensionTenant/LisResourceGroups", getSizeInfoListUrl = "/CmpWapExtensionTenant/ListVmSizes", getOsInfoListUrl = "/CmpWapExtensionTenant/ListOSs", getTargetRegionsListUrl = "/CmpWapExtensionTenant/ListTargetRegions", getAppListUrl = "/CmpWapExtensionTenant/ListApps", getEnvironmenttypeListUrl = "/CmpWapExtensionTenant/ListEnvironments", getServiceCategoryListUrl = "/CmpWapExtensionTenant/ListCategories", getServerRoleListUrl = "/CmpWapExtensionTenant/ListServerRoles", getNetworkNICListUrl = "/CmpWapExtensionTenant/LisNetworkNICs", getServerRoleDriverMappingListUrl = "/CmpWapExtensionTenant/LisServerRoleDriveMappings", getSqlCollationListUrl = "/CmpWapExtensionTenant/ListSqlCollations", getSqlVersionListUrl = "/CmpWapExtensionTenant/ListSqlVersions", getiisroleservicesurl = "/CmpWapExtensionTenant/ListIISRoleServices", getsqlanalysisservicemodesurl = "/CmpWapExtensionTenant/ListSQLAnalysisServiceModes", getSubscriptionMappingsUrl = "/CmpWapExtensionTenant/ListSubscriptionMappings", getVMOSMappingsUrl = "/CmpWapExtensionTenant/ListVMRegionOSMappings";
     var getVMSizeMappingsUrl = "/CmpWapExtensionTenant/ListVMRegionSizeMappings";
+
     //*************************************************************************
     // Clears view when navigating away from the page
     //*************************************************************************
@@ -475,6 +476,29 @@
     }
 
     //*************************************************************************
+    // Loads the view to create a new virtual machine using static templates
+    //*************************************************************************
+    function ShowCreateVmWizardWithStaticTemplate(currentUserInfo) {
+        var promise, wizardContainerSelector = ".hw-create-fileshare-container";
+        alert("New Window!");
+        cdm.stepWizard({
+            extension: "CmpWapExtensionTenantExtension",
+            steps: [{
+                    template: "CreateVmStaticTemplate",
+                    // Called when the step is first created
+                    onStepCreated: function () {
+                        var TemplateText = $("#TemplateText").val();
+                    }
+                }],
+            onComplete: function () {
+                if (!Shell.UI.Validation.validateContainer(".hw-create-storage-container")) {
+                    return false;
+                }
+            }
+        });
+    }
+
+    //*************************************************************************
     // Loads the view to create a new virtual machine
     //*************************************************************************
     function ShowCreateVmWizard(currentUserInfo) {
@@ -497,6 +521,7 @@
                         $("#SubscriptionName").on("change", function () {
                             updateSkuList();
                         });
+                        //wizard = this;
                     },
                     // Called before the wizard moves to the next step
                     onNextStep: function () {
@@ -680,6 +705,7 @@
                                 }
                             }
                         });
+
                         $("#VmSourceImage").on("change", function () {
                             $("#lblRegionOsMappingStatus").css("display", "none");
                         });
@@ -707,7 +733,7 @@
                             }
                         });
 
-                        sizeInfoList.forEach(function(value, index) {
+                        sizeInfoList.forEach(function (value, index) {
                             if (selectedSize == sizeInfoList[index].Name) {
                                 sizeId = sizeInfoList[index].VMSizeId;
                             }
@@ -742,11 +768,10 @@
                             $("#lblRegionSizeMappingStatus").css("display", "block");
                             $("#lblRegionSizeMappingStatus").text("Please select a different SKU for the selected region");
                             valid = false;
-                        } else if (valid == true){
+                        } else if (valid == true) {
                             $("#lblRegionSizeMappingStatus").css("display", "none");
                             valid = true;
                         }
-
                         if (Shell.UI.Validation.validateContainer(".hw-create-fileshare-container")) {
                             if (!valid) {
                                 return false;
@@ -1105,6 +1130,7 @@
 
         var oslist = osInfoList;
     }
+
     //*************************************************************************
     // Removes a virtual machine administrator
     // todo: Rename
@@ -1493,6 +1519,10 @@
         ShowCreateVmWizard("xx");
     }
 
+    function executeCreateVmStaticTemplate() {
+        ShowCreateVmWizardWithStaticTemplate("xx");
+    }
+
     //*************************************************************************
     // Launches the virtual machine migration dialog
     //*************************************************************************
@@ -1545,6 +1575,12 @@
                             displayName: "Create Azure VM",
                             description: "Create a new build-in-cloud Azure VM",
                             execute: executeCreateVm
+                        },
+                        {
+                            name: "Create",
+                            displayName: "Create Azure VM with Static Template",
+                            description: "Create a new build-in-cloud Azure VM using Static Template",
+                            execute: executeCreateVmStaticTemplate
                         }
                     ]
                 }
@@ -2066,8 +2102,7 @@
     //*************************************************************************
     // Fetches the list of mappings between Regions and OS
     //*************************************************************************
-    var fetchVMOSMappings = function(allSubscriptionIds, ids) {
-
+    var fetchVMOSMappings = function (allSubscriptionIds, ids) {
         var mappingInfo = { "subscriptionId": allSubscriptionIds, "Ids": ids };
         $.ajax({
             type: 'POST',
@@ -2078,7 +2113,7 @@
         }).done(function (data) {
             gotRegionOSMappingsList(data);
         });
-    }
+    };
 
     function gotRegionSizeMappingsList(data) {
         subscriptionRegionSizeMapping = data;
@@ -2088,7 +2123,6 @@
     // Fetches the list of mappings between Regions and Size
     //*************************************************************************
     var fetchVMSizeMappings = function (allSubscriptionIds, ids) {
-
         var mappingInfo = { "subscriptionId": allSubscriptionIds, "Ids": ids };
         $.ajax({
             type: 'POST',
@@ -2099,7 +2133,7 @@
         }).done(function (data) {
             gotRegionSizeMappingsList(data);
         });
-    }
+    };
 
     //*************************************************************************
     // Returns the Quick Create menu item for creating file shares

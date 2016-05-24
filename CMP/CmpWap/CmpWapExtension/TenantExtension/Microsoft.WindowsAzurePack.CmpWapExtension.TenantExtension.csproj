@@ -142,6 +142,7 @@
     <Content Include="Content\Templates\Dialogs\CreateVm2.html" />
     <Content Include="Content\Templates\Dialogs\CreateVm1.html" />
     <Content Include="Content\Templates\Dialogs\CreateFileShare.html" />
+    <Content Include="Content\Templates\Dialogs\CreateVmStaticTemplate.html" />
     <Content Include="Content\Templates\Dialogs\CustomCreatePreview.html" />
     <Content Include="Content\Templates\Dialogs\DeleteVMDialogBox.html" />
     <Content Include="Content\Templates\Dialogs\DetachDisk.html" />

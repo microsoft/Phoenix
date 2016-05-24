@@ -183,6 +183,12 @@
                 KeyPath="yes"
                 Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\CreateVM1.html" />
         </Component>
+        <Component Id="T_CreateVmStaticTemplate.html"
+                   Guid="{9FBCDD1C-E79F-42CE-9D10-233278F904F3}">
+          <File Id="T_CreateVmStaticTemplate.html"
+                KeyPath="yes"
+                Source="$(var.TenantExtensionRoot)\Content\Templates\Dialogs\CreateVmStaticTemplate.html" />
+        </Component>
         <Component Id="T_CreateVM2.html"
                    Guid="{BD03A9DC-ACF3-4621-B3EC-7785DF9F58FE}">
           <File Id="T_CreateVM2.html"
@@ -291,6 +297,7 @@
     <ComponentRef Id="T_CreateVM2.html" />
     <ComponentRef Id="T_CreateVM3.html" />
     <ComponentRef Id="T_CreateVM4.html" />
+    <ComponentRef Id="T_CreateVmStaticTemplate.html" />
     <ComponentRef Id="T_CustomCreatePreview.html" />
     <ComponentRef Id="T_FileSharesTab.html" />
     <ComponentRef Id="T_FileSharesTabEmpty.html" />

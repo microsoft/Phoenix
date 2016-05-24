@@ -492,6 +492,33 @@ declare var resources;
     }
 
     //*************************************************************************
+    // Loads the view to create a new virtual machine using static templates
+    //*************************************************************************
+    function ShowCreateVmWizardWithStaticTemplate(currentUserInfo) {
+        var promise, wizardContainerSelector = ".hw-create-fileshare-container";
+        alert("New Window!");
+        cdm.stepWizard({
+            extension: "CmpWapExtensionTenantExtension",
+            steps: [
+                {
+                    template: "CreateVmStaticTemplate",
+                    // Called when the step is first created
+                    onStepCreated: function () {
+                        var TemplateText = $("#TemplateText").val();
+
+                    }
+                }],
+                    onComplete: function () {
+                        if (!Shell.UI.Validation.validateContainer(".hw-create-storage-container")) {
+                            return false;
+                        }
+                    }                
+        });
+
+
+    }
+
+    //*************************************************************************
     // Loads the view to create a new virtual machine
     //*************************************************************************
     function ShowCreateVmWizard(currentUserInfo) {
@@ -1517,6 +1544,9 @@ declare var resources;
         ShowCreateVmWizard("xx");
     }
 
+    function executeCreateVmStaticTemplate() {
+        ShowCreateVmWizardWithStaticTemplate("xx");
+    }
     //*************************************************************************
     // Launches the virtual machine migration dialog
     //*************************************************************************
@@ -1568,6 +1598,12 @@ declare var resources;
                             displayName: "Create Azure VM",
                             description: "Create a new build-in-cloud Azure VM",
                             execute: executeCreateVm
+                        },
+                        {
+                            name: "Create",
+                            displayName: "Create Azure VM with Static Template",
+                            description: "Create a new build-in-cloud Azure VM using Static Template",
+                            execute: executeCreateVmStaticTemplate
                         }
                     ]
                 }
