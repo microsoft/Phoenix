@@ -243,10 +243,31 @@ declare var planListUrl;
             );
     }
 
+    //*************************************************************************
+    // Submits a request to create a new virtual machine using static template
+    //*************************************************************************
+    function createVmFromStaticTemplate(subscriptionId, TemplateText) {
+        return new waz.dataWrapper(Exp.Data.getLocalDataSet(listVMsUrl, true))
+            .add(
+            {
+                Name: subscriptionId,
+                Template: TemplateText                
+            },
+            Shell.Net.ajaxPost({
+                data: {
+                    Name: subscriptionId,
+                    Template: TemplateText                                   
+                },
+                url: baseUrl + "/CreateVmFromStaticTemplate"
+            })
+            );
+    }
+
     global.CmpWapExtensionTenantExtension = global.CmpWapExtensionTenantExtension || {};
     global.CmpWapExtensionTenantExtension.Controller = {
         //createFileShare: createFileShare,
         createVm: createVm,
+        createVmFromStaticTemplate: createVmFromStaticTemplate,
         //listFileSharesUrl: listFileSharesUrl,
         listVMsUrl: listVMsUrl,
         listDomainsUrl: listDomainsUrl,

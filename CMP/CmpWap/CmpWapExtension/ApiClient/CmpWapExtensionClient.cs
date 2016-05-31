@@ -34,6 +34,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient
         public const string FileShares = "{0}/" + RegisteredPath + "/fileshares";
 
         public const string Vms = "{0}/" + RegisteredPath + "/vms";
+        public const string VmsStaticTemplate = "{0}/" + RegisteredPath + "/vmStatic";
         public const string Vmget = "{0}/" + RegisteredPath + "/vms/{1}";
         public const string DetachedDisksGet = "{0}/" + RegisteredPath + "/detachedDisks/{1}";
         public const string NameResolution = "{0}/" + RegisteredPath + "/nameresolution/{1}";
@@ -989,6 +990,12 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient
             await this.PostAsync<CreateVm>(requestUrl, vmToCreate);
         }
 
+        public async Task CreateVmStaticTemplateAsync(string subscriptionId, string template)
+        {
+            var requestUrl = this.CreateRequestUri(CmpWapExtensionClient.CreateVmsStaticTemplateUri(subscriptionId));
+            await this.PostAsync<string>(requestUrl, template);
+        }
+
         //*********************************************************************
         ///
         /// <summary>
@@ -1234,6 +1241,12 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient
         {
             return string.Format(CultureInfo.InvariantCulture, 
                 CmpWapExtensionClient.Vms, subscriptionId);
+        }
+
+        private static string CreateVmsStaticTemplateUri(string subscriptionId)
+        {
+            return string.Format(CultureInfo.InvariantCulture,
+                CmpWapExtensionClient.VmsStaticTemplate, subscriptionId);
         }
 
         //*********************************************************************

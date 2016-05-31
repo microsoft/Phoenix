@@ -420,6 +420,23 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<HttpResponseMessage> CreateVmFromStaticTemplate([FromBody] string vM)
+        {
+            try
+            {
+                var CreatedBy = await GetWapAdmin("abcd");
+                return new HttpResponseMessage() { StatusCode = HttpStatusCode.OK };
+
+            }
+
+            catch(Exception ex)
+            {
+
+            }
+            return null;
+        }
+
         //*********************************************************************
         ///
         /// <summary>

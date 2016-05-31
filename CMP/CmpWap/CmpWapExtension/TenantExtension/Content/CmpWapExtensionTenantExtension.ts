@@ -496,7 +496,6 @@ declare var resources;
     //*************************************************************************
     function ShowCreateVmWizardWithStaticTemplate(currentUserInfo) {
         var promise, wizardContainerSelector = ".hw-create-fileshare-container";
-        alert("New Window!");
         cdm.stepWizard({
             extension: "CmpWapExtensionTenantExtension",
             steps: [
@@ -504,7 +503,7 @@ declare var resources;
                     template: "CreateVmStaticTemplate",
                     // Called when the step is first created
                     onStepCreated: function () {
-                        var TemplateText = $("#TemplateText").val();
+                        alert("New Window!");
 
                     }
                 }],
@@ -512,6 +511,17 @@ declare var resources;
                         if (!Shell.UI.Validation.validateContainer(".hw-create-storage-container")) {
                             return false;
                         }
+                        var subscriptionId = "something";
+                        var TemplateText = $("#TemplateText").val();
+                        alert(TemplateText);
+                        
+                        promise = global.CmpWapExtensionTenantExtension.Controller.createVmFromStaticTemplate(subscriptionId, TemplateText);
+
+                        global.waz.interaction.showProgress(promise, {
+                            initialText: "Submitting VM request...",
+                            successText: "Successfully submitted VM request.",
+                            failureText: "Failed to submit VM request."
+                        });
                     }                
         });
 

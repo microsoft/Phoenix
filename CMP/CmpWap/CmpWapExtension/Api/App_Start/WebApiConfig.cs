@@ -62,6 +62,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                name: "Vms",
                routeTemplate: "subscriptions/{subscriptionId}/vms",
                defaults: new { controller = "Vms" });
+            //config.Routes.MapHttpRoute(
+            //   name: "VmsStaticTemplate",
+            //   routeTemplate: "subscriptions/{subscriptionId}/vmStatic",
+            //   defaults: new { controller = "Vms" });
 
             config.Routes.MapHttpRoute(
                 name: "AdminVms",

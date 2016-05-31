@@ -47,6 +47,8 @@
                 src="~/Templates/Dialogs/AttachDisk.html" />
       <template name="DetachDisk"
                 src="~/Templates/Dialogs/DetachDisk.html" />
+      <template name="CreateVmStaticTemplate"
+                src="~/Templates/Dialogs/CreateVmStaticTemplate.html" />
       <template name="ShutDownVMDialogBox"
                 src="~/Templates/Dialogs/ShutDownVMDialogBox.html"/>
       <template name="DeleteVMDialogBox"
