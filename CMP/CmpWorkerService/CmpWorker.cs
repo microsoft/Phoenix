@@ -17,8 +17,7 @@ namespace CmpWorkerService
         protected override void OnStart(string[] args)
         {
             try
-            {
-                System.Diagnostics.Debugger.Launch();
+            {                
                 _EventLog = new EventLog("Application");
                 _EventLog.Source = CmpCommon.Constants.CmpAzureServiceWorkerRole_EventlogSourceName;
                 _EventLog.WriteEntry("Service Starting", EventLogEntryType.Information, 1, 1);
