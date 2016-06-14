@@ -233,13 +233,17 @@
     //*************************************************************************
     // Submits a request to create a new virtual machine using static template
     //*************************************************************************
-    function createVmFromStaticTemplate(subscriptionId, TemplateText) {
+    function createVmFromStaticTemplate(subscriptionId, vmName, TemplateText) {
         return new waz.dataWrapper(Exp.Data.getLocalDataSet(listVMsUrl, true)).add({
-            Name: subscriptionId,
+            Name: vmName,
+            VmName: vmName,
+            SubscriptionId: subscriptionId,
             Template: TemplateText
         }, Shell.Net.ajaxPost({
             data: {
-                Name: subscriptionId,
+                Name: vmName,
+                VmName: vmName,
+                SubscriptionId: subscriptionId,
                 Template: TemplateText
             },
             url: baseUrl + "/CreateVmFromStaticTemplate"

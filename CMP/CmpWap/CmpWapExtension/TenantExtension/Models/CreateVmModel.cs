@@ -116,6 +116,64 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Models
         }
 
         /// <summary>
+        /// Convert to the API object.
+        /// </summary>
+        /// <returns>The API VM data contract.</returns>
+        public CreateVm ToApiObjectForStaticTemplate()
+        {
+            return new CreateVm()
+            {
+                Id = this.Id,
+                CmpRequestId = this.CmpRequestId,
+                Name = this.Name,
+                SubscriptionId = this.SubscriptionId,
+                VmAppName = this.VmAppName,
+                VmAppId = this.VmAppID,
+                VmDomain = this.VmDomain,
+                VmAdminName = this.VmAdminName,
+                VmAdminPassword = this.VmAdminPassword,
+                VmSourceImage = this.VmSourceImage,
+                VmSize = this.VmSize,
+                VmRegion = this.VmRegion,
+                VmRole = this.VmRole,
+                VmDiskSpec = this.VmDiskSpec,
+                VmConfig = this.VmConfig,
+                VmTagData = this.VmTagData,
+                StatusCode = this.StatusCode,
+                StatusMessage = this.StatusMessage,
+                AddressFromVm = this.AddressFromVm,
+                ServiceCategory = this.ServiceCategory,
+                Nic1 = this.Nic1,
+                Msitmonitored = this.Msitmonitored,
+                EnvResourceGroupName = this.EnvResourceGroupName,
+                sqlconfig = this.Sqlconfig == null ? null : new ApiClient.DataContracts.SQLConfig
+                {
+                    InstallSql = this.Sqlconfig.InstallSql,
+                    InstallAnalysisServices = this.Sqlconfig.InstallAnalysisServices,
+                    InstallReplicationServices = this.Sqlconfig.InstallReplicationServices,
+                    InstallIntegrationServices = this.Sqlconfig.InstallIntegrationServices,
+                    SqlInstancneName = this.Sqlconfig.SqlInstancneName,
+                    Collation = this.Sqlconfig.Collation,
+                    Version = this.Sqlconfig.Version,
+                    AdminGroups = this.Sqlconfig.AdminGroups,
+                    AnalysisServicesMode = this.Sqlconfig.AnalysisServicesMode
+                },
+
+                IIsconfig = this.IIsconfig == null ? null : new ApiClient.DataContracts.IISConfig
+                {
+                    InstallIis = this.IIsconfig.InstallIis,
+                    RoleServices = this.IIsconfig.RoleServices
+
+                },
+                EnvironmentClass = this.EnvironmentClass,
+                Type = this.Type,
+                AccountAdminLiveEmailId = this.AccountAdminLiveEmailId,
+                OsCode = this.OsCode,
+                AzureApiName = this.AzureApiName
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the ID.
         // </summary>
         public int Id { get; set; }

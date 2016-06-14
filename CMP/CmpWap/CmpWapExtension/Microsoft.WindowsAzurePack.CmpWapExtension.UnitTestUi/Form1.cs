@@ -300,6 +300,24 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
             var resp = vmc.GetVm(subID, vmID);
         }
 
+        private async void VmStaticTest()
+        {
+            var subID = "43da4f4e-a9f5-4b87-bb48-94896414bf5a";
+            var vmID = 3;
+            //var subID = "93198a73-7ca2-4218-b694-02b43aeb4b25";
+            //var vmID = 3;
+
+            //var tc = new CmpWapExtensionTenantController();
+            //var resp = await tc.GetVm(subID, vmID);
+            CreateVm vmToCreate = new CreateVm();
+            vmToCreate.VmConfig = "testing";
+            vmToCreate.SubscriptionId = "6f745117-c049-4741-aa35-8f3d35731ddc";
+            //vmToCreate.SubscriptionId = "43da4f4e-a9f5-4b87-bb48-94896414bf5a";
+
+            var vmc = new VmStaticController();
+            var resp = vmc.CreateVmFromStaticTemplate(vmToCreate);
+        }
+
         private void PostOpsProcessingTest()
         {
             var p = new ProcessorOps(null, ConfigurationManager.ConnectionStrings["CMPContext"].ConnectionString);
@@ -388,12 +406,13 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.UnitTestUi
                 //SetVmOsByBatch();
                 //FetchPlanConfigInfo();
                 //AzureCall_FetchRegionsTest();
-                TestSyncWorkerWithAzure();
+                //TestSyncWorkerWithAzure();
                 //FetchOsInfoTest();
                 //FetchTenantVmSizes();
                 //FetchDefaultResourceGroupTest();
 
-                GetVmTest();
+                //GetVmTest();
+                VmStaticTest();
                 //PostOpsProcessingTest();
                 //VmOpsTest();
                 //VmOpsStopTest();

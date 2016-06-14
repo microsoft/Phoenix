@@ -57,15 +57,17 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             config.Routes.MapHttpRoute(
               name: "Vmget",
               routeTemplate: "subscriptions/{subscriptionId}/vms/{Id}",
-              defaults: new { controller = "Vms" });
+              defaults: new { controller = "vms" });
+
             config.Routes.MapHttpRoute(
                name: "Vms",
                routeTemplate: "subscriptions/{subscriptionId}/vms",
-               defaults: new { controller = "Vms" });
-            //config.Routes.MapHttpRoute(
-            //   name: "VmsStaticTemplate",
-            //   routeTemplate: "subscriptions/{subscriptionId}/vmStatic",
-            //   defaults: new { controller = "Vms" });
+               defaults: new { controller = "vms" });
+
+            config.Routes.MapHttpRoute(
+               name: "VmsStaticTemplate",
+               routeTemplate: "subscriptions/{subscriptionId}/vmStatic",
+               defaults: new { controller = "vmStatic" });
 
             config.Routes.MapHttpRoute(
                 name: "AdminVms",

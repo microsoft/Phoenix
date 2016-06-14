@@ -1420,6 +1420,80 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
         }
 
+        public CmpService.VmDeploymentRequest SubmitToCmpStaticTemplate(CmpVmRequest cmpVmRequest, string vmConfig)
+        {
+            try
+            {
+
+                var vmDepReq =                  
+                    BuildCmpDeploymentRequestStaticTemplate(cmpVmRequest, vmConfig);
+
+                if (CmpAccessMode == CmpAccessModeEnum.Monolith)
+                {
+                    var NewRequest = true;
+                    CmpServiceLib.Models.VmDeploymentRequest response = null;
+
+                    var cmp = new CmpServiceLib.CmpService(_eventLog, CmpDbConnectionString, null);
+
+                    if (NewRequest)
+                        response = cmp.InsertVmDepRequest(Translate(vmDepReq));
+
+                    return Translate(response);
+                }
+                else
+                {
+                    System.Net.ServicePointManager.ServerCertificateValidationCallback =
+                        delegate(object s, X509Certificate certificate, X509Chain chain,
+                            System.Net.Security.SslPolicyErrors sslPolicyErrors)
+                        { return true; };
+
+                    var cmpServiceUrl = System.Configuration.ConfigurationManager.AppSettings["CmpServiceUrl"];
+
+                    var cmpServ = new CmpService.Container(new Uri(cmpServiceUrl));
+                    cmpServ.SendingRequest2 += FS_SendingRequest2;
+                    cmpServ.WritingEntity += FS_WritingEntity;
+
+                    //cmpServ.ClientCredentials = CmpClientCredentials;
+
+                    cmpServ.AddObject("VmDeployments", vmDepReq);
+                    var dsrList = cmpServ.SaveChanges();
+                    CmpService.VmDeploymentRequest vdr = null;
+
+                    //foreach (System.Data.Services.Client.ChangeOperationResponse cs in dsrList)
+                    foreach (var dsr in dsrList)
+                    {
+                        var cs = dsr as System.Data.Services.Client.ChangeOperationResponse;
+
+                        if (null == cs)
+                            throw new Exception("NULL ChangeOperationResponse CMP Service response");
+
+                        var ed = cs.Descriptor as System.Data.Services.Client.EntityDescriptor;
+
+                        if (null == ed)
+                            throw new Exception("NULL EntityDescriptor in CMP Service response");
+
+                        vdr = ed.Entity as CmpService.VmDeploymentRequest;
+                        break;
+                    }
+
+                    if (null == vdr)
+                        throw new Exception("No ChangeOperationResponse in CMP Service response");
+
+                    //*** TODO: Mark West : Maybe the CMP should set the status message instead
+                    if (vdr.Status.Equals(CmpInterfaceModel.Constants.StatusEnum.Exception.ToString()))
+                        vdr.StatusMessage = vdr.ExceptionMessage;
+
+                    return vdr;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in CmpWapExtension.CmpClient.SubmitToCmp(): " +
+                    Utils.UnwindExceptionMessages(ex));
+            }
+        }
+
+
         //*********************************************************************
         ///
         /// <summary>
@@ -1610,7 +1684,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                     RequestType = CmpInterfaceModel.Constants.RequestTypeEnum.NewVM.ToString(),
                     Status = CmpInterfaceModel.Constants.StatusEnum.Submitted.ToString(),
                     TagData =
-                        "<WapReq>" + CmpInterfaceModel.Utilities.Serialize(typeof (CmpVmRequest), cmpVmReq) +
+                        "<WapReq>" + CmpInterfaceModel.Utilities.Serialize(typeof(CmpVmRequest), cmpVmReq) +
                         "</WapReq>",
                     TagID = cmpVmReq.RequestRecord.RequestID,
                     TargetLocation = cmpVmReq.RequestRecord.AzureRegionName,
@@ -1625,6 +1699,44 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
 
                 cdr.Config = BuildCmpConfig(cdr, cmpVmReq);
 
+                return cdr;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in BuildCmpDeploymentRequest() : " + Utils.UnwindExceptionMessages(ex));
+            }
+        }
+        CmpService.VmDeploymentRequest BuildCmpDeploymentRequestStaticTemplate(CmpVmRequest cmpVmReq, string vmConfig)
+        {
+            try
+            {
+                var cdr = new CmpService.VmDeploymentRequest
+                {
+                    ID = 0,
+                    Active = true,
+                    ParentAppID = cmpVmReq.RequestRecord.AppID,
+                    ParentAppName = cmpVmReq.RequestRecord.AppName,
+                    RequestName = "Wap:" + cmpVmReq.RequestRecord.RequestName,
+                    RequestDescription = "Wap request (" + cmpVmReq.RequestRecord.RequestID.ToString() +
+                                         ") for Azure VM : '" + cmpVmReq.RequestRecord.RequestName,
+                    RequestType = CmpInterfaceModel.Constants.RequestTypeEnum.NewVM.ToString(),
+                    Status = CmpInterfaceModel.Constants.StatusEnum.Submitted.ToString(),
+                    TagData =
+                        "<WapReq>" + CmpInterfaceModel.Utilities.Serialize(typeof(CmpVmRequest), cmpVmReq) +
+                        "</WapReq>",
+                    TagID = cmpVmReq.RequestRecord.RequestID,
+                    TargetLocation = cmpVmReq.RequestRecord.AzureRegionName,
+                    TargetLocationType = CmpInterfaceModel.Constants.TargetLocationTypeEnum.Region.ToString(),
+                    TargetServiceProviderType =
+                        CmpInterfaceModel.Constants.TargetServiceProviderTypeEnum.Azure.ToString(),
+                    TargetVmName = cmpVmReq.RequestRecord.RequestName,
+                    WhoRequested = cmpVmReq.RequestRecord.CreatedBy,
+                    WhenRequested = DateTime.UtcNow,
+                    TargetServiceName = null
+                };
+
+                //cdr.Config = BuildCmpConfig(cdr, cmpVmReq);
+                cdr.Config = vmConfig;
                 return cdr;
             }
             catch (Exception ex)

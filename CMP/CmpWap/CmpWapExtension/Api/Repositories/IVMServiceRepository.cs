@@ -220,6 +220,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         //*********************************************************************
         CreateVm SubmitVmRequest(CreateVm createVmModel);
 
+        CreateVm SubmitVmRequestForStaticTemplate(CreateVm createVmModel);
+
         ///
         /// <summary>
         ///     This method submits VM to Operations queue

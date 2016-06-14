@@ -609,13 +609,17 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.TenantExtension.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> CreateVmFromStaticTemplate(string subscriptionId,
+        public async Task<JsonResult> CreateVmFromStaticTemplate(string subscriptionId, string vmName,
             string template)
         {
+            CreateVmModel vmToCreate = new CreateVmModel();
+            vmToCreate.VmConfig = template;
+            vmToCreate.SubscriptionId = subscriptionId;
+            vmToCreate.Name = vmName;
             try
             {
                 await ClientFactory.CmpWapExtensionClient.CreateVmStaticTemplateAsync(
-                    subscriptionId, template);
+                    subscriptionId, vmToCreate.ToApiObjectForStaticTemplate());
             }
             catch (Exception ex)
             {

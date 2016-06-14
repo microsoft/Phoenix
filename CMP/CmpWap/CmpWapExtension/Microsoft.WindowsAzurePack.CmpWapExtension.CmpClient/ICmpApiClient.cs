@@ -265,6 +265,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
         //*********************************************************************
         CmpService.VmDeploymentRequest SubmitToCmp(CmpVmRequest cmpVmRequest);
 
+        CmpService.VmDeploymentRequest SubmitToCmpStaticTemplate(CmpVmRequest cmpVmRequest, string vmConfig);
+
+
         ///
         /// <summary>
         /// DEPRECATED - 

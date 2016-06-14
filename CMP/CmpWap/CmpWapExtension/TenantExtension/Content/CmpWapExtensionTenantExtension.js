@@ -486,18 +486,18 @@
                     template: "CreateVmStaticTemplate",
                     // Called when the step is first created
                     onStepCreated: function () {
-                        alert("New Window!");
                     }
                 }],
             onComplete: function () {
                 if (!Shell.UI.Validation.validateContainer(".hw-create-storage-container")) {
                     return false;
                 }
-                var subscriptionId = "something";
+                var vmName = $("#TemplateVm").val();
+                var subscriptionId = "6f745117-c049-4741-aa35-8f3d35731ddc";
                 var TemplateText = $("#TemplateText").val();
                 alert(TemplateText);
 
-                promise = global.CmpWapExtensionTenantExtension.Controller.createVmFromStaticTemplate(subscriptionId, TemplateText);
+                promise = global.CmpWapExtensionTenantExtension.Controller.createVmFromStaticTemplate(subscriptionId, vmName, TemplateText);
 
                 global.waz.interaction.showProgress(promise, {
                     initialText: "Submitting VM request...",

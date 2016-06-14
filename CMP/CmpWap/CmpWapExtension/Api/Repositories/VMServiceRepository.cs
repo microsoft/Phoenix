@@ -704,6 +704,80 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             return createVmModel;
         }
 
+        public CreateVm SubmitVmRequestForStaticTemplate(CreateVm createVmModel)
+        {
+            bool Ismsitmonitored;
+            var reqRec = new CmpVmBuildRequest
+            {
+                RequestID = 0,
+                AppID = createVmModel.VmAppId,
+                AppName = createVmModel.VmAppName,
+                RequestName = createVmModel.Name,
+                AzureRegionName = createVmModel.VmRegion,
+                CreatedBy = createVmModel.CreatedBy,
+                OSName = createVmModel.VmSourceImage,
+                RequestAdmins = createVmModel.VmAdminName,
+                VmAdminName = createVmModel.VmAdminName,
+                VmAdminPassword = createVmModel.VmAdminPassword,
+                ResourceGroup = createVmModel.EnvResourceGroupName,
+                SKU_CustomerName = createVmModel.VmSize,
+                StorageConfigXML = createVmModel.VmDiskSpec,
+                ActiveDirectoryDomain = createVmModel.VmDomain,
+                ITSMServiceCategory = createVmModel.ServiceCategory,
+                EnvironmentName = createVmModel.EnvironmentClass,
+                NIC1_Config = createVmModel.Nic1,
+                ITSMMonitoredFlag = Boolean.TryParse(createVmModel.Msitmonitored, out Ismsitmonitored) == true ? Ismsitmonitored : false,
+                SQLBuildOut = createVmModel.sqlconfig == null ? false : createVmModel.sqlconfig.InstallSql,
+                SQLAdminGroup = createVmModel.sqlconfig == null ? null : createVmModel.sqlconfig.AdminGroups,
+                SQLInstanceName = createVmModel.sqlconfig == null ? null : createVmModel.sqlconfig.SqlInstancneName,
+                SQLVersionName = createVmModel.sqlconfig == null ? null : createVmModel.sqlconfig.Version,
+                SQLEnableReplication = createVmModel.sqlconfig == null ? false : createVmModel.sqlconfig.InstallAnalysisServices,
+                SQLEnableSSAS = createVmModel.sqlconfig == null ? false : createVmModel.sqlconfig.InstallAnalysisServices,
+                SQLEnableSSIS = createVmModel.sqlconfig == null ? false : createVmModel.sqlconfig.InstallIntegrationServices,
+                SQLSSASMode = createVmModel.sqlconfig == null ? null : createVmModel.sqlconfig.AnalysisServicesMode,
+                SQLCollation = createVmModel.sqlconfig == null ? null : createVmModel.sqlconfig.Collation,
+                IISBuildOut = createVmModel.IIsconfig == null ? false : createVmModel.IIsconfig.InstallIis,
+                IISServiceRole = createVmModel.IIsconfig == null ? null : createVmModel.IIsconfig.RoleServices,
+                DateSubmitted = DateTime.UtcNow,
+                OSCode = createVmModel.OsCode,
+                AzureApiName = createVmModel.AzureApiName,
+                AzureImagePublisher = "",
+                AzureImageOffer = "",
+                AzureWindowsOSVersion = ""
+            };
+
+            var ecsPortalDB = new ECSPortalDB();
+            var ecsSubscription = ecsPortalDB.FetchSubscription(System.Guid.Parse(createVmModel.SubscriptionId));
+
+            // This has been commented out for debugging purposes to remove exceptions occuring due to no ITSM Records.
+            // Please uncomment and delete the code below once ITSM has been integrated.
+            if (ecsSubscription != null)
+            {
+                reqRec.OrgFinancialAssetOwner = ecsSubscription.FinancialOwner;
+                reqRec.OrgChargebackGroup = ecsSubscription.ChargeBackGroup;
+                reqRec.OrgID = ecsSubscription.OrganizationID;
+                reqRec.ITSMResponsibleOwner = ecsSubscription.ResponsibleOwner;
+                reqRec.ITSMAccountableOwner = ecsSubscription.CIOwner;
+                reqRec.ITSMCIOwner = ecsSubscription.CIOwner;
+            }
+
+            var vmReq = new CmpVmRequest
+            {
+                RequestRecord = reqRec
+            };
+
+            // Insert data to CmpDb
+            var cmp = CmpSvProxy;
+            var vmReqResponse = cmp.SubmitToCmpStaticTemplate(vmReq, createVmModel.VmConfig);
+            createVmModel.CmpRequestId = vmReqResponse.ID;
+            createVmModel.ExceptionMessage = vmReqResponse.ExceptionMessage;
+
+            // Insert data into WapDB
+            WapDbContract.InsertVmDepRequest(createVmModel);
+
+            return createVmModel;
+        }
+
         //*********************************************************************
         ///
         /// <summary>

@@ -990,10 +990,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.ApiClient
             await this.PostAsync<CreateVm>(requestUrl, vmToCreate);
         }
 
-        public async Task CreateVmStaticTemplateAsync(string subscriptionId, string template)
+        public async Task CreateVmStaticTemplateAsync(string subscriptionId, CreateVm template)
         {
             var requestUrl = this.CreateRequestUri(CmpWapExtensionClient.CreateVmsStaticTemplateUri(subscriptionId));
-            await this.PostAsync<string>(requestUrl, template);
+            await this.PostAsync<CreateVm>(requestUrl, template);
         }
 
         //*********************************************************************
