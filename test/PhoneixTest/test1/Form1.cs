@@ -1,23 +1,15 @@
 ﻿namespace Phoenix.Test.UI
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using OpenQA.Selenium.Firefox;
     using Phoenix.Test.Data;
     using Phoenix.Test.Installation.TestCase;
     using Phoenix.Test.UI.Framework.Logging;
-    using Phoenix.Test.UI.Framework.WebPages;
     using Phoenix.Test.UI.TestCases;
     using System;
     using System.Windows.Forms;
     using System.Threading;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
-    using System.Drawing;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
+    using System.Configuration;
     public partial class Form1 : Form
     {
         public Form1()
@@ -380,6 +372,20 @@
 
         private void adminPortalLabel_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.textBox_UserName.Text = ConfigurationManager.AppSettings["UserAccount"];
+            this.textBox_Password.Text = ConfigurationManager.AppSettings["Password"];
+            this.textBox_AdminPortalServer.Text = ConfigurationManager.AppSettings["AdminPortalServer"];
+            this.textBox_ClientId.Text = ConfigurationManager.AppSettings["ClientId"];
+            this.textBox_ClientKey.Text = ConfigurationManager.AppSettings["ClientKey"];
+            this.textBox_TenantId.Text = ConfigurationManager.AppSettings["TenantId"];
+            this.textBox1.Text = ConfigurationManager.AppSettings["AzureSubscription"];
+            this.tenantUserAccount.Text = ConfigurationManager.AppSettings["TenantUserAccount"];
+            this.tenantUserPsw.Text = ConfigurationManager.AppSettings["TenantUserPassword"];
 
         }
     }
