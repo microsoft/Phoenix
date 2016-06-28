@@ -1409,11 +1409,22 @@ namespace CmpServiceLib
             var connection = GetConnectionFromVmDepRqId(cmpRequestId, out vmDepReq);
 
             var domain = Utilities.GetXmlInnerText(vmDepReq.Config, "Domain");          
-           
+            string nicName= Utilities.GetXmlInnerText(vmDepReq.Config, "nicName"); 
+                string publicIpName= Utilities.GetXmlInnerText(vmDepReq.Config, "publicIPAddressName"); 
+                string vNetName= Utilities.GetXmlInnerText(vmDepReq.Config, "virtualNetworkName"); 
+
             var vmo = new AzureAdminClientLib.VmOps(connection);
             var resp = vmo.Delete(vmDepReq.TargetVmName, 
                 vmDepReq.TargetServicename, deleteFromStorage, thowIfNotFound);
+            var vmoIp=new  AzureAdminClientLib.VmOps(connection);
+            var vmoVnet = new AzureAdminClientLib.VmOps(connection);
+            var vmoNic = new AzureAdminClientLib.VmOps(connection);
 
+           
+            var respNic = vmoNic.DeleteNic(nicName, vmDepReq.TargetServicename, deleteFromStorage, thowIfNotFound);
+            var respVnet = vmoVnet.DeleteVNet(vNetName, vmDepReq.TargetServicename, deleteFromStorage, thowIfNotFound);
+            var respIp = vmoIp.DeletePublicIp(publicIpName, vmDepReq.TargetServicename, deleteFromStorage, thowIfNotFound);
+            
             return resp.StatusCheckUrl;
         }
 

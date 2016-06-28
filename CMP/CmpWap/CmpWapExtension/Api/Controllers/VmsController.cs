@@ -144,7 +144,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Controllers
 
                 var shares = from share in VmList.ToList()
                              where (string.Equals(share.SubscriptionId,
-                             subscriptionId, StringComparison.OrdinalIgnoreCase) || String.IsNullOrEmpty(share.SubscriptionId))
+                             subscriptionId, StringComparison.OrdinalIgnoreCase) ||(share.SubscriptionId==null&&share.VmSize!=null))
                              select share;
                 
                 return shares.AsQueryable();
