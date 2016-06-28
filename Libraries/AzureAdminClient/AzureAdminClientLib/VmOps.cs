@@ -86,7 +86,9 @@ namespace AzureAdminClientLib
         const string URLTEMPLATE_DELETEVM_ARM = "https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/virtualMachines/{2}?api-version={3}";
         const string URLTEMPLATE_FETCHDEPLOYMENTINFO_ARM = @"https://management.azure.com/subscriptions/{0}/resourcegroups/{1}/providers/microsoft.resources/deployments/{2}?api-version={3}";
         const string APIVERSION_VMOPS = "2015-06-15";
-
+        const string URLTEMPLATE_DELETENIC_ARM = "https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Network/networkInterfaces/{2}?api-version={3}";
+        const string URLTEMPLATE_DELETEVNet_ARM = "https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Network/virtualNetworks/{2}?api-version={3}";
+        const string URLTEMPLATE_DELETEPUBLICIP_ARM = "https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Network/publicIPAddresses/{2}?api-version={3}";
         const string URLTEMPLATE_GETOSIMAGES = "https://management.core.windows.net/{0}/services/images";
         const string URLTEMPLATE_CREATEVM = "https://management.core.windows.net/{0}/services/hostedservices/{1}/deployments";
         const string URLTEMPLATE_ADDVM = "https://management.core.windows.net/{0}/services/hostedservices/{1}/deployments/{2}/roles";
@@ -410,7 +412,7 @@ namespace AzureAdminClientLib
 
                     var stat = Utilities.FetchJsonValue(ret.Body, "status");
 
-                    if(null != stat)
+                    if (null != stat)
                         ret.ProviderRequestState = stat.ToString();
 
                     return ret;
@@ -458,15 +460,15 @@ namespace AzureAdminClientLib
 
                 if (null == deploynmentNameList)
                 {
-                        url = string.Format(URLTEMPLATE_CREATEVM,
-                            Connection.SubcriptionID, vmDepReq.TargetServiceName);
+                    url = string.Format(URLTEMPLATE_CREATEVM,
+                        Connection.SubcriptionID, vmDepReq.TargetServiceName);
                     body = BuildAzureDeployVmRequestBody(vmDepReq.Config);
                 }
                 else
                 {
-                        url = string.Format(URLTEMPLATE_ADDVM,
-                            Connection.SubcriptionID, vmDepReq.TargetServiceName,
-                            deploynmentNameList[0]);
+                    url = string.Format(URLTEMPLATE_ADDVM,
+                        Connection.SubcriptionID, vmDepReq.TargetServiceName,
+                        deploynmentNameList[0]);
                     body = BuildAzureAddVmRequestBody(vmDepReq.Config);
                 }
 
@@ -512,7 +514,7 @@ namespace AzureAdminClientLib
                 {
                     return null;
                 }
-                
+
                 throw;
             }
         }
@@ -530,7 +532,7 @@ namespace AzureAdminClientLib
 
         public List<Role> FetchVmList()
         {
-            if(null != Connection.AdToken)
+            if (null != Connection.AdToken)
                 return FetchVmListArm();
 
             try
@@ -645,7 +647,7 @@ namespace AzureAdminClientLib
                 deployment = null;
 
                 var hostedServices = Client.HostedServices.List();
-                
+
                 foreach (var service2 in hostedServices)
                 {
                     if (null != serviceName)
@@ -749,7 +751,7 @@ namespace AzureAdminClientLib
             {
                 var resp = Client.VirtualMachines.Update(serviceName,
                     deploymentName, virtualMachineName, parameters);
-                
+
                 if (resp.HttpStatusCode != HttpStatusCode.OK)
                     throw new Exception("HTTP communication Exception");
 
@@ -807,69 +809,69 @@ namespace AzureAdminClientLib
 
                 for (var index = 0; ; index++)
                 {
-                try
-                {
-                    HostedServiceListResponse.HostedService service;
-                    DeploymentGetResponse deployment;
-                    string ipPriv;
+                    try
+                    {
+                        HostedServiceListResponse.HostedService service;
+                        DeploymentGetResponse deployment;
+                        string ipPriv;
 
-                    var vm = FetchVm(virtualMachineName, hostServiceName,
-                        out service, out deployment, out ipPriv);
+                        var vm = FetchVm(virtualMachineName, hostServiceName,
+                            out service, out deployment, out ipPriv);
 
-                    if (null == vm)
-                        throw new Exception("Unable to locate VM '" +
-                            virtualMachineName + "'");
-                   
-              
-                    var parameters = RoleToVmUpdateParams(vm);
-                    if (retryCount >= 2)
-                    { 
-                        var vNetName = deployment.VirtualNetworkName;
-                        var subnetName = parameters.ConfigurationSets[0].SubnetNames.FirstOrDefault();
-                        var vNetInfo = new AzureAdminClientLib.VnetOps(Connection);
-                        if (null == vNetInfo)
-                            throw new Exception("Unable to get Vnet information'" +
+                        if (null == vm)
+                            throw new Exception("Unable to locate VM '" +
                                 virtualMachineName + "'");
 
-                        var addressList = vNetInfo.GetAvailAddrList(vNetName, subnetName, "0");
-                        if (addressList.Count == 0)
-                            throw new Exception("NO available Ip address for this Vnet'" +
-                              vNetName + "'");
-                        if (!addressList.Contains(ipPriv))
 
-                            ipPriv = addressList[0];
+                        var parameters = RoleToVmUpdateParams(vm);
+                        if (retryCount >= 2)
+                        {
+                            var vNetName = deployment.VirtualNetworkName;
+                            var subnetName = parameters.ConfigurationSets[0].SubnetNames.FirstOrDefault();
+                            var vNetInfo = new AzureAdminClientLib.VnetOps(Connection);
+                            if (null == vNetInfo)
+                                throw new Exception("Unable to get Vnet information'" +
+                                    virtualMachineName + "'");
 
+                            var addressList = vNetInfo.GetAvailAddrList(vNetName, subnetName, "0");
+                            if (addressList.Count == 0)
+                                throw new Exception("NO available Ip address for this Vnet'" +
+                                  vNetName + "'");
+                            if (!addressList.Contains(ipPriv))
+
+                                ipPriv = addressList[0];
+
+                        }
+                        parameters.ConfigurationSets[0].StaticVirtualNetworkIPAddress = ipPriv;
+
+                        UpdateVm(service.ServiceName, deployment.Name,
+                            virtualMachineName, parameters);
+
+                        return ipPriv;
                     }
-                    parameters.ConfigurationSets[0].StaticVirtualNetworkIPAddress = ipPriv;
-                   
-                    UpdateVm(service.ServiceName, deployment.Name,
-                        virtualMachineName, parameters);
 
-                    return ipPriv;
-                }
-            
-                catch (Exception ex)
-                {
-                     if (ex.Message.Contains("Unable to allocate") & (2 > retryCount++))
+                    catch (Exception ex)
+                    {
+                        if (ex.Message.Contains("Unable to allocate") & (2 > retryCount++))
                             Thread.Sleep((int)(1000 * Math.Pow(4.17, retryCount)));
-                       
+
                         else
                             if (ex.Message.Contains("(503)"))
-                        Thread.Sleep(11000);   
+                                Thread.Sleep(11000);
                             else
-                    
-                    if (index > 0)
-                        throw new Exception("Exception in VmOps.MakeIpStatic() : " +
-                    Utilities.UnwindExceptionMessages(ex));
-                    break;
-                
+
+                                if (index > 0)
+                                    throw new Exception("Exception in VmOps.MakeIpStatic() : " +
+                                Utilities.UnwindExceptionMessages(ex));
+                        break;
+
+                    }
                 }
             }
         }
-        }
 
-     
-        
+
+
         //*********************************************************************
         ///
         /// <summary>
@@ -1014,14 +1016,14 @@ namespace AzureAdminClientLib
                     SubscriptionName = subscriptionresponse.SubscriptionName
                 };
 
-                var vmrole = new VmRole(role.RoleName, role.RoleSize, 
+                var vmrole = new VmRole(role.RoleName, role.RoleSize,
                     DataVirtualHardDisks, osVirtualDisk, deployment, subscription);
 
                 return vmrole;
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in AzureAdminClientLib.VmOps.GetVM() " + 
+                throw new Exception("Exception in AzureAdminClientLib.VmOps.GetVM() " +
                     Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -1100,7 +1102,7 @@ namespace AzureAdminClientLib
                     Utilities.UnwindExceptionMessages(ex));
             }
         }
-
+        
         //*********************************************************************
         ///
         ///  <summary>
@@ -1513,7 +1515,7 @@ namespace AzureAdminClientLib
                 var disk = role.DataVirtualHardDisks.Single(d => d.Name.Trim().ToUpper() == diskName.Trim().ToUpper());
 
                 var osr = Client.VirtualMachineDisks.DeleteDataDisk(
-                    service.ServiceName, deployment.Name, role.RoleName, 
+                    service.ServiceName, deployment.Name, role.RoleName,
                     disk.LogicalUnitNumber ?? 0, deleteFromStorage);
 
                 return string.Format("https://management.core.windows.net/{0}/operations/{1}",
@@ -1581,7 +1583,7 @@ namespace AzureAdminClientLib
                         if (growDiskException != null)
                             throw new Exception("Exception in VmOps.GrowDiskSize() : Both GrowDisk and AttachDisk operations encountered exceptions.", growDiskException);
                         else
-                            throw new Exception("Exception in VmOps.GrowDiskSize() : Disk grown successfully but couldn't be attached back to the VM.", e);   
+                            throw new Exception("Exception in VmOps.GrowDiskSize() : Disk grown successfully but couldn't be attached back to the VM.", e);
                     }
 
                     if (growDiskException != null)
@@ -1850,7 +1852,75 @@ namespace AzureAdminClientLib
 
             return resp;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vmName"></param>
+        /// <param name="serviceName"></param>
+        /// <param name="deleteFromStorage"></param>
+        /// <param name="throwIfNotFound"></param>
+        /// <returns></returns>
+        public HttpResponse DeleteNic(string networkInterfaceName,
+           string serviceName, bool deleteFromStorage, bool throwIfNotFound)
+        {
+            var requestUrl = string.Format(URLTEMPLATE_DELETENIC_ARM,
+                Connection.SubcriptionID, serviceName, networkInterfaceName, APIVERSION_VMOPS);
+            HttpResponse resp = new HttpResponse();
+            if (networkInterfaceName == null) return resp;
+            for (var index = 0; index < 5; index++)
+            {
+                var hi = new HttpInterface(Connection);
+                resp = hi.PerformRequestArm(HttpInterface.RequestType_Enum.DELETE, requestUrl);
+                if (!resp.HadError)
+                    break;
+                else
+                {
+                    if ((5 > index++))
+                        Thread.Sleep((int)(1000 * Math.Pow(4.17, index + 1)));
+                }
+            }
 
+            return resp;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vmName"></param>
+        /// <param name="serviceName"></param>
+        /// <param name="deleteFromStorage"></param>
+        /// <param name="throwIfNotFound"></param>
+        /// <returns></returns>
+        public HttpResponse DeletePublicIp(string publicIp,
+           string serviceName, bool deleteFromStorage, bool throwIfNotFound)
+        {
+            var requestUrl = string.Format(URLTEMPLATE_DELETEPUBLICIP_ARM,
+                Connection.SubcriptionID, serviceName, publicIp, APIVERSION_VMOPS);
+            HttpResponse resp = new HttpResponse();
+            if (publicIp == null) return resp;
+            var hi = new HttpInterface(Connection);
+            resp = hi.PerformRequestArm(HttpInterface.RequestType_Enum.DELETE, requestUrl);
+            return resp;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vmName"></param>
+        /// <param name="serviceName"></param>
+        /// <param name="deleteFromStorage"></param>
+        /// <param name="throwIfNotFound"></param>
+        /// <returns></returns>
+        public HttpResponse DeleteVNet(string vNetName,
+           string serviceName, bool deleteFromStorage, bool throwIfNotFound)
+        {
+            var requestUrl = string.Format(URLTEMPLATE_DELETEVNet_ARM,
+                Connection.SubcriptionID, serviceName, vNetName, APIVERSION_VMOPS);
+            HttpResponse resp = new HttpResponse();
+            if (vNetName == null) return resp;
+            var hi = new HttpInterface(Connection);
+            resp = hi.PerformRequestArm(HttpInterface.RequestType_Enum.DELETE, requestUrl);
+
+            return resp;
+        }
         //*********************************************************************
         ///
         /// <summary>
@@ -2370,7 +2440,7 @@ namespace AzureAdminClientLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in ExtractVmInfo() :" + 
+                throw new Exception("Exception in ExtractVmInfo() :" +
                     Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2495,7 +2565,7 @@ namespace AzureAdminClientLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in GetVmArm() :" + 
+                throw new Exception("Exception in GetVmArm() :" +
                     Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2526,7 +2596,7 @@ namespace AzureAdminClientLib
             {
                 var statusCollection = DataContracts.Status.DeserializeJsonInstanceViewStatus(resp.Body);
                 DataContracts.Status s = statusCollection.Statuses.FirstOrDefault(x => x.Code.IndexOf("PowerState", StringComparison.InvariantCultureIgnoreCase) >= 0);
-                
+
                 if (s == null) return "Could not retrieve VM status at this time";
 
                 string powerState = s.Code.Split('/')[1];
@@ -2549,7 +2619,7 @@ namespace AzureAdminClientLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in GetVmInstanceStatus() :" + 
+                throw new Exception("Exception in GetVmInstanceStatus() :" +
                     Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2564,35 +2634,35 @@ namespace AzureAdminClientLib
         /// 
         //*********************************************************************
 
-        private Role Convert(VmRole vmRole)
+        private Role Convert(VmRole vmRole, string resourceGroupName)
         {
             return new Role()
             {
-                AvailabilitySetName = null, 
-                ConfigurationSets = null, 
-                DataVirtualHardDisks = null, 
-                DefaultWinRmCertificateThumbprint = null, 
-                Label = CmpInterfaceModel.Utilities.StringToB64(vmRole.RoleName), 
-                MediaLocation = null, 
-                OSVersion = null, 
+                AvailabilitySetName = null,
+                ConfigurationSets = null,
+                DataVirtualHardDisks = null,
+                DefaultWinRmCertificateThumbprint = null,
+                Label = resourceGroupName,
+                MediaLocation = null,
+                OSVersion = null,
                 OSVirtualHardDisk = new OSVirtualHardDisk()
                 {
                     HostCaching = vmRole.OSVirtualHardDisk.HostCaching,
                     Label = vmRole.OSVirtualHardDisk.DiskLabel,
-                    Name = vmRole.OSVirtualHardDisk.DiskName, 
+                    Name = vmRole.OSVirtualHardDisk.DiskName,
                     //IOType = null
-                    MediaLink = (null != vmRole.OSVirtualHardDisk.MediaLink)? new Uri(vmRole.OSVirtualHardDisk.MediaLink) : null,
+                    MediaLink = (null != vmRole.OSVirtualHardDisk.MediaLink) ? new Uri(vmRole.OSVirtualHardDisk.MediaLink) : null,
                     OperatingSystem = vmRole.OSVirtualHardDisk.OS,
-                    RemoteSourceImageLink = (null != vmRole.OSVirtualHardDisk.RemoteSourceImageLink)? new Uri(vmRole.OSVirtualHardDisk.RemoteSourceImageLink) : null, 
+                    RemoteSourceImageLink = (null != vmRole.OSVirtualHardDisk.RemoteSourceImageLink) ? new Uri(vmRole.OSVirtualHardDisk.RemoteSourceImageLink) : null,
                     //ResizedSizeInGB = null,
                     SourceImageName = vmRole.OSVirtualHardDisk.SourceImageName
-                }, 
-                ProvisionGuestAgent = true, 
+                },
+                ProvisionGuestAgent = true,
                 ResourceExtensionReferences = null,
-                RoleName = vmRole.RoleName, 
-                RoleSize = vmRole.RoleSize, 
-                RoleType = "PersistentVMRole", 
-                VMImageInput = null, 
+                RoleName = vmRole.RoleName,
+                RoleSize = vmRole.RoleSize,
+                RoleType = "PersistentVMRole",
+                VMImageInput = null,
                 VMImageName = null
             };
         }
@@ -2630,14 +2700,14 @@ namespace AzureAdminClientLib
                     foreach (var vmJson in vmListJson)
                     {
                         var name = Utilities.FetchJsonValue(vmJson.ToString(), "name") as string;
-                        vmList.Add(Convert(ExtractVmInfo(vmJson.ToString(), name, resourceGroupName)));
+                        vmList.Add(Convert(ExtractVmInfo(vmJson.ToString(), name, resourceGroupName), resourceGroupName));
                     }
 
                 return vmList;
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchVmListArm() : " + 
+                throw new Exception("Exception in FetchVmListArm() : " +
                     Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2670,7 +2740,7 @@ namespace AzureAdminClientLib
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in FetchVmListArm() : " + 
+                throw new Exception("Exception in FetchVmListArm() : " +
                     Utilities.UnwindExceptionMessages(ex));
             }
         }
@@ -2699,7 +2769,7 @@ namespace AzureAdminClientLib
 
                 var foundSize = ExtractArmVmSize(vmInfoJson);
 
-                if(null == foundSize)
+                if (null == foundSize)
                     throw new Exception("Unable to extract properties:hardwareProfile:vmSize from Azure response");
 
                 vmInfoJson = vmInfoJson.Replace("\"" + foundSize + "\"", "\"" + size + "\"");
