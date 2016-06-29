@@ -11,6 +11,7 @@ using System.Text;
 using System.IO;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Xml.Linq;
 
 namespace CmpServiceLib
@@ -69,6 +70,24 @@ namespace CmpServiceLib
                 sbSource.Append((char)sStream.ReadByte());
 
             return sbSource.ToString();
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+        public static T DeSerializeJson<T>(string jsonString)
+        {
+            var serializer = new DataContractJsonSerializer(typeof(T));
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));
+            T obj = (T)serializer.ReadObject(ms);
+            return obj;
         }
 
         //*********************************************************************

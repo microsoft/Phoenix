@@ -1434,6 +1434,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                     CmpServiceLib.Models.VmDeploymentRequest response = null;
 
                     var cmp = new CmpServiceLib.CmpService(_eventLog, CmpDbConnectionString, null);
+                    
+                    //Convert Json to xml
+                    var deserializedJson = CmpServiceLib.Utilities.DeSerializeJson<VmDeploymentRequest>(vmDepReq.Config);
+                    vmDepReq.Config = "<Config>" + CmpServiceLib.Utilities.Serialize(typeof(VmDeploymentRequest), deserializedJson) + "</Config>";
 
                     if (NewRequest)
                         response = cmp.InsertVmDepRequest(Translate(vmDepReq));
@@ -1488,7 +1492,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in CmpWapExtension.CmpClient.SubmitToCmp(): " +
+                throw new Exception("Exception in CmpWapExtension.CmpClient.SubmitToCmpStaticTemplate(): " +
                     Utils.UnwindExceptionMessages(ex));
             }
         }
@@ -1716,7 +1720,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
                     Active = true,
                     ParentAppID = cmpVmReq.RequestRecord.AppID,
                     ParentAppName = cmpVmReq.RequestRecord.AppName,
-                    RequestName = "Wap:" + cmpVmReq.RequestRecord.RequestName,
+                    RequestName = "Wap from static template:" + cmpVmReq.RequestRecord.RequestName,
                     RequestDescription = "Wap request (" + cmpVmReq.RequestRecord.RequestID.ToString() +
                                          ") for Azure VM : '" + cmpVmReq.RequestRecord.RequestName,
                     RequestType = CmpInterfaceModel.Constants.RequestTypeEnum.NewVM.ToString(),
@@ -1741,7 +1745,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.CmpClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in BuildCmpDeploymentRequest() : " + Utils.UnwindExceptionMessages(ex));
+                throw new Exception("Exception in BuildCmpDeploymentRequestStaticTemplate() : " + Utils.UnwindExceptionMessages(ex));
             }
         }
 
