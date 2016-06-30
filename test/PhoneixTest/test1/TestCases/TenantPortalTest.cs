@@ -10,6 +10,7 @@ namespace Phoenix.Test.UI.TestCases
     using Phoenix.Test.UI.Framework.Logging; 
     using Phoenix.Test.UI.Framework.WebPages;
     using System.Data;
+    using System.IO;
 
     [TestClass]
     public class TenantPortalTest : WAPTestBase
@@ -74,6 +75,16 @@ namespace Phoenix.Test.UI.TestCases
             smpPage.CreateVmFromNewButton(createVmData);
             smpPage.VerifyVmCreated(createVmData);
             System.Threading.Thread.Sleep(1000 * 3); 
+        }
+
+        public void TenantCreateVmFromTemplateTest()
+        {
+            Log.Information("---Start VM creation---");
+            var anyVmName = GetRandomVmName();
+            var createVmData = File.ReadAllText("data/CreateVMTemplate.json");
+            smpPage.CreateVmFromStaticTemplate(anyVmName, createVmData);
+            smpPage.VerifyVmCreated(null);
+            System.Threading.Thread.Sleep(1000 * 3);
         }
 
         public void TenantCreateVmFromMainMenuTest()

@@ -69,6 +69,20 @@ namespace Phoenix.Test.UI.Framework.WebPages
             Log.Information("---Create VM request send successfully---");
         }
 
+        public void CreateVmFromStaticTemplate(string name, string templateData)
+        {
+            Browser.WaitForAjax();
+
+            Log.Information("---Click New button---");
+            OpenDrawer();
+            this.drawer.SelectItem("AZURE VMS");
+            this.drawer.SelectItem("CREATE AZURE VM WITH STATIC TEMPLATE");
+
+            Log.Information("---Create VM from template---");
+            var vmTemplateWizard = new CreateVmFromTemplateWizard(this.Browser);
+            vmTemplateWizard.CreateFromTemplate(name, templateData);
+        }
+
         public void CreateVmFromMainMenu(CreateVmData data)
         {
             Browser.WaitForAjax();

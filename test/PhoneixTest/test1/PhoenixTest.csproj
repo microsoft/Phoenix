@@ -133,6 +133,7 @@
     <Compile Include="WebPages\Wizard\CreatePlanWizard.cs" />
     <Compile Include="WebPages\DrawerPage.cs" />
     <Compile Include="WebPages\SmpPage.cs" />
+    <Compile Include="WebPages\Wizard\CreateVmFromTemplateWizard.cs" />
     <Compile Include="WebPages\Wizard\CreateVmWizard.cs" />
     <Compile Include="Framework\ElementContainer.cs" />
     <Compile Include="Form1.cs">
@@ -169,6 +170,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
+    <None Include="Data\CreateVMTemplate.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

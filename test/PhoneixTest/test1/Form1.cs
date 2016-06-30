@@ -97,7 +97,10 @@
             try
             {
                 test.TestInitialize();
+
+                test.TenantCreateVmFromTemplateTest();
                 test.TenantCreateVmFromNewButtonTest();
+
                 test.TestCleanup();
                 this.tenantPortalLabel.Text = "TENANT PORTAL UI TESTS PASSED!";
                 this.tenantPortalLabel.ForeColor = System.Drawing.Color.Green;
