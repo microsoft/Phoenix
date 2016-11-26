@@ -11,6 +11,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Common
 {
     public class JsonResultWithMaxJsonLimits : JsonResult
     {
+        public int MaxJsonLength = 0x200000;
+        public int RecursionLimit = 100;
+
         //*********************************************************************
         ///
         /// <summary>
@@ -65,8 +68,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Common
             if (this.Data != null)
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
-                serializer.MaxJsonLength = this.MaxJsonLength.Value;
-                serializer.RecursionLimit = this.RecursionLimit.Value;
+                //serializer.MaxJsonLength = this.MaxJsonLength.Value;
+                //serializer.RecursionLimit = this.RecursionLimit.Value;
+                serializer.MaxJsonLength = this.MaxJsonLength;
+                serializer.RecursionLimit = this.RecursionLimit;
                 response.Write(serializer.Serialize(this.Data));
             }
         }
