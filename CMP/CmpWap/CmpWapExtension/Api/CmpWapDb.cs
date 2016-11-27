@@ -1482,8 +1482,10 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                                    where (rb.StatusCode == status & rb.Active == active)
                                    && rb.WapSubscriptionID == subscriptionId
                                    orderby rb.Id
-                                   select rb;                        
-                    }             
+                                   select rb;
+
+                        //*** MW * TODO * get the list of Azure subs associated with this WapSub, then get the list of VMs on those Azure subs          
+                    }
                     return vmrQ.ToList();
                 }
             }

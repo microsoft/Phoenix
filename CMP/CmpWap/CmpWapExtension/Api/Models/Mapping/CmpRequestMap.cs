@@ -24,6 +24,9 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models.Mapping
             this.Property(t => t.WapSubscriptionID)
                 .HasMaxLength(100);
 
+            this.Property(t => t.AzureSubscriptionID)
+                .HasMaxLength(100);
+
             this.Property(t => t.ParentAppName)
                 .HasMaxLength(100);
 
@@ -73,6 +76,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models.Mapping
             this.ToTable("CmpRequests");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.WapSubscriptionID).HasColumnName("WapSubscriptionID");
+            this.Property(t => t.WapSubscriptionID).HasColumnName("AzureSubscriptionID");
             this.Property(t => t.CmpRequestID).HasColumnName("CmpRequestID");
             this.Property(t => t.ParentAppName).HasColumnName("ParentAppName");
             this.Property(t => t.TargetVmName).HasColumnName("TargetVmName");

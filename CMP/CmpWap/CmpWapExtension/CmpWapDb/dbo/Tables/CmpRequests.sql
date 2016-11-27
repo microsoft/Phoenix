@@ -25,7 +25,8 @@
     [TagData]           VARCHAR (MAX)  NULL,
     [TagID]             INT            NULL,
     [AddressFromVm]     VARCHAR (100)  NULL,
-	[AccessGroupId]		Int NULL
+	[AccessGroupId]		Int NULL,
+	[AzureSubscriptionID] VARCHAR (100) NULL
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

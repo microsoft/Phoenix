@@ -125,6 +125,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     UserSpec = null,
                     VmSize = cmpVm.VmSize,
                     WapSubscriptionID = null,
+                    AzureSubscriptionID = cmpVm.TargetAccount,
                     Warnings = null,
                     WhenRequested = cmpVm.WhenRequested,
                     WhoRequested = cmpVm.WhoRequested

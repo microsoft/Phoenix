@@ -14,6 +14,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api.Models
     {
         public int Id { get; set; }
         public string WapSubscriptionID { get; set; }
+        public string AzureSubscriptionID { get; set; }
         public Nullable<int> CmpRequestID { get; set; }
         public string ParentAppName { get; set; }
         public string TargetVmName { get; set; }
