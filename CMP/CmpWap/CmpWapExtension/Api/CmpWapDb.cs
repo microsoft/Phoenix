@@ -2659,8 +2659,8 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                 using (var db = new MicrosoftMgmtSvcCmpContext())
                 {
                     var spaMappings = (from map in db.AzureAdminSubscriptionMappings
-                                        where map.PlanId == planId && map.IsActive
-                                        select map);
+                                       where map.PlanId == planId && map.IsActive
+                                       select map);
 
                     /*In order not to mix the two contexts (DBs and avoid model overhead in projects,
                      * we have to extract the scalar values of the FK Id and make Enumerables of 
@@ -2684,27 +2684,27 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     Value = activeMappings.Contains(x.ID)
                 });
 
-                    foreach (var item in resultSpas.Distinct())
+                foreach (var item in resultSpas.Distinct())
+                {
+                    AzureSubscription key = new AzureSubscription
                     {
-                        AzureSubscription key = new AzureSubscription
-                        {
-                            Id = item.Key.ID,
-                            Name = item.Key.Name,
-                            Description = item.Key.Description,
-                            AccountType = item.Key.AccountType,
-                            ExpirationDate = item.Key.ExpirationDate,
-                            CertificateBlob = item.Key.CertificateBlob,
-                            CertificateThumbprint = item.Key.CertificateThumbprint,
-                            AccountID = item.Key.AccountID,
-                            AccountPassword = item.Key.AccountPassword,
-                            Active = item.Key.Active,
-                            TenantID = item.Key.TenantID,
-                            ClientID = item.Key.ClientID,
-                            ClientKey = item.Key.ClientKey,
-                            PlanId = planId
-                        };
-                        result.Add(key, item.Value);
-                    }
+                        Id = item.Key.ID,
+                        Name = item.Key.Name,
+                        Description = item.Key.Description,
+                        AccountType = item.Key.AccountType,
+                        ExpirationDate = item.Key.ExpirationDate,
+                        CertificateBlob = item.Key.CertificateBlob,
+                        CertificateThumbprint = item.Key.CertificateThumbprint,
+                        AccountID = item.Key.AccountID,
+                        AccountPassword = item.Key.AccountPassword,
+                        Active = item.Key.Active,
+                        TenantID = item.Key.TenantID,
+                        ClientID = item.Key.ClientID,
+                        ClientKey = item.Key.ClientKey,
+                        PlanId = planId
+                    };
+                    result.Add(key, item.Value);
+                }
                 //}
                 return result;
             }
@@ -2712,6 +2712,30 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
             {
                 throw new Exception("Exception in FetchAzureSubToPlanMapping() : "
                     + Utilities.UnwindExceptionMessages(ex));
+            }
+        }
+
+        //*********************************************************************
+        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        //*********************************************************************
+
+        {
+            try
+            {
+                var vmsRepo = new VMServiceRepository();
+
+                var allPlanSpas = vmsRepo.FetchServiceProviderAccountList();
+            }
+            catch (Exception ex)
+            {
+                //*** We don't want a problem here to crash the thing
+                LogThis("Exception : ", "FetchWapSubIdFromAzureSub()", ex, EventLogEntryType.Error);
+                return null;
             }
         }
 

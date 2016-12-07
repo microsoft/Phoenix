@@ -124,7 +124,7 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
                     TargetVmName = cmpVm.TargetVmName,
                     UserSpec = null,
                     VmSize = cmpVm.VmSize,
-                    WapSubscriptionID = null,
+                    WapSubscriptionID = cwdb.FetchWapSubIdFromAzureSub(cmpVm.TargetAccount),    //*** TODO * Test This
                     AzureSubscriptionID = cmpVm.TargetAccount,
                     Warnings = null,
                     WhenRequested = cmpVm.WhenRequested,
