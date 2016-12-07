@@ -2720,16 +2720,20 @@ namespace Microsoft.WindowsAzurePack.CmpWapExtension.Api
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="azureSubId"></param>
         /// <returns></returns>
         /// 
         //*********************************************************************
 
+        public string FetchWapSubIdFromAzureSub(string azureSubId)
         {
             try
             {
                 var vmsRepo = new VMServiceRepository();
 
                 var allPlanSpas = vmsRepo.FetchServiceProviderAccountList();
+                var matchingPlanSpas = allPlanSpas.Where(s => s.AccountID.Equals(azureSubId));
+                return matchingPlanSpas.FirstOrDefault()?.PlanId;
             }
             catch (Exception ex)
             {
